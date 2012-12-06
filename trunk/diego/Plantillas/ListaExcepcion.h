@@ -17,6 +17,6 @@ const char* ListaExcepcion::what() const throw() {
         return "El elemento no existe";
    }
    return "Error inesperado";
-} // (1)
+}
 
 #endif
