@@ -33,6 +33,8 @@ int main ( void )
   string usuario = "", admin = "";
   Usuario u;
   Admin a;
+  string msgUsuError = "", msgAdmError = "";
+
 
   while ( ch != 'x' )
     {
@@ -45,20 +47,41 @@ int main ( void )
         {
 	  case 'W':
 	  case 'w':
+                msgUsuError = "";
+                msgAdmError = "";
 		cout << "Usuario : ";
 		getline ( cin, usuario );
-                if ( find_usuario ( usuario ) )
+                u.setNombre ( usuario ); 
+
+                try 
+                  {                    
+                    lista_usuarios.find ( u );
+                    menu_usuario ( usuario );		    
+                    break;
+                  }
+                catch ( ListaExcepcion& exc )
 		  {
-                    menu_usuario ( usuario );
+                    msgUsuError = exc.what();
 		  }
-                else if ( find_admin ( usuario ) )
+
+                //Si no existe como usuario lo buscamos como administrador
+                a.setNombre ( usuario );
+
+                try 
+	          {                    
+	            lista_admins.find ( a );
+		    menu_admin ( usuario );                    
+		  }
+		catch ( ListaExcepcion& exc )
 		  {
-                    menu_admin ( usuario );
+                    msgAdmError = exc.what();
 		  }
-                else
-		  {
-		    cerr << "El usuario no existe" << endl;
-		  }
+
+                if ( "" != msgUsuError )
+		  cerr << "usuario: " << msgUsuError << endl;
+
+                if ( "" != msgAdmError )
+		  cerr << "administrador: " << msgAdmError << endl;
 
                 break;
 	  case 'U':
@@ -106,57 +129,60 @@ int main ( void )
 //Devolverá 0 si no lo encuentra y != 0 si lo encuentra (posicion en la lista)
 unsigned int find_canal ( const string& nombreCanal )
 {
-  unsigned int i = 0, pos = 0;
-  Canal *c = 0;
+  unsigned int pos = 0;
+  Canal c;
   
-  for ( i = 1; i <= lista_canales.getNumElems(); i++ )
-    {
-      lista_canales.getRefElem ( c, i );
+  c.setNombreCanal ( nombreCanal ); 
 
-      if ( c->getNombreCanal() == nombreCanal )
-	{
-          pos = i;
-          break;
-	}
+  try 
+    {                    
+      pos = lista_canales.find ( c );
     }
+  catch ( ListaExcepcion& exc )
+    {
+      cerr << exc.what() << endl;
+    }
+
   return pos;
 }
 
 //Devolverá 0 si no lo encuentra y != 0 si lo encuentra (posicion en la lista)
 unsigned int find_usuario ( const string& nombre )
 {
-  unsigned int i = 0, pos = 0;
-  Usuario *u = 0;
-  
-  for ( i = 1; i <= lista_usuarios.getNumElems(); i++ )
-    {
-      lista_usuarios.getRefElem ( u, i );
+  unsigned int pos = 0;
+  Usuario u;
 
-      if ( u->getNombre() == nombre )
-	{
-          pos = i;
-          break;
-	}
+  u.setNombre ( nombre ); 
+
+  try 
+    {                    
+      pos = lista_usuarios.find ( u );
     }
+  catch ( ListaExcepcion& exc )
+    {
+      cerr << exc.what() << endl;
+    }
+
   return pos;
 }
 
 //Devolverá 0 si no lo encuentra y != 0 si lo encuentra (posicion en la lista)
 unsigned int find_admin ( const string& nombre )
 {
-  unsigned int i = 0, pos = 0;
-  Admin *a = 0;
+  unsigned int pos = 0;
+  Admin a;
   
-  for ( i = 1; i <= lista_admins.getNumElems(); i++ )
-    {
-      lista_admins.getRefElem ( a, i );
+  a.setNombre ( nombre ); 
 
-      if ( a->getNombre() == nombre )
-	{
-          pos = i;
-          break;
-	}
+  try 
+    {                    
+      pos = lista_admins.find ( a );
     }
+  catch ( ListaExcepcion& exc )
+    {
+      cerr << exc.what() << endl;
+    }
+
   return pos;
 }
 

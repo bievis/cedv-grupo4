@@ -1,6 +1,5 @@
 CXX=g++
 
-# Modo de compilación (-mode=release -mode=debug) --------------------
 ifeq ($(mode), release)
         CXXFLAGS=-O2
 else
