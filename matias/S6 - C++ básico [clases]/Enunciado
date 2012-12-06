@@ -1,0 +1,55 @@
+Suba en un archivo <nombre>-<primer_apellido>-s6-cedv2012.tar.gz la solución (código fuente y Makefile) al siguiente ejercicio:
+
+Implemente en C++ estándar las clases Vec3 y Triangle, cuyo esqueleto se expone a continuación. El objetivo de la clase Vec3 es proporcionar la funcionalidad básica para manejar información tridimensional, como por ejemplo un punto o un vector en el espacio 3D. La clase Triangle hace uso de Vec3 para definir sus tres vértices.
+
+Preste especial atención a la clase Triangle, en concreto a la implementación del constructor de copia y al operador de asignador de copia para reservar memoria de manera adecuada.
+
+Implemente un menú sencillo en la función principal para instanciar triángulos.
+
+Nota: extienda la implementación de ambas clases si desea incorporar más funcionalidad.
+
+#ifndef VEC3_H
+#define VEC3_H
+
+class Vec3 {
+ public:
+  Vec3 (int x, int y, int z);
+  ~Vec3 ();
+ 
+  // Funciones de acceso.
+  int getX () const;
+  int getY () const;
+  int getZ () const;
+
+  // Sobrecarga de operadores.
+  void operator+ (const Vec3 &op);
+  void operator- (const Vec3 &op);
+
+ private:
+  int _x, _y, _z; // Coordenadas 3D.
+};
+
+#endif
+
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
+
+#include "Vec3.h"
+
+class Triangle {
+ public:
+  Triangle (const Vec3 &v1, const Vec3 &v2, const Vec3 &v3);
+  Triangle (const Triangle &t);
+  ~Triangle ();
+
+  Vec3 getV1 () const;
+  Vec3 getV2 () const;
+  Vec3 getV3 () const;
+
+  Triangle& operator= (const Triangle &t);
+
+ private:
+  Vec3 *_v1, *_v2, *_v3; // Vértices del triángulo.
+};
+
+#endif
