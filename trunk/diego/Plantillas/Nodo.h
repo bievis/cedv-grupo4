@@ -57,7 +57,9 @@ template<class T>
 void Nodo<T>::print()
 {
   //Para Noticias
+#ifdef __DEBUG__
   printf ( "[ANT->%p:SIG->%p] : ", _ant, _sig );
+#endif
   _elem.print();
 }
 

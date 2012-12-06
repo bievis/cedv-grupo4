@@ -37,22 +37,6 @@ public:
 
 };
 
-/* template<class T> */
-/* unsigned int Lista<T>::find ( string valor ) */
-/* { */
-/*   Nodo<T> *ptr = _primero; */
-/*   unsigned int pos = 0; */
-
-/*   for ( unsigned int i = 1; i <= _numElems; i++, ptr = ptr->getSig() ) */
-/*     { */
-/*       if ( ptr->getDato().getValorComparacion() == valor ) */
-/*         { */
-/*           pos = i; */
-/*           break; */
-/*         } */
-/*     } */
-/* } */
-
 template<class T>
 bool Lista<T>::getRefElem ( T* &elem, unsigned int pos )
 {
@@ -87,6 +71,7 @@ unsigned int Lista<T>::find ( const T& elem )
       if ( ptr->getDato() == elem )
 	{
           pos = i;
+          break;
 	}
       ptr = ptr->getSig();
     }
@@ -94,7 +79,7 @@ unsigned int Lista<T>::find ( const T& elem )
   if ( pos == 0 )
     throw ListaExcepcion ( 1 );
 
-  return 0;
+  return pos;
 }
 
 template<class T>
@@ -261,8 +246,6 @@ void Lista<T>::print ()
 #endif
   cout << "=========================" << endl;
 
-
-
   if ( _numElems == 0 )
     cout << "vacia" << endl;
 
@@ -271,7 +254,7 @@ void Lista<T>::print ()
 #ifdef __DEBUG__
       printf( "Elemento %d [%p] : ", i, ptr );
 #else
-      cout << "Elemento " << i << ":";
+      cout << "Elemento " << i << " : ";
 #endif
       ptr->print();
       if ( ptr->getSig() )
