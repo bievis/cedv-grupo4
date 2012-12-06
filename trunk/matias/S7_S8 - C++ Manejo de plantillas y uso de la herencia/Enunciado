@@ -1,0 +1,26 @@
+Realice una implementación de listas de acuerdo a la propuesta que se resume en la transparencia 9. La funcionalidad [mínima] a soportar es la siguiente:
+
++ Acceso al nodo de inicio y al nodo de fin de la lista.
++ A partir de un determinado nodo, ha de ser posible acceder al siguiente y al anterior. En otras palabras, la lista ha de ser doblemente enlazada. Considere que no es posible acceder desde el último nodo al primero ni viceversa.
++ Inclusión de las operaciones insertar_n, eliminar_n y modificar_n, que insertar, elimina y modifica un elemento en la posición n, respectivamente.
+
+La implementación ha de permitir el manejo de cualquier tipo de datos. Apóyese en el uso de plantillas.
+
+Utilice la implementación de listas para solucionar el siguiente problema:
+
+Un grupo editorial de la región está interesado en adquirir un software de publicación de noticias. El sistema a desarrollar ha de permitir que los usuarios que deseen suscribirse puedan elegir el tipo de noticias en los que están interesados, como por ejemplo sociedad, cultura, internacional, deportes, etc. El sistema está estructurado en una serie de canales de noticias (uno por tipo de noticia), cuya tarea consiste en la distribución de noticias a los suscriptores.
+
+Cada canal de noticias cuenta con un registro dinámico de los usuarios que están suscritos al mismo. Si un usuario encuentra particularmente interesante una noticia, entonces puede marcarla como ‘muy interesante’. El objetivo es que el sistema sea capaz de determinar el top 5 de noticias interesantes por tipo de canal (sociedad, cultura, etc.), es decir, las más votadas por los usuarios. De este modo, el sistema ha de permitir que en cualquier momento un suscriptor acceda a las 5 noticias más interesantes de un determinado tipo.
+
+El siguiente gráfico muestra una visión general del sistema.
+
+Esquema general - Sistema publicación
+
+Diseñe e implemente una solución a este problema y proporcione la funcionalidad necesaria para que
+
+i) un usuario pueda enviar y recibir noticias (en múltiples canales),
+ii) un usuario pueda suscribirse y darse de baja de un canal,
+iii) un usuario pueda obtener el top5 de noticias interesantes por tipo,
+iv) el administrador pueda añadir y eliminar canales de noticias.
+
+Considere el diseño de excepciones para casos particulares, como por ejemplo la suscripción de un usuario a un canal de noticias inexistente.
