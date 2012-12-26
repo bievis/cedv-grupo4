@@ -33,12 +33,14 @@ int MyApp::start() {
     _root->saveConfig();
   }
   
-  RenderWindow* window = _root->initialise(true,"MyApp Example");
+  RenderWindow* window = _root->initialise(true,"Whack-a-Mole");
   _sceneManager = _root->createSceneManager(ST_GENERIC);
   
   Camera* cam = _sceneManager->createCamera("MainCamera");
-  cam->setPosition(Vector3(5,10.5,12));
-  cam->lookAt(Vector3(1.4,4.3,3));
+  //  cam->setPosition(Vector3(5,10.5,12));
+  cam->setPosition(Vector3(15,24.5,45));
+  //cam->lookAt(Vector3(1.4,4.3,3));
+  cam->lookAt(Vector3(15,4.3,3));
   cam->setNearClipDistance(5);
   cam->setFarClipDistance(10000);
   cam->setFOVy(Degree(48));
@@ -54,10 +56,37 @@ int MyApp::start() {
   createScene();
   createOverlay();
 
-  SceneNode *node = _sceneManager->getSceneNode("Esfera");
+  SceneNode *node = 0;
+  string sVal = "";
+  const char *cNombre = "Esfera";
+  char cad[50];
+
+  //Partiendo de que esto es una ñapa ...
+  //Para los objetos del 0 al 3 los muevo a primera linea de pantalla y separados
+  //cada uno por 10 unids. además los pongo inicialmente en posiciones de Y distintas
+  //para que en la animacion nada mas empezar se muevan a distintos niveles, por ultimo el 15
+  //es porque esten mas cerca de pantalla
+  //Para los objetos del 4 al 6 los muevo a segunda linea pos Z = 0, pero por lo demas son iguales
+  //a la primera linea, salvando que son uno menos y los desplazo 5 unids a la derecha para centrarlos
+  for ( unsigned int i = 0; i < _NUM_ELEMS_; i++ )
+    {
+      sprintf ( cad, "%s%i", cNombre, i );
+      sVal = cad;
+      node = _sceneManager->getSceneNode ( sVal.c_str() );
+      if ( i < 4 )
+	{
+         
+          node->translate ( i*10, i%5, 15 );
+	}
+      else
+	{
+          node->translate ( ((i-4)*10) + 5, i%5, 0 );
+	}
+      vNodes.push_back ( node );
+    }
   
-  _framelistener = new MyFrameListener(window, cam, node, _overlayManager, _sceneManager);
-  _root->addFrameListener(_framelistener);
+  _framelistener = new MyFrameListener ( window, cam, &vNodes, _overlayManager, _sceneManager );
+  _root->addFrameListener ( _framelistener );
   
   _root->startRendering();
   return 0;
@@ -83,10 +112,24 @@ void MyApp::loadResources() {
 }
 
 void MyApp::createScene() {
-  Entity* ent2 = _sceneManager->createEntity("Esfera", "Esfera.mesh");
-  SceneNode* node2 = _sceneManager->createSceneNode("Esfera");
-  node2->attachObject(ent2);
-  _sceneManager->getRootSceneNode()->addChild(node2);
+
+  Entity* ent = 0;
+  SceneNode* node = 0;
+  const char * cNombre = "Esfera";
+  string sVal = "";
+  char cad[50];
+
+  for (unsigned int i = 0; i < _NUM_ELEMS_; i++ )
+    {
+      sprintf ( cad, "%s%d", cNombre, i );
+      sVal = cad;
+      cout << "Creando " << cad << " ... " << flush;
+      ent = _sceneManager->createEntity ( sVal.c_str(), "Esfera.mesh" );
+      node = _sceneManager->createSceneNode ( sVal.c_str() );
+      node->attachObject(ent);
+      _sceneManager->getRootSceneNode()->addChild(node);
+      cout << "OK" << endl;
+    }
 
   _sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);	
   _sceneManager->setAmbientLight(ColourValue(0.2, 0.2, 0.2));
@@ -106,11 +149,11 @@ void MyApp::createScene() {
 	ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane1,
 	200,200,1,1,true,1,10,10,Vector3::UNIT_Z);
 
-  SceneNode* node3 = _sceneManager->createSceneNode("ground");
-  Entity* groundEnt = _sceneManager->createEntity("planeEnt", "plane1");
-  groundEnt->setMaterialName("Ground");
-  node3->attachObject(groundEnt);
-  _sceneManager->getRootSceneNode()->addChild(node3);
+  SceneNode* nodeGround = _sceneManager->createSceneNode ( "ground" );
+  Entity* entGround = _sceneManager->createEntity ( "planeEnt", "plane1" );
+  entGround->setMaterialName ( "Ground" );
+  nodeGround->attachObject ( entGround );
+  _sceneManager->getRootSceneNode()->addChild ( nodeGround );
 
 }
 
