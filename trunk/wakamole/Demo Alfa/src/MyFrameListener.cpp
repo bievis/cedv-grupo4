@@ -1,31 +1,19 @@
-/*********************************************************************
- * Módulo 2. Curso de Experto en Desarrollo de Videojuegos
- * Autor: Carlos González Morcillo     Carlos.Gonzalez@uclm.es
- *
- * You can redistribute and/or modify this file under the terms of the
- * GNU General Public License ad published by the Free Software
- * Foundation, either version 3 of the License, or (at your option)
- * and later version. See <http://www.gnu.org/licenses/>.
- *
- * This file is distributed in the hope that it will be useful, but
- * WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * General Public License for more details.  
- *********************************************************************/
 #include "MyFrameListener.h"
 
 MyFrameListener::MyFrameListener(Ogre::RenderWindow* win, 
 				 Ogre::Camera* cam, 
-				 Ogre::SceneNode *node, 
+				 std::vector<Ogre::SceneNode *> *nodes,
 				 Ogre::OverlayManager *om,
-         SceneManager* sm) {
+                                 SceneManager* sm) {
   _sceneManager = sm;
   _selectedNode = NULL;
   _win = win;
   OIS::ParamList param;
   size_t windowHandle;  std::ostringstream wHandleStr;
 
-  _camera = cam;  _node = node; _overlayManager = om;
+  _camera = cam;
+  _overlayManager = om;
+  _ptrNodes = nodes;
   
   win->getCustomAttribute("WINDOW", &windowHandle);
   wHandleStr << windowHandle;
@@ -41,6 +29,11 @@ MyFrameListener::MyFrameListener(Ogre::RenderWindow* win,
   _mouse->getMouseState().height = _win->getHeight();
 
   _raySceneQuery = _sceneManager->createRayQuery(Ray());
+  
+  _vPosInicial.resize((*_ptrNodes).size(),0);
+  _vPosFinal.resize((*_ptrNodes).size(),5);
+  _vSubir.resize((*_ptrNodes).size(),false);
+
 }
 
 MyFrameListener::~MyFrameListener() {
@@ -48,6 +41,10 @@ MyFrameListener::~MyFrameListener() {
   _inputManager->destroyInputObject(_mouse);
   OIS::InputManager::destroyInputSystem(_inputManager);
   _sceneManager->destroyQuery(_raySceneQuery);
+
+  _vPosInicial.clear();
+  _vPosFinal.clear();
+  _vSubir.clear();
 }
 
 Ray MyFrameListener::setRayQuery(int posx, int posy, uint32 mask) {
@@ -60,12 +57,11 @@ Ray MyFrameListener::setRayQuery(int posx, int posy, uint32 mask) {
 }
 
 bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
-  Ogre::Real r = 0;
-  static Ogre::Real posInicial = _node->getPosition().y;
-  static Ogre::Real posFinal = posInicial + 5;
-  static bool subir = true;
-  static Ogre::Real VELOCIDAD = 2;
-  Ogre::Real velocidad = VELOCIDAD;
+  //  Ogre::Real r = 0;
+  //  static Ogre::Real posInicial = 0;
+  //  static Ogre::Real posFinal = 0;
+  //  static bool subir = true;
+  Ogre::Real velocidad = _VELOCIDAD_STD;
   Ogre::Real deltaT = evt.timeSinceLastFrame;
   int fps = 1.0 / deltaT;
 
@@ -77,30 +73,68 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   int posx = _mouse->getMouseState().X.abs;   // Posicion del puntero
   int posy = _mouse->getMouseState().Y.abs;   //  en pixeles.
 
-  if(_keyboard->isKeyDown(OIS::KC_R)) r+=180;
-  _node->yaw(Ogre::Degree(r * deltaT));
-  
-  // Subir y bajar objeto
-  if(_node->getPosition().y >= posFinal) subir = false;
-  else if(_node->getPosition().y <= posInicial) subir = true;
-  if(subir) velocidad = VELOCIDAD;
-  else velocidad = VELOCIDAD * -1;
-  _node->translate(0, velocidad * deltaT, 0);
+  //  if(_keyboard->isKeyDown(OIS::KC_R)) r+=180;
+  //  _node->yaw(Ogre::Degree(r * deltaT));
+
+  //Movimiento de los objetos
+  for ( unsigned int i = 0; i < (*_ptrNodes).size(); i++ )
+    {
+      //      cout << "Objeto : " << (*_ptrNodes)[i]->getName() << flush;
+
+      //      cout << " : (*_ptrNodes)[i]->getPosition().y [" << (*_ptrNodes)[i]->getPosition().y 
+      //	   << "] >= _vPosFinal[i] [" << _vPosFinal[i] << "]" << endl;
+    
+      if ( (*_ptrNodes)[i]->getPosition().y >= _vPosFinal[i] ) _vSubir[i] = false;
+      else if ( (*_ptrNodes)[i]->getPosition().y <= _vPosInicial[i] ) _vSubir[i] = true;
+      
+      if ( _vSubir[i] ) velocidad = _VELOCIDAD_STD;
+      else velocidad = _VELOCIDAD_STD * -1;
+
+      (*_ptrNodes)[i]->translate ( 0, velocidad * deltaT, 0 );
+    }
 
   //////// Tirar rayo
   // Botones del raton pulsados? -------------------------------------
   bool mbleft = _mouse->getMouseState().buttonDown(OIS::MB_Left);
   //bool mbmiddle = _mouse->getMouseState().buttonDown(OIS::MB_Middle);
   //bool mbright = _mouse->getMouseState().buttonDown(OIS::MB_Right);
-  if (mbleft) { // Si hemos pulsado el boton izquierdo del raton
+  if ( mbleft ) { // Si hemos pulsado el boton izquierdo del raton
     Ray r = setRayQuery(posx, posy, 0);
     RaySceneQueryResult &result = _raySceneQuery->execute();
     RaySceneQueryResult::iterator it;
+    string strFind = "Esfera";
+    bool bEncontrado = false;
+
     it = result.begin();
     if (it != result.end()) {
       if (_selectedNode != NULL) {
-        if(_selectedNode->getName() == "Esfera") _selectedNode->showBoundingBox(true);
-        else _sceneManager->getSceneNode("Esfera")->showBoundingBox(false);
+        for ( unsigned int i = 0; i < (*_ptrNodes).size(); i++ )
+	  {
+            cout << "selected " << _selectedNode->getName() << " == " << 
+              "nodo " << i << " " <<  (*_ptrNodes)[i]->getName() << endl;
+            if ( _selectedNode->getName() == (*_ptrNodes)[i]->getName() )
+	      {
+                bEncontrado = true; 
+                break;
+              }
+	  }
+
+        if ( bEncontrado )
+	  {
+            _selectedNode->showBoundingBox(true);
+	  }
+        else 
+          {
+            string sVal = "";
+            const char *cNombre = "Esfera";
+            char cad[50];
+            for ( unsigned int i = 0; i < (*_ptrNodes).size(); i++ )
+	      {
+                sprintf ( cad, "%s%d", cNombre, i );
+                sVal = cad;
+                _sceneManager->getSceneNode ( sVal.c_str() )->showBoundingBox ( false );
+	      }
+	  }
       }
       _selectedNode = it->movable->getParentSceneNode();
     }
@@ -111,10 +145,9 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   oe = _overlayManager->getOverlayElement("fpsInfo");
   oe->setCaption(Ogre::StringConverter::toString(fps));
 
-  // Posicionamo el cursor del overlay donde este el raton
+  // Posicionamos el cursor del overlay donde este el raton
   oe = _overlayManager->getOverlayElement("cursor");
   oe->setLeft(posx);  oe->setTop(posy);
-
 
   return true;
 }
