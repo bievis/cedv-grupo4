@@ -1,0 +1,69 @@
+template element TextArea(MyTemplates/Text)
+{
+    font_name Blue
+		metrics_mode pixels
+		char_height 80
+		colour 100.0 100.0 100.0    
+}
+
+template element TextArea(MyTemplates2/Text)
+{
+    font_name Blue
+		metrics_mode pixels
+		char_height 120
+		colour 156.0 30.0 70.0    
+}
+
+Info
+{
+    zorder 500
+
+    container Panel(panelPuntos) 
+    {
+ 		    metrics_mode pixels
+        left 10
+        top -85
+        width 250
+        height 75
+        vert_align bottom
+        material matPanelPuntos
+
+		    element TextArea(puntuacion) : MyTemplates/Text 
+		    {
+				  top 5
+				  left 120
+		    }
+	  }
+	  
+    container Panel(panelTiempo) 
+    {
+	      metrics_mode pixels
+        left -180
+        top 0
+        width 150
+        height 120
+        vert_align top
+        horz_align right
+        material matPanelTiempo
+
+        element TextArea(tiempo) : MyTemplates2/Text 
+		    {
+				  top 30
+				  left 5 
+          horz_align left
+		    }
+    }	  
+
+    container Panel(cursor) 
+    {
+	      metrics_mode pixels
+        left 100
+        top 100
+        width 17
+        height 23
+        vert_align top
+        horz_align left
+        material pointer
+    }	
+ 
+}
