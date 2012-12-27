@@ -1,0 +1,28 @@
+material matPanelPuntos 
+{
+ technique 
+ {
+   pass 
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit 
+     {
+       texture panelPuntos.png
+     }
+   }
+ }
+}
+
+material matPanelTiempo 
+{
+ technique 
+ {
+   pass 
+   {
+     texture_unit 
+     {
+       texture panelTiempo.jpg
+     }
+   }
+ }
+}
