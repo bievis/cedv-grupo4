@@ -73,7 +73,6 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
     if (it != result.end()) {
       _selectedNode = it->movable->getParentSceneNode();
       if (_selectedNode != NULL) {
-        cout << _selectedNode->getName() << endl;
         if(_selectedNode->getName().compare(0, 9, "Personaje") == 0) {          
           std::vector<Personaje>::iterator it1;
           bool encontrado = false;
