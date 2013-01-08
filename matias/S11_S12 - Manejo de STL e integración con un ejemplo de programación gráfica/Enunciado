@@ -1,0 +1,18 @@
+Modificar la implementación del ejemplo del planetario discutido en la sesión de OpenGL del módulo de Programación Gráfica, de acuerdo a un diseño orientado a objetos, de manera que se modele el Sistema Solar con todos sus planetas, además del Sol.
+
+Considere un diseño general en el que sea posible tener n planetas, junto con sus satélites correspondientes. Utilice contenedores de STL.
+
+Contemple en su diseño las siguientes clases:
+
++ Astro, para modelar cuerpos celetes. Un astro tiene un nombre (id único), una posición en el espacio 3D, un color y un radio.
++ Planeta, para modelar los distintos planetas del Sistema Solar. Un planeta es un tipo especial de astro que tiene una rotación alrededor del Sol (traslación), una rotación interna y una serie de satélites que giran a su alrededor.
++ Satélite, para modelar astros como La Luna. Un satélite está vinculado a un único planeta y tiene asociados movimientos de traslación y rotación.
++ Sistema, para modelar el Sistema Solar. El Sistema Solar mantiene una serie de planetas y el Sol (aunque es posible añadir nuevas estrellas).
+
+Plantee el diseño desde un punto de vista general, es decir, para que sea posible añadir planetas, satélites y estrellas. En cualquier caso, considere al Sol como estrella de referencia para los movimientos de traslación.
+
+Utilice el contenedor STL que considere en cada caso. Sin embargo, utilice una estructura de tipo diccionario para indexar los planetas por nombre dentro del Sistema Solar.
+
+Considere la pulsación de la tecla 's' como evento para animar (arrancar/parar) el Sistema Solar, con todos los movimientos asociados a los distintos astros.
+
+Modele también la clase Cámara, que mantenga como estado interno elementos clave (tres vectores gluLookAt).
