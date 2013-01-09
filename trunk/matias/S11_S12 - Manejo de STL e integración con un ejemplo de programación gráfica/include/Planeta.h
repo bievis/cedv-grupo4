@@ -14,15 +14,17 @@ class Planeta : public Astro {
   Planeta (const Planeta &p); // Constructor copia
 
   // Gets y Sets
-  inline std::vector<Satelite>& getSatelites () const;
+  std::vector<Satelite>& getSatelites();
   
   // Sobre carga de Operadores
   Planeta& operator= (const Planeta &p);
 
+  // Otras funciones
+  string toString() const;
  private:
   std::vector<Satelite> _satelites;
   
-  void copiar(const Astro &a);
+  void copiar(const Planeta &a);
 };
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef SATELITE_H
 #define SATELITE_H
 
-#include "Planeta.h"
+#include "Astro.h"
 
 class Satelite : public Astro {
  public:
@@ -9,21 +9,23 @@ class Satelite : public Astro {
   Satelite (const string id, const float posicion, 
         const int colorRojo, const int colorVerde, const int colorAzul,
         const double radio, const int divisiones, const float translacion, const float rotacion,
-        const Planeta &planeta);
+        const string idPlaneta);
   Satelite (const Satelite &s); // Constructor copia
 
   // Gets y Sets
-  inline Planeta getPlaneta () const;
-  inline void setPlaneta(const Planeta planeta);
+  string getIdPlaneta () const;
+  void setIdPlaneta(const string idPlaneta);
   
   // Sobre carga de Operadores
   Satelite& operator= (const Satelite &s);
   bool operator == (const Satelite &s) const;
 
+  // Otras funciones
+  string toString() const;
  private:
-  Planeta _planeta;
+  string _idPlaneta;
   
-  void copiar(const Astro &s);
+  void copiar(const Satelite &s);
 };
 
 #endif

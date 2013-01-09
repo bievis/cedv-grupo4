@@ -1,12 +1,13 @@
 #include "Satelite.h"
+#include <sstream>
 
 Satelite::Satelite (const string id, const float posicion,
         const int colorRojo, const int colorVerde, const int colorAzul,
         const double radio, const int divisiones, const float translacion, const float rotacion,
-        const Planeta &planeta) 
+        const string idPlaneta) 
         : Astro (id, posicion, colorRojo, colorVerde, colorAzul, radio, 
                  divisiones, translacion, rotacion) {
-  _planeta = planeta;
+  _idPlaneta = idPlaneta;
 }
 
 Satelite::Satelite (const Satelite &s) { // Constructor copia
@@ -14,12 +15,12 @@ Satelite::Satelite (const Satelite &s) { // Constructor copia
 }
 
 // Gets y Sets
-Planeta Satelite::getPlaneta () const {
-  return _planeta;
+inline string Satelite::getIdPlaneta () const {
+  return _idPlaneta;
 }
 
-void Satelite::setPlaneta(const Planeta planeta) {
-  _planeta = planeta;
+inline void Satelite::setIdPlaneta(const string idPlaneta) {
+  _idPlaneta = idPlaneta;
 }
 
 
@@ -38,5 +39,23 @@ void Satelite::copiar(const Satelite &s) {
   _divisiones = s.getDivisiones();
   _rotacion = s.getRotacion();
   _translacion = s.getTranslacion();
-  _planeta = planeta;
+  _idPlaneta = s.getIdPlaneta();
+}
+
+string Satelite::toString () const {
+  stringstream out;
+  
+  out << "\t\tId: " << _id << endl;
+  out << "\t\tPosicion: " << _posicion << endl;
+  out << "\t\tColor Rojo: " << _colorRojo << endl;
+  out << "\t\tColor Verde: " << _colorVerde << endl;
+  out << "\t\tColor Azul: " << _colorAzul << endl;
+  out << "\t\tRadio: " << _radio << endl;
+  out << "\t\tDivisiones: " << _divisiones << endl;
+  out << "\t\tRotacion: " << _rotacion << endl;
+  out << "\t\tTranslacion: " << _translacion << endl;
+  out << "\t\tPertenece a: " << _idPlaneta << endl;
+  out << "\t\t----------------------------------------" << endl;  
+
+  return out.str();
 }
