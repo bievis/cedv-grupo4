@@ -1,5 +1,8 @@
 #include "Satelite.h"
 #include <sstream>
+#include <GL/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 Satelite::Satelite (const string id, const float posicion,
         const int colorRojo, const int colorVerde, const int colorAzul,
@@ -58,4 +61,14 @@ string Satelite::toString () const {
   out << "\t\t----------------------------------------" << endl;  
 
   return out.str();
+}
+
+void Satelite::pintar(long tiempo) const {
+  glRotatef (tiempo * getTranslacion(), 0.0, 0.0, 1.0);
+  glTranslatef(getPosicion(), 0.0, 0.0);
+  glPushMatrix();
+  glRotatef (tiempo * getRotacion(), 0.0, 0.0, 1.0); 
+  glColor3ub (getColorRojo(), getColorVerde(), getColorAzul());
+  glutWireSphere (getRadio(), getDivisiones(), getDivisiones());
+  glPopMatrix();
 }

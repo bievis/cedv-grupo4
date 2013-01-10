@@ -1,5 +1,8 @@
 #include "Astro.h"
 #include <sstream>
+#include <GL/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 Astro::Astro (const string id, const float posicion, 
         const int colorRojo, const int colorVerde, const int colorAzul,
@@ -142,4 +145,9 @@ string Astro::toString () const {
   out << "----------------------------------------" << endl;  
 
   return out.str();
+}
+
+void Astro::pintar(const long tiempo)  const {
+  glColor3ub (getColorRojo(), getColorVerde(), getColorAzul());
+  glutWireSphere (getRadio(), getDivisiones(), getDivisiones());
 }

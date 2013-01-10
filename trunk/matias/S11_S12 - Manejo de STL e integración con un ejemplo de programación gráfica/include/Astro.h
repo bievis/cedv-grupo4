@@ -42,6 +42,7 @@ class Astro {
 
   // Otras funciones
   virtual string toString() const;
+  virtual void pintar(long tiempo) const;
  protected:
   string _id;
   float _posicion; // Distancia respecto al planeta del que orbita

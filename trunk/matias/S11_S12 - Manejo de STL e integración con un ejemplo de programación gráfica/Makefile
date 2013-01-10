@@ -5,12 +5,13 @@ DIROBJ := obj/
 DIRHEA := include/
 
 CXX := g++
+LDLIBS = -lGL -lGLU -lglut
 
 # Flags de compilación -----------------------------------------------
 ifeq ($(DEBUG), yes) # si se inturoduce la opcion DEBUG=yes
-  CXXFLAGS := -I $(DIRHEA) -Wall -ggdb -lGL -lGLU -lglut
+  CXXFLAGS := -I $(DIRHEA) -Wall -ggdb
 else
-  CXXFLAGS := -I $(DIRHEA) -Wall -lGL -lGLU -lglut
+  CXXFLAGS := -I $(DIRHEA) -Wall
 endif
 
 # Obtención automática de la lista de objetos a compilar -------------
