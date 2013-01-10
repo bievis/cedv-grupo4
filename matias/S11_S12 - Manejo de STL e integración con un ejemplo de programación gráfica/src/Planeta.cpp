@@ -1,5 +1,8 @@
 #include "Planeta.h"
 #include <sstream>
+#include <GL/glut.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 Planeta::Planeta (const string id, const float posicion, 
         const int colorRojo, const int colorVerde, const int colorAzul,
@@ -57,4 +60,23 @@ string Planeta::toString () const {
   out << "**************************************" << endl;  
 
   return out.str();
+}
+
+void Planeta::pintar(long tiempo) const {
+  glRotatef (tiempo * getTranslacion(), 0.0, 0.0, 1.0);
+  glTranslatef(getPosicion(), 0.0, 0.0);
+  glPushMatrix();
+  glRotatef (tiempo * getRotacion(), 0.0, 0.0, 1.0); 
+  glColor3ub (getColorRojo(), getColorVerde(), getColorAzul());
+  glutWireSphere (getRadio(), getDivisiones(), getDivisiones());
+  glPopMatrix();
+  
+  std::vector<Satelite>::const_iterator
+    mit (_satelites.begin()),
+    mend(_satelites.end());
+  for(;mit!=mend;++mit) {
+    glPushMatrix();
+    mit->pintar(tiempo);
+    glPopMatrix();
+  }
 }

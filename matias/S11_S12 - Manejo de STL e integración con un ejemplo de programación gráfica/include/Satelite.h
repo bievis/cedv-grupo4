@@ -22,6 +22,7 @@ class Satelite : public Astro {
 
   // Otras funciones
   string toString() const;
+  void pintar(long tiempo) const;
  private:
   string _idPlaneta;
   

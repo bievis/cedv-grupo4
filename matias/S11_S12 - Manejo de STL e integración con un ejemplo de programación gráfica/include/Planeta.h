@@ -21,6 +21,7 @@ class Planeta : public Astro {
 
   // Otras funciones
   string toString() const;
+  void pintar(long tiempo) const;
  private:
   std::vector<Satelite> _satelites;
   
