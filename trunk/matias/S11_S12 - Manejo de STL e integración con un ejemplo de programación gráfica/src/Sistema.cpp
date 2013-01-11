@@ -22,11 +22,11 @@ inline void Sistema::setId(const string id) {
   _id = id;
 }
 
-Astro& Sistema::getAstroCentral() {
+inline Astro& Sistema::getAstroCentral() {
   return _astroCentral;
 }
 
-void Sistema::setAstroCentral(const Astro astroCentral) {
+inline void Sistema::setAstroCentral(const Astro astroCentral) {
   _astroCentral = astroCentral;
 }
 

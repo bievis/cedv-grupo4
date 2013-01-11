@@ -6,6 +6,7 @@
 #include "Astro.h"
 #include "Planeta.h"
 #include "Satelite.h"
+#include "Camara.h"
 
 using namespace std;
 
@@ -13,6 +14,7 @@ using namespace std;
 
 // -------------------- Variables globales -------------------------
 long hours = 0;
+Camara camara (0.0, 0.0, 8.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 Sistema SistemaSolar;
 bool parar = true;
 
@@ -49,7 +51,9 @@ void resize(int w, int h)
     // Volvemos al modo Vista de Modelo 
     glMatrixMode( GL_MODELVIEW ); 
     glLoadIdentity();
-    gluLookAt (0.0, 0.0, 8.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+    gluLookAt (camara.getPosx(), camara.getPosy(), camara.getPosz(),
+               camara.getLookx(), camara.getLooky(), camara.getLookz(),
+               camara.getUpx(), camara.getUpy(), camara.getUpz());
 } 
 
 void actualiza (unsigned char key, int x, int y) 
