@@ -14,7 +14,7 @@ using namespace std;
 
 // -------------------- Variables globales -------------------------
 long hours = 0;
-Camara camara (0.0, 0.0, 8.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+Camara camara (0.0, 0.0, 18.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 Sistema SistemaSolar;
 bool parar = true;
 
@@ -75,14 +75,20 @@ void inicializarSistema() {
   Satelite luna ("Luna", 1.0, 255, 255, 255, 0.2, 5, 4, 0.0, tierra.getId());
   tierra.getSatelites().push_back(luna);
   Planeta marte ("Marte", 4.0, 666, 34, 255, 0.5, 8, 8, 60);
-  Satelite lunaMarte1 ("Luna de Marte1", 1.0, 255, 0, 255, 0.2, 5, 10, 0.0, tierra.getId());
-  Satelite lunaMarte2 ("Luna de Marte2", 1.0, 0, 255, 255, 0.2, 5, 20, 0.0, tierra.getId());
+  Satelite lunaMarte1 ("Luna de Marte1", 1.0, 255, 0, 255, 0.2, 5, 10, 0.0, marte.getId());
+  Satelite lunaMarte2 ("Luna de Marte2", 1.0, 0, 255, 255, 0.2, 5, 20, 0.0, marte.getId());
   marte.getSatelites().push_back(lunaMarte1);
   marte.getSatelites().push_back(lunaMarte2);
+  Planeta jupiter ("Jupiter", 7.0, 45, 34, 89, 0.5, 8, 8, 60);
+  Satelite lunaJupiter1 ("Luna de Jupiter1", 1.0, 45, 66, 123, 0.2, 5, 10, 0.0, jupiter.getId());
+  Satelite lunaJupiter2 ("Luna de Jupiter2", 1.0, 98, 45, 22, 0.2, 5, 20, 0.0, jupiter.getId());
+  jupiter.getSatelites().push_back(lunaJupiter1);
+  jupiter.getSatelites().push_back(lunaJupiter2);
   
   Sistema sistemaSolar("Sistema Solar", sol);
   sistemaSolar.getPlanetas().insert(pair<string, Planeta>(tierra.getId(), tierra));
   sistemaSolar.getPlanetas().insert(pair<string, Planeta>(marte.getId(), marte));
+  sistemaSolar.getPlanetas().insert(pair<string, Planeta>(jupiter.getId(), jupiter));
 
   SistemaSolar = sistemaSolar;
 }
