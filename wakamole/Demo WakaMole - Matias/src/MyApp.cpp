@@ -24,7 +24,7 @@ int MyApp::start() {
   Camera* cam = _sceneManager->createCamera("Camara");
   cam->setPosition(Vector3(14,4.5,0));
   cam->lookAt(Vector3(0,0,0));
-  cam->setFOVy(Degree(50));
+  cam->setFOVy(Degree(36));
   cam->setNearClipDistance(5);
   cam->setFarClipDistance(10000);
 
@@ -72,6 +72,20 @@ void MyApp::createScene() {
   SceneNode* nodeEscenario = _sceneManager->createSceneNode("Escenario");
   nodeEscenario->attachObject(entEscenario);
   _sceneManager->getRootSceneNode()->addChild(nodeEscenario);
+  
+  Entity* entEspumadera = _sceneManager->createEntity("Espumadera", "Espumadera.mesh");
+  entEspumadera->setQueryFlags(ESCENARIO);   // Usamos flags propios!
+  SceneNode* nodeEspumadera = _sceneManager->createSceneNode("Espumadera");
+  nodeEspumadera->attachObject(entEspumadera);
+  nodeEspumadera->setPosition(3.20714, 0.65222, 0.02925);
+  _sceneManager->getRootSceneNode()->addChild(nodeEspumadera);
+
+  Entity* entEncimera = _sceneManager->createEntity("Encimera", "Encimera.mesh");
+  entEncimera->setQueryFlags(ESCENARIO);   // Usamos flags propios!
+  SceneNode* nodeEncimera = _sceneManager->createSceneNode("Encimera");
+  nodeEncimera->attachObject(entEncimera);
+  nodeEncimera->setPosition(2.98123, -0.16964, -0.55548);
+  _sceneManager->getRootSceneNode()->addChild(nodeEncimera);
 
   _sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);	
   _sceneManager->setAmbientLight(ColourValue(0.2, 0.2, 0.2));
@@ -84,17 +98,17 @@ void MyApp::createScene() {
 }
 
 void MyApp::createElementosMovibles() {
-  float posZ = 3.06;
+  float posZ = 2.3;
 
   for (unsigned int i = 1; i <= 4; i += 1)
   {
     // Primera fila
-    createPersonaje(i, 4, posZ);
+    createPersonaje(i, 4.12675, posZ);
     
     // Segunda fila
-    createPersonaje(4 + i, 1.5, posZ);
+    createPersonaje(4 + i, 2.23941, posZ);
 
-    posZ = posZ - 2.0;
+    posZ = posZ - 1.5;
   }
 }
 
@@ -103,12 +117,12 @@ void MyApp::createPersonaje(unsigned int numero, float posX, float posZ) {
   Entity* entPersonaje;
   SceneNode* nodePersonaje;  
 
-  saux << "Personaje" << numero;
-  entPersonaje = _sceneManager->createEntity(saux.str(), "Personaje.mesh");
+  saux << "Cucaracha" << numero;
+  entPersonaje = _sceneManager->createEntity(saux.str(), "Cucaracha.mesh");
   entPersonaje->setQueryFlags(PERSONAJES);   // Usamos flags propios!
   nodePersonaje = _sceneManager->createSceneNode(saux.str());
   nodePersonaje->attachObject(entPersonaje);
-  nodePersonaje->setPosition(posX, -1.5, posZ);
+  nodePersonaje->setPosition(posX, -1.8, posZ);
   _sceneManager->getRootSceneNode()->addChild(nodePersonaje);
   _personajes.push_back(Personaje(nodePersonaje->getName(), nodePersonaje));
   saux.str(string());

@@ -34,6 +34,17 @@ EstadoPersonaje Personaje::getEstado() const {
 void Personaje::setEstado(const EstadoPersonaje estado) {
   _estado = estado;
   if (_estado == MUERTO) _subiendo = false;
+  if (_estado == MOVIMIENTO) {
+    // Le cambieamos la textura
+    Entity *ent = static_cast <Entity *> (_nodo->getAttachedObject(_nombre));
+    stringstream nombreTextura;
+    nombreTextura << "MateriaCucaracha";
+    unsigned int aleatorio = Math ::Ceil(Math::RangeRandom (0, 5));
+    if (aleatorio > 1) {
+      nombreTextura << aleatorio;
+    }
+    ent->setMaterialName(nombreTextura.str());
+  }
 }
 
 Personaje& Personaje::operator= (const Personaje &p) {
