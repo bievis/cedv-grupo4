@@ -15,6 +15,7 @@ private:
   OIS::InputManager* _inputManager;
   OIS::Keyboard* _keyboard;
   Camera* _camera;
+  SceneNode *_nodeCamera;
   RenderWindow* _win;
   SceneManager* _sceneManager;
   OIS::Mouse* _mouse;
@@ -26,7 +27,7 @@ private:
   int _puntos;
 
   Ray setRayQuery(int posx, int posy, uint32 mask);
-
+  void rotarCamara (const Ogre::Real deltaT);
 public:
   MyFrameListener(RenderWindow* win, Camera* cam, 
 		  OverlayManager* om, SceneManager* sm,

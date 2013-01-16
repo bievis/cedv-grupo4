@@ -8,8 +8,8 @@
 using namespace std;
 using namespace Ogre;
 
-#define FINAL 1.9
-static const Ogre::Real VELOCIDAD = 4;
+#define FINAL 2.5
+static const Ogre::Real VELOCIDAD = 2.8;
 #define VELOCIDAD_MUERTO 14
 
 enum EstadoPersonaje  { PARADADO, MOVIMIENTO, MUERTO };

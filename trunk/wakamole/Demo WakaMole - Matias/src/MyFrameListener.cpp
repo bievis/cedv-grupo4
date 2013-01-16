@@ -14,7 +14,11 @@ MyFrameListener::MyFrameListener(Ogre::RenderWindow* win,
   OIS::ParamList param;
   size_t windowHandle;  std::ostringstream wHandleStr;
 
-  _camera = cam; _overlayManager = om;
+  _camera = cam; 
+  _nodeCamera = _sceneManager->getRootSceneNode()->createChildSceneNode("NodoCamara");
+  _nodeCamera->attachObject(_camera); // Atachamos la camara con el nodo de la camara
+  
+  _overlayManager = om;
   
   win->getCustomAttribute("WINDOW", &windowHandle);
   wHandleStr << windowHandle;
@@ -73,7 +77,7 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
     if (it != result.end()) {
       _selectedNode = it->movable->getParentSceneNode();
       if (_selectedNode != NULL) {
-        if(_selectedNode->getName().compare(0, 9, "Personaje") == 0) {          
+        if(_selectedNode->getName().compare(0, 9, "Cucaracha") == 0) {          
           std::vector<Personaje>::iterator it1;
           bool encontrado = false;
           Personaje *pers = NULL;
@@ -94,6 +98,9 @@ bool MyFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
 
   // Sacamos un personaje aleatoriamente
   Personaje* personaje = moverPersonajeAleatorio(tiempoRedondeado);
+  if (tiempoRedondeado >= 5) {
+    rotarCamara(deltaT);
+  }
   
   // Mover los que haya que mover
   std::vector<Personaje>::iterator it2;
@@ -124,9 +131,9 @@ Personaje* MyFrameListener::moverPersonajeAleatorio(unsigned int tiempo) {
   Personaje* personaje = NULL;
   bool encontrado = false;
   
-  if (ultimo != tiempo && tiempo % TIEMPO_LANZAR_PERSONAJE == 0) {
+  if (tiempo > 0 && ultimo != tiempo && tiempo % TIEMPO_LANZAR_PERSONAJE == 0) {
     while (!encontrado) {
-      aleatorio = Math ::Ceil(Math::RangeRandom (0, 7));
+      aleatorio = Math ::Ceil(Math::RangeRandom (-1, 7));
       personaje = &(_personajes[aleatorio]);
       if (personaje->getEstado() == PARADADO) encontrado = true;
     }
@@ -136,4 +143,13 @@ Personaje* MyFrameListener::moverPersonajeAleatorio(unsigned int tiempo) {
   }
   
   return personaje;
+}
+
+void MyFrameListener::rotarCamara (const Ogre::Real deltaT) {
+  static Ogre::Real _posFinal = 180;
+  cout << Ogre::Degree(_nodeCamera->getOrientation ().getYaw()) << endl;
+  int grados = Math::Ceil(Ogre::Degree(_nodeCamera->getOrientation().getYaw()).valueDegrees());
+  if(grados < _posFinal
+     && grados >= 0)
+    _nodeCamera->yaw(Ogre::Degree(180 * deltaT), Node::TS_WORLD);
 }
