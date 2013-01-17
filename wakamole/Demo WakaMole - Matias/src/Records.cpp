@@ -13,6 +13,8 @@ Records::~Records()
 void Records::add ( unsigned int value )
   {
     _vRecords.push_back ( value );
+    sort ( _vRecords.begin(), _vRecords.end() );
+    reverse ( _vRecords.begin(), _vRecords.end() );
   }
 
 unsigned int Records::getValue ( unsigned int index )
