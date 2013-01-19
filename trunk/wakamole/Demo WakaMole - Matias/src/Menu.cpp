@@ -37,25 +37,22 @@ int Menu::start() {
 
 void Menu::createScene() {
   Entity* entEscenario = _sceneManager->createEntity("Escenario", "Escenario.mesh");
-  entEscenario->setQueryFlags(ESCENARIO);   // Usamos flags propios!
-  SceneNode* nodeEscenario = _sceneManager->createSceneNode("Escenario");
-  nodeEscenario->attachObject(entEscenario);
-  _sceneManager->getRootSceneNode()->addChild(nodeEscenario);
+  entEscenario->setQueryFlags(ESCENARIO);
 
   Entity* entEncimera = _sceneManager->createEntity("Encimera", "Encimera.mesh");
-  entEncimera->setQueryFlags(ESCENARIO);   // Usamos flags propios!
-  SceneNode* nodeEncimera = _sceneManager->createSceneNode("Encimera");
-  nodeEncimera->attachObject(entEncimera);
-  nodeEncimera->setPosition(2.98123, -0.16964, -0.55548);
-  _sceneManager->getRootSceneNode()->addChild(nodeEncimera);
+  entEncimera->setQueryFlags(ESCENARIO);
 
   Entity* entTextKickRoach = _sceneManager->createEntity("TextKickRoach", "TextKickRoach.mesh");
-  entTextKickRoach->setQueryFlags(ESCENARIO);   // Usamos flags propios!
-  SceneNode* nodeTextKickRoach = _sceneManager->createSceneNode("TextKickRoach");
-  nodeTextKickRoach->attachObject(entTextKickRoach);
-  nodeTextKickRoach->setPosition(3.03908, 3.63143, -0.7);
-  _sceneManager->getRootSceneNode()->addChild(nodeTextKickRoach);
+  entTextKickRoach->setQueryFlags(ESCENARIO);
 
+  // Creamos el escenario como geometria estatica
+  StaticGeometry* escenario = _sceneManager->createStaticGeometry("EscenarioEstatico");
+  escenario->addEntity(entEscenario, Vector3(0,0,0));
+  escenario->addEntity(entEncimera, Vector3(2.98123, -0.16964, -0.55548));
+  escenario->addEntity(entTextKickRoach, Vector3(3.03908, 3.63143, -0.7));
+  escenario->build();  // Operacion para construir la geometria
+  
+  // Elementos con los que interactuamos
   Entity* entTextPlay = _sceneManager->createEntity(TEXT_PLAY, "TextPlay.mesh");
   entTextPlay->setQueryFlags(MENU);   // Usamos flags propios!
   SceneNode* nodeTextPlay = _sceneManager->createSceneNode(TEXT_PLAY);
