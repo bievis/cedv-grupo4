@@ -37,24 +37,20 @@ int Juego::start() {
 
 void Juego::createScene() {
   Entity* entEscenario = _sceneManager->createEntity("Escenario", "Escenario.mesh");
-  entEscenario->setQueryFlags(ESCENARIO); 
-  SceneNode* nodeEscenario = _sceneManager->createSceneNode("Escenario");
-  nodeEscenario->attachObject(entEscenario);
-  _sceneManager->getRootSceneNode()->addChild(nodeEscenario);
+  entEscenario->setQueryFlags(ESCENARIO);
   
   Entity* entEspumadera = _sceneManager->createEntity("Espumadera", "Espumadera.mesh");
   entEspumadera->setQueryFlags(ESCENARIO);
-  SceneNode* nodeEspumadera = _sceneManager->createSceneNode("Espumadera");
-  nodeEspumadera->attachObject(entEspumadera);
-  nodeEspumadera->setPosition(3.20714, 0.65222, 0.02925);
-  _sceneManager->getRootSceneNode()->addChild(nodeEspumadera);
 
   Entity* entEncimera = _sceneManager->createEntity("Encimera", "Encimera.mesh");
   entEncimera->setQueryFlags(ESCENARIO);
-  SceneNode* nodeEncimera = _sceneManager->createSceneNode("Encimera");
-  nodeEncimera->attachObject(entEncimera);
-  nodeEncimera->setPosition(2.98123, -0.16964, -0.55548);
-  _sceneManager->getRootSceneNode()->addChild(nodeEncimera);
+
+  // Creamos el escenario como geometria estatica
+  StaticGeometry* escenario = _sceneManager->createStaticGeometry("EscenarioEstatico");
+  escenario->addEntity(entEscenario, Vector3(0,0,0));
+  escenario->addEntity(entEspumadera, Vector3(3.20714, 0.65222, 0.02925));
+  escenario->addEntity(entEncimera, Vector3(2.98123, -0.16964, -0.55548));
+  escenario->build();  // Operacion para construir la geometria
 
   _sceneManager->setShadowTechnique(SHADOWTYPE_STENCIL_ADDITIVE);	
   _sceneManager->setAmbientLight(ColourValue(0.2, 0.2, 0.2));

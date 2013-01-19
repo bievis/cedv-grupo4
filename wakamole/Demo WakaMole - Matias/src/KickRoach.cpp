@@ -45,8 +45,11 @@ int KickRoach::start() {
   _menu = new Menu(_root, window, cam, _sceneManager);
   
   while (estado != ESTADO_SALIR) {
-    if (estado == ESTADO_PLAY) estado = _juego->start();
-    else estado = _menu->start();
+    if (estado == ESTADO_PLAY) {
+      estado = _juego->start();
+    } else {
+      estado = _menu->start();
+    }
     limpiarEscena();
   }
   
@@ -55,6 +58,8 @@ int KickRoach::start() {
 
 // Limpia la escena
 void KickRoach::limpiarEscena() {
+  // TIENE QUE ESTAR EL PRIMERO: Eliminamos todas las geometrias estaticas
+  _sceneManager->destroyAllStaticGeometry();
   // Eliminamos todos los nodos
   _sceneManager->getRootSceneNode()->removeAndDestroyAllChildren ();
   // Eliminamos todos las entidades
@@ -63,6 +68,7 @@ void KickRoach::limpiarEscena() {
   _sceneManager->destroyAllLights();
 }
 
+// Carga los recursos multimedia
 void KickRoach::loadResources() {
   ConfigFile cf;
   cf.load("resources.cfg");
