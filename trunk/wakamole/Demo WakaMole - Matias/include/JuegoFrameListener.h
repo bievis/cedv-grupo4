@@ -2,6 +2,7 @@
 #include <OIS/OIS.h>
 #include <vector>
 #include "Personaje.h"
+#include "Constantes.h"
 
 using namespace std;
 using namespace Ogre;
@@ -9,6 +10,7 @@ using namespace Ogre;
 #define ESCENARIO 1 << 0  // Mascara para el escenario
 #define PERSONAJES 1 << 1  // Mascara para los personajes
 #define TIEMPO_LANZAR_PERSONAJE 1 // Tiempo que cada cuanto se saca un personaje
+#define TIEMPO_FIN 60 // Tiempo que cada cuanto se saca un personaje
 
 class JuegoFrameListener : public FrameListener {
 private:
@@ -32,5 +34,5 @@ public:
       std::vector<Personaje> &personajes);
   ~JuegoFrameListener();
   bool frameStarted(const FrameEvent& evt);
-  Personaje* moverPersonajeAleatorio(unsigned int tiempo);  
+  Personaje* moverPersonajeAleatorio(unsigned int tiempo);
 };

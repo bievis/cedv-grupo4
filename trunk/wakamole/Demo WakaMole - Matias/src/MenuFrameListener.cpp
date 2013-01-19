@@ -4,11 +4,13 @@ MenuFrameListener::MenuFrameListener(Ogre::RenderWindow* win,
 				 Ogre::Camera* cam,  
 				 Ogre::OverlayManager *om,
          SceneManager* sm) {
+  _estadoSalida = ESTADO_SALIR;
   _sceneManager = sm;
   _selectedNode = NULL;
   _win = win;
   OIS::ParamList param;
   size_t windowHandle;  std::ostringstream wHandleStr;
+  _mostradoRecords = false;
 
   _camera = cam;  
   _overlayManager = om;
@@ -20,7 +22,7 @@ MenuFrameListener::MenuFrameListener(Ogre::RenderWindow* win,
   _inputManager = OIS::InputManager::createInputSystem(param);
   _keyboard = static_cast<OIS::Keyboard*>
     (_inputManager->createInputObject(OIS::OISKeyboard, false));
-
+  
   _mouse = static_cast<OIS::Mouse*>
     (_inputManager->createInputObject(OIS::OISMouse, false));
   _mouse->getMouseState().width = _win->getWidth();
@@ -34,6 +36,7 @@ MenuFrameListener::~MenuFrameListener() {
   _inputManager->destroyInputObject(_mouse);
   OIS::InputManager::destroyInputSystem(_inputManager);
   _sceneManager->destroyQuery(_raySceneQuery);
+  _selectedNode = NULL;
 }
 
 Ray MenuFrameListener::setRayQuery(int posx, int posy, uint32 mask) {
@@ -50,7 +53,9 @@ bool MenuFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
 
   _keyboard->capture();  _mouse->capture();   // Captura eventos
   
-  if(_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false;
+  if(_keyboard->isKeyDown(OIS::KC_ESCAPE) && _mostradoRecords) {
+    mostrarOverlayRecords(false);
+  }
 
   // Posicion del raton
   int posx = _mouse->getMouseState().X.abs;   // Posicion del puntero
@@ -59,18 +64,29 @@ bool MenuFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   //////// Tirar rayo
   // Botones del raton pulsados? -------------------------------------
   bool mbleft = _mouse->getMouseState().buttonDown(OIS::MB_Left);
-  if (mbleft) { // Si hemos pulsado el boton izquierdo del raton
-    Ray r = setRayQuery(posx, posy, MENU);
-    RaySceneQueryResult &result = _raySceneQuery->execute();
-    RaySceneQueryResult::iterator it;
-    it = result.begin();
-    if (it != result.end()) {
-      _selectedNode = it->movable->getParentSceneNode();
-      if (_selectedNode != NULL) {
-        if(_selectedNode->getName().compare(0, 9, "Cucaracha") == 0) {          
-          // TODO Poner aqui cuando se seleccione un opción
+  Ray r = setRayQuery(posx, posy, MENU);
+  RaySceneQueryResult &result = _raySceneQuery->execute();
+  RaySceneQueryResult::iterator it;
+  it = result.begin();
+  _selectedNode = NULL;
+  if (it != result.end()) {
+    _selectedNode = it->movable->getParentSceneNode();
+    if (_selectedNode != NULL) {
+      seleccionarTexto(_selectedNode->getName());
+      if (mbleft && !_mostradoRecords) {
+        if(_selectedNode->getName() == TEXT_PLAY) {
+          _estadoSalida = ESTADO_PLAY;
+          return false;
+        } else if(_selectedNode->getName() == TEXT_RECORDS) {          
+          mostrarOverlayRecords(true);
+        } else if(_selectedNode->getName() == TEXT_CREDITOS) {          
+          mostrarOverlayRecords(true);
+        } else if(_selectedNode->getName() == TEXT_SALIR) {          
+          return false;
         }
       }
+    } else {
+      seleccionarTexto("");
     }
   }
   
@@ -80,4 +96,22 @@ bool MenuFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   oe->setLeft(posx);  oe->setTop(posy);
 
   return true;
+}
+
+void MenuFrameListener::seleccionarTexto(string texto) {
+  _sceneManager->getEntity(TEXT_PLAY)->setMaterialName(MATERIAL_TEXT_NORMAL);
+  _sceneManager->getEntity(TEXT_RECORDS)->setMaterialName(MATERIAL_TEXT_NORMAL);
+  _sceneManager->getEntity(TEXT_SALIR)->setMaterialName(MATERIAL_TEXT_NORMAL);
+  _sceneManager->getEntity(TEXT_CREDITOS)->setMaterialName(MATERIAL_TEXT_NORMAL);
+  if (texto != "") {
+    _sceneManager->getEntity(texto)->setMaterialName(MATERIAL_TEXT_SELECCION);
+  }
+}
+
+// Muestra o oculta los records
+void MenuFrameListener::mostrarOverlayRecords(bool mostrar) {
+  Overlay *overlay = _overlayManager->getByName("PantallaJuego");
+  if (mostrar) overlay->show();
+  else overlay->hide();
+  _mostradoRecords = mostrar;
 }

@@ -1,7 +1,6 @@
 #include <Ogre.h>
 #include <vector>
 #include "MenuFrameListener.h"
-#include "Personaje.h"
 
 class Menu {
   
@@ -12,11 +11,10 @@ private:
   Ogre::Camera* _cam;
   MenuFrameListener* _framelistener;
   Ogre::OverlayManager* _overlayManager;
-  std::vector<Personaje> _personajes;
 
   void createScene();
-  void createOverlay();
-  void createElementosMovibles();
+  void mostrarOverlay(bool mostrar);
+  void mostrarOverlayRecords(bool mostrar);
 public:
   Menu(Ogre::Root* root, Ogre::RenderWindow* win, 
 				 Ogre::Camera* cam,

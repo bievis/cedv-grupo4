@@ -25,7 +25,7 @@ JuegoFrameListener::JuegoFrameListener(Ogre::RenderWindow* win,
   _inputManager = OIS::InputManager::createInputSystem(param);
   _keyboard = static_cast<OIS::Keyboard*>
     (_inputManager->createInputObject(OIS::OISKeyboard, false));
-
+  
   _mouse = static_cast<OIS::Mouse*>
     (_inputManager->createInputObject(OIS::OISMouse, false));
   _mouse->getMouseState().width = _win->getWidth();
@@ -58,7 +58,7 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
 
   _keyboard->capture();  _mouse->capture();   // Captura eventos
   
-  if(_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false;
+  if(_keyboard->isKeyDown(OIS::KC_ESCAPE) || (TIEMPO_FIN - tiempoRedondeado) == 0) return false;
 
   // Posicion del raton
   int posx = _mouse->getMouseState().X.abs;   // Posicion del puntero
@@ -110,7 +110,7 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   oe = _overlayManager->getOverlayElement("puntuacion");
   oe->setCaption(Ogre::StringConverter::toString(_puntos));
   oe = _overlayManager->getOverlayElement("tiempo");
-  oe->setCaption(Ogre::StringConverter::toString(tiempoRedondeado));
+  oe->setCaption(Ogre::StringConverter::toString(TIEMPO_FIN - tiempoRedondeado));
 
   // Posicionamo el cursor del overlay donde este el raton
   oe = _overlayManager->getOverlayElement("cursor");
