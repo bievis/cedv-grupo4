@@ -37,20 +37,20 @@ int Juego::start() {
 
 void Juego::createScene() {
   Entity* entEscenario = _sceneManager->createEntity("Escenario", "Escenario.mesh");
-  entEscenario->setQueryFlags(ESCENARIO);   // Usamos flags propios!
+  entEscenario->setQueryFlags(ESCENARIO); 
   SceneNode* nodeEscenario = _sceneManager->createSceneNode("Escenario");
   nodeEscenario->attachObject(entEscenario);
   _sceneManager->getRootSceneNode()->addChild(nodeEscenario);
   
   Entity* entEspumadera = _sceneManager->createEntity("Espumadera", "Espumadera.mesh");
-  entEspumadera->setQueryFlags(ESCENARIO);   // Usamos flags propios!
+  entEspumadera->setQueryFlags(ESCENARIO);
   SceneNode* nodeEspumadera = _sceneManager->createSceneNode("Espumadera");
   nodeEspumadera->attachObject(entEspumadera);
   nodeEspumadera->setPosition(3.20714, 0.65222, 0.02925);
   _sceneManager->getRootSceneNode()->addChild(nodeEspumadera);
 
   Entity* entEncimera = _sceneManager->createEntity("Encimera", "Encimera.mesh");
-  entEncimera->setQueryFlags(ESCENARIO);   // Usamos flags propios!
+  entEncimera->setQueryFlags(ESCENARIO);
   SceneNode* nodeEncimera = _sceneManager->createSceneNode("Encimera");
   nodeEncimera->attachObject(entEncimera);
   nodeEncimera->setPosition(2.98123, -0.16964, -0.55548);
