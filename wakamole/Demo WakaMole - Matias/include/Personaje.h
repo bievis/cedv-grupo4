@@ -9,8 +9,8 @@ using namespace std;
 using namespace Ogre;
 
 #define FINAL 2.5
-static const Ogre::Real VELOCIDAD = 2.8;
-#define VELOCIDAD_MUERTO 14
+#define VELOCIDAD 2.8 // Velocidad inicial del personaje
+#define VELOCIDAD_MUERTO 14 // Velocidad del personaje al estar muerto
 
 enum EstadoPersonaje  { PARADADO, MOVIMIENTO, MUERTO };
 
@@ -33,7 +33,7 @@ class Personaje {
 
   // Otras funciones
   string toString (); // Imprime todas las noticias del canal
-  void mover(const Ogre::Real deltaT); // Mueve el personaje
+  void mover(const Ogre::Real deltaT, int acelerar); // Mueve el personaje
 
  private:
   void copiar(const Personaje &p);

@@ -10,6 +10,8 @@ JuegoFrameListener::JuegoFrameListener(Ogre::RenderWindow* win,
   _personajes = personajes;
   _sceneManager = sm;
   _selectedNode = NULL;
+  _acelerar = 0;
+  _ultimoAcelerar = -1;
   _win = win;
   OIS::ParamList param;
   size_t windowHandle;  std::ostringstream wHandleStr;
@@ -54,7 +56,6 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   Ogre::Real deltaT = evt.timeSinceLastFrame;
   unsigned int tiempoRedondeado = Math ::Ceil(_tiempoTranscurrido);
   _tiempoTranscurrido = _tiempoTranscurrido + deltaT;
-  //int fps = 1.0 / deltaT;
 
   _keyboard->capture();  _mouse->capture();   // Captura eventos
   
@@ -93,19 +94,11 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
       }
     }
   }
-
-  // Sacamos un personaje aleatoriamente
-  Personaje* personaje = moverPersonajeAleatorio(tiempoRedondeado);
   
-  // Mover los que haya que mover
-  std::vector<Personaje>::iterator it2;
-  for (it2 = _personajes.begin(); it2 != _personajes.end(); it2++) {
-    if ((*it2).getEstado() == MOVIMIENTO || (*it2).getEstado() == MUERTO) {
-      (*it2).mover(deltaT);
-    }
-  }
-  //////////////////////////////////////
+  // Movemos los personajes
+  moverPersonajes(deltaT, tiempoRedondeado);
   
+  // Actualizamos los overlays
   Ogre::OverlayElement *oe;
   oe = _overlayManager->getOverlayElement("puntuacion");
   oe->setCaption(Ogre::StringConverter::toString(_puntos));
@@ -120,6 +113,28 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   return true;
 }
 
+// Mueve todos los personajes que se tengan que mover en cada momento
+void JuegoFrameListener::moverPersonajes(Ogre::Real deltaT, unsigned int tiempo) {
+  // Sacamos un personaje aleatoriamente
+  Personaje* personaje = moverPersonajeAleatorio(tiempo);
+
+  // Miramos si hay que acelerar o no a los personajes
+  if (tiempo > 0 && _ultimoAcelerar != tiempo 
+      && tiempo % TIEMPO_ACELERAR == 0) {
+    _acelerar+=ACELERAR;
+    _ultimoAcelerar = tiempo;
+  }
+  
+  // Mover los que haya que mover
+  std::vector<Personaje>::iterator it2;
+  for (it2 = _personajes.begin(); it2 != _personajes.end(); it2++) {
+    if ((*it2).getEstado() == MOVIMIENTO || (*it2).getEstado() == MUERTO) {
+      (*it2).mover(deltaT, _acelerar);
+    }
+  }
+}
+
+// Indica el personaje que se debe de mover
 Personaje* JuegoFrameListener::moverPersonajeAleatorio(unsigned int tiempo) {
   static int ultimo = -1;
   unsigned int aleatorio = 0;

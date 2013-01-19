@@ -77,19 +77,21 @@ string Personaje::toString () {
   return out.str();
 }
 
-void Personaje::mover(const Ogre::Real deltaT) {
+void Personaje::mover(const Ogre::Real deltaT, int acelerar) {
   if (_estado == MOVIMIENTO || _estado == MUERTO) {
-    Ogre::Real velocidad = VELOCIDAD;
+    Ogre::Real velocidad = VELOCIDAD + acelerar;
 
-    if(_nodo->getPosition().y >= _posFinal) _subiendo = false;
-    else if(_nodo->getPosition().y < _posInicial) {
+    if(_nodo->getPosition().y >= _posFinal) _subiendo = false; // A llegado el personaje arriba
+    else if(_nodo->getPosition().y < _posInicial) { // A llegado el personaje abajo
       _subiendo = true;
       _estado = PARADADO;
       _nodo->setPosition(_nodo->getPosition().x, _posInicial, _nodo->getPosition().z);
     }
     if (_estado != PARADADO) {
-      if(!_subiendo) velocidad = VELOCIDAD * -1;
-      if (_estado == MUERTO) velocidad = velocidad * VELOCIDAD_MUERTO;
+      if(!_subiendo) velocidad = velocidad * -1; // Baja sin estar muerto
+      if (_estado == MUERTO){
+        velocidad = VELOCIDAD_MUERTO * -1; // Baja porque esta muerto
+      }
       _nodo->translate(0, velocidad * deltaT, 0);
     }
   }
