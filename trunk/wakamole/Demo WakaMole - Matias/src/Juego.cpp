@@ -99,6 +99,7 @@ void Juego::mostrarOverlay(bool mostrar) {
   Overlay *overlay = _overlayManager->getByName("PantallaJuego");
   if (mostrar) overlay->show();
   else overlay->hide();
+
   overlay = _overlayManager->getByName("Cursor");
   if (mostrar) overlay->show();
   else overlay->hide();

@@ -5,12 +5,13 @@
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+#include <string>
 
 using namespace std;
 
 class Records {
 
-  vector<unsigned int> _vRecords;
+  std::vector<string> _vRecords;
   
   void Copy ( Records &source );
 
@@ -23,13 +24,14 @@ class Records {
   Records operator= ( Records& source );
 
   inline unsigned int getSize() { return _vRecords.size(); };
-  unsigned int getValue ( unsigned int index );
+  string getValue ( unsigned int index );
 
-  void add ( unsigned int value );
+  void add ( string value );
 
   void write();
   void read();
 
+  void compacta ( unsigned int max_size );
 };
 
 #endif

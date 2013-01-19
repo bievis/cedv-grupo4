@@ -11,6 +11,7 @@ MenuFrameListener::MenuFrameListener(Ogre::RenderWindow* win,
   OIS::ParamList param;
   size_t windowHandle;  std::ostringstream wHandleStr;
   _mostradoRecords = false;
+  _mostradoCreditos = false;
 
   _camera = cam;  
   _overlayManager = om;
@@ -19,7 +20,7 @@ MenuFrameListener::MenuFrameListener(Ogre::RenderWindow* win,
   wHandleStr << windowHandle;
   param.insert(std::make_pair("WINDOW", wHandleStr.str()));
   
-  _inputManager = OIS::InputManager::createInputSystem(param);
+ _inputManager = OIS::InputManager::createInputSystem(param);
   _keyboard = static_cast<OIS::Keyboard*>
     (_inputManager->createInputObject(OIS::OISKeyboard, false));
   
@@ -29,6 +30,8 @@ MenuFrameListener::MenuFrameListener(Ogre::RenderWindow* win,
   _mouse->getMouseState().height = _win->getHeight();
 
   _raySceneQuery = _sceneManager->createRayQuery(Ray());
+
+  _records.read();
 }
 
 MenuFrameListener::~MenuFrameListener() {
@@ -56,6 +59,16 @@ bool MenuFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   if(_keyboard->isKeyDown(OIS::KC_ESCAPE) && _mostradoRecords) {
     mostrarOverlayRecords(false);
   }
+  else if ( _keyboard->isKeyDown ( OIS::KC_ESCAPE ) && _mostradoCreditos ) {
+    mostrarOverlayCreditos ( false );
+  }
+
+  // oe = _overlayManager->getOverlayElement("recordsTitulo");
+  // oe->setCaption("Records");
+
+  // oe = _overlayManager->getOverlayElement("recordsValores");
+  // string msg = "34 - 14/01/2013 : 22:17\n32 - 14/01/2013 : 15:44\n26 - 17/03/2012 : 12:27";
+  // oe->setCaption(msg);
 
   // Posicion del raton
   int posx = _mouse->getMouseState().X.abs;   // Posicion del puntero
@@ -73,14 +86,14 @@ bool MenuFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
     _selectedNode = it->movable->getParentSceneNode();
     if (_selectedNode != NULL) {
       seleccionarTexto(_selectedNode->getName());
-      if (mbleft && !_mostradoRecords) {
+      if (mbleft && !_mostradoRecords && !_mostradoCreditos) {
         if(_selectedNode->getName() == TEXT_PLAY) {
           _estadoSalida = ESTADO_PLAY;
           return false;
         } else if(_selectedNode->getName() == TEXT_RECORDS) {          
           mostrarOverlayRecords(true);
         } else if(_selectedNode->getName() == TEXT_CREDITOS) {          
-          mostrarOverlayRecords(true);
+          mostrarOverlayCreditos ( true );
         } else if(_selectedNode->getName() == TEXT_SALIR) {          
           return false;
         }
@@ -89,13 +102,47 @@ bool MenuFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
       seleccionarTexto("");
     }
   }
-  
+
+  if ( _mostradoRecords )
+    muestra_records();
+
   Ogre::OverlayElement *oe;
   // Posicionamo el cursor del overlay donde este el raton
   oe = _overlayManager->getOverlayElement("cursor");
   oe->setLeft(posx);  oe->setTop(posy);
 
   return true;
+}
+
+void MenuFrameListener::muestra_records()
+{
+  OverlayElement *oe = NULL;
+
+  oe = _overlayManager->getOverlayElement("recordsTitulo");
+  oe->setCaption("Records");
+
+  oe = _overlayManager->getOverlayElement("recordsValores");
+
+    // string msg = "1. 34 - 14/01/2013 : 22:17\n2. 32 - 14/01/2013 : 15:44\n3. 26 - 17/03/2012 : 12:27\n";
+    // msg += "4. 24 - 14/01/2013 : 22:17\n5. 22 - 14/01/2013 : 15:44\n6. 20 - 17/03/2012 : 12:27\n";
+    // msg += "7. 19 - 14/01/2013 : 22:17\n8. 17 - 14/01/2013 : 15:44\n9. 16 - 17/03/2012 : 12:27";
+
+   string msg = "";
+
+  if ( _records.getSize() > 0 )
+    {
+      char cad[100];
+
+      for ( unsigned int i = 0; i < _records.getSize(); i++ )
+	{
+	  sprintf ( cad, "%d. %s\n", i+1, _records.getValue(i).c_str() );
+	  msg += string ( cad );
+	}
+    }
+  else
+    msg = "   No hay registros";
+
+  oe->setCaption(msg);
 }
 
 void MenuFrameListener::seleccionarTexto(string texto) {
@@ -110,8 +157,24 @@ void MenuFrameListener::seleccionarTexto(string texto) {
 
 // Muestra o oculta los records
 void MenuFrameListener::mostrarOverlayRecords(bool mostrar) {
-  Overlay *overlay = _overlayManager->getByName("PantallaJuego");
-  if (mostrar) overlay->show();
-  else overlay->hide();
+  Overlay *over = NULL;
+
   _mostradoRecords = mostrar;
+  
+  over = _overlayManager->getByName ( "PantallaRecords" );
+
+  if (mostrar) over->show();
+  else over->hide();
+}
+
+// Muestra o oculta los records
+void MenuFrameListener::mostrarOverlayCreditos ( bool mostrar ) {
+  Overlay *over;
+
+  _mostradoCreditos = mostrar;
+
+  over = _overlayManager->getByName ( "PantallaCreditos" );
+
+  if (mostrar) over->show();
+  else over->hide();
 }
