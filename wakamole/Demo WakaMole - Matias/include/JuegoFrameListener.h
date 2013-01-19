@@ -1,8 +1,10 @@
 #include <Ogre.h>
 #include <OIS/OIS.h>
 #include <vector>
+#include <time.h>
 #include "Personaje.h"
 #include "Constantes.h"
+#include "Records.h"
 
 using namespace std;
 using namespace Ogre;
@@ -32,6 +34,8 @@ private:
   unsigned int _ultimoAcelerar; // Ultima vez que acelero
 
   Ray setRayQuery(int posx, int posy, uint32 mask);
+  void getFechaHora ( string &fecha, string &hora );
+
 public:
   JuegoFrameListener(RenderWindow* win, Camera* cam, 
 		  OverlayManager* om, SceneManager* sm,

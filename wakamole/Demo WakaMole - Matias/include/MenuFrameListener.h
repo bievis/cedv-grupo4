@@ -1,6 +1,7 @@
 #include <Ogre.h>
 #include <OIS/OIS.h>
 #include "Constantes.h"
+#include "Records.h"
 
 using namespace std;
 using namespace Ogre;
@@ -28,10 +29,15 @@ private:
   SceneNode *_selectedNode;
   int _estadoSalida; // Estado de cuando se sale del FrameListener del Menu 
   bool _mostradoRecords; // Nos dice si se estan mostrando los records o no ahora
+  bool _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
+  Records _records;
 
   Ray setRayQuery(int posx, int posy, uint32 mask);
   void seleccionarTexto(string texto);
   void mostrarOverlayRecords(bool mostrar);
+  void mostrarOverlayCreditos ( bool mostrar );
+  void muestra_records();
+
 public:
   MenuFrameListener(Ogre::RenderWindow* win, 
 				 Ogre::Camera* cam,  

@@ -48,4 +48,4 @@ clean:
 	rm -f *.log $(EXEC) *~ $(DIROBJ)* $(DIRSRC)*~ $(DIRHEA)*~ core 
 
 edit:
-	emacs $(wildcard $(DIRSRC)*.cpp) $(wildcard $(DIRHEA)*.h) &
+	emacs $(wildcard $(DIRSRC)*.cpp) $(wildcard $(DIRHEA)*.h) media/info.overlay media/panel.material &

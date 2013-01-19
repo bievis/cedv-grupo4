@@ -10,16 +10,16 @@ Records::~Records()
     _vRecords.clear();
   }
 
-void Records::add ( unsigned int value )
+void Records::add ( string newValue )
   {
-    _vRecords.push_back ( value );
+    _vRecords.push_back ( newValue );
     sort ( _vRecords.begin(), _vRecords.end() );
     reverse ( _vRecords.begin(), _vRecords.end() );
   }
 
-unsigned int Records::getValue ( unsigned int index )
+string Records::getValue ( unsigned int index )
   {
-    int value = 0;
+    string value = "";
 
     if ( index >= 0 && index < _vRecords.size() )
       value = _vRecords[index];
@@ -69,7 +69,9 @@ void Records::write()
  void Records::read()
    { 
      ifstream is("records.dat");
-     unsigned int value = 0;
+     string value = "";
+     string final = "";
+     unsigned int i = 1;
 
      if ( !is.is_open() ) 
        {
@@ -83,10 +85,26 @@ void Records::write()
 	 while ( !is.eof() ) 
 	   {
 	     is >> value;
-	     _vRecords.push_back ( value );
+             final += value + string(" ");
+
+	     if ( ( i % 5 ) == 0 )
+	       {
+	         _vRecords.push_back ( final );
+		 final = "";
+	       }
+
+	     i++;
 	   }
 
         is.close();
     }
 
    }
+
+void Records::compacta ( unsigned int max_size )
+  {
+    while ( _vRecords.size() > max_size )
+      {
+	_vRecords.pop_back();
+      }
+  }

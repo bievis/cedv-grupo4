@@ -50,3 +50,6 @@ $(DIROBJ)%.o: $(DIRSRC)%.cpp
 # Limpieza de temporales ---------------------------------------------
 clean:
 	del *.log $(EXEC) obj\* 
+
+edit:
+	emacs $(wildcard $(DIRSRC)*.cpp) $(wildcard $(DIRHEA)*.h) info.overlay panel.material &

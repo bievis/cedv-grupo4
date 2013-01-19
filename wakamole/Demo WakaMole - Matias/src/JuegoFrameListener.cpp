@@ -58,7 +58,27 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   _tiempoTranscurrido = _tiempoTranscurrido + deltaT;
 
   _keyboard->capture();  _mouse->capture();   // Captura eventos
-  
+
+  if ( (TIEMPO_FIN - tiempoRedondeado) == 0 )
+    {
+      Records rec;
+      string fecha;
+      string hora;
+      char cad[100];
+
+      rec.read();
+
+      getFechaHora ( fecha, hora );
+
+      sprintf ( cad, "%02d - %s : %s", _puntos, fecha.c_str(), hora.c_str() );
+
+      rec.add ( string ( cad ) );
+
+      rec.compacta ( 10 );
+
+      rec.write();
+    }
+
   if(_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false; // Salir porque se a pulsado ESC
   // Salir porque ha acabado el tiempo
   if ((TIEMPO_FIN - tiempoRedondeado) == 0) {
@@ -114,8 +134,25 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
   oe = _overlayManager->getOverlayElement("cursor");
   oe->setLeft(posx);  oe->setTop(posy);
 
-
   return true;
+}
+
+void JuegoFrameListener::getFechaHora ( string &fecha, string &hora )
+{
+  time_t timer;
+  struct tm *t;
+  char cad[100];
+
+  timer = time(NULL);     
+  t = localtime(&timer);
+
+  sprintf ( cad, "%d/%d/%d", t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
+
+  fecha = cad;
+
+  sprintf ( cad, "%d:%d", t->tm_hour, t->tm_min );
+
+  hora = cad;
 }
 
 // Mueve todos los personajes que se tengan que mover en cada momento

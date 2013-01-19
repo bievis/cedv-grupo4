@@ -26,3 +26,32 @@ material matPanelTiempo
    }
  }
 }
+
+material matCreditos
+{
+ technique 
+ {
+   pass 
+   {
+     texture_unit 
+     {
+       texture Fondo_Creditos.png
+     }
+   }
+ }
+}
+
+material matPanelRecords
+{
+ technique 
+ {
+   pass 
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit 
+     {
+       texture Records.png
+     }
+   }
+ }
+}
