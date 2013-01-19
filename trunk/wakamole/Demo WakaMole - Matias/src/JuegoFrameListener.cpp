@@ -59,7 +59,12 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
 
   _keyboard->capture();  _mouse->capture();   // Captura eventos
   
-  if(_keyboard->isKeyDown(OIS::KC_ESCAPE) || (TIEMPO_FIN - tiempoRedondeado) == 0) return false;
+  if(_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false; // Salir porque se a pulsado ESC
+  // Salir porque ha acabado el tiempo
+  if ((TIEMPO_FIN - tiempoRedondeado) == 0) {
+    // TODO AQUI METER PARA ALMACENAR PUNTUACION
+    return false;
+  }
 
   // Posicion del raton
   int posx = _mouse->getMouseState().X.abs;   // Posicion del puntero
