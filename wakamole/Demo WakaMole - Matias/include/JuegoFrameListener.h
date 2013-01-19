@@ -10,7 +10,7 @@ using namespace Ogre;
 #define ESCENARIO 1 << 0  // Mascara para el escenario
 #define PERSONAJES 1 << 1  // Mascara para los personajes
 #define TIEMPO_LANZAR_PERSONAJE 1 // Tiempo que cada cuanto se saca un personaje
-#define TIEMPO_FIN 60 // Tiempo que cada cuanto se saca un personaje
+#define TIEMPO_FIN 60 // Tiempo que dura la partida
 #define ACELERAR 1 // Lo que incrementa la velocidad del personaje
 #define TIEMPO_ACELERAR 10 // Tiempo cada cuanto se acelera el movimiento del personaje
 
