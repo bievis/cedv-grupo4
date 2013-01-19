@@ -15,7 +15,7 @@ private:
   std::vector<Personaje> _personajes;
 
   void createScene();
-  void createOverlay();
+  void mostrarOverlay(bool mostrar);
   void createElementosMovibles();
   void createPersonaje(unsigned int numero, float posX, float posZ);
 public:

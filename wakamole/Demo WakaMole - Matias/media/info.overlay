@@ -14,7 +14,7 @@ template element TextArea(MyTemplates2/Text)
 		colour 156.0 30.0 70.0    
 }
 
-Info
+PantallaJuego
 {
     zorder 500
 
@@ -52,7 +52,12 @@ Info
 				  left 5 
           horz_align left
 		    }
-    }	  
+    }
+}
+
+Cursor
+{
+    zorder 500 
 
     container Panel(cursor) 
     {
@@ -64,6 +69,5 @@ Info
         vert_align top
         horz_align left
         material pointer
-    }	
- 
+    } 
 }

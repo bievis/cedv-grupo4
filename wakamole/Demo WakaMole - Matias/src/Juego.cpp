@@ -7,6 +7,7 @@ Juego::Juego(Ogre::Root* root, Ogre::RenderWindow* win,
   _win = win;
   _cam = cam;
   _sceneManager = sm;
+  _overlayManager = OverlayManager::getSingletonPtr();
 }
 
 Juego::~Juego() {
@@ -14,19 +15,24 @@ Juego::~Juego() {
   _win = NULL;
   _cam = NULL;
   _sceneManager = NULL;
+  _overlayManager = NULL;
   _personajes.clear();
 }
 
 int Juego::start() {
   createScene();
   createElementosMovibles();
-  createOverlay();
+  mostrarOverlay(true);
   
   _framelistener = new JuegoFrameListener(_win, _cam, _overlayManager, _sceneManager, _personajes);
   _root->addFrameListener(_framelistener);
   _root->startRendering();
+  _root->removeFrameListener(_framelistener);
+  delete _framelistener;
   
-  return 0;
+  mostrarOverlay(false);
+
+  return ESTADO_SALIR_JUEGO;
 }
 
 void Juego::createScene() {
@@ -62,7 +68,8 @@ void Juego::createScene() {
 
 void Juego::createElementosMovibles() {
   float posZ = 2.3;
-
+  _personajes.clear();
+  
   for (unsigned int i = 1; i <= 4; i += 1)
   {
     // Primera fila
@@ -91,8 +98,12 @@ void Juego::createPersonaje(unsigned int numero, float posX, float posZ) {
   saux.str(string());
 }
 
-void Juego::createOverlay() {
-  _overlayManager = OverlayManager::getSingletonPtr();
-  Overlay *overlay = _overlayManager->getByName("Info");
-  overlay->show();
+// Muestra los overlais de esta ventana
+void Juego::mostrarOverlay(bool mostrar) {
+  Overlay *overlay = _overlayManager->getByName("PantallaJuego");
+  if (mostrar) overlay->show();
+  else overlay->hide();
+  overlay = _overlayManager->getByName("Cursor");
+  if (mostrar) overlay->show();
+  else overlay->hide();
 }

@@ -1,4 +1,5 @@
 #include "KickRoach.h" 
+#include "Constantes.h"
 
 KickRoach::KickRoach() {
   _sceneManager = NULL;
@@ -7,6 +8,8 @@ KickRoach::KickRoach() {
 
 KickRoach::~KickRoach() {
   delete _root;
+  delete _juego;
+  delete _menu;
 }
 
 int KickRoach::start() {
@@ -35,11 +38,29 @@ int KickRoach::start() {
   cam->setAspectRatio(width / height);
   
   loadResources();
-  
+
+  int estado = ESTADO_INICIO; // Alamacena el estado actual del juego
+  // Partes del juego
   _juego = new Juego(_root, window, cam, _sceneManager);
-  _juego->start();
+  _menu = new Menu(_root, window, cam, _sceneManager);
+  
+  while (estado != ESTADO_SALIR) {
+    if (estado == ESTADO_PLAY) estado = _juego->start();
+    else estado = _menu->start();
+    limpiarEscena();
+  }
   
   return 0;
+}
+
+// Limpia la escena
+void KickRoach::limpiarEscena() {
+  // Eliminamos todos los nodos
+  _sceneManager->getRootSceneNode()->removeAndDestroyAllChildren ();
+  // Eliminamos todos las entidades
+  _sceneManager->destroyAllEntities();
+  // Eliminamos todas las luces
+  _sceneManager->destroyAllLights();
 }
 
 void KickRoach::loadResources() {
