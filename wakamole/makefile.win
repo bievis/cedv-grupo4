@@ -1,21 +1,17 @@
-# --------------------------------------------------------------------
-# Makefile Genérico :: Módulo 2. Curso Experto Desarrollo Videojuegos
-# Carlos González Morcillo     Escuela Superior de Informática (UCLM)
-# --------------------------------------------------------------------
-EXEC := iniciomanual.exe
+EXEC := KickRoach.exe
 DIRSRC := src/
 DIROBJ := obj/
 DIRHEA := include/
-DIROGR := c:/Ogre/
+DIROGR := C:/OgreSDK_MinGW_v1-8-0/
 CXX := mingw32-g++
 # Flags de compilación -----------------------------------------------
 CXXFLAGS := -I $(DIRHEA) -Wall -DWIN32 -D_WINDOWS -mthreads
 CXXFLAGS += -I $(DIROGR)include/ -I $(DIROGR)include/OGRE/ 
-CXXFLAGS += -I $(DIROGR)include/OIS/ -I $(DIROGR)boost_1_44/
+CXXFLAGS += -I $(DIROGR)include/OIS/ -I $(DIROGR)boost/
 
 # Flags del linker ---------------------------------------------------
 LDFLAGS := -mthreads -lOgreMain -lOIS -lstdc++
-LDFLAGS += -L $(DIROGR)bin/Debug -L $(DIROGR)bin/Release 
+LDFLAGS += -L $(DIROGR)bin/debug -L $(DIROGR)bin/release -L $(DIROGR)boost/lib
   
 # Modo de compilación (-mode=release -mode=debug) --------------------
 ifeq ($(mode), release) 
@@ -50,6 +46,3 @@ $(DIROBJ)%.o: $(DIRSRC)%.cpp
 # Limpieza de temporales ---------------------------------------------
 clean:
 	del *.log $(EXEC) obj\* 
-
-edit:
-	emacs $(wildcard $(DIRSRC)*.cpp) $(wildcard $(DIRHEA)*.h) info.overlay panel.material &
