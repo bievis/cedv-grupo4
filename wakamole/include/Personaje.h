@@ -10,7 +10,6 @@ using namespace Ogre;
 
 #define FINAL 2.5
 #define VELOCIDAD 2.8 // Velocidad inicial del personaje
-#define VELOCIDAD_MUERTO 14 // Velocidad del personaje al estar muerto
 
 enum EstadoPersonaje  { PARADADO, MOVIMIENTO, MUERTO };
 
@@ -42,8 +41,9 @@ class Personaje {
   SceneNode* _nodo;
   bool _subiendo;
   EstadoPersonaje _estado;
-  Ogre::Real _posInicial;
-  Ogre::Real _posFinal;
+  Ogre::Real _posInicial; // Posicion inicial del personale
+  Ogre::Real _posFinal; // Posicion final del personale
+  unsigned int _material; // Numero del material que usa el personaje
 };
 
 #endif
