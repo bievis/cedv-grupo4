@@ -8,6 +8,7 @@ Personaje::Personaje (const string &nombre, SceneNode* nodo) {
   _estado = PARADADO;
   _posInicial = nodo->getPosition().y;
   _posFinal = _posInicial + FINAL;
+  _material = 1;
 }
 
 // Constructor de copia
@@ -33,17 +34,35 @@ EstadoPersonaje Personaje::getEstado() const {
 
 void Personaje::setEstado(const EstadoPersonaje estado) {
   _estado = estado;
-  if (_estado == MUERTO) _subiendo = false;
-  if (_estado == MOVIMIENTO) {
-    // Le cambieamos la textura
-    Entity *ent = static_cast <Entity *> (_nodo->getAttachedObject(_nombre));
-    stringstream nombreTextura;
-    nombreTextura << "MateriaCucaracha";
-    unsigned int aleatorio = Math ::Ceil(Math::RangeRandom (0, 5));
-    if (aleatorio > 1) {
-      nombreTextura << aleatorio;
+  stringstream nombre;
+  Entity *ent = NULL;
+  if (_estado == MUERTO) {
+    // Mostramos la muerta
+    nombre << _nombre << "Muerta";
+    ent = static_cast <Entity *> (_nodo->getAttachedObject(nombre.str()));
+    nombre.str(string()); // Limpiamos
+    nombre << "MateriaCucarachaMuerta" << _material;
+    ent->setMaterialName(nombre.str());
+    ent->setVisible(true);
+    // Ocultamos la viva
+    ent = static_cast <Entity *> (_nodo->getAttachedObject(_nombre));
+    ent->setVisible(false);
+  } else {
+    if (_estado == MOVIMIENTO) {
+      // Mostramos la viva
+      ent = static_cast <Entity *> (_nodo->getAttachedObject(_nombre));
+      nombre << "MateriaCucaracha";
+      unsigned int aleatorio = Math ::Ceil(Math::RangeRandom (0, 3)); // Del 1 al 3
+      nombre << aleatorio;
+      _material = aleatorio;
+      ent->setMaterialName(nombre.str());
+      ent->setVisible(true);
+      // Ocultamos la muerta
+      nombre.str(string()); // Limpiamos
+      nombre << _nombre << "Muerta";
+      ent = static_cast <Entity *> (_nodo->getAttachedObject(nombre.str()));
+      ent->setVisible(false);
     }
-    ent->setMaterialName(nombreTextura.str());
   }
 }
 
@@ -59,6 +78,7 @@ void Personaje::copiar(const Personaje &p) {
   _estado = p.getEstado();
   _posInicial = p._posInicial;
   _posFinal = p._posFinal;
+  _material = p._material;
 }
 
 // Destructor
@@ -88,10 +108,7 @@ void Personaje::mover(const Ogre::Real deltaT, int acelerar) {
       _nodo->setPosition(_nodo->getPosition().x, _posInicial, _nodo->getPosition().z);
     }
     if (_estado != PARADADO) {
-      if(!_subiendo) velocidad = velocidad * -1; // Baja sin estar muerto
-      if (_estado == MUERTO){
-        velocidad = VELOCIDAD_MUERTO * -1; // Baja porque esta muerto
-      }
+      if(!_subiendo || _estado == MUERTO) velocidad = velocidad * -1;
       _nodo->translate(0, velocidad * deltaT, 0);
     }
   }

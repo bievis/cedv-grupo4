@@ -59,30 +59,22 @@ bool JuegoFrameListener::frameStarted(const Ogre::FrameEvent& evt) {
 
   _keyboard->capture();  _mouse->capture();   // Captura eventos
 
-  if ( (TIEMPO_FIN - tiempoRedondeado) == 0 )
-    {
-      Records rec;
-      string fecha;
-      string hora;
-      char cad[100];
-
-      rec.read();
-
-      getFechaHora ( fecha, hora );
-
-      sprintf ( cad, "%02d - %s : %s", _puntos, fecha.c_str(), hora.c_str() );
-
-      rec.add ( string ( cad ) );
-
-      rec.compacta ( 10 );
-
-      rec.write();
-    }
-
   if(_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false; // Salir porque se a pulsado ESC
   // Salir porque ha acabado el tiempo
   if ((TIEMPO_FIN - tiempoRedondeado) == 0) {
-    // TODO AQUI METER PARA ALMACENAR PUNTUACION
+    // Guardamos el records
+    Records rec;
+    string fecha;
+    string hora;
+    char cad[100];
+
+    rec.read();
+    getFechaHora ( fecha, hora );
+    sprintf ( cad, "%02d - %s : %s", _puntos, fecha.c_str(), hora.c_str() );
+    rec.add ( string ( cad ) );
+    rec.compacta ( 10 );
+    rec.write();
+    
     return false;
   }
 
@@ -185,7 +177,7 @@ Personaje* JuegoFrameListener::moverPersonajeAleatorio(unsigned int tiempo) {
   
   if (tiempo > 0 && ultimo != tiempo && tiempo % TIEMPO_LANZAR_PERSONAJE == 0) {
     while (!encontrado) {
-      aleatorio = Math ::Ceil(Math::RangeRandom (-1, 7));
+      aleatorio = Math ::Ceil(Math::RangeRandom (-1, 7)); // Del 0 al 7
       personaje = &(_personajes[aleatorio]);
       if (personaje->getEstado() == PARADADO) encontrado = true;
     }

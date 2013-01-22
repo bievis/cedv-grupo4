@@ -81,13 +81,19 @@ void Juego::createElementosMovibles() {
 void Juego::createPersonaje(unsigned int numero, float posX, float posZ) {
   std::stringstream saux;
   Entity* entPersonaje;
+  Entity* entPersonajeMuerto;
   SceneNode* nodePersonaje;  
 
   saux << "Cucaracha" << numero;
-  entPersonaje = _sceneManager->createEntity(saux.str(), "Cucaracha.mesh");
-  entPersonaje->setQueryFlags(PERSONAJES);   // Usamos flags propios!
   nodePersonaje = _sceneManager->createSceneNode(saux.str());
+  entPersonaje = _sceneManager->createEntity(saux.str(), "Cucaracha.mesh");
+  entPersonaje->setQueryFlags(PERSONAJES);
+  saux << "Muerta";
+  entPersonajeMuerto = _sceneManager->createEntity(saux.str(), "CucarachaMuerta.mesh");
+  entPersonajeMuerto->setQueryFlags(PERSONAJES);
+  entPersonajeMuerto->setVisible(false);
   nodePersonaje->attachObject(entPersonaje);
+  nodePersonaje->attachObject(entPersonajeMuerto);
   nodePersonaje->setPosition(posX, -1.8, posZ);
   _sceneManager->getRootSceneNode()->addChild(nodePersonaje);
   _personajes.push_back(Personaje(nodePersonaje->getName(), nodePersonaje));
