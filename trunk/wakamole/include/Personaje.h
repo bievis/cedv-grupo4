@@ -11,7 +11,7 @@ using namespace Ogre;
 #define FINAL 2.5
 #define VELOCIDAD 2.8 // Velocidad inicial del personaje
 
-enum EstadoPersonaje  { PARADADO, MOVIMIENTO, MUERTO };
+enum EstadoPersonaje  { PARADO, MOVIMIENTO, MUERTO };
 
 class Personaje {
  public:

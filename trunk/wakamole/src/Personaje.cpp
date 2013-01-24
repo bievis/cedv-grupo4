@@ -5,7 +5,7 @@ Personaje::Personaje (const string &nombre, SceneNode* nodo) {
   _nombre = nombre;
   _nodo = nodo;
   _subiendo = true;
-  _estado = PARADADO;
+  _estado = PARADO;
   _posInicial = nodo->getPosition().y;
   _posFinal = _posInicial + FINAL;
   _material = 1;
@@ -104,10 +104,10 @@ void Personaje::mover(const Ogre::Real deltaT, int acelerar) {
     if(_nodo->getPosition().y >= _posFinal) _subiendo = false; // A llegado el personaje arriba
     else if(_nodo->getPosition().y < _posInicial) { // A llegado el personaje abajo
       _subiendo = true;
-      _estado = PARADADO;
+      _estado = PARADO;
       _nodo->setPosition(_nodo->getPosition().x, _posInicial, _nodo->getPosition().z);
     }
-    if (_estado != PARADADO) {
+    if (_estado != PARADO) {
       if(!_subiendo || _estado == MUERTO) velocidad = velocidad * -1;
       _nodo->translate(0, velocidad * deltaT, 0);
     }
