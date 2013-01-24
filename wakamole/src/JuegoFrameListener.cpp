@@ -179,7 +179,7 @@ Personaje* JuegoFrameListener::moverPersonajeAleatorio(unsigned int tiempo) {
     while (!encontrado) {
       aleatorio = Math ::Ceil(Math::RangeRandom (-1, 7)); // Del 0 al 7
       personaje = &(_personajes[aleatorio]);
-      if (personaje->getEstado() == PARADADO) encontrado = true;
+      if (personaje->getEstado() == PARADO) encontrado = true;
     }
 
     personaje->setEstado(MOVIMIENTO);
