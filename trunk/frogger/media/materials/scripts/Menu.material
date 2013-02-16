@@ -1,0 +1,14 @@
+material Menu/Background
+{
+	technique
+	{
+		pass
+		{
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture menu_background.png
+			}
+		}
+	}
+}

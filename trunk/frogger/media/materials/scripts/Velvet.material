@@ -1,0 +1,41 @@
+vertex_program Velvet_vs cg
+{
+   source Velvet.cg
+   entry_point main_vs
+   profiles vs_1_1 arbvp1
+}
+
+fragment_program Velvet_ps cg
+{
+   source Velvet.cg
+   entry_point main_ps
+   profiles ps_2_0 arbfp1
+}
+
+
+material Shader/Velvet
+{
+   technique
+   {
+	  pass
+	  {   
+
+		 vertex_program_ref Velvet_vs
+		 {
+			param_named_auto worldViewProjMatrix worldviewproj_matrix
+		 }
+
+		 fragment_program_ref Velvet_ps
+		 {   
+			param_named_auto eyePosition camera_position_object_space
+		 }
+
+		 texture_unit
+		 {            
+			texture grid.jpg 2d      
+		 }
+
+	  }
+
+   }
+}

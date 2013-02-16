@@ -1,0 +1,45 @@
+vertex_program glass_vs cg
+{
+source Glass.cg
+entry_point main_vs
+profiles vs_1_1 arbvp1
+}
+
+fragment_program glass_ps cg
+{
+source Glass.cg
+entry_point main_ps
+profiles ps_2_0 arbfp1
+}
+
+
+material Shader/Glass
+{
+technique
+{
+pass
+{
+scene_blend alpha_blend
+depth_write on
+//alpha_rejection greater 128
+vertex_program_ref glass_vs
+{
+param_named_auto world world_matrix            
+param_named_auto viewProj viewproj_matrix            
+param_named_auto eyePositionWorld camera_position 
+}
+
+fragment_program_ref glass_ps
+{
+}
+
+texture_unit
+{
+cubic_texture Mars.dds combinedUVW
+alpha_op_ex source1 src_manual src_current 0.01
+colour_op modulate
+tex_address_mode clamp
+}
+}
+}
+}

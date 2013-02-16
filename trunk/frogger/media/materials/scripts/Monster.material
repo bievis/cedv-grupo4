@@ -1,0 +1,48 @@
+vertex_program MONSTER_vs hlsl
+material MONSTER_2
+{ 
+	technique 
+	{
+		pass 
+		{
+			//scene_blend add	//for fadeout, but buggy, do not use
+
+			vertex_program_ref MONSTER_vs
+			{
+				param_named tile_factor float 10.0
+				param_named fade_start_dist float 1.0,
+				param_named fade_end_dist float 10.0,
+
+				//TODO: put into shader as #define
+			} 
+
+			fragment_program_ref MONSTER_ps
+			{ 
+			} 
+
+			// diffuse map
+			texture_unit
+			{
+				tex_coord_set 0
+				texture diffuse_map.jpg
+				//filtering trilinear
+			}
+
+			//ao map
+			texture_unit
+			{
+				tex_coord_set 1
+				texture ambient_occlusion_map.dds
+				//filtering trilinear
+			}
+
+			//normalHeightMap map
+			texture_unit
+			{
+				tex_coord_set 0
+				texture normal_height_map.tga
+				//filtering trilinear
+			}
+	}
+	} 
+}

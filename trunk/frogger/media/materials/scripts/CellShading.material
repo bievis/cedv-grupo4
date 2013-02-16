@@ -1,0 +1,442 @@
+// drawing outline
+vertex_program MyOgre_VS cg
+{
+	source MyTank2.cg
+	entry_point Outline_VP
+	profiles vs_1_1
+	
+	default_params
+	{
+		param_named_auto world world_matrix
+		param_named_auto viewProj viewproj_matrix
+	}
+}
+
+fragment_program MyOgre_PS cg
+{
+	source MyTank2.cg
+	entry_point Outline_FP
+	profiles ps_1_1
+
+}
+
+
+// Toon Shading 
+vertex_program Toon_VS cg
+{
+	source MyTank2.cg
+	entry_point LightingVertexShader
+	profiles vs_2_0
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto lightPosition light_position_object_space 0
+		//param_named_auto globalAmbient ambient_light_colour
+		param_named_auto eyePosition camera_position_object_space
+		param_named shininess float3 20.0 0 0
+	}
+}
+
+fragment_program Toon_PS cg
+{
+	source MyTank2.cg
+	entry_point ToonPixelShader
+	profiles ps_2_0
+	
+}
+
+// Normal Depth
+vertex_program NormalDepth_VS cg
+{
+	source MyTank2.cg
+	entry_point NormalDepthVertexShader
+	profiles vs_2_0
+	default_params
+	{
+		param_named_auto worldViewProj worldviewproj_matrix
+		param_named_auto world world_matrix
+	}
+}
+
+fragment_program NormalDepth_PS cg
+{
+	source MyTank2.cg
+	entry_point NormalDepthPixelShader
+	profiles ps_2_0
+}
+
+material Ogre/Earring
+{
+	// default 
+	technique
+	{
+		scheme DEFAULT
+		pass
+		{
+			ambient 0.7 0.7 0
+			diffuse 0.7 0.7 0
+			
+			texture_unit
+			{
+				texture spheremap.png
+				colour_op_ex add src_texture src_current
+				colour_op_multipass_fallback one one
+				env_map spherical
+			}
+		}
+		
+	}
+	
+	// toon shading
+	technique
+	{
+		scheme TOON
+		pass
+		{
+			ambient 0.7 0.7 0
+			diffuse 0.7 0.7 0
+			texture_unit
+			{
+				texture spheremap.png
+				colour_op_ex add src_texture src_current
+				colour_op_multipass_fallback one one
+				env_map spherical
+			}
+		}
+		
+	}
+	
+	// Normal depth
+	technique
+	{
+		scheme NORMAL_DEPTH
+		pass
+		{
+			vertex_program_ref NormalDepth_VS
+			{
+			}
+			
+			fragment_program_ref NormalDepth_PS
+			{
+			}
+		}
+	}
+	
+	// toon shading with outline
+	technique
+	{
+		scheme OUTLINE
+		pass
+		{
+			ambient 0.7 0.7 0
+			diffuse 0.7 0.7 0
+			texture_unit
+			{
+				texture spheremap.png
+				colour_op_ex add src_texture src_current
+				colour_op_multipass_fallback one one
+				env_map spherical
+			}
+		}
+		
+		pass
+		{
+			cull_hardware anticlockwise
+			vertex_program_ref MyOgre_VS
+			{
+			
+			}
+			
+			fragment_program_ref MyOgre_PS
+			{
+			
+			}
+			
+		}
+	}
+}
+
+material Ogre/Skin
+{
+	//default
+	technique
+	{
+		scheme DEFAULT
+		pass
+		{
+			ambient 0.3 0.8 0.3
+
+			texture_unit
+			{
+				texture GreenSkin.jpg
+				tex_address_mode mirror
+			}
+		}
+		
+
+	}
+	
+	// toon shading
+	technique
+	{
+		scheme TOON
+		pass
+		{
+			ambient 0.3 0.8 0.3
+			scene_blend alpha_blend
+			vertex_program_ref Toon_VS
+			{
+			
+			}
+			
+			fragment_program_ref Toon_PS
+			{
+			
+			}
+
+			texture_unit
+			{
+				texture GreenSkin.jpg
+				tex_address_mode mirror
+			}
+			texture_unit
+			{
+				texture light_lookup1.jpg
+			}
+		}
+		
+	}
+	
+	// Normal depth
+	technique
+	{
+		scheme NORMAL_DEPTH
+		pass
+		{
+			vertex_program_ref NormalDepth_VS
+			{
+			}
+			
+			fragment_program_ref NormalDepth_PS
+			{
+			}
+		}
+	}
+	
+	// toon shading with outline
+	technique
+	{
+		scheme OUTLINE
+		pass
+		{
+			ambient 0.3 0.8 0.3
+			vertex_program_ref Toon_VS
+			{
+			
+			}
+			
+			fragment_program_ref Toon_PS
+			{
+			
+			}
+
+			texture_unit
+			{
+				texture GreenSkin.jpg
+				tex_address_mode mirror
+			}
+			texture_unit
+			{
+				texture light_lookup2.jpg
+			}
+		}
+		
+		pass
+		{
+			cull_hardware anticlockwise
+			vertex_program_ref MyOgre_VS
+			{
+			
+			}
+			
+			fragment_program_ref MyOgre_PS
+			{
+			
+			}
+			
+		}
+	}
+}
+
+material Ogre/Tusks
+{
+	// default
+	technique
+	{
+		scheme DEFAULT
+		pass
+		{
+			ambient 0.7 0.7 0.6
+
+			
+			
+			texture_unit
+			{
+				texture tusk.jpg
+				scale 0.2 0.2
+			}
+		}
+		
+		
+	}
+	
+	// toon shading
+	technique
+	{
+		scheme TOON
+		pass
+		{
+			ambient 0.7 0.7 0.6
+			vertex_program_ref Toon_VS
+			{
+			
+			}
+			
+			fragment_program_ref Toon_PS
+			{
+			
+			}
+			
+			texture_unit
+			{
+				texture tusk.jpg
+				scale 0.2 0.2
+			}
+			texture_unit
+			{
+				texture light_lookup1.jpg
+			}
+		}
+	
+	}
+	
+	// Normal depth
+	technique
+	{
+		scheme NORMAL_DEPTH
+		pass
+		{
+			vertex_program_ref NormalDepth_VS
+			{
+			}
+			
+			fragment_program_ref NormalDepth_PS
+			{
+			}
+		}
+	}
+	
+	// toon shading with outline
+	technique
+	{
+		scheme OUTLINE
+		pass
+		{
+			ambient 0.7 0.7 0.6
+			vertex_program_ref Toon_VS
+			{
+			
+			}
+			
+			fragment_program_ref Toon_PS
+			{
+			
+			}
+			
+			texture_unit
+			{
+				texture tusk.jpg
+				scale 0.2 0.2
+			}
+			texture_unit
+			{
+				texture light_lookup2.jpg
+			}
+		}
+		
+		pass
+		{
+			cull_hardware anticlockwise
+			vertex_program_ref MyOgre_VS
+			{
+			
+			}
+			
+			fragment_program_ref MyOgre_PS
+			{
+			
+			}
+			
+		}
+	}
+}
+
+material Ogre/Eyes
+{
+	technique
+	{
+		scheme DEFAULT
+		pass
+		{
+			ambient 1 0.4 0.4
+			diffuse 1 0.7 0
+			emissive 0.3 0.1 0
+			
+		}
+		
+	
+	}
+	technique
+	{
+		scheme TOON
+		pass
+		{
+			ambient 1 0.4 0.4
+			diffuse 1 0.7 0
+			emissive 0.3 0.1 0
+
+		}
+		
+	
+	}
+	
+	// Normal depth
+	technique
+	{
+		scheme NORMAL_DEPTH
+		pass
+		{
+			vertex_program_ref NormalDepth_VS
+			{
+			}
+			
+			fragment_program_ref NormalDepth_PS
+			{
+			}
+		}
+	}
+	
+	technique
+	{
+		scheme OUTLINE
+		pass
+		{
+			ambient 1 0.4 0.4
+			diffuse 1 0.7 0
+			emissive 0.3 0.1 0
+			
+		}
+		
+	
+	}
+}
