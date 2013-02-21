@@ -16,7 +16,7 @@ CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS bullet`	\
 
 # Flags del linker ---------------------------------------------------
 LDFLAGS := `pkg-config --libs-only-L OGRE OIS bullet`
-LDLIBS := `pkg-config --libs-only-l OGRE OIS bullet` -lOIS -lGL -lstdc++ \
+LDLIBS := `pkg-config --libs-only-l OGRE OIS bullet` -lOIS -lGL -lstdc++ -lSDL -lSDL_mixer \
 -lOgreTerrain
 
 # Modo de compilación ------------------------------------------------

@@ -10,6 +10,13 @@ MenuState::MenuState()
 
 void MenuState::enter()
   {
+    // Carga del sonido.
+    _mainTrack = TrackManager::getSingleton().load("01_-_Dj_Saryon_-_Break_the_rules_Remastered_Mix_.mp3");
+    _menuFX = SoundFXManager::getSingleton().load("croac.wav");    
+
+    // Reproducción del track principal...
+    this->_mainTrack->play();
+
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering MenuState...");
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->m_pRoot->createSceneManager(ST_GENERIC, "MenuSceneMgr");
@@ -53,6 +60,9 @@ void MenuState::createScene()
 void MenuState::exit()
   {
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Leaving MenuState...");
+
+    // Parar del track principal...
+    this->_mainTrack->stop();
 
     m_pSceneMgr->destroyCamera(m_pCamera);
     if(m_pSceneMgr)
@@ -117,6 +127,7 @@ void MenuState::update(double timeSinceLastFrame)
 
 void MenuState::buttonHit(OgreBites::Button *button)
   {
+    _menuFX->play();
     if ( button->getName() == "ExitBtn" )
       m_bQuit = true;
     else if ( button->getName() == "StartBtn" )
