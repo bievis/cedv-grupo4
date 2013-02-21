@@ -2,6 +2,8 @@
 #define MENU_STATE_HPP
 
 #include "AppState.hpp"
+#include "TrackManager.h"
+#include "SoundFXManager.h"
 
 class MenuState : public AppState
   {
@@ -24,8 +26,9 @@ public:
     void buttonHit(OgreBites::Button* button);
 
     void update(double timeSinceLastFrame);
-
 private:
+    TrackPtr _mainTrack;
+    SoundFXPtr _menuFX;
     bool m_bQuit;
     Ogre::OverlayManager* m_pOverlayMgr;
 };
