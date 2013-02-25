@@ -71,6 +71,8 @@ void GameState::exit()
     m_pSceneMgr->destroyCamera(m_pCamera);
     if(m_pSceneMgr)
         OgreFramework::getSingletonPtr()->m_pRoot->destroySceneManager(m_pSceneMgr);
+
+    delete _personaje;
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -114,6 +116,7 @@ void GameState::createScene()
     nodePersonaje->attachObject(entPersonaje);
     nodePersonaje->setPosition(6.50000, 0, 0);
     m_pSceneMgr->getRootSceneNode()->addChild(nodePersonaje);
+    _personaje = new Personaje ("Personaje", nodePersonaje);
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -124,6 +127,18 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
     {
         pushAppState(findByName("PauseState"));
         return true;
+    } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_UP))
+    {
+      _personaje->setMovimiento(DELANTE);
+    } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_DOWN))
+    {
+      _personaje->setMovimiento(ATRAS);
+    } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_LEFT))
+    {
+      _personaje->setMovimiento(IZQUIERDA);
+    } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_RIGHT))
+    {
+      _personaje->setMovimiento(DERECHA);
     }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
@@ -206,7 +221,7 @@ void GameState::update(double timeSinceLastFrame)
         return;
     }
 
-    
+    // TODO _personaje->mover(timeSinceLastFrame);
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

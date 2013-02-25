@@ -8,6 +8,7 @@
 #include "AppState.hpp"
 
 #include "DotSceneLoader.hpp"
+#include "Personaje.h"
 
 #include <OgreSubEntity.h>
 #include <OgreMaterialManager.h>
@@ -51,6 +52,7 @@ public:
 private:
 	bool						m_bQuit;
 	bool						m_bLMouseDown, m_bRMouseDown;
+  Personaje *_personaje;
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
