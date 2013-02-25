@@ -2,7 +2,7 @@
 
 #include "AppStateManager.hpp"
 
-#include <OGRE/OgreWindowEventUtilities.h>
+#include <OgreWindowEventUtilities.h>
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -70,9 +70,8 @@ void AppStateManager::start(AppState* state)
 {
 	changeAppState(state);
 
-	const double dt = 0.01;
-	double currentTime = OgreFramework::getSingletonPtr()->m_pTimer->getMilliseconds()/1000.0f;
-	double accumulator = 0.0;
+	int timeSinceLastFrame = 1;
+	int startTime = 0;
 
 	while(!m_bShutdown)
 	{
@@ -82,26 +81,17 @@ void AppStateManager::start(AppState* state)
 
 		if(OgreFramework::getSingletonPtr()->m_pRenderWnd->isActive())
 		{
-		         double newTime = OgreFramework::getSingletonPtr()->m_pTimer->getMilliseconds()/1000.0f;;
-		         double frameTime = newTime - currentTime;
-		         if ( frameTime > 0.25 )
-              			frameTime = 0.25;	  // note: max frame time to avoid spiral of death
-		         currentTime = newTime;
+			startTime = OgreFramework::getSingletonPtr()->m_pTimer->getMillisecondsCPU();
 
-		         accumulator += frameTime;
+			OgreFramework::getSingletonPtr()->m_pKeyboard->capture();
+			OgreFramework::getSingletonPtr()->m_pMouse->capture();
 
-		         while ( accumulator >= dt )
-		         {
-				OgreFramework::getSingletonPtr()->m_pKeyboard->capture();
-				OgreFramework::getSingletonPtr()->m_pMouse->capture();
+			m_ActiveStateStack.back()->update(timeSinceLastFrame);
 
-				
-				m_ActiveStateStack.back()->update(dt);
-				OgreFramework::getSingletonPtr()->updateOgre(dt);
-			 	accumulator -= dt;
-         		 }
-
+			OgreFramework::getSingletonPtr()->updateOgre(timeSinceLastFrame);
 			OgreFramework::getSingletonPtr()->m_pRoot->renderOneFrame();
+
+			timeSinceLastFrame = OgreFramework::getSingletonPtr()->m_pTimer->getMillisecondsCPU() - startTime;
 		}
 		else
 		{

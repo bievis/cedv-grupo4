@@ -1,10 +1,16 @@
+//|||||||||||||||||||||||||||||||||||||||||||||||
+
 #ifndef PAUSE_STATE_HPP
 #define PAUSE_STATE_HPP
 
+//|||||||||||||||||||||||||||||||||||||||||||||||
+
 #include "AppState.hpp"
 
+//|||||||||||||||||||||||||||||||||||||||||||||||
+
 class PauseState : public AppState
-  {
+{
 public:
     PauseState();
 
@@ -27,9 +33,13 @@ public:
     void update(double timeSinceLastFrame);
 
 private:
-    bool m_bQuit;
-    bool m_bQuestionActive;
+    bool                        m_bQuit;
+    bool                        m_bQuestionActive;
     Ogre::OverlayManager* m_pOverlayMgr;
-  };
+};
+
+//|||||||||||||||||||||||||||||||||||||||||||||||
 
 #endif
+
+//|||||||||||||||||||||||||||||||||||||||||||||||

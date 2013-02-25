@@ -1,7 +1,7 @@
 #ifndef _FROGGER_APP_HPP
 #define _FROGGER_APP_HPP
 
-#include "OgreFramework.hpp"
+#include "AdvancedOgreFramework.hpp"
 #include "AppStateManager.hpp"
 
 class FroggerApp
