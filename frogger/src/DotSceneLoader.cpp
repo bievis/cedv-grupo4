@@ -1,8 +1,12 @@
 #include "DotSceneLoader.hpp"
-#include <OGRE/Ogre.h>
-#include <OGRE/Terrain/OgreTerrain.h>
-#include <OGRE/Terrain/OgreTerrainGroup.h>
-#include <OGRE/Terrain/OgreTerrainMaterialGeneratorA.h>
+#include <Ogre.h>
+#include <Terrain/OgreTerrain.h>
+#include <Terrain/OgreTerrainGroup.h>
+#include <Terrain/OgreTerrainMaterialGeneratorA.h>
+
+#pragma warning(disable:4390)
+#pragma warning(disable:4305)
+
 
 DotSceneLoader::DotSceneLoader() : mSceneMgr(0), mTerrainGroup(0)
 {
@@ -213,10 +217,10 @@ void DotSceneLoader::processTerrain(rapidxml::xml_node<>* XMLNode)
 {
     Ogre::Real worldSize = getAttribReal(XMLNode, "worldSize");
     int mapSize = Ogre::StringConverter::parseInt(XMLNode->first_attribute("mapSize")->value());
-    //int rows = Ogre::StringConverter::parseInt(XMLNode->first_attribute("rows")->value());
-    //int columns = Ogre::StringConverter::parseInt(XMLNode->first_attribute("columns")->value());
-    //bool colourmapEnabled = getAttribBool(XMLNode, "colourmapEnabled");
-    //int colourMapTextureSize = Ogre::StringConverter::parseInt(XMLNode->first_attribute("colourMapTextureSize")->value());
+    int rows = Ogre::StringConverter::parseInt(XMLNode->first_attribute("rows")->value());
+    int columns = Ogre::StringConverter::parseInt(XMLNode->first_attribute("columns")->value());
+    bool colourmapEnabled = getAttribBool(XMLNode, "colourmapEnabled");
+    int colourMapTextureSize = Ogre::StringConverter::parseInt(XMLNode->first_attribute("colourMapTextureSize")->value());
 
     Ogre::Vector3 lightdir(0, -0.3, 0.75);
     lightdir.normalise();
@@ -276,8 +280,8 @@ void DotSceneLoader::processTerrainPage(rapidxml::xml_node<>* XMLNode)
     int pageY = Ogre::StringConverter::parseInt(XMLNode->first_attribute("pageY")->value());
     Ogre::Real worldSize = getAttribReal(XMLNode, "worldSize");
     int mapSize = Ogre::StringConverter::parseInt(XMLNode->first_attribute("mapSize")->value());
-    //bool colourmapEnabled = getAttribBool(XMLNode, "colourmapEnabled");
-    //int colourmapTexturesize = Ogre::StringConverter::parseInt(XMLNode->first_attribute("colourmapTexturesize")->value());
+    bool colourmapEnabled = getAttribBool(XMLNode, "colourmapEnabled");
+    int colourmapTexturesize = Ogre::StringConverter::parseInt(XMLNode->first_attribute("colourmapTexturesize")->value());
     int layerCount = Ogre::StringConverter::parseInt(XMLNode->first_attribute("layerCount")->value());
 
     Ogre::String filename = mTerrainGroup->generateFilename(pageX, pageY);
@@ -295,7 +299,7 @@ void DotSceneLoader::processTerrainPage(rapidxml::xml_node<>* XMLNode)
 
         Ogre::DataStreamPtr stream = Ogre::ResourceGroupManager::getSingleton().openResource(name + Ogre::String(".ohm"), "General" );
         size_t size = stream.get()->size();
-        if((int)size != mapSize * mapSize * 4)
+        if(size != mapSize * mapSize * 4)
         {
             OGRE_EXCEPT( Ogre::Exception::ERR_INTERNAL_ERROR, "Size of stream does not match terrainsize!", "TerrainPage" );
         }
@@ -373,7 +377,7 @@ void DotSceneLoader::processBlendmaps(rapidxml::xml_node<>* XMLNode)
             Ogre::Image img;
             img.load(blendMaps[j-1],"General");
             int blendmapsize = mTerrainGroup->getTerrain(pageX, pageY)->getLayerBlendMapSize();
-            if((int)img.getWidth() != blendmapsize)
+            if(img.getWidth() != blendmapsize)
                 img.resize(blendmapsize, blendmapsize);
 
             float *ptr = blendmap->getBlendPointer();
@@ -474,8 +478,8 @@ void DotSceneLoader::processCamera(rapidxml::xml_node<>* XMLNode, Ogre::SceneNod
     // Process attributes
     Ogre::String name = getAttrib(XMLNode, "name");
     Ogre::String id = getAttrib(XMLNode, "id");
-    //Ogre::Real fov = getAttribReal(XMLNode, "fov", 45);
-    //Ogre::Real aspectRatio = getAttribReal(XMLNode, "aspectRatio", 1.3333);
+    Ogre::Real fov = getAttribReal(XMLNode, "fov", 45);
+    Ogre::Real aspectRatio = getAttribReal(XMLNode, "aspectRatio", 1.3333);
     Ogre::String projectionType = getAttrib(XMLNode, "projectionType", "perspective");
 
     // Create the camera
@@ -577,7 +581,7 @@ void DotSceneLoader::processNode(rapidxml::xml_node<>* XMLNode, Ogre::SceneNode 
 
     // Process other attributes
     Ogre::String id = getAttrib(XMLNode, "id");
-    //bool isTarget = getAttribBool(XMLNode, "isTarget");
+    bool isTarget = getAttribBool(XMLNode, "isTarget");
 
     rapidxml::xml_node<>* pElement;
 
@@ -935,8 +939,8 @@ void DotSceneLoader::processClipping(rapidxml::xml_node<>* XMLNode)
     //! @todo Implement this
 
     // Process attributes
-    //Ogre::Real fNear = getAttribReal(XMLNode, "near", 0);
-    //Ogre::Real fFar = getAttribReal(XMLNode, "far", 1);
+    Ogre::Real fNear = getAttribReal(XMLNode, "near", 0);
+    Ogre::Real fFar = getAttribReal(XMLNode, "far", 1);
 }
 
 void DotSceneLoader::processLightRange(rapidxml::xml_node<>* XMLNode, Ogre::Light *pLight)

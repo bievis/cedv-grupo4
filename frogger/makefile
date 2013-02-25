@@ -1,6 +1,6 @@
 # --------------------------------------------------------------------
-# Makefile Genérico :: Seminario 1. Curso Experto Desarrollo Videojuegos
-# Carlos González Morcillo     Escuela Superior de Informática (UCLM)
+# Makefile :: Frogger
+# Diego Moreno Montes y Matias Blanco Leon
 # --------------------------------------------------------------------
 EXEC := frogger
 
@@ -11,12 +11,12 @@ DIRHEA := include/
 CXX := g++
 
 # Flags de compilación -----------------------------------------------
-CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS bullet`	\
+CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS`	\
 -g -D_DEBUG
 
 # Flags del linker ---------------------------------------------------
-LDFLAGS := `pkg-config --libs-only-L OGRE OIS bullet`
-LDLIBS := `pkg-config --libs-only-l OGRE OIS bullet` -lOIS -lGL -lstdc++ -lSDL -lSDL_mixer \
+LDFLAGS := `pkg-config --libs-only-L OGRE OIS`
+LDLIBS := `pkg-config --libs-only-l OGRE OIS` -lOIS -lGL -lstdc++ -lSDL -lSDL_mixer \
 -lOgreTerrain
 
 # Modo de compilación ------------------------------------------------
