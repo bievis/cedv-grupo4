@@ -67,34 +67,38 @@ string Personaje::toString () {
 }
 
 void Personaje::mover(const double deltaT) {
-  cout << deltaT << endl;
   if (_movimiento != NINGUNO) {
     if (_estado == MOVIMIENTO || _estado == PARADO) {
-      if (_movimiento == DERECHA || _movimiento == ATRAS) _incremento = 1;
-      else if (_movimiento == DELANTE || _movimiento == IZQUIERDA) _incremento = -1;
-      
+      Ogre::Real posicion;
+      if (_movimiento == IZQUIERDA || _movimiento == ATRAS) _incremento = 1;
+      else if (_movimiento == DELANTE || _movimiento == DERECHA) _incremento = -1;
+      // Si esta parado iniciamos el movimiento
       if (_estado == PARADO) {
         _estado = MOVIMIENTO;
         
         if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _posFinal = _nodo->getPosition().z + _incremento;
         else if (_movimiento == DELANTE || _movimiento == ATRAS) _posFinal = _nodo->getPosition().x + _incremento;      
       }
+      // Para avanzar el personaje
       if (_movimiento == IZQUIERDA || _movimiento == DERECHA) {
+        posicion = _nodo->getPosition().z;
         _nodo->translate(0, 0, VELOCIDAD * deltaT * _incremento);
-        cout << "Z: " << abs(_nodo->getPosition().z) << endl;
-        if (abs(_nodo->getPosition().z) >= abs(_posFinal)) {
+      } else if (_movimiento == DELANTE || _movimiento == ATRAS) {
+        posicion = _nodo->getPosition().x;
+        _nodo->translate(VELOCIDAD * deltaT * _incremento, 0, 0);
+      }
+      // Para parar el personaje
+      if (_movimiento == DELANTE || _movimiento == DERECHA) {
+        if (posicion <= _posFinal) {
           _estado = PARADO;
           _movimiento = NINGUNO;
         }
-      } else if (_movimiento == DELANTE || _movimiento == ATRAS) {
-        _nodo->translate(VELOCIDAD * deltaT * _incremento, 0, 0);
-        cout << "X: " << _nodo->getPosition().x << endl;
-        if (_nodo->getPosition().x <= _posFinal) {
+      } else if (_movimiento == IZQUIERDA || _movimiento == ATRAS) {
+        if (posicion >= _posFinal) {
           _estado = PARADO;
           _movimiento = NINGUNO;
         }
       }
-      cout << "Final: " << _posFinal << endl;
     }
   }
 }
