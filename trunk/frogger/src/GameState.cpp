@@ -212,6 +212,9 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 
 void GameState::update(double timeSinceLastFrame)
 {
+    static double tiempo = 0;
+    tiempo += timeSinceLastFrame;
+    
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
     OgreFramework::getSingletonPtr()->m_pTrayMgr->frameRenderingQueued(m_FrameEvent);
 
@@ -221,7 +224,7 @@ void GameState::update(double timeSinceLastFrame)
         return;
     }
 
-    // TODO _personaje->mover(timeSinceLastFrame);
+    _personaje->mover(timeSinceLastFrame);
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
