@@ -9,7 +9,7 @@ using namespace std;
 using namespace Ogre;
 
 #define ALTURA_SALTO 0.5
-#define AVANCE 1
+#define AVANCE 1.5
 #define VELOCIDAD 2
 
 enum EstadoPersonaje  { PARADO, MOVIMIENTO, MUERTO };
@@ -26,6 +26,7 @@ class Personaje {
   void setEstado(const EstadoPersonaje estado);
   MovimientoPersonaje getMovimiento() const;
   void setMovimiento(const MovimientoPersonaje movimiento);
+  double getPosFinal() const;
   
   // Sobre carga de Operadores
   Personaje& operator= (const Personaje &p);
@@ -44,7 +45,6 @@ class Personaje {
   SceneNode* _nodo;
   EstadoPersonaje _estado;
   double _posFinal;
-  int _incremento;
   MovimientoPersonaje _movimiento;
 };
 
