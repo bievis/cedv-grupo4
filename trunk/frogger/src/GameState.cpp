@@ -25,7 +25,7 @@ void GameState::enter()
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
 
     m_pCamera = m_pSceneMgr->createCamera("GameCamera");
-    m_pCamera->setPosition(Vector3(2.50000, 11.00000, 0.0));
+    m_pCamera->setPosition(Vector3(0, 11.00000, 2.50000));
     m_pCamera->lookAt(Vector3(0, 0, 0));
     m_pCamera->setFOVy(Degree(93.695));
     m_pCamera->setNearClipDistance(1);
@@ -96,8 +96,8 @@ void GameState::createScene()
     // Creamos el escenario como geometria estatica
     StaticGeometry* escenario = m_pSceneMgr->createStaticGeometry("EscenarioEstatico");
     escenario->addEntity(entCesped, Vector3(0,0,0));
-    escenario->addEntity(entCarretera, Vector3(3.00000, 0.00100, 0.0));
-    escenario->addEntity(entRio, Vector3(-3.00000, 0.00100, 0.0));
+    escenario->addEntity(entCarretera, Vector3(0.0, 0.00100, 3.00000));
+    escenario->addEntity(entRio, Vector3(0.0, 0.00100, -3.00000));
     escenario->build();  // Operacion para construir la geometria
 
     //m_pSceneMgr->createLight("Light")->setPosition(75,75,75);
@@ -114,7 +114,7 @@ void GameState::createScene()
     nodePersonaje = m_pSceneMgr->createSceneNode("Personaje");
     entPersonaje = m_pSceneMgr->createEntity("Personaje", "Personaje.mesh");
     nodePersonaje->attachObject(entPersonaje);
-    nodePersonaje->setPosition(6.50000, 0, 0);
+    nodePersonaje->setPosition(0, 0, 6.0);
     m_pSceneMgr->getRootSceneNode()->addChild(nodePersonaje);
     _personaje = new Personaje ("Personaje", nodePersonaje);
 }

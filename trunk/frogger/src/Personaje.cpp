@@ -1,7 +1,6 @@
 #include <sstream>
 #include "AdvancedOgreFramework.hpp"
 #include "Personaje.h"
-#include "math.h"
 
 Personaje::Personaje (const string &nombre, SceneNode* nodo) {
   _nombre = nombre;
@@ -39,6 +38,10 @@ void Personaje::setMovimiento(const MovimientoPersonaje movimiento) {
   if (_estado == PARADO) _movimiento = movimiento;
 }
 
+double Personaje::getPosFinal() const {
+  return _posFinal;
+}
+
 Personaje& Personaje::operator= (const Personaje &p) {
   copiar(p);
   return *this;
@@ -49,6 +52,7 @@ void Personaje::copiar(const Personaje &p) {
   _nodo = p.getNodo();
   _estado = p.getEstado();
   _movimiento = p.getMovimiento();
+  _posFinal = p.getPosFinal();
 }
 
 // Destructor
@@ -70,34 +74,39 @@ void Personaje::mover(const double deltaT) {
   if (_movimiento != NINGUNO) {
     if (_estado == MOVIMIENTO || _estado == PARADO) {
       Ogre::Real posicion;
-      if (_movimiento == IZQUIERDA || _movimiento == ATRAS) _incremento = 1;
-      else if (_movimiento == DELANTE || _movimiento == DERECHA) _incremento = -1;
+      double incremento;
+      if (_movimiento == DERECHA || _movimiento == ATRAS) incremento = AVANCE * 1;
+      else if (_movimiento == DELANTE || _movimiento == IZQUIERDA) incremento = AVANCE * -1;
       // Si esta parado iniciamos el movimiento
       if (_estado == PARADO) {
         _estado = MOVIMIENTO;
         
-        if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _posFinal = _nodo->getPosition().z + _incremento;
-        else if (_movimiento == DELANTE || _movimiento == ATRAS) _posFinal = _nodo->getPosition().x + _incremento;      
+        if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _posFinal = _nodo->getPosition().x + incremento;
+        else if (_movimiento == DELANTE || _movimiento == ATRAS) _posFinal = _nodo->getPosition().z + incremento;      
       }
       // Para avanzar el personaje
       if (_movimiento == IZQUIERDA || _movimiento == DERECHA) {
-        posicion = _nodo->getPosition().z;
-        _nodo->translate(0, 0, VELOCIDAD * deltaT * _incremento);
-      } else if (_movimiento == DELANTE || _movimiento == ATRAS) {
         posicion = _nodo->getPosition().x;
-        _nodo->translate(VELOCIDAD * deltaT * _incremento, 0, 0);
+        _nodo->translate(VELOCIDAD * deltaT * incremento, 0, 0);
+      } else if (_movimiento == DELANTE || _movimiento == ATRAS) {
+        posicion = _nodo->getPosition().z;
+        _nodo->translate(0, 0, VELOCIDAD * deltaT * incremento);
       }
       // Para parar el personaje
-      if (_movimiento == DELANTE || _movimiento == DERECHA) {
+      if (_movimiento == DELANTE || _movimiento == IZQUIERDA) {
         if (posicion <= _posFinal) {
           _estado = PARADO;
-          _movimiento = NINGUNO;
         }
-      } else if (_movimiento == IZQUIERDA || _movimiento == ATRAS) {
+      } else if (_movimiento == DERECHA || _movimiento == ATRAS) {
         if (posicion >= _posFinal) {
           _estado = PARADO;
-          _movimiento = NINGUNO;
         }
+      }
+      // Si lo acabamos de parar lo ponemos en la posicion final exasta
+      if (_estado == PARADO) {
+        if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _nodo->setPosition(_posFinal, _nodo->getPosition().y, _nodo->getPosition().z);
+        else if (_movimiento == DELANTE || _movimiento == ATRAS) _nodo->setPosition(_nodo->getPosition().x, _nodo->getPosition().y, _posFinal);
+        _movimiento = NINGUNO;
       }
     }
   }

@@ -28,6 +28,7 @@
 #include <SDL/SDL_mixer.h>
 #include "TrackManager.h"
 #include "SoundFXManager.h"
+#include "ColisionManager.h"
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 

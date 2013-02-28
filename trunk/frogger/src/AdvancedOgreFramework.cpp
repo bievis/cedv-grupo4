@@ -117,6 +117,9 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     initSDL ();
     new TrackManager;
     new SoundFXManager;
+
+    // Iniciamos el manager de colisiones
+    new ColisionManager();
 	
     return true;
 }
