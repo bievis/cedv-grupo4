@@ -1,3 +1,11 @@
+template element TextArea(MyTemplates/Text)
+{
+    font_name Blue
+                metrics_mode pixels
+                char_height 50
+                colour 255.0 255.0 255.0
+}
+
 Background
 {
     zorder 0
@@ -6,5 +14,30 @@ Background
 		top 0
 		left 0
         material Menu/Background
+    }
+}
+
+PantallaRecords
+{
+        zorder 500
+
+    container Panel(panelRecords)
+    {
+              metrics_mode pixels
+        left 50
+        top 25
+        width 900
+        height 700
+        vert_align top
+        horz_align left
+        material Menu/Vacio
+
+        element TextArea(highScoresValues) : MyTemplates/Text
+                    {
+                                  top 150
+                                  left 200
+          horz_align left
+                    }
+
     }
 }

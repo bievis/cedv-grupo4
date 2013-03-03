@@ -1,0 +1,7 @@
+SpaceOut 
+{
+	type truetype
+	source SpaceOut.ttf
+	size 25
+	resolution 96
+}

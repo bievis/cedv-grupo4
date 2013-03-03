@@ -8,6 +8,7 @@
 #include "AppState.hpp"
 #include "TrackManager.h"
 #include "SoundFXManager.h"
+#include "Records.h"
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -19,7 +20,10 @@ public:
 	DECLARE_APPSTATE_CLASS(MenuState)
 
 	void enter();
-	void createScene();
+	void createMenuScene();
+        void createButtons();
+        void showButtons();
+        void hideButtons();
 	void exit();
 
 	bool keyPressed(const OIS::KeyEvent &keyEventRef);
@@ -33,11 +37,28 @@ public:
 
 	void update(double timeSinceLastFrame);
 
+        void mostrarOverlayCreditos ( bool mostrar );
+        void mostrarOverlayHighScores ( bool mostrar );
+        void muestra_highscores();
+
 private:
 	bool                        m_bQuit;
   TrackPtr _mainTrack;
   SoundFXPtr _menuFX;
   Ogre::OverlayManager* m_pOverlayMgr;
+  bool _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
+  bool _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
+
+  //Menu principal
+  Rectangle2D* rect_titulo;
+  Rectangle2D* rect_nave;
+
+  //Creditos
+  Rectangle2D* rect_creditos;
+
+  //HighScores
+  Rectangle2D* rect_highscores;
+
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
