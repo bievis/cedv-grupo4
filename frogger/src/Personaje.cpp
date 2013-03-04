@@ -22,6 +22,10 @@ SceneNode* Personaje::getNodo() const {
   return _nodo;
 }
 
+Entity* Personaje::getEntidad() const {
+  return static_cast <Entity *> (_nodo->getAttachedObject(_nombre));
+}
+
 EstadoPersonaje Personaje::getEstado() const {
   return _estado;
 }

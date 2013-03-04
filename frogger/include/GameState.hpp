@@ -52,7 +52,6 @@ public:
 private:
 	bool						m_bQuit;
 	bool						m_bLMouseDown, m_bRMouseDown;
-  Personaje *_personaje;
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

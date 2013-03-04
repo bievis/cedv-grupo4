@@ -1,6 +1,7 @@
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 #include "GameState.hpp"
+#include "GameManager.h"
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -72,7 +73,7 @@ void GameState::exit()
     if(m_pSceneMgr)
         OgreFramework::getSingletonPtr()->m_pRoot->destroySceneManager(m_pSceneMgr);
 
-    delete _personaje;
+    GameManager::getSingleton().limpiar ();
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -88,35 +89,42 @@ void GameState::createScene()
     m_pSceneMgr->setShadowTextureSize(512);
 
     Entity* entCesped = m_pSceneMgr->createEntity("Cesped", "Cesped.mesh");
-  
-    Entity* entRio = m_pSceneMgr->createEntity("Rio", "Rio.mesh");
-
-    Entity* entCarretera = m_pSceneMgr->createEntity("Carretera", "Carretera.mesh");
-
+    
     // Creamos el escenario como geometria estatica
     StaticGeometry* escenario = m_pSceneMgr->createStaticGeometry("EscenarioEstatico");
     escenario->addEntity(entCesped, Vector3(0,0,0));
-    escenario->addEntity(entCarretera, Vector3(0.0, 0.00100, 3.00000));
-    escenario->addEntity(entRio, Vector3(0.0, 0.00100, -3.00000));
     escenario->build();  // Operacion para construir la geometria
 
-    //m_pSceneMgr->createLight("Light")->setPosition(75,75,75);
+    // Luz de la escena
     Light* luz = m_pSceneMgr->createLight("Luz");
     luz->setType(Light::LT_POINT);
     luz->setPosition(75,75,75);
     luz->setSpecularColour(1, 1, 1); 
     luz->setDiffuseColour(1, 1, 1);
 
+    // Partes del escenario
+    SceneNode* nodeParte1 = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
+    ParteEscenario* parte1 = new ParteEscenario(nodeParte1->getName(), nodeParte1);
+    GameManager::getSingleton().addParteEscenario (parte1);
+
+    SceneNode* nodeParte2 = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
+    ParteEscenario* parte2 = new ParteEscenario(nodeParte2->getName(), nodeParte2);
+    GameManager::getSingleton().addParteEscenario (parte2);
+    // Construimos los carriles
+    parte2->addCarril("Carril1", 3, 6, DIR_IZQ, 1.5, m_pSceneMgr);
+    parte2->addModeloElementoCarril("Carril1", "Coche.mesh");
+    parte2->addCarril("Carril2", 2, 10, DIR_DER, 3, m_pSceneMgr);
+    parte2->addModeloElementoCarril("Carril2", "Coche.mesh");
+    parte2->addCarril("Carril3", 1.5, 8, DIR_IZQ, 4.5, m_pSceneMgr);
+    parte2->addModeloElementoCarril("Carril3", "Coche.mesh");
+
     // Cargamos el personaje
-    Entity* entPersonaje;
-    SceneNode* nodePersonaje;  
-    
-    nodePersonaje = m_pSceneMgr->createSceneNode("Personaje");
-    entPersonaje = m_pSceneMgr->createEntity("Personaje", "Personaje.mesh");
-    nodePersonaje->attachObject(entPersonaje);
-    nodePersonaje->setPosition(0, 0, 6.0);
-    m_pSceneMgr->getRootSceneNode()->addChild(nodePersonaje);
-    _personaje = new Personaje ("Personaje", nodePersonaje);
+    SceneNode* nodePersonaje = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "Personaje", "Personaje.mesh", 0, 0, 6.0);
+    Personaje* p = new Personaje("Personaje", nodePersonaje);
+    GameManager::getSingleton().setPersonaje(p);
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -129,16 +137,16 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
         return true;
     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_UP))
     {
-      _personaje->setMovimiento(DELANTE);
+      GameManager::getSingleton().getPersonaje()->setMovimiento(DELANTE);
     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_DOWN))
     {
-      _personaje->setMovimiento(ATRAS);
+      GameManager::getSingleton().getPersonaje()->setMovimiento(ATRAS);
     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_LEFT))
     {
-      _personaje->setMovimiento(IZQUIERDA);
+      GameManager::getSingleton().getPersonaje()->setMovimiento(IZQUIERDA);
     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_RIGHT))
     {
-      _personaje->setMovimiento(DERECHA);
+      GameManager::getSingleton().getPersonaje()->setMovimiento(DERECHA);
     }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
@@ -224,7 +232,7 @@ void GameState::update(double timeSinceLastFrame)
         return;
     }
 
-    _personaje->mover(timeSinceLastFrame);
+    GameManager::getSingleton().mover(timeSinceLastFrame, tiempo);
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

@@ -119,7 +119,7 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     new SoundFXManager;
 
     // Iniciamos el manager de colisiones
-    new ColisionManager();
+    new GameManager();
 	
     return true;
 }
