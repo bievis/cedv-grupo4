@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <Ogre.h>
+#include <vector>
+#include "Carril.h"
 
 using namespace std;
 using namespace Ogre;
@@ -14,6 +16,12 @@ class ParteEscenario {
 
   string getNombre () const;
   SceneNode* getNodo() const;
+  std::vector<Carril*>& getCarriles();
+  void addCarril (const char *nombre, const double velocidad, 
+          const double separacion, const Direccion direccion, 
+        const double posicionZ, SceneManager*	pSceneMgr);
+  void addCarril (Carril* carril);
+  void addModeloElementoCarril(const char *nombreCarril, const char *mesh);
   
   // Sobre carga de Operadores
   ParteEscenario& operator= (const ParteEscenario &p);
@@ -23,12 +31,14 @@ class ParteEscenario {
 
   // Otras funciones
   string toString (); // Imprime todas las noticias del canal
+  void mover(const double deltaT, const double tiempo);
 
  private:
   void copiar(const ParteEscenario &p);
 
   string _nombre;
   SceneNode* _nodo;
+  std::vector<Carril*> _carriles;
 };
 
 #endif

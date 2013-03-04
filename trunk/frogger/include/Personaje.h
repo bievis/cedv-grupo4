@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <Ogre.h>
-#include <OIS/OIS.h>
 
 using namespace std;
 using namespace Ogre;
@@ -22,6 +21,7 @@ class Personaje {
 
   string getNombre () const;
   SceneNode* getNodo() const;
+  Entity* getEntidad() const;
   EstadoPersonaje getEstado() const;
   void setEstado(const EstadoPersonaje estado);
   MovimientoPersonaje getMovimiento() const;
