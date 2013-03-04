@@ -199,6 +199,15 @@ void MenuState::createMenuScene()
     // Attach background to the scene
     node->attachObject(rect_highscores);
 
+    //************************************************************
+    //ATENCION!!!: NO ENTIENDO PORQUE TENGO QUE HACER ÉSTO
+    //PERO COMO NO PONGA ÉSTO AQUÍ, LA PRIMERA VEZ QUE CARGUE
+    //LAS PUNTUACIONES NO APARECE NADA
+    //************************************************************
+    Overlay *over = NULL;
+    over = m_pOverlayMgr->getByName ( "PantallaRecords" );
+    if ( over ) over->show();
+    //************************************************************    
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -344,6 +353,7 @@ void MenuState::mostrarOverlayCreditos ( bool mostrar )
 // Muestra u oculta los highscores
 void MenuState::mostrarOverlayHighScores ( bool mostrar ) 
   {
+    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
     Overlay *over = NULL;
 
     _mostradoHighScores = mostrar;
@@ -353,7 +363,7 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
     if ( mostrar )
       {
 	if ( over )
-	  over->show();
+          over->show();
         rect_highscores->setVisible ( true );
         rect_nave->setVisible ( false );
         rect_titulo->setVisible ( false );
@@ -369,19 +379,28 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
         rect_titulo->setVisible ( true );
         showButtons();
       }
+    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
   }
 
 void MenuState::muestra_highscores()
   {
+    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
     OverlayElement *oe = NULL;
 
     Records::getSingleton().read();
 
     oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
 
-    string msg = "1. 34 - 14/01/2013 : 22:17\n2. 32 - 14/01/2013 : 15:44\n3. 26 - 17/03/2012 : 12:27\n";
-    msg += "4. 24 - 14/01/2013 : 22:17\n5. 22 - 14/01/2013 : 15:44\n6. 20 - 17/03/2012 : 12:27\n";
-    msg += "7. 19 - 14/01/2013 : 22:17\n8. 17 - 14/01/2013 : 15:44\n9. 16 - 17/03/2012 : 12:27";
+    string msg = " 1. Lv3 * 30s * 14-01-2013 * 22:17\n";
+    msg += " 2. Lv3 * 35s * 12-02-2013 * 20:18\n";
+    msg += " 3. Lv3 * 56s * 12-02-2013 * 10:08\n";
+    msg += " 4. Lv2 * 45s * 11-02-2013 * 12:15\n";
+    msg += " 5. Lv2 * 55s * 08-02-2013 * 19:22\n";
+    msg += " 6. Lv2 * 70s * 03-02-2013 * 10:05\n";
+    msg += " 7. Lv2 * 80s * 05-02-2013 * 08:09\n";
+    msg += " 8. Lv2 * 81s * 04-02-2013 * 15:03\n";
+    msg += " 9. Lv1 * 25s * 03-02-2013 * 10:05\n";
+    msg += "10. Lv1 * 35s * 01-02-2013 * 09:26";
 
     // string msg = "";
 
@@ -398,5 +417,7 @@ void MenuState::muestra_highscores()
     // else
     //   msg = "   No hay registros";
 
+    oe->setColour ( Ogre::ColourValue ( 1.0, 1.0, 0.0 ) );
     oe->setCaption ( msg );
+    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
 }
