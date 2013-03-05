@@ -38,6 +38,7 @@ void XMLCharger::LoadFile( string routeAbsoluteFile, GameConfig &gc )
     ptree pt;
     Level lvl;
     Row row;
+    string way = "";
 
     read_xml ( is, pt );
 
@@ -58,9 +59,17 @@ void XMLCharger::LoadFile( string routeAbsoluteFile, GameConfig &gc )
                 if ( v.first == "row" )
                   {
 		    row.clear();
-		    
+		    way = "";
+
+    		    row.set_name ( v.second.get<string>("name") );
 		    row.set_num_elements ( v.second.get<unsigned>("elements") );
 		    row.set_speed ( v.second.get<double>("speed") );
+		    way = v.second.get<string>("way");
+		    if ( ( way == "RIGHT" ) || ( way == "right" ) )
+		      row.set_way ( RIGHT );
+		    else
+      		      row.set_way ( LEFT );
+		    row.set_distance ( v.second.get<double>("distance") );
 
 		    lvl.getCrater().addRow ( row );
                   }
@@ -71,9 +80,17 @@ void XMLCharger::LoadFile( string routeAbsoluteFile, GameConfig &gc )
                 if ( v.first == "row" )
                   {
 		    row.clear();
-		    
+		    way = "";
+
+       		    row.set_name ( v.second.get<string>("name") );
 		    row.set_num_elements ( v.second.get<unsigned>("elements") );
 		    row.set_speed ( v.second.get<double>("speed") );
+		    way = v.second.get<string>("way");
+		    if ( ( way == "RIGHT" ) || ( way == "right" ) )
+		      row.set_way ( RIGHT );
+		    else
+      		      row.set_way ( LEFT );
+		    row.set_distance ( v.second.get<double>("distance") );
 
 		    lvl.getRoad().addRow ( row );
                   }
