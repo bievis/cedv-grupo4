@@ -12,6 +12,8 @@ template<> OgreFramework* Ogre::Singleton<OgreFramework>::msSingleton = 0;
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
+#define FILE_XML "./config/config.xml"
+
 OgreFramework::OgreFramework()
 {
     m_pRoot				= 0;
@@ -120,6 +122,10 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
 
     // Iniciamos el manager de colisiones
     new GameManager();
+
+    // Cargamos configuracion XML de niveles
+    XMLCharger::getSingleton().LoadFile ( FILE_XML, _gameConfig );
+    _gameConfig.print();
 	
     return true;
 }

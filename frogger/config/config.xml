@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<config>
+	<level id="1">
+		<crater>
+			<row id="1">
+				<elements>1</elements>
+				<speed>2.5</speed>
+			</row>
+			<row id="2">
+				<elements>3</elements>
+				<speed>1.5</speed>
+			</row>
+			<row id="3">
+				<elements>2</elements>
+				<speed>2.0</speed>
+			</row>
+		</crater>
+		<road>
+			<row id="1">
+				<elements>3</elements>
+				<speed>2.5</speed>
+			</row>
+			<row id="2">
+				<elements>3</elements>
+				<speed>1.5</speed>
+			</row>
+			<row id="3">
+				<elements>3</elements>
+				<speed>2.0</speed>
+			</row>
+		</road>
+	</level>
+	<level id="2">
+		<crater>
+			<row id="1">
+				<elements>1</elements>
+				<speed>3.5</speed>
+			</row>
+			<row id="2">
+				<elements>2</elements>
+				<speed>2.5</speed>
+			</row>
+			<row id="3">
+				<elements>2</elements>
+				<speed>3.0</speed>
+			</row>
+		</crater>
+		<road>
+			<row id="1">
+				<elements>4</elements>
+				<speed>3.0</speed>
+			</row>
+			<row id="2">
+				<elements>3</elements>
+				<speed>2.5</speed>
+			</row>
+			<row id="3">
+				<elements>4</elements>
+				<speed>2.0</speed>
+			</row>
+		</road>
+	</level>
+</config>

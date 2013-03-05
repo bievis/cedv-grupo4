@@ -30,6 +30,9 @@
 #include "SoundFXManager.h"
 #include "GameManager.h"
 
+#include "XMLCharger.h"
+#include "GameConfig.h"
+
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 class OgreFramework : public Ogre::Singleton<OgreFramework>, OIS::KeyListener, OIS::MouseListener
@@ -59,6 +62,8 @@ public:
 	OIS::Mouse*					m_pMouse;
 
   OgreBites::SdkTrayManager*	m_pTrayMgr;
+
+  GameConfig _gameConfig;
 
 private:
 	OgreFramework(const OgreFramework&);
