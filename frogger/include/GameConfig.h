@@ -6,11 +6,19 @@
 
 using namespace std;
 
+enum Way {
+  LEFT,
+  RIGHT
+};
+
 class Row {
 
  private:
+  string _name;
   unsigned int _elements;
   double _speed;
+  enum Way _way;
+  double _distance;
 
   void copy ( const Row& source );
 
@@ -21,11 +29,20 @@ class Row {
   Row ( const Row& source );
   Row operator= ( const Row& source );
 
+  inline string get_name() const { return _name; };
+  inline void set_name ( const string& value ) { _name = value; };
+
   inline unsigned int get_num_elements() const { return _elements; }; 
   inline void set_num_elements ( unsigned int value ) { _elements = value; };
 
   inline double get_speed() const { return _speed; };
   inline void set_speed ( double value ) { _speed = value; };
+
+  inline Way get_way() const { return _way; };
+  inline void set_way(enum Way value) { _way = value; };
+
+  inline double get_distance() const { return _distance; };
+  inline void set_distance ( double value ) { _distance = value; };
 
   void print() const;
   void clear();

@@ -3,60 +3,96 @@
 	<level id="1">
 		<crater>
 			<row id="1">
+				<name>carril1</name>
 				<elements>1</elements>
 				<speed>2.5</speed>
+				<way>RIGHT</way>
+				<distance>15.0</distance>
 			</row>
 			<row id="2">
+				<name>carril2</name>
 				<elements>3</elements>
 				<speed>1.5</speed>
+				<way>LEFT</way>
+				<distance>10.0</distance>
 			</row>
 			<row id="3">
+				<name>carril3</name>
 				<elements>2</elements>
 				<speed>2.0</speed>
+				<way>RIGHT</way>
+				<distance>12.5</distance>
 			</row>
 		</crater>
 		<road>
-			<row id="1">
+			<row id="4">
+				<name>carril4</name>
 				<elements>3</elements>
 				<speed>2.5</speed>
+				<way>RIGHT</way>
+				<distance>15.0</distance>
 			</row>
-			<row id="2">
+			<row id="5">
+				<name>carril5</name>
 				<elements>3</elements>
 				<speed>1.5</speed>
+				<way>LEFT</way>
+				<distance>12.0</distance>
 			</row>
-			<row id="3">
+			<row id="6">
+				<name>carril6</name>
 				<elements>3</elements>
 				<speed>2.0</speed>
+				<way>RIGHT</way>
+				<distance>13.5</distance>
 			</row>
 		</road>
 	</level>
 	<level id="2">
 		<crater>
 			<row id="1">
+				<name>carril1</name>
 				<elements>1</elements>
 				<speed>3.5</speed>
+				<way>RIGHT</way>
+				<distance>14.0</distance>
 			</row>
 			<row id="2">
+				<name>carril2</name>
 				<elements>2</elements>
 				<speed>2.5</speed>
+				<way>LEFT</way>
+				<distance>15.0</distance>
 			</row>
 			<row id="3">
+				<name>carril3</name>
 				<elements>2</elements>
 				<speed>3.0</speed>
+				<way>RIGHT</way>
+				<distance>14.5</distance>
 			</row>
 		</crater>
 		<road>
 			<row id="1">
+				<name>carril4</name>
 				<elements>4</elements>
 				<speed>3.0</speed>
+				<way>RIGHT</way>
+				<distance>10.0</distance>
 			</row>
 			<row id="2">
+				<name>carril5</name>
 				<elements>3</elements>
 				<speed>2.5</speed>
+				<way>LEFT</way>
+				<distance>8.0</distance>
 			</row>
 			<row id="3">
+				<name>carril6</name>
 				<elements>4</elements>
 				<speed>2.0</speed>
+				<way>RIGHT</way>
+				<distance>8.5</distance>
 			</row>
 		</road>
 	</level>

@@ -8,8 +8,11 @@ Row::~Row()
 
 void Row::copy ( const Row& source )
   {
+    _name = source.get_name();
     _elements = source.get_num_elements();
     _speed = source.get_speed();
+    _way = source.get_way();
+    _distance = source.get_distance();
   }
 
 Row::Row ( const Row& source )
@@ -25,14 +28,20 @@ Row Row::operator= ( const Row& source )
 
 void Row::print() const
   {
+    cout << "     - Name = " << _name << endl;
     cout << "     - Elements = " << _elements << endl;
     cout << "     - Speed = " << _speed << endl;
+    cout << "     - Way = " << ((_way == RIGHT)?"RIGHT":"LEFT") << endl;
+    cout << "     - Distance = " << _speed << endl;
   }
 
 void Row::clear()
   {
+    _name = "";
     _elements = 0;
     _speed = 0;
+    _way = RIGHT;
+    _distance = 0;
   }
 
 // ## Class Elemento ##
