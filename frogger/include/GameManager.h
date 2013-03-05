@@ -4,6 +4,7 @@
 #include <vector>
 #include "Personaje.h"
 #include "ParteEscenario.h"
+#include "Colision.h"
 
 #define LIMITE_DER 15
 #define LIMITE_IZQ -15
@@ -16,7 +17,7 @@ class GameManager: public Ogre::Singleton<GameManager> {
   virtual void setPersonaje (Personaje* personaje);
   virtual void addParteEscenario (ParteEscenario* parte);
   virtual void mover(const double deltaT, const double tiempo);
-  virtual bool hayColision ();
+  virtual Colision hayColision ();
   virtual void limpiar ();
   virtual SceneNode* crearNodo (SceneManager*	m_pSceneMgr, const char* nombre, const char* mesh,
             double posX, double posY, double posZ);

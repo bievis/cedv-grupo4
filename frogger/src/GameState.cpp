@@ -105,14 +105,20 @@ void GameState::createScene()
     // Partes del escenario
     SceneNode* nodeParte1 = GameManager::getSingleton().
           crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
-    ParteEscenario* parte1 = new ParteEscenario(nodeParte1->getName(), nodeParte1);
+    ParteEscenario* parte1 = new ParteEscenario(nodeParte1->getName(), nodeParte1, AGUA);
     GameManager::getSingleton().addParteEscenario (parte1);
 
     SceneNode* nodeParte2 = GameManager::getSingleton().
           crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
-    ParteEscenario* parte2 = new ParteEscenario(nodeParte2->getName(), nodeParte2);
+    ParteEscenario* parte2 = new ParteEscenario(nodeParte2->getName(), nodeParte2, CARRETERA);
     GameManager::getSingleton().addParteEscenario (parte2);
     // Construimos los carriles
+    parte1->addCarril("Carril1", 2, 12, DIR_DER, -1.5, m_pSceneMgr);
+    parte1->addModeloElementoCarril("Carril1", "Tronco.mesh");
+    parte1->addCarril("Carril2", 1.5, 10, DIR_IZQ, -3, m_pSceneMgr);
+    parte1->addModeloElementoCarril("Carril2", "Tronco.mesh");
+    parte1->addCarril("Carril3", 1, 15, DIR_DER, -4.5, m_pSceneMgr);
+    parte1->addModeloElementoCarril("Carril3", "Tronco.mesh");
     parte2->addCarril("Carril1", 3, 6, DIR_IZQ, 1.5, m_pSceneMgr);
     parte2->addModeloElementoCarril("Carril1", "Coche.mesh");
     parte2->addCarril("Carril2", 2, 10, DIR_DER, 3, m_pSceneMgr);

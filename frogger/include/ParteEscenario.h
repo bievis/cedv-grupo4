@@ -9,13 +9,16 @@
 using namespace std;
 using namespace Ogre;
 
+enum TipoParte  { CARRETERA, AGUA};
+
 class ParteEscenario {
  public:
-  ParteEscenario (const string &nombre, SceneNode* nodo);
+  ParteEscenario (const string &nombre, SceneNode* nodo, TipoParte tipo);
   ParteEscenario (const ParteEscenario &p);
 
   string getNombre () const;
   SceneNode* getNodo() const;
+  TipoParte getTipo() const;
   std::vector<Carril*>& getCarriles();
   void addCarril (const char *nombre, const double velocidad, 
           const double separacion, const Direccion direccion, 
@@ -39,6 +42,7 @@ class ParteEscenario {
   string _nombre;
   SceneNode* _nodo;
   std::vector<Carril*> _carriles;
+  TipoParte _tipo;
 };
 
 #endif

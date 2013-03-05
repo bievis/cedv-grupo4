@@ -2,9 +2,10 @@
 #include "AdvancedOgreFramework.hpp"
 #include "ParteEscenario.h"
 
-ParteEscenario::ParteEscenario (const string &nombre, SceneNode* nodo) {
+ParteEscenario::ParteEscenario (const string &nombre, SceneNode* nodo, TipoParte tipo) {
   _nombre = nombre;
   _nodo = nodo;
+  _tipo = tipo;
 }
 
 // Constructor de copia
@@ -18,6 +19,10 @@ string ParteEscenario::getNombre () const {
 
 SceneNode* ParteEscenario::getNodo() const {
   return _nodo;
+}
+
+TipoParte ParteEscenario::getTipo() const {
+  return _tipo;
 }
 
 ParteEscenario& ParteEscenario::operator= (const ParteEscenario &p) {
@@ -60,6 +65,7 @@ void ParteEscenario::addCarril (Carril *carril) {
 void ParteEscenario::copiar(const ParteEscenario &p) {
   _nombre = p.getNombre();
   _nodo = p.getNodo();
+  _tipo = p.getTipo();
 }
 
 // Destructor
