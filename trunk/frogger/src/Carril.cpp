@@ -105,12 +105,13 @@ void Carril::mover(const double deltaT, const double tiempo) {
   }
   // Insertamos el ementos si hay que insertarlos
   stringstream nombre;
-  bool seguir = true;
-  while (seguir) {
+  bool insertado = true;
+  while (insertado) {
     nombre.str(string()); // Limpiamos
     nElementos++;
     nombre << "Elemento" << nElementos;
-    seguir = addElemento(nombre.str());
+    insertado = addElemento(nombre.str());
+    if (!insertado) nElementos--;
   }  
 }
 

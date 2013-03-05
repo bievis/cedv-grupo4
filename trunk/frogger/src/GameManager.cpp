@@ -25,16 +25,17 @@ void GameManager::limpiar () {
   _partesEscenario.clear();
 }
 
-bool GameManager::hayColision () {
+Colision GameManager::hayColision () {
+  TipoColision tipo = NINGUNA;
   bool hay = false;
   bool hayEnCarril = false;
+  ParteEscenario* parte = NULL;
+  Carril* carril = NULL;
+  ElementoCarril* elemento = NULL;
 
   if (_personaje != NULL) {
     Ogre::SceneNode *entPersonaje = _personaje->getNodo();
     Ogre::SceneNode *ent = NULL;
-    ParteEscenario* parte;
-    Carril* carril;
-    ElementoCarril* elemento;
     
     std::vector<ParteEscenario*>::const_iterator
       mit (_partesEscenario.begin()),
@@ -44,6 +45,9 @@ bool GameManager::hayColision () {
       ent = parte->getNodo();
       hayEnCarril = ent->_getWorldAABB ().intersects (entPersonaje->_getWorldAABB());
       if (hayEnCarril) {
+        if (parte->getTipo() == AGUA) {
+          tipo = HUNDIDO;
+        }
         hay = false;
         std::vector<Carril*>::const_iterator
           mit2 (parte->getCarriles().begin()),
@@ -57,9 +61,14 @@ bool GameManager::hayColision () {
             elemento = (*mit3);
             ent = elemento->getNodo();
             hay = ent->_getWorldAABB ().intersects (entPersonaje->_getWorldAABB());
-            // TODO BORRAR
             if (hay) {
-              cout << "Ha colisionado el personaje con " << elemento->getNombre() << endl;
+              if (parte->getTipo() == AGUA) {
+                tipo = SOBRE;
+              } else if (parte->getTipo() == CARRETERA) {
+                tipo = CHOQUE;
+              }
+            } else {
+              elemento = NULL;
             }
           }
         }
@@ -67,7 +76,7 @@ bool GameManager::hayColision () {
     }
   }
   
-  return hay;
+  return *(new Colision(tipo, elemento));
 }
 
 SceneNode* GameManager::crearNodo (SceneManager*	m_pSceneMgr, const char* nombre, const char* mesh,
@@ -95,8 +104,12 @@ void GameManager::mover(const double deltaT, const double tiempo) {
   for(;mit!=mend;++mit) {
     (*mit)->mover(deltaT, tiempo);
   }
-  // Miramos si solisionan
-  hayColision();
+  // Miramos si colisionan
+  Colision colision = hayColision();
+  if (colision.getElementoColision() == NULL)
+    cout << "--Colision " << colision.getTipo() << endl;
+  else
+    cout << "--Colision " << colision.getTipo() << " con " << colision.getElementoColision()->getNombre() << endl;
 }
 
 // Gets y Sets
