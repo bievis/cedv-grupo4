@@ -52,6 +52,12 @@ public:
 private:
 	bool						m_bQuit;
 	bool						m_bLMouseDown, m_bRMouseDown;
+        Ogre::OverlayManager* m_pOverlayMgr;
+        double _tiempo;
+        string _level;
+        char _vidas;
+
+        string getTime();
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

@@ -1,0 +1,88 @@
+template element TextArea(Plantillas/Texto)
+{
+    font_name SpaceOut
+		metrics_mode pixels
+		char_height 64
+		colour 1.0 1.0 0.0    
+}
+
+template element TextArea(Plantillas/Tiempo)
+{
+    font_name SpaceOut
+		metrics_mode pixels
+		char_height 64
+		colour 1.0 1.0 1.0    
+}
+
+GUI_Game
+{
+    zorder 500
+
+    container Panel(panelVidas3) 
+    {
+        metrics_mode pixels
+        left 805
+        top -755
+        width 206
+        height 83
+        vert_align bottom
+        material panelVidas3M
+    }
+
+    container Panel(panelVidas2) 
+    {
+        metrics_mode pixels
+        left 805
+        top -755
+        width 206
+        height 83
+        vert_align bottom
+        material panelVidas2M
+    }
+
+    container Panel(panelVidas1) 
+    {
+        metrics_mode pixels
+        left 805
+        top -755
+        width 206
+        height 83
+        vert_align bottom
+        material panelVidas1M
+    }
+
+    container Panel(panelNivel) 
+    {
+        metrics_mode pixels
+        left 420
+        top -755
+        width 206
+        height 83
+        vert_align bottom
+        material panelNivelM
+ 
+        element TextArea(txtNivel) : Plantillas/Texto 
+	{
+	  top 10
+	  left 10	 
+	}
+    }
+
+    container Panel(panelTiempo) 
+    {
+        metrics_mode pixels
+        left 10
+        top -755
+        width 206
+        height 83
+        vert_align bottom
+        material panelTiempoM
+ 
+        element TextArea(txtTiempo) : Plantillas/Tiempo
+        {
+	  top 10
+	  left 10	 
+        }
+     }
+}
+

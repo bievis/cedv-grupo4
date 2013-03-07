@@ -20,6 +20,10 @@ GameState::GameState()
 
 void GameState::enter()
 {
+    _tiempo = 0;
+    _level = "1";
+    _vidas = 3;
+
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering GameState...");
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->m_pRoot->createSceneManager(ST_GENERIC, "GameSceneMgr");
@@ -37,6 +41,8 @@ void GameState::enter()
 
     OgreFramework::getSingletonPtr()->m_pViewport->setCamera(m_pCamera);
 
+    m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
+
     buildGUI();
 
     createScene();
@@ -47,6 +53,23 @@ void GameState::enter()
 bool GameState::pause()
 {
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Pausing GameState...");
+
+    Ogre::OverlayElement *elem;
+ 
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas3");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelNivel");
+    elem->hide();
 
     return true;
 }
@@ -131,6 +154,26 @@ void GameState::createScene()
           crearNodo(m_pSceneMgr, "Personaje", "Personaje.mesh", 0, 0, 6.0);
     Personaje* p = new Personaje("Personaje", nodePersonaje);
     GameManager::getSingleton().setPersonaje(p);
+
+    //Cargamos overlay con la GUI
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+    overlay->show();
+
+    Ogre::OverlayElement *elem;
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
+    elem->hide();
+
+    // Ogre::OverlayElement *elem;
+
+    // elem = m_pOverlayMgr->getOverlayElement("txtNivel");
+    // elem->setCaption ( string ("Level ") + _level );
+
+    // elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
+    // elem->setCaption ( getTime() );
+
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -226,8 +269,8 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 
 void GameState::update(double timeSinceLastFrame)
 {
-    static double tiempo = 0;
-    tiempo += timeSinceLastFrame;
+    // static double tiempo = 0;
+    _tiempo += timeSinceLastFrame;
     
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
     OgreFramework::getSingletonPtr()->m_pTrayMgr->frameRenderingQueued(m_FrameEvent);
@@ -238,14 +281,69 @@ void GameState::update(double timeSinceLastFrame)
         return;
     }
 
-    GameManager::getSingleton().mover(timeSinceLastFrame, tiempo);
+    GameManager::getSingleton().mover(timeSinceLastFrame, _tiempo);
+
+    Ogre::OverlayElement *elem;
+
+    elem = m_pOverlayMgr->getOverlayElement("txtNivel");
+    elem->setCaption ( string ("Level ") + _level );
+
+    elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
+    elem->setCaption ( getTime() );
+    
+  // Ogre::OverlayElement *oe;
+  // int fps = 1.0 / timeSinceLastFrame;
+  // oe = m_pOverlayMgr->getOverlayElement("fpsInfo");
+  // oe->setCaption(Ogre::StringConverter::toString(fps));
+  // oe = m_pOverlayMgr->getOverlayElement("camPosInfo");
+  // oe->setCaption(Ogre::StringConverter::toString(m_pCamera->getPosition()));
+  // oe = m_pOverlayMgr->getOverlayElement("camRotInfo");
+  // oe->setCaption(Ogre::StringConverter::toString(m_pCamera->getDirection()));
+  // oe = m_pOverlayMgr->getOverlayElement("modRotInfo");
+  // oe->setCaption(Ogre::String("RotZ: 10"));
+
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 void GameState::buildGUI()
 {
+    Ogre::OverlayElement *elem;
+
+    switch ( _vidas )
+      {
+        case 2:
+	  elem = m_pOverlayMgr->getOverlayElement("panelVidas2"); break;
+        case 3:
+          elem = m_pOverlayMgr->getOverlayElement("panelVidas3"); break;
+        default:
+          elem = m_pOverlayMgr->getOverlayElement("panelVidas1"); break;
+      }
+
+    elem->show();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
+    elem->show();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelNivel");
+    elem->show();
+
     OgreFramework::getSingletonPtr()->m_pTrayMgr->showCursor();
 }
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
+string GameState::getTime()
+{
+  unsigned int minutos = 0, segundos = 0;
+  char cad[6];
+  string ret = "";
+
+  minutos = (int)_tiempo / 60;
+  segundos = (int)_tiempo % 60;
+
+  sprintf ( cad, "%02d:%02d", minutos, segundos );
+
+  ret = cad;
+
+  return ret;
+}
+
