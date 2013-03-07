@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <Ogre.h>
+#include "ElementoCarril.h"
 
 using namespace std;
 using namespace Ogre;
@@ -37,7 +38,8 @@ class Personaje {
   // Otras funciones
   string toString (); // Imprime todas las noticias del canal
   void mover(const double deltaT); // Mueve el personaje
-
+  // Mueve el personaje cuando este encima de un elemento
+  void moverConElemento(const double deltaT, ElementoCarril* elemento, const double velocidad);
  private:
   void copiar(const Personaje &p);
 

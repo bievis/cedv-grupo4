@@ -62,8 +62,8 @@ void ElementoCarril::mover(const double deltaT, const double velocidad) {
     if (_movimiento == DER) incremento = 1;
     else if (_movimiento == IZQ) incremento = -1;
     // Para avanzar el ElementoCarril
-    posicion = _nodo->getPosition().x;
     _nodo->translate(velocidad * deltaT * incremento, 0, 0);
+    posicion = _nodo->getPosition().x;
     // Para parar el ElementoCarril
     if (_movimiento == IZQ) {
       if (posicion <= LIMITE_IZQ) {

@@ -9,11 +9,13 @@ enum TipoColision  { CHOQUE, SOBRE, HUNDIDO, NINGUNA };
 
 class Colision {
  public:
-  Colision (const TipoColision tipo, ElementoCarril* elementoColision);
+  Colision (const TipoColision tipo, ElementoCarril* elementoColision
+            , const double velocidad);
   Colision (const Colision &c);
 
   TipoColision getTipo () const;
   ElementoCarril* getElementoColision() const;
+  double getVelocidad() const;
   
   // Sobre carga de Operadores
   Colision& operator= (const Colision &c);
@@ -25,6 +27,7 @@ class Colision {
 
   TipoColision _tipo;
   ElementoCarril* _elementoColision;
+  double _velocidad; // Velocidad del elemento con el que se ha colisionado
 };
 
 #endif

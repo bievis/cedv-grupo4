@@ -1,8 +1,10 @@
 #include "Colision.h"
 
-Colision::Colision (const TipoColision tipo, ElementoCarril* elementoColision) {
+Colision::Colision (const TipoColision tipo, ElementoCarril* elementoColision
+            , const double velocidad) {
   _tipo = tipo;
   _elementoColision = elementoColision;
+  _velocidad = velocidad; 
 }
 
 // Constructor de copia
@@ -18,6 +20,10 @@ ElementoCarril* Colision::getElementoColision() const {
   return _elementoColision;
 }
 
+double Colision::getVelocidad() const {
+  return _velocidad;
+}
+
 Colision& Colision::operator= (const Colision &c) {
   copiar(c);
   return *this;
@@ -26,6 +32,7 @@ Colision& Colision::operator= (const Colision &c) {
 void Colision::copiar(const Colision &c) {
   _tipo = c.getTipo();
   _elementoColision = c.getElementoColision();
+  _velocidad = c.getVelocidad();
 }
 
 // Destructor
