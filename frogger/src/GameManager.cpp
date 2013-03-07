@@ -29,6 +29,7 @@ Colision GameManager::hayColision () {
   TipoColision tipo = NINGUNA;
   bool hay = false;
   bool hayEnCarril = false;
+  double velocidad;
   ParteEscenario* parte = NULL;
   Carril* carril = NULL;
   ElementoCarril* elemento = NULL;
@@ -67,6 +68,7 @@ Colision GameManager::hayColision () {
               } else if (parte->getTipo() == CARRETERA) {
                 tipo = CHOQUE;
               }
+              velocidad = carril->getVelocidad();
             } else {
               elemento = NULL;
             }
@@ -76,7 +78,7 @@ Colision GameManager::hayColision () {
     }
   }
   
-  return *(new Colision(tipo, elemento));
+  return *(new Colision(tipo, elemento, velocidad));
 }
 
 SceneNode* GameManager::crearNodo (SceneManager*	m_pSceneMgr, const char* nombre, const char* mesh,
@@ -94,7 +96,10 @@ SceneNode* GameManager::crearNodo (SceneManager*	m_pSceneMgr, const char* nombre
 }
 
 // Mueve los elementos de la escena
+// deltaT, es el tiempo trascurrido desde el ultimo frame
+// tiempo, es el tiempo total transcurrido en el juego
 void GameManager::mover(const double deltaT, const double tiempo) {
+  static TipoColision tipoColisionAnterior = NINGUNA;
   // Movemos los personajes
   getPersonaje()->mover(deltaT);
   // Movemos el resto de elementos
@@ -108,8 +113,19 @@ void GameManager::mover(const double deltaT, const double tiempo) {
   Colision colision = hayColision();
   if (colision.getElementoColision() == NULL)
     cout << "--Colision " << colision.getTipo() << endl;
-  else
+  else {
     cout << "--Colision " << colision.getTipo() << " con " << colision.getElementoColision()->getNombre() << endl;
+    if (colision.getTipo () == SOBRE
+        && tipoColisionAnterior == SOBRE) {
+      /* 
+      * Si el personaje ha colisionado con algo con el que puede estar enciama
+      * Movemos el personaje con dicho elemento 
+      */            
+      getPersonaje()->moverConElemento(deltaT, colision.getElementoColision(),
+                                       colision.getVelocidad());  
+    }
+  }
+  tipoColisionAnterior = colision.getTipo();
 }
 
 // Gets y Sets

@@ -115,3 +115,15 @@ void Personaje::mover(const double deltaT) {
     }
   }
 }
+
+void Personaje::moverConElemento(const double deltaT, ElementoCarril* elemento, const double velocidad) {
+   if (_movimiento == NINGUNO) { // Si esta parado
+     double incremento;
+     // Segun la dirección del elemento sobre el que esta se mueve una dirección
+     // o otra.
+     if (elemento->getMovimiento() == DER) incremento = 1;
+     else if (elemento->getMovimiento() == IZQ) incremento = -1;
+     // Para avanzar el ElementoCarril
+     _nodo->translate(velocidad * deltaT * incremento, 0, 0); 
+   }
+}

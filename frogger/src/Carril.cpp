@@ -92,18 +92,19 @@ void Carril::mover(const double deltaT, const double tiempo) {
   ElementoCarril *elemento = NULL;
   unsigned int count = _elementos.size();
   
+  // Movemos todos los elementos del carril
   for (int i = count-1; i >= 0; i -= 1)
   {
     elemento = _elementos[i];
     elemento->mover(deltaT, getVelocidad());
-    // Miramos si ya ah llegado al final
+    // Miramos si ya ha llegado al final y si es asi eliminamos el elemento
     if (elemento->getMovimiento() == NONE) {
       _elementos.erase (_elementos.begin()+i);
       _pSceneMgr->destroySceneNode(elemento->getNombre());
       _pSceneMgr->destroyEntity(elemento->getNombre());
     }
   }
-  // Insertamos el ementos si hay que insertarlos
+  // Insertamos el elementos si hay que insertarlos
   stringstream nombre;
   bool insertado = true;
   while (insertado) {
