@@ -104,7 +104,7 @@ void GameState::exit()
 void GameState::createScene()
 {
     // Creamos los objetos de la escena
-    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);	
+    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);	
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
 
