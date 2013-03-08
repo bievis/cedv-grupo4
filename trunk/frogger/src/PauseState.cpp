@@ -38,16 +38,16 @@ void PauseState::enter()
 
     OgreFramework::getSingletonPtr()->m_pTrayMgr->destroyAllWidgets();
     OgreFramework::getSingletonPtr()->m_pTrayMgr->showCursor();
-    OgreFramework::getSingletonPtr()->m_pTrayMgr->createButton(OgreBites::TL_CENTER, "BackToGameBtn", "Resume Game", 250);
-    OgreFramework::getSingletonPtr()->m_pTrayMgr->createButton(OgreBites::TL_CENTER, "BackToMenuBtn", "Return to Main Menu", 250);
-    OgreFramework::getSingletonPtr()->m_pTrayMgr->createButton(OgreBites::TL_CENTER, "ExitBtn", "Exit Game", 250);
-    //OgreFramework::getSingletonPtr()->m_pTrayMgr->createLabel(OgreBites::TL_TOP, "PauseLbl", "Pause mode", 250);
+    OgreFramework::getSingletonPtr()->m_pTrayMgr->createButton(OgreBites::TL_CENTER, "BackToGameBtn", "Resume Game", 350);
+    OgreFramework::getSingletonPtr()->m_pTrayMgr->createButton(OgreBites::TL_CENTER, "BackToMenuBtn", "Return to Main Menu", 350);
+    OgreFramework::getSingletonPtr()->m_pTrayMgr->createButton(OgreBites::TL_CENTER, "ExitBtn", "Exit Game", 350);
+    //OgreFramework::getSingletonPtr()->m_pTrayMgr->createLabel(OgreBites::TL_TOP, "PauseLbl", "Pause mode", 350);
 
     m_bQuit = false;
     
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
-    Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
-    background->show();
+    //    Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
+    //    background->show();
     
     //Ogre::FontManager::getSingleton().getByName("SdkTrays/Caption")->load();
     //Ogre::FontManager::getSingleton().getByName("SdkTrays/Value")->load();
@@ -59,6 +59,32 @@ void PauseState::enter()
 
 void PauseState::createScene()
 {
+   // Create background material
+    MaterialPtr material = MaterialManager::getSingleton().create("Background", "General");
+    material->getTechnique(0)->getPass(0)->createTextureUnitState("background_stars.png");
+    material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+    material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+    material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+    
+    // Create background rectangle covering the whole screen
+    Rectangle2D* rect = new Rectangle2D(true);
+    rect->setCorners ( -2.0, 1.0, 2.0, -1.0 );
+    rect->setMaterial("Background");
+    
+    // Render the background before everything else
+    rect->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
+    
+    // Use infinite AAB to always stay visible
+    AxisAlignedBox aabInf;
+    aabInf.setInfinite();
+    rect->setBoundingBox(aabInf);
+     
+    // Attach background to the scene
+    SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode("Background");
+    node->attachObject(rect);
+    
+    // Example of background scrolling
+    material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation(-0.015, 0.0);
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -147,7 +173,7 @@ void PauseState::buttonHit(OgreBites::Button *button)
   {
     if ( button->getName() == "ExitBtn" )
       {
-        OgreFramework::getSingletonPtr()->m_pTrayMgr->showYesNoDialog("Exit?", "Are you sure to abort game?");
+        OgreFramework::getSingletonPtr()->m_pTrayMgr->showYesNoDialog ( "Really?", "Are you sure to abort the game?" );
         m_bQuestionActive = true;
       }
     else if ( button->getName() == "BackToGameBtn" )
