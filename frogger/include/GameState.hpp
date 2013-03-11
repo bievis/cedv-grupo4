@@ -49,13 +49,16 @@ public:
 
 	void update(double timeSinceLastFrame);
 
+  void LoadScenaryParts();
+
 private:
 	bool						m_bQuit;
 	bool						m_bLMouseDown, m_bRMouseDown;
         Ogre::OverlayManager* m_pOverlayMgr;
         double _tiempo;
-        string _level;
+        unsigned int _level;
         char _vidas;
+        GameConfig* _ptrGameConfig;
 
         string getTime();
 };

@@ -14,6 +14,7 @@ GameState::GameState()
     m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
+    _ptrGameConfig      = NULL;
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -21,7 +22,7 @@ GameState::GameState()
 void GameState::enter()
 {
     _tiempo = 0;
-    _level = "1";
+    _level = 1;
     _vidas = 3;
 
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering GameState...");
@@ -42,6 +43,8 @@ void GameState::enter()
     OgreFramework::getSingletonPtr()->m_pViewport->setCamera(m_pCamera);
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
+
+    _ptrGameConfig = &(OgreFramework::getSingletonPtr()->_gameConfig);
 
     buildGUI();
 
@@ -126,28 +129,40 @@ void GameState::createScene()
     luz->setDiffuseColour(1, 1, 1);
 
     // Partes del escenario
-    SceneNode* nodeParte1 = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
-    ParteEscenario* parte1 = new ParteEscenario(nodeParte1->getName(), nodeParte1, AGUA);
-    GameManager::getSingleton().addParteEscenario (parte1);
 
-    SceneNode* nodeParte2 = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
-    ParteEscenario* parte2 = new ParteEscenario(nodeParte2->getName(), nodeParte2, CARRETERA);
-    GameManager::getSingleton().addParteEscenario (parte2);
-    // Construimos los carriles
-    parte1->addCarril("Carril1", 2, 12, DIR_DER, -1.5, m_pSceneMgr);
-    parte1->addModeloElementoCarril("Carril1", "Tronco.mesh");
-    parte1->addCarril("Carril2", 1.5, 10, DIR_IZQ, -3, m_pSceneMgr);
-    parte1->addModeloElementoCarril("Carril2", "Tronco.mesh");
-    parte1->addCarril("Carril3", 1, 15, DIR_DER, -4.5, m_pSceneMgr);
-    parte1->addModeloElementoCarril("Carril3", "Tronco.mesh");
-    parte2->addCarril("Carril1", 3, 6, DIR_IZQ, 1.5, m_pSceneMgr);
-    parte2->addModeloElementoCarril("Carril1", "Coche.mesh");
-    parte2->addCarril("Carril2", 2, 10, DIR_DER, 3, m_pSceneMgr);
-    parte2->addModeloElementoCarril("Carril2", "Coche.mesh");
-    parte2->addCarril("Carril3", 1.5, 8, DIR_IZQ, 4.5, m_pSceneMgr);
-    parte2->addModeloElementoCarril("Carril3", "Coche.mesh");
+    try 
+      {
+        LoadScenaryParts();
+      }
+    catch ( GameConfigException& exc )
+      {
+    	cerr << "EXCEPTION:: " << exc.what() << endl;
+      }
+
+    // SceneNode* nodeParte1 = GameManager::getSingleton().
+    //       crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
+    // ParteEscenario* parte1 = new ParteEscenario(nodeParte1->getName(), nodeParte1, AGUA);
+    // GameManager::getSingleton().addParteEscenario (parte1);
+
+    // SceneNode* nodeParte2 = GameManager::getSingleton().
+    //       crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
+    // ParteEscenario* parte2 = new ParteEscenario(nodeParte2->getName(), nodeParte2, CARRETERA);
+    // GameManager::getSingleton().addParteEscenario (parte2);
+
+    // // Construimos los carriles
+
+    // parte1->addCarril("Carril1", 2, 12, DIR_DER, -1.5, m_pSceneMgr);
+    // parte1->addModeloElementoCarril("Carril1", "Tronco.mesh");
+    // parte1->addCarril("Carril2", 1.5, 10, DIR_IZQ, -3, m_pSceneMgr);
+    // parte1->addModeloElementoCarril("Carril2", "Tronco.mesh");
+    // parte1->addCarril("Carril3", 1, 15, DIR_DER, -4.5, m_pSceneMgr);
+    // parte1->addModeloElementoCarril("Carril3", "Tronco.mesh");
+    // parte2->addCarril("Carril1", 3, 6, DIR_IZQ, 1.5, m_pSceneMgr);
+    // parte2->addModeloElementoCarril("Carril1", "Coche.mesh");
+    // parte2->addCarril("Carril2", 2, 10, DIR_DER, 3, m_pSceneMgr);
+    // parte2->addModeloElementoCarril("Carril2", "Coche.mesh");
+    // parte2->addCarril("Carril3", 1.5, 8, DIR_IZQ, 4.5, m_pSceneMgr);
+    // parte2->addModeloElementoCarril("Carril3", "Coche.mesh");
 
     // Cargamos el personaje
     SceneNode* nodePersonaje = GameManager::getSingleton().
@@ -155,7 +170,7 @@ void GameState::createScene()
     Personaje* p = new Personaje("Personaje", nodePersonaje);
     GameManager::getSingleton().setPersonaje(p);
 
-    //Cargamos overlay con la GUI
+    //Cargamos overlay con la GUI ( Vidas[Los 3 tipos] + Tiempo + Nivel )
     Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
     overlay->show();
 
@@ -166,15 +181,62 @@ void GameState::createScene()
     elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
     elem->hide();
 
-    // Ogre::OverlayElement *elem;
-
-    // elem = m_pOverlayMgr->getOverlayElement("txtNivel");
-    // elem->setCaption ( string ("Level ") + _level );
-
-    // elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
-    // elem->setCaption ( getTime() );
-
 }
+
+void GameState::LoadScenaryParts()
+  {
+
+    SceneNode* nodoZonaCrater = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
+    ParteEscenario* zona_crater = new ParteEscenario ( nodoZonaCrater->getName(), nodoZonaCrater, AGUA );
+    GameManager::getSingleton().addParteEscenario ( zona_crater );
+
+    SceneNode* nodoZonaCarretera = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
+    ParteEscenario* zona_carretera = new ParteEscenario ( nodoZonaCarretera->getName(), nodoZonaCarretera, CARRETERA );
+    GameManager::getSingleton().addParteEscenario ( zona_carretera );
+
+    // Construimos los carriles 
+
+    Level lvl;
+    Row row;
+
+    _ptrGameConfig->getLevel ( _level, lvl );
+
+    _ptrGameConfig->getNumLevels();
+
+    double zona_crater_Z[] = { -1.5, -3, -4.5 };
+    double zona_carretera_Z[] = {  1.5,  3,  4.5 };
+
+    // Zona crater
+    for ( unsigned int i = 0; i < lvl.getCrater().getRows(); i++ )
+      {
+        lvl.getCrater().getRow ( i, row );
+
+	// cout << " NAME = " << row.get_name() << " : SPD = " << row.get_speed() <<
+	//   " DISTANCE = " << row.get_distance() << " : DIR = " << string((row.get_way()==RIGHT)?"DIR_DER":"DIR_IZQ") <<
+	//       " Z = " << zona_crater_Z[i%3] << endl;
+
+	zona_crater->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_crater_Z[i%3], m_pSceneMgr );
+	zona_crater->addModeloElementoCarril ( row.get_name().c_str(), "Tronco.mesh" );
+      }
+
+    // Zona carretera
+    for ( unsigned int i = 0; i < lvl.getRoad().getRows(); i++ )
+      {
+        lvl.getRoad().getRow ( i, row );
+
+	// cout << " NAME = " << row.get_name() << " : SPD = " << row.get_speed() <<
+	//      " DISTANCE = " << row.get_distance() << " : DIR = " << string((row.get_way()==RIGHT)?"DIR_DER":"DIR_IZQ") <<
+	//      " Z = " << zona_carretera_Z[i%3] << endl;
+
+	zona_carretera->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_carretera_Z[i%3], m_pSceneMgr );
+	zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Coche.mesh" );
+      }
+
+    // sleep ( 10 );
+
+  }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -286,7 +348,9 @@ void GameState::update(double timeSinceLastFrame)
     Ogre::OverlayElement *elem;
 
     elem = m_pOverlayMgr->getOverlayElement("txtNivel");
-    elem->setCaption ( string ("Level ") + _level );
+    char cad[3];
+    sprintf ( cad, "%d", _level );
+    elem->setCaption ( string ("Level ") + string ( cad ) );
 
     elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
     elem->setCaption ( getTime() );
