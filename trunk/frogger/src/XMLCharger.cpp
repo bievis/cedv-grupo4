@@ -62,7 +62,7 @@ void XMLCharger::LoadFile( string routeAbsoluteFile, GameConfig &gc )
 		    way = "";
 
     		    row.set_name ( v.second.get<string>("name") );
-		    row.set_num_elements ( v.second.get<unsigned>("elements") );
+		    // row.set_num_elements ( v.second.get<unsigned>("elements") );
 		    row.set_speed ( v.second.get<double>("speed") );
 		    way = v.second.get<string>("way");
 		    if ( ( way == "RIGHT" ) || ( way == "right" ) )
@@ -83,7 +83,7 @@ void XMLCharger::LoadFile( string routeAbsoluteFile, GameConfig &gc )
 		    way = "";
 
        		    row.set_name ( v.second.get<string>("name") );
-		    row.set_num_elements ( v.second.get<unsigned>("elements") );
+		    // row.set_num_elements ( v.second.get<unsigned>("elements") );
 		    row.set_speed ( v.second.get<double>("speed") );
 		    way = v.second.get<string>("way");
 		    if ( ( way == "RIGHT" ) || ( way == "right" ) )

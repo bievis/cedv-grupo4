@@ -9,7 +9,7 @@ Row::~Row()
 void Row::copy ( const Row& source )
   {
     _name = source.get_name();
-    _elements = source.get_num_elements();
+    //    _elements = source.get_num_elements();
     _speed = source.get_speed();
     _way = source.get_way();
     _distance = source.get_distance();
@@ -29,7 +29,7 @@ Row Row::operator= ( const Row& source )
 void Row::print() const
   {
     cout << "     - Name = " << _name << endl;
-    cout << "     - Elements = " << _elements << endl;
+    // cout << "     - Elements = " << _elements << endl;
     cout << "     - Speed = " << _speed << endl;
     cout << "     - Way = " << ((_way == RIGHT)?"RIGHT":"LEFT") << endl;
     cout << "     - Distance = " << _speed << endl;
@@ -38,7 +38,7 @@ void Row::print() const
 void Row::clear()
   {
     _name = "";
-    _elements = 0;
+    // _elements = 0;
     _speed = 0;
     _way = RIGHT;
     _distance = 0;
@@ -138,7 +138,7 @@ bool Elemento::addRow ( const Row& newValue )
 
 bool Elemento::getRow ( unsigned int elem, Row& value )
   {
-    if ( _rows.size() < elem && _rows[elem] )
+    if ( ( elem < _rows.size() ) && _rows[elem] )
       value = *(_rows[elem]);
 
     return true;
@@ -195,25 +195,31 @@ void GameConfig::copy ( const GameConfig &source )
       }
   }
 
-bool GameConfig::getLevel ( unsigned int index, Level& level )
+void GameConfig::getLevel ( unsigned int index, Level& level )
   {
-    if ( index < _vLevels.size() )
+    if ( ( index <= _vLevels.size() ) && ( index > 0 ) )
       {
-	if ( _vLevels[index] )
+	if ( _vLevels[index-1] )
 	  {
-            level = *(_vLevels[index]);
+            level = *(_vLevels[index-1]);
+	  }
+	else
+	  {
+	    throw GameConfigException ( "El nivel es un valor vacío" );  
 	  }
       }
-
-    return true;
+    else
+      {
+	char cad[100];
+	sprintf ( cad, "El nivel debe estar entre 1 y %ld", _vLevels.size() );
+	throw GameConfigException ( cad );  
+      }
   } 
 
-bool GameConfig::addLevel ( Level& newLevel )
+void GameConfig::addLevel ( Level& newLevel )
   {
     Level *newLv = new Level ( newLevel );
     _vLevels.push_back ( newLv );
-
-    return true;
   }
 
 void GameConfig::print()
@@ -231,4 +237,23 @@ void GameConfig::print()
       } 
 
     cout << "==================" << endl;
+  }
+
+// ## Exception Class Game Config ##
+
+GameConfigException::GameConfigException ( const char *msg ) : exception() 
+  {
+    _msg = new char [ strlen ( msg ) ];
+    strcpy ( _msg, msg );
+  }
+
+const char* GameConfigException::what() const throw()
+  {
+    return _msg;
+  }
+
+GameConfigException::~GameConfigException() throw ()
+  {
+    if ( _msg )
+      delete _msg;
   }

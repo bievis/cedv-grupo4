@@ -3,6 +3,8 @@
 
 #include <vector>
 #include <iostream>
+#include <string.h>
+#include <stdio.h>
 
 using namespace std;
 
@@ -15,7 +17,7 @@ class Row {
 
  private:
   string _name;
-  unsigned int _elements;
+  /* unsigned int _elements; */
   double _speed;
   enum Way _way;
   double _distance;
@@ -23,7 +25,8 @@ class Row {
   void copy ( const Row& source );
 
  public:
-  Row() : _elements(0), _speed(0.0) {};
+  /* Row() : _elements(0), _speed(0.0) {}; */
+  Row() : _name(""), _speed(0.0), _way(RIGHT), _distance(0.0) {};
   virtual ~Row();
 
   Row ( const Row& source );
@@ -32,8 +35,8 @@ class Row {
   inline string get_name() const { return _name; };
   inline void set_name ( const string& value ) { _name = value; };
 
-  inline unsigned int get_num_elements() const { return _elements; }; 
-  inline void set_num_elements ( unsigned int value ) { _elements = value; };
+  /* inline unsigned int get_num_elements() const { return _elements; };  */
+  /* inline void set_num_elements ( unsigned int value ) { _elements = value; }; */
 
   inline double get_speed() const { return _speed; };
   inline void set_speed ( double value ) { _speed = value; };
@@ -122,10 +125,24 @@ class GameConfig {
 
   inline unsigned int getNumLevels() const { return _vLevels.size(); };
 
-  bool getLevel ( unsigned int index, Level& level );
-  bool addLevel ( Level& newLevel );
+  //Index vendrá dado entre 1 y N
+  void getLevel ( unsigned int index, Level& level );
+
+  void addLevel ( Level& newLevel );
  
   void print();
+};
+
+class GameConfigException: public exception {
+
+ private:
+  char *_msg;
+
+public:
+  GameConfigException ( const char *msg );
+
+  virtual ~GameConfigException() throw ();
+  virtual const char* what() const throw();  
 };
 
 #endif
