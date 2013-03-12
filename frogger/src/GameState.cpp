@@ -204,8 +204,6 @@ void GameState::LoadScenaryParts()
 
     _ptrGameConfig->getLevel ( _level, lvl );
 
-    _ptrGameConfig->getNumLevels();
-
     double zona_crater_Z[] = { -1.5, -3, -4.5 };
     double zona_carretera_Z[] = {  1.5,  3,  4.5 };
 
