@@ -2,6 +2,7 @@
 
 #include "GameState.hpp"
 #include "GameManager.h"
+#include <GameConfigException.hpp>
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
