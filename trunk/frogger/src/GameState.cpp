@@ -182,6 +182,18 @@ void GameState::createScene()
     elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
     elem->hide();
 
+    //Cargamos las pantallas de Winner, Next Level y Game Over
+    overlay = m_pOverlayMgr->getByName("Screens_Game");
+    overlay->show();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelWinner");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
+    elem->hide();
 }
 
 void GameState::LoadScenaryParts()
@@ -354,17 +366,25 @@ void GameState::update(double timeSinceLastFrame)
     elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
     elem->setCaption ( getTime() );
     
-  // Ogre::OverlayElement *oe;
-  // int fps = 1.0 / timeSinceLastFrame;
-  // oe = m_pOverlayMgr->getOverlayElement("fpsInfo");
-  // oe->setCaption(Ogre::StringConverter::toString(fps));
-  // oe = m_pOverlayMgr->getOverlayElement("camPosInfo");
-  // oe->setCaption(Ogre::StringConverter::toString(m_pCamera->getPosition()));
-  // oe = m_pOverlayMgr->getOverlayElement("camRotInfo");
-  // oe->setCaption(Ogre::StringConverter::toString(m_pCamera->getDirection()));
-  // oe = m_pOverlayMgr->getOverlayElement("modRotInfo");
-  // oe->setCaption(Ogre::String("RotZ: 10"));
+    //Esto es solo para probar los overlays
+/*    elem = m_pOverlayMgr->getOverlayElement("panelWinner");
+    if ( _tiempo > 10 && _tiempo < 20 )
+      elem->show();
+    else
+      elem->hide();
 
+    elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+    if ( _tiempo > 20 && _tiempo < 30 )
+      elem->show();
+    else
+      elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
+    if ( _tiempo > 30 && _tiempo < 40 )
+      elem->show();
+    else
+      elem->hide();
+*/
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
