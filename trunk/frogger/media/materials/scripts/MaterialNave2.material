@@ -1,15 +1,15 @@
-// MaterialCesped genrated by blender2ogre 0.5.8
+// MaterialNave2 genrated by blender2ogre 0.5.8
 
-material MaterialCesped 
+material MaterialNave2 
 {
     receive_shadows on 
 
     technique
     {
-        pass MaterialCesped
+        pass MaterialNave2
         {
-            ambient 0.0 0.800000011920929 0.03526191785931587 1.0
-            diffuse 0.0 0.6400000190734865 0.028209534707807515 1.0
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
@@ -30,6 +30,13 @@ material MaterialCesped
             shading gouraud
             transparent_sorting on
 
+            texture_unit 
+            {
+                texture nave2_coloreada.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
         }
     }
 }

@@ -1,12 +1,12 @@
-// MaterialCarretera genrated by blender2ogre 0.5.8
+// MaterialNave1 genrated by blender2ogre 0.5.8
 
-material MaterialCarretera 
+material MaterialNave1 
 {
     receive_shadows on 
 
     technique
     {
-        pass MaterialCarretera
+        pass MaterialNave1
         {
             ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
             diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
@@ -32,7 +32,7 @@ material MaterialCarretera
 
             texture_unit 
             {
-                texture carretera.jpg
+                texture nave_coloreada.png
                 tex_address_mode wrap
                 scale 1.0 1.0
                 colour_op modulate

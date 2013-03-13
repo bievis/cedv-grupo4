@@ -1,15 +1,15 @@
-// MaterialTronco genrated by blender2ogre 0.5.8
+// MaterialSuelo genrated by blender2ogre 0.5.8
 
-material MaterialTronco 
+material MaterialSuelo 
 {
     receive_shadows on 
 
     technique
     {
-        pass MaterialTronco
+        pass MaterialSuelo
         {
-            ambient 0.800000011920929 0.3815751075744629 0.09818520396947861 1.0
-            diffuse 0.6400000190734865 0.30526009060830006 0.07854816434604173 1.0
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
@@ -30,6 +30,13 @@ material MaterialTronco
             shading gouraud
             transparent_sorting on
 
+            texture_unit 
+            {
+                texture SUELO_MARTE.png
+                tex_address_mode wrap
+                scale 1.0 1.0
+                colour_op modulate
+            }
         }
     }
 }
