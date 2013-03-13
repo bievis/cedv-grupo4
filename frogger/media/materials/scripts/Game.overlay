@@ -86,3 +86,40 @@ GUI_Game
      }
 }
 
+Screens_Game
+{
+    zorder 500
+
+    container Panel(panelWinner)
+    {
+        metrics_mode pixels
+        left 10 
+        top -755
+        width 1024
+        height 768
+        vert_align bottom
+        material panelWinnerM
+    }
+
+    container Panel(panelNextLevel)
+    {
+        metrics_mode pixels
+        left 10 
+        top -755
+        width 1024
+        height 768
+        vert_align bottom
+        material panelNextLevelM
+    }
+
+    container Panel(panelGameOver)
+    {
+        metrics_mode pixels
+        left 10 
+        top -755
+        width 1024
+        height 768
+        vert_align bottom
+        material panelGameOverM
+    }
+}

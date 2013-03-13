@@ -72,3 +72,49 @@ material panelVidas3M
    }
  }
 }
+
+material panelWinnerM
+{
+ technique 
+ {
+   pass 
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit 
+     {
+       texture winner.png
+     }
+   }
+ }
+}
+
+material panelNextLevelM
+{
+ technique 
+ {
+   pass 
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit 
+     {
+       texture nextlevel.png
+     }
+   }
+ }
+}
+
+material panelGameOverM
+{
+ technique 
+ {
+   pass 
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit 
+     {
+       texture gameover.png
+     }
+   }
+ }
+}
+
