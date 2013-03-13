@@ -32,7 +32,7 @@ void GameState::enter()
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
 
     m_pCamera = m_pSceneMgr->createCamera("GameCamera");
-    m_pCamera->setPosition(Vector3(0, 11.00000, 2.50000));
+    m_pCamera->setPosition(Vector3(0, 9.00000, 4.0000));
     m_pCamera->lookAt(Vector3(0, 0, 0));
     m_pCamera->setFOVy(Degree(93.695));
     m_pCamera->setNearClipDistance(1);
@@ -107,6 +107,33 @@ void GameState::exit()
 
 void GameState::createScene()
 {
+    // Create background material
+    MaterialPtr material = MaterialManager::getSingleton().create("Background", "General");
+    material->getTechnique(0)->getPass(0)->createTextureUnitState("background_stars.png");
+    material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
+    material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
+    material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
+    
+    // Create background rectangle covering the whole screen
+    Rectangle2D* rect = new Rectangle2D(true);
+    rect->setCorners ( -2.0, 1.0, 2.0, -1.0 );
+    rect->setMaterial("Background");
+    
+    // Render the background before everything else
+    rect->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
+    
+    // Use infinite AAB to always stay visible
+    AxisAlignedBox aabInf;
+    aabInf.setInfinite();
+    rect->setBoundingBox(aabInf);
+     
+    // Attach background to the scene
+    SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode("Background");
+    node->attachObject(rect);
+    
+    // Example of background scrolling
+    material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation(-0.015, 0.0);
+
     // Creamos los objetos de la escena
     m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);	
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
@@ -115,7 +142,7 @@ void GameState::createScene()
     m_pSceneMgr->setShadowTextureCount(2);
     m_pSceneMgr->setShadowTextureSize(512);
 
-    Entity* entCesped = m_pSceneMgr->createEntity("Cesped", "Cesped.mesh");
+    Entity* entCesped = m_pSceneMgr->createEntity("Suelo", "Suelo.mesh");
     
     // Creamos el escenario como geometria estatica
     StaticGeometry* escenario = m_pSceneMgr->createStaticGeometry("EscenarioEstatico");
@@ -140,35 +167,10 @@ void GameState::createScene()
     	cerr << "EXCEPTION:: " << exc.what() << endl;
       }
 
-    // SceneNode* nodeParte1 = GameManager::getSingleton().
-    //       crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
-    // ParteEscenario* parte1 = new ParteEscenario(nodeParte1->getName(), nodeParte1, AGUA);
-    // GameManager::getSingleton().addParteEscenario (parte1);
-
-    // SceneNode* nodeParte2 = GameManager::getSingleton().
-    //       crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
-    // ParteEscenario* parte2 = new ParteEscenario(nodeParte2->getName(), nodeParte2, CARRETERA);
-    // GameManager::getSingleton().addParteEscenario (parte2);
-
-    // // Construimos los carriles
-
-    // parte1->addCarril("Carril1", 2, 12, DIR_DER, -1.5, m_pSceneMgr);
-    // parte1->addModeloElementoCarril("Carril1", "Tronco.mesh");
-    // parte1->addCarril("Carril2", 1.5, 10, DIR_IZQ, -3, m_pSceneMgr);
-    // parte1->addModeloElementoCarril("Carril2", "Tronco.mesh");
-    // parte1->addCarril("Carril3", 1, 15, DIR_DER, -4.5, m_pSceneMgr);
-    // parte1->addModeloElementoCarril("Carril3", "Tronco.mesh");
-    // parte2->addCarril("Carril1", 3, 6, DIR_IZQ, 1.5, m_pSceneMgr);
-    // parte2->addModeloElementoCarril("Carril1", "Coche.mesh");
-    // parte2->addCarril("Carril2", 2, 10, DIR_DER, 3, m_pSceneMgr);
-    // parte2->addModeloElementoCarril("Carril2", "Coche.mesh");
-    // parte2->addCarril("Carril3", 1.5, 8, DIR_IZQ, 4.5, m_pSceneMgr);
-    // parte2->addModeloElementoCarril("Carril3", "Coche.mesh");
-
     // Cargamos el personaje
     SceneNode* nodePersonaje = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Personaje", "Personaje.mesh", 0, 0, 6.0);
-    Personaje* p = new Personaje("Personaje", nodePersonaje);
+          crearNodo(m_pSceneMgr, "Marciano", "Marciano.mesh", 0, 0, 6.5);
+    Personaje* p = new Personaje("Marciano", nodePersonaje);
     GameManager::getSingleton().setPersonaje(p);
 
     //Cargamos overlay con la GUI ( Vidas[Los 3 tipos] + Tiempo + Nivel )
@@ -200,12 +202,12 @@ void GameState::LoadScenaryParts()
   {
 
     SceneNode* nodoZonaCrater = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Rio", "Rio.mesh", 0.0, 0.00100, -3.00000);
+          crearNodo(m_pSceneMgr, "Abismo", "Abismo.mesh", 0.0, 0.00100, -4.00000);
     ParteEscenario* zona_crater = new ParteEscenario ( nodoZonaCrater->getName(), nodoZonaCrater, AGUA );
     GameManager::getSingleton().addParteEscenario ( zona_crater );
 
     SceneNode* nodoZonaCarretera = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 3.00000);
+          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 4.00000);
     ParteEscenario* zona_carretera = new ParteEscenario ( nodoZonaCarretera->getName(), nodoZonaCarretera, CARRETERA );
     GameManager::getSingleton().addParteEscenario ( zona_carretera );
 
@@ -216,8 +218,8 @@ void GameState::LoadScenaryParts()
 
     _ptrGameConfig->getLevel ( _level, lvl );
 
-    double zona_crater_Z[] = { -1.5, -3, -4.5 };
-    double zona_carretera_Z[] = {  1.5,  3,  4.5 };
+    double zona_crater_Z[] = { -2.5, -4, -5.5 };
+    double zona_carretera_Z[] = {  2,  3.5,  5 };
 
     // Zona crater
     for ( unsigned int i = 0; i < lvl.getCrater().getRows(); i++ )
@@ -229,7 +231,7 @@ void GameState::LoadScenaryParts()
 	//       " Z = " << zona_crater_Z[i%3] << endl;
 
 	zona_crater->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_crater_Z[i%3], m_pSceneMgr );
-	zona_crater->addModeloElementoCarril ( row.get_name().c_str(), "Tronco.mesh" );
+	zona_crater->addModeloElementoCarril ( row.get_name().c_str(), "Plataforma.mesh" );
       }
 
     // Zona carretera
@@ -242,7 +244,9 @@ void GameState::LoadScenaryParts()
 	//      " Z = " << zona_carretera_Z[i%3] << endl;
 
 	zona_carretera->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_carretera_Z[i%3], m_pSceneMgr );
-	zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Coche.mesh" );
+	zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Meteorito.mesh" );
+  zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Nave1.mesh" );
+  zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Nave2.mesh" );
       }
 
     // sleep ( 10 );

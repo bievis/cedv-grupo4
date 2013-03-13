@@ -75,6 +75,7 @@ string Personaje::toString () {
 }
 
 void Personaje::mover(const double deltaT) {
+  static int anguloInicial = 0;
   if (_movimiento != NINGUNO) {
     if (_estado == MOVIMIENTO || _estado == PARADO) {
       Ogre::Real posicion;
@@ -85,8 +86,26 @@ void Personaje::mover(const double deltaT) {
       if (_estado == PARADO) {
         _estado = MOVIMIENTO;
         
-        if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _posFinal = _nodo->getPosition().x + incremento;
-        else if (_movimiento == DELANTE || _movimiento == ATRAS) _posFinal = _nodo->getPosition().z + incremento;      
+        if (_movimiento == IZQUIERDA || _movimiento == DERECHA) {
+          _posFinal = _nodo->getPosition().x + incremento;
+          if (_movimiento == IZQUIERDA) {
+            _nodo->yaw(Ogre::Degree(90));
+            anguloInicial = -90;
+          } else {
+            _nodo->yaw(Ogre::Degree(-90));
+            anguloInicial = 90;
+          }
+        }
+        else if (_movimiento == DELANTE || _movimiento == ATRAS) {
+          _posFinal = _nodo->getPosition().z + incremento;
+          if (_movimiento == ATRAS) {
+            _nodo->yaw(Ogre::Degree(-180));
+            anguloInicial = 180;
+          } else {
+            _nodo->yaw(Ogre::Degree(0));
+            anguloInicial = 0;
+          }      
+        }
       }
       // Para avanzar el personaje
       if (_movimiento == IZQUIERDA || _movimiento == DERECHA) {
@@ -108,6 +127,7 @@ void Personaje::mover(const double deltaT) {
       }
       // Si lo acabamos de parar lo ponemos en la posicion final exasta
       if (_estado == PARADO) {
+        _nodo->yaw(Ogre::Degree(anguloInicial));
         if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _nodo->setPosition(_posFinal, _nodo->getPosition().y, _nodo->getPosition().z);
         else if (_movimiento == DELANTE || _movimiento == ATRAS) _nodo->setPosition(_nodo->getPosition().x, _nodo->getPosition().y, _posFinal);
         _movimiento = NINGUNO;

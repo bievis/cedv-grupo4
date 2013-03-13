@@ -1,15 +1,15 @@
-// MaterialRio genrated by blender2ogre 0.5.8
+// MaterialPlataforma genrated by blender2ogre 0.5.8
 
-material MaterialRio 
+material MaterialPlataforma 
 {
     receive_shadows on 
 
     technique
     {
-        pass MaterialRio
+        pass MaterialPlataforma
         {
-            ambient 0.0 0.800000011920929 0.7246900796890259 1.0
-            diffuse 0.0 0.6400000190734865 0.5797520723901997 1.0
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
@@ -30,6 +30,14 @@ material MaterialRio
             shading gouraud
             transparent_sorting on
 
+            texture_unit 
+            {
+                texture textura_plataforma.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                tex_coord_set 0
+                colour_op modulate
+            }
         }
     }
 }
