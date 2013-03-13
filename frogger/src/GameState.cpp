@@ -253,6 +253,8 @@ void GameState::LoadScenaryParts()
 
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
 {
+    Ogre::OverlayElement *elem = NULL;
+
     if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_ESCAPE))
     {
         pushAppState(findByName("PauseState"));
@@ -270,6 +272,30 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
     {
       GameManager::getSingleton().getPersonaje()->setMovimiento(DERECHA);
     }
+    else if ( OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown ( OIS::KC_W ) )
+      {	
+        elem = m_pOverlayMgr->getOverlayElement("panelWinner");
+        if ( elem->isVisible() )
+          elem->hide();
+        else
+          elem->show();
+      }
+    else if ( OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown ( OIS::KC_R ) )
+      {	
+        elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+        if ( elem->isVisible() )
+          elem->hide();
+        else
+          elem->show();
+      }
+    else if ( OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown ( OIS::KC_E ) )
+      {	
+        elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
+        if ( elem->isVisible() )
+          elem->hide();
+        else
+          elem->show();
+      }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -280,7 +306,9 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
 
 bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
 {
+
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
+
     return true;
 }
 
@@ -366,25 +394,6 @@ void GameState::update(double timeSinceLastFrame)
     elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
     elem->setCaption ( getTime() );
     
-    //Esto es solo para probar los overlays
-/*    elem = m_pOverlayMgr->getOverlayElement("panelWinner");
-    if ( _tiempo > 10 && _tiempo < 20 )
-      elem->show();
-    else
-      elem->hide();
-
-    elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
-    if ( _tiempo > 20 && _tiempo < 30 )
-      elem->show();
-    else
-      elem->hide();
-
-    elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
-    if ( _tiempo > 30 && _tiempo < 40 )
-      elem->show();
-    else
-      elem->hide();
-*/
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

@@ -93,8 +93,8 @@ Screens_Game
     container Panel(panelWinner)
     {
         metrics_mode pixels
-        left 10 
-        top -755
+        left 0 
+        top -768
         width 1024
         height 768
         vert_align bottom
@@ -104,8 +104,8 @@ Screens_Game
     container Panel(panelNextLevel)
     {
         metrics_mode pixels
-        left 10 
-        top -755
+        left 0 
+        top -768
         width 1024
         height 768
         vert_align bottom
@@ -115,8 +115,8 @@ Screens_Game
     container Panel(panelGameOver)
     {
         metrics_mode pixels
-        left 10 
-        top -755
+        left 0 
+        top -768
         width 1024
         height 768
         vert_align bottom
