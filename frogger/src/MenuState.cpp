@@ -27,7 +27,7 @@ void MenuState::enter()
     // Carga del sonido.
 //    _mainTrack = TrackManager::getSingleton().load("01_-_Dj_Saryon_-_Break_the_rules_Remastered_Mix_.mp3");
     _mainTrack = TrackManager::getSingleton().load("fondo.mp3");
-    _menuFX = SoundFXManager::getSingleton().load("croac.wav");    
+    _menuFX = SoundFXManager::getSingleton().load("boton.wav");
 
     // Reproducción del track principal...
     this->_mainTrack->play();

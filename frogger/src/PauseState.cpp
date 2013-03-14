@@ -21,6 +21,13 @@ void PauseState::enter()
 {
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering PauseState...");
 
+    // Carga del sonido.
+    _mainTrack = TrackManager::getSingleton().load("fondo.mp3");
+    _menuFX = SoundFXManager::getSingleton().load("boton.wav");
+
+    // Reproducción del track principal...
+    this->_mainTrack->play();
+
     m_pSceneMgr = OgreFramework::getSingletonPtr()->m_pRoot->createSceneManager(ST_GENERIC, "PauseSceneMgr");
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
 
@@ -93,10 +100,13 @@ void PauseState::exit()
 {
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Leaving PauseState...");
 
+    // Parar del track principal...
+    this->_mainTrack->stop();
+
     m_pSceneMgr->destroyCamera(m_pCamera);
     if(m_pSceneMgr)
         OgreFramework::getSingletonPtr()->m_pRoot->destroySceneManager(m_pSceneMgr);
-        
+
     Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
     background->hide();
 
@@ -171,6 +181,7 @@ void PauseState::update(double timeSinceLastFrame)
 
 void PauseState::buttonHit(OgreBites::Button *button)
   {
+    _menuFX->play();
     if ( button->getName() == "ExitBtn" )
       {
         OgreFramework::getSingletonPtr()->m_pTrayMgr->showYesNoDialog ( "Really?", "Are you sure to abort the game?" );
