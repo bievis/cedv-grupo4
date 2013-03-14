@@ -6,6 +6,8 @@
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 #include "AppState.hpp"
+#include "TrackManager.h"
+#include "SoundFXManager.h"
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -35,7 +37,10 @@ public:
 private:
     bool                        m_bQuit;
     bool                        m_bQuestionActive;
-    Ogre::OverlayManager* m_pOverlayMgr;
+    Ogre::OverlayManager*       m_pOverlayMgr;
+    TrackPtr                    _mainTrack;
+    SoundFXPtr                  _menuFX;
+
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
