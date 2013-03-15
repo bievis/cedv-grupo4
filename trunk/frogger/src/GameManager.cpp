@@ -102,32 +102,44 @@ SceneNode* GameManager::crearNodo (SceneManager*	m_pSceneMgr, const char* nombre
 void GameManager::mover(const double deltaT, const double tiempo) {
   static TipoColision tipoColisionAnterior = NINGUNA;
   
-  // Movemos el resto de elementos
-  std::vector<ParteEscenario*>::const_iterator
-      mit (_partesEscenario.begin()),
-      mend(_partesEscenario.end());
-  for(;mit!=mend;++mit) {
-    (*mit)->mover(deltaT, tiempo);
-  }
-  // Miramos si colisionan
-  Colision colision = hayColision();
-  if (colision.getTipo() != NINGUNA) {
-    if (colision.getElementoColision() == NULL)
-      cout << "--Colision " << colision.getTipo() << endl;
-    else {
-      cout << "--Colision " << colision.getTipo() << " con " << colision.getElementoColision()->getNombre() << endl;
-      if (colision.getTipo () == SOBRE
-          && tipoColisionAnterior == SOBRE) {
-        /* 
-        * Si el personaje ha colisionado con algo con el que puede estar enciama
-        * Movemos el personaje con dicho elemento 
-        */            
-        getPersonaje()->moverConElemento(deltaT, colision.getElementoColision(),
-                                         colision.getVelocidad());  
+  if (getPersonaje()->getEstado() != MUERTO) {
+    // Movemos el resto de elementos
+    std::vector<ParteEscenario*>::const_iterator
+        mit (_partesEscenario.begin()),
+        mend(_partesEscenario.end());
+    for(;mit!=mend;++mit) {
+      (*mit)->mover(deltaT, tiempo);
+    }    
+
+    // Miramos si colisionan
+    Colision colision = hayColision();
+    if (colision.getTipo() != NINGUNA) {
+      if (colision.getElementoColision() == NULL) {
+        // Si se ha hundido
+        if (colision.getTipo() == HUNDIDO) {
+          getPersonaje()->setEstado(MUERTO);
+          tipoColisionAnterior = NINGUNA;
+        }
+      } else {
+        if (colision.getTipo () == SOBRE
+            && tipoColisionAnterior == SOBRE) {
+          /* 
+          * Si el personaje ha colisionado con algo con el que puede estar enciama
+          * Movemos el personaje con dicho elemento 
+          */            
+          getPersonaje()->moverConElemento(deltaT, colision.getElementoColision(),
+                                           colision.getVelocidad());  
+        } else {
+          // Si se ha chocado
+          if (colision.getTipo() == CHOQUE) {
+            getPersonaje()->setEstado(MUERTO);
+            tipoColisionAnterior = NINGUNA;
+          }
+        }
       }
     }
+    tipoColisionAnterior = colision.getTipo();
   }
-  tipoColisionAnterior = colision.getTipo();
   // Movemos los personajes
   getPersonaje()->mover(deltaT);
 }

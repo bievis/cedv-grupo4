@@ -21,10 +21,11 @@ GUI_Game
     container Panel(panelVidas3) 
     {
         metrics_mode pixels
-        left 805
+        left -250
         top -755
         width 206
         height 83
+        horz_align right
         vert_align bottom
         material panelVidas3M
     }
@@ -32,10 +33,11 @@ GUI_Game
     container Panel(panelVidas2) 
     {
         metrics_mode pixels
-        left 805
+        left -250
         top -755
         width 206
         height 83
+        horz_align right
         vert_align bottom
         material panelVidas2M
     }
@@ -43,10 +45,11 @@ GUI_Game
     container Panel(panelVidas1) 
     {
         metrics_mode pixels
-        left 805
+        left -250
         top -755
         width 206
         height 83
+        horz_align right
         vert_align bottom
         material panelVidas1M
     }
@@ -54,10 +57,11 @@ GUI_Game
     container Panel(panelNivel) 
     {
         metrics_mode pixels
-        left 420
+        left -103
         top -755
         width 206
         height 83
+        horz_align center
         vert_align bottom
         material panelNivelM
  

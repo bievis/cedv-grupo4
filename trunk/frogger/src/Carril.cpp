@@ -142,7 +142,7 @@ bool Carril::addElemento (string nombre) {
       posX = posXElem - getSeparacion();
       movimiento = DER;
     }
-    if (posX < LIMITE_IZQ || posX > LIMITE_DER) insertado = false;
+    if (posX < (LIMITE_IZQ - 4) || posX > (LIMITE_DER + 4)) insertado = false;
   }  
   
   if (insertado && !_modelos.empty()) {

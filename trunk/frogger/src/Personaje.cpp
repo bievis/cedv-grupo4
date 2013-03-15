@@ -2,11 +2,14 @@
 #include "AdvancedOgreFramework.hpp"
 #include "Personaje.h"
 
-Personaje::Personaje (const string &nombre, SceneNode* nodo) {
+Personaje::Personaje (const string &nombre, SceneNode* nodo, SceneNode* nodoMuerto, SceneNode* nodoEstrellas) {
   _nombre = nombre;
   _nodo = nodo;
-  _estado = PARADO;
   _movimiento = NINGUNO;
+  _nodoMuerto = nodoMuerto;
+  _nodoEstrellas = nodoEstrellas;
+  _posInicial = _nodo->getPosition();
+  setEstado(PARADO);
 }
 
 // Constructor de copia
@@ -32,6 +35,18 @@ EstadoPersonaje Personaje::getEstado() const {
 
 void Personaje::setEstado(const EstadoPersonaje estado) {
   _estado = estado;
+  if (estado == MUERTO) {
+    _nodo->setVisible(false);
+    _nodoMuerto->setVisible(true);
+    _nodoEstrellas->setVisible(true);
+    // Los situamos donde ha muerto
+    _nodoMuerto->setPosition(_nodo->getPosition());
+    _nodoEstrellas->setPosition(_nodo->getPosition());
+  } else {
+    _nodo->setVisible(true);
+    _nodoMuerto->setVisible(false);
+    _nodoEstrellas->setVisible(false);
+  }
 }
 
 MovimientoPersonaje Personaje::getMovimiento() const {
@@ -39,7 +54,7 @@ MovimientoPersonaje Personaje::getMovimiento() const {
 }
 
 void Personaje::setMovimiento(const MovimientoPersonaje movimiento) {
-  if (_estado == PARADO) _movimiento = movimiento;
+  if (_estado == PARADO && _estado != MUERTO) _movimiento = movimiento;
 }
 
 double Personaje::getPosFinal() const {
@@ -57,11 +72,16 @@ void Personaje::copiar(const Personaje &p) {
   _estado = p.getEstado();
   _movimiento = p.getMovimiento();
   _posFinal = p.getPosFinal();
+  _nodoMuerto = p._nodoMuerto;
+  _nodoEstrellas = p._nodoEstrellas;
+  _posInicial = p._posInicial;
 }
 
 // Destructor
 Personaje::~Personaje () {
   _nodo = NULL;
+  _nodoMuerto = NULL;
+  _nodoEstrellas = NULL;
 }
 
 // Otras funciones
@@ -91,9 +111,13 @@ void Personaje::mover(const double deltaT) {
           if (_movimiento == IZQUIERDA) {
             _nodo->yaw(Ogre::Degree(90));
             anguloInicial = -90;
+            // Vemos si hay llegado al limite
+            if (_posFinal < LIMITE_IZQ) _posFinal = LIMITE_IZQ;
           } else {
             _nodo->yaw(Ogre::Degree(-90));
             anguloInicial = 90;
+            // Vemos si hay llegado al limite
+            if (_posFinal > LIMITE_DER) _posFinal = LIMITE_DER;
           }
         }
         else if (_movimiento == DELANTE || _movimiento == ATRAS) {
@@ -101,9 +125,11 @@ void Personaje::mover(const double deltaT) {
           if (_movimiento == ATRAS) {
             _nodo->yaw(Ogre::Degree(-180));
             anguloInicial = 180;
+            if (_posFinal > LIMITE_ABAJO) _posFinal = LIMITE_ABAJO;
           } else {
             _nodo->yaw(Ogre::Degree(0));
             anguloInicial = 0;
+            if (_posFinal < LIMITE_ARRIBA) _posFinal = LIMITE_ARRIBA;
           }      
         }
       }
@@ -133,17 +159,33 @@ void Personaje::mover(const double deltaT) {
         _movimiento = NINGUNO;
       }
     }
+  } else {
+    if (_estado == MUERTO) { // Si esta MUERTO
+      // Giramos las estrellas
+      _nodoEstrellas->yaw(Ogre::Degree(180) * deltaT);
+    }
   }
 }
 
 void Personaje::moverConElemento(const double deltaT, ElementoCarril* elemento, const double velocidad) {
-   if (_movimiento == NINGUNO) { // Si esta parado
-     double incremento;
-     // Segun la dirección del elemento sobre el que esta se mueve una dirección
-     // o otra.
-     if (elemento->getMovimiento() == DER) incremento = 1;
-     else if (elemento->getMovimiento() == IZQ) incremento = -1;
-     // Para avanzar el ElementoCarril
-     _nodo->translate(velocidad * deltaT * incremento, 0, 0); 
-   }
+  if (_movimiento == NINGUNO) { // Si esta parado
+    double incremento;
+    double iniX = _nodo->getPosition().x;
+    // Segun la dirección del elemento sobre el que esta se mueve una dirección
+    // o otra.
+    if (elemento->getMovimiento() == DER) incremento = 1;
+    else if (elemento->getMovimiento() == IZQ) incremento = -1;
+    // Para avanzar el ElementoCarril
+    _nodo->translate(velocidad * deltaT * incremento, 0, 0);
+    // Vemos si ha llegado al tope
+    double x = _nodo->getPosition().x;
+    if (x > LIMITE_DER || x < LIMITE_IZQ) 
+      _nodo->setPosition(iniX, _nodo->getPosition().y, _nodo->getPosition().z); 
+  }
+}
+
+void Personaje::volverAInicio() {
+  setEstado (PARADO);
+  _movimiento = NINGUNO;
+  _nodo->setPosition(_posInicial);
 }

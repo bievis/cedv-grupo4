@@ -25,6 +25,7 @@ void GameState::enter()
     _tiempo = 0;
     _level = 1;
     _vidas = 3;
+    _tiempoMuertoFin = 0.0;
 
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering GameState...");
 
@@ -32,11 +33,10 @@ void GameState::enter()
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
 
     m_pCamera = m_pSceneMgr->createCamera("GameCamera");
-    m_pCamera->setPosition(Vector3(0, 9.00000, 4.0000));
+    m_pCamera->setPosition(Vector3(0.0, 19, 0.1));
     m_pCamera->lookAt(Vector3(0, 0, 0));
-    m_pCamera->setFOVy(Degree(93.695));
-    m_pCamera->setNearClipDistance(1);
-    m_pCamera->setFarClipDistance(100000);
+    m_pCamera->setNearClipDistance(5);
+    m_pCamera->setFarClipDistance(10000);
 
     m_pCamera->setAspectRatio(Real(OgreFramework::getSingletonPtr()->m_pViewport->getActualWidth()) /
         Real(OgreFramework::getSingletonPtr()->m_pViewport->getActualHeight()));
@@ -107,33 +107,6 @@ void GameState::exit()
 
 void GameState::createScene()
 {
-    // Create background material
-    MaterialPtr material = MaterialManager::getSingleton().create("Background", "General");
-    material->getTechnique(0)->getPass(0)->createTextureUnitState("background_stars.png");
-    material->getTechnique(0)->getPass(0)->setDepthCheckEnabled(false);
-    material->getTechnique(0)->getPass(0)->setDepthWriteEnabled(false);
-    material->getTechnique(0)->getPass(0)->setLightingEnabled(false);
-    
-    // Create background rectangle covering the whole screen
-    Rectangle2D* rect = new Rectangle2D(true);
-    rect->setCorners ( -2.0, 1.0, 2.0, -1.0 );
-    rect->setMaterial("Background");
-    
-    // Render the background before everything else
-    rect->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
-    
-    // Use infinite AAB to always stay visible
-    AxisAlignedBox aabInf;
-    aabInf.setInfinite();
-    rect->setBoundingBox(aabInf);
-     
-    // Attach background to the scene
-    SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode("Background");
-    node->attachObject(rect);
-    
-    // Example of background scrolling
-    material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation(-0.015, 0.0);
-
     // Creamos los objetos de la escena
     m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);	
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
@@ -170,7 +143,11 @@ void GameState::createScene()
     // Cargamos el personaje
     SceneNode* nodePersonaje = GameManager::getSingleton().
           crearNodo(m_pSceneMgr, "Marciano", "Marciano.mesh", 0, 0, 6.5);
-    Personaje* p = new Personaje("Marciano", nodePersonaje);
+    SceneNode* nodePersonajeMuerto = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "MarcianoMuerto", "MarcianoMuerto.mesh", 0, 0, 6.5);
+    SceneNode* nodePersonajeEstrellas = GameManager::getSingleton().
+          crearNodo(m_pSceneMgr, "Estrellas", "Estrellas.mesh", 0, 0, 6.5);
+    Personaje* p = new Personaje("Marciano", nodePersonaje, nodePersonajeMuerto, nodePersonajeEstrellas);
     GameManager::getSingleton().setPersonaje(p);
 
     //Cargamos overlay con la GUI ( Vidas[Los 3 tipos] + Tiempo + Nivel )
@@ -374,7 +351,6 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 
 void GameState::update(double timeSinceLastFrame)
 {
-    // static double tiempo = 0;
     _tiempo += timeSinceLastFrame;
     
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
@@ -385,9 +361,29 @@ void GameState::update(double timeSinceLastFrame)
         popAppState();
         return;
     }
-
+    
+    // Movemos la escena
     GameManager::getSingleton().mover(timeSinceLastFrame, _tiempo);
 
+    // Vemos si esta Muerto
+    Personaje *personaje = GameManager::getSingleton().getPersonaje();
+    if (personaje->getEstado() == MUERTO) {
+      // Controlamos el tiempo que esta quito cuando muere
+      if (_tiempoMuertoFin == 0.0) { // Recien muerto
+        _vidas--;
+        actualizarVidas();
+        _tiempoMuertoFin = _tiempo + TIEMPO_MUERTO;
+      }
+      if (_tiempoMuertoFin <= _tiempo) {
+        _tiempoMuertoFin = 0.0;
+        if (_vidas > 0) {
+          // Si quedan vidas
+          personaje->volverAInicio();
+        }
+      } 
+    }
+
+    // Actualizamos el tiempo que se esta mostrando
     Ogre::OverlayElement *elem;
 
     elem = m_pOverlayMgr->getOverlayElement("txtNivel");
@@ -404,19 +400,9 @@ void GameState::update(double timeSinceLastFrame)
 
 void GameState::buildGUI()
 {
+    actualizarVidas();
+
     Ogre::OverlayElement *elem;
-
-    switch ( _vidas )
-      {
-        case 2:
-	  elem = m_pOverlayMgr->getOverlayElement("panelVidas2"); break;
-        case 3:
-          elem = m_pOverlayMgr->getOverlayElement("panelVidas3"); break;
-        default:
-          elem = m_pOverlayMgr->getOverlayElement("panelVidas1"); break;
-      }
-
-    elem->show();
 
     elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
     elem->show();
@@ -443,3 +429,24 @@ string GameState::getTime()
   return ret;
 }
 
+void GameState::actualizarVidas() {
+  Ogre::OverlayElement *elem;
+  
+  elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
+  elem->hide();
+  elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
+  elem->hide();
+  elem = m_pOverlayMgr->getOverlayElement("panelVidas3");  
+  elem->hide();
+  
+  switch ( _vidas )
+  {
+    case 2:
+      elem = m_pOverlayMgr->getOverlayElement("panelVidas2"); break;
+    case 3:
+      elem = m_pOverlayMgr->getOverlayElement("panelVidas3"); break;
+    default:
+      elem = m_pOverlayMgr->getOverlayElement("panelVidas1"); break;
+  }
+  elem->show();
+}

@@ -6,8 +6,11 @@
 #include "ParteEscenario.h"
 #include "Colision.h"
 
-#define LIMITE_DER 15
-#define LIMITE_IZQ -15
+// Limites del escenario
+#define LIMITE_DER 9
+#define LIMITE_IZQ -9
+#define LIMITE_ARRIBA -7
+#define LIMITE_ABAJO 6.5
 
 // Clase encargada de gestionar las colisiones
 class GameManager: public Ogre::Singleton<GameManager> {
