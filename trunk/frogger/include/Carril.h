@@ -39,6 +39,8 @@ class Carril {
   // Otras funciones
   string toString (); // Imprime todas las noticias del canal
   void mover(const double deltaT, const double tiempo);
+  // Limpia los elementos del carril
+  void limpiarElementos();
  private:
   void copiar(const Carril &c);
 

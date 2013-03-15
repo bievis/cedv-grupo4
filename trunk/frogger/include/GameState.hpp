@@ -14,7 +14,9 @@
 #include <OgreMaterialManager.h>
 
 // Segundos en los que se queda el personaje muerto
-#define TIEMPO_MUERTO 3.0
+#define TIEMPO_MUERTO 1.0
+
+enum EstadoJuego  { GAME, GAME_OVER, NEXT_LEVEL, WINNER };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
@@ -62,11 +64,12 @@ private:
   unsigned int _level;
   char _vidas;
   GameConfig* _ptrGameConfig;
-  double _tiempoMuertoFin;
+  EstadoJuego _estado;
 
-        string getTime();
+  string getTime();
   
   void actualizarVidas();
+  void cargarNivel();
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

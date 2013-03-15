@@ -28,6 +28,7 @@ class Personaje {
   MovimientoPersonaje getMovimiento() const;
   void setMovimiento(const MovimientoPersonaje movimiento);
   double getPosFinal() const;
+  Vector3 getPosInicial() const;
   
   // Sobre carga de Operadores
   Personaje& operator= (const Personaje &p);

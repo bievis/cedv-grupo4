@@ -25,6 +25,17 @@ void GameManager::limpiar () {
   _partesEscenario.clear();
 }
 
+void GameManager::limpiarPartes () {
+  ParteEscenario* parte = NULL;
+  std::vector<ParteEscenario*>::const_iterator
+      mit (_partesEscenario.begin()),
+      mend(_partesEscenario.end());
+  for(;mit!=mend;++mit) {
+    parte = (*mit);
+    parte->limpiarCarriles();
+  }
+}
+
 Colision GameManager::hayColision () {
   TipoColision tipo = NINGUNA;
   bool hay = false;
@@ -35,7 +46,10 @@ Colision GameManager::hayColision () {
   ElementoCarril* elemento = NULL;
 
   // Miramos la colision cuando el personaje este parado
-  if (_personaje != NULL && _personaje->getMovimiento() == NINGUNO) {
+  if (_personaje != NULL 
+      && _personaje->getMovimiento() == NINGUNO
+      // No colisiones cuando este en el inicio
+      && getPersonaje()->getNodo()->getPosition() != getPersonaje()->getPosInicial()) {
     Ogre::SceneNode *entPersonaje = _personaje->getNodo();
     Ogre::SceneNode *ent = NULL;
     
@@ -118,7 +132,6 @@ void GameManager::mover(const double deltaT, const double tiempo) {
         // Si se ha hundido
         if (colision.getTipo() == HUNDIDO) {
           getPersonaje()->setEstado(MUERTO);
-          tipoColisionAnterior = NINGUNA;
         }
       } else {
         if (colision.getTipo () == SOBRE
@@ -133,7 +146,6 @@ void GameManager::mover(const double deltaT, const double tiempo) {
           // Si se ha chocado
           if (colision.getTipo() == CHOQUE) {
             getPersonaje()->setEstado(MUERTO);
-            tipoColisionAnterior = NINGUNA;
           }
         }
       }

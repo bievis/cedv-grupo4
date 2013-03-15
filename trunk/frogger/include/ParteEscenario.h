@@ -35,7 +35,8 @@ class ParteEscenario {
   // Otras funciones
   string toString (); // Imprime todas las noticias del canal
   void mover(const double deltaT, const double tiempo);
-
+  // Limpia los carriles de esta parte
+  void limpiarCarriles();
  private:
   void copiar(const ParteEscenario &p);
 

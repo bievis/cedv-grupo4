@@ -157,3 +157,17 @@ bool Carril::addElemento (string nombre) {
 
   return insertado;
 }
+
+void Carril::limpiarElementos() {
+  unsigned int count = _elementos.size();
+  ElementoCarril *elemento = NULL;
+  
+  for (int i = count-1; i >= 0; i -= 1)
+  {
+    elemento = _elementos[i];
+    _elementos.erase (_elementos.begin()+i);
+    _pSceneMgr->destroySceneNode(elemento->getNombre());
+    _pSceneMgr->destroyEntity(elemento->getNombre());
+
+  }
+}
