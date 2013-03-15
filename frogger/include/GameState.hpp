@@ -13,6 +13,9 @@
 #include <OgreSubEntity.h>
 #include <OgreMaterialManager.h>
 
+// Segundos en los que se queda el personaje muerto
+#define TIEMPO_MUERTO 3.0
+
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 enum QueryFlags
@@ -54,13 +57,16 @@ public:
 private:
 	bool						m_bQuit;
 	bool						m_bLMouseDown, m_bRMouseDown;
-        Ogre::OverlayManager* m_pOverlayMgr;
-        double _tiempo;
-        unsigned int _level;
-        char _vidas;
-        GameConfig* _ptrGameConfig;
+  Ogre::OverlayManager* m_pOverlayMgr;
+  double _tiempo;
+  unsigned int _level;
+  char _vidas;
+  GameConfig* _ptrGameConfig;
+  double _tiempoMuertoFin;
 
         string getTime();
+  
+  void actualizarVidas();
 };
 
 //|||||||||||||||||||||||||||||||||||||||||||||||

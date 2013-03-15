@@ -66,12 +66,12 @@ void ElementoCarril::mover(const double deltaT, const double velocidad) {
     posicion = _nodo->getPosition().x;
     // Para parar el ElementoCarril
     if (_movimiento == IZQ) {
-      if (posicion <= LIMITE_IZQ) {
+      if (posicion <= (LIMITE_IZQ - 4)) {
         _nodo->setPosition(LIMITE_DER, _nodo->getPosition().y, _nodo->getPosition().z);
         _movimiento = NONE;
       }
     } else if (_movimiento == DER) {
-      if (posicion >= LIMITE_DER) {
+      if (posicion >= (LIMITE_DER + 4)) {
         _nodo->setPosition(LIMITE_IZQ, _nodo->getPosition().y, _nodo->getPosition().z);
         _movimiento = NONE;
       }
