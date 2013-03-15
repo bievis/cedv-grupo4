@@ -89,9 +89,22 @@ void ParteEscenario::mover(const double deltaT, const double tiempo) {
   std::vector<Carril*>::const_iterator
       mit (_carriles.begin()),
       mend(_carriles.end());
-  // Reccoremos todos los carriles y indicamos que se muevan sus elementos
+  // Recoremos todos los carriles y indicamos que se muevan sus elementos
   for(;mit!=mend;++mit) {
     carril = (*mit);
     carril->mover(deltaT, tiempo);
   }
+}
+
+void ParteEscenario::limpiarCarriles() {
+  Carril *carril = NULL;
+  std::vector<Carril*>::const_iterator
+      mit (_carriles.begin()),
+      mend(_carriles.end());
+  // Recoremos todos los carriles y lo limpiamos
+  for(;mit!=mend;++mit) {
+    carril = (*mit);
+    carril->limpiarElementos();
+  }
+  _carriles.clear();
 }

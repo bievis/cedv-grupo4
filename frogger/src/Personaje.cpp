@@ -61,6 +61,10 @@ double Personaje::getPosFinal() const {
   return _posFinal;
 }
 
+Vector3 Personaje::getPosInicial() const {
+  return _posInicial;
+}
+
 Personaje& Personaje::operator= (const Personaje &p) {
   copiar(p);
   return *this;
@@ -185,7 +189,7 @@ void Personaje::moverConElemento(const double deltaT, ElementoCarril* elemento, 
 }
 
 void Personaje::volverAInicio() {
+  _nodo->setPosition(_posInicial);
   setEstado (PARADO);
   _movimiento = NINGUNO;
-  _nodo->setPosition(_posInicial);
 }

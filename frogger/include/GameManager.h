@@ -22,6 +22,7 @@ class GameManager: public Ogre::Singleton<GameManager> {
   virtual void mover(const double deltaT, const double tiempo);
   virtual Colision hayColision ();
   virtual void limpiar ();
+  virtual void limpiarPartes ();
   virtual SceneNode* crearNodo (SceneManager*	m_pSceneMgr, const char* nombre, const char* mesh,
             double posX, double posY, double posZ);
   

@@ -25,7 +25,7 @@ void GameState::enter()
     _tiempo = 0;
     _level = 1;
     _vidas = 3;
-    _tiempoMuertoFin = 0.0;
+    _estado = GAME;
 
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering GameState...");
 
@@ -101,6 +101,29 @@ void GameState::exit()
         OgreFramework::getSingletonPtr()->m_pRoot->destroySceneManager(m_pSceneMgr);
 
     GameManager::getSingleton().limpiar ();
+    
+    // Ocultar overlays
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+    overlay->hide();
+
+    Ogre::OverlayElement *elem;
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
+    elem->hide();
+    
+    overlay = m_pOverlayMgr->getByName("Screens_Game");
+    overlay->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelWinner");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
+    elem->hide();
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -188,8 +211,17 @@ void GameState::LoadScenaryParts()
     ParteEscenario* zona_carretera = new ParteEscenario ( nodoZonaCarretera->getName(), nodoZonaCarretera, CARRETERA );
     GameManager::getSingleton().addParteEscenario ( zona_carretera );
 
-    // Construimos los carriles 
+    // Cargamos el primer nivel
+    cargarNivel();
+}
 
+///////////////////////////////////7
+
+void GameState::cargarNivel() {
+    // Limpiamos el nivel anterior
+    GameManager::getSingleton().limpiarPartes();
+
+    // Construimos los carriles
     Level lvl;
     Row row;
 
@@ -198,48 +230,56 @@ void GameState::LoadScenaryParts()
     double zona_crater_Z[] = { -2.5, -4, -5.5 };
     double zona_carretera_Z[] = {  2,  3.5,  5 };
 
-    // Zona crater
-    for ( unsigned int i = 0; i < lvl.getCrater().getRows(); i++ )
-      {
-        lvl.getCrater().getRow ( i, row );
-
-	// cout << " NAME = " << row.get_name() << " : SPD = " << row.get_speed() <<
-	//   " DISTANCE = " << row.get_distance() << " : DIR = " << string((row.get_way()==RIGHT)?"DIR_DER":"DIR_IZQ") <<
-	//       " Z = " << zona_crater_Z[i%3] << endl;
-
-	zona_crater->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_crater_Z[i%3], m_pSceneMgr );
-	zona_crater->addModeloElementoCarril ( row.get_name().c_str(), "Plataforma.mesh" );
+    ParteEscenario* parte = NULL;
+    
+    std::vector<ParteEscenario*>::const_iterator
+      mit (GameManager::getSingleton().getPartesEscenario().begin()),
+      mend(GameManager::getSingleton().getPartesEscenario().end());
+    for(;mit!=mend;++mit) {
+      parte = (*mit);
+      
+      if (parte->getTipo() == AGUA) {
+        // Zona crater
+        for ( unsigned int i = 0; i < lvl.getCrater().getRows(); i++ )
+        {
+          lvl.getCrater().getRow ( i, row );
+          parte->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_crater_Z[i%3], m_pSceneMgr );
+          parte->addModeloElementoCarril ( row.get_name().c_str(), "Plataforma.mesh" );
+        }
+      } else if (parte->getTipo() == CARRETERA) {
+        // Zona carretera
+        for ( unsigned int i = 0; i < lvl.getRoad().getRows(); i++ )
+        {
+          lvl.getRoad().getRow ( i, row );
+          parte->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_carretera_Z[i%3], m_pSceneMgr );
+          parte->addModeloElementoCarril ( row.get_name().c_str(), "Meteorito.mesh" );
+          parte->addModeloElementoCarril ( row.get_name().c_str(), "Nave1.mesh" );
+          parte->addModeloElementoCarril ( row.get_name().c_str(), "Nave2.mesh" );
+        }
       }
-
-    // Zona carretera
-    for ( unsigned int i = 0; i < lvl.getRoad().getRows(); i++ )
-      {
-        lvl.getRoad().getRow ( i, row );
-
-	// cout << " NAME = " << row.get_name() << " : SPD = " << row.get_speed() <<
-	//      " DISTANCE = " << row.get_distance() << " : DIR = " << string((row.get_way()==RIGHT)?"DIR_DER":"DIR_IZQ") <<
-	//      " Z = " << zona_carretera_Z[i%3] << endl;
-
-	zona_carretera->addCarril ( row.get_name().c_str(), row.get_speed(), row.get_distance(), (row.get_way()==RIGHT)?DIR_DER:DIR_IZQ, zona_carretera_Z[i%3], m_pSceneMgr );
-	zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Meteorito.mesh" );
-  zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Nave1.mesh" );
-  zona_carretera->addModeloElementoCarril ( row.get_name().c_str(), "Nave2.mesh" );
-      }
-
-    // sleep ( 10 );
-
-  }
+    }
+}
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
 
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
-{
-    Ogre::OverlayElement *elem = NULL;
-
-    if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_ESCAPE))
+{    
+    if (_estado == GAME_OVER || _estado == WINNER) {
+      popAllAndPushAppState(findByName("MenuState"));
+      return true;
+    } else if (_estado == NEXT_LEVEL) {
+      Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+      overlay->show();
+      Ogre::OverlayElement *elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+      elem->hide();
+      _tiempo = 0;
+      _estado = GAME;
+      return true;
+    }
+    else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_ESCAPE))
     {
-        pushAppState(findByName("PauseState"));
-        return true;
+      pushAppState(findByName("PauseState"));
+      return true;
     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_UP))
     {
       GameManager::getSingleton().getPersonaje()->setMovimiento(DELANTE);
@@ -253,30 +293,6 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
     {
       GameManager::getSingleton().getPersonaje()->setMovimiento(DERECHA);
     }
-    else if ( OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown ( OIS::KC_W ) )
-      {	
-        elem = m_pOverlayMgr->getOverlayElement("panelWinner");
-        if ( elem->isVisible() )
-          elem->hide();
-        else
-          elem->show();
-      }
-    else if ( OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown ( OIS::KC_R ) )
-      {	
-        elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
-        if ( elem->isVisible() )
-          elem->hide();
-        else
-          elem->show();
-      }
-    else if ( OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown ( OIS::KC_E ) )
-      {	
-        elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
-        if ( elem->isVisible() )
-          elem->hide();
-        else
-          elem->show();
-      }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -361,39 +377,64 @@ void GameState::update(double timeSinceLastFrame)
         popAppState();
         return;
     }
-    
-    // Movemos la escena
-    GameManager::getSingleton().mover(timeSinceLastFrame, _tiempo);
-
-    // Vemos si esta Muerto
-    Personaje *personaje = GameManager::getSingleton().getPersonaje();
-    if (personaje->getEstado() == MUERTO) {
-      // Controlamos el tiempo que esta quito cuando muere
-      if (_tiempoMuertoFin == 0.0) { // Recien muerto
-        _vidas--;
-        actualizarVidas();
-        _tiempoMuertoFin = _tiempo + TIEMPO_MUERTO;
-      }
-      if (_tiempoMuertoFin <= _tiempo) {
-        _tiempoMuertoFin = 0.0;
-        if (_vidas > 0) {
-          // Si quedan vidas
+    Ogre::OverlayElement *elem = NULL;
+    if (_estado == GAME) {
+      Personaje *personaje = GameManager::getSingleton().getPersonaje();
+      if (personaje->getNodo()->getPosition().z == LIMITE_ARRIBA) {
+        // Si hemos llegado arriba hemos pasado el nivel
+        if (OgreFramework::getSingletonPtr()->_gameConfig.getNumLevels() == _level) {
+          _estado = WINNER;
+        } else {
+          _level++;
+          cargarNivel();
           personaje->volverAInicio();
+          _estado = NEXT_LEVEL;
+          _vidas = 3;
         }
-      } 
-    }
+      } else {
+        // Movemos la escena
+        GameManager::getSingleton().mover(timeSinceLastFrame, _tiempo);    
+      
+        // Vemos si esta Muerto
+        static double tiempoMuertoFin = 0.0;
+        
+        if (personaje->getEstado() == MUERTO) {
+          // Controlamos el tiempo que esta quito cuando muere
+          if (tiempoMuertoFin == 0.0) { // Recien muerto
+            _vidas--;
+            actualizarVidas();
+            tiempoMuertoFin = _tiempo + TIEMPO_MUERTO;
+          } else  if (tiempoMuertoFin <= _tiempo) {
+            tiempoMuertoFin = 0.0;
+            personaje->volverAInicio();
+          } 
+        }
 
-    // Actualizamos el tiempo que se esta mostrando
-    Ogre::OverlayElement *elem;
+        // Actualizamos el tiempo que se esta mostrando
+        elem = m_pOverlayMgr->getOverlayElement("txtNivel");
+        char cad[3];
+        sprintf ( cad, "%d", _level );
+        elem->setCaption ( string ("Level ") + string ( cad ) );
 
-    elem = m_pOverlayMgr->getOverlayElement("txtNivel");
-    char cad[3];
-    sprintf ( cad, "%d", _level );
-    elem->setCaption ( string ("Level ") + string ( cad ) );
-
-    elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
-    elem->setCaption ( getTime() );
-    
+        elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
+        elem->setCaption ( getTime() );
+      }
+    } else if (_estado == GAME_OVER) {
+      Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+      overlay->hide();
+      elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
+      elem->show();
+    } else if (_estado == NEXT_LEVEL) {
+      Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+      overlay->hide();
+      elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+      elem->show();
+    } else if (_estado == WINNER) {
+      Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+      overlay->hide();
+      elem = m_pOverlayMgr->getOverlayElement("panelWinner");
+      elem->show();
+    }    
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -441,6 +482,8 @@ void GameState::actualizarVidas() {
   
   switch ( _vidas )
   {
+    case 0:
+      _estado = GAME_OVER;
     case 2:
       elem = m_pOverlayMgr->getOverlayElement("panelVidas2"); break;
     case 3:
