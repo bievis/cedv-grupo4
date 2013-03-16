@@ -1,4 +1,4 @@
-#include "FroggerApp.hpp"
+#include "StarAttackApp.hpp"
 
 #if OGRE_PLATFORM == PLATFORM_WIN32 || OGRE_PLATFORM == OGRE_PLATFORM_WIN32
 #define WIN32_LEAN_AND_MEAN
@@ -8,11 +8,11 @@ INT WINAPI WinMain ( HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT )
 int main ( int argc, char **argv )
 #endif
   {
-    FroggerApp demo;
+    StarAttackApp game;
 
     try
       {
-	demo.start();
+	game.start();
       }
     catch ( std::exception& e )
       {

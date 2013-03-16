@@ -45,7 +45,7 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     Ogre::LogManager* logMgr = new Ogre::LogManager();
     //UNUSED_VARIABLE(logMgr);
 
-    m_pLog = Ogre::LogManager::getSingleton().createLog("frogger.log", true, true, false);
+    m_pLog = Ogre::LogManager::getSingleton().createLog("starAttack.log", true, true, false);
     m_pLog->setDebugOutputEnabled(true);
 
     m_pRoot = new Ogre::Root();
@@ -136,7 +136,7 @@ bool OgreFramework::keyPressed(const OIS::KeyEvent &keyEventRef)
 {
     if(m_pKeyboard->isKeyDown(OIS::KC_SYSRQ))
     {
-        m_pRenderWnd->writeContentsToTimestampedFile("FROGGER_Screenshot_", ".jpg");
+        m_pRenderWnd->writeContentsToTimestampedFile("Star_Attack_Screenshot_", ".jpg");
         return true;
     }
 

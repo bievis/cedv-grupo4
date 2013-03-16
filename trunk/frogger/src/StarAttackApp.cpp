@@ -1,28 +1,31 @@
-#include "FroggerApp.hpp"
+#include "StarAttackApp.hpp"
 
 #include "MenuState.hpp"
 #include "GameState.hpp"
 #include "PauseState.hpp"
+#include "Records.h"
 
-FroggerApp::FroggerApp()
+StarAttackApp::StarAttackApp()
   {
     m_pAppStateManager = 0;
+    Records::getSingleton().read();
   }
 
-FroggerApp::~FroggerApp()
+StarAttackApp::~StarAttackApp()
   {
     delete m_pAppStateManager;
     delete OgreFramework::getSingletonPtr();
   }
 
-void FroggerApp::start()
+void StarAttackApp::start()
   {
     new OgreFramework();
 
-    if ( !OgreFramework::getSingletonPtr()->initOgre ( "Frogger", 0, 0 ) )
+    if ( !OgreFramework::getSingletonPtr()->initOgre ( "Star Attack", 0, 0 ) )
       return;
 
-    OgreFramework::getSingletonPtr()->m_pLog->logMessage("Frogger initialized!");
+
+    OgreFramework::getSingletonPtr()->m_pLog->logMessage("Star Attack initialized!");
 
     m_pAppStateManager = new AppStateManager();
 
