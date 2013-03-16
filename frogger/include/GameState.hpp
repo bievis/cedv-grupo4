@@ -9,9 +9,11 @@
 
 #include "DotSceneLoader.hpp"
 #include "Personaje.h"
-
+#include "TrackManager.h"
+#include "SoundFXManager.h"
 #include <OgreSubEntity.h>
 #include <OgreMaterialManager.h>
+#include "Records.h"
 
 // Segundos en los que se queda el personaje muerto
 #define TIEMPO_MUERTO 1.0
@@ -60,11 +62,16 @@ private:
 	bool						m_bQuit;
 	bool						m_bLMouseDown, m_bRMouseDown;
   Ogre::OverlayManager* m_pOverlayMgr;
-  double _tiempo;
+  double _tiempo, _tiempoTotal, _tiempoNextLevel;
   unsigned int _level;
   char _vidas;
   GameConfig* _ptrGameConfig;
   EstadoJuego _estado;
+  TrackPtr _gameTrack;
+  TrackPtr _gameoverTrack;
+  TrackPtr _winnerTrack;
+  SoundFXPtr _moverPersonajeFX;
+  SoundFXPtr _muertoFX;
 
   string getTime();
   

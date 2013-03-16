@@ -1,14 +1,14 @@
-#ifndef _FROGGER_APP_HPP
-#define _FROGGER_APP_HPP
+#ifndef _STAR_ATTACK_APP_HPP
+#define _STAR_ATTACk_APP_HPP
 
 #include "AdvancedOgreFramework.hpp"
 #include "AppStateManager.hpp"
 
-class FroggerApp
+class StarAttackApp
   {
 public:
-    FroggerApp();
-    ~FroggerApp();
+    StarAttackApp();
+    ~StarAttackApp();
 
     void start();
 

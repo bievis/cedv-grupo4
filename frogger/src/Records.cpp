@@ -6,12 +6,12 @@ const char *FILENAME = "highscores.dat";
 
 Records::Records()
   {
-    _vRecords.clear();
+    _records.clear();
   }
 
 Records::~Records()
   {
-    _vRecords.clear();
+    _records.clear();
   }
 
 Records& Records::getSingleton()
@@ -30,29 +30,95 @@ Records* Records::getSingletonPtr()
     return (msSingleton);
   }
 
-void Records::add ( string newValue )
+void Records::add ( int level, int seconds )
   {
-    _vRecords.push_back ( newValue );
-    sort ( _vRecords.begin(), _vRecords.end() );
-    reverse ( _vRecords.begin(), _vRecords.end() );
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": level " << level << " - seconds " << seconds << endl;
+
+    char cad[100];
+    std::list<string>::iterator it;
+    string fecha;
+    string hora;
+
+    memset ( cad, 0, 10 );
+
+    getFechaHora ( fecha, hora );
+
+    sprintf ( cad, "%d|%d|%s|%s", level, seconds, fecha.c_str(), hora.c_str() );
+
+    if ( _records.size() == 0 )
+      {
+	it = _records.begin();
+	// _records.insert ( _records.begin(), cad );
+      }
+    else
+      {
+	for ( it = _records.begin(); it != _records.end(); ++it )
+	  {
+	    if ( compare ( level, seconds, *it ) > 0 ) //newValue > *it
+	      {
+		// _records.insert ( it, string(cad) );
+		break;
+	      }
+	  }
+      }
+
+    _records.insert ( it, string(cad) );
+
+    // _records.push_back ( newValue );
+    // sort ( _records.begin(), _records.end() );
+    // reverse ( _records.begin(), _records.end() );
+
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
+  }
+
+int Records::compare ( int level, int seconds, string value2 )
+  {
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": level " << level << " - seconds " << seconds << " - value2 " << value2 << endl;
+
+    int level2;
+    int seconds2;
+    int ret = 0;
+    char resto[100];
+
+    sscanf ( value2.c_str(), "%d|%d|%s", &level2, &seconds2, resto );
+
+    if ( ( level > level2 ) ||
+	 ( ( level == level2 ) && ( seconds < seconds2 ) ) )
+      {
+	ret = 1;
+      }
+
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
+
+    return ret;
   }
 
 string Records::getValue ( unsigned int index )
   {
     string value = "";
+    std::list<string>::iterator it;
 
-    if ( index >= 0 && index < _vRecords.size() )
-      value = _vRecords[index];
+    if ( index >= 0 && index < _records.size() )
+      {
+	it = _records.begin();
+	advance ( it, index );
+	if ( it != _records.end() )
+	  {
+	    value = *it;
+	  }
+      }
 
     return value;
   }
 
 void Records::Copy ( Records &source )
   {
-    _vRecords.clear();
+    _records.clear();
 
     for ( unsigned int i = 0; i < source.getSize(); i++ )
-      _vRecords.push_back ( source.getValue ( i ) );
+      _records.push_back ( source.getValue ( i ) );
   }  
 
 Records::Records ( Records& source )
@@ -79,9 +145,13 @@ void Records::write()
       {
         cout << "Opened " << FILENAME << " for write" << endl;
         /// Write Data
-        for ( unsigned int i = 0; i < _vRecords.size(); i++ ) {
-            os << " " << _vRecords[i];
-        }
+        std::list<string>::iterator it;
+
+        for ( it = _records.begin(); it != _records.end(); ++it )
+	  {
+            os << *it << endl;
+	  }
+
         os.close();
     }
   }
@@ -91,7 +161,8 @@ void Records::write()
      ifstream is ( FILENAME );
      string value = "";
      string final = "";
-     unsigned int i = 1;
+
+     _records.clear();
 
      if ( !is.is_open() ) 
        {
@@ -105,15 +176,11 @@ void Records::write()
 	 while ( !is.eof() ) 
 	   {
 	     is >> value;
-             final += value + string(" ");
-
-	     if ( ( i % 5 ) == 0 )
+	     if (!is.eof())
 	       {
-	         _vRecords.push_back ( final );
-		 final = "";
+		 cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
+		 _records.push_back ( value );
 	       }
-
-	     i++;
 	   }
 
         is.close();
@@ -123,8 +190,38 @@ void Records::write()
 
 void Records::compacta ( unsigned int max_size )
   {
-    while ( _vRecords.size() > max_size )
+    while ( _records.size() > max_size )
       {
-	_vRecords.pop_back();
+	_records.pop_back();
       }
   }
+
+void Records::print()
+  {
+    std::list<string>::iterator it;
+    unsigned int i = 0;
+
+    for ( it = _records.begin(); it != _records.end(); ++it, ++i )
+      {
+	cout << " elem " << i+1 << " : " << *it << endl;
+      }
+
+  }
+
+void Records::getFechaHora ( string &fecha, string &hora )
+{
+  time_t timer;
+  struct tm *t;
+  char cad[100];
+
+  timer = time(NULL);
+  t = localtime(&timer);
+
+  sprintf ( cad, "%02d-%02d-%04d", t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
+
+  fecha = cad;
+
+  sprintf ( cad, "%02d:%02d", t->tm_hour, t->tm_min );
+
+  hora = cad;
+}

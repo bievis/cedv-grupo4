@@ -1,8 +1,8 @@
 # --------------------------------------------------------------------
-# Makefile :: Frogger
+# Makefile :: Star Attack
 # Diego Moreno Montes y Matias Blanco Leon
 # --------------------------------------------------------------------
-EXEC := frogger
+EXEC := starAttack
 
 DIRSRC := src/
 DIROBJ := obj/

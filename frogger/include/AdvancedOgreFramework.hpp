@@ -61,9 +61,9 @@ public:
 	OIS::Keyboard*				m_pKeyboard;
 	OIS::Mouse*					m_pMouse;
 
-  OgreBites::SdkTrayManager*	m_pTrayMgr;
+        OgreBites::SdkTrayManager*	m_pTrayMgr;
 
-  GameConfig _gameConfig;
+        GameConfig _gameConfig;
 
 private:
 	OgreFramework(const OgreFramework&);

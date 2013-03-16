@@ -25,12 +25,11 @@ MenuState::MenuState()
 void MenuState::enter()
 {
     // Carga del sonido.
-//    _mainTrack = TrackManager::getSingleton().load("01_-_Dj_Saryon_-_Break_the_rules_Remastered_Mix_.mp3");
-    _mainTrack = TrackManager::getSingleton().load("fondo.mp3");
+    _menuTrack = TrackManager::getSingleton().load("fondo.mp3");
     _menuFX = SoundFXManager::getSingleton().load("boton.wav");
 
     // Reproducción del track principal...
-    this->_mainTrack->play();
+    _menuTrack->play();
         
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Entering MenuState...");
 
@@ -104,7 +103,7 @@ void MenuState::createMenuScene()
   {
     //    OgreFramework::getSingletonPtr()->m_pTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
 
-    //    OgreFramework::getSingletonPtr()->m_pTrayMgr->createLabel(OgreBites::TL_TOP, "TitleLbl", "Frogger - The Game", 200);
+    //    OgreFramework::getSingletonPtr()->m_pTrayMgr->createLabel(OgreBites::TL_TOP, "TitleLbl", "Star Attack - The Game", 200);
 
     //    OgreFramework::getSingletonPtr()->m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
 
@@ -217,7 +216,7 @@ void MenuState::exit()
     OgreFramework::getSingletonPtr()->m_pLog->logMessage("Leaving MenuState...");
 
     // Parar del track principal...
-    this->_mainTrack->stop();
+    _menuTrack->stop();
 
     m_pSceneMgr->destroyCamera(m_pCamera);
     if(m_pSceneMgr)
@@ -364,6 +363,7 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
       {
 	if ( over )
           over->show();
+
         rect_highscores->setVisible ( true );
         rect_nave->setVisible ( false );
         rect_titulo->setVisible ( false );
@@ -374,6 +374,7 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
       {
 	if ( over )
 	  over->hide();
+
         rect_highscores->setVisible ( false );
         rect_nave->setVisible ( true );
         rect_titulo->setVisible ( true );
@@ -391,33 +392,49 @@ void MenuState::muestra_highscores()
 
     oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
 
-    string msg = " 1. Lv3 * 30s * 14-01-2013 * 22:17\n";
-    msg += " 2. Lv3 * 35s * 12-02-2013 * 20:18\n";
-    msg += " 3. Lv3 * 56s * 12-02-2013 * 10:08\n";
-    msg += " 4. Lv2 * 45s * 11-02-2013 * 12:15\n";
-    msg += " 5. Lv2 * 55s * 08-02-2013 * 19:22\n";
-    msg += " 6. Lv2 * 70s * 03-02-2013 * 10:05\n";
-    msg += " 7. Lv2 * 80s * 05-02-2013 * 08:09\n";
-    msg += " 8. Lv2 * 81s * 04-02-2013 * 15:03\n";
-    msg += " 9. Lv1 * 25s * 03-02-2013 * 10:05\n";
-    msg += "10. Lv1 * 35s * 01-02-2013 * 09:26";
+    // string msg = " 1. Lv3 * 30s * 14-01-2013 * 22:17\n";
+    // msg += " 2. Lv3 * 35s * 12-02-2013 * 20:18\n";
+    // msg += " 3. Lv3 * 56s * 12-02-2013 * 10:08\n";
+    // msg += " 4. Lv2 * 45s * 11-02-2013 * 12:15\n";
+    // msg += " 5. Lv2 * 55s * 08-02-2013 * 19:22\n";
+    // msg += " 6. Lv2 * 70s * 03-02-2013 * 10:05\n";
+    // msg += " 7. Lv2 * 80s * 05-02-2013 * 08:09\n";
+    // msg += " 8. Lv2 * 81s * 04-02-2013 * 15:03\n";
+    // msg += " 9. Lv1 * 25s * 03-02-2013 * 10:05\n";
+    // msg += "10. Lv1 * 35s * 01-02-2013 * 09:26";
 
-    // string msg = "";
+    string msg = "";
+    int level = 0;
+    int seconds = 0;
+    char fecha[100];
+    char hora[100];
+    char new_hora[100];
 
-    // if ( Records::getSingleton().getSize() > 0 )
-    //   {
-    //     char cad[100];
+    if ( Records::getSingleton().getSize() > 0 )
+      {
+        char cad[100];
 
-    //     for ( unsigned int i = 0; i < Records::getSingleton().getSize(); i++ )
-    //       {
-    //         sprintf ( cad, "%d. %s\n", i+1, Records::getSingleton().getValue(i).c_str() );
-    //         msg += string ( cad );
-    //       }
-    //   }
-    // else
-    //   msg = "   No hay registros";
+        // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":size = " << Records::getSingleton().getSize() << endl;
+
+        for ( unsigned int i = 0; i < Records::getSingleton().getSize(); i++ )
+          {
+	    //Entre la fecha y la hora no detecta el separador '|' así que plan B, es decir, cojo posiciones de bytes
+	    //y luego formateo la hora en new_hora que ya no tendría dentro el caracter '|'
+	    sscanf ( Records::getSingleton().getValue(i).c_str(), "%d|%d|%10s%6s", &level, &seconds, fecha, hora );
+	    memcpy ( new_hora, hora+1, strlen(hora)-1);
+	    new_hora[5]=0;
+        // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " level = " << level << endl;
+        // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds = " << seconds << endl;
+        // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " fecha = " << fecha << endl;
+        // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " hora = " << new_hora << endl;
+            sprintf ( cad, "%d. Lvl - %d - %ds - %s - %s\n", i+1, level, seconds, fecha, new_hora );
+            msg += string ( cad );
+          }
+      }
+    else
+      msg = "   No hay registros";
 
     oe->setColour ( Ogre::ColourValue ( 1.0, 1.0, 0.0 ) );
     oe->setCaption ( msg );
-    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
+    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
 }

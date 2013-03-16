@@ -43,7 +43,7 @@ public:
 
 private:
 	bool                        m_bQuit;
-  TrackPtr _mainTrack;
+  TrackPtr _menuTrack;
   SoundFXPtr _menuFX;
   Ogre::OverlayManager* m_pOverlayMgr;
   bool _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
