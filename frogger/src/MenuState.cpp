@@ -354,10 +354,12 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
   {
     cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
     Overlay *over = NULL;
+    OverlayElement *oe = NULL;
 
     _mostradoHighScores = mostrar;
 
     over = m_pOverlayMgr->getByName ( "PantallaRecords" );
+    oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
 
     if ( mostrar )
       {
@@ -367,6 +369,9 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
         rect_highscores->setVisible ( true );
         rect_nave->setVisible ( false );
         rect_titulo->setVisible ( false );
+
+	oe->show();
+
         hideButtons();
         muestra_highscores();
       }
@@ -378,6 +383,9 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
         rect_highscores->setVisible ( false );
         rect_nave->setVisible ( true );
         rect_titulo->setVisible ( true );
+
+	oe->hide();
+
         showButtons();
       }
     cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
