@@ -1,0 +1,140 @@
+template element TextArea(MyTemplates/Text)
+{
+    font_name Blue
+		metrics_mode pixels
+		char_height 80
+		colour 100.0 100.0 100.0    
+}
+
+template element TextArea(MyTemplates2/Text)
+{
+    font_name Blue
+		metrics_mode pixels
+		char_height 120
+		colour 156.0 30.0 70.0    
+}
+
+template element TextArea(MyTemplates3/Text)
+{
+    font_name Blue
+		metrics_mode pixels
+		char_height 50
+		colour 128.0 255.0 255.0    
+}
+
+template element TextArea(MyTemplates4/Text)
+{
+    font_name Blue
+		metrics_mode pixels
+		char_height 50
+		colour 255.0 255.0 255.0    
+}
+
+PantallaJuego
+{
+    zorder 500
+
+    container Panel(panelPuntos) 
+    {
+ 		    metrics_mode pixels
+        left 10
+        top -85
+        width 250
+        height 75
+        vert_align bottom
+        material matPanelPuntos
+
+		    element TextArea(puntuacion) : MyTemplates/Text 
+		    {
+				  top 5
+				  left 120
+		    }
+	  }
+	  
+    container Panel(panelTiempo) 
+    {
+	      metrics_mode pixels
+        left -180
+        top 0
+        width 150
+        height 120
+        vert_align top
+        horz_align right
+        material matPanelTiempo
+
+        element TextArea(tiempo) : MyTemplates2/Text 
+		    {
+				  top 30
+				  left 5 
+          horz_align left
+		    }
+    }
+}
+
+PantallaCreditos
+{
+	zorder 500
+
+    container Panel(creditos) 
+    {
+	      metrics_mode pixels
+        left 112
+        top 84
+        width 800
+        height 600
+        vert_align top
+        horz_align left
+        material matCreditos
+    }	  
+
+}
+
+PantallaRecords
+{
+	zorder 500
+
+    container Panel(panelRecords) 
+    {
+	      metrics_mode pixels
+        left 50
+        top 25
+        width 900
+        height 700
+        vert_align top
+        horz_align left
+        material matPanelRecords
+
+        element TextArea(recordsTitulo) : MyTemplates3/Text 
+		    {
+				  top 25
+				  left 375
+          horz_align left
+		    }
+
+        element TextArea(recordsValores) : MyTemplates4/Text 
+		    {
+				  top 150
+				  left 200
+          horz_align left
+		    }
+
+    }	  
+}
+
+Cursor
+{
+    zorder 500 
+
+    container Panel(cursor) 
+    {
+	      metrics_mode pixels
+        left 100
+        top 100
+        width 17
+        height 23
+        vert_align top
+        horz_align left
+        material pointer
+    }	
+} 
+
