@@ -10,6 +10,9 @@ Personaje::Personaje (const string &nombre, SceneNode* nodo, SceneNode* nodoMuer
   _nodoEstrellas = nodoEstrellas;
   _posInicial = _nodo->getPosition();
   setEstado(PARADO);
+  // Cargamos el movimiento
+  Entity *ent = static_cast <Entity *> (_nodo->getAttachedObject(nombre));
+  _animacion = new AnimationBlender(ent);
 }
 
 // Constructor de copia
@@ -79,6 +82,7 @@ void Personaje::copiar(const Personaje &p) {
   _nodoMuerto = p._nodoMuerto;
   _nodoEstrellas = p._nodoEstrellas;
   _posInicial = p._posInicial;
+  _animacion = p._animacion;
 }
 
 // Destructor
@@ -86,6 +90,7 @@ Personaje::~Personaje () {
   _nodo = NULL;
   _nodoMuerto = NULL;
   _nodoEstrellas = NULL;
+  delete(_animacion);
 }
 
 // Otras funciones
@@ -167,8 +172,12 @@ void Personaje::mover(const double deltaT) {
     if (_estado == MUERTO) { // Si esta MUERTO
       // Giramos las estrellas
       _nodoEstrellas->yaw(Ogre::Degree(180) * deltaT);
+    } else {
+     // Activamos la animacion de parado
+      _animacion->blend("Parado", AnimationBlender::Blend, 0, false);
     }
   }
+  _animacion->addTime(deltaT);
 }
 
 void Personaje::moverConElemento(const double deltaT, ElementoCarril* elemento, const double velocidad) {

@@ -101,7 +101,7 @@
 			<row id="3">
 				<name>carril3</name>
 				<speed>2.5</speed>
-				<way>LEFT</way>
+				<way>RIGHT</way>
 				<distance>12.0</distance>
 			</row>
 		</crater>

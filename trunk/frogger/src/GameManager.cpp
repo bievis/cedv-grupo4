@@ -4,7 +4,7 @@ template<> GameManager* Ogre::Singleton<GameManager>::msSingleton = 0;
 
 GameManager::GameManager()
 {
-  
+  _tipoColisionAnterior = NINGUNA;
 }
 
 GameManager::~GameManager()
@@ -23,6 +23,7 @@ void GameManager::addParteEscenario (ParteEscenario* parte) {
 void GameManager::limpiar () {
   _personaje = NULL;
   _partesEscenario.clear();
+  _tipoColisionAnterior = NINGUNA;
 }
 
 void GameManager::limpiarPartes () {
@@ -113,9 +114,7 @@ SceneNode* GameManager::crearNodo (SceneManager*	m_pSceneMgr, const char* nombre
 // Mueve los elementos de la escena
 // deltaT, es el tiempo trascurrido desde el ultimo frame
 // tiempo, es el tiempo total transcurrido en el juego
-void GameManager::mover(const double deltaT, const double tiempo) {
-  static TipoColision tipoColisionAnterior = NINGUNA;
-  
+void GameManager::mover(const double deltaT, const double tiempo) {  
   if (getPersonaje()->getEstado() != MUERTO) {
     // Movemos el resto de elementos
     std::vector<ParteEscenario*>::const_iterator
@@ -135,11 +134,9 @@ void GameManager::mover(const double deltaT, const double tiempo) {
         }
       } else {
         if (colision.getTipo () == SOBRE
-            && tipoColisionAnterior == SOBRE) {
-          /* 
-          * Si el personaje ha colisionado con algo con el que puede estar enciama
-          * Movemos el personaje con dicho elemento 
-          */            
+            && _tipoColisionAnterior == SOBRE) {
+          // Si el personaje ha colisionado con algo con el que puede estar enciama
+          // Movemos el personaje con dicho elemento            
           getPersonaje()->moverConElemento(deltaT, colision.getElementoColision(),
                                            colision.getVelocidad());  
         } else {
@@ -150,7 +147,7 @@ void GameManager::mover(const double deltaT, const double tiempo) {
         }
       }
     }
-    tipoColisionAnterior = colision.getTipo();
+    _tipoColisionAnterior = colision.getTipo();
   }
   // Movemos los personajes
   getPersonaje()->mover(deltaT);

@@ -82,24 +82,24 @@ void AppStateManager::start(AppState* state)
 
 		if(OgreFramework::getSingletonPtr()->m_pRenderWnd->isActive())
 		{
-		         double newTime = OgreFramework::getSingletonPtr()->m_pTimer->getMilliseconds()/1000.0f;;
-		         double frameTime = newTime - currentTime;
-		         if ( frameTime > 0.25 )
-              			frameTime = 0.25;	  // note: max frame time to avoid spiral of death
-		         currentTime = newTime;
+      double newTime = OgreFramework::getSingletonPtr()->m_pTimer->getMilliseconds()/1000.0f;;
+      double frameTime = newTime - currentTime;
+      if ( frameTime > 0.25 )
+			      frameTime = 0.25;	  // note: max frame time to avoid spiral of death
+      currentTime = newTime;
 
-		         accumulator += frameTime;
+      accumulator += frameTime;
 
-		         while ( accumulator >= dt )
-		         {
-				OgreFramework::getSingletonPtr()->m_pKeyboard->capture();
-				OgreFramework::getSingletonPtr()->m_pMouse->capture();
+      while ( accumulator >= dt )
+      {
+        OgreFramework::getSingletonPtr()->m_pKeyboard->capture();
+        OgreFramework::getSingletonPtr()->m_pMouse->capture();
 
-				
-				m_ActiveStateStack.back()->update(dt);
-				OgreFramework::getSingletonPtr()->updateOgre(dt);
-			 	accumulator -= dt;
-         		 }
+
+        m_ActiveStateStack.back()->update(dt);
+        OgreFramework::getSingletonPtr()->updateOgre(dt);
+       	accumulator -= dt;
+      }
 
 			OgreFramework::getSingletonPtr()->m_pRoot->renderOneFrame();
 		}

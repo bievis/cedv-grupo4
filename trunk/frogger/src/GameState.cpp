@@ -28,6 +28,7 @@ void GameState::enter()
     _level = 1;
     _vidas = 3;
     _estado = GAME;
+    _tiempoMuertoFin = 0.0;
 
     _gameTrack = TrackManager::getSingleton().load("tema_juego.mp3");
     _gameoverTrack = TrackManager::getSingleton().load("game_over.mp3");
@@ -97,6 +98,8 @@ void GameState::resume()
 
     OgreFramework::getSingletonPtr()->m_pViewport->setCamera(m_pCamera);
     m_bQuit = false;
+
+    _gameTrack->play();
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -138,7 +141,6 @@ void GameState::exit()
 
     elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
     elem->hide();
-
 }
 
 //|||||||||||||||||||||||||||||||||||||||||||||||
@@ -153,11 +155,11 @@ void GameState::createScene()
     m_pSceneMgr->setShadowTextureCount(2);
     m_pSceneMgr->setShadowTextureSize(512);
 
-    Entity* entCesped = m_pSceneMgr->createEntity("Suelo", "Suelo.mesh");
+    Entity* entSuelo = m_pSceneMgr->createEntity("Suelo", "Suelo.mesh");
     
     // Creamos el escenario como geometria estatica
     StaticGeometry* escenario = m_pSceneMgr->createStaticGeometry("EscenarioEstatico");
-    escenario->addEntity(entCesped, Vector3(0,0,0));
+    escenario->addEntity(entSuelo, Vector3(0,0,0));
     escenario->build();  // Operacion para construir la geometria
 
     // Luz de la escena
@@ -204,12 +206,15 @@ void GameState::createScene()
     overlay->show();
 
     elem = m_pOverlayMgr->getOverlayElement("panelWinner");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
     elem->hide();
 
     elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
+    elem->setDimensions (OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
     elem->hide();
 
     elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
     elem->hide();
 }
 
@@ -217,12 +222,12 @@ void GameState::LoadScenaryParts()
   {
 
     SceneNode* nodoZonaCrater = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Abismo", "Abismo.mesh", 0.0, 0.00100, -4.00000);
+          crearNodo(m_pSceneMgr, "Abismo", "Abismo.mesh", 0.0, 0.00001, -4.00000);
     ParteEscenario* zona_crater = new ParteEscenario ( nodoZonaCrater->getName(), nodoZonaCrater, AGUA );
     GameManager::getSingleton().addParteEscenario ( zona_crater );
 
     SceneNode* nodoZonaCarretera = GameManager::getSingleton().
-          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00100, 4.00000);
+          crearNodo(m_pSceneMgr, "Carretera", "Carretera.mesh", 0.0, 0.00001, 4.00000);
     ParteEscenario* zona_carretera = new ParteEscenario ( nodoZonaCarretera->getName(), nodoZonaCarretera, CARRETERA );
     GameManager::getSingleton().addParteEscenario ( zona_carretera );
 
@@ -403,34 +408,33 @@ void GameState::update(double timeSinceLastFrame)
       if (personaje->getNodo()->getPosition().z == LIMITE_ARRIBA) {
         // Si hemos llegado arriba hemos pasado el nivel
         if (OgreFramework::getSingletonPtr()->_gameConfig.getNumLevels() == _level) {
+          // Si no hay mas niveles se ha ganado
           _estado = WINNER;
           Records::getSingleton().add ( _level, _tiempoTotal );
-	  Records::getSingleton().write();
-	  Records::getSingleton().compacta ( 10 );
-	  _tiempoTotal = 0;
+	        Records::getSingleton().write();
+	        Records::getSingleton().compacta ( 10 );
+	        _tiempoTotal = 0;
         } else {
+          // Si no pasamos al siguiente nivel
           _level++;
           cargarNivel();
           personaje->volverAInicio();
           _estado = NEXT_LEVEL;
-          _vidas = 3;
         }
       } else {
         // Movemos la escena
         GameManager::getSingleton().mover(timeSinceLastFrame, _tiempo);    
       
-        // Vemos si esta Muerto
-        static double tiempoMuertoFin = 0.0;
-        
+        // Vemos si esta Muerto        
         if (personaje->getEstado() == MUERTO) {
           // Controlamos el tiempo que esta quito cuando muere
-          if (tiempoMuertoFin == 0.0) { // Recien muerto
-	    _muertoFX->play();
+          if (_tiempoMuertoFin == 0.0) { // Recien muerto
+	          _muertoFX->play();
             _vidas--;
             actualizarVidas();
-            tiempoMuertoFin = _tiempo + TIEMPO_MUERTO;
-          } else  if (tiempoMuertoFin <= _tiempo) {
-            tiempoMuertoFin = 0.0;
+            _tiempoMuertoFin = _tiempo + TIEMPO_MUERTO;
+          } else  if (_tiempoMuertoFin <= _tiempo) {
+            _tiempoMuertoFin = 0.0;
             personaje->volverAInicio();
           } 
         }
@@ -445,35 +449,41 @@ void GameState::update(double timeSinceLastFrame)
         elem->setCaption ( getTime() );
       }
     } else if (_estado == GAME_OVER) {
+      // Cuando se hayan acabo todas las vidas
+      // Mostramos el panel de GameOver y el sonido correspondiente
       elem = m_pOverlayMgr->getOverlayElement("panelGameOver");
       if ( !elem->isVisible() )
-	{
-	  _gameoverTrack->play();
-	  Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-	  overlay->hide();
-	  elem->show();
-	  if ( _level > 1 ) // Si al menos hemos pasado el primer nivel grabaremos
 	    {
-	      Records::getSingleton().add ( _level - 1, _tiempoNextLevel );
-	      Records::getSingleton().write();
-	      Records::getSingleton().compacta ( 10 );
+	      _gameoverTrack->play();
+	      Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+	      overlay->hide();
+	      elem->show();
+	      if ( _level > 1 ) // Si al menos hemos pasado el primer nivel grabaremos
+	        {
+	          Records::getSingleton().add ( _level - 1, _tiempoNextLevel );
+	          Records::getSingleton().write();
+	          Records::getSingleton().compacta ( 10 );
+	        }
 	    }
-	}
     } else if (_estado == NEXT_LEVEL) {
+      // Cuando se hemos pasado de nivel
+      // Mostramos el panel de NextLevel
       _tiempoNextLevel = _tiempoTotal;
       Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
       overlay->hide();
       elem = m_pOverlayMgr->getOverlayElement("panelNextLevel");
       elem->show();
     } else if (_estado == WINNER) {
+      // Cuando se hayan acabo todos los niveles
+      // Mostramos el panel de Winner y el sonido correspondiente
       elem = m_pOverlayMgr->getOverlayElement("panelWinner");
       if ( !elem->isVisible() )
-	{
-	  _winnerTrack->play();
-	  Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-	  overlay->hide();
-	  elem->show();
-	}
+      {
+        _winnerTrack->play();
+        Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+        overlay->hide();
+        elem->show();
+      }
     }    
 }
 
@@ -491,7 +501,7 @@ void GameState::buildGUI()
     elem = m_pOverlayMgr->getOverlayElement("panelNivel");
     elem->show();
 
-    OgreFramework::getSingletonPtr()->m_pTrayMgr->showCursor();
+    OgreFramework::getSingletonPtr()->m_pTrayMgr->hideCursor();
 }
 
 string GameState::getTime()

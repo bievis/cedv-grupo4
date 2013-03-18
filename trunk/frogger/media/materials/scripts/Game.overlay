@@ -98,10 +98,10 @@ Screens_Game
     {
         metrics_mode pixels
         left 0 
-        top -768
+        top 0
         width 1024
         height 768
-        vert_align bottom
+        vert_align top
         material panelWinnerM
     }
 
@@ -109,10 +109,10 @@ Screens_Game
     {
         metrics_mode pixels
         left 0 
-        top -768
+        top 0
         width 1024
         height 768
-        vert_align bottom
+        vert_align top
         material panelNextLevelM
     }
 
@@ -120,10 +120,10 @@ Screens_Game
     {
         metrics_mode pixels
         left 0 
-        top -768
+        top 0
         width 1024
         height 768
-        vert_align bottom
+        vert_align top
         material panelGameOverM
     }
 }

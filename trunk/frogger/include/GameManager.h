@@ -36,6 +36,7 @@ class GameManager: public Ogre::Singleton<GameManager> {
  private:
   Personaje* _personaje;
   std::vector<ParteEscenario*> _partesEscenario;
+  TipoColision _tipoColisionAnterior;
 };
 
 #endif

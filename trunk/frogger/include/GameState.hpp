@@ -72,6 +72,7 @@ private:
   TrackPtr _winnerTrack;
   SoundFXPtr _moverPersonajeFX;
   SoundFXPtr _muertoFX;
+  double _tiempoMuertoFin;
 
   string getTime();
   
