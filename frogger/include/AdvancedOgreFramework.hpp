@@ -64,7 +64,9 @@ public:
         OgreBites::SdkTrayManager*	m_pTrayMgr;
 
         GameConfig _gameConfig;
-
+  
+  double _factorX;
+  double _factorY;
 private:
 	OgreFramework(const OgreFramework&);
 	OgreFramework& operator= (const OgreFramework&);

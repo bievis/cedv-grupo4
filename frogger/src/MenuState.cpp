@@ -101,11 +101,6 @@ void MenuState::hideButtons ()
 
 void MenuState::createMenuScene()
   {
-    //    OgreFramework::getSingletonPtr()->m_pTrayMgr->showLogo(OgreBites::TL_BOTTOMRIGHT);
-
-    //    OgreFramework::getSingletonPtr()->m_pTrayMgr->createLabel(OgreBites::TL_TOP, "TitleLbl", "Star Attack - The Game", 200);
-
-    //    OgreFramework::getSingletonPtr()->m_pTrayMgr->showFrameStats(OgreBites::TL_BOTTOMLEFT);
 
     OgreFramework::getSingletonPtr()->m_pTrayMgr->setWidgetSpacing ( 5 );
 
@@ -403,13 +398,6 @@ void MenuState::muestra_highscores()
     // string msg = " 1. Lv3 * 30s * 14-01-2013 * 22:17\n";
     // msg += " 2. Lv3 * 35s * 12-02-2013 * 20:18\n";
     // msg += " 3. Lv3 * 56s * 12-02-2013 * 10:08\n";
-    // msg += " 4. Lv2 * 45s * 11-02-2013 * 12:15\n";
-    // msg += " 5. Lv2 * 55s * 08-02-2013 * 19:22\n";
-    // msg += " 6. Lv2 * 70s * 03-02-2013 * 10:05\n";
-    // msg += " 7. Lv2 * 80s * 05-02-2013 * 08:09\n";
-    // msg += " 8. Lv2 * 81s * 04-02-2013 * 15:03\n";
-    // msg += " 9. Lv1 * 25s * 03-02-2013 * 10:05\n";
-    // msg += "10. Lv1 * 35s * 01-02-2013 * 09:26";
 
     string msg = "";
     int level = 0;
@@ -435,7 +423,7 @@ void MenuState::muestra_highscores()
         // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds = " << seconds << endl;
         // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " fecha = " << fecha << endl;
         // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " hora = " << new_hora << endl;
-            sprintf ( cad, "%d. Lvl - %d - %ds - %s - %s\n", i+1, level, seconds, fecha, new_hora );
+            sprintf ( cad, " %d. Lvl-%d - %ds - %s - %s\n", i+1, level, seconds, fecha, new_hora );
             msg += string ( cad );
           }
       }

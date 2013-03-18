@@ -126,6 +126,13 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     // Cargamos configuracion XML de niveles
     XMLCharger::getSingleton().LoadFile ( FILE_XML, _gameConfig );
     _gameConfig.print();
+
+    // Calculamos los fatores de escalar de los overlays
+    unsigned int width; unsigned int height; unsigned int colourDepth; int left; int top; 
+    OgreFramework::getSingletonPtr()->m_pRenderWnd->getMetrics(width, height, colourDepth, left, top);
+
+    _factorX = width;
+    _factorY = height;
 	
     return true;
 }

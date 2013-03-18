@@ -4,6 +4,7 @@
 #include <iostream>
 #include <Ogre.h>
 #include "ElementoCarril.h"
+#include "AnimationBlender.h"
 
 using namespace std;
 using namespace Ogre;
@@ -54,6 +55,7 @@ class Personaje {
   double _posFinal;
   MovimientoPersonaje _movimiento;
   Vector3 _posInicial;
+  AnimationBlender *_animacion;
 };
 
 #endif
