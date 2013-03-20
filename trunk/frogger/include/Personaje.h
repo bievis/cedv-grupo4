@@ -9,11 +9,11 @@
 using namespace std;
 using namespace Ogre;
 
-#define ALTURA_SALTO 0.5
+#define VELOCIDAD_AHOGADO 0.98
 #define AVANCE 1.5
 #define VELOCIDAD 2
 
-enum EstadoPersonaje  { PARADO, MOVIMIENTO, MUERTO };
+enum EstadoPersonaje  { PARADO, MOVIMIENTO, MUERTO, MUERTO_AHOGADO };
 enum MovimientoPersonaje  { DELANTE, ATRAS, IZQUIERDA, DERECHA, NINGUNO };
 
 class Personaje {
