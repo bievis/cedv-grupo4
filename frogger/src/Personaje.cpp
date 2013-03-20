@@ -13,6 +13,7 @@ Personaje::Personaje (const string &nombre, SceneNode* nodo, SceneNode* nodoMuer
   // Cargamos el movimiento
   Entity *ent = static_cast <Entity *> (_nodo->getAttachedObject(nombre));
   _animacion = new AnimationBlender(ent);
+  _animacion->blend("Parado", AnimationBlender::Switch, 0, true);
 }
 
 // Constructor de copia
@@ -57,7 +58,7 @@ MovimientoPersonaje Personaje::getMovimiento() const {
 }
 
 void Personaje::setMovimiento(const MovimientoPersonaje movimiento) {
-  if (_estado == PARADO && _estado != MUERTO) _movimiento = movimiento;
+  if (_estado == PARADO && _estado != MUERTO && _estado != MUERTO_AHOGADO) _movimiento = movimiento;
 }
 
 double Personaje::getPosFinal() const {
@@ -114,7 +115,7 @@ void Personaje::mover(const double deltaT) {
       // Si esta parado iniciamos el movimiento
       if (_estado == PARADO) {
         _estado = MOVIMIENTO;
-        
+        _animacion->blend("Saltar", AnimationBlender::Switch, 1, false);
         if (_movimiento == IZQUIERDA || _movimiento == DERECHA) {
           _posFinal = _nodo->getPosition().x + incremento;
           if (_movimiento == IZQUIERDA) {
@@ -166,15 +167,18 @@ void Personaje::mover(const double deltaT) {
         if (_movimiento == IZQUIERDA || _movimiento == DERECHA) _nodo->setPosition(_posFinal, _nodo->getPosition().y, _nodo->getPosition().z);
         else if (_movimiento == DELANTE || _movimiento == ATRAS) _nodo->setPosition(_nodo->getPosition().x, _nodo->getPosition().y, _posFinal);
         _movimiento = NINGUNO;
+        // Activamos la animacion de parado
+        _animacion->blend("Parado", AnimationBlender::Switch, 0, true);
       }
     }
   } else {
     if (_estado == MUERTO) { // Si esta MUERTO
       // Giramos las estrellas
       _nodoEstrellas->yaw(Ogre::Degree(180) * deltaT);
-    } else {
-     // Activamos la animacion de parado
-      _animacion->blend("Parado", AnimationBlender::Blend, 0, false);
+    } else if (_estado == MUERTO_AHOGADO) {
+      // Lo vamos haciendo mas pequeño y lo vamos girando
+      _nodo->scale(VELOCIDAD_AHOGADO, VELOCIDAD_AHOGADO, VELOCIDAD_AHOGADO);
+      _nodo->yaw(Ogre::Degree(180) * deltaT);
     }
   }
   _animacion->addTime(deltaT);
@@ -199,6 +203,9 @@ void Personaje::moverConElemento(const double deltaT, ElementoCarril* elemento, 
 
 void Personaje::volverAInicio() {
   _nodo->setPosition(_posInicial);
+  _nodo->setScale(_nodo->getInitialScale());
+  _nodo->setOrientation (_nodo->getInitialOrientation());
   setEstado (PARADO);
   _movimiento = NINGUNO;
+  _animacion->blend("Parado", AnimationBlender::Switch, 0, true);
 }

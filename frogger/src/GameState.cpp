@@ -426,7 +426,7 @@ void GameState::update(double timeSinceLastFrame)
         GameManager::getSingleton().mover(timeSinceLastFrame, _tiempo);    
       
         // Vemos si esta Muerto        
-        if (personaje->getEstado() == MUERTO) {
+        if (personaje->getEstado() == MUERTO || personaje->getEstado() == MUERTO_AHOGADO) {
           // Controlamos el tiempo que esta quito cuando muere
           if (_tiempoMuertoFin == 0.0) { // Recien muerto
 	          _muertoFX->play();

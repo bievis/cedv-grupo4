@@ -115,7 +115,7 @@ SceneNode* GameManager::crearNodo (SceneManager*	m_pSceneMgr, const char* nombre
 // deltaT, es el tiempo trascurrido desde el ultimo frame
 // tiempo, es el tiempo total transcurrido en el juego
 void GameManager::mover(const double deltaT, const double tiempo) {  
-  if (getPersonaje()->getEstado() != MUERTO) {
+  if (getPersonaje()->getEstado() != MUERTO && getPersonaje()->getEstado() != MUERTO_AHOGADO) {
     // Movemos el resto de elementos
     std::vector<ParteEscenario*>::const_iterator
         mit (_partesEscenario.begin()),
@@ -130,7 +130,7 @@ void GameManager::mover(const double deltaT, const double tiempo) {
       if (colision.getElementoColision() == NULL) {
         // Si se ha hundido
         if (colision.getTipo() == HUNDIDO) {
-          getPersonaje()->setEstado(MUERTO);
+          getPersonaje()->setEstado(MUERTO_AHOGADO);
         }
       } else {
         if (colision.getTipo () == SOBRE
