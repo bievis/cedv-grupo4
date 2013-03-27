@@ -1,10 +1,25 @@
-//|||||||||||||||||||||||||||||||||||||||||||||||
-
 #include "GameState.hpp"
 #include "GameManager.h"
 #include <GameConfigException.hpp>
 
-//|||||||||||||||||||||||||||||||||||||||||||||||
+#include "Shapes/OgreBulletCollisionsBoxShape.h"
+#include "Shapes/OgreBulletCollisionsCompoundShape.h"
+
+#include "OgreBulletDynamicsWorld.h"
+#include "OgreBulletDynamicsRigidBody.h"
+#include "Debug/OgreBulletCollisionsDebugDrawer.h"
+
+#include "Constraints/OgreBulletDynamicsRaycastVehicle.h"
+
+using namespace OgreBulletCollisions;
+using namespace OgreBulletDynamics;
+
+static float gWheelRadius = 0.5f;
+static float gWheelWidth = 0.4f;
+static float gWheelFriction = 1e30f;
+static float gRollInfluence = 0.1f;
+static float gSuspensionRestLength = 0.6;
+static float gEngineForce = 1000.0;
 
 using namespace Ogre;
 
@@ -19,6 +34,10 @@ GameState::GameState()
 void GameState::enter()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
+
+    OIS::ParamList param;
+    size_t windowHandle;
+    std::ostringstream wHandleStr;
 
     // _tiempo = 0;
     // _level = 1;
@@ -35,8 +54,8 @@ void GameState::enter()
     // // Reproducción del track principal...
     // _gameTrack->play();
 
-    // m_pSceneMgr = OgreFramework::getSingletonPtr()->m_pRoot->createSceneManager(ST_GENERIC, "GameSceneMgr");
-    // m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
+    m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
+    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
     // m_pCamera = m_pSceneMgr->createCamera("GameCamera");
     // m_pCamera->setPosition(Vector3(0.0, 19, 0.1));
@@ -44,18 +63,152 @@ void GameState::enter()
     // m_pCamera->setNearClipDistance(5);
     // m_pCamera->setFarClipDistance(10000);
 
+    m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
+    m_pCamera->setPosition(Ogre::Vector3(5,20,20));
+    m_pCamera->lookAt(Ogre::Vector3(0,0,0));
+    m_pCamera->setNearClipDistance(5);
+    m_pCamera->setFarClipDistance(10000);
+
     // m_pCamera->setAspectRatio(Real(OgreFramework::getSingletonPtr()->m_pViewport->getActualWidth()) /
     //     Real(OgreFramework::getSingletonPtr()->m_pViewport->getActualHeight()));
 
-    // OgreFramework::getSingletonPtr()->m_pViewport->setCamera(m_pCamera);
+    OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
 
-    // m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
+    m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
 
     // _ptrGameConfig = &(OgreFramework::getSingletonPtr()->_gameConfig);
 
+    OgreFramework::getSingletonPtr()->getRenderWindowPtr()->getCustomAttribute ( "WINDOW", &windowHandle );
+
+    wHandleStr << windowHandle;
+    param.insert ( std::make_pair ( "WINDOW", wHandleStr.str() ) );
+
+//    _inputManager = OIS::InputManager::createInputSystem ( param );
+//    _keyboard = static_cast<OIS::Keyboard*>
+//    (_inputManager->createInputObject(OIS::OISKeyboard, false));
+//    _mouse = static_cast<OIS::Mouse*>
+//    (_inputManager->createInputObject(OIS::OISMouse, false));
+//    _mouse->getMouseState().width = win->getWidth();
+//    _mouse->getMouseState().height = win->getHeight();
+
+    // Creacion del modulo de debug visual de Bullet ------------------
+    _debugDrawer = new OgreBulletCollisions::DebugDrawer();
+    _debugDrawer->setDrawWireframe(true);
+    SceneNode *node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "debugNode", Vector3::ZERO );
+    node->attachObject(static_cast <SimpleRenderable *>(_debugDrawer));
+
+    // Creacion del mundo (definicion de los limites y la gravedad) ---
+    AxisAlignedBox worldBounds = AxisAlignedBox (
+    Vector3 (-100, -100, -100),
+    Vector3 (100,  100,  100));
+    Vector3 gravity = Vector3(0, -9.8, 0);
+
+    _world = new OgreBulletDynamics::DynamicsWorld ( m_pSceneMgr,
+ 	   worldBounds, gravity);
+    _world->setDebugDrawer (_debugDrawer);
+
+    // Creacion de los elementos iniciales del mundo
+    CreateInitialWorld();
+
     buildGUI();
 
-    createScene();
+    // createScene();
+
+  }
+
+void GameState::CreateInitialWorld()
+  {
+    // Creacion de la entidad y del SceneNode ------------------------
+    Plane plane1(Vector3(0,1,0), 0);    // Normal y distancia
+    MeshManager::getSingleton().createPlane("p1",
+					    ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane1,
+					    200, 200, 1, 1, true, 1, 20, 20, Vector3::UNIT_Z);
+    SceneNode* nodep = m_pSceneMgr->createSceneNode("ground");
+    Entity* groundEnt = m_pSceneMgr->createEntity("planeEnt", "p1");
+    groundEnt->setMaterialName("Ground");
+    nodep->attachObject(groundEnt);
+    m_pSceneMgr->getRootSceneNode()->addChild(nodep);
+
+    // Creamos forma de colision para el plano -----------------------
+    OgreBulletCollisions::CollisionShape *Shape;
+    Shape = new OgreBulletCollisions::StaticPlaneCollisionShape
+      (Vector3(0,1,0), 0);   // Vector normal y distancia
+    OgreBulletDynamics::RigidBody *rigidBodyPlane = new
+      OgreBulletDynamics::RigidBody("rigidBodyPlane", _world);
+
+    // Creamos la forma estatica (forma, Restitucion, Friccion) ------
+    rigidBodyPlane->setStaticShape(Shape, 0.1, 0.8);
+
+    // Creamos el vehiculo =============================================
+    const Ogre::Vector3 chassisShift(0, 1.0, 0);
+    float connectionHeight = 0.7f;
+    mSteering = 0.0;
+
+    mChassis = m_pSceneMgr->createEntity("chassis", "chassis.mesh");
+    SceneNode *node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ();
+
+    SceneNode *chassisnode = node->createChildSceneNode();
+    chassisnode->attachObject (mChassis);
+    chassisnode->setPosition (chassisShift);
+
+    BoxCollisionShape* chassisShape = new BoxCollisionShape(Ogre::Vector3(1.f,0.75f,2.1f));
+    CompoundCollisionShape* compound = new CompoundCollisionShape();
+    compound->addChildShape(chassisShape, chassisShift);
+
+    mCarChassis = new WheeledRigidBody("carChassis", _world);
+
+    Vector3 CarPosition = Vector3(0, 0, -15);
+    mCarChassis->setShape (node, compound, 0.6, 0.6, 800, CarPosition, Quaternion::IDENTITY);
+    mCarChassis->setDamping(0.2, 0.2);
+    mCarChassis->disableDeactivation();
+
+    mTuning = new VehicleTuning(20.2, 4.4, 2.3, 500.0, 10.5);
+    mVehicleRayCaster = new VehicleRayCaster(_world);
+    mVehicle = new RaycastVehicle(mCarChassis, mTuning, mVehicleRayCaster);
+
+    mVehicle->setCoordinateSystem(0, 1, 2);
+
+    Ogre::Vector3 wheelDirectionCS0(0,-1,0);
+    Ogre::Vector3 wheelAxleCS(-1,0,0);
+
+    for (size_t i = 0; i < 4; i++)
+      {
+	mWheels[i] = m_pSceneMgr->createEntity ( "wheel" + i, "wheel.mesh" );
+	mWheels[i]->setCastShadows(true);
+
+	mWheelNodes[i] = m_pSceneMgr->getRootSceneNode()->createChildSceneNode();
+	mWheelNodes[i]->attachObject ( mWheels[i] );
+      }
+
+    bool isFrontWheel = true;
+    Ogre::Vector3 connectionPointCS0 (1-(0.3*gWheelWidth),
+				      connectionHeight, 2-gWheelRadius);
+
+    mVehicle->addWheel(mWheelNodes[0], connectionPointCS0, wheelDirectionCS0,
+		       wheelAxleCS, gSuspensionRestLength, gWheelRadius,
+		       isFrontWheel, gWheelFriction, gRollInfluence);
+
+    connectionPointCS0 = Ogre::Vector3(-1+(0.3*gWheelWidth),
+				       connectionHeight, 2-gWheelRadius);
+
+    mVehicle->addWheel(mWheelNodes[1], connectionPointCS0,
+		       wheelDirectionCS0, wheelAxleCS, gSuspensionRestLength,
+		       gWheelRadius, isFrontWheel, gWheelFriction, gRollInfluence);
+
+    isFrontWheel = false;
+    connectionPointCS0 = Ogre::Vector3(-1+(0.3*gWheelWidth),
+				       connectionHeight,-2+gWheelRadius);
+
+    mVehicle->addWheel(mWheelNodes[2], connectionPointCS0,
+		       wheelDirectionCS0, wheelAxleCS, gSuspensionRestLength,
+		       gWheelRadius, isFrontWheel, gWheelFriction, gRollInfluence);
+
+    connectionPointCS0 = Ogre::Vector3(1-(0.3*gWheelWidth),
+				       connectionHeight,-2+gWheelRadius);
+
+    mVehicle->addWheel(mWheelNodes[3], connectionPointCS0,
+		       wheelDirectionCS0, wheelAxleCS, gSuspensionRestLength,
+		       gWheelRadius, isFrontWheel, gWheelFriction, gRollInfluence);
   }
 
 bool GameState::pause()
@@ -285,6 +438,33 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       pushAppState(findByName("PauseState"));
       return true;
     }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
+      _world->setShowDebugShapes (true);
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
+      _world->setShowDebugShapes (false);
+    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
+    //   {
+    // 	mVehicle->applyEngineForce ( gEngineForce, 0 );
+    // 	mVehicle->applyEngineForce ( gEngineForce, 1 );
+    //   }
+    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
+    //   {
+    // 	mVehicle->applyEngineForce (-gEngineForce, 0);
+    // 	mVehicle->applyEngineForce (-gEngineForce, 1);
+    //   }
+    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
+    //   {
+    // 	if (mSteering < 0.8) mSteering+=0.01;
+    // 	mVehicle->setSteeringValue (mSteering, 0);
+    // 	mVehicle->setSteeringValue (mSteering, 1);
+    //   }
+    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+    //   {
+    // 	if (mSteering > -0.8) mSteering-=0.01;
+    // 	mVehicle->setSteeringValue (mSteering, 0);
+    // 	mVehicle->setSteeringValue (mSteering, 1);
+    //   }
+
 // else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_UP))
 //     {
 //       _moverPersonajeFX->play();
@@ -324,7 +504,8 @@ bool GameState::mouseMoved(const OIS::MouseEvent &evt)
 
 bool GameState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
   {
-    if ( OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->injectMouseDown ( evt, id ) ) return true;
+    if ( OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->injectMouseDown ( evt, id ) )
+      return true;
 
     if(id == OIS::MB_Left)
       {
@@ -335,6 +516,13 @@ bool GameState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
       {
         m_bRMouseDown = true;
       }
+    // else if(id == OIS::MB_Right)
+    //   {
+    // 	float rotx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.rel * deltaT * -1;
+    // 	float roty = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.rel * deltaT * -1;
+    // 	_camera->yaw(Ogre::Radian(rotx));
+    // 	_camera->pitch(Ogre::Radian(roty));
+    //   }
 
     return true;
   }
@@ -372,6 +560,7 @@ void GameState::update(double timeSinceLastFrame)
         popAppState();
         return;
       }
+
     // Ogre::OverlayElement *elem = NULL;
     // if (_estado == GAME) {
     //   Personaje *personaje = GameManager::getSingleton().getPersonaje();
@@ -455,13 +644,92 @@ void GameState::update(double timeSinceLastFrame)
     //     elem->show();
     //   }
     // }
+
+    Ogre::Vector3 vt(0,0,0);
+    Ogre::Real tSpeed = 20.0;
+    Ogre::Real deltaT = timeSinceLastFrame;
+    int fps = 1.0 / deltaT;
+    //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
+
+    _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
+
+//    _keyboard->capture();
+
+    mVehicle->applyEngineForce (0,0); mVehicle->applyEngineForce (0,1);
+
+    // if (_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false;
+    // if (_keyboard->isKeyDown(OIS::KC_D)) _world->setShowDebugShapes (true);
+    // if (_keyboard->isKeyDown(OIS::KC_H)) _world->setShowDebugShapes (false);
+
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
+      {
+	mVehicle->applyEngineForce (gEngineForce, 0);
+	mVehicle->applyEngineForce (gEngineForce, 1);
+      }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
+      {
+	mVehicle->applyEngineForce (-gEngineForce, 0);
+	mVehicle->applyEngineForce (-gEngineForce, 1);
+      }
+
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
+      {
+	if ( mSteering < 0.8 ) mSteering+=0.01;
+	mVehicle->setSteeringValue (mSteering, 0);
+	mVehicle->setSteeringValue (mSteering, 1);
+      }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+      {
+	if ( mSteering > -0.8 ) mSteering-=0.01;
+	mVehicle->setSteeringValue (mSteering, 0);
+	mVehicle->setSteeringValue (mSteering, 1);
+      }
+
+    int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
+    int posy = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.abs;   //  en pixeles.
+
+    m_pCamera->moveRelative ( vt * deltaT * tSpeed );
+    if ( m_pCamera->getPosition().length() < 10.0 )
+      {
+     	m_pCamera->moveRelative(-vt * deltaT * tSpeed);
+      }
+
+//    _mouse->capture();
+
+    // Si usamos la rueda, desplazamos en Z la camara ------------------
+    vt += Ogre::Vector3(0,0,-0.5)*deltaT * OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Z.rel;
+    m_pCamera->moveRelative ( vt * deltaT * tSpeed );
+
+    // // Botones del raton pulsados? -------------------------------------
+    // mbleft = _mouse->getMouseState().buttonDown(OIS::MB_Left);
+    // mbmiddle = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().buttonDown(OIS::MB_Middle);
+    // mbright = _mouse->getMouseState().buttonDown(OIS::MB_Right);
+
+    if ( OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().buttonDown ( OIS::MB_Middle ) )
+      { // Con boton medio pulsado, rotamos camara ---------
+	float rotx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.rel * deltaT * -1;
+	float roty = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.rel * deltaT * -1;
+	m_pCamera->yaw ( Ogre::Radian ( rotx ) );
+	m_pCamera->pitch ( Ogre::Radian ( roty ) );
+      }
+
+    Ogre::OverlayElement *oe = NULL;
+
+    // oe = m_pOverlayMgr->getOverlayElement("cursor");
+    // oe->setLeft(posx);
+    // oe->setTop(posy);
+
+    oe = m_pOverlayMgr->getOverlayElement("fpsInfo");
+    oe->setCaption(Ogre::StringConverter::toString(fps));
+
   }
 
 void GameState::buildGUI()
   {
     // actualizarVidas();
 
-    // Ogre::OverlayElement *elem;
+    Ogre::Overlay *ov = NULL;
+    Ogre::OverlayElement *elem = NULL;
 
     // elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
     // elem->show();
@@ -469,46 +737,60 @@ void GameState::buildGUI()
     // elem = m_pOverlayMgr->getOverlayElement("panelNivel");
     // elem->show();
 
+    // oe = m_pOverlayMgr->getOverlayElement("cursor");
+    // oe->setLeft(posx);
+    // oe->setTop(posy);
+
+    ov = m_pOverlayMgr->getByName("Info");
+
+    if ( ov )
+      ov->show();
+
+    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
+
+    if ( elem )
+      elem->hide();
+
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
   }
 
-string GameState::getTime()
-  {
-    unsigned int minutos = 0, segundos = 0;
-    char cad[6];
-    string ret = "";
+// string GameState::getTime()
+//   {
+//     unsigned int minutos = 0, segundos = 0;
+//     char cad[6];
+//     string ret = "";
 
-    minutos = (int)_tiempo / 60;
-    segundos = (int)_tiempo % 60;
+//     minutos = (int)_tiempo / 60;
+//     segundos = (int)_tiempo % 60;
 
-    sprintf ( cad, "%02d:%02d", minutos, segundos );
+//     sprintf ( cad, "%02d:%02d", minutos, segundos );
 
-    ret = cad;
+//     ret = cad;
 
-    return ret;
-  }
+//     return ret;
+//   }
 
-void GameState::actualizarVidas()
-  {
-    // Ogre::OverlayElement *elem;
+// void GameState::actualizarVidas()
+//   {
+//     // Ogre::OverlayElement *elem;
 
-    // elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
-    // elem->hide();
-    // elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
-    // elem->hide();
-    // elem = m_pOverlayMgr->getOverlayElement("panelVidas3");
-    // elem->hide();
+//     // elem = m_pOverlayMgr->getOverlayElement("panelVidas1");
+//     // elem->hide();
+//     // elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
+//     // elem->hide();
+//     // elem = m_pOverlayMgr->getOverlayElement("panelVidas3");
+//     // elem->hide();
 
-    // switch ( _vidas )
-    //   {
-    //   case 0:
-    // 	_estado = GAME_OVER;
-    //   case 2:
-    // 	elem = m_pOverlayMgr->getOverlayElement("panelVidas2"); break;
-    //   case 3:
-    // 	elem = m_pOverlayMgr->getOverlayElement("panelVidas3"); break;
-    //   default:
-    // 	elem = m_pOverlayMgr->getOverlayElement("panelVidas1"); break;
-    //   }
-    // elem->show();
-  }
+//     // switch ( _vidas )
+//     //   {
+//     //   case 0:
+//     // 	_estado = GAME_OVER;
+//     //   case 2:
+//     // 	elem = m_pOverlayMgr->getOverlayElement("panelVidas2"); break;
+//     //   case 3:
+//     // 	elem = m_pOverlayMgr->getOverlayElement("panelVidas3"); break;
+//     //   default:
+//     // 	elem = m_pOverlayMgr->getOverlayElement("panelVidas1"); break;
+//     //   }
+//     // elem->show();
+//   }

@@ -11,12 +11,12 @@ DIRHEA := include/
 CXX := g++
 
 # Flags de compilación -----------------------------------------------
-CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS`	\
+CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS OgreBullet bullet`	\
 -g -D_DEBUG
 
 # Flags del linker ---------------------------------------------------
-LDFLAGS := `pkg-config --libs-only-L OGRE OIS`
-LDLIBS := `pkg-config --libs-only-l OGRE OIS` -lGL -lstdc++ \
+LDFLAGS := `pkg-config --libs-only-L OGRE OIS OgreBullet bullet`
+LDLIBS := `pkg-config --libs-only-l OGRE OIS OgreBullet bullet` -lGL -lstdc++ \
 -lSDL -lSDL_mixer \
 -lOgreTerrain
 
