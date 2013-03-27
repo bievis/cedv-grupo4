@@ -18,7 +18,8 @@ CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS OgreBullet bullet`	
 LDFLAGS := `pkg-config --libs-only-L OGRE OIS OgreBullet bullet`
 LDLIBS := `pkg-config --libs-only-l OGRE OIS OgreBullet bullet` -lGL -lstdc++ \
 -lSDL -lSDL_mixer \
--lOgreTerrain
+-lOgreTerrain \
+-lConvexDecomposition
 
 # Modo de compilación ------------------------------------------------
 RELEASE = -O2 -D_RELEASE
