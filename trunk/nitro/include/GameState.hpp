@@ -10,17 +10,20 @@
 #include <OgreSubEntity.h>
 #include <OgreMaterialManager.h>
 #include "Records.h"
+#include <OgreBulletDynamicsRigidBody.h>
+#include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
+#include <Shapes/OgreBulletCollisionsBoxShape.h>
 
 // Segundos en los que se queda el personaje muerto
-#define TIEMPO_MUERTO 1.0
+//#define TIEMPO_MUERTO 1.0
 
-enum EstadoJuego  { GAME, GAME_OVER, NEXT_LEVEL, WINNER };
+//enum EstadoJuego  { GAME, GAME_OVER, NEXT_LEVEL, WINNER };
 
-enum QueryFlags
-  {
-    OGRE_HEAD_MASK	= 1<<0,
-    CUBE_MASK		= 1<<1
-  };
+// enum QueryFlags
+//   {
+//     OGRE_HEAD_MASK	= 1<<0,
+//     CUBE_MASK		= 1<<1
+//   };
 
 class GameState : public AppState
   {
@@ -65,7 +68,7 @@ private:
     double                    _tiempoMuertoFin;
 
     GameConfig*               _ptrGameConfig;
-    EstadoJuego               _estado;
+//    EstadoJuego               _estado;
 
     TrackPtr                  _gameTrack;
     TrackPtr                  _gameoverTrack;
@@ -73,10 +76,27 @@ private:
     SoundFXPtr                _moverPersonajeFX;
     SoundFXPtr                _muertoFX;
 
-    string getTime();
+    OgreBulletDynamics::DynamicsWorld * _world;
+    OgreBulletCollisions::DebugDrawer * _debugDrawer;
 
-    void actualizarVidas();
-    void cargarNivel();
+    OgreBulletDynamics::WheeledRigidBody  *mCarChassis;
+    OgreBulletDynamics::VehicleTuning     *mTuning;
+    OgreBulletDynamics::VehicleRayCaster  *mVehicleRayCaster;
+    OgreBulletDynamics::RaycastVehicle    *mVehicle;
+
+    Ogre::Entity    *mChassis;
+    Ogre::Entity    *mWheels[4];
+    Ogre::SceneNode *mWheelNodes[4];
+
+    float mSteering;
+
+    //Methods
+
+    void CreateInitialWorld();
+
+//    string getTime();
+//    void actualizarVidas();
+//    void cargarNivel();
 };
 
 #endif

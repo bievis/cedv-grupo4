@@ -1,0 +1,105 @@
+material slope/SOLID/TEX/stuff.jpg/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture stuff.jpg
+			}
+		}
+	}
+}
+material slope/SOLID/TEX/woods2-128.col.jpg/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture woods2-128.col.jpg
+			}
+		}
+	}
+}
+material slope/SOLID/TEX/metals-128.jpg/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture metals-128.jpg
+			}
+		}
+	}
+}
+material path/SOLID/TEX/metals-128.jpg/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture metals-128.jpg
+			}
+		}
+	}
+}
+material path/SOLID/TEX/bahn.tga/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture bahn.tga
+			}
+		}
+	}
+}
+material slope/SOLID/TEX/metal3.col.jpg/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture metal3.col.jpg
+			}
+		}
+	}
+}
+material slope/SOLID/TEX/bahn.tga/VertCol
+{
+	technique
+	{
+		pass
+		{
+			diffuse vertexcolour
+			specular 0.500000 0.500000 0.500000 12.500000
+			texture_unit
+			{
+				texture bahn.tga
+			}
+		}
+	}
+}
