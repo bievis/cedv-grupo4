@@ -14,6 +14,9 @@
 #include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
 #include <Shapes/OgreBulletCollisionsBoxShape.h>
 
+#include <vector>
+#include <Coche.hpp>
+
 // Segundos en los que se queda el personaje muerto
 //#define TIEMPO_MUERTO 1.0
 
@@ -24,6 +27,8 @@
 //     OGRE_HEAD_MASK	= 1<<0,
 //     CUBE_MASK		= 1<<1
 //   };
+
+#define _NUM_COCHES_ 2
 
 class GameState : public AppState
   {
@@ -79,16 +84,18 @@ private:
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
 
-    OgreBulletDynamics::WheeledRigidBody  *mCarChassis;
-    OgreBulletDynamics::VehicleTuning     *mTuning;
-    OgreBulletDynamics::VehicleRayCaster  *mVehicleRayCaster;
-    OgreBulletDynamics::RaycastVehicle    *mVehicle;
+    // OgreBulletDynamics::WheeledRigidBody  *mCarChassis;
+    // OgreBulletDynamics::VehicleTuning     *mTuning;
+    // OgreBulletDynamics::VehicleRayCaster  *mVehicleRayCaster;
+    // OgreBulletDynamics::RaycastVehicle    *mVehicle;
 
-    Ogre::Entity    *mChassis;
-    Ogre::Entity    *mWheels[4];
-    Ogre::SceneNode *mWheelNodes[4];
+    // Ogre::Entity    *mChassis;
+    // Ogre::Entity    *mWheels[4];
+    // Ogre::SceneNode *mWheelNodes[4];
 
-    float mSteering;
+    // float mSteering;
+
+    std::vector<Coche *> _vCoches;
 
     //Methods
 

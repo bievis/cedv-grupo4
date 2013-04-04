@@ -48,6 +48,7 @@ $(DIROBJ)%.o: $(DIRSRC)%.cpp
 clean:
 	rm -f *.log $(EXEC) *~ $(DIROBJ)* $(DIRSRC)*~ $(DIRHEA)*~
 	rm -rf $(DIROBJ)
+	rm -rf ./doxygen/html
 
 edit:
 	emacs $(DIRSRC)*.cpp $(DIRHEA)*.h $(DIRHEA)*.hpp &
