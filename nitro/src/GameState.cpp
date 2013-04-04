@@ -14,12 +14,12 @@
 using namespace OgreBulletCollisions;
 using namespace OgreBulletDynamics;
 
-static float gWheelRadius = 0.5f;
-static float gWheelWidth = 0.4f;
-static float gWheelFriction = 1e30f;
-static float gRollInfluence = 0.1f;
-static float gSuspensionRestLength = 0.6;
-static float gEngineForce = 1000.0;
+// static float gWheelRadius = 0.5f;
+// static float gWheelWidth = 0.4f;
+// static float gWheelFriction = 1e30f;
+// static float gRollInfluence = 0.1f;
+// static float gSuspensionRestLength = 0.6;
+// static float gEngineForce = 1000.0;
 
 using namespace Ogre;
 
@@ -134,81 +134,25 @@ void GameState::CreateInitialWorld()
     Shape = new OgreBulletCollisions::StaticPlaneCollisionShape
       (Vector3(0,1,0), 0);   // Vector normal y distancia
     OgreBulletDynamics::RigidBody *rigidBodyPlane = new
-      OgreBulletDynamics::RigidBody("rigidBodyPlane", _world);
+    OgreBulletDynamics::RigidBody("rigidBodyPlane", _world);
 
     // Creamos la forma estatica (forma, Restitucion, Friccion) ------
     rigidBodyPlane->setStaticShape(Shape, 0.1, 0.8);
 
     // Creamos el vehiculo =============================================
-    const Ogre::Vector3 chassisShift(0, 1.0, 0);
-    float connectionHeight = 0.7f;
-    mSteering = 0.0;
 
-    mChassis = m_pSceneMgr->createEntity("chassis", "chassis.mesh");
-    SceneNode *node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ();
+    Coche *ptrCoche = NULL;
+    char name[100];
+    float pos_z = -5;
 
-    SceneNode *chassisnode = node->createChildSceneNode();
-    chassisnode->attachObject (mChassis);
-    chassisnode->setPosition (chassisShift);
-
-    BoxCollisionShape* chassisShape = new BoxCollisionShape(Ogre::Vector3(1.f,0.75f,2.1f));
-    CompoundCollisionShape* compound = new CompoundCollisionShape();
-    compound->addChildShape(chassisShape, chassisShift);
-
-    mCarChassis = new WheeledRigidBody("carChassis", _world);
-
-    Vector3 CarPosition = Vector3(0, 0, -15);
-    mCarChassis->setShape (node, compound, 0.6, 0.6, 800, CarPosition, Quaternion::IDENTITY);
-    mCarChassis->setDamping(0.2, 0.2);
-    mCarChassis->disableDeactivation();
-
-    mTuning = new VehicleTuning(20.2, 4.4, 2.3, 500.0, 10.5);
-    mVehicleRayCaster = new VehicleRayCaster(_world);
-    mVehicle = new RaycastVehicle(mCarChassis, mTuning, mVehicleRayCaster);
-
-    mVehicle->setCoordinateSystem(0, 1, 2);
-
-    Ogre::Vector3 wheelDirectionCS0(0,-1,0);
-    Ogre::Vector3 wheelAxleCS(-1,0,0);
-
-    for (size_t i = 0; i < 4; i++)
+    for ( unsigned int i = 0; i < _NUM_COCHES_; i++, pos_z+=5 )
       {
-	mWheels[i] = m_pSceneMgr->createEntity ( "wheel" + i, "wheel.mesh" );
-	mWheels[i]->setCastShadows(true);
-
-	mWheelNodes[i] = m_pSceneMgr->getRootSceneNode()->createChildSceneNode();
-	mWheelNodes[i]->attachObject ( mWheels[i] );
+	memset ( name, 0, sizeof(char)*100 );
+	sprintf ( name, "Coche%u", i );
+	ptrCoche = new Coche ( name, 0, 0, pos_z,  m_pSceneMgr, _world );
+	_vCoches.push_back ( ptrCoche );
       }
 
-    bool isFrontWheel = true;
-    Ogre::Vector3 connectionPointCS0 (1-(0.3*gWheelWidth),
-				      connectionHeight, 2-gWheelRadius);
-
-    mVehicle->addWheel(mWheelNodes[0], connectionPointCS0, wheelDirectionCS0,
-		       wheelAxleCS, gSuspensionRestLength, gWheelRadius,
-		       isFrontWheel, gWheelFriction, gRollInfluence);
-
-    connectionPointCS0 = Ogre::Vector3(-1+(0.3*gWheelWidth),
-				       connectionHeight, 2-gWheelRadius);
-
-    mVehicle->addWheel(mWheelNodes[1], connectionPointCS0,
-		       wheelDirectionCS0, wheelAxleCS, gSuspensionRestLength,
-		       gWheelRadius, isFrontWheel, gWheelFriction, gRollInfluence);
-
-    isFrontWheel = false;
-    connectionPointCS0 = Ogre::Vector3(-1+(0.3*gWheelWidth),
-				       connectionHeight,-2+gWheelRadius);
-
-    mVehicle->addWheel(mWheelNodes[2], connectionPointCS0,
-		       wheelDirectionCS0, wheelAxleCS, gSuspensionRestLength,
-		       gWheelRadius, isFrontWheel, gWheelFriction, gRollInfluence);
-
-    connectionPointCS0 = Ogre::Vector3(1-(0.3*gWheelWidth),
-				       connectionHeight,-2+gWheelRadius);
-
-    mVehicle->addWheel(mWheelNodes[3], connectionPointCS0,
-		       wheelDirectionCS0, wheelAxleCS, gSuspensionRestLength,
-		       gWheelRadius, isFrontWheel, gWheelFriction, gRollInfluence);
   }
 
 bool GameState::pause()
@@ -250,6 +194,17 @@ void GameState::resume()
 void GameState::exit()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Leaving GameState...");
+
+    if ( _vCoches.size() > 0 )
+      {
+	for ( unsigned int i = 0; i < _vCoches.size(); i++ )
+	  {
+	    if ( _vCoches[i] )
+	      delete _vCoches[i];
+	  }
+
+	_vCoches.clear();
+      }
 
     // Parar del track principal...
     // _gameTrack->stop();
@@ -655,7 +610,12 @@ void GameState::update(double timeSinceLastFrame)
 
 //    _keyboard->capture();
 
-    mVehicle->applyEngineForce (0,0); mVehicle->applyEngineForce (0,1);
+    // mVehicle->applyEngineForce (0,0); mVehicle->applyEngineForce (0,1);
+    if ( _vCoches.size() > 0 )
+      {
+	_vCoches[0]->getVehiclePtr()->applyEngineForce (0,0);
+	_vCoches[0]->getVehiclePtr()->applyEngineForce (0,1);
+      }
 
     // if (_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false;
     // if (_keyboard->isKeyDown(OIS::KC_D)) _world->setShowDebugShapes (true);
@@ -663,26 +623,50 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
-	mVehicle->applyEngineForce (gEngineForce, 0);
-	mVehicle->applyEngineForce (gEngineForce, 1);
+	// mVehicle->applyEngineForce (gEngineForce, 0);
+	// mVehicle->applyEngineForce (gEngineForce, 1);
+	if ( _vCoches.size() > 0 )
+	  {
+	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 0);
+	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 1 );
+	  }
       }
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
       {
-	mVehicle->applyEngineForce (-gEngineForce, 0);
-	mVehicle->applyEngineForce (-gEngineForce, 1);
+	// mVehicle->applyEngineForce (-gEngineForce, 0);
+	// mVehicle->applyEngineForce (-gEngineForce, 1);
+	if ( _vCoches.size() > 0 )
+	  {
+	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 0 );
+	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 1 );
+	  }
       }
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
       {
-	if ( mSteering < 0.8 ) mSteering+=0.01;
-	mVehicle->setSteeringValue (mSteering, 0);
-	mVehicle->setSteeringValue (mSteering, 1);
+	// if ( mSteering < 0.8 ) mSteering+=0.01;
+	// mVehicle->setSteeringValue (mSteering, 0);
+	// mVehicle->setSteeringValue (mSteering, 1);
+	if ( _vCoches.size() > 0 )
+	  {
+	    if ( _vCoches[0]->getSteering() < 0.8 )
+	      _vCoches[0]->setSteering ( _vCoches[0]->getSteering() + 0.01 );
+	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
+	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
+	  }
       }
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
-	if ( mSteering > -0.8 ) mSteering-=0.01;
-	mVehicle->setSteeringValue (mSteering, 0);
-	mVehicle->setSteeringValue (mSteering, 1);
+	// if ( mSteering > -0.8 ) mSteering-=0.01;
+	// mVehicle->setSteeringValue (mSteering, 0);
+	// mVehicle->setSteeringValue (mSteering, 1);
+	if ( _vCoches.size() > 0 )
+	  {
+	    if ( _vCoches[0]->getSteering() > -0.8 )
+	      _vCoches[0]->setSteering ( _vCoches[0]->getSteering() - 0.01 );
+	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
+	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
+	  }
       }
 
     int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
