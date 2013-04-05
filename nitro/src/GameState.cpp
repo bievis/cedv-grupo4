@@ -185,8 +185,8 @@ void GameState::resume()
 
     // buildGUI();
 
-    // OgreFramework::getSingletonPtr()->m_pViewport->setCamera(m_pCamera);
-    // m_bQuit = false;
+    OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
+    m_bQuit = false;
 
     // _gameTrack->play();
   }
@@ -397,16 +397,6 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
-    //   {
-    // 	mVehicle->applyEngineForce ( gEngineForce, 0 );
-    // 	mVehicle->applyEngineForce ( gEngineForce, 1 );
-    //   }
-    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
-    //   {
-    // 	mVehicle->applyEngineForce (-gEngineForce, 0);
-    // 	mVehicle->applyEngineForce (-gEngineForce, 1);
-    //   }
     // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
     //   {
     // 	if (mSteering < 0.8) mSteering+=0.01;
@@ -603,6 +593,7 @@ void GameState::update(double timeSinceLastFrame)
     Ogre::Vector3 vt(0,0,0);
     Ogre::Real tSpeed = 20.0;
     Ogre::Real deltaT = timeSinceLastFrame;
+
     int fps = 1.0 / deltaT;
     //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
 
@@ -623,23 +614,47 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
-	// mVehicle->applyEngineForce (gEngineForce, 0);
-	// mVehicle->applyEngineForce (gEngineForce, 1);
-	if ( _vCoches.size() > 0 )
+	//Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
+	if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) && !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
 	  {
-	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 0);
-	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 1 );
+	    if ( _vCoches[0]->getSteering() != 0.0 )
+	      {
+		if ( _vCoches[0]->getSteering() > 0 )
+		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() - 0.01 );
+		else if ( _vCoches[0]->getSteering() < 0 )
+		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() + 0.01 );
+		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
+		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
+	      }
 	  }
+	//Se le aplica el empujón al coche
+    	if ( _vCoches.size() > 0 )
+    	  {
+    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 0);
+    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 1 );
+    	  }
       }
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
       {
-	// mVehicle->applyEngineForce (-gEngineForce, 0);
-	// mVehicle->applyEngineForce (-gEngineForce, 1);
-	if ( _vCoches.size() > 0 )
+	//Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
+	if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) && !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
 	  {
-	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 0 );
-	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 1 );
+	    if ( _vCoches[0]->getSteering() != 0.0 )
+	      {
+		if ( _vCoches[0]->getSteering() > 0 )
+		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() - 0.01 );
+		else if ( _vCoches[0]->getSteering() < 0 )
+		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() + 0.01 );
+		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
+		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
+	      }
 	  }
+	//Se le aplica el empujón al coche
+    	if ( _vCoches.size() > 0 )
+    	  {
+    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 0 );
+    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 1 );
+    	  }
       }
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
