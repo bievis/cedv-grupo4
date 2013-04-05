@@ -151,7 +151,7 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
       }
 
     bool isFrontWheel = true;
-    float wheelRadius =  2 - getWheelRadius();
+    float wheelRadius = 2 - getWheelRadius();
     float wheelWidth = 1 - ( 0.3 * getWheelWidth() );
     Ogre::Vector3 connectionPointCS0 ( 1 - ( 0.3 * getWheelWidth() ),
 				       connectionHeight, 2 - getWheelRadius() );
