@@ -262,6 +262,36 @@ void Coche::turn_right()
     _mVehicle->setSteeringValue ( _mSteering, 1 );
   }
 
+void Coche::print_info()
+  {
+    unsigned int i = 0;
+
+    cout << "============================================" << endl;
+    cout << "Car Info" << endl;
+    cout << "============================================" << endl;
+    cout << "Name                        : " << _name << endl;
+    cout << "Wheel Radius                : " << _wheelRadius << endl;
+    cout << "Wheel Width                 : " << _wheelWidth << endl;
+    cout << "Wheel Friction              : " << _wheelFriction << endl;
+    cout << "Roll Influence              : " << _rollInfluence << endl;
+    cout << "Suspension Rest Length      : " << _suspensionRestLength << endl;
+    cout << "Engine Force                : " << _engineForce << endl;
+    cout << "Initial coordenates [X,Y,Z] : [" << _x << "," << _y << "," << _z << "]" << endl;
+    printf ( "Car Chassis Ref.             : 0x%x\n", _mCarChassis );
+    printf ( "Vehicle Tuning Ref.          : 0x%x\n", _mTuning );
+    printf ( "Vehicle RayCaster Ref.       : 0x%x\n", _mVehicleRayCaster );
+    printf ( "Raycast Vehicle Ref.         : 0x%x\n", _mVehicle );
+    printf ( "Entity Chassis Ref.          : 0x%x\n", _mChassis );
+    printf ( "Entity Wheels Ref.\n" );
+    for ( i = 0; i < 4; i++ )
+      printf ( "    [ %d ]                   : 0x%x\n", i, _mWheels[i] );
+    printf ( "Scene Node Wheels Ref.\n" );
+    for ( i = 0; i < 4; i++ )
+      printf ( "    [ %d ]                   : 0x%x\n", i, _mWheelNodes[i] );
+    cout << "Steering                      : " << _mSteering << endl;
+    cout << "============================================" << endl;
+  }
+
 // *** Metodos Privados *** //
 
 void Coche::copy ( const Coche& source )

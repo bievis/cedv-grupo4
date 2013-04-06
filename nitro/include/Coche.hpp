@@ -168,6 +168,8 @@ class Coche
     void turn_left();
     /// \brief Metodo que gira las ruedas delanteras a la derecha
     void turn_right();
+    /// \brief Metodo que imprime la informacion del objeto Coche por pantalla
+    void print_info();
 
   private:
     /// \brief Identificador del Coche

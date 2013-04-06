@@ -206,16 +206,15 @@ void GameState::CreateInitialWorld()
 
     // Creamos el vehiculo =============================================
 
-    Coche *ptrCoche = NULL;
     char name[100];
     float pos_x = -1.0;
 
     for ( unsigned int i = 0; i < _NUM_COCHES_; i++ )
       {
 	memset ( name, 0, sizeof(char)*100 );
-	sprintf ( name, "Coche%u", i );
-	ptrCoche = new Coche ( name, -10.0, 10, 0,  m_pSceneMgr, _world );
-	_vCoches.push_back ( ptrCoche );
+	sprintf ( name, "Coche%03u", i+1 );
+	_vCoches.push_back ( new Coche ( name, -10.0, 10, 0,  m_pSceneMgr, _world ) );
+	_vCoches[i]->print_info();
       }
 
   }
@@ -462,36 +461,6 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
-    //   {
-    // 	if (mSteering < 0.8) mSteering+=0.01;
-    // 	mVehicle->setSteeringValue (mSteering, 0);
-    // 	mVehicle->setSteeringValue (mSteering, 1);
-    //   }
-    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
-    //   {
-    // 	if (mSteering > -0.8) mSteering-=0.01;
-    // 	mVehicle->setSteeringValue (mSteering, 0);
-    // 	mVehicle->setSteeringValue (mSteering, 1);
-    //   }
-
-// else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_UP))
-//     {
-//       _moverPersonajeFX->play();
-//       GameManager::getSingleton().getPersonaje()->setMovimiento(DELANTE);
-//     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_DOWN))
-//     {
-//       _moverPersonajeFX->play();
-//       GameManager::getSingleton().getPersonaje()->setMovimiento(ATRAS);
-//     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_LEFT))
-//     {
-//       _moverPersonajeFX->play();
-//       GameManager::getSingleton().getPersonaje()->setMovimiento(IZQUIERDA);
-//     } else if(OgreFramework::getSingletonPtr()->m_pKeyboard->isKeyDown(OIS::KC_RIGHT))
-//     {
-//       _moverPersonajeFX->play();
-//       GameManager::getSingleton().getPersonaje()->setMovimiento(DERECHA);
-//     }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -526,13 +495,6 @@ bool GameState::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID id)
       {
         m_bRMouseDown = true;
       }
-    // else if(id == OIS::MB_Right)
-    //   {
-    // 	float rotx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.rel * deltaT * -1;
-    // 	float roty = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.rel * deltaT * -1;
-    // 	_camera->yaw(Ogre::Radian(rotx));
-    // 	_camera->pitch(Ogre::Radian(roty));
-    //   }
 
     return true;
   }
@@ -667,47 +629,35 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( _vCoches.size() > 0 )
       {
-	_vCoches[0]->getVehiclePtr()->applyEngineForce (0,0);
-	_vCoches[0]->getVehiclePtr()->applyEngineForce (0,1);
-      }
+	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 0 );
+	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 1 );
 
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
-      {
-	//Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
-	if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) && !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+	if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
 	  {
-	    endereza = true;
-	  }
-	//Se le aplica el empujón al coche
-    	if ( _vCoches.size() > 0 )
-    	  {
+	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
+	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
+		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+		endereza = true;
+
+	    //Se le aplica el empujón al coche
 	    _vCoches[0]->accelerate ( endereza );
     	  }
-      }
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
-      {
-	//Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
-	if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) && !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+	else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
 	  {
-	    endereza = true;
-	  }
-	//Se le aplica el empujón al coche
-    	if ( _vCoches.size() > 0 )
-    	  {
-	    _vCoches[0]->decelerate ( endereza );
-    	  }
-      }
+	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
+	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
+		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+		endereza = true;
 
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
-      {
-	if ( _vCoches.size() > 0 )
+	    //Se le aplica el empujón al coche
+	    _vCoches[0]->decelerate ( endereza );
+	  }
+
+	if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
 	  {
 	    _vCoches[0]->turn_left();
 	  }
-      }
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
-      {
-	if ( _vCoches.size() > 0 )
+	else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
 	  {
 	    _vCoches[0]->turn_right();
 	  }
