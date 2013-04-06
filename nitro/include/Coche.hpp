@@ -157,6 +157,10 @@ class Coche
     /// \param world Referencia al objeto manejador de la fisica
     void build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world );
 
+    void accelerate ( bool endereza = false );
+    void turn_left();
+    void turn_right();
+
   private:
     /// \brief Identificador del Coche
     string _name;
