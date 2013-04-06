@@ -10,8 +10,8 @@
 #include "Debug/OgreBulletCollisionsDebugDrawer.h"
 
 #include "Constraints/OgreBulletDynamicsRaycastVehicle.h"
-#include "Shapes/OgreBulletCollisionsTrimeshShape.h"	
-#include "Shapes/OgreBulletCollisionsSphereShape.h"	
+#include "Shapes/OgreBulletCollisionsTrimeshShape.h"
+#include "Shapes/OgreBulletCollisionsSphereShape.h"
 #include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 
 using namespace OgreBulletCollisions;
@@ -122,7 +122,7 @@ void GameState::enter()
 void GameState::CreateInitialWorld()
   {
     // Activamos las sombras
-    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);	
+    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
 
@@ -155,17 +155,17 @@ void GameState::CreateInitialWorld()
     nodeCircuito->attachObject(entityCircuito);
 
     m_pSceneMgr->getRootSceneNode()->addChild(nodeCircuito);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterCircuito = new 
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterCircuito = new
       OgreBulletCollisions::StaticMeshToShapeConverter(entityCircuito);
 
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshCircuito = 
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshCircuito =
       trimeshConverterCircuito->createTrimesh();
 
-    OgreBulletDynamics::RigidBody *rigidTrackCircuito = new 
+    OgreBulletDynamics::RigidBody *rigidTrackCircuito = new
       OgreBulletDynamics::RigidBody("Circuito", _world);
-    rigidTrackCircuito->setShape(nodeCircuito, trackTrimeshCircuito, 0.8, 0.95, 0, Vector3::ZERO, 
+    rigidTrackCircuito->setShape(nodeCircuito, trackTrimeshCircuito, 0.8, 0.95, 0, Vector3::ZERO,
 		         Quaternion::IDENTITY);
-    
+
     delete trimeshConverterCircuito;
 
     Entity *entityBarreraExterior = m_pSceneMgr->createEntity("BarreraExterior.mesh");
@@ -173,15 +173,15 @@ void GameState::CreateInitialWorld()
     nodeBarreraExterior->attachObject(entityBarreraExterior);
 
     m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraExterior);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraExterior = new 
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraExterior = new
       OgreBulletCollisions::StaticMeshToShapeConverter(entityBarreraExterior);
 
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraExterior = 
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraExterior =
       trimeshConverterBarreraExterior->createTrimesh();
 
-    OgreBulletDynamics::RigidBody *rigidTrackBarreraExterior = new 
+    OgreBulletDynamics::RigidBody *rigidTrackBarreraExterior = new
       OgreBulletDynamics::RigidBody("BarreraExterior", _world);
-    rigidTrackBarreraExterior->setShape(nodeBarreraExterior, trackTrimeshBarreraExterior, 0.8, 0.95, 0, Vector3::ZERO, 
+    rigidTrackBarreraExterior->setShape(nodeBarreraExterior, trackTrimeshBarreraExterior, 0.8, 0.95, 0, Vector3::ZERO,
 		         Quaternion::IDENTITY);
 
     delete trimeshConverterBarreraExterior;
@@ -191,15 +191,15 @@ void GameState::CreateInitialWorld()
     nodeBarreraInterior->attachObject(entityBarreraInterior);
 
     m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraInterior);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraInterior = new 
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraInterior = new
       OgreBulletCollisions::StaticMeshToShapeConverter(entityBarreraInterior);
 
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraInterior = 
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraInterior =
       trimeshConverterBarreraInterior->createTrimesh();
 
-    OgreBulletDynamics::RigidBody *rigidTrackBarreraInterior = new 
+    OgreBulletDynamics::RigidBody *rigidTrackBarreraInterior = new
       OgreBulletDynamics::RigidBody("BarreraInterior", _world);
-    rigidTrackBarreraInterior->setShape(nodeBarreraInterior, trackTrimeshBarreraInterior, 0.8, 0.95, 0, Vector3::ZERO, 
+    rigidTrackBarreraInterior->setShape(nodeBarreraInterior, trackTrimeshBarreraInterior, 0.8, 0.95, 0, Vector3::ZERO,
 		         Quaternion::IDENTITY);
 
     delete trimeshConverterBarreraInterior;
@@ -658,45 +658,30 @@ void GameState::update(double timeSinceLastFrame)
     Ogre::Vector3 vt(0,0,0);
     Ogre::Real tSpeed = 20.0;
     Ogre::Real deltaT = timeSinceLastFrame;
+    bool endereza = false;
 
     int fps = 1.0 / deltaT;
     //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
 
     _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
 
-//    _keyboard->capture();
-
-    // mVehicle->applyEngineForce (0,0); mVehicle->applyEngineForce (0,1);
     if ( _vCoches.size() > 0 )
       {
 	_vCoches[0]->getVehiclePtr()->applyEngineForce (0,0);
 	_vCoches[0]->getVehiclePtr()->applyEngineForce (0,1);
       }
 
-    // if (_keyboard->isKeyDown(OIS::KC_ESCAPE)) return false;
-    // if (_keyboard->isKeyDown(OIS::KC_D)) _world->setShowDebugShapes (true);
-    // if (_keyboard->isKeyDown(OIS::KC_H)) _world->setShowDebugShapes (false);
-
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
 	//Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
 	if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) && !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
 	  {
-	    if ( _vCoches[0]->getSteering() != 0.0 )
-	      {
-		if ( _vCoches[0]->getSteering() > 0 )
-		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() - 0.01 );
-		else if ( _vCoches[0]->getSteering() < 0 )
-		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() + 0.01 );
-		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
-		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
-	      }
+	    endereza = true;
 	  }
 	//Se le aplica el empujón al coche
     	if ( _vCoches.size() > 0 )
     	  {
-    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 0);
-    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( _vCoches[0]->getEngineForce(), 1 );
+	    _vCoches[0]->accelerate ( endereza );
     	  }
       }
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
@@ -704,48 +689,27 @@ void GameState::update(double timeSinceLastFrame)
 	//Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
 	if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) && !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
 	  {
-	    if ( _vCoches[0]->getSteering() != 0.0 )
-	      {
-		if ( _vCoches[0]->getSteering() > 0 )
-		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() - 0.01 );
-		else if ( _vCoches[0]->getSteering() < 0 )
-		  _vCoches[0]->setSteering ( _vCoches[0]->getSteering() + 0.01 );
-		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
-		_vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
-	      }
+	    endereza = true;
 	  }
 	//Se le aplica el empujón al coche
     	if ( _vCoches.size() > 0 )
     	  {
-    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 0 );
-    	    _vCoches[0]->getVehiclePtr()->applyEngineForce ( (-1) * _vCoches[0]->getEngineForce(), 1 );
+	    _vCoches[0]->accelerate ( endereza );
     	  }
       }
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
       {
-	// if ( mSteering < 0.8 ) mSteering+=0.01;
-	// mVehicle->setSteeringValue (mSteering, 0);
-	// mVehicle->setSteeringValue (mSteering, 1);
 	if ( _vCoches.size() > 0 )
 	  {
-	    if ( _vCoches[0]->getSteering() < 0.8 )
-	      _vCoches[0]->setSteering ( _vCoches[0]->getSteering() + 0.01 );
-	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
-	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
+	    _vCoches[0]->turn_left();
 	  }
       }
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
-	// if ( mSteering > -0.8 ) mSteering-=0.01;
-	// mVehicle->setSteeringValue (mSteering, 0);
-	// mVehicle->setSteeringValue (mSteering, 1);
 	if ( _vCoches.size() > 0 )
 	  {
-	    if ( _vCoches[0]->getSteering() > -0.8 )
-	      _vCoches[0]->setSteering ( _vCoches[0]->getSteering() - 0.01 );
-	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 0 );
-	    _vCoches[0]->getVehiclePtr()->setSteeringValue ( _vCoches[0]->getSteering(), 1 );
+	    _vCoches[0]->turn_right();
 	  }
       }
 
@@ -777,14 +741,14 @@ void GameState::update(double timeSinceLastFrame)
 	m_pCamera->pitch ( Ogre::Radian ( roty ) );
       }
 
-    Ogre::OverlayElement *oe = NULL;
+    // Ogre::OverlayElement *oe = NULL;
 
     // oe = m_pOverlayMgr->getOverlayElement("cursor");
     // oe->setLeft(posx);
     // oe->setTop(posy);
 
-    oe = m_pOverlayMgr->getOverlayElement("fpsInfo");
-    oe->setCaption(Ogre::StringConverter::toString(fps));
+    // oe = m_pOverlayMgr->getOverlayElement("fpsInfo");
+    // oe->setCaption(Ogre::StringConverter::toString(fps));
 
   }
 
@@ -792,7 +756,7 @@ void GameState::buildGUI()
   {
     // actualizarVidas();
 
-    Ogre::Overlay *ov = NULL;
+    // Ogre::Overlay *ov = NULL;
     Ogre::OverlayElement *elem = NULL;
 
     // elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
@@ -805,10 +769,10 @@ void GameState::buildGUI()
     // oe->setLeft(posx);
     // oe->setTop(posy);
 
-    ov = m_pOverlayMgr->getByName("Info");
+    // ov = m_pOverlayMgr->getByName("Info");
 
-    if ( ov )
-      ov->show();
+    // if ( ov )
+    //   ov->show();
 
     elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
 

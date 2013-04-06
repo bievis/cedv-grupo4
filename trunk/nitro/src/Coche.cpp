@@ -208,6 +208,42 @@ void Coche::clear()
     init();
   }
 
+void Coche::accelerate ( bool endereza )
+  {
+    // Para enderezar las ruedas si no se pulsa hacia la izquierda o la derecha
+    if ( _mSteering != 0.0 && endereza )
+      {
+	if ( _mSteering > 0 )
+	  _mSteering -= 0.01;
+	else if ( _mSteering < 0 )
+	  _mSteering += 0.01;
+
+	_mVehicle->setSteeringValue ( _mSteering, 0 );
+	_mVehicle->setSteeringValue ( _mSteering, 1 );
+      }
+
+     _mVehicle->applyEngineForce ( _engineForce, 0 );
+     _mVehicle->applyEngineForce ( _engineForce, 1 );
+  }
+
+void Coche::turn_left()
+  {
+    if ( _mSteering < 0.8 )
+      _mSteering += 0.01;
+
+    _mVehicle->setSteeringValue ( _mSteering, 0 );
+    _mVehicle->setSteeringValue ( _mSteering, 1 );
+  }
+
+void Coche::turn_right()
+  {
+    if ( _mSteering > -0.8 )
+      _mSteering -= 0.01;
+
+    _mVehicle->setSteeringValue ( _mSteering, 0 );
+    _mVehicle->setSteeringValue ( _mSteering, 1 );
+  }
+
 // *** Metodos Privados *** //
 
 void Coche::copy ( const Coche& source )
