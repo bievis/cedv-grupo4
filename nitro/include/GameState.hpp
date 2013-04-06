@@ -28,7 +28,7 @@
 //     CUBE_MASK		= 1<<1
 //   };
 
-#define _NUM_COCHES_ 2
+#define _NUM_COCHES_ 3
 
 class GameState : public AppState
   {

@@ -10,6 +10,9 @@
 #include "Debug/OgreBulletCollisionsDebugDrawer.h"
 
 #include "Constraints/OgreBulletDynamicsRaycastVehicle.h"
+#include "Shapes/OgreBulletCollisionsTrimeshShape.h"	
+#include "Shapes/OgreBulletCollisionsSphereShape.h"	
+#include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 
 using namespace OgreBulletCollisions;
 using namespace OgreBulletDynamics;
@@ -64,7 +67,7 @@ void GameState::enter()
     // m_pCamera->setFarClipDistance(10000);
 
     m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
-    m_pCamera->setPosition(Ogre::Vector3(5,20,20));
+    m_pCamera->setPosition(Ogre::Vector3(0,17 * 10,1));
     m_pCamera->lookAt(Ogre::Vector3(0,0,0));
     m_pCamera->setNearClipDistance(5);
     m_pCamera->setFarClipDistance(10000);
@@ -112,44 +115,106 @@ void GameState::enter()
 
     buildGUI();
 
-    // createScene();
+    createScene();
 
   }
 
 void GameState::CreateInitialWorld()
   {
+    // Activamos las sombras
+    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);	
+    m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
+    m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
+
+    m_pSceneMgr->setShadowTextureCount(2);
+    m_pSceneMgr->setShadowTextureSize(512);
+
     // Creacion de la entidad y del SceneNode ------------------------
-    Plane plane1(Vector3(0,1,0), 0);    // Normal y distancia
-    MeshManager::getSingleton().createPlane("p1",
-					    ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane1,
-					    200, 200, 1, 1, true, 1, 20, 20, Vector3::UNIT_Z);
-    SceneNode* nodep = m_pSceneMgr->createSceneNode("ground");
-    Entity* groundEnt = m_pSceneMgr->createEntity("planeEnt", "p1");
-    groundEnt->setMaterialName("Ground");
-    nodep->attachObject(groundEnt);
-    m_pSceneMgr->getRootSceneNode()->addChild(nodep);
+    //Plane plane1(Vector3(0,1,0), 0);    // Normal y distancia
+    //MeshManager::getSingleton().createPlane("p1",
+		//			    ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane1,
+		//			    200, 200, 1, 1, true, 1, 20, 20, Vector3::UNIT_Z);
+    //SceneNode* nodep = m_pSceneMgr->createSceneNode("ground");
+    //Entity* groundEnt = m_pSceneMgr->createEntity("planeEnt", "p1");
+    //groundEnt->setMaterialName("Ground");
+    //nodep->attachObject(groundEnt);
+    //m_pSceneMgr->getRootSceneNode()->addChild(nodep);
 
     // Creamos forma de colision para el plano -----------------------
-    OgreBulletCollisions::CollisionShape *Shape;
-    Shape = new OgreBulletCollisions::StaticPlaneCollisionShape
-      (Vector3(0,1,0), 0);   // Vector normal y distancia
-    OgreBulletDynamics::RigidBody *rigidBodyPlane = new
-    OgreBulletDynamics::RigidBody("rigidBodyPlane", _world);
+    //OgreBulletCollisions::CollisionShape *Shape;
+    //Shape = new OgreBulletCollisions::StaticPlaneCollisionShape
+    //  (Vector3(0,1,0), 0);   // Vector normal y distancia
+    //OgreBulletDynamics::RigidBody *rigidBodyPlane = new
+    //OgreBulletDynamics::RigidBody("rigidBodyPlane", _world);
 
     // Creamos la forma estatica (forma, Restitucion, Friccion) ------
-    rigidBodyPlane->setStaticShape(Shape, 0.1, 0.8);
+    //rigidBodyPlane->setStaticShape(Shape, 0.1, 0.8);
+
+    Entity *entityCircuito = m_pSceneMgr->createEntity("Circuito.mesh");
+    SceneNode *nodeCircuito = m_pSceneMgr->createSceneNode("Circuito");
+    nodeCircuito->attachObject(entityCircuito);
+
+    m_pSceneMgr->getRootSceneNode()->addChild(nodeCircuito);
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterCircuito = new 
+      OgreBulletCollisions::StaticMeshToShapeConverter(entityCircuito);
+
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshCircuito = 
+      trimeshConverterCircuito->createTrimesh();
+
+    OgreBulletDynamics::RigidBody *rigidTrackCircuito = new 
+      OgreBulletDynamics::RigidBody("Circuito", _world);
+    rigidTrackCircuito->setShape(nodeCircuito, trackTrimeshCircuito, 0.8, 0.95, 0, Vector3::ZERO, 
+		         Quaternion::IDENTITY);
+    
+    delete trimeshConverterCircuito;
+
+    Entity *entityBarreraExterior = m_pSceneMgr->createEntity("BarreraExterior.mesh");
+    SceneNode *nodeBarreraExterior = m_pSceneMgr->createSceneNode("BarreraExterior");
+    nodeBarreraExterior->attachObject(entityBarreraExterior);
+
+    m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraExterior);
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraExterior = new 
+      OgreBulletCollisions::StaticMeshToShapeConverter(entityBarreraExterior);
+
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraExterior = 
+      trimeshConverterBarreraExterior->createTrimesh();
+
+    OgreBulletDynamics::RigidBody *rigidTrackBarreraExterior = new 
+      OgreBulletDynamics::RigidBody("BarreraExterior", _world);
+    rigidTrackBarreraExterior->setShape(nodeBarreraExterior, trackTrimeshBarreraExterior, 0.8, 0.95, 0, Vector3::ZERO, 
+		         Quaternion::IDENTITY);
+
+    delete trimeshConverterBarreraExterior;
+
+    Entity *entityBarreraInterior = m_pSceneMgr->createEntity("BarreraInterior.mesh");
+    SceneNode *nodeBarreraInterior = m_pSceneMgr->createSceneNode("BarreraInterior");
+    nodeBarreraInterior->attachObject(entityBarreraInterior);
+
+    m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraInterior);
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraInterior = new 
+      OgreBulletCollisions::StaticMeshToShapeConverter(entityBarreraInterior);
+
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraInterior = 
+      trimeshConverterBarreraInterior->createTrimesh();
+
+    OgreBulletDynamics::RigidBody *rigidTrackBarreraInterior = new 
+      OgreBulletDynamics::RigidBody("BarreraInterior", _world);
+    rigidTrackBarreraInterior->setShape(nodeBarreraInterior, trackTrimeshBarreraInterior, 0.8, 0.95, 0, Vector3::ZERO, 
+		         Quaternion::IDENTITY);
+
+    delete trimeshConverterBarreraInterior;
 
     // Creamos el vehiculo =============================================
 
     Coche *ptrCoche = NULL;
     char name[100];
-    float pos_z = -5;
+    float pos_x = -1.0;
 
-    for ( unsigned int i = 0; i < _NUM_COCHES_; i++, pos_z+=5 )
+    for ( unsigned int i = 0; i < _NUM_COCHES_; i++ )
       {
 	memset ( name, 0, sizeof(char)*100 );
 	sprintf ( name, "Coche%u", i );
-	ptrCoche = new Coche ( name, 0, 0, pos_z,  m_pSceneMgr, _world );
+	ptrCoche = new Coche ( name, -10.0, 10, 0,  m_pSceneMgr, _world );
 	_vCoches.push_back ( ptrCoche );
       }
 
@@ -211,9 +276,9 @@ void GameState::exit()
     // _gameoverTrack->stop();
     // _winnerTrack->stop();
 
-    // m_pSceneMgr->destroyCamera(m_pCamera);
-    // if(m_pSceneMgr)
-    //     OgreFramework::getSingletonPtr()->m_pRoot->destroySceneManager(m_pSceneMgr);
+    m_pSceneMgr->destroyCamera(m_pCamera);
+    if(m_pSceneMgr)
+      OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager(m_pSceneMgr);
 
     // GameManager::getSingleton().limpiar ();
 
@@ -259,11 +324,11 @@ void GameState::createScene()
     // escenario->build();  // Operacion para construir la geometria
 
     // // Luz de la escena
-    // Light* luz = m_pSceneMgr->createLight("Luz");
-    // luz->setType(Light::LT_POINT);
-    // luz->setPosition(75,75,75);
-    // luz->setSpecularColour(1, 1, 1);
-    // luz->setDiffuseColour(1, 1, 1);
+    Light* luz = m_pSceneMgr->createLight("Luz");
+    luz->setType(Light::LT_POINT);
+    luz->setPosition(75,75,75);
+    luz->setSpecularColour(1, 1, 1);
+    luz->setDiffuseColour(1, 1, 1);
 
     // // Partes del escenario
 
