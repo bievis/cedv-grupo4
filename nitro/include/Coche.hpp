@@ -156,9 +156,17 @@ class Coche
     /// \param sceneMgr Referencia al Scene Manager para poder añadir nuestro objeto dentro del escenario
     /// \param world Referencia al objeto manejador de la fisica
     void build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world );
-
+    /// \brief Metodo que provoca la acelarcion del coche
+    /// Como parametro a este metodo tenemos la posibilidad de provocar que las ruedas se "enderecen", es decir, si nosotros aceleramos y pulsamos a la vez a la derecha a la izquierda no queremos que las ruedas vuelvan a su estado original, mientras que si por ejemplo aceleramos sin pulsar a la izquierda o a la derecha, pues si queremos que las ruedas queden alineadas con el coche.
+    /// \param endereza provocara que las ruedas se alineen al coche mientras se acelera
     void accelerate ( bool endereza = false );
+    /// \brief Metodo que provoca la deceleracion del coche (provocando la marcha atras)
+    /// Como parametro a este metodo tenemos la posibilidad de provocar que las ruedas se "enderecen", es decir, si nosotros aceleramos y pulsamos a la vez a la derecha a la izquierda no queremos que las ruedas vuelvan a su estado original, mientras que si por ejemplo aceleramos sin pulsar a la izquierda o a la derecha, pues si queremos que las ruedas queden alineadas con el coche.
+    /// \param endereza provocara que las ruedas se alineen al coche mientras se acelera
+    void decelerate ( bool endereza = false );
+    /// \brief Metodo que gira las ruedas delanteras a la izquierda
     void turn_left();
+    /// \brief Metodo que gira las ruedas delanteras a la derecha
     void turn_right();
 
   private:

@@ -694,7 +694,7 @@ void GameState::update(double timeSinceLastFrame)
 	//Se le aplica el empujón al coche
     	if ( _vCoches.size() > 0 )
     	  {
-	    _vCoches[0]->accelerate ( endereza );
+	    _vCoches[0]->decelerate ( endereza );
     	  }
       }
 
