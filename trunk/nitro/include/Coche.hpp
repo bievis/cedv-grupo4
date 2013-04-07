@@ -14,6 +14,14 @@ using namespace OgreBulletDynamics;
 using namespace Ogre;
 using namespace std;
 
+enum eColour_Chassis {
+  DEFAULT,
+  BLUE,
+  GREEN,
+  YELLOW,
+  RED
+};
+
 /// \brief Clase para el manejo de los coches dentro del juego
 /// Esta clase se encargará de la construcción del objeto coche y tambien de su inserción en el juego, ya que se le suministrará el Scene Manager y el objeto world para la fisica
 class Coche
@@ -30,7 +38,8 @@ class Coche
     /// \param pos_z Posición de la coordenada Z del coche en el juego
     /// \param sceneMgr Referencia al Scene Manager para la inclusión del coche en el juego
     /// \param world Referencia al objeto World para la inclusión del coche con la física del juego
-    Coche ( const string& name, float pos_x, float pos_y, float pos_z, Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world );
+    /// \param colour Color del chasis del coche a construir
+    Coche ( const string& name, float pos_x, float pos_y, float pos_z, Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, eColour_Chassis colour = DEFAULT );
     /// \brief Destructor del objeto Coche
     ~Coche();
 
@@ -174,6 +183,8 @@ class Coche
   private:
     /// \brief Identificador del Coche
     string _name;
+    /// \brief Color del chasis del Coche
+    eColour_Chassis _color;
     /// \brief Radio de las ruedas
     float _wheelRadius;
     /// \brief Ancho de las ruedas
@@ -215,6 +226,9 @@ class Coche
     /// Este metodo será utilizado para el constructor copia y para el operador de asignación unificando funcionalidad
     /// \param source Objeto que se toma para copiar
     void copy ( const Coche& source );
+    /// \brief Metodo que en función del color seleccionado devolverá el nombre del fichero mesh a cargar
+    /// \return Nombre del fichero mesh a cargar
+    const char* getFilenameMesh();
   };
 
 #endif

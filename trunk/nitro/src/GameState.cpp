@@ -208,13 +208,20 @@ void GameState::CreateInitialWorld()
 
     char name[100];
     float pos_x = -1.0;
+    eColour_Chassis color = RED;
 
     for ( unsigned int i = 0; i < _NUM_COCHES_; i++ )
       {
 	memset ( name, 0, sizeof(char)*100 );
 	sprintf ( name, "Coche%03u", i+1 );
-	_vCoches.push_back ( new Coche ( name, -10.0, 10, 0,  m_pSceneMgr, _world ) );
+	_vCoches.push_back ( new Coche ( name, -10.0, 10, 0,  m_pSceneMgr, _world, color ) );
 	_vCoches[i]->print_info();
+	if ( i == 0 )
+	  color = BLUE;
+	else if ( i == 1 )
+	  color = GREEN;
+	else if ( i == 2 )
+	  color = YELLOW;
       }
 
   }
