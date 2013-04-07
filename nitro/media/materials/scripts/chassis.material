@@ -19,3 +19,87 @@ material "19 - Default"
 	}
 }
 
+material "20 - Blue"
+{
+	receive_shadows off
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.470588 0.470588 0.470588 1.000000
+			specular 0.449020 0.449020 0.449020 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture CB_Skin_BLUE.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material "21 - Green"
+{
+	receive_shadows off
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.470588 0.470588 0.470588 1.000000
+			specular 0.449020 0.449020 0.449020 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture CB_Skin_GREEN.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material "22 - Yellow"
+{
+	receive_shadows off
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.470588 0.470588 0.470588 1.000000
+			specular 0.449020 0.449020 0.449020 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture CB_Skin_YELLOW.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+
+material "23 - Red"
+{
+	receive_shadows off
+	technique
+	{
+		pass
+		{
+			ambient 0.500000 0.500000 0.500000 1.000000
+			diffuse 0.470588 0.470588 0.470588 1.000000
+			specular 0.449020 0.449020 0.449020 1.000000 12.500000
+			emissive 0.000000 0.000000 0.000000 1.000000
+			texture_unit
+			{
+				texture CB_Skin_RED.png
+				tex_address_mode wrap
+				filtering trilinear
+			}
+		}
+	}
+}
+

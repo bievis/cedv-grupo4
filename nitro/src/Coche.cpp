@@ -7,11 +7,13 @@ Coche::Coche()
     init();
   }
 
-Coche::Coche ( const string& name, float pos_x, float pos_y, float pos_z, Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world )
+Coche::Coche ( const string& name, float pos_x, float pos_y, float pos_z, Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, eColour_Chassis color )
   {
     init();
 
     _name = name;
+
+    _color = color;
 
     _x = pos_x;
     _y = pos_y;
@@ -90,6 +92,21 @@ void Coche::setWheelNodes ( unsigned int index, Ogre::SceneNode* source )
       }
   }
 
+const char* Coche::getFilenameMesh()
+  {
+    string filename = "chassis_DEFAULT.mesh";
+
+    switch ( _color )
+      {
+        case BLUE : filename = "chassis_BLUE.mesh"; break;
+        case GREEN : filename = "chassis_GREEN.mesh"; break;
+        case YELLOW : filename = "chassis_YELLOW.mesh"; break;
+        case RED : filename = "chassis_RED.mesh"; break;
+      }
+
+    return filename.c_str();
+  }
+
 void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world )
   {
     char name[100];
@@ -107,7 +124,7 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
 
     memset ( name, 0, sizeof(char)*100 );
     sprintf ( name, "%s_chassis", getName().c_str() );
-    setChassis ( sceneMgr->createEntity ( name, "chassis.mesh" ) );
+    setChassis ( sceneMgr->createEntity ( name, getFilenameMesh() ) );
     SceneNode *node = sceneMgr->getRootSceneNode()->createChildSceneNode ();
 
     SceneNode *chassisnode = node->createChildSceneNode();
@@ -270,6 +287,17 @@ void Coche::print_info()
     cout << "Car Info" << endl;
     cout << "============================================" << endl;
     cout << "Name                        : " << _name << endl;
+    cout << "Color                       : ";
+    switch ( _color )
+      {
+        case DEFAULT: cout << "DEFAULT" << endl; break;
+        case RED: cout << "RED" << endl; break;
+        case BLUE: cout << "BLUE" << endl; break;
+        case GREEN: cout << "GREEN" << endl; break;
+        case YELLOW: cout << "YELLOW" << endl; break;
+        default: cout << "UNKNOWN" << endl;
+      }
+    cout <<
     cout << "Wheel Radius                : " << _wheelRadius << endl;
     cout << "Wheel Width                 : " << _wheelWidth << endl;
     cout << "Wheel Friction              : " << _wheelFriction << endl;
