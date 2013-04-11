@@ -150,7 +150,7 @@ void GameState::CreateInitialWorld()
     // Creamos la forma estatica (forma, Restitucion, Friccion) ------
     //rigidBodyPlane->setStaticShape(Shape, 0.1, 0.8);
 
-    Entity *entityCircuito = m_pSceneMgr->createEntity("Circuito.mesh");
+    Entity *entityCircuito = m_pSceneMgr->createEntity("Circuito", "Circuito.mesh");
     SceneNode *nodeCircuito = m_pSceneMgr->createSceneNode("Circuito");
     nodeCircuito->attachObject(entityCircuito);
 
@@ -168,7 +168,7 @@ void GameState::CreateInitialWorld()
 
     delete trimeshConverterCircuito;
 
-    Entity *entityBarreraExterior = m_pSceneMgr->createEntity("BarreraExterior.mesh");
+    Entity *entityBarreraExterior = m_pSceneMgr->createEntity("BarreraExterior", "BarreraExterior.mesh");
     SceneNode *nodeBarreraExterior = m_pSceneMgr->createSceneNode("BarreraExterior");
     nodeBarreraExterior->attachObject(entityBarreraExterior);
 
@@ -186,7 +186,7 @@ void GameState::CreateInitialWorld()
 
     delete trimeshConverterBarreraExterior;
 
-    Entity *entityBarreraInterior = m_pSceneMgr->createEntity("BarreraInterior.mesh");
+    Entity *entityBarreraInterior = m_pSceneMgr->createEntity("BarreraInterior", "BarreraInterior.mesh");
     SceneNode *nodeBarreraInterior = m_pSceneMgr->createSceneNode("BarreraInterior");
     nodeBarreraInterior->attachObject(entityBarreraInterior);
 
