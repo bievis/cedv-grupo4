@@ -28,7 +28,7 @@
 //     CUBE_MASK		= 1<<1
 //   };
 
-#define _NUM_COCHES_ 4
+#define _NUM_COCHES_ 1
 
 class GameState : public AppState
   {
@@ -96,6 +96,7 @@ private:
     // float mSteering;
 
     std::vector<Coche *> _vCoches;
+//    std::vector<Node *> _vSceneNode_Coches;
 
     //Methods
 

@@ -116,7 +116,7 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
     setWheelFriction ( 1e30f );
     setRollInfluence ( 0.1f );
     setSuspensionRestLength ( 0.6 );
-    setEngineForce ( 4000.0 );
+    setEngineForce ( 6000.0 );
 
     const Ogre::Vector3 chassisShift(0, 1.0, 0);
     float connectionHeight = 0.7f;
@@ -140,7 +140,7 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
     setCarChassis ( new WheeledRigidBody ( name, world ) );
 
     Vector3 CarPosition = Vector3 ( _x, _y, _z );
-    getCarChassisPtr()->setShape ( node, compound, 0.6, 0.6, 800, CarPosition, Quaternion::IDENTITY );
+    getCarChassisPtr()->setShape ( node, compound, 0.6, 0.6, 1800, CarPosition, Quaternion::IDENTITY );
     getCarChassisPtr()->setDamping(0.2, 0.2);
     getCarChassisPtr()->disableDeactivation();
 
