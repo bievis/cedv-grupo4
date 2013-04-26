@@ -1,15 +1,15 @@
-// MaterialCircuito genrated by blender2ogre 0.5.8
+// Material_Circuito genrated by blender2ogre 0.5.8
 
-material MaterialCircuito 
+material Material_Circuito 
 {
     receive_shadows on 
 
     technique
     {
-        pass MaterialCircuito
+        pass Material_Circuito
         {
-            ambient 0.4586666524410248 0.800000011920929 0.800000011920929 1.0
-            diffuse 0.3669333274205524 0.6400000190734865 0.6400000190734865 1.0
+            ambient 0.1626364290714264 0.1626364290714264 0.1626364290714264 1.0
+            diffuse 0.13010914519591843 0.13010914519591843 0.13010914519591843 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 

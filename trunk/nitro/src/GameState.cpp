@@ -67,8 +67,9 @@ void GameState::enter()
     // m_pCamera->setFarClipDistance(10000);
 
     m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
-    m_pCamera->setPosition(Ogre::Vector3(0,17 * 10,1));
-    m_pCamera->lookAt(Ogre::Vector3(0,0,0));
+    //m_pCamera->setPosition(Ogre::Vector3 ( 0, 17 * 10, 1 ) );
+    m_pCamera->setPosition(Ogre::Vector3 ( 44.0f, 70.0f, 0.0f ) );
+    m_pCamera->lookAt(Ogre::Vector3 ( 0.0f, 13.0f, 0.0f ) );
     m_pCamera->setNearClipDistance(5);
     m_pCamera->setFarClipDistance(10000);
 
@@ -150,6 +151,28 @@ void GameState::CreateInitialWorld()
     // Creamos la forma estatica (forma, Restitucion, Friccion) ------
     //rigidBodyPlane->setStaticShape(Shape, 0.1, 0.8);
 
+    // // Crear el fondo de tierra
+
+    Entity *entitySuelo = m_pSceneMgr->createEntity("Suelo", "Suelo.mesh");
+    SceneNode *nodeSuelo = m_pSceneMgr->createSceneNode("Suelo");
+    nodeSuelo->attachObject(entitySuelo);
+
+    m_pSceneMgr->getRootSceneNode()->addChild(nodeSuelo);
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterSuelo = new
+      OgreBulletCollisions::StaticMeshToShapeConverter(entitySuelo);
+
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshSuelo =
+      trimeshConverterSuelo->createTrimesh();
+
+    OgreBulletDynamics::RigidBody *rigidTrackSuelo = new
+      OgreBulletDynamics::RigidBody("Suelo", _world);
+    rigidTrackSuelo->setShape(nodeSuelo, trackTrimeshSuelo, 0.8, 0.95, 0, Vector3::ZERO,
+    		         Quaternion::IDENTITY);
+
+    delete trimeshConverterSuelo;
+
+    // Crear el circuito
+
     Entity *entityCircuito = m_pSceneMgr->createEntity("Circuito", "Circuito.mesh");
     SceneNode *nodeCircuito = m_pSceneMgr->createSceneNode("Circuito");
     nodeCircuito->attachObject(entityCircuito);
@@ -168,8 +191,30 @@ void GameState::CreateInitialWorld()
 
     delete trimeshConverterCircuito;
 
-    Entity *entityBarreraExterior = m_pSceneMgr->createEntity("BarreraExterior", "BarreraExterior.mesh");
-    SceneNode *nodeBarreraExterior = m_pSceneMgr->createSceneNode("BarreraExterior");
+    // // Crear la linea de meta
+
+    Entity *entityMeta = m_pSceneMgr->createEntity("Meta", "Meta.mesh");
+    SceneNode *nodeMeta = m_pSceneMgr->createSceneNode("Meta");
+    nodeMeta->attachObject(entityMeta);
+
+    m_pSceneMgr->getRootSceneNode()->addChild(nodeMeta);
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterMeta = new
+      OgreBulletCollisions::StaticMeshToShapeConverter(entityMeta);
+
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshMeta =
+      trimeshConverterMeta->createTrimesh();
+
+    OgreBulletDynamics::RigidBody *rigidTrackMeta = new
+      OgreBulletDynamics::RigidBody("Meta", _world);
+    rigidTrackMeta->setShape(nodeMeta, trackTrimeshMeta, 0.8, 0.95, 0, Vector3::ZERO,
+    		         Quaternion::IDENTITY);
+
+    delete trimeshConverterMeta;
+
+    // Crear la valla externa del circuito
+
+    Entity *entityBarreraExterior = m_pSceneMgr->createEntity("Valla_Externa", "Valla_Externa.mesh");
+    SceneNode *nodeBarreraExterior = m_pSceneMgr->createSceneNode("Valla_Externa");
     nodeBarreraExterior->attachObject(entityBarreraExterior);
 
     m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraExterior);
@@ -180,14 +225,16 @@ void GameState::CreateInitialWorld()
       trimeshConverterBarreraExterior->createTrimesh();
 
     OgreBulletDynamics::RigidBody *rigidTrackBarreraExterior = new
-      OgreBulletDynamics::RigidBody("BarreraExterior", _world);
+      OgreBulletDynamics::RigidBody("Valla_Externa", _world);
     rigidTrackBarreraExterior->setShape(nodeBarreraExterior, trackTrimeshBarreraExterior, 0.8, 0.95, 0, Vector3::ZERO,
 		         Quaternion::IDENTITY);
 
     delete trimeshConverterBarreraExterior;
 
-    Entity *entityBarreraInterior = m_pSceneMgr->createEntity("BarreraInterior", "BarreraInterior.mesh");
-    SceneNode *nodeBarreraInterior = m_pSceneMgr->createSceneNode("BarreraInterior");
+    // Crear la valla interna del circuito
+
+    Entity *entityBarreraInterior = m_pSceneMgr->createEntity("Valla_Interna", "Valla_Interna.mesh");
+    SceneNode *nodeBarreraInterior = m_pSceneMgr->createSceneNode("Valla_Interna");
     nodeBarreraInterior->attachObject(entityBarreraInterior);
 
     m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraInterior);
@@ -198,7 +245,7 @@ void GameState::CreateInitialWorld()
       trimeshConverterBarreraInterior->createTrimesh();
 
     OgreBulletDynamics::RigidBody *rigidTrackBarreraInterior = new
-      OgreBulletDynamics::RigidBody("BarreraInterior", _world);
+      OgreBulletDynamics::RigidBody("Valla_Interna", _world);
     rigidTrackBarreraInterior->setShape(nodeBarreraInterior, trackTrimeshBarreraInterior, 0.8, 0.95, 0, Vector3::ZERO,
 		         Quaternion::IDENTITY);
 
@@ -209,13 +256,31 @@ void GameState::CreateInitialWorld()
     char name[100];
     float pos_x = -1.0;
     eColour_Chassis color = RED;
+    float posX = 13.0f;
+    float posY = 12.0f;
+    float posZ = 0.0f;
+    float base = 7.0f;
 
     for ( unsigned int i = 0; i < _NUM_COCHES_; i++ )
       {
+	if ( i % 2 == 0 )
+	  {
+	    if ( i > 0 )
+	      base -= 7.0f;
+	    posX = 18.0f;
+            posZ = base;
+	  }
+        else
+	  {
+            posX = 22.0f;
+            posZ = base - 3.0f;
+	  }
+
 	memset ( name, 0, sizeof(char)*100 );
 	sprintf ( name, "Coche%03u", i+1 );
-	_vCoches.push_back ( new Coche ( name, -10.0, 10, 0,  m_pSceneMgr, _world, color ) );
+	_vCoches.push_back ( new Coche ( name, posX, posY, posZ,  m_pSceneMgr, _world, color ) );
 	_vCoches[i]->print_info();
+
 	if ( i == 0 )
 	  color = BLUE;
 	else if ( i == 1 )
@@ -224,6 +289,43 @@ void GameState::CreateInitialWorld()
 	  color = YELLOW;
       }
 
+    // Historias pa no dormir
+    //****************************************************
+    // Supongo que los scenenodes que empiezan por Unnamed son el chasis y las ruedas de cada coche
+    // y tambien supongo que el primero de los cinco es el chasis
+    //****************************************************
+  //   Node *node_;
+  //   SceneNode::ChildNodeIterator it = m_pSceneMgr->getRootSceneNode()->getChildIterator();
+
+  //   cout << "=====" << endl;
+  //   cout << "Nodos" << endl;
+  //   cout << "=====" << endl;
+
+  //   unsigned int encontrado = 0;
+
+  //   while (it.hasMoreElements())
+  //     {
+  // 	node_ = it.getNext();
+
+  // 	cout << "name : " << node_->getName();
+
+  //       if ( node_->getName().find("Unnamed") != std::string::npos )
+  // 	  {
+  // 	    if ( encontrado % 5 == 0 )
+  // 	      {
+  // 		cout << " *** Coche??" << endl;
+  // 		_vSceneNode_Coches.push_back ( node_ );
+  // 	      }
+  // 	    else
+  // 	      cout << endl;
+
+  // 	    encontrado++;
+  // 	  }
+  // 	else
+  // 	  cout << endl;
+  //     }
+
+  //   cout << "=====" << endl;
   }
 
 bool GameState::pause()
@@ -276,6 +378,8 @@ void GameState::exit()
 
 	_vCoches.clear();
       }
+
+//    _vSceneNode_Coches.clear();
 
     // Parar del track principal...
     // _gameTrack->stop();
@@ -692,10 +796,13 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().buttonDown ( OIS::MB_Middle ) )
       { // Con boton medio pulsado, rotamos camara ---------
+
 	float rotx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.rel * deltaT * -1;
 	float roty = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.rel * deltaT * -1;
 	m_pCamera->yaw ( Ogre::Radian ( rotx ) );
 	m_pCamera->pitch ( Ogre::Radian ( roty ) );
+	Ogre::Vector3 v = m_pCamera->getPosition();
+	cout << "Pos camara : x = " << v.x << ", y = " << v.y << ", z = " << v.z << endl;
       }
 
     // Ogre::OverlayElement *oe = NULL;
