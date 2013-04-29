@@ -375,3 +375,25 @@ void Coche::init()
 	_mWheelNodes[i] = NULL;
       }
   }
+
+bool Coche::isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world) {
+    bool meta = false;
+    Vector3 posicion = getCarChassisPtr()->getCenterOfMassPosition ();
+    btVector3 posIni(posicion.x, posicion.y, posicion.z);
+    btVector3 posFin(posicion.x, posicion.y - 1, posicion.z);
+
+    // Start and End are vectors 
+    btCollisionWorld::ClosestRayResultCallback RayCallback(posIni, posFin);
+     
+    // Perform raycast
+    world->getBulletDynamicsWorld ()->rayTest(posIni, posFin, RayCallback);
+     
+    if(RayCallback.hasHit()) {
+        btCollisionObject* obA = (btCollisionObject*)(RayCallback.m_collisionObject);
+        OgreBulletCollisions::Object *obOB_A = world->findObject(obA);
+        
+        meta = obOB_A->getRootNode()->getName() == "Meta";
+    }
+    
+    return meta;
+}

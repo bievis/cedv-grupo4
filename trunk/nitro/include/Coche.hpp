@@ -6,6 +6,7 @@
 #include "OgreBulletDynamicsRigidBody.h"
 #include "Debug/OgreBulletCollisionsDebugDrawer.h"
 #include "Constraints/OgreBulletDynamicsRaycastVehicle.h"
+#include "OgreBulletCollisionsRay.h"
 #include <OgreSceneNode.h>
 #include <string>
 
@@ -179,6 +180,8 @@ class Coche
     void turn_right();
     /// \brief Metodo que imprime la informacion del objeto Coche por pantalla
     void print_info();
+    /// \brief Metodo que dice si el coche esta pasando por la meta o no
+    bool isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world);
 
   private:
     /// \brief Identificador del Coche
