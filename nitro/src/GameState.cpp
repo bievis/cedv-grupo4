@@ -773,6 +773,9 @@ void GameState::update(double timeSinceLastFrame)
 	    _vCoches[0]->turn_right();
 	  }
       }
+    
+    // TODO
+    cout << "Meta: " << _vCoches[0]->isMeta(m_pSceneMgr, _world) << endl;
 
     int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
     int posy = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.abs;   //  en pixeles.
