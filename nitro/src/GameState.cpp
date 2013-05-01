@@ -31,7 +31,7 @@ GameState::GameState()
     m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
-    _ptrGameConfig      = NULL;
+    //    _ptrGameConfig      = NULL;
   }
 
 void GameState::enter()
@@ -42,7 +42,9 @@ void GameState::enter()
     size_t windowHandle;
     std::ostringstream wHandleStr;
 
-    // _tiempo = 0;
+    _tiempo = 0;
+    _mejorTiempo = 0;
+    _empieza_a_contar = false;
     // _level = 1;
     // _vidas = 3;
     // _estado = GAME;
@@ -392,9 +394,9 @@ void GameState::exit()
 
     // GameManager::getSingleton().limpiar ();
 
-    // // Ocultar overlays
-    // Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-    // overlay->hide();
+    // Ocultar overlays
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+    overlay->hide();
 
     // Ogre::OverlayElement *elem;
     // elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
@@ -461,9 +463,9 @@ void GameState::createScene()
     // Personaje* p = new Personaje("Marciano", nodePersonaje, nodePersonajeMuerto, nodePersonajeEstrellas);
     // GameManager::getSingleton().setPersonaje(p);
 
-    // //Cargamos overlay con la GUI ( Vidas[Los 3 tipos] + Tiempo + Nivel )
-    // Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-    // overlay->show();
+    //Cargamos overlay con la GUI ( Tiempo )
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+    overlay->show();
 
     // Ogre::OverlayElement *elem;
     // elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
@@ -632,7 +634,8 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 
 void GameState::update(double timeSinceLastFrame)
   {
-    _tiempo += timeSinceLastFrame;
+    if ( _empieza_a_contar )
+      _tiempo += timeSinceLastFrame;
     // _tiempoTotal += timeSinceLastFrame;
 
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
@@ -643,6 +646,15 @@ void GameState::update(double timeSinceLastFrame)
         popAppState();
         return;
       }
+
+    Ogre::OverlayElement *elem = NULL;
+    elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
+    elem->setCaption ( getTime(_tiempo) );
+
+    elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
+    elem->setCaption ( "Best Time:\n  " + getTime(_mejorTiempo) );
+    elem = m_pOverlayMgr->getOverlayElement("panelMejorTiempo");
+    elem->show();
 
     // Ogre::OverlayElement *elem = NULL;
     // if (_estado == GAME) {
@@ -688,7 +700,7 @@ void GameState::update(double timeSinceLastFrame)
     //     elem->setCaption ( string ("Level ") + string ( cad ) );
 
     //     elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
-    //     elem->setCaption ( getTime() );
+    //     elem->setCaption ( getTime(_tiempo) );
     //   }
     // } else if (_estado == GAME_OVER) {
     //   // Cuando se hayan acabo todas las vidas
@@ -773,9 +785,26 @@ void GameState::update(double timeSinceLastFrame)
 	    _vCoches[0]->turn_right();
 	  }
       }
-    
+
     // TODO
-    cout << "Meta: " << _vCoches[0]->isMeta(m_pSceneMgr, _world) << endl;
+    //    cout << "Meta: " << _vCoches[0]->isMeta(m_pSceneMgr, _world) << endl;
+
+    if ( _vCoches[0]->isMeta(m_pSceneMgr, _world) )
+      {
+        // Si es la primera vez, significa que hemos pisado la meta pero para empezar la vuelta, por ser ésta la primera
+        // no se debe de contar
+        if ( _empieza_a_contar )
+	  {
+            cout << "mejorTiempo = " << _mejorTiempo << endl;
+            cout << "tiempo = " << _tiempo << endl;
+	    if ( ( _tiempo > 1 ) && ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) )
+	      _mejorTiempo = _tiempo;
+	  }
+
+        _tiempo = 0;
+
+        _empieza_a_contar = true; // Solo sirve para la primera vez
+      }
 
     int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
     int posy = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.abs;   //  en pixeles.
@@ -826,8 +855,13 @@ void GameState::buildGUI()
     // Ogre::Overlay *ov = NULL;
     Ogre::OverlayElement *elem = NULL;
 
-    // elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
-    // elem->show();
+    elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
+    elem->show();
+
+    elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
+    elem->setCaption ( "Best Time:" );
+    elem = m_pOverlayMgr->getOverlayElement("panelMejorTiempo");
+    elem->show();
 
     // elem = m_pOverlayMgr->getOverlayElement("panelNivel");
     // elem->show();
@@ -849,21 +883,21 @@ void GameState::buildGUI()
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
   }
 
-// string GameState::getTime()
-//   {
-//     unsigned int minutos = 0, segundos = 0;
-//     char cad[6];
-//     string ret = "";
+string GameState::getTime ( double tiempo )
+  {
+    unsigned int minutos = 0, segundos = 0;
+    char cad[6];
+    string ret = "";
 
-//     minutos = (int)_tiempo / 60;
-//     segundos = (int)_tiempo % 60;
+    minutos = (int)tiempo / 60;
+    segundos = (int)tiempo % 60;
 
-//     sprintf ( cad, "%02d:%02d", minutos, segundos );
+    sprintf ( cad, "%02d:%02d", minutos, segundos );
 
-//     ret = cad;
+    ret = cad;
 
-//     return ret;
-//   }
+    return ret;
+  }
 
 // void GameState::actualizarVidas()
 //   {
