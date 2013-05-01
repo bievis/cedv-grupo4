@@ -65,15 +65,17 @@ private:
     bool                      m_bRMouseDown;
     Ogre::OverlayManager*     m_pOverlayMgr;
 
-    unsigned int              _level;
-    char                      _vidas;
+    //    unsigned int              _level;
+    //    char                      _vidas;
     double                    _tiempo;
-    double                    _tiempoTotal;
-    double                    _tiempoNextLevel;
-    double                    _tiempoMuertoFin;
+    double                    _mejorTiempo;
+    bool                      _empieza_a_contar;
+    //    double                    _tiempoTotal;
+    //    double                    _tiempoNextLevel;
+    //    double                    _tiempoMuertoFin;
 
-    GameConfig*               _ptrGameConfig;
-//    EstadoJuego               _estado;
+    //    GameConfig*               _ptrGameConfig;
+    //    EstadoJuego               _estado;
 
     TrackPtr                  _gameTrack;
     TrackPtr                  _gameoverTrack;
@@ -102,7 +104,7 @@ private:
 
     void CreateInitialWorld();
 
-//    string getTime();
+    string getTime(double tiempo);
 //    void actualizarVidas();
 //    void cargarNivel();
 };

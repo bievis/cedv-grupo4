@@ -1,0 +1,56 @@
+template element TextArea(Plantillas/Tiempo)
+{
+    font_name SpaceOut
+                metrics_mode pixels
+                char_height 64
+                colour 1.0 1.0 0.0
+}
+
+template element TextArea(Plantillas/MejorTiempo)
+{
+    font_name SpaceOut
+                metrics_mode pixels
+                char_height 36
+                colour 1.0 1.0 0.0
+}
+
+GUI_Game
+{
+    zorder 500
+
+    container Panel(panelMejorTiempo)
+    {
+        metrics_mode pixels
+        left -216 
+        top 10
+        width 206
+        height 83
+        horz_align right
+        vert_align top
+        material panelMejorTiempoM
+
+        element TextArea(txtMejorTiempo) : Plantillas/MejorTiempo
+        {
+          top 12
+          left 10
+        }
+     }
+
+    container Panel(panelTiempo)
+    {
+        metrics_mode pixels
+        left 10 
+        top 10
+        width 206
+        height 83
+        vert_align top
+        material panelTiempoM
+
+        element TextArea(txtTiempo) : Plantillas/Tiempo
+        {
+          top 10
+          left 10
+        }
+     }
+
+}
