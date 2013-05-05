@@ -140,7 +140,7 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
     setCarChassis ( new WheeledRigidBody ( name, world ) );
 
     Vector3 CarPosition = Vector3 ( _x, _y, _z );
-    getCarChassisPtr()->setShape ( node, compound, 0.6, 0.6, 1800, CarPosition, Quaternion::IDENTITY );
+    getCarChassisPtr()->setShape ( node, compound, 0.6, 0.6, 1000, CarPosition, Quaternion::IDENTITY );
     getCarChassisPtr()->setDamping(0.2, 0.2);
     getCarChassisPtr()->disableDeactivation();
 
@@ -382,18 +382,18 @@ bool Coche::isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWor
     btVector3 posIni(posicion.x, posicion.y, posicion.z);
     btVector3 posFin(posicion.x, posicion.y - 1, posicion.z);
 
-    // Start and End are vectors 
+    // Start and End are vectors
     btCollisionWorld::ClosestRayResultCallback RayCallback(posIni, posFin);
-     
+
     // Perform raycast
     world->getBulletDynamicsWorld ()->rayTest(posIni, posFin, RayCallback);
-     
+
     if(RayCallback.hasHit()) {
         btCollisionObject* obA = (btCollisionObject*)(RayCallback.m_collisionObject);
         OgreBulletCollisions::Object *obOB_A = world->findObject(obA);
-        
+
         meta = obOB_A->getRootNode()->getName() == "Meta";
     }
-    
+
     return meta;
 }

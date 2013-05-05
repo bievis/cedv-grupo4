@@ -1,0 +1,76 @@
+material Menu/Background
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture background.png
+			}
+		}
+	}
+}
+
+material Menu/Vacio
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture panel_transparente.png
+     }
+   }
+ }
+}
+
+material Game/Tiempo
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture panel_tiempo.png
+     }
+   }
+ }
+}
+
+material Game/Titulo
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture titulo.png
+     }
+   }
+ }
+}
+
+material Game/MejorTiempo
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture panel_tiempo.png
+     }
+   }
+ }
+}
+

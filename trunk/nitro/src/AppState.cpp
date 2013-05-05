@@ -43,5 +43,5 @@ void AppState::put_background_with_rotation ( const char* background )
     node->attachObject ( rect );
 
     // Example of background scrolling
-    material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation ( -0.015, 0.0 );
+    //    material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation ( -0.015, 0.0 );
   }
