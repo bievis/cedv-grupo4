@@ -6,8 +6,8 @@ MenuState::MenuState()
   {
     m_bQuit             = false;
     m_FrameEvent        = Ogre::FrameEvent();
-    _mostradoCreditos   = false;
-    _mostradoHighScores = false;
+    // _mostradoCreditos   = false;
+    // _mostradoHighScores = false;
     // rect_titulo         = NULL;
     // rect_nave           = NULL;
     // rect_creditos       = NULL;
@@ -17,11 +17,11 @@ MenuState::MenuState()
 void MenuState::enter()
   {
     // Carga del sonido.
-//    _menuTrack = TrackManager::getSingleton().load("fondo.mp3");
+    _menuTrack = TrackManager::getSingleton().load("menu.mp3");
     _menuFX = SoundFXManager::getSingleton().load("boton.wav");
 
     // Reproducción del track principal...
-//    _menuTrack->play();
+    _menuTrack->play();
 
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage ( "Entering MenuState..." );
 
@@ -39,8 +39,8 @@ void MenuState::enter()
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
-    //    Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
-    //    background->show();
+    // Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
+    // background->show();
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->destroyAllWidgets();
 
@@ -96,12 +96,24 @@ void MenuState::createMenuScene()
 
     createButtons();
 
-//    put_background_with_rotation ( "background_star.png" );
+    // Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "Background_Menu" );
+    // overlay->show();
 
-//    put_overlay ( rect_nave, "Menu/Nave", -2.0, 1.0, 2.0, -1.0 );
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
+    overlay->show();
+
+    //    put_background_with_rotation ( "background.png" );
+    _rect_background = new Ogre::Rectangle2D ( true );
+    //    _background->setCorners ( -2, 1, 2, -1 );
+    _rect_background->setCorners ( -1, 1, 1, -1 );
+    _rect_background->setMaterial ( "Menu/Background" );
+
+    // Render the background before everything else
+    _rect_background->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
 
     // Attach background to the scene
-//    node->attachObject(rect_nave);
+    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "Background" );
+    node->attachObject ( _rect_background );
 
 //    put_overlay ( rect_titulo, "Menu/Titulo", -2.0, 1.0, 2.0, -1.0 );
 
@@ -123,9 +135,9 @@ void MenuState::createMenuScene()
     //PERO COMO NO PONGA ÉSTO AQUÍ, LA PRIMERA VEZ QUE CARGUE
     //LAS PUNTUACIONES NO APARECE NADA
     //************************************************************
-//    Overlay *over = NULL;
-//    over = m_pOverlayMgr->getByName ( "PantallaRecords" );
-//    if ( over ) over->show();
+    // Overlay *over = NULL;
+    // over = m_pOverlayMgr->getByName ( "Background" );
+    // if ( over ) over->show();
     //************************************************************
   }
 
@@ -134,14 +146,20 @@ void MenuState::exit()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Leaving MenuState...");
 
     // Parar del track principal...
-//    _menuTrack->stop();
+    _menuTrack->stop();
 
     m_pSceneMgr->destroyCamera(m_pCamera);
     if(m_pSceneMgr)
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager(m_pSceneMgr);
 
-    // Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
+    // Ogre::Overlay *background = m_pOverlayMgr->getByName("Background_Menu");
     // background->hide();
+
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Menu");
+    overlay->hide();
+
+    if ( _rect_background )
+       delete _rect_background;
 
     // if ( rect_titulo )
     //   delete rect_titulo;
@@ -164,18 +182,18 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
   {
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
       {
-        if ( _mostradoCreditos )
-          {
-            mostrarOverlayCreditos ( false );
-          }
-        else if ( _mostradoHighScores )
-          {
-            mostrarOverlayHighScores ( false );
-          }
-        else
+        // if ( _mostradoCreditos )
+        //   {
+        //     mostrarOverlayCreditos ( false );
+        //   }
+        // else if ( _mostradoHighScores )
+        //   {
+        //     mostrarOverlayHighScores ( false );
+        //   }
+        // else
           {
             m_bQuit = true;
-            return true;
+            // return true;
           }
       }
 
@@ -238,7 +256,7 @@ void MenuState::buttonHit(OgreBites::Button *button)
 // Muestra u oculta los creditos
 void MenuState::mostrarOverlayCreditos ( bool mostrar )
   {
-    _mostradoCreditos = mostrar;
+    // _mostradoCreditos = mostrar;
 
     if ( mostrar )
       {
@@ -262,7 +280,7 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
     // Overlay *over = NULL;
     // OverlayElement *oe = NULL;
 
-    _mostradoHighScores = mostrar;
+    // _mostradoHighScores = mostrar;
 
     // over = m_pOverlayMgr->getByName ( "PantallaRecords" );
     // oe = m_pOverlayMgr->getOverlayElement("highScoresValues");

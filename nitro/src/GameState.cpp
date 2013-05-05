@@ -653,7 +653,7 @@ void GameState::update(double timeSinceLastFrame)
 
     elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
     elem->setCaption ( "Best Time:\n  " + getTime(_mejorTiempo) );
-    elem = m_pOverlayMgr->getOverlayElement("panelMejorTiempo");
+    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
     elem->show();
 
     // Ogre::OverlayElement *elem = NULL;
@@ -784,6 +784,11 @@ void GameState::update(double timeSinceLastFrame)
 	  {
 	    _vCoches[0]->turn_right();
 	  }
+
+	_velocidad = Math::Abs(_vCoches[0]->getVehiclePtr()->getBulletVehicle()->getCurrentSpeedKmHour());
+
+	cout << _velocidad << endl;
+
       }
 
     // TODO
@@ -855,12 +860,12 @@ void GameState::buildGUI()
     // Ogre::Overlay *ov = NULL;
     Ogre::OverlayElement *elem = NULL;
 
-    elem = m_pOverlayMgr->getOverlayElement("panelTiempo");
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
     elem->show();
 
     elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
     elem->setCaption ( "Best Time:" );
-    elem = m_pOverlayMgr->getOverlayElement("panelMejorTiempo");
+    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
     elem->show();
 
     // elem = m_pOverlayMgr->getOverlayElement("panelNivel");

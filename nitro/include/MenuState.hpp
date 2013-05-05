@@ -37,17 +37,17 @@ public:
     void muestra_highscores();
 
 private:
+    Ogre::Rectangle2D*                _rect_background;
     bool                        m_bQuit;
     Ogre::OverlayManager*       m_pOverlayMgr;
 
-//    TrackPtr                    _menuTrack;
+    TrackPtr                    _menuTrack;
     SoundFXPtr                  _menuFX;
 
-    bool                        _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
-    bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
+    //    bool                        _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
+    //    bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
 
     //Menu principal
-//    Rectangle2D*                _rect_titulo;
 //    Rectangle2D*                _rect_nave;
 
     //Creditos

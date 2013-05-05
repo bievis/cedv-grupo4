@@ -41,7 +41,7 @@ void PauseState::enter()
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton(OgreBites::TL_CENTER, "BackToMenuBtn", "Return to Main Menu", 350);
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton(OgreBites::TL_CENTER, "ExitBtn", "Exit Game", 350);
 
-    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createLabel(OgreBites::TL_TOP, "PauseLbl", "Pause mode", 350);
+    //    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createLabel(OgreBites::TL_TOP, "PauseLbl", "Pause mode", 350);
 
     m_bQuit = false;
 

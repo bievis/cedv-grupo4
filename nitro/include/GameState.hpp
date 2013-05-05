@@ -83,6 +83,8 @@ private:
     SoundFXPtr                _moverPersonajeFX;
     SoundFXPtr                _muertoFX;
 
+    btScalar                  _velocidad;
+
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
 

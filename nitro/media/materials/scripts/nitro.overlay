@@ -18,7 +18,7 @@ GUI_Game
 {
     zorder 500
 
-    container Panel(panelMejorTiempo)
+    container Panel(Panel_MejorTiempo_Game)
     {
         metrics_mode pixels
         left -216 
@@ -27,7 +27,7 @@ GUI_Game
         height 83
         horz_align right
         vert_align top
-        material panelMejorTiempoM
+        material Game/MejorTiempo 
 
         element TextArea(txtMejorTiempo) : Plantillas/MejorTiempo
         {
@@ -36,7 +36,7 @@ GUI_Game
         }
      }
 
-    container Panel(panelTiempo)
+    container Panel(Panel_Tiempo_Game)
     {
         metrics_mode pixels
         left 10 
@@ -44,7 +44,7 @@ GUI_Game
         width 206
         height 83
         vert_align top
-        material panelTiempoM
+        material Game/Tiempo
 
         element TextArea(txtTiempo) : Plantillas/Tiempo
         {
@@ -53,4 +53,47 @@ GUI_Game
         }
      }
 
+    container Panel(Panel_Titulo_Game)
+    {
+        metrics_mode pixels
+        left -91 
+        top 15
+        width 182
+        height 70
+        horz_align center
+        vert_align top
+        material Game/Titulo
+     }
+
 }
+
+Background_Menu
+{
+    zorder 0
+    container Panel(Panel_Background_Menu) 
+    {
+		top -512 
+		left -640
+        width 1280
+        height 1024
+                horz_align top
+                vert_align left
+        material Menu/Background
+    }
+}
+
+GUI_Menu
+{
+    container Panel(Panel_Titulo_Menu)
+    {
+        metrics_mode pixels
+        left -91
+        top 15
+        width 182
+        height 70
+        horz_align center
+        vert_align top
+        material Game/Titulo
+     }
+}
+
