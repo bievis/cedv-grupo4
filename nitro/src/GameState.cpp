@@ -26,6 +26,8 @@ using namespace OgreBulletDynamics;
 
 using namespace Ogre;
 
+#define MAX_SPEED 100
+
 GameState::GameState()
   {
     m_bLMouseDown       = false;
@@ -334,10 +336,15 @@ bool GameState::pause()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Pausing GameState...");
 
-    // Ogre::OverlayElement *elem;
+    Mostrar_Velocidad ( 0, true );
 
-    // elem = m_pOverlayMgr->getOverlayElement("panelVidas3");
-    // elem->hide();
+    Ogre::OverlayElement *elem;
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
+    elem->hide();
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
+    elem->hide();
 
     // elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
     // elem->hide();
@@ -362,6 +369,23 @@ void GameState::resume()
 
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
     m_bQuit = false;
+
+    Mostrar_Velocidad ( 0 );
+
+    Ogre::OverlayElement *elem;
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
+    elem->show();
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
+    elem->show();
+
+    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
+
+    if ( elem )
+      elem->hide();
+
+    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
     // _gameTrack->play();
   }
@@ -787,6 +811,8 @@ void GameState::update(double timeSinceLastFrame)
 
 	_velocidad = Math::Abs(_vCoches[0]->getVehiclePtr()->getBulletVehicle()->getCurrentSpeedKmHour());
 
+	Mostrar_Velocidad ( _velocidad );
+
 	cout << _velocidad << endl;
 
       }
@@ -928,3 +954,62 @@ string GameState::getTime ( double tiempo )
 //     //   }
 //     // elem->show();
 //   }
+
+void GameState::Mostrar_Velocidad ( float velocidad, bool ocultar )
+  {
+    Ogre::OverlayElement *elem, *textArea;
+    int tipo = 0;
+    float porcion = MAX_SPEED / 5.5;
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad5_Game");
+    elem->hide();
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad4_Game");
+    elem->hide();
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad3_Game");
+    elem->hide();
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad2_Game");
+    elem->hide();
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad1_Game");
+    elem->hide();
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad0_Game");
+    elem->hide();
+
+    if ( !ocultar )
+      {
+	tipo = velocidad / porcion;
+
+	switch ( tipo )
+	  {
+	  case 5:
+	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad5_Game");
+	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad5");
+	    break;
+	  case 4:
+	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad4_Game");
+	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad4");
+	    break;
+	  case 3:
+	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad3_Game");
+	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad3");
+	    break;
+	  case 2:
+	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad2_Game");
+	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad2");
+	    break;
+	  case 1:
+	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad1_Game");
+	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad1");
+	    break;
+	  default:
+	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad0_Game");
+	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad0");
+	    break;
+	  }
+
+	char cad[30];
+	sprintf ( cad, " %d", (int)_velocidad );
+
+	textArea->setCaption ( cad );
+	elem->show();
+      }
+  }

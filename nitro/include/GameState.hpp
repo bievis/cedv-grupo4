@@ -107,6 +107,7 @@ private:
     void CreateInitialWorld();
 
     string getTime(double tiempo);
+    void Mostrar_Velocidad ( float velocidad, bool ocultar = false );
 //    void actualizarVidas();
 //    void cargarNivel();
 };

@@ -74,3 +74,93 @@ material Game/MejorTiempo
  }
 }
 
+material Game/Velocidad5
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture Velocidad_5.png
+     }
+   }
+ }
+}
+
+material Game/Velocidad4
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture Velocidad_4.png
+     }
+   }
+ }
+}
+
+material Game/Velocidad3
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture Velocidad_3.png
+     }
+   }
+ }
+}
+
+material Game/Velocidad2
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture Velocidad_2.png
+     }
+   }
+ }
+}
+
+material Game/Velocidad1
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture Velocidad_1.png
+     }
+   }
+ }
+}
+
+material Game/Velocidad0
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture Velocidad_0.png
+     }
+   }
+ }
+}
+
