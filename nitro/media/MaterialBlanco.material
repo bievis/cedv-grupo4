@@ -1,12 +1,12 @@
-// Material_Interna genrated by blender2ogre 0.5.9
+// MaterialBlanco genrated by blender2ogre 0.5.9
 
-material Material_Interna 
+material MaterialBlanco 
 {
     receive_shadows on 
 
     technique
     {
-        pass Material_Interna
+        pass MaterialBlanco
         {
             ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
             diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0

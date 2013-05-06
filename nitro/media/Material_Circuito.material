@@ -1,4 +1,4 @@
-// Material_Circuito genrated by blender2ogre 0.5.8
+// Material_Circuito genrated by blender2ogre 0.5.9
 
 material Material_Circuito 
 {
@@ -30,6 +30,14 @@ material Material_Circuito
             shading gouraud
             transparent_sorting on
 
+            texture_unit 
+            {
+                texture arena.jpg
+                tex_address_mode wrap
+                scale 1.0 1.0
+                tex_coord_set 0
+                colour_op modulate
+            }
         }
     }
 }
