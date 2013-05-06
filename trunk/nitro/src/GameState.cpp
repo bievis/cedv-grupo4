@@ -27,7 +27,6 @@ using namespace OgreBulletDynamics;
 using namespace Ogre;
 
 #define MAX_SPEED 100
-
 GameState::GameState()
   {
     m_bLMouseDown       = false;
@@ -72,7 +71,7 @@ void GameState::enter()
 
     m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
     //m_pCamera->setPosition(Ogre::Vector3 ( 0, 17 * 10, 1 ) );
-    m_pCamera->setPosition(Ogre::Vector3 ( 44.0f, 70.0f, 0.0f ) );
+    m_pCamera->setPosition(Ogre::Vector3 ( 40.0f, 80.0f, 0.0f ) );
     m_pCamera->lookAt(Ogre::Vector3 ( 0.0f, 13.0f, 0.0f ) );
     m_pCamera->setNearClipDistance(5);
     m_pCamera->setFarClipDistance(10000);
@@ -369,7 +368,6 @@ void GameState::resume()
 
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
     m_bQuit = false;
-
     Mostrar_Velocidad ( 0 );
 
     Ogre::OverlayElement *elem;
@@ -598,6 +596,8 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_R ) )
+      _vCoches[0]->reset();
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -812,7 +812,6 @@ void GameState::update(double timeSinceLastFrame)
 	_velocidad = Math::Abs(_vCoches[0]->getVehiclePtr()->getBulletVehicle()->getCurrentSpeedKmHour());
 
 	Mostrar_Velocidad ( _velocidad );
-
 	cout << _velocidad << endl;
 
       }
@@ -954,7 +953,6 @@ string GameState::getTime ( double tiempo )
 //     //   }
 //     // elem->show();
 //   }
-
 void GameState::Mostrar_Velocidad ( float velocidad, bool ocultar )
   {
     Ogre::OverlayElement *elem, *textArea;
