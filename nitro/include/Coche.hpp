@@ -181,7 +181,10 @@ class Coche
     /// \brief Metodo que imprime la informacion del objeto Coche por pantalla
     void print_info();
     /// \brief Metodo que dice si el coche esta pasando por la meta o no
+    /// \return Si se ha pasado por la meta o no
     bool isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world);
+    /// \brief Metodo que vuelve a dejar el coche en el estado y posicion inicial
+    void reset();
 
   private:
     /// \brief Identificador del Coche
