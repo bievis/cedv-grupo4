@@ -26,12 +26,13 @@ using namespace OgreBulletDynamics;
 
 using namespace Ogre;
 
-#define MAX_SPEED 100
+#define MAX_SPEED 80
 GameState::GameState()
   {
     m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
+    _estaEnMeta         = false;
     //    _ptrGameConfig      = NULL;
   }
 
@@ -51,14 +52,14 @@ void GameState::enter()
     // _estado = GAME;
     // _tiempoMuertoFin = 0.0;
 
-    // _gameTrack = TrackManager::getSingleton().load("tema_juego.mp3");
+    _gameTrack = TrackManager::getSingleton().load("Hank_Williams_Junior_-_Canyonero.mp3");
     // _gameoverTrack = TrackManager::getSingleton().load("game_over.mp3");
     // _winnerTrack = TrackManager::getSingleton().load("aplausos.mp3");
-    // _moverPersonajeFX = SoundFXManager::getSingleton().load("movimiento.wav");
-    // _muertoFX = SoundFXManager::getSingleton().load("muerto.wav");
+    //_moverPersonajeFX = SoundFXManager::getSingleton().load("movimiento.wav");
+    _sonidoMetaFX = SoundFXManager::getSingleton().load("claxon.wav");
 
     // // Reproducción del track principal...
-    // _gameTrack->play();
+    _gameTrack->play();
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
     m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
@@ -385,7 +386,7 @@ void GameState::resume()
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
-    // _gameTrack->play();
+    _gameTrack->play();
   }
 
 void GameState::exit()
@@ -406,7 +407,7 @@ void GameState::exit()
 //    _vSceneNode_Coches.clear();
 
     // Parar del track principal...
-    // _gameTrack->stop();
+    _gameTrack->stop();
     // _gameoverTrack->stop();
     // _winnerTrack->stop();
 
@@ -596,8 +597,12 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_R ) )
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_R ) ) {
+      // Volver a poner el coche en el inicio
+      _tiempo = 0;
+      _empieza_a_contar = false;
       _vCoches[0]->reset();
+    }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -812,13 +817,12 @@ void GameState::update(double timeSinceLastFrame)
 	_velocidad = Math::Abs(_vCoches[0]->getVehiclePtr()->getBulletVehicle()->getCurrentSpeedKmHour());
 
 	Mostrar_Velocidad ( _velocidad );
-	cout << _velocidad << endl;
 
       }
 
     // TODO
     //    cout << "Meta: " << _vCoches[0]->isMeta(m_pSceneMgr, _world) << endl;
-
+    
     if ( _vCoches[0]->isMeta(m_pSceneMgr, _world) )
       {
         // Si es la primera vez, significa que hemos pisado la meta pero para empezar la vuelta, por ser ésta la primera
@@ -830,10 +834,13 @@ void GameState::update(double timeSinceLastFrame)
 	    if ( ( _tiempo > 1 ) && ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) )
 	      _mejorTiempo = _tiempo;
 	  }
-
+        if (!_estaEnMeta) _sonidoMetaFX->play(); // Cuando entra en la meta
         _tiempo = 0;
 
         _empieza_a_contar = true; // Solo sirve para la primera vez
+        _estaEnMeta = true;
+      } else {
+        _estaEnMeta = false;
       }
 
     int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero

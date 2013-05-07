@@ -60,6 +60,7 @@ public:
     void LoadScenaryParts();
 
 private:
+    bool          _estaEnMeta;
     bool		      m_bQuit;
     bool		      m_bLMouseDown;
     bool                      m_bRMouseDown;
@@ -81,7 +82,7 @@ private:
     TrackPtr                  _gameoverTrack;
     TrackPtr                  _winnerTrack;
     SoundFXPtr                _moverPersonajeFX;
-    SoundFXPtr                _muertoFX;
+    SoundFXPtr                _sonidoMetaFX;
 
     btScalar                  _velocidad;
 
