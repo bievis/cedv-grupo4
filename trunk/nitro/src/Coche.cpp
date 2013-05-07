@@ -141,7 +141,7 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
 
     Vector3 CarPosition = Vector3 ( _x, _y, _z );
     getCarChassisPtr()->setShape ( node, compound, 0.6, 0.6, 1000, CarPosition, Quaternion::IDENTITY );
-    getCarChassisPtr()->setDamping(0.2, 0.2);
+    getCarChassisPtr()->setDamping(0.4, 0.4); // Dureza de la amortiguacion
     getCarChassisPtr()->disableDeactivation();
 
     setTuning ( new VehicleTuning(20.2, 4.4, 2.3, 500.0, 10.5) );
