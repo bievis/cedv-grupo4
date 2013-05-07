@@ -83,7 +83,6 @@ GUI_Game
         horz_align right
         vert_align top
         material Game/Velocidad5
-        alignment center
         element TextArea(txtVelocidad5) : Plantillas/Velocidad
         {
           top 80 
@@ -100,7 +99,6 @@ GUI_Game
         horz_align right
         vert_align top
         material Game/Velocidad4
-        alignment center
         element TextArea(txtVelocidad4) : Plantillas/Velocidad
         {
           top 80 
@@ -117,7 +115,6 @@ GUI_Game
         horz_align right
         vert_align top
         material Game/Velocidad3
-        alignment center
         element TextArea(txtVelocidad3) : Plantillas/Velocidad
         {
           top 80
@@ -134,7 +131,6 @@ GUI_Game
         horz_align right
         vert_align top
         material Game/Velocidad2
-        alignment center
         element TextArea(txtVelocidad2) : Plantillas/Velocidad
         {
           top 80
@@ -151,7 +147,6 @@ GUI_Game
         horz_align right
         vert_align top
         material Game/Velocidad1
-        alignment center
         element TextArea(txtVelocidad1) : Plantillas/Velocidad
         {
           top 80
@@ -168,7 +163,6 @@ GUI_Game
         horz_align right
         vert_align top
         material Game/Velocidad0
-        alignment center
         element TextArea(txtVelocidad0) : Plantillas/Velocidad
         {
           top 80
@@ -189,6 +183,17 @@ Background_Menu
                 horz_align top
                 vert_align left
         material Menu/Background
+    }
+
+    container Panel(Panel_Creditos_Menu)
+    {
+        top 0
+        left 0
+        width 1024
+        height 768
+        horz_align top
+        vert_align left
+        material Menu/Creditos
     }
 }
 
