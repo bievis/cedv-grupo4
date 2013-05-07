@@ -346,6 +346,8 @@ bool GameState::pause()
     elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
     elem->hide();
 
+    _gameTrack->pause();
+
     // elem = m_pOverlayMgr->getOverlayElement("panelVidas2");
     // elem->hide();
 
@@ -407,6 +409,7 @@ void GameState::exit()
 //    _vSceneNode_Coches.clear();
 
     // Parar del track principal...
+    _gameTrack->play();
     _gameTrack->stop();
     // _gameoverTrack->stop();
     // _winnerTrack->stop();
