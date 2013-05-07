@@ -101,7 +101,6 @@ private:
     // float mSteering;
 
     std::vector<Coche *> _vCoches;
-//    std::vector<Node *> _vSceneNode_Coches;
 
     //Methods
 

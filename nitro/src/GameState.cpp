@@ -835,7 +835,12 @@ void GameState::update(double timeSinceLastFrame)
             cout << "mejorTiempo = " << _mejorTiempo << endl;
             cout << "tiempo = " << _tiempo << endl;
 	    if ( ( _tiempo > 1 ) && ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) )
-	      _mejorTiempo = _tiempo;
+	      {
+		_mejorTiempo = _tiempo;
+		Records::getSingleton().add ( _mejorTiempo );
+		Records::getSingleton().write();
+     	        Records::getSingleton().compacta ( 10 );
+	      }
 	  }
         if (!_estaEnMeta) _sonidoMetaFX->play(); // Cuando entra en la meta
         _tiempo = 0;
@@ -846,36 +851,36 @@ void GameState::update(double timeSinceLastFrame)
         _estaEnMeta = false;
       }
 
-    int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
-    int posy = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.abs;   //  en pixeles.
+    // int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
+    // int posy = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.abs;   //  en pixeles.
 
-    m_pCamera->moveRelative ( vt * deltaT * tSpeed );
-    if ( m_pCamera->getPosition().length() < 10.0 )
-      {
-     	m_pCamera->moveRelative(-vt * deltaT * tSpeed);
-      }
+    // m_pCamera->moveRelative ( vt * deltaT * tSpeed );
+    // if ( m_pCamera->getPosition().length() < 10.0 )
+    //   {
+    //  	m_pCamera->moveRelative(-vt * deltaT * tSpeed);
+    //   }
 
 //    _mouse->capture();
 
     // Si usamos la rueda, desplazamos en Z la camara ------------------
-    vt += Ogre::Vector3(0,0,-0.5)*deltaT * OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Z.rel;
-    m_pCamera->moveRelative ( vt * deltaT * tSpeed );
+    // vt += Ogre::Vector3(0,0,-0.5)*deltaT * OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Z.rel;
+    // m_pCamera->moveRelative ( vt * deltaT * tSpeed );
 
     // // Botones del raton pulsados? -------------------------------------
     // mbleft = _mouse->getMouseState().buttonDown(OIS::MB_Left);
     // mbmiddle = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().buttonDown(OIS::MB_Middle);
     // mbright = _mouse->getMouseState().buttonDown(OIS::MB_Right);
 
-    if ( OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().buttonDown ( OIS::MB_Middle ) )
-      { // Con boton medio pulsado, rotamos camara ---------
+    // if ( OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().buttonDown ( OIS::MB_Middle ) )
+    //   { // Con boton medio pulsado, rotamos camara ---------
 
-	float rotx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.rel * deltaT * -1;
-	float roty = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.rel * deltaT * -1;
-	m_pCamera->yaw ( Ogre::Radian ( rotx ) );
-	m_pCamera->pitch ( Ogre::Radian ( roty ) );
-	Ogre::Vector3 v = m_pCamera->getPosition();
-	cout << "Pos camara : x = " << v.x << ", y = " << v.y << ", z = " << v.z << endl;
-      }
+    // 	float rotx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.rel * deltaT * -1;
+    // 	float roty = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.rel * deltaT * -1;
+    // 	m_pCamera->yaw ( Ogre::Radian ( rotx ) );
+    // 	m_pCamera->pitch ( Ogre::Radian ( roty ) );
+    // 	Ogre::Vector3 v = m_pCamera->getPosition();
+    // 	cout << "Pos camara : x = " << v.x << ", y = " << v.y << ", z = " << v.z << endl;
+    //   }
 
     // Ogre::OverlayElement *oe = NULL;
 

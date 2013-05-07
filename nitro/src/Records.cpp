@@ -30,10 +30,10 @@ Records* Records::getSingletonPtr()
     return (msSingleton);
   }
 
-void Records::add ( int level, int seconds )
+void Records::add ( int seconds )
   {
     cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": level " << level << " - seconds " << seconds << endl;
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds " << seconds << endl;
 
     char cad[100];
     std::list<string>::iterator it;
@@ -44,20 +44,18 @@ void Records::add ( int level, int seconds )
 
     getFechaHora ( fecha, hora );
 
-    sprintf ( cad, "%d|%d|%s|%s", level, seconds, fecha.c_str(), hora.c_str() );
+    sprintf ( cad, "%d|%s|%s", seconds, fecha.c_str(), hora.c_str() );
 
     if ( _records.size() == 0 )
       {
 	it = _records.begin();
-	// _records.insert ( _records.begin(), cad );
       }
     else
       {
 	for ( it = _records.begin(); it != _records.end(); ++it )
 	  {
-	    if ( compare ( level, seconds, *it ) > 0 ) //newValue > *it
+	    if ( compare ( seconds, *it ) > 0 ) //newValue > *it
 	      {
-		// _records.insert ( it, string(cad) );
 		break;
 	      }
 	  }
@@ -72,20 +70,19 @@ void Records::add ( int level, int seconds )
     cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
   }
 
-int Records::compare ( int level, int seconds, string value2 )
+int Records::compare ( int seconds, string value2 )
   {
     cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": level " << level << " - seconds " << seconds << " - value2 " << value2 << endl;
+    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": seconds " << seconds << " - value2 " << value2 << endl;
 
     int level2;
     int seconds2;
     int ret = 0;
     char resto[100];
 
-    sscanf ( value2.c_str(), "%d|%d|%s", &level2, &seconds2, resto );
+    sscanf ( value2.c_str(), "%d|%s", &seconds2, resto );
 
-    if ( ( level > level2 ) ||
-	 ( ( level == level2 ) && ( seconds < seconds2 ) ) )
+    if ( seconds < seconds2 )
       {
 	ret = 1;
       }
@@ -119,7 +116,7 @@ void Records::Copy ( Records &source )
 
     for ( unsigned int i = 0; i < source.getSize(); i++ )
       _records.push_back ( source.getValue ( i ) );
-  }  
+  }
 
 Records::Records ( Records& source )
   {
@@ -136,12 +133,12 @@ void Records::write()
   {
     ofstream os ( FILENAME );
 
-    if ( !os.is_open() ) 
+    if ( !os.is_open() )
       {
         cout << "Error opening " << FILENAME << " for write" << endl;
         return;
       }
-    else 
+    else
       {
         cout << "Opened " << FILENAME << " for write" << endl;
         /// Write Data
@@ -157,23 +154,23 @@ void Records::write()
   }
 
  void Records::read()
-   { 
+   {
      ifstream is ( FILENAME );
      string value = "";
      string final = "";
 
      _records.clear();
 
-     if ( !is.is_open() ) 
+     if ( !is.is_open() )
        {
 	 cout << "Error opening " << FILENAME << " for read" << endl;
 	 return;
        }
-     else 
+     else
        {
 	 cout << "Opened " << FILENAME << " for read" << endl;
-	 
-	 while ( !is.eof() ) 
+
+	 while ( !is.eof() )
 	   {
 	     is >> value;
 	     if (!is.eof())

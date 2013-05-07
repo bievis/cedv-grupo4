@@ -6,11 +6,11 @@ MenuState::MenuState()
   {
     m_bQuit             = false;
     m_FrameEvent        = Ogre::FrameEvent();
-    // _mostradoCreditos   = false;
+    _mostradoCreditos   = false;
     // _mostradoHighScores = false;
     // rect_titulo         = NULL;
     // rect_nave           = NULL;
-    // rect_creditos       = NULL;
+    _rect_creditos       = NULL;
     // rect_highscores     = NULL;
   }
 
@@ -39,12 +39,8 @@ void MenuState::enter()
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
-    // Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
-    // background->show();
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->destroyAllWidgets();
-
-    // createButtons();
 
     createMenuScene();
 
@@ -63,30 +59,12 @@ void MenuState::createButtons()
 
 void MenuState::showButtons ()
   {
-    OgreBites::Button* b = NULL;
-
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "StartBtn" );
-    if ( b ) b->show();
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "HighScoresBtn" );
-    if ( b ) b->show();
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "CreditsBtn" );
-    if ( b ) b->show();
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "ExitBtn" );
-    if ( b ) b->show();
+    createButtons();
   }
 
 void MenuState::hideButtons ()
   {
-    OgreBites::Button* b = NULL;
-
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "StartBtn" );
-    if ( b ) b->hide();
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "HighScoresBtn" );
-    if ( b ) b->hide();
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "CreditsBtn" );
-    if ( b ) b->hide();
-    b = (OgreBites::Button*)OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->getWidget ( "ExitBtn" );
-    if ( b ) b->hide();
+    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->destroyAllWidgets();
   }
 
 void MenuState::createMenuScene()
@@ -96,15 +74,10 @@ void MenuState::createMenuScene()
 
     createButtons();
 
-    // Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "Background_Menu" );
-    // overlay->show();
-
     Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
     overlay->show();
 
-    //    put_background_with_rotation ( "background.png" );
     _rect_background = new Ogre::Rectangle2D ( true );
-    //    _background->setCorners ( -2, 1, 2, -1 );
     _rect_background->setCorners ( -1, 1, 1, -1 );
     _rect_background->setMaterial ( "Menu/Background" );
 
@@ -120,10 +93,26 @@ void MenuState::createMenuScene()
     // Attach background to the scene
 //    node->attachObject(rect_titulo);
 
-//    put_overlay ( rect_creditos, "Menu/Creditos", -2.0, 1.0, 2.0, -1.0 );
+// Create background rectangle covering the whole screen
+    _rect_creditos = new Rectangle2D(true);
+    _rect_creditos->setCorners(-1.0, 1.0, 1.0, -1.0);
+    _rect_creditos->setMaterial("Menu/Creditos");
+
+    // Render the background before everything else
+    _rect_creditos->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
+
+    // Use infinite AAB to always stay visible
+    //    _rect_creditos->setBoundingBox(aabInf);
+
+    _rect_creditos->setVisible ( false );
 
     // Attach background to the scene
-//    node->attachObject(rect_creditos);
+    node->attachObject(_rect_creditos);
+
+    // put_overlay ( _rect_creditos, "Menu/Creditos", -2.0, 1.0, 2.0, -1.0, true );
+    // node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "Creditos" );
+    // // Attach background to the scene
+    // node->attachObject(_rect_creditos);
 
 //    put_overlay ( rect_highscores, "Menu/HighScores", -2.0, 1.0, 2.0, -1.0 );
 
@@ -152,23 +141,14 @@ void MenuState::exit()
     if(m_pSceneMgr)
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager(m_pSceneMgr);
 
-    // Ogre::Overlay *background = m_pOverlayMgr->getByName("Background_Menu");
-    // background->hide();
-
     Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Menu");
     overlay->hide();
 
     if ( _rect_background )
        delete _rect_background;
 
-    // if ( rect_titulo )
-    //   delete rect_titulo;
-
-    // if ( rect_nave )
-    //   delete rect_nave;
-
-    // if ( rect_creditos )
-    //   delete rect_creditos;
+    if ( _rect_creditos )
+      delete _rect_creditos;
 
     // if ( rect_highscores )
     //   delete rect_highscores;
@@ -182,15 +162,16 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
   {
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
       {
-        // if ( _mostradoCreditos )
-        //   {
-        //     mostrarOverlayCreditos ( false );
-        //   }
+	cout << _mostradoCreditos << endl;
+        if ( _mostradoCreditos )
+          {
+            mostrarOverlayCreditos ( false );
+          }
         // else if ( _mostradoHighScores )
         //   {
         //     mostrarOverlayHighScores ( false );
         //   }
-        // else
+        else
           {
             m_bQuit = true;
             // return true;
@@ -256,20 +237,20 @@ void MenuState::buttonHit(OgreBites::Button *button)
 // Muestra u oculta los creditos
 void MenuState::mostrarOverlayCreditos ( bool mostrar )
   {
-    // _mostradoCreditos = mostrar;
+    _mostradoCreditos = mostrar;
+    //    Ogre::OverlayElement *elem = NULL;
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
 
     if ( mostrar )
       {
-//        rect_creditos->setVisible ( true );
-//        rect_nave->setVisible ( false );
-//        rect_titulo->setVisible ( false );
+        overlay->hide();
+        _rect_creditos->setVisible ( true );
         hideButtons();
       }
     else
       {
-//        rect_creditos->setVisible ( false );
-//        rect_nave->setVisible ( true );
-//        rect_titulo->setVisible ( true );
+        overlay->show();
+        _rect_creditos->setVisible ( false );
         showButtons();
       }
   }

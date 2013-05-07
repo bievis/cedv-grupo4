@@ -16,7 +16,7 @@ class Records {
   static Records* msSingleton;
 
   std::list<string> _records;
-  
+
   void Copy ( Records &source );
 
   Records();
@@ -24,7 +24,7 @@ class Records {
 
   Records ( Records& source );
 
-  int compare ( int level, int seconds, string value2 );
+  int compare ( int seconds, string value2 );
 
   void getFechaHora ( string &fecha, string &hora );
 
@@ -38,7 +38,7 @@ class Records {
   inline unsigned int getSize() { return _records.size(); };
   string getValue ( unsigned int index );
 
-  void add ( int level, int seconds );
+  void add ( int seconds );
 
   void write();
   void read();

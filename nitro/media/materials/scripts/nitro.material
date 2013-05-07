@@ -29,6 +29,21 @@ material Menu/Vacio
  }
 }
 
+material Menu/Creditos
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture creditos.png
+     }
+   }
+ }
+}
+
 material Game/Tiempo
 {
  technique
