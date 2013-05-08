@@ -195,6 +195,17 @@ Background_Menu
         vert_align left
         material Menu/Creditos
     }
+
+    container Panel(Panel_HighScores_Menu)
+    {
+        top 0
+        left 0
+        width 1024
+        height 768
+        horz_align top
+        vert_align left
+        material Menu/HighScores
+    }
 }
 
 GUI_Menu
@@ -212,3 +223,27 @@ GUI_Menu
      }
 }
 
+PantallaRecords
+{
+        zorder 500
+
+    container Panel(panelRecords)
+    {
+              metrics_mode pixels
+        left 0
+        top 0
+        width 900
+        height 700
+        vert_align top
+        horz_align left
+        material Menu/Vacio
+
+        element TextArea(highScoresValues) : Plantillas/MejorTiempo 
+                    {
+                                  top 230
+                                  left 50
+          horz_align left
+                    }
+
+    }
+}
