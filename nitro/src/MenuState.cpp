@@ -114,23 +114,21 @@ void MenuState::createMenuScene()
     // // Attach background to the scene
     // node->attachObject(_rect_creditos);
 
-//    put_overlay ( rect_highscores, "Menu/HighScores", -2.0, 1.0, 2.0, -1.0 );
+    // // Create background rectangle covering the whole screen
+    // _rect_highscores = new Rectangle2D(true);
+    // _rect_highscores->setCorners(-1.0, 1.0, 1.0, -1.0);
+    // _rect_highscores->setMaterial("Menu/HighScores");
 
-    // Create background rectangle covering the whole screen
-    _rect_highscores = new Rectangle2D(true);
-    _rect_highscores->setCorners(-1.0, 1.0, 1.0, -1.0);
-    _rect_highscores->setMaterial("Menu/HighScores");
+    // // Render the background before everything else
+    // _rect_highscores->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
 
-    // Render the background before everything else
-    _rect_highscores->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
+    // // Use infinite AAB to always stay visible
+    // //    _rect_creditos->setBoundingBox(aabInf);
 
-    // Use infinite AAB to always stay visible
-    //    _rect_creditos->setBoundingBox(aabInf);
+    // _rect_highscores->setVisible ( false );
 
-    _rect_highscores->setVisible ( false );
-
-    // Attach background to the scene
-    node->attachObject(_rect_highscores);
+    // // Attach background to the scene
+    // node->attachObject(_rect_highscores);
 
     // Attach background to the scene
 //    node->attachObject(rect_highscores);
@@ -140,10 +138,11 @@ void MenuState::createMenuScene()
     //PERO COMO NO PONGA ÉSTO AQUÍ, LA PRIMERA VEZ QUE CARGUE
     //LAS PUNTUACIONES NO APARECE NADA
     //************************************************************
-    Overlay *over = NULL;
-    over = m_pOverlayMgr->getByName ( "Background" );
-    if ( over ) over->show();
+    // Overlay *over = NULL;
+    // over = m_pOverlayMgr->getByName ( "Background" );
+    // if ( over ) over->show();
     //************************************************************
+
   }
 
 void MenuState::exit()
@@ -292,7 +291,7 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
         hideButtons();
 
 	//Mostramos el fondo
-        _rect_highscores->setVisible ( true );
+	//        _rect_highscores->setVisible ( true );
         //Mostramos el panel que contiene el overlay element con el texto
 	if ( over )
           over->show();
@@ -313,7 +312,7 @@ void MenuState::mostrarOverlayHighScores ( bool mostrar )
         overlay->show();
 
 	//Ocultamos el fondo
-        _rect_highscores->setVisible ( false );
+	//        _rect_highscores->setVisible ( false );
 
 	// Mostramos los botones
         showButtons();
