@@ -45,16 +45,13 @@ private:
     SoundFXPtr                  _menuFX;
 
     bool                        _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
-    //    bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
-
-    //Menu principal
-//    Rectangle2D*                _rect_nave;
+    bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
 
     //Creditos
     Ogre::Rectangle2D*                _rect_creditos;
 
     //HighScores
-//    Rectangle2D*                _rect_highscores;
+    Ogre::Rectangle2D*                _rect_highscores;
 
   };
 

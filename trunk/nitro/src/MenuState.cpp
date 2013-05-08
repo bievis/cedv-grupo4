@@ -7,11 +7,11 @@ MenuState::MenuState()
     m_bQuit             = false;
     m_FrameEvent        = Ogre::FrameEvent();
     _mostradoCreditos   = false;
-    // _mostradoHighScores = false;
+    _mostradoHighScores = false;
     // rect_titulo         = NULL;
     // rect_nave           = NULL;
     _rect_creditos       = NULL;
-    // rect_highscores     = NULL;
+    _rect_highscores     = NULL;
   }
 
 void MenuState::enter()
@@ -50,7 +50,7 @@ void MenuState::enter()
 void MenuState::createButtons()
   {
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton ( OgreBites::TL_CENTER, "StartBtn", "Start Game", 350 );
-    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton ( OgreBites::TL_CENTER, "HighScoresBtn", "Highscores", 350 );
+    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton ( OgreBites::TL_CENTER, "HighScoresBtn", "Best Times", 350 );
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton ( OgreBites::TL_CENTER, "CreditsBtn", "Credits", 350 );
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton ( OgreBites::TL_CENTER, "ExitBtn", "Exit Game", 350 );
 
@@ -93,7 +93,7 @@ void MenuState::createMenuScene()
     // Attach background to the scene
 //    node->attachObject(rect_titulo);
 
-// Create background rectangle covering the whole screen
+    // Create background rectangle covering the whole screen
     _rect_creditos = new Rectangle2D(true);
     _rect_creditos->setCorners(-1.0, 1.0, 1.0, -1.0);
     _rect_creditos->setMaterial("Menu/Creditos");
@@ -116,6 +116,22 @@ void MenuState::createMenuScene()
 
 //    put_overlay ( rect_highscores, "Menu/HighScores", -2.0, 1.0, 2.0, -1.0 );
 
+    // Create background rectangle covering the whole screen
+    _rect_highscores = new Rectangle2D(true);
+    _rect_highscores->setCorners(-1.0, 1.0, 1.0, -1.0);
+    _rect_highscores->setMaterial("Menu/HighScores");
+
+    // Render the background before everything else
+    _rect_highscores->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
+
+    // Use infinite AAB to always stay visible
+    //    _rect_creditos->setBoundingBox(aabInf);
+
+    _rect_highscores->setVisible ( false );
+
+    // Attach background to the scene
+    node->attachObject(_rect_highscores);
+
     // Attach background to the scene
 //    node->attachObject(rect_highscores);
 
@@ -124,9 +140,9 @@ void MenuState::createMenuScene()
     //PERO COMO NO PONGA ÉSTO AQUÍ, LA PRIMERA VEZ QUE CARGUE
     //LAS PUNTUACIONES NO APARECE NADA
     //************************************************************
-    // Overlay *over = NULL;
-    // over = m_pOverlayMgr->getByName ( "Background" );
-    // if ( over ) over->show();
+    Overlay *over = NULL;
+    over = m_pOverlayMgr->getByName ( "Background" );
+    if ( over ) over->show();
     //************************************************************
   }
 
@@ -150,8 +166,8 @@ void MenuState::exit()
     if ( _rect_creditos )
       delete _rect_creditos;
 
-    // if ( rect_highscores )
-    //   delete rect_highscores;
+    if ( _rect_highscores )
+      delete _rect_highscores;
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->clearAllTrays();
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->destroyAllWidgets();
@@ -167,10 +183,10 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
           {
             mostrarOverlayCreditos ( false );
           }
-        // else if ( _mostradoHighScores )
-        //   {
-        //     mostrarOverlayHighScores ( false );
-        //   }
+        else if ( _mostradoHighScores )
+          {
+            mostrarOverlayHighScores ( false );
+          }
         else
           {
             m_bQuit = true;
@@ -258,88 +274,101 @@ void MenuState::mostrarOverlayCreditos ( bool mostrar )
 // Muestra u oculta los highscores
 void MenuState::mostrarOverlayHighScores ( bool mostrar )
   {
-    // Overlay *over = NULL;
-    // OverlayElement *oe = NULL;
+    Overlay *over = NULL;
+    OverlayElement *oe = NULL;
+    Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
 
-    // _mostradoHighScores = mostrar;
+    _mostradoHighScores = mostrar;
 
-    // over = m_pOverlayMgr->getByName ( "PantallaRecords" );
-    // oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
+    over = m_pOverlayMgr->getByName ( "PantallaRecords" );
+    oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
 
     if ( mostrar )
       {
-	// if ( over )
-        //   over->show();
+	// Ocultamos los elementos GUI del menú
+        overlay->hide();
 
-//        rect_highscores->setVisible ( true );
-//        rect_nave->setVisible ( false );
-//        rect_titulo->setVisible ( false );
-
-	// oe->show();
-
+	// Ocultamos los botones
         hideButtons();
-//        muestra_highscores();
+
+	//Mostramos el fondo
+        _rect_highscores->setVisible ( true );
+        //Mostramos el panel que contiene el overlay element con el texto
+	if ( over )
+          over->show();
+        //Mostramos el overlay element que tiene unicamente el texto
+	oe->show();
+
+        muestra_highscores();
       }
     else
       {
-	// if ( over )
-	//   over->hide();
+	//Ocultamos el overlay element que tiene unicamente el texto
+	oe->hide();
+        //Ocultamos el panel que contiene el overlay element con el texto
+	if ( over )
+	  over->hide();
 
-//        rect_highscores->setVisible ( false );
-//        rect_nave->setVisible ( true );
-//        rect_titulo->setVisible ( true );
+	// Mostramos los elementos GUI del menú
+        overlay->show();
 
-	// oe->hide();
+	//Ocultamos el fondo
+        _rect_highscores->setVisible ( false );
 
+	// Mostramos los botones
         showButtons();
       }
   }
 
 void MenuState::muestra_highscores()
   {
-    // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    // OverlayElement *oe = NULL;
+    //    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
+    OverlayElement *oe = NULL;
 
-    // Records::getSingleton().read();
+    Records::getSingleton().read();
 
-    // oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
+    oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
 
     // // string msg = " 1. Lv3 * 30s * 14-01-2013 * 22:17\n";
     // // msg += " 2. Lv3 * 35s * 12-02-2013 * 20:18\n";
     // // msg += " 3. Lv3 * 56s * 12-02-2013 * 10:08\n";
 
-    // string msg = "";
+     string msg = "";
     // int level = 0;
-    // int seconds = 0;
-    // char fecha[100];
-    // char hora[100];
-    // char new_hora[100];
+    int seconds = 0;
+    char fecha[100];
+    char hora[100];
+    char new_hora[100];
+    int minutes = 0;
 
-    // if ( Records::getSingleton().getSize() > 0 )
-    //   {
-    //     char cad[100];
+    if ( Records::getSingleton().getSize() > 0 )
+      {
+        char cad[100];
 
-    //     // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":size = " << Records::getSingleton().getSize() << endl;
+        // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":size = " << Records::getSingleton().getSize() << endl;
 
-    //     for ( unsigned int i = 0; i < Records::getSingleton().getSize(); i++ )
-    //       {
-    // 	    //Entre la fecha y la hora no detecta el separador '|' así que plan B, es decir, cojo posiciones de bytes
-    // 	    //y luego formateo la hora en new_hora que ya no tendría dentro el caracter '|'
-    // 	    sscanf ( Records::getSingleton().getValue(i).c_str(), "%d|%d|%10s%6s", &level, &seconds, fecha, hora );
-    // 	    memcpy ( new_hora, hora+1, strlen(hora)-1);
-    // 	    new_hora[5]=0;
+        for ( unsigned int i = 0; i < Records::getSingleton().getSize(); i++ )
+          {
+     	    //Entre la fecha y la hora no detecta el separador '|' así que plan B, es decir, cojo posiciones de bytes
+     	    //y luego formateo la hora en new_hora que ya no tendría dentro el caracter '|'
+     	    sscanf ( Records::getSingleton().getValue(i).c_str(), "%d|%10s%6s", &seconds, fecha, hora );
+     	    memcpy ( new_hora, hora+1, strlen(hora)-1);
+     	    new_hora[5]=0;
+	    minutes = seconds / 60;
+	    seconds = seconds % 60;
     //     // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " level = " << level << endl;
     //     // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds = " << seconds << endl;
     //     // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " fecha = " << fecha << endl;
     //     // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " hora = " << new_hora << endl;
-    //         sprintf ( cad, " %d. Lvl-%d - %ds - %s - %s\n", i+1, level, seconds, fecha, new_hora );
-    //         msg += string ( cad );
-    //       }
-    //   }
-    // else
-    //   msg = "   No hay registros";
+            sprintf ( cad, " %d - %02d:%02d - %s - %s\n", i+1, minutes, seconds, fecha, new_hora );
+	    //	    cout << cad << endl;
+            msg += string ( cad );
+          }
+      }
+    else
+      msg = "No hay registros";
 
-    // oe->setColour ( Ogre::ColourValue ( 1.0, 1.0, 0.0 ) );
-    // oe->setCaption ( msg );
-    // cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
+    oe->setColour ( Ogre::ColourValue ( 1.0, 1.0, 0.0 ) );
+    oe->setCaption ( msg );
+    //    cout << "*** " << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
 }

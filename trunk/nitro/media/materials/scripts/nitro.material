@@ -44,6 +44,22 @@ material Menu/Creditos
  }
 }
 
+
+material Menu/HighScores
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture highscores.png
+     }
+   }
+ }
+}
+
 material Game/Tiempo
 {
  technique
