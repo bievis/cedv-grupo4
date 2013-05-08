@@ -225,18 +225,16 @@ GUI_Menu
 
 PantallaRecords
 {
-        zorder 500
-
     container Panel(panelRecords)
     {
               metrics_mode pixels
         left 0
         top 0
-        width 900
-        height 700
+        width 1024
+        height 768
         vert_align top
         horz_align left
-        material Menu/Vacio
+        material Menu/HighScores
 
         element TextArea(highScoresValues) : Plantillas/MejorTiempo 
                     {
