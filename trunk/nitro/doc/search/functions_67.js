@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['gamemanager',['GameManager',['../classGameManager.html#aa0e2424dc1a39d380e5b6605b179bf05',1,'GameManager']]],
   ['gamestate',['GameState',['../classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c',1,'GameState']]],
   ['getattrib',['getAttrib',['../classDotSceneLoader.html#a1a3437b6e166ae938db91ef780671e0d',1,'DotSceneLoader']]],
   ['getattribbool',['getAttribBool',['../classDotSceneLoader.html#af74c81daf6a798db68f73481b4d5507a',1,'DotSceneLoader']]],
@@ -22,8 +21,8 @@ var searchData=
   ['getrollinfluence',['getRollInfluence',['../classCoche.html#afe547fc02980e60541d1a2febe81c3cd',1,'Coche']]],
   ['getrootptr',['getRootPtr',['../classOgreFramework.html#a64634758b246220a84cb5077851bcce8',1,'OgreFramework']]],
   ['getsdktraymgrptr',['getSDKTrayMgrPtr',['../classOgreFramework.html#ae78351f9079b33125adb520dabe394bf',1,'OgreFramework']]],
-  ['getsingleton',['getSingleton',['../classGameManager.html#a89ea25df8bf6c753cd0ebdd1e5b17aff',1,'GameManager::getSingleton()'],['../classRecords.html#a7212cf91df8738dbaf6c44bdb59683aa',1,'Records::getSingleton()'],['../classSoundFXManager.html#a389a07b5b177b82dd6d1b20e294acb2f',1,'SoundFXManager::getSingleton()'],['../classTrackManager.html#a8c49496512dbaaee9a1190897156d590',1,'TrackManager::getSingleton()']]],
-  ['getsingletonptr',['getSingletonPtr',['../classGameManager.html#a7633e8f81be88da15613eb88590b99c5',1,'GameManager::getSingletonPtr()'],['../classRecords.html#a5e62c50bd178deba9a8015b572ea9689',1,'Records::getSingletonPtr()'],['../classSoundFXManager.html#a8d84ebdee4be52e0cc79726b9d0f5190',1,'SoundFXManager::getSingletonPtr()'],['../classTrackManager.html#a5eda0190368697a97b2181e3108e0137',1,'TrackManager::getSingletonPtr()']]],
+  ['getsingleton',['getSingleton',['../classRecords.html#a7212cf91df8738dbaf6c44bdb59683aa',1,'Records::getSingleton()'],['../classSoundFXManager.html#a389a07b5b177b82dd6d1b20e294acb2f',1,'SoundFXManager::getSingleton()'],['../classTrackManager.html#a8c49496512dbaaee9a1190897156d590',1,'TrackManager::getSingleton()']]],
+  ['getsingletonptr',['getSingletonPtr',['../classRecords.html#a5e62c50bd178deba9a8015b572ea9689',1,'Records::getSingletonPtr()'],['../classSoundFXManager.html#a8d84ebdee4be52e0cc79726b9d0f5190',1,'SoundFXManager::getSingletonPtr()'],['../classTrackManager.html#a5eda0190368697a97b2181e3108e0137',1,'TrackManager::getSingletonPtr()']]],
   ['getsize',['getSize',['../classRecords.html#ac156b05ca35973a056fcb94a2a4a4799',1,'Records']]],
   ['getsteering',['getSteering',['../classCoche.html#aa2122c6645d123848c9740e6473ed1e4',1,'Coche']]],
   ['getsuspensionrestlength',['getSuspensionRestLength',['../classCoche.html#aa6c21f920856efc97a90be343d972e00',1,'Coche']]],

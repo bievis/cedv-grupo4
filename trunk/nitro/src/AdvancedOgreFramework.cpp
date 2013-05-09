@@ -114,9 +114,6 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     new TrackManager;
     new SoundFXManager;
 
-    // Iniciamos el manager de colisiones
-    new GameManager();
-
     // Calculamos los fatores de escalar de los overlays
     unsigned int width; unsigned int height; unsigned int colourDepth; int left; int top;
     OgreFramework::getSingletonPtr()->m_pRenderWnd->getMetrics(width, height, colourDepth, left, top);

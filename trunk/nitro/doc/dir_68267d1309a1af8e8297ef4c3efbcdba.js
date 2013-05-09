@@ -5,7 +5,6 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "AppStateManager.cpp", "AppStateManager_8cpp.html", null ],
     [ "Coche.cpp", "Coche_8cpp.html", null ],
     [ "DotSceneLoader.cpp", "DotSceneLoader_8cpp.html", null ],
-    [ "GameManager.cpp", "GameManager_8cpp.html", null ],
     [ "GameState.cpp", "GameState_8cpp.html", "GameState_8cpp" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "MenuState.cpp", "MenuState_8cpp.html", null ],

@@ -47,7 +47,6 @@ var hierarchy =
       [ "TrackPtr", "classTrackPtr.html", null ]
     ] ],
     [ "Singleton", null, [
-      [ "GameManager", "classGameManager.html", null ],
       [ "OgreFramework", "classOgreFramework.html", null ],
       [ "SoundFXManager", "classSoundFXManager.html", null ],
       [ "TrackManager", "classTrackManager.html", null ]

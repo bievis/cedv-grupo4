@@ -1,8 +1,7 @@
 <map id="include/AppState.hpp" name="include/AppState.hpp">
-<area shape="rect" id="node3" href="$AdvancedOgreFramework_8hpp.html" title="AdvancedOgreFramework.hpp" alt="" coords="1515,83,1712,112"/>
-<area shape="rect" id="node41" href="$TrackManager_8h.html" title="TrackManager.h" alt="" coords="2595,160,2709,189"/>
-<area shape="rect" id="node49" href="$SoundFXManager_8h.html" title="SoundFXManager.h" alt="" coords="2435,160,2571,189"/>
-<area shape="rect" id="node56" href="$GameManager_8h.html" title="GameManager.h" alt="" coords="2733,160,2851,189"/>
-<area shape="rect" id="node45" href="$Track_8h.html" title="Track.h" alt="" coords="2595,237,2661,267"/>
-<area shape="rect" id="node52" href="$SoundFX_8h.html" title="SoundFX.h" alt="" coords="2435,237,2520,267"/>
+<area shape="rect" id="node3" href="$AdvancedOgreFramework_8hpp.html" title="AdvancedOgreFramework.hpp" alt="" coords="1369,83,1567,112"/>
+<area shape="rect" id="node41" href="$TrackManager_8h.html" title="TrackManager.h" alt="" coords="2435,160,2549,189"/>
+<area shape="rect" id="node49" href="$SoundFXManager_8h.html" title="SoundFXManager.h" alt="" coords="2573,160,2709,189"/>
+<area shape="rect" id="node45" href="$Track_8h.html" title="Track.h" alt="" coords="2435,237,2501,267"/>
+<area shape="rect" id="node52" href="$SoundFX_8h.html" title="SoundFX.h" alt="" coords="2576,237,2661,267"/>
 </map>

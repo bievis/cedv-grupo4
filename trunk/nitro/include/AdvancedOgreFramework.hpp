@@ -24,7 +24,6 @@
 #include <SDL/SDL_mixer.h>
 #include "TrackManager.h"
 #include "SoundFXManager.h"
-#include "GameManager.h"
 
 class OgreFramework : public Ogre::Singleton<OgreFramework>, OIS::KeyListener, OIS::MouseListener
   {

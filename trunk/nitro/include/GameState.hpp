@@ -4,7 +4,6 @@
 #include "AppState.hpp"
 
 #include "DotSceneLoader.hpp"
-//#include "Personaje.h"
 #include "TrackManager.h"
 #include "SoundFXManager.h"
 #include <OgreSubEntity.h>
@@ -16,17 +15,6 @@
 
 #include <vector>
 #include <Coche.hpp>
-
-// Segundos en los que se queda el personaje muerto
-//#define TIEMPO_MUERTO 1.0
-
-//enum EstadoJuego  { GAME, GAME_OVER, NEXT_LEVEL, WINNER };
-
-// enum QueryFlags
-//   {
-//     OGRE_HEAD_MASK	= 1<<0,
-//     CUBE_MASK		= 1<<1
-//   };
 
 #define _NUM_COCHES_ 1
 
@@ -68,38 +56,17 @@ private:
     bool                      m_bRMouseDown;
     Ogre::OverlayManager*     m_pOverlayMgr;
 
-    //    unsigned int              _level;
-    //    char                      _vidas;
     double                    _tiempo;
     double                    _mejorTiempo;
     bool                      _empieza_a_contar;
-    //    double                    _tiempoTotal;
-    //    double                    _tiempoNextLevel;
-    //    double                    _tiempoMuertoFin;
-
-    //    EstadoJuego               _estado;
 
     TrackPtr                  _gameTrack;
-    TrackPtr                  _gameoverTrack;
-    TrackPtr                  _winnerTrack;
-    SoundFXPtr                _moverPersonajeFX;
     SoundFXPtr                _sonidoMetaFX;
 
     btScalar                  _velocidad;
 
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
-
-    // OgreBulletDynamics::WheeledRigidBody  *mCarChassis;
-    // OgreBulletDynamics::VehicleTuning     *mTuning;
-    // OgreBulletDynamics::VehicleRayCaster  *mVehicleRayCaster;
-    // OgreBulletDynamics::RaycastVehicle    *mVehicle;
-
-    // Ogre::Entity    *mChassis;
-    // Ogre::Entity    *mWheels[4];
-    // Ogre::SceneNode *mWheelNodes[4];
-
-    // float mSteering;
 
     std::vector<Coche *> _vCoches;
 
@@ -113,8 +80,6 @@ private:
     void reiniciarCoche ();
     // \brief Reiniciar coche y lo vuelve a poner el inicio
     void insertarElementoEscena (string nombreElemento);
-//    void actualizarVidas();
-//    void cargarNivel();
 };
 
 #endif

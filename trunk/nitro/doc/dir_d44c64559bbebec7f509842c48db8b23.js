@@ -13,7 +13,6 @@ var dir_d44c64559bbebec7f509842c48db8b23 =
       [ "nodeProperty", "classnodeProperty.html", "classnodeProperty" ],
       [ "DotSceneLoader", "classDotSceneLoader.html", "classDotSceneLoader" ]
     ] ],
-    [ "GameManager.h", "GameManager_8h.html", "GameManager_8h" ],
     [ "GameState.hpp", "GameState_8hpp.html", "GameState_8hpp" ],
     [ "MenuState.hpp", "MenuState_8hpp.html", [
       [ "MenuState", "classMenuState.html", "classMenuState" ]
