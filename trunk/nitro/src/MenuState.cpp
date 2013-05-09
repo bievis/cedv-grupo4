@@ -101,6 +101,10 @@ void MenuState::createMenuScene()
     // Attach background to the scene
     node->attachObject(_rect_creditos);
 
+    Ogre::OverlayElement *elem;
+    elem = m_pOverlayMgr->getOverlayElement("panelRecords");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+    //    elem->hide();
   }
 
 void MenuState::exit()

@@ -254,14 +254,16 @@ PantallaRecords
 
         element TextArea(tituloHighScores) : Plantillas/TituloHighScores
         {
+          horz_align right
           top 100
-          left 670
+          left -325
         }
 
         element TextArea(highScoresValues) : Plantillas/HighScores
         {
+          horz_align right
           top 200
-          left 600
+          left -400
         }
     }
 }
