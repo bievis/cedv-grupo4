@@ -32,7 +32,6 @@ GameState::GameState()
     m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
-    _estaEnMeta         = false;
     //    _ptrGameConfig      = NULL;
   }
 
@@ -46,7 +45,9 @@ void GameState::enter()
 
     _tiempo = 0;
     _mejorTiempo = 0;
-    _empieza_a_contar = false;
+    _empieza_a_contar = true;
+    _estaEnMeta         = false;
+    _controlMeta = 0;
     // _level = 1;
     // _vidas = 3;
     // _estado = GAME;
@@ -157,103 +158,22 @@ void GameState::CreateInitialWorld()
 
     // // Crear el fondo de tierra
 
-    Entity *entitySuelo = m_pSceneMgr->createEntity("Suelo", "Suelo.mesh");
-    SceneNode *nodeSuelo = m_pSceneMgr->createSceneNode("Suelo");
-    nodeSuelo->attachObject(entitySuelo);
-
-    m_pSceneMgr->getRootSceneNode()->addChild(nodeSuelo);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterSuelo = new
-      OgreBulletCollisions::StaticMeshToShapeConverter(entitySuelo);
-
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshSuelo =
-      trimeshConverterSuelo->createTrimesh();
-
-    OgreBulletDynamics::RigidBody *rigidTrackSuelo = new
-      OgreBulletDynamics::RigidBody("Suelo", _world);
-    rigidTrackSuelo->setShape(nodeSuelo, trackTrimeshSuelo, 0.8, 0.95, 0, Vector3::ZERO,
-    		         Quaternion::IDENTITY);
-
-    delete trimeshConverterSuelo;
+    insertarElementoEscena(string("Suelo"));
 
     // Crear el circuito
 
-    Entity *entityCircuito = m_pSceneMgr->createEntity("Circuito", "Circuito.mesh");
-    SceneNode *nodeCircuito = m_pSceneMgr->createSceneNode("Circuito");
-    nodeCircuito->attachObject(entityCircuito);
-
-    m_pSceneMgr->getRootSceneNode()->addChild(nodeCircuito);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterCircuito = new
-      OgreBulletCollisions::StaticMeshToShapeConverter(entityCircuito);
-
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshCircuito =
-      trimeshConverterCircuito->createTrimesh();
-
-    OgreBulletDynamics::RigidBody *rigidTrackCircuito = new
-      OgreBulletDynamics::RigidBody("Circuito", _world);
-    rigidTrackCircuito->setShape(nodeCircuito, trackTrimeshCircuito, 0.8, 0.95, 0, Vector3::ZERO,
-		         Quaternion::IDENTITY);
-
-    delete trimeshConverterCircuito;
+    insertarElementoEscena(string("Circuito"));
 
     // // Crear la linea de meta
-
-    Entity *entityMeta = m_pSceneMgr->createEntity("Meta", "Meta.mesh");
-    SceneNode *nodeMeta = m_pSceneMgr->createSceneNode("Meta");
-    nodeMeta->attachObject(entityMeta);
-
-    m_pSceneMgr->getRootSceneNode()->addChild(nodeMeta);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterMeta = new
-      OgreBulletCollisions::StaticMeshToShapeConverter(entityMeta);
-
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshMeta =
-      trimeshConverterMeta->createTrimesh();
-
-    OgreBulletDynamics::RigidBody *rigidTrackMeta = new
-      OgreBulletDynamics::RigidBody("Meta", _world);
-    rigidTrackMeta->setShape(nodeMeta, trackTrimeshMeta, 0.8, 0.95, 0, Vector3::ZERO,
-    		         Quaternion::IDENTITY);
-
-    delete trimeshConverterMeta;
+    insertarElementoEscena(string("PreMeta"));
+    insertarElementoEscena(string("Meta"));
 
     // Crear la valla externa del circuito
-
-    Entity *entityBarreraExterior = m_pSceneMgr->createEntity("Valla_Externa", "Valla_Externa.mesh");
-    SceneNode *nodeBarreraExterior = m_pSceneMgr->createSceneNode("Valla_Externa");
-    nodeBarreraExterior->attachObject(entityBarreraExterior);
-
-    m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraExterior);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraExterior = new
-      OgreBulletCollisions::StaticMeshToShapeConverter(entityBarreraExterior);
-
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraExterior =
-      trimeshConverterBarreraExterior->createTrimesh();
-
-    OgreBulletDynamics::RigidBody *rigidTrackBarreraExterior = new
-      OgreBulletDynamics::RigidBody("Valla_Externa", _world);
-    rigidTrackBarreraExterior->setShape(nodeBarreraExterior, trackTrimeshBarreraExterior, 0.8, 0.95, 0, Vector3::ZERO,
-		         Quaternion::IDENTITY);
-
-    delete trimeshConverterBarreraExterior;
+    insertarElementoEscena(string("Valla_Externa"));
 
     // Crear la valla interna del circuito
 
-    Entity *entityBarreraInterior = m_pSceneMgr->createEntity("Valla_Interna", "Valla_Interna.mesh");
-    SceneNode *nodeBarreraInterior = m_pSceneMgr->createSceneNode("Valla_Interna");
-    nodeBarreraInterior->attachObject(entityBarreraInterior);
-
-    m_pSceneMgr->getRootSceneNode()->addChild(nodeBarreraInterior);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverterBarreraInterior = new
-      OgreBulletCollisions::StaticMeshToShapeConverter(entityBarreraInterior);
-
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimeshBarreraInterior =
-      trimeshConverterBarreraInterior->createTrimesh();
-
-    OgreBulletDynamics::RigidBody *rigidTrackBarreraInterior = new
-      OgreBulletDynamics::RigidBody("Valla_Interna", _world);
-    rigidTrackBarreraInterior->setShape(nodeBarreraInterior, trackTrimeshBarreraInterior, 0.8, 0.95, 0, Vector3::ZERO,
-		         Quaternion::IDENTITY);
-
-    delete trimeshConverterBarreraInterior;
+    insertarElementoEscena(string("Valla_Interna"));
 
     // Creamos el vehiculo =============================================
 
@@ -331,6 +251,26 @@ void GameState::CreateInitialWorld()
 
   //   cout << "=====" << endl;
   }
+
+void GameState::insertarElementoEscena (string nombreElemento) {
+  Entity *entity = m_pSceneMgr->createEntity(nombreElemento, nombreElemento + string(".mesh"));
+  SceneNode *node = m_pSceneMgr->createSceneNode(nombreElemento);
+  node->attachObject(entity);
+
+  m_pSceneMgr->getRootSceneNode()->addChild(node);
+  OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
+    OgreBulletCollisions::StaticMeshToShapeConverter(entity);
+
+  OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
+    trimeshConverter->createTrimesh();
+
+  OgreBulletDynamics::RigidBody *rigidTrack = new
+    OgreBulletDynamics::RigidBody(nombreElemento, _world);
+  rigidTrack->setShape(node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
+  		         Quaternion::IDENTITY);
+
+  delete trimeshConverter;
+}
 
 bool GameState::pause()
   {
@@ -602,9 +542,7 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (false);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_R ) ) {
       // Volver a poner el coche en el inicio
-      _tiempo = 0;
-      _empieza_a_contar = false;
-      _vCoches[0]->reset();
+      reiniciarCoche();
     }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
@@ -822,34 +760,45 @@ void GameState::update(double timeSinceLastFrame)
 	Mostrar_Velocidad ( _velocidad );
 
       }
-
-    // TODO
-    //    cout << "Meta: " << _vCoches[0]->isMeta(m_pSceneMgr, _world) << endl;
     
-    if ( _vCoches[0]->isMeta(m_pSceneMgr, _world) )
-      {
-        // Si es la primera vez, significa que hemos pisado la meta pero para empezar la vuelta, por ser ésta la primera
-        // no se debe de contar
-        if ( _empieza_a_contar )
-	  {
-            cout << "mejorTiempo = " << _mejorTiempo << endl;
-            cout << "tiempo = " << _tiempo << endl;
-	    if ( ( _tiempo > 1 ) && ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) )
-	      {
-		_mejorTiempo = _tiempo;
-		Records::getSingleton().add ( _mejorTiempo );
-		Records::getSingleton().write();
-     	        Records::getSingleton().compacta ( 10 );
-	      }
-	  }
-        if (!_estaEnMeta) _sonidoMetaFX->play(); // Cuando entra en la meta
-        _tiempo = 0;
-
-        _empieza_a_contar = true; // Solo sirve para la primera vez
+    if ( _vCoches[0]->isMeta(_world) )
+      {    
+        if (!_estaEnMeta) {
+          // Cuando pisa la meta, para controlar que ha entrado en la linea y no esta encima
+          if (_controlMeta == 1 && _estaEnPreMeta) {
+            // Ha finalizado la vuelta
+            _sonidoMetaFX->play();
+            if ( _tiempo > 1  )
+            {
+              if ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) {
+                _mejorTiempo = _tiempo;
+                Records::getSingleton().add ( _mejorTiempo );
+                Records::getSingleton().write();
+                Records::getSingleton().compacta ( 10 );
+              }
+              _controlMeta = 0;
+              _tiempo = 0;
+              _empieza_a_contar = true;
+            }
+          }
+        }
         _estaEnMeta = true;
+
+        if (_estaEnPreMeta) {
+          _controlMeta++; // Viene de premeta el coche
+        }
       } else {
+        if (_vCoches[0]->isPreMeta(_world) && _estaEnMeta) {
+          _controlMeta--; // Viene de premeta el coche
+        }
+        // Cuando sale de la linea de meta
         _estaEnMeta = false;
+        if (!_vCoches[0]->isCircuito(_world)) {
+          // Si se ha salido lo volvemos a poner en la meta
+          reiniciarCoche();
+        }
       }
+    _estaEnPreMeta = _vCoches[0]->isPreMeta(_world);
 
     // int posx = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().X.abs;   // Posicion del puntero
     // int posy = OgreFramework::getSingletonPtr()->getMousePtr()->getMouseState().Y.abs;   //  en pixeles.
@@ -1026,3 +975,10 @@ void GameState::Mostrar_Velocidad ( float velocidad, bool ocultar )
 	elem->show();
       }
   }
+
+void GameState::reiniciarCoche () {
+  _tiempo = 0;
+  _controlMeta = 0;
+  _empieza_a_contar = true;
+  _vCoches[0]->reset();
+}

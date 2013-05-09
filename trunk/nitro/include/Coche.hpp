@@ -182,7 +182,16 @@ class Coche
     void print_info();
     /// \brief Metodo que dice si el coche esta pasando por la meta o no
     /// \return Si se ha pasado por la meta o no
-    bool isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world);
+    /// \param world Mundo de las colisiones
+    bool isMeta(OgreBulletDynamics::DynamicsWorld* world);
+    /// \brief Metodo que dice si el coche esta pasando por la Premeta o no
+    /// \return Si se ha pasado por la Premeta o no
+    /// \param world Mundo de las colisiones
+    bool isPreMeta(OgreBulletDynamics::DynamicsWorld* world);
+    // \brief Metodo que dice si el coche esta fuera del circuito o no
+    /// \return Si esta fuera del circuito o no
+    /// \param world Mundo de las colisiones
+    bool isCircuito(OgreBulletDynamics::DynamicsWorld* world);
     /// \brief Metodo que vuelve a dejar el coche en el estado y posicion inicial
     void reset();
 
@@ -235,6 +244,11 @@ class Coche
     /// \brief Metodo que en función del color seleccionado devolverá el nombre del fichero mesh a cargar
     /// \return Nombre del fichero mesh a cargar
     const char* getFilenameMesh();
+    // \brief Metodo que dice si el coche esta encima del nodo o no
+    /// \return Si esta encima o no del nodo
+    /// \param world Mundo de las colisiones
+    /// \param nodo Nombre del nodo del que queremos detectar si esta encima o no
+    bool isEncimaNodo(string nodo, OgreBulletDynamics::DynamicsWorld* world);
   };
 
 #endif

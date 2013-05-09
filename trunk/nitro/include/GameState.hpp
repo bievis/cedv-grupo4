@@ -60,7 +60,9 @@ public:
     void LoadScenaryParts();
 
 private:
-    bool          _estaEnMeta;
+    bool          _estaEnMeta; // Indica que ya ha entrado en la linea de la meta
+    bool          _estaEnPreMeta; // Indica que ya ha entrado en la linea de la meta
+    int           _controlMeta; // Controla el paso por meta
     bool		      m_bQuit;
     bool		      m_bLMouseDown;
     bool                      m_bRMouseDown;
@@ -108,6 +110,10 @@ private:
 
     string getTime(double tiempo);
     void Mostrar_Velocidad ( float velocidad, bool ocultar = false );
+    // \brief Reiniciar coche y lo vuelve a poner el inicio
+    void reiniciarCoche ();
+    // \brief Reiniciar coche y lo vuelve a poner el inicio
+    void insertarElementoEscena (string nombreElemento);
 //    void actualizarVidas();
 //    void cargarNivel();
 };
