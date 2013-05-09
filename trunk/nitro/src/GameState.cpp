@@ -760,7 +760,7 @@ void GameState::update(double timeSinceLastFrame)
    	          Records::getSingleton().add ( _tiempo );
 		      Records::getSingleton().compacta ( 10 );
 		      Records::getSingleton().write();
-              }
+              
               _controlMeta = 0;
               _tiempo = 0;
               _empieza_a_contar = true;
