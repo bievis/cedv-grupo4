@@ -307,7 +307,7 @@ void MenuState::muestra_highscores()
           }
       }
     else
-      msg = "No hay registros";
+      msg = "        No hay registros";
 
     _msg_highscore = msg;
 }
