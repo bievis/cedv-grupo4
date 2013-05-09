@@ -1,0 +1,4 @@
+<map id="rapidxml::xml_node&lt; Ch &gt;" name="rapidxml::xml_node&lt; Ch &gt;">
+<area shape="rect" id="node5" href="$classrapidxml_1_1xml__document.html" title="This class represents root of the DOM hierarchy. It is also an xml_node and a memory_pool through pub..." alt="" coords="5,865,235,1245"/>
+<area shape="rect" id="node2" href="$classrapidxml_1_1xml__base.html" title="Base class for xml_node and xml_attribute implementing common functions: name(), name_size(), value(), value_size() and parent()." alt="" coords="53,6,187,351"/>
+</map>
