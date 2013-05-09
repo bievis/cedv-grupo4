@@ -1,0 +1,22 @@
+// MaterialTransparente genrated by blender2ogre 0.5.8
+
+material MaterialTransparente 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass MaterialTransparente
+        {
+            lighting off
+            scene_blend alpha_blend
+            depth_write off
+             texture_unit
+             {
+               texture panel_transparente.png
+               colour_op alpha_blend
+             }
+
+        }
+    }
+}

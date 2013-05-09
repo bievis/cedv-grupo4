@@ -376,7 +376,19 @@ void Coche::init()
       }
   }
 
-bool Coche::isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world) {
+bool Coche::isMeta(OgreBulletDynamics::DynamicsWorld* world) {
+    return isEncimaNodo(string("Meta"), world);
+}
+
+bool Coche::isPreMeta(OgreBulletDynamics::DynamicsWorld* world) {
+    return isEncimaNodo(string("PreMeta"), world);
+}
+
+bool Coche::isCircuito(OgreBulletDynamics::DynamicsWorld* world) {
+    return !isEncimaNodo(string("Suelo"), world);
+}
+
+bool Coche::isEncimaNodo(string nodo, OgreBulletDynamics::DynamicsWorld* world) {
     bool meta = false;
     Vector3 posicion = getCarChassisPtr()->getCenterOfMassPosition ();
     btVector3 posIni(posicion.x, posicion.y, posicion.z);
@@ -392,7 +404,7 @@ bool Coche::isMeta(Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWor
         btCollisionObject* obA = (btCollisionObject*)(RayCallback.m_collisionObject);
         OgreBulletCollisions::Object *obOB_A = world->findObject(obA);
 
-        meta = obOB_A->getRootNode()->getName() == "Meta";
+        meta = obOB_A->getRootNode()->getName() == nodo;
     }
 
     return meta;
