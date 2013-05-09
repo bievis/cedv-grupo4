@@ -22,6 +22,22 @@ template element TextArea(Plantillas/Velocidad)
                 colour 1.0 1.0 0.0
 }
 
+template element TextArea(Plantillas/HighScores)
+{
+    font_name DustSerif
+                metrics_mode pixels
+                char_height 36
+                colour 1.0 1.0 0.0
+}
+
+template element TextArea(Plantillas/TituloHighScores)
+{
+    font_name DustSerif
+                metrics_mode pixels
+                char_height 54 
+                colour 1.0 1.0 0.0
+}
+
 GUI_Game
 {
     zorder 500
@@ -227,7 +243,7 @@ PantallaRecords
 {
     container Panel(panelRecords)
     {
-              metrics_mode pixels
+        metrics_mode pixels
         left 0
         top 0
         width 1024
@@ -236,12 +252,16 @@ PantallaRecords
         horz_align left
         material Menu/HighScores
 
-        element TextArea(highScoresValues) : Plantillas/MejorTiempo 
-                    {
-                                  top 230
-                                  left 50
-          horz_align left
-                    }
+        element TextArea(tituloHighScores) : Plantillas/TituloHighScores
+        {
+          top 100
+          left 670
+        }
 
+        element TextArea(highScoresValues) : Plantillas/HighScores
+        {
+          top 200
+          left 600
+        }
     }
 }
