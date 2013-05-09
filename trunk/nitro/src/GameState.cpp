@@ -52,7 +52,7 @@ void GameState::enter()
     // _estado = GAME;
     // _tiempoMuertoFin = 0.0;
 
-    _gameTrack = TrackManager::getSingleton().load("Hank_Williams_Junior_-_Canyonero.mp3");
+    _gameTrack = TrackManager::getSingleton().load("musicGame.mp3");
     // _gameoverTrack = TrackManager::getSingleton().load("game_over.mp3");
     // _winnerTrack = TrackManager::getSingleton().load("aplausos.mp3");
     //_moverPersonajeFX = SoundFXManager::getSingleton().load("movimiento.wav");
