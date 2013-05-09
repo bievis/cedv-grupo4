@@ -113,129 +113,94 @@ $(document).ready(function(){initNavTree('GameState_8hpp_source.html','');});
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="AppState_8hpp.html">AppState.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;</div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DotSceneLoader_8hpp.html">DotSceneLoader.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">//#include &quot;Personaje.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TrackManager_8h.html">TrackManager.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SoundFXManager_8h.html">SoundFXManager.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;OgreSubEntity.h&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;OgreMaterialManager.h&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Records_8h.html">Records.h</a>&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;OgreBulletDynamicsRigidBody.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;Shapes/OgreBulletCollisionsStaticPlaneShape.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;Shapes/OgreBulletCollisionsBoxShape.h&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Coche_8hpp.html">Coche.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// Segundos en los que se queda el personaje muerto</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">//#define TIEMPO_MUERTO 1.0</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">//enum EstadoJuego  { GAME, GAME_OVER, NEXT_LEVEL, WINNER };</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">// enum QueryFlags</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">//   {</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">//     OGRE_HEAD_MASK   = 1&lt;&lt;0,</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">//     CUBE_MASK                = 1&lt;&lt;1</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">//   };</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
-<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="GameState_8hpp.html#a7997b18ad7a400efdfcb1fa18016d52f">   31</a></span>&#160;<span class="preprocessor">#define _NUM_COCHES_ 1</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="code" href="classGameState.html">   33</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGameState.html">GameState</a> : <span class="keyword">public</span> <a class="code" href="classAppState.html">AppState</a></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="AppState_8hpp.html#ae3bcbaa924feead033a2aad699ce074f">DECLARE_APPSTATE_CLASS</a>(<a class="code" href="classGameState.html">GameState</a>)</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ad5fb5f0049130bf300410c9f31220f7f">enter</a>();</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#abb35dcf116bb2043809806bdd8a15d1c">createScene</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#acf49a6ea192c0a63100665332d884b4c">exit</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#a5069c4bdb6a54cd8f365ced87883f714">pause</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a8fd781fb40cb9de76b98cfc98f7b2f13">resume</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a404fe21faee3b81f9d3ea692ba54276c">buildGUI</a>();</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#aed1e21b59bdd1c2e5536e3668ed55cf5">keyPressed</a> ( <span class="keyword">const</span> OIS::KeyEvent &amp;keyEventRef );</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#aa2f87ff327b755de677c3c5af5e303a3">keyReleased</a> ( <span class="keyword">const</span> OIS::KeyEvent &amp;keyEventRef );</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#ab6860a7205c3469a097b5e5e64189dc7">mouseMoved</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;arg );</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#a4008646c7a47a2df9ac13bdbeec6cb45">mousePressed</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;arg, OIS::MouseButtonID <span class="keywordtype">id</span> );</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#a6268c94f13e2621c5c07223a7af2d4d6">mouseReleased</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;arg, OIS::MouseButtonID <span class="keywordtype">id</span> );</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a462a6037359db0e198712e34669a076c">onLeftPressed</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;evt );</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a2db0f70f1eed6ee0fc9669b1f67bb47a">update</a>(<span class="keywordtype">double</span> timeSinceLastFrame);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#acb1df4bdcb7d437b2dedf2a5374b2dbc">LoadScenaryParts</a>();</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classGameState.html#ad80030bf98da282e2a1510faf11c381d">   63</a></span>&#160;    <span class="keywordtype">bool</span>          <a class="code" href="classGameState.html#ad80030bf98da282e2a1510faf11c381d">_estaEnMeta</a>; <span class="comment">// Indica que ya ha entrado en la linea de la meta</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classGameState.html#a558cd1a927f096b759d16e9ce7a66c87">   64</a></span>&#160;    <span class="keywordtype">bool</span>          <a class="code" href="classGameState.html#a558cd1a927f096b759d16e9ce7a66c87">_estaEnPreMeta</a>; <span class="comment">// Indica que ya ha entrado en la linea de la meta</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="classGameState.html#a5345d902edb498649c18c0c9ce09583d">   65</a></span>&#160;    <span class="keywordtype">int</span>           <a class="code" href="classGameState.html#a5345d902edb498649c18c0c9ce09583d">_controlMeta</a>; <span class="comment">// Controla el paso por meta</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="classGameState.html#a6777c4b354568d0525a6cc27ba1b4b67">   66</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#a6777c4b354568d0525a6cc27ba1b4b67">m_bQuit</a>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="classGameState.html#a8349370d9f5fdc6e97616bc0e7be634e">   67</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#a8349370d9f5fdc6e97616bc0e7be634e">m_bLMouseDown</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="classGameState.html#aadd0611d72de71de0e4f4eb250b63c29">   68</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#aadd0611d72de71de0e4f4eb250b63c29">m_bRMouseDown</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classGameState.html#a6397e9345c537858710102ac05b8315f">   69</a></span>&#160;    Ogre::OverlayManager*     <a class="code" href="classGameState.html#a6397e9345c537858710102ac05b8315f">m_pOverlayMgr</a>;</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TrackManager_8h.html">TrackManager.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SoundFXManager_8h.html">SoundFXManager.h</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;OgreSubEntity.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;OgreMaterialManager.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Records_8h.html">Records.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;OgreBulletDynamicsRigidBody.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;Shapes/OgreBulletCollisionsStaticPlaneShape.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;Shapes/OgreBulletCollisionsBoxShape.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="Coche_8hpp.html">Coche.hpp</a>&gt;</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="GameState_8hpp.html#a7997b18ad7a400efdfcb1fa18016d52f">   19</a></span>&#160;<span class="preprocessor">#define _NUM_COCHES_ 1</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="code" href="classGameState.html">   21</a></span>&#160;<span class="keyword">class </span><a class="code" href="classGameState.html">GameState</a> : <span class="keyword">public</span> <a class="code" href="classAppState.html">AppState</a></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;  {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classGameState.html#a4fa0a2bf50315c4a35a3890a0adcee5c">GameState</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="AppState_8hpp.html#ae3bcbaa924feead033a2aad699ce074f">DECLARE_APPSTATE_CLASS</a>(<a class="code" href="classGameState.html">GameState</a>)</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ad5fb5f0049130bf300410c9f31220f7f">enter</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#abb35dcf116bb2043809806bdd8a15d1c">createScene</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#acf49a6ea192c0a63100665332d884b4c">exit</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#a5069c4bdb6a54cd8f365ced87883f714">pause</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a8fd781fb40cb9de76b98cfc98f7b2f13">resume</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a404fe21faee3b81f9d3ea692ba54276c">buildGUI</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#aed1e21b59bdd1c2e5536e3668ed55cf5">keyPressed</a> ( <span class="keyword">const</span> OIS::KeyEvent &amp;keyEventRef );</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#aa2f87ff327b755de677c3c5af5e303a3">keyReleased</a> ( <span class="keyword">const</span> OIS::KeyEvent &amp;keyEventRef );</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#ab6860a7205c3469a097b5e5e64189dc7">mouseMoved</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;arg );</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#a4008646c7a47a2df9ac13bdbeec6cb45">mousePressed</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;arg, OIS::MouseButtonID <span class="keywordtype">id</span> );</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classGameState.html#a6268c94f13e2621c5c07223a7af2d4d6">mouseReleased</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;arg, OIS::MouseButtonID <span class="keywordtype">id</span> );</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a462a6037359db0e198712e34669a076c">onLeftPressed</a> ( <span class="keyword">const</span> OIS::MouseEvent &amp;evt );</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a2db0f70f1eed6ee0fc9669b1f67bb47a">update</a>(<span class="keywordtype">double</span> timeSinceLastFrame);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#acb1df4bdcb7d437b2dedf2a5374b2dbc">LoadScenaryParts</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="code" href="classGameState.html#ad80030bf98da282e2a1510faf11c381d">   51</a></span>&#160;    <span class="keywordtype">bool</span>          <a class="code" href="classGameState.html#ad80030bf98da282e2a1510faf11c381d">_estaEnMeta</a>; <span class="comment">// Indica que ya ha entrado en la linea de la meta</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="code" href="classGameState.html#a558cd1a927f096b759d16e9ce7a66c87">   52</a></span>&#160;    <span class="keywordtype">bool</span>          <a class="code" href="classGameState.html#a558cd1a927f096b759d16e9ce7a66c87">_estaEnPreMeta</a>; <span class="comment">// Indica que ya ha entrado en la linea de la meta</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classGameState.html#a5345d902edb498649c18c0c9ce09583d">   53</a></span>&#160;    <span class="keywordtype">int</span>           <a class="code" href="classGameState.html#a5345d902edb498649c18c0c9ce09583d">_controlMeta</a>; <span class="comment">// Controla el paso por meta</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="classGameState.html#a6777c4b354568d0525a6cc27ba1b4b67">   54</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#a6777c4b354568d0525a6cc27ba1b4b67">m_bQuit</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="code" href="classGameState.html#a8349370d9f5fdc6e97616bc0e7be634e">   55</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#a8349370d9f5fdc6e97616bc0e7be634e">m_bLMouseDown</a>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="classGameState.html#aadd0611d72de71de0e4f4eb250b63c29">   56</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#aadd0611d72de71de0e4f4eb250b63c29">m_bRMouseDown</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="classGameState.html#a6397e9345c537858710102ac05b8315f">   57</a></span>&#160;    Ogre::OverlayManager*     <a class="code" href="classGameState.html#a6397e9345c537858710102ac05b8315f">m_pOverlayMgr</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="classGameState.html#a68bead324ccddb1021abd8b67c7c44a9">   59</a></span>&#160;    <span class="keywordtype">double</span>                    <a class="code" href="classGameState.html#a68bead324ccddb1021abd8b67c7c44a9">_tiempo</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="classGameState.html#a91e9c07600b36c230b2f751df553df71">   60</a></span>&#160;    <span class="keywordtype">double</span>                    <a class="code" href="classGameState.html#a91e9c07600b36c230b2f751df553df71">_mejorTiempo</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="classGameState.html#ae69a46ae98a0b9785fbd27c8481177bc">   61</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#ae69a46ae98a0b9785fbd27c8481177bc">_empieza_a_contar</a>;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="classGameState.html#afec7f3984edcf0c24b199af13851f02c">   63</a></span>&#160;    <a class="code" href="classTrackPtr.html">TrackPtr</a>                  <a class="code" href="classGameState.html#afec7f3984edcf0c24b199af13851f02c">_gameTrack</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="classGameState.html#a89173112ebd9746d13b85401043e4920">   64</a></span>&#160;    <a class="code" href="classSoundFXPtr.html">SoundFXPtr</a>                <a class="code" href="classGameState.html#a89173112ebd9746d13b85401043e4920">_sonidoMetaFX</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="classGameState.html#a38b188ff731a471078aa12d7c4c1afe3">   66</a></span>&#160;    btScalar                  <a class="code" href="classGameState.html#a38b188ff731a471078aa12d7c4c1afe3">_velocidad</a>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="classGameState.html#aa97c651546de474097b296d4ccb0adda">   68</a></span>&#160;    OgreBulletDynamics::DynamicsWorld * <a class="code" href="classGameState.html#aa97c651546de474097b296d4ccb0adda">_world</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="code" href="classGameState.html#af21ec3c20179d2620a38e076ba278e66">   69</a></span>&#160;    OgreBulletCollisions::DebugDrawer * <a class="code" href="classGameState.html#af21ec3c20179d2620a38e076ba278e66">_debugDrawer</a>;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="comment">//    unsigned int              _level;</span></div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="comment">//    char                      _vidas;</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="code" href="classGameState.html#a68bead324ccddb1021abd8b67c7c44a9">   73</a></span>&#160;    <span class="keywordtype">double</span>                    <a class="code" href="classGameState.html#a68bead324ccddb1021abd8b67c7c44a9">_tiempo</a>;</div>
-<div class="line"><a name="l00074"></a><span class="lineno"><a class="code" href="classGameState.html#a91e9c07600b36c230b2f751df553df71">   74</a></span>&#160;    <span class="keywordtype">double</span>                    <a class="code" href="classGameState.html#a91e9c07600b36c230b2f751df553df71">_mejorTiempo</a>;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="code" href="classGameState.html#ae69a46ae98a0b9785fbd27c8481177bc">   75</a></span>&#160;    <span class="keywordtype">bool</span>                      <a class="code" href="classGameState.html#ae69a46ae98a0b9785fbd27c8481177bc">_empieza_a_contar</a>;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">//    double                    _tiempoTotal;</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="comment">//    double                    _tiempoNextLevel;</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//    double                    _tiempoMuertoFin;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">//    EstadoJuego               _estado;</span></div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="code" href="classGameState.html#afec7f3984edcf0c24b199af13851f02c">   82</a></span>&#160;    <a class="code" href="classTrackPtr.html">TrackPtr</a>                  <a class="code" href="classGameState.html#afec7f3984edcf0c24b199af13851f02c">_gameTrack</a>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="code" href="classGameState.html#a464b4b3acf59b2a96b67986e985f8d34">   83</a></span>&#160;    <a class="code" href="classTrackPtr.html">TrackPtr</a>                  <a class="code" href="classGameState.html#a464b4b3acf59b2a96b67986e985f8d34">_gameoverTrack</a>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno"><a class="code" href="classGameState.html#a3cef7aec31c941f22667485cc37d4ead">   84</a></span>&#160;    <a class="code" href="classTrackPtr.html">TrackPtr</a>                  <a class="code" href="classGameState.html#a3cef7aec31c941f22667485cc37d4ead">_winnerTrack</a>;</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="code" href="classGameState.html#a3acd4333bdca976b84cc5b1154919801">   85</a></span>&#160;    <a class="code" href="classSoundFXPtr.html">SoundFXPtr</a>                <a class="code" href="classGameState.html#a3acd4333bdca976b84cc5b1154919801">_moverPersonajeFX</a>;</div>
-<div class="line"><a name="l00086"></a><span class="lineno"><a class="code" href="classGameState.html#a89173112ebd9746d13b85401043e4920">   86</a></span>&#160;    <a class="code" href="classSoundFXPtr.html">SoundFXPtr</a>                <a class="code" href="classGameState.html#a89173112ebd9746d13b85401043e4920">_sonidoMetaFX</a>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;</div>
-<div class="line"><a name="l00088"></a><span class="lineno"><a class="code" href="classGameState.html#a38b188ff731a471078aa12d7c4c1afe3">   88</a></span>&#160;    btScalar                  <a class="code" href="classGameState.html#a38b188ff731a471078aa12d7c4c1afe3">_velocidad</a>;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="classGameState.html#aa97c651546de474097b296d4ccb0adda">   90</a></span>&#160;    OgreBulletDynamics::DynamicsWorld * <a class="code" href="classGameState.html#aa97c651546de474097b296d4ccb0adda">_world</a>;</div>
-<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="classGameState.html#af21ec3c20179d2620a38e076ba278e66">   91</a></span>&#160;    OgreBulletCollisions::DebugDrawer * <a class="code" href="classGameState.html#af21ec3c20179d2620a38e076ba278e66">_debugDrawer</a>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="comment">// OgreBulletDynamics::WheeledRigidBody  *mCarChassis;</span></div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">// OgreBulletDynamics::VehicleTuning     *mTuning;</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="comment">// OgreBulletDynamics::VehicleRayCaster  *mVehicleRayCaster;</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="comment">// OgreBulletDynamics::RaycastVehicle    *mVehicle;</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="comment">// Ogre::Entity    *mChassis;</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="comment">// Ogre::Entity    *mWheels[4];</span></div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="comment">// Ogre::SceneNode *mWheelNodes[4];</span></div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="comment">// float mSteering;</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno"><a class="code" href="classGameState.html#aa2fff58ab33c7784d350f3d31b058953">  104</a></span>&#160;    std::vector&lt;Coche *&gt; <a class="code" href="classGameState.html#aa2fff58ab33c7784d350f3d31b058953">_vCoches</a>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="comment">//Methods</span></div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a8b6337e017e4f8989953e214e5a0d0cd">CreateInitialWorld</a>();</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordtype">string</span> <a class="code" href="classGameState.html#a1e87286c65ac98120fb98c33f3a2aa34">getTime</a>(<span class="keywordtype">double</span> tiempo);</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ac39dded30d3006d887e0fc2b01bad14c">Mostrar_Velocidad</a> ( <span class="keywordtype">float</span> velocidad, <span class="keywordtype">bool</span> ocultar = <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">// \brief Reiniciar coche y lo vuelve a poner el inicio</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a752651cb666ad175c9669260b74fa093">reiniciarCoche</a> ();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="comment">// \brief Reiniciar coche y lo vuelve a poner el inicio</span></div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a892acf1e88086442bc7154f5c1e7671c">insertarElementoEscena</a> (<span class="keywordtype">string</span> nombreElemento);</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="comment">//    void actualizarVidas();</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="comment">//    void cargarNivel();</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;};</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="comment">//|||||||||||||||||||||||||||||||||||||||||||||||</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="classGameState.html#aa2fff58ab33c7784d350f3d31b058953">   71</a></span>&#160;    std::vector&lt;Coche *&gt; <a class="code" href="classGameState.html#aa2fff58ab33c7784d350f3d31b058953">_vCoches</a>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="comment">//Methods</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a8b6337e017e4f8989953e214e5a0d0cd">CreateInitialWorld</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">string</span> <a class="code" href="classGameState.html#a1e87286c65ac98120fb98c33f3a2aa34">getTime</a>(<span class="keywordtype">double</span> tiempo);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#ac39dded30d3006d887e0fc2b01bad14c">Mostrar_Velocidad</a> ( <span class="keywordtype">float</span> velocidad, <span class="keywordtype">bool</span> ocultar = <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="comment">// \brief Reiniciar coche y lo vuelve a poner el inicio</span></div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a752651cb666ad175c9669260b74fa093">reiniciarCoche</a> ();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="comment">// \brief Reiniciar coche y lo vuelve a poner el inicio</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classGameState.html#a892acf1e88086442bc7154f5c1e7671c">insertarElementoEscena</a> (<span class="keywordtype">string</span> nombreElemento);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="comment">//|||||||||||||||||||||||||||||||||||||||||||||||</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="GameState_8hpp.html">GameState.hpp</a></li>
-    <li class="footer">Generado el Jueves, 9 de Mayo de 2013 23:49:34 para Nitro por
+    <li class="footer">Generado el Viernes, 10 de Mayo de 2013 00:15:58 para Nitro por
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
   </ul>

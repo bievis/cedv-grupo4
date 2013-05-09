@@ -39,8 +39,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AdvancedOgreFramework_8cpp.html",
-"classGameState.html",
-"classrapidxml_1_1xml__document.html"
+"classGameState.html#a6777c4b354568d0525a6cc27ba1b4b67",
+"classrapidxml_1_1xml__document.html#aec6cedf45179b6378c670bc3ea509e61"
 ];
 
 var SYNCONMSG = 'click en deshabilitar sincronización';

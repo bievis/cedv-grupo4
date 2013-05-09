@@ -1,5 +1,4 @@
 #include "GameState.hpp"
-#include "GameManager.h"
 
 #include "Shapes/OgreBulletCollisionsBoxShape.h"
 #include "Shapes/OgreBulletCollisionsCompoundShape.h"

@@ -7,7 +7,6 @@ var annotated =
     [ "AppStateManager", "classAppStateManager.html", "classAppStateManager" ],
     [ "Coche", "classCoche.html", "classCoche" ],
     [ "DotSceneLoader", "classDotSceneLoader.html", "classDotSceneLoader" ],
-    [ "GameManager", "classGameManager.html", "classGameManager" ],
     [ "GameState", "classGameState.html", "classGameState" ],
     [ "MenuState", "classMenuState.html", "classMenuState" ],
     [ "NitroApp", "classNitroApp.html", "classNitroApp" ],

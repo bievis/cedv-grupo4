@@ -1,3 +1,9 @@
 <map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
-<area shape="rect" id="node1" href="$classnodeProperty.html" title="nodeProperty" alt="" coords="5,5,104,35"/>
+<area shape="rect" id="node3" href="$classAppState.html" title="AppState" alt="" coords="208,59,283,88"/>
+<area shape="rect" id="node11" href="$classOgreFramework.html" title="OgreFramework" alt="" coords="188,112,303,141"/>
+<area shape="rect" id="node5" href="$classGameState.html" title="GameState" alt="" coords="359,5,447,35"/>
+<area shape="rect" id="node7" href="$classMenuState.html" title="MenuState" alt="" coords="360,59,445,88"/>
+<area shape="rect" id="node9" href="$classPauseState.html" title="PauseState" alt="" coords="357,112,448,141"/>
+<area shape="rect" id="node17" href="$classSoundFXManager.html" title="SoundFXManager" alt="" coords="183,165,308,195"/>
+<area shape="rect" id="node19" href="$classTrackManager.html" title="TrackManager" alt="" coords="193,219,297,248"/>
 </map>
