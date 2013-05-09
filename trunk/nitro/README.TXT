@@ -15,6 +15,14 @@ Menú
 - START GAME: Opción para iniciar el juego. Si se quiere interrumpir el juego pulsar
 la tecla ESC, donde aparecerá un menú con 3 opciones (Resume Game, Return to Main Menu y
 Exit Game).
+  - Teclas:
+    - ARRIBA: Acelera el coche.
+    - ABAJO: Mete la marcha atras del coche.
+    - IZQUIERDA: Gira el las ruedas del coche a la izquierda.
+    - DERECHA: Gira las ruedas del coche a la derecha.
+    - G: Muestra la malla de colisiones de Bullet.
+    - H: Oculta la malla de colisiones de Bullet.
+    - O: Muestra/Oculta un panel de información.
 - BEST TIMES: Ventana en la que se mostraran los 10 mejores tiempos que se han
 obtenido en el juego, reflejando el tiempo empleado, ademas de la fecha y hora en la que 
 realizó el registro. Para cerrar la ventana y volver al menú te tendrá que pulsar 
