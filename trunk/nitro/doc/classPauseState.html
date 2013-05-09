@@ -1,0 +1,662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>Nitro: Referencia de la Clase PauseState</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Nitro
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.3.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Clases</span></a></li>
+      <li><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Lista&#160;de&#160;clases</span></a></li>
+      <li><a href="classes.html"><span>Índice&#160;de&#160;clases</span></a></li>
+      <li><a href="inherits.html"><span>Jerarquía&#160;de&#160;la&#160;clase</span></a></li>
+      <li><a href="functions.html"><span>Miembros&#160;de&#160;las&#160;clases</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classPauseState.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Valores de enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>&apos;defines&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pri-attribs">Atributos privados</a> &#124;
+<a href="classPauseState-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Clase PauseState</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="PauseState_8hpp_source.html">PauseState.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de herencias de PauseState</div>
+<div class="dyncontent">
+<div class="center"><img src="classPauseState__inherit__graph.png" border="0" usemap="#PauseState_inherit__map" alt="Inheritance graph"/></div>
+<map name="PauseState_inherit__map" id="PauseState_inherit__map">
+<area shape="rect" id="node2" href="classAppState.html" title="{AppState\n|# m_pParent\l# m_pCamera\l# m_pSceneMgr\l# m_FrameEvent\l|+ destroy()\l+ enter()\l+ exit()\l+ pause()\l+ resume()\l+ update()\l+ create()\l# AppState()\l# findByName()\l# changeAppState()\l# pushAppState()\l# popAppState()\l# shutdown()\l# popAllAndPushAppState()\l# put_background_with\l_rotation()\l# put_overlay()\l}" alt="" coords="129,139,313,554"/></map>
+</div>
+<div class="dynheader">
+Diagrama de colaboración para PauseState:</div>
+<div class="dyncontent">
+<div class="center"><img src="classPauseState__coll__graph.png" border="0" usemap="#PauseState_coll__map" alt="Collaboration graph"/></div>
+<map name="PauseState_coll__map" id="PauseState_coll__map">
+<area shape="rect" id="node2" href="classAppState.html" title="{AppState\n|# m_pCamera\l# m_pSceneMgr\l# m_FrameEvent\l|+ destroy()\l+ enter()\l+ exit()\l+ pause()\l+ resume()\l+ update()\l+ create()\l# AppState()\l# findByName()\l# changeAppState()\l# pushAppState()\l# popAppState()\l# shutdown()\l# popAllAndPushAppState()\l# put_background_with\l_rotation()\l# put_overlay()\l}" alt="" coords="313,315,497,712"/><area shape="rect" id="node10" href="classAppStateListener.html" title="{AppStateListener\n||+ AppStateListener()\l+ ~AppStateListener()\l+ manageAppState()\l+ findByName()\l+ changeAppState()\l+ pushAppState()\l+ popAppState()\l+ pauseAppState()\l+ shutdown()\l+ popAllAndPushAppState()\l}" alt="" coords="520,6,704,247"/><area shape="rect" id="node12" href="classSoundFXPtr.html" title="{SoundFXPtr\n||+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ operator=()\l}" alt="" coords="645,436,757,591"/></map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:ad136b9cd4e853606498c01aeeb6a9d26"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#ad136b9cd4e853606498c01aeeb6a9d26">PauseState</a> ()</td></tr>
+<tr class="separator:ad136b9cd4e853606498c01aeeb6a9d26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6848c37b470152c1c019bcde9eef9dd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a6848c37b470152c1c019bcde9eef9dd6">enter</a> ()</td></tr>
+<tr class="separator:a6848c37b470152c1c019bcde9eef9dd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a144011ffbb4018583919dc1ba54e117d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a144011ffbb4018583919dc1ba54e117d">exit</a> ()</td></tr>
+<tr class="separator:a144011ffbb4018583919dc1ba54e117d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e17eb7e4782d1db160b69b3faaacbb4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a2e17eb7e4782d1db160b69b3faaacbb4">keyPressed</a> (const OIS::KeyEvent &amp;keyEventRef)</td></tr>
+<tr class="separator:a2e17eb7e4782d1db160b69b3faaacbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbc4b005b1eef207e5d0b4d877afd035"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#afbc4b005b1eef207e5d0b4d877afd035">keyReleased</a> (const OIS::KeyEvent &amp;keyEventRef)</td></tr>
+<tr class="separator:afbc4b005b1eef207e5d0b4d877afd035"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa65837b8b96fb970c08b81592b9c0535"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#aa65837b8b96fb970c08b81592b9c0535">mouseMoved</a> (const OIS::MouseEvent &amp;evt)</td></tr>
+<tr class="separator:aa65837b8b96fb970c08b81592b9c0535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa209c76f132171aad700578367cbee50"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#aa209c76f132171aad700578367cbee50">mousePressed</a> (const OIS::MouseEvent &amp;evt, OIS::MouseButtonID id)</td></tr>
+<tr class="separator:aa209c76f132171aad700578367cbee50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f7cb0c3327735ee53a53fff40b1eda3"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a2f7cb0c3327735ee53a53fff40b1eda3">mouseReleased</a> (const OIS::MouseEvent &amp;evt, OIS::MouseButtonID id)</td></tr>
+<tr class="separator:a2f7cb0c3327735ee53a53fff40b1eda3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28fc8fd4d830d72be404ca775ba72ffb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a28fc8fd4d830d72be404ca775ba72ffb">buttonHit</a> (OgreBites::Button *button)</td></tr>
+<tr class="separator:a28fc8fd4d830d72be404ca775ba72ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c0ac87aff25a4f6b2979396ce3b08cd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a1c0ac87aff25a4f6b2979396ce3b08cd">yesNoDialogClosed</a> (const Ogre::DisplayString &amp;question, bool yesHit)</td></tr>
+<tr class="separator:a1c0ac87aff25a4f6b2979396ce3b08cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af378a61a86db19d6a168f86cf75319a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#af378a61a86db19d6a168f86cf75319a7">update</a> (double timeSinceLastFrame)</td></tr>
+<tr class="separator:af378a61a86db19d6a168f86cf75319a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classAppState"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classAppState')"><img src="closed.png" alt="-"/>&#160;Métodos públicos heredados desde <a class="el" href="classAppState.html">AppState</a></td></tr>
+<tr class="memitem:ab9527bbef48a72acfab8e3c4d99fac3f inherit pub_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ab9527bbef48a72acfab8e3c4d99fac3f">destroy</a> ()</td></tr>
+<tr class="separator:ab9527bbef48a72acfab8e3c4d99fac3f inherit pub_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cbefe69ca8f57f46094f59c5859734 inherit pub_methods_classAppState"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a77cbefe69ca8f57f46094f59c5859734">pause</a> ()</td></tr>
+<tr class="separator:a77cbefe69ca8f57f46094f59c5859734 inherit pub_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df644bfdb6dfc0f2f730f8c8e6921cc inherit pub_methods_classAppState"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a8df644bfdb6dfc0f2f730f8c8e6921cc">resume</a> ()</td></tr>
+<tr class="separator:a8df644bfdb6dfc0f2f730f8c8e6921cc inherit pub_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Atributos privados</h2></td></tr>
+<tr class="memitem:adacabf0674255e645f1b89b118649064"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#adacabf0674255e645f1b89b118649064">m_bQuit</a></td></tr>
+<tr class="separator:adacabf0674255e645f1b89b118649064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14dc2a6f9f96096556c40ad1e278c5d0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a14dc2a6f9f96096556c40ad1e278c5d0">m_bQuestionActive</a></td></tr>
+<tr class="separator:a14dc2a6f9f96096556c40ad1e278c5d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8e45669d995065db2093bbb1e350e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSoundFXPtr.html">SoundFXPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classPauseState.html#a9a8e45669d995065db2093bbb1e350e0">_menuFX</a></td></tr>
+<tr class="separator:a9a8e45669d995065db2093bbb1e350e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Otros miembros heredados</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classAppState"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classAppState')"><img src="closed.png" alt="-"/>&#160;Métodos públicos estáticos heredados desde <a class="el" href="classAppState.html">AppState</a></td></tr>
+<tr class="memitem:a9c18cb8ce2e689305fc417fc59c304dc inherit pub_static_methods_classAppState"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a9c18cb8ce2e689305fc417fc59c304dc">create</a> (<a class="el" href="classAppStateListener.html">AppStateListener</a> *parent, const Ogre::String name)</td></tr>
+<tr class="separator:a9c18cb8ce2e689305fc417fc59c304dc inherit pub_static_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classAppState"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classAppState')"><img src="closed.png" alt="-"/>&#160;Métodos protegidos heredados desde <a class="el" href="classAppState.html">AppState</a></td></tr>
+<tr class="memitem:a9921a217f97e1523801a8f4b9da4b195 inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a9921a217f97e1523801a8f4b9da4b195">AppState</a> ()</td></tr>
+<tr class="separator:a9921a217f97e1523801a8f4b9da4b195 inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59effc37303d010752afc83c6c615d7 inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAppState.html">AppState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ac59effc37303d010752afc83c6c615d7">findByName</a> (Ogre::String stateName)</td></tr>
+<tr class="separator:ac59effc37303d010752afc83c6c615d7 inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e91f4b3b52cbfb5147ccb6477662ad inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#aa5e91f4b3b52cbfb5147ccb6477662ad">changeAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)</td></tr>
+<tr class="separator:aa5e91f4b3b52cbfb5147ccb6477662ad inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d689f379f869a9df3ef316d79445385 inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a4d689f379f869a9df3ef316d79445385">pushAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)</td></tr>
+<tr class="separator:a4d689f379f869a9df3ef316d79445385 inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781107a5c09f1b706b7ad0db112d3fe2 inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a781107a5c09f1b706b7ad0db112d3fe2">popAppState</a> ()</td></tr>
+<tr class="separator:a781107a5c09f1b706b7ad0db112d3fe2 inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a9b968c9bcb42135018ff310a57d7b inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a61a9b968c9bcb42135018ff310a57d7b">shutdown</a> ()</td></tr>
+<tr class="separator:a61a9b968c9bcb42135018ff310a57d7b inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d194ba8ead3639016646ce0ff08eb96 inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a7d194ba8ead3639016646ce0ff08eb96">popAllAndPushAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)</td></tr>
+<tr class="separator:a7d194ba8ead3639016646ce0ff08eb96 inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9bc1360937e9864bc1970848920cb6 inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a7e9bc1360937e9864bc1970848920cb6">put_background_with_rotation</a> (const char *background)</td></tr>
+<tr class="separator:a7e9bc1360937e9864bc1970848920cb6 inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e4a9f57811314f56c64e388e3e05d1f inherit pro_methods_classAppState"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a5e4a9f57811314f56c64e388e3e05d1f">put_overlay</a> (Ogre::Rectangle2D *rect, const char *name, Ogre::Real left, Ogre::Real top, Ogre::Real right, Ogre::Real bottom, bool visible)</td></tr>
+<tr class="separator:a5e4a9f57811314f56c64e388e3e05d1f inherit pro_methods_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classAppState"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classAppState')"><img src="closed.png" alt="-"/>&#160;Atributos protegidos heredados desde <a class="el" href="classAppState.html">AppState</a></td></tr>
+<tr class="memitem:a6da69b3279ac5909759aac2831b6766c inherit pro_attribs_classAppState"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAppStateListener.html">AppStateListener</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a></td></tr>
+<tr class="separator:a6da69b3279ac5909759aac2831b6766c inherit pro_attribs_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b6d7e4fa6492fc35666ba82390b04d inherit pro_attribs_classAppState"><td class="memItemLeft" align="right" valign="top">Ogre::Camera *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a></td></tr>
+<tr class="separator:a27b6d7e4fa6492fc35666ba82390b04d inherit pro_attribs_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae40987afbcc22a87253f46fff692e31f inherit pro_attribs_classAppState"><td class="memItemLeft" align="right" valign="top">Ogre::SceneManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a></td></tr>
+<tr class="separator:ae40987afbcc22a87253f46fff692e31f inherit pro_attribs_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b421b0be5f867f11c90dacc7f7abbf6 inherit pro_attribs_classAppState"><td class="memItemLeft" align="right" valign="top">Ogre::FrameEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a5b421b0be5f867f11c90dacc7f7abbf6">m_FrameEvent</a></td></tr>
+<tr class="separator:a5b421b0be5f867f11c90dacc7f7abbf6 inherit pro_attribs_classAppState"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock">
+<p>Definición en la línea <a class="el" href="PauseState_8hpp_source.html#l00008">8</a> del archivo <a class="el" href="PauseState_8hpp_source.html">PauseState.hpp</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a class="anchor" id="ad136b9cd4e853606498c01aeeb6a9d26"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PauseState::PauseState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00005">5</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;  {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    <a class="code" href="classPauseState.html#adacabf0674255e645f1b89b118649064">m_bQuit</a>             = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <a class="code" href="classPauseState.html#a14dc2a6f9f96096556c40ad1e278c5d0">m_bQuestionActive</a>   = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="classAppState.html#a5b421b0be5f867f11c90dacc7f7abbf6">m_FrameEvent</a>        = Ogre::FrameEvent();</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a class="anchor" id="a28fc8fd4d830d72be404ca775ba72ffb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PauseState::buttonHit </td>
+          <td>(</td>
+          <td class="paramtype">OgreBites::Button *&#160;</td>
+          <td class="paramname"><em>button</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00114">114</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;  {</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="classPauseState.html#a9a8e45669d995065db2093bbb1e350e0">_menuFX</a>-&gt;play();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">if</span> ( button-&gt;getName() == <span class="stringliteral">&quot;ExitBtn&quot;</span> )</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;      {</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;        OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;showYesNoDialog ( <span class="stringliteral">&quot;Really?&quot;</span>, <span class="stringliteral">&quot;sure to abort the game?&quot;</span> );</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <a class="code" href="classPauseState.html#a14dc2a6f9f96096556c40ad1e278c5d0">m_bQuestionActive</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;      }</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( button-&gt;getName() == <span class="stringliteral">&quot;BackToGameBtn&quot;</span> )</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;      <a class="code" href="classPauseState.html#adacabf0674255e645f1b89b118649064">m_bQuit</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( button-&gt;getName() == <span class="stringliteral">&quot;BackToMenuBtn&quot;</span> )</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;      <a class="code" href="classAppState.html#a7d194ba8ead3639016646ce0ff08eb96">popAllAndPushAppState</a>(<a class="code" href="classAppState.html#ac59effc37303d010752afc83c6c615d7">findByName</a>(<span class="stringliteral">&quot;MenuState&quot;</span>));</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a6848c37b470152c1c019bcde9eef9dd6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PauseState::enter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="classAppState.html#af752892877e32b4596217b8a7c04b98e">AppState</a>.</p>
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00012">12</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;  {</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getLogMgrPtr()-&gt;logMessage(<span class="stringliteral">&quot;Entering PauseState...&quot;</span>);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">// Carga del sonido.</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classPauseState.html#a9a8e45669d995065db2093bbb1e350e0">_menuFX</a> = <a class="code" href="classSoundFXManager.html#a389a07b5b177b82dd6d1b20e294acb2f">SoundFXManager::getSingleton</a>().<a class="code" href="classSoundFXManager.html#a0c6833e2c3e1643a0539a9855b843d8f">load</a>(<span class="stringliteral">&quot;boton.wav&quot;</span>);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a> = OgreFramework::getSingletonPtr()-&gt;getRootPtr()-&gt;createSceneManager(ST_GENERIC, <span class="stringliteral">&quot;PauseSceneMgr&quot;</span>);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a>-&gt;setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a> = <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a>-&gt;createCamera(<span class="stringliteral">&quot;PauseCam&quot;</span>);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a>-&gt;setPosition(Vector3(0, 25, -50));</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a>-&gt;lookAt(Vector3(0, 0, 0));</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a>-&gt;setNearClipDistance(1);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a>-&gt;setAspectRatio(Real(OgreFramework::getSingletonPtr()-&gt;getViewportPtr()-&gt;getActualWidth()) /</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                              Real(OgreFramework::getSingletonPtr()-&gt;getViewportPtr()-&gt;getActualHeight()));</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getViewportPtr()-&gt;setCamera(<a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a>);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;destroyAllWidgets();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;showCursor();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;createButton(OgreBites::TL_CENTER, <span class="stringliteral">&quot;BackToGameBtn&quot;</span>, <span class="stringliteral">&quot;Resume Game&quot;</span>, 350);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;createButton(OgreBites::TL_CENTER, <span class="stringliteral">&quot;BackToMenuBtn&quot;</span>, <span class="stringliteral">&quot;Return to Main Menu&quot;</span>, 350);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;createButton(OgreBites::TL_CENTER, <span class="stringliteral">&quot;ExitBtn&quot;</span>, <span class="stringliteral">&quot;Exit Game&quot;</span>, 350);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="classPauseState.html#adacabf0674255e645f1b89b118649064">m_bQuit</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a144011ffbb4018583919dc1ba54e117d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PauseState::exit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="classAppState.html#a34e39a31a2a01ea0df06152daf7e643b">AppState</a>.</p>
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00042">42</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;  {</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getLogMgrPtr()-&gt;logMessage(<span class="stringliteral">&quot;Leaving PauseState...&quot;</span>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// Parar del track principal...</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="comment">//    this-&gt;_mainTrack-&gt;stop();</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a>-&gt;destroyCamera(<a class="code" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">if</span> ( <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a> )</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;      OgreFramework::getSingletonPtr()-&gt;getRootPtr()-&gt;destroySceneManager ( <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a> );</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;clearAllTrays();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;destroyAllWidgets();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;setListener(0);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2e17eb7e4782d1db160b69b3faaacbb4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::keyPressed </td>
+          <td>(</td>
+          <td class="paramtype">const OIS::KeyEvent &amp;&#160;</td>
+          <td class="paramname"><em>keyEventRef</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00058">58</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;  {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">if</span> ( OgreFramework::getSingletonPtr()-&gt;getKeyboardPtr()-&gt;isKeyDown ( OIS::KC_ESCAPE ) &amp;&amp; !<a class="code" href="classPauseState.html#a14dc2a6f9f96096556c40ad1e278c5d0">m_bQuestionActive</a> )</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;      {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <a class="code" href="classPauseState.html#adacabf0674255e645f1b89b118649064">m_bQuit</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;      }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    OgreFramework::getSingletonPtr()-&gt;keyPressed ( keyEventRef );</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="afbc4b005b1eef207e5d0b4d877afd035"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::keyReleased </td>
+          <td>(</td>
+          <td class="paramtype">const OIS::KeyEvent &amp;&#160;</td>
+          <td class="paramname"><em>keyEventRef</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00071">71</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;  {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    OgreFramework::getSingletonPtr()-&gt;keyReleased ( keyEventRef );</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aa65837b8b96fb970c08b81592b9c0535"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::mouseMoved </td>
+          <td>(</td>
+          <td class="paramtype">const OIS::MouseEvent &amp;&#160;</td>
+          <td class="paramname"><em>evt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00078">78</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;  {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordflow">if</span> ( OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;injectMouseMove ( evt ) )</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="aa209c76f132171aad700578367cbee50"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::mousePressed </td>
+          <td>(</td>
+          <td class="paramtype">const OIS::MouseEvent &amp;&#160;</td>
+          <td class="paramname"><em>evt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OIS::MouseButtonID&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00086">86</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;  {</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordflow">if</span> ( OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;injectMouseDown ( evt, <span class="keywordtype">id</span> ) )</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a2f7cb0c3327735ee53a53fff40b1eda3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::mouseReleased </td>
+          <td>(</td>
+          <td class="paramtype">const OIS::MouseEvent &amp;&#160;</td>
+          <td class="paramname"><em>evt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OIS::MouseButtonID&#160;</td>
+          <td class="paramname"><em>id</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00094">94</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;  {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">if</span> ( OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;injectMouseUp ( evt, <span class="keywordtype">id</span> ) )</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="af378a61a86db19d6a168f86cf75319a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PauseState::update </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>timeSinceLastFrame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementa <a class="el" href="classAppState.html#ad165b00842211d62bca3be46b539a5c1">AppState</a>.</p>
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00102">102</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;  {</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <a class="code" href="classAppState.html#a5b421b0be5f867f11c90dacc7f7abbf6">m_FrameEvent</a>.timeSinceLastFrame = timeSinceLastFrame;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;frameRenderingQueued ( <a class="code" href="classAppState.html#a5b421b0be5f867f11c90dacc7f7abbf6">m_FrameEvent</a> );</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <span class="keywordflow">if</span> ( <a class="code" href="classPauseState.html#adacabf0674255e645f1b89b118649064">m_bQuit</a> == <span class="keyword">true</span> )</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;      {</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        <a class="code" href="classAppState.html#a781107a5c09f1b706b7ad0db112d3fe2">popAppState</a>();</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;      }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a1c0ac87aff25a4f6b2979396ce3b08cd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void PauseState::yesNoDialogClosed </td>
+          <td>(</td>
+          <td class="paramtype">const Ogre::DisplayString &amp;&#160;</td>
+          <td class="paramname"><em>question</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>yesHit</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8cpp_source.html#l00128">128</a> del archivo <a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;  {</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <span class="keywordflow">if</span> ( yesHit == <span class="keyword">true</span> )</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;      <a class="code" href="classAppState.html#a61a9b968c9bcb42135018ff310a57d7b">shutdown</a>();</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      OgreFramework::getSingletonPtr()-&gt;getSDKTrayMgrPtr()-&gt;closeDialog();</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    <a class="code" href="classPauseState.html#a14dc2a6f9f96096556c40ad1e278c5d0">m_bQuestionActive</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a class="anchor" id="a9a8e45669d995065db2093bbb1e350e0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSoundFXPtr.html">SoundFXPtr</a> PauseState::_menuFX</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8hpp_source.html#l00034">34</a> del archivo <a class="el" href="PauseState_8hpp_source.html">PauseState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a14dc2a6f9f96096556c40ad1e278c5d0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::m_bQuestionActive</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8hpp_source.html#l00032">32</a> del archivo <a class="el" href="PauseState_8hpp_source.html">PauseState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="adacabf0674255e645f1b89b118649064"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool PauseState::m_bQuit</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="PauseState_8hpp_source.html#l00031">31</a> del archivo <a class="el" href="PauseState_8hpp_source.html">PauseState.hpp</a>.</p>
+
+</div>
+</div>
+<hr/>La documentación para esta clase fue generada a partir de los siguientes ficheros:<ul>
+<li>include/<a class="el" href="PauseState_8hpp_source.html">PauseState.hpp</a></li>
+<li>src/<a class="el" href="PauseState_8cpp_source.html">PauseState.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classPauseState.html">PauseState</a></li>
+    <li class="footer">Generado el Jueves, 9 de Mayo de 2013 23:34:09 para Nitro por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
+  </ul>
+</div>
+</body>
+</html>

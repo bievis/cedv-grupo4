@@ -31,6 +31,10 @@ la tecla ESC.
 cerrar la ventana y volver al menú tendrá que pulsar la tecla ESC.
 - EXIT: Sale del juego.
 
+Documentación
+=============
+La documentación (diagramas de clases, metodos y atributos de los objetos, etc..) los fuentes de encuentra en la carpeta "doc" abriendo index.html con un navegador web.
+
 Repositorio publico
 ===================
 https://cedv-grupo4.googlecode.com/svn/trunk/nitro

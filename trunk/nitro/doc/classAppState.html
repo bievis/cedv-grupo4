@@ -1,0 +1,812 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>Nitro: Referencia de la Clase AppState</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Nitro
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.3.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Clases</span></a></li>
+      <li><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Lista&#160;de&#160;clases</span></a></li>
+      <li><a href="classes.html"><span>Índice&#160;de&#160;clases</span></a></li>
+      <li><a href="inherits.html"><span>Jerarquía&#160;de&#160;la&#160;clase</span></a></li>
+      <li><a href="functions.html"><span>Miembros&#160;de&#160;las&#160;clases</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classAppState.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Valores de enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>&apos;defines&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="#pub-static-methods">Métodos públicos estáticos</a> &#124;
+<a href="#pro-methods">Métodos protegidos</a> &#124;
+<a href="#pro-attribs">Atributos protegidos</a> &#124;
+<a href="classAppState-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Clase AppState<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de herencias de AppState</div>
+<div class="dyncontent">
+<div class="center"><img src="classAppState__inherit__graph.png" border="0" usemap="#AppState_inherit__map" alt="Inheritance graph"/></div>
+<map name="AppState_inherit__map" id="AppState_inherit__map">
+<area shape="rect" id="node9" href="classGameState.html" title="{GameState\n|&#45; _estaEnMeta\l&#45; _estaEnPreMeta\l&#45; _controlMeta\l&#45; m_bQuit\l&#45; m_bLMouseDown\l&#45; m_bRMouseDown\l&#45; m_pOverlayMgr\l&#45; _tiempo\l&#45; _mejorTiempo\l&#45; _empieza_a_contar\ly 9 más...\l|+ GameState()\l+ enter()\l+ createScene()\l+ exit()\l+ pause()\l+ resume()\l+ buildGUI()\l+ keyPressed()\l+ keyReleased()\l+ mouseMoved()\l+ mousePressed()\l+ mouseReleased()\l+ onLeftPressed()\l+ update()\l+ LoadScenaryParts()\l&#45; CreateInitialWorld()\l&#45; getTime()\l&#45; Mostrar_Velocidad()\l&#45; reiniciarCoche()\l&#45; insertarElementoEscena()\l}" alt="" coords="5,603,184,1191"/><area shape="rect" id="node11" href="classMenuState.html" title="{MenuState\n|&#45; _rect_background\l&#45; m_bQuit\l&#45; m_pOverlayMgr\l&#45; _menuTrack\l&#45; _menuFX\l&#45; _mostradoCreditos\l&#45; _mostradoHighScores\l&#45; _rect_creditos\l&#45; _msg_highscore\l|+ MenuState()\l+ enter()\l+ createMenuScene()\l+ createButtons()\l+ showButtons()\l+ hideButtons()\l+ exit()\l+ keyPressed()\l+ keyReleased()\l+ mouseMoved()\ly 8 más...\l}" alt="" coords="208,699,365,1096"/><area shape="rect" id="node13" href="classPauseState.html" title="{PauseState\n|&#45; m_bQuit\l&#45; m_bQuestionActive\l&#45; _menuFX\l|+ PauseState()\l+ enter()\l+ exit()\l+ keyPressed()\l+ keyReleased()\l+ mouseMoved()\l+ mousePressed()\l+ mouseReleased()\l+ buttonHit()\l+ yesNoDialogClosed()\l+ update()\l}" alt="" coords="389,751,547,1044"/></map>
+</div>
+<div class="dynheader">
+Diagrama de colaboración para AppState:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAppState__coll__graph.png" border="0" usemap="#AppState_coll__map" alt="Collaboration graph"/></div>
+<map name="AppState_coll__map" id="AppState_coll__map">
+<area shape="rect" id="node8" href="classAppStateListener.html" title="{AppStateListener\n||+ AppStateListener()\l+ ~AppStateListener()\l+ manageAppState()\l+ findByName()\l+ changeAppState()\l+ pushAppState()\l+ popAppState()\l+ pauseAppState()\l+ shutdown()\l+ popAllAndPushAppState()\l}" alt="" coords="520,6,704,247"/></map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:ab9527bbef48a72acfab8e3c4d99fac3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ab9527bbef48a72acfab8e3c4d99fac3f">destroy</a> ()</td></tr>
+<tr class="separator:ab9527bbef48a72acfab8e3c4d99fac3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af752892877e32b4596217b8a7c04b98e"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#af752892877e32b4596217b8a7c04b98e">enter</a> ()=0</td></tr>
+<tr class="separator:af752892877e32b4596217b8a7c04b98e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34e39a31a2a01ea0df06152daf7e643b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a34e39a31a2a01ea0df06152daf7e643b">exit</a> ()=0</td></tr>
+<tr class="separator:a34e39a31a2a01ea0df06152daf7e643b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77cbefe69ca8f57f46094f59c5859734"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a77cbefe69ca8f57f46094f59c5859734">pause</a> ()</td></tr>
+<tr class="separator:a77cbefe69ca8f57f46094f59c5859734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8df644bfdb6dfc0f2f730f8c8e6921cc"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a8df644bfdb6dfc0f2f730f8c8e6921cc">resume</a> ()</td></tr>
+<tr class="separator:a8df644bfdb6dfc0f2f730f8c8e6921cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad165b00842211d62bca3be46b539a5c1"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ad165b00842211d62bca3be46b539a5c1">update</a> (double timeSinceLastFrame)=0</td></tr>
+<tr class="separator:ad165b00842211d62bca3be46b539a5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Métodos públicos estáticos</h2></td></tr>
+<tr class="memitem:a9c18cb8ce2e689305fc417fc59c304dc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a9c18cb8ce2e689305fc417fc59c304dc">create</a> (<a class="el" href="classAppStateListener.html">AppStateListener</a> *parent, const Ogre::String name)</td></tr>
+<tr class="separator:a9c18cb8ce2e689305fc417fc59c304dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Métodos protegidos</h2></td></tr>
+<tr class="memitem:a9921a217f97e1523801a8f4b9da4b195"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a9921a217f97e1523801a8f4b9da4b195">AppState</a> ()</td></tr>
+<tr class="separator:a9921a217f97e1523801a8f4b9da4b195"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac59effc37303d010752afc83c6c615d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAppState.html">AppState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ac59effc37303d010752afc83c6c615d7">findByName</a> (Ogre::String stateName)</td></tr>
+<tr class="separator:ac59effc37303d010752afc83c6c615d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5e91f4b3b52cbfb5147ccb6477662ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#aa5e91f4b3b52cbfb5147ccb6477662ad">changeAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)</td></tr>
+<tr class="separator:aa5e91f4b3b52cbfb5147ccb6477662ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d689f379f869a9df3ef316d79445385"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a4d689f379f869a9df3ef316d79445385">pushAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)</td></tr>
+<tr class="separator:a4d689f379f869a9df3ef316d79445385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a781107a5c09f1b706b7ad0db112d3fe2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a781107a5c09f1b706b7ad0db112d3fe2">popAppState</a> ()</td></tr>
+<tr class="separator:a781107a5c09f1b706b7ad0db112d3fe2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61a9b968c9bcb42135018ff310a57d7b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a61a9b968c9bcb42135018ff310a57d7b">shutdown</a> ()</td></tr>
+<tr class="separator:a61a9b968c9bcb42135018ff310a57d7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d194ba8ead3639016646ce0ff08eb96"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a7d194ba8ead3639016646ce0ff08eb96">popAllAndPushAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)</td></tr>
+<tr class="separator:a7d194ba8ead3639016646ce0ff08eb96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e9bc1360937e9864bc1970848920cb6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a7e9bc1360937e9864bc1970848920cb6">put_background_with_rotation</a> (const char *background)</td></tr>
+<tr class="separator:a7e9bc1360937e9864bc1970848920cb6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e4a9f57811314f56c64e388e3e05d1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a5e4a9f57811314f56c64e388e3e05d1f">put_overlay</a> (Ogre::Rectangle2D *rect, const char *name, Ogre::Real left, Ogre::Real top, Ogre::Real right, Ogre::Real bottom, bool visible)</td></tr>
+<tr class="separator:a5e4a9f57811314f56c64e388e3e05d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Atributos protegidos</h2></td></tr>
+<tr class="memitem:a6da69b3279ac5909759aac2831b6766c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAppStateListener.html">AppStateListener</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a></td></tr>
+<tr class="separator:a6da69b3279ac5909759aac2831b6766c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b6d7e4fa6492fc35666ba82390b04d"><td class="memItemLeft" align="right" valign="top">Ogre::Camera *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a27b6d7e4fa6492fc35666ba82390b04d">m_pCamera</a></td></tr>
+<tr class="separator:a27b6d7e4fa6492fc35666ba82390b04d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae40987afbcc22a87253f46fff692e31f"><td class="memItemLeft" align="right" valign="top">Ogre::SceneManager *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a></td></tr>
+<tr class="separator:ae40987afbcc22a87253f46fff692e31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b421b0be5f867f11c90dacc7f7abbf6"><td class="memItemLeft" align="right" valign="top">Ogre::FrameEvent&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppState.html#a5b421b0be5f867f11c90dacc7f7abbf6">m_FrameEvent</a></td></tr>
+<tr class="separator:a5b421b0be5f867f11c90dacc7f7abbf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock">
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00031">31</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a class="anchor" id="a9921a217f97e1523801a8f4b9da4b195"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AppState::AppState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00046">46</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a class="anchor" id="aa5e91f4b3b52cbfb5147ccb6477662ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::changeAppState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00049">49</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;{ <a class="code" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a>-&gt;<a class="code" href="classAppStateListener.html#a3ed142ed319852b5c8d7a4a5d313ed2b">changeAppState</a>(state); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a9c18cb8ce2e689305fc417fc59c304dc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void AppState::create </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppStateListener.html">AppStateListener</a> *&#160;</td>
+          <td class="paramname"><em>parent</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Ogre::String&#160;</td>
+          <td class="paramname"><em>name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00035">35</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ab9527bbef48a72acfab8e3c4d99fac3f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::destroy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00037">37</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{ <span class="keyword">delete</span> <span class="keyword">this</span>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="af752892877e32b4596217b8a7c04b98e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppState::enter </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classGameState.html#ad5fb5f0049130bf300410c9f31220f7f">GameState</a>, <a class="el" href="classMenuState.html#a699943c1bc8f05c5983a0a898a8fcf30">MenuState</a> y <a class="el" href="classPauseState.html#a6848c37b470152c1c019bcde9eef9dd6">PauseState</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a34e39a31a2a01ea0df06152daf7e643b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppState::exit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classGameState.html#acf49a6ea192c0a63100665332d884b4c">GameState</a>, <a class="el" href="classMenuState.html#ae466e9867b76389be8d69d723cb08897">MenuState</a> y <a class="el" href="classPauseState.html#a144011ffbb4018583919dc1ba54e117d">PauseState</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac59effc37303d010752afc83c6c615d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAppState.html">AppState</a>* AppState::findByName </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::String&#160;</td>
+          <td class="paramname"><em>stateName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00048">48</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a>-&gt;<a class="code" href="classAppStateListener.html#a075d1e533a4ee7bf968e26e4f160320d">findByName</a>(stateName); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a77cbefe69ca8f57f46094f59c5859734"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AppState::pause </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplementado en <a class="el" href="classGameState.html#a5069c4bdb6a54cd8f365ced87883f714">GameState</a>.</p>
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00041">41</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;{ <span class="keywordflow">return</span> <span class="keyword">true</span>; }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7d194ba8ead3639016646ce0ff08eb96"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::popAllAndPushAppState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00053">53</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{ <a class="code" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a>-&gt;<a class="code" href="classAppStateListener.html#a18a62475ed37d8dc01d6e74308c955fd">popAllAndPushAppState</a>(state); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a781107a5c09f1b706b7ad0db112d3fe2"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::popAppState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00051">51</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{ <a class="code" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a>-&gt;<a class="code" href="classAppStateListener.html#a51f14aa792445b842f1785f3ccf442b4">popAppState</a>(); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a4d689f379f869a9df3ef316d79445385"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool AppState::pushAppState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00050">50</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;{ <span class="keywordflow">return</span> <a class="code" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a>-&gt;<a class="code" href="classAppStateListener.html#a9b7dfc314ae63f343b2b67d41df3847d">pushAppState</a>(state); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a7e9bc1360937e9864bc1970848920cb6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::put_background_with_rotation </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>background</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8cpp_source.html#l00019">19</a> del archivo <a class="el" href="AppState_8cpp_source.html">AppState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;  {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="comment">// Create background material</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    Ogre::MaterialPtr material = Ogre::MaterialManager::getSingleton().create ( <span class="stringliteral">&quot;Background&quot;</span>, <span class="stringliteral">&quot;General&quot;</span> );</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    material-&gt;getTechnique(0)-&gt;getPass(0)-&gt;createTextureUnitState ( background );</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    material-&gt;getTechnique(0)-&gt;getPass(0)-&gt;setDepthCheckEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    material-&gt;getTechnique(0)-&gt;getPass(0)-&gt;setDepthWriteEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    material-&gt;getTechnique(0)-&gt;getPass(0)-&gt;setLightingEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="comment">// Create background rectangle covering the whole screen</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    Ogre::Rectangle2D* rect = <span class="keyword">new</span> Ogre::Rectangle2D ( <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    rect-&gt;setCorners ( -2.0, 1.0, 2.0, -1.0 );</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    rect-&gt;setMaterial ( <span class="stringliteral">&quot;Background&quot;</span> );</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="comment">// Render the background before everything else</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    rect-&gt;setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="comment">// Use infinite AAB to always stay visible</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    Ogre::AxisAlignedBox aabInf;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    aabInf.setInfinite();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    rect-&gt;setBoundingBox(aabInf);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// Attach background to the scene</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    Ogre::SceneNode* node = <a class="code" href="classAppState.html#ae40987afbcc22a87253f46fff692e31f">m_pSceneMgr</a>-&gt;getRootSceneNode()-&gt;createChildSceneNode ( <span class="stringliteral">&quot;Background&quot;</span> );</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    node-&gt;attachObject ( rect );</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// Example of background scrolling</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//    material-&gt;getTechnique(0)-&gt;getPass(0)-&gt;getTextureUnitState(0)-&gt;setScrollAnimation ( -0.015, 0.0 );</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a5e4a9f57811314f56c64e388e3e05d1f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::put_overlay </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::Rectangle2D *&#160;</td>
+          <td class="paramname"><em>rect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ogre::Real&#160;</td>
+          <td class="paramname"><em>left</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ogre::Real&#160;</td>
+          <td class="paramname"><em>top</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ogre::Real&#160;</td>
+          <td class="paramname"><em>right</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ogre::Real&#160;</td>
+          <td class="paramname"><em>bottom</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>visible</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8cpp_source.html#l00003">3</a> del archivo <a class="el" href="AppState_8cpp_source.html">AppState.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;  {</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <span class="comment">// Create background rectangle covering the whole screen</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    rect = <span class="keyword">new</span> Ogre::Rectangle2D ( <span class="keyword">true</span> );</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    rect-&gt;setCorners ( left, top, right, bottom );</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    rect-&gt;setMaterial ( name );</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="comment">// Render the background before everything else</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    rect-&gt;setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="comment">// Use infinite AAB to always stay visible</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">//    rect-&gt;setBoundingBox ( aabInf );</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    rect-&gt;setVisible ( visible );</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;  }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a8df644bfdb6dfc0f2f730f8c8e6921cc"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppState::resume </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reimplementado en <a class="el" href="classGameState.html#a8fd781fb40cb9de76b98cfc98f7b2f13">GameState</a>.</p>
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00042">42</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a61a9b968c9bcb42135018ff310a57d7b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AppState::shutdown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00052">52</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{ <a class="code" href="classAppState.html#a6da69b3279ac5909759aac2831b6766c">m_pParent</a>-&gt;<a class="code" href="classAppStateListener.html#a83346e360b154835ddbe5ba592a8e714">shutdown</a>(); }</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="ad165b00842211d62bca3be46b539a5c1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppState::update </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>timeSinceLastFrame</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classGameState.html#a2db0f70f1eed6ee0fc9669b1f67bb47a">GameState</a>, <a class="el" href="classMenuState.html#a231f882380c5aa3001df73c33a8030ed">MenuState</a> y <a class="el" href="classPauseState.html#af378a61a86db19d6a168f86cf75319a7">PauseState</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentación de los datos miembro</h2>
+<a class="anchor" id="a5b421b0be5f867f11c90dacc7f7abbf6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::FrameEvent AppState::m_FrameEvent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00062">62</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a27b6d7e4fa6492fc35666ba82390b04d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::Camera* AppState::m_pCamera</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00060">60</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6da69b3279ac5909759aac2831b6766c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAppStateListener.html">AppStateListener</a>* AppState::m_pParent</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00058">58</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae40987afbcc22a87253f46fff692e31f"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::SceneManager* AppState::m_pSceneMgr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00061">61</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+
+</div>
+</div>
+<hr/>La documentación para esta clase fue generada a partir de los siguientes ficheros:<ul>
+<li>include/<a class="el" href="AppState_8hpp_source.html">AppState.hpp</a></li>
+<li>src/<a class="el" href="AppState_8cpp_source.html">AppState.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classAppState.html">AppState</a></li>
+    <li class="footer">Generado el Jueves, 9 de Mayo de 2013 23:34:09 para Nitro por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
+  </ul>
+</div>
+</body>
+</html>
