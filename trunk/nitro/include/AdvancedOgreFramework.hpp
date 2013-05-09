@@ -26,9 +26,6 @@
 #include "SoundFXManager.h"
 #include "GameManager.h"
 
-#include "XMLCharger.h"
-#include "GameConfig.h"
-
 class OgreFramework : public Ogre::Singleton<OgreFramework>, OIS::KeyListener, OIS::MouseListener
   {
 
@@ -61,8 +58,6 @@ public:
     inline Ogre::Timer*		        getTimerPtr() { return m_pTimer; };
     inline OgreBites::SdkTrayManager*	getSDKTrayMgrPtr() { return m_pTrayMgr; };
 
-//    inline GameConfig&                  getGameConfig() { return _gameConfig; };
-
 private:
     OgreFramework(const OgreFramework&);
     OgreFramework& operator= (const OgreFramework&);
@@ -78,7 +73,6 @@ private:
     OgreBites::SdkTrayManager*	m_pTrayMgr;
 
     //Carga de la configuración dinámica del juego (niveles)
-//    GameConfig                  _gameConfig;
 
     bool initSDL ();
 };

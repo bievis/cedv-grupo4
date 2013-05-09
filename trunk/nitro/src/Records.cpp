@@ -32,8 +32,8 @@ Records* Records::getSingletonPtr()
 
 void Records::add ( int seconds )
   {
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds " << seconds << endl;
+    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
+    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds " << seconds << endl;
 
     char cad[100];
     std::list<string>::iterator it;
@@ -63,19 +63,14 @@ void Records::add ( int seconds )
 
     _records.insert ( it, string(cad) );
 
-    // _records.push_back ( newValue );
-    // sort ( _records.begin(), _records.end() );
-    // reverse ( _records.begin(), _records.end() );
-
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
+    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
   }
 
 int Records::compare ( int seconds, string value2 )
   {
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": seconds " << seconds << " - value2 " << value2 << endl;
+    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
+    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": seconds " << seconds << " - value2 " << value2 << endl;
 
-    int level2;
     int seconds2;
     int ret = 0;
     char resto[100];
@@ -87,7 +82,7 @@ int Records::compare ( int seconds, string value2 )
 	ret = 1;
       }
 
-    cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
+    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
 
     return ret;
   }
@@ -168,14 +163,14 @@ void Records::write()
        }
      else
        {
-	 cout << "Opened " << FILENAME << " for read" << endl;
+	 // cout << "Opened " << FILENAME << " for read" << endl;
 
 	 while ( !is.eof() )
 	   {
 	     is >> value;
 	     if (!is.eof())
 	       {
-		 cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
+		 // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
 		 _records.push_back ( value );
 	       }
 	   }

@@ -1,6 +1,5 @@
 #include "GameState.hpp"
 #include "GameManager.h"
-#include <GameConfigException.hpp>
 
 #include "Shapes/OgreBulletCollisionsBoxShape.h"
 #include "Shapes/OgreBulletCollisionsCompoundShape.h"
@@ -32,7 +31,6 @@ GameState::GameState()
     m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
-    //    _ptrGameConfig      = NULL;
   }
 
 void GameState::enter()
@@ -84,8 +82,6 @@ void GameState::enter()
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
-
-    // _ptrGameConfig = &(OgreFramework::getSingletonPtr()->_gameConfig);
 
     OgreFramework::getSingletonPtr()->getRenderWindowPtr()->getCustomAttribute ( "WINDOW", &windowHandle );
 
@@ -408,17 +404,6 @@ void GameState::createScene()
     luz->setSpecularColour(1, 1, 1);
     luz->setDiffuseColour(1, 1, 1);
 
-    // // Partes del escenario
-
-    // try
-    //   {
-    //     LoadScenaryParts();
-    //   }
-    // catch ( GameConfigException& exc )
-    //   {
-    // 	cerr << "EXCEPTION:: " << exc.what() << endl;
-    //   }
-
     // // Cargamos el personaje
     // SceneNode* nodePersonaje = GameManager::getSingleton().
     //       crearNodo(m_pSceneMgr, "Marciano", "Marciano.mesh", 0, 0, 6.5);
@@ -481,8 +466,6 @@ void GameState::createScene()
 //     // Construimos los carriles
 //     Level lvl;
 //     Row row;
-
-//     _ptrGameConfig->getLevel ( _level, lvl );
 
 //     double zona_crater_Z[] = { -2.5, -4, -5.5 };
 //     double zona_carretera_Z[] = {  2,  3.5,  5 };
@@ -760,7 +743,7 @@ void GameState::update(double timeSinceLastFrame)
 	Mostrar_Velocidad ( _velocidad );
 
       }
-    
+
     if ( _vCoches[0]->isMeta(_world) )
       {    
         if (!_estaEnMeta) {
@@ -770,11 +753,13 @@ void GameState::update(double timeSinceLastFrame)
             _sonidoMetaFX->play();
             if ( _tiempo > 1  )
             {
-              if ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) {
+              if ( _mejorTiempo > _tiempo || _mejorTiempo < 1 ) 
+              {
                 _mejorTiempo = _tiempo;
-                Records::getSingleton().add ( _mejorTiempo );
-                Records::getSingleton().write();
-                Records::getSingleton().compacta ( 10 );
+              }
+   	          Records::getSingleton().add ( _tiempo );
+		      Records::getSingleton().compacta ( 10 );
+		      Records::getSingleton().write();
               }
               _controlMeta = 0;
               _tiempo = 0;
