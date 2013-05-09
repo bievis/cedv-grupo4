@@ -13,7 +13,6 @@ public:
     DECLARE_APPSTATE_CLASS(PauseState)
 
     void enter();
-    void createScene();
     void exit();
 
     bool keyPressed ( const OIS::KeyEvent &keyEventRef );
@@ -31,11 +30,8 @@ public:
 private:
     bool                        m_bQuit;
     bool                        m_bQuestionActive;
-    Ogre::OverlayManager*       m_pOverlayMgr;
 
-//    TrackPtr                    _mainTrack;
     SoundFXPtr                  _menuFX;
-
 };
 
 #endif

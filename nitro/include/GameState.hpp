@@ -77,7 +77,6 @@ private:
     //    double                    _tiempoNextLevel;
     //    double                    _tiempoMuertoFin;
 
-    //    GameConfig*               _ptrGameConfig;
     //    EstadoJuego               _estado;
 
     TrackPtr                  _gameTrack;

@@ -14,16 +14,10 @@ void PauseState::enter()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering PauseState...");
 
     // Carga del sonido.
-//    _mainTrack = TrackManager::getSingleton().load("fondo.mp3");
     _menuFX = SoundFXManager::getSingleton().load("boton.wav");
-
-    // Reproducción del track principal...
-//    this->_mainTrack->play();
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "PauseSceneMgr");
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
-
-    //m_pSceneMgr->addRenderQueueListener(OgreFramework::getSingletonPtr()->m_pOverlaySystem);
 
     m_pCamera = m_pSceneMgr->createCamera("PauseCam");
     m_pCamera->setPosition(Vector3(0, 25, -50));
@@ -41,23 +35,8 @@ void PauseState::enter()
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton(OgreBites::TL_CENTER, "BackToMenuBtn", "Return to Main Menu", 350);
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton(OgreBites::TL_CENTER, "ExitBtn", "Exit Game", 350);
 
-    //    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createLabel(OgreBites::TL_TOP, "PauseLbl", "Pause mode", 350);
-
     m_bQuit = false;
 
-    m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
-    //    Ogre::Overlay *background = m_pOverlayMgr->getByName("Background");
-    //    background->show();
-
-    //Ogre::FontManager::getSingleton().getByName("SdkTrays/Caption")->load();
-    //Ogre::FontManager::getSingleton().getByName("SdkTrays/Value")->load();
-
-    createScene();
-  }
-
-void PauseState::createScene()
-  {
-//    put_background_with_rotation ( "background_stars.png" );
   }
 
 void PauseState::exit()
@@ -70,9 +49,6 @@ void PauseState::exit()
     m_pSceneMgr->destroyCamera(m_pCamera);
     if ( m_pSceneMgr )
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager ( m_pSceneMgr );
-
-    // Ogre::Overlay *background = m_pOverlayMgr->getByName ( "Background" );
-    // background->hide();
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->clearAllTrays();
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->destroyAllWidgets();
@@ -140,7 +116,7 @@ void PauseState::buttonHit(OgreBites::Button *button)
     _menuFX->play();
     if ( button->getName() == "ExitBtn" )
       {
-        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showYesNoDialog ( "Really?", "Are you sure to abort the game?" );
+        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showYesNoDialog ( "Really?", "sure to abort the game?" );
         m_bQuestionActive = true;
       }
     else if ( button->getName() == "BackToGameBtn" )
