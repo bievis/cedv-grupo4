@@ -18,7 +18,7 @@ using namespace OgreBulletDynamics;
 
 using namespace Ogre;
 
-#define MAX_SPEED 80
+#define MAX_SPEED 70
 GameState::GameState()
   {
     m_bLMouseDown       = false;
