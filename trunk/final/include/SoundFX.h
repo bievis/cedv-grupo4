@@ -20,7 +20,7 @@
 #ifndef __SOUNDFXH__
 #define __SOUNDFXH__
 
-#include <SDL/SDL_mixer.h>
+#include <SDL_mixer.h>
 #include <OGRE/Ogre.h>
 
 // Clase para mezclar efectos de sonido.
