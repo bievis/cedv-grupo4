@@ -12,11 +12,13 @@ CXX := g++
 
 # Flags de compilación -----------------------------------------------
 CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS OgreBullet bullet`	\
+`sdl-config --cflags` \
 -g -D_DEBUG
 
 # Flags del linker ---------------------------------------------------
 LDFLAGS := `pkg-config --libs-only-L OGRE OIS OgreBullet bullet`
 LDLIBS := `pkg-config --libs-only-l OGRE OIS OgreBullet bullet` -lGL -lstdc++ \
+`sdl-config --libs`\
 -lSDL -lSDL_mixer \
 -lOgreTerrain \
 -lConvexDecomposition
