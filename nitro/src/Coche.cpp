@@ -1,4 +1,5 @@
 #include "Coche.hpp"
+#include "AdvancedOgreFramework.hpp"
 
 // *** Metodos Publicos *** //
 
@@ -92,7 +93,7 @@ void Coche::setWheelNodes ( unsigned int index, Ogre::SceneNode* source )
       }
   }
 
-const char* Coche::getFilenameMesh()
+const string Coche::getFilenameMesh()
   {
     string filename = "chassis_DEFAULT.mesh";
 
@@ -103,8 +104,8 @@ const char* Coche::getFilenameMesh()
         case YELLOW : filename = "chassis_YELLOW.mesh"; break;
         case RED : filename = "chassis_RED.mesh"; break;
       }
-
-    return filename.c_str();
+	
+    return filename;
   }
 
 void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world )
@@ -124,7 +125,9 @@ void Coche::build ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWo
 
     memset ( name, 0, sizeof(char)*100 );
     sprintf ( name, "%s_chassis", getName().c_str() );
+	OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage ( getFilenameMesh() );
     setChassis ( sceneMgr->createEntity ( name, getFilenameMesh() ) );
+	OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage ( "Se ha cargado el coche" );
     SceneNode *node = sceneMgr->getRootSceneNode()->createChildSceneNode ();
 
     SceneNode *chassisnode = node->createChildSceneNode();
