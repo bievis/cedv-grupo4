@@ -20,7 +20,7 @@
 #ifndef __TRACK_H__
 #define __TRACK_H__
 
-#include <SDL/SDL_mixer.h>
+#include <SDL_mixer.h>
 #include <OGRE/Ogre.h>
 
 class Track : public Ogre::Resource {
