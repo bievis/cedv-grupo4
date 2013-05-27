@@ -1,0 +1,204 @@
+# depslib dependency file v1.0
+1369642853 source:/home/diego/CEDV/cedv-grupo4/final/src/AdvancedOgreFramework.cpp
+	"AdvancedOgreFramework.hpp"
+
+1369635203 source:/home/diego/CEDV/cedv-grupo4/final/src/AnimationBlender.cpp
+	"AnimationBlender.h"
+
+1364407795 source:/home/diego/CEDV/cedv-grupo4/final/src/AppStateManager.cpp
+	"AppStateManager.hpp"
+	<OgreWindowEventUtilities.h>
+
+1369643140 source:/home/diego/CEDV/cedv-grupo4/final/src/DotSceneLoader.cpp
+	"DotSceneLoader.hpp"
+	<Ogre.h>
+	<Terrain/OgreTerrain.h>
+	<Terrain/OgreTerrainGroup.h>
+	<Terrain/OgreTerrainMaterialGeneratorA.h>
+
+1369639002 source:/home/diego/CEDV/cedv-grupo4/final/src/GameConfig.cpp
+	<GameConfig.h>
+
+1369635203 source:/home/diego/CEDV/cedv-grupo4/final/src/GameConfigException.cpp
+	<GameConfigException.hpp>
+
+1369640210 source:/home/diego/CEDV/cedv-grupo4/final/src/GameState.cpp
+	"GameState.hpp"
+	"Shapes/OgreBulletCollisionsBoxShape.h"
+	"Shapes/OgreBulletCollisionsCompoundShape.h"
+	"OgreBulletDynamicsWorld.h"
+	"OgreBulletDynamicsRigidBody.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+	"Constraints/OgreBulletDynamicsRaycastVehicle.h"
+	"Shapes/OgreBulletCollisionsTrimeshShape.h"
+	"Shapes/OgreBulletCollisionsSphereShape.h"
+	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+
+1369639146 source:/home/diego/CEDV/cedv-grupo4/final/src/MenuState.cpp
+	"MenuState.hpp"
+
+1369638734 source:/home/diego/CEDV/cedv-grupo4/final/src/PauseState.cpp
+	"PauseState.hpp"
+
+1369643399 source:/home/diego/CEDV/cedv-grupo4/final/src/RansomApp.cpp
+	"RansomApp.hpp"
+	"MenuState.hpp"
+	"GameState.hpp"
+	"PauseState.hpp"
+
+1369635303 source:/home/diego/CEDV/cedv-grupo4/final/src/Records.cpp
+	"Records.h"
+
+1364407795 source:/home/diego/CEDV/cedv-grupo4/final/src/SoundFX.cpp
+	<fstream>
+	"SoundFX.h"
+
+1364407795 source:/home/diego/CEDV/cedv-grupo4/final/src/SoundFXManager.cpp
+	<SDL/SDL_mixer.h>
+	"SoundFXManager.h"
+
+1364407795 source:/home/diego/CEDV/cedv-grupo4/final/src/Track.cpp
+	<OgreArchive.h>
+	<OgreResourceGroupManager.h>
+	<OgreLogManager.h>
+	<Track.h>
+
+1364407795 source:/home/diego/CEDV/cedv-grupo4/final/src/TrackManager.cpp
+	<TrackManager.h>
+
+1369640159 source:/home/diego/CEDV/cedv-grupo4/final/src/Utilities.cpp
+	"Utilities.h"
+
+1369635203 source:/home/diego/CEDV/cedv-grupo4/final/src/XMLCharger.cpp
+	<XMLCharger.h>
+
+1369643364 source:/home/diego/CEDV/cedv-grupo4/final/src/main.cpp
+	"RansomApp.hpp"
+	"windows.h"
+
+1369635303 /home/diego/CEDV/cedv-grupo4/final/include/AdvancedOgreFramework.hpp
+	<OgreCamera.h>
+	<OgreEntity.h>
+	<OgreLogManager.h>
+	<OgreOverlay.h>
+	<OgreOverlayElement.h>
+	<OgreOverlayManager.h>
+	<OgreRoot.h>
+	<OgreViewport.h>
+	<OgreSceneManager.h>
+	<OgreRenderWindow.h>
+	<OgreConfigFile.h>
+	<OISEvents.h>
+	<OISInputManager.h>
+	<OISKeyboard.h>
+	<OISMouse.h>
+	<SdkTrays.h>
+	<SDL/SDL.h>
+	<SDL/SDL_mixer.h>
+	"TrackManager.h"
+	"SoundFXManager.h"
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/TrackManager.h
+	<OGRE/Ogre.h>
+	<Track.h>
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/Track.h
+	<SDL/SDL_mixer.h>
+	<OGRE/Ogre.h>
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/SoundFXManager.h
+	<OGRE/Ogre.h>
+	"SoundFX.h"
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/SoundFX.h
+	<SDL/SDL_mixer.h>
+	<OGRE/Ogre.h>
+
+1369635202 /home/diego/CEDV/cedv-grupo4/final/include/AnimationBlender.h
+	<Ogre.h>
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/AppStateManager.hpp
+	"AppState.hpp"
+
+1369636450 /home/diego/CEDV/cedv-grupo4/final/include/AppState.hpp
+	"AdvancedOgreFramework.hpp"
+	<OgreRectangle2D.h>
+	<OgreMaterial.h>
+	<OgreAxisAlignedBox.h>
+	<OgreSceneNode.h>
+
+1369636575 /home/diego/CEDV/cedv-grupo4/final/include/GameConfig.h
+	<vector>
+	<iostream>
+	<GameConfigException.hpp>
+
+1369635202 /home/diego/CEDV/cedv-grupo4/final/include/GameConfigException.hpp
+	<string.h>
+	<stdio.h>
+	<exception>
+
+1369639085 /home/diego/CEDV/cedv-grupo4/final/include/GameState.hpp
+	"AppState.hpp"
+	"DotSceneLoader.hpp"
+	"TrackManager.h"
+	"SoundFXManager.h"
+	<OgreSubEntity.h>
+	<OgreMaterialManager.h>
+	"Records.h"
+	<OgreBulletDynamicsRigidBody.h>
+	<Shapes/OgreBulletCollisionsStaticPlaneShape.h>
+	<Shapes/OgreBulletCollisionsBoxShape.h>
+	<vector>
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/DotSceneLoader.hpp
+	<OgreString.h>
+	<OgreVector3.h>
+	<OgreQuaternion.h>
+	<OgreResourceGroupManager.h>
+	<vector>
+	"rapidxml.hpp"
+
+1364407795 /home/diego/CEDV/cedv-grupo4/final/include/rapidxml.hpp
+	<cstdlib>
+	<cassert>
+	<new>
+	<exception>
+
+1368004395 /home/diego/CEDV/cedv-grupo4/final/include/Records.h
+	<list>
+	<fstream>
+	<iostream>
+	<algorithm>
+	<string>
+	<string.h>
+	<time.h>
+
+1369638599 /home/diego/CEDV/cedv-grupo4/final/include/MenuState.hpp
+	"AppState.hpp"
+	"TrackManager.h"
+	"SoundFXManager.h"
+	"Records.h"
+
+1369635303 /home/diego/CEDV/cedv-grupo4/final/include/PauseState.hpp
+	"AppState.hpp"
+	"SoundFXManager.h"
+
+1369638634 /home/diego/CEDV/cedv-grupo4/final/include/RansomApp.hpp
+	"AdvancedOgreFramework.hpp"
+	"AppStateManager.hpp"
+
+1369640549 /home/diego/CEDV/cedv-grupo4/final/include/Utilities.h
+	"AdvancedOgreFramework.hpp"
+	<OgreRectangle2D.h>
+	<OgreMaterial.h>
+	<OgreAxisAlignedBox.h>
+	<OgreSceneNode.h>
+	<string>
+	<Shapes/OgreBulletCollisionsStaticPlaneShape.h>
+	<OgreBulletDynamicsRigidBody.h>
+	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+	"Shapes/OgreBulletCollisionsTrimeshShape.h"
+
+1369635202 /home/diego/CEDV/cedv-grupo4/final/include/XMLCharger.h
+	<GameConfig.h>
+

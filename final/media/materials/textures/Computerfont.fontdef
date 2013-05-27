@@ -1,0 +1,7 @@
+Computerfont
+{
+	type truetype
+	source Computerfont.ttf
+	size 25
+	resolution 96
+}
