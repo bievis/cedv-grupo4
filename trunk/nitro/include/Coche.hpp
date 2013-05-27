@@ -243,7 +243,7 @@ class Coche
     void copy ( const Coche& source );
     /// \brief Metodo que en función del color seleccionado devolverá el nombre del fichero mesh a cargar
     /// \return Nombre del fichero mesh a cargar
-    const char* getFilenameMesh();
+    const string getFilenameMesh();
     // \brief Metodo que dice si el coche esta encima del nodo o no
     /// \return Si esta encima o no del nodo
     /// \param world Mundo de las colisiones
