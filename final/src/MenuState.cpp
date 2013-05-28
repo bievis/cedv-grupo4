@@ -147,6 +147,7 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
              Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", false );
              Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", true );
              showButtons();
+             OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showCursor();
           }
         // else if ( _mostradoHighScores )
         //   {
@@ -229,6 +230,7 @@ void MenuState::buttonHit(OgreBites::Button *button)
     else if ( button->getName() == "CreditsBtn" )
       {
         _mostradoCreditos = true;
+        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
         hideButtons();
         Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", false );
         Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", true );
