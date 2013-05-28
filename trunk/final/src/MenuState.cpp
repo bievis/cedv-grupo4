@@ -6,7 +6,7 @@ MenuState::MenuState()
   {
     m_bQuit             = false;
     m_FrameEvent        = Ogre::FrameEvent();
-    // _mostradoCreditos   = false;
+    _mostradoCreditos   = false;
     // _mostradoHighScores = false;
     // _rect_creditos       = NULL;
   }
@@ -66,13 +66,16 @@ void MenuState::hideButtons ()
 
 void MenuState::createMenuScene()
   {
-
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->setWidgetSpacing ( 5 );
 
     createButtons();
 
-    Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
-    overlay->show();
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", true );
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Background_Menu", true );
+
+//    Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
+//    overlay->show();
 
     // _rect_background = new Ogre::Rectangle2D ( true );
     // _rect_background->setCorners ( -1, 1, 1, -1 );
@@ -105,6 +108,7 @@ void MenuState::createMenuScene()
     // elem = m_pOverlayMgr->getOverlayElement("panelRecords");
     // elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
     // //    elem->hide();
+
   }
 
 void MenuState::exit()
@@ -137,18 +141,21 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
       {
 
-        // if ( _mostradoCreditos )
-        //   {
-        //     mostrarOverlayCreditos ( false );
-        //   }
+        if ( _mostradoCreditos )
+          {
+             _mostradoCreditos = false;
+             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", false );
+             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", true );
+             showButtons();
+          }
         // else if ( _mostradoHighScores )
         //   {
         //     mostrarOverlayHighScores ( false );
         //   }
-        // else
-        //   {
-            m_bQuit = true;
-        //   }
+        else
+          {
+             m_bQuit = true;
+          }
       }
 
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
@@ -219,8 +226,14 @@ void MenuState::buttonHit(OgreBites::Button *button)
     //   }
     // else if ( button->getName() == "HighScoresBtn" )
     //   mostrarOverlayHighScores ( true );
-    // else if ( button->getName() == "CreditsBtn" )
-    //   mostrarOverlayCreditos ( true );
+    else if ( button->getName() == "CreditsBtn" )
+      {
+        _mostradoCreditos = true;
+        hideButtons();
+        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", false );
+        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", true );
+      }
+
   }
 
 // Muestra u oculta los creditos

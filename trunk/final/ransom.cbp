@@ -12,6 +12,8 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-w" />
+					<Add option="-Wall" />
 					<Add option="-g" />
 				</Compiler>
 			</Target>
@@ -39,6 +41,11 @@
 			<Add option="-I/usr/include/ois" />
 			<Add option="-I./include" />
 			<Add directory="/home/diego/CEDV/cedv-grupo4/final/include" />
+			<Add directory="/usr/include/OGRE" />
+			<Add directory="/usr/include/boost" />
+			<Add directory="/usr/local/include" />
+			<Add directory="/usr/local/include/bullet" />
+			<Add directory="/usr/local/include/OgreBullet" />
 		</Compiler>
 		<Linker>
 			<Add library="/usr/lib/x86_64-linux-gnu/libOgreMain.so" />
@@ -77,6 +84,11 @@
 		<Unit filename="include/Utilities.h" />
 		<Unit filename="include/XMLCharger.h" />
 		<Unit filename="include/rapidxml.hpp" />
+		<Unit filename="media/materials/scripts/info.overlay" />
+		<Unit filename="media/materials/scripts/panel.material" />
+		<Unit filename="media/materials/scripts/pointer.material" />
+		<Unit filename="media/materials/scripts/ransom.material" />
+		<Unit filename="media/materials/scripts/ransom.overlay" />
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
 		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
