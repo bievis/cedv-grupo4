@@ -38,6 +38,7 @@
 			<Add option="-I/usr/local/include/OgreBullet/Dynamics" />
 			<Add option="-I/usr/local/include/bullet" />
 			<Add option="-I/usr/include/OGRE" />
+			<Add option="-I/usr/include/SDL" />
 			<Add option="-I/usr/include/ois" />
 			<Add option="-I./include" />
 			<Add directory="/home/diego/CEDV/cedv-grupo4/final/include" />
