@@ -4,7 +4,8 @@
 #include "AppState.hpp"
 #include "TrackManager.h"
 #include "SoundFXManager.h"
-#include "Records.h"
+//#include "Records.h"
+#include "Utilities.h"
 
 class MenuState : public AppState
   {
@@ -44,10 +45,10 @@ private:
     TrackPtr                    _menuTrack;
     SoundFXPtr                  _menuFX;
 
-    // bool                        _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
+    bool                        _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
     // bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
 
-    // Ogre::Rectangle2D*          _rect_background;
+    Ogre::Rectangle2D*          _rect_background;
     // Ogre::Rectangle2D*          _rect_creditos;
 
     // string                      _msg_highscore;  //Este string contiene los registros de los records a la hora de invocar al refresca_highscores()

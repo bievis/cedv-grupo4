@@ -1,20 +1,43 @@
 #include "Utilities.h"
 
-template<> Utilities* Ogre::Singleton<Utilities>::msSingleton = 0;
+Utilities* Utilities::msSingleton = NULL;
 
-Utilities& Utilities::getSingleton ()
-{
-    assert(msSingleton);
+Utilities& Utilities::getSingleton()
+  {
+    if ( NULL == msSingleton )
+      msSingleton = new Utilities;
+
     return (*msSingleton);
-}
+  }
 
-Utilities* Utilities::getSingletonPtr ()
+Utilities* Utilities::getSingletonPtr()
+  {
+    if ( NULL == msSingleton )
+      msSingleton = new Utilities();
+
+    return (msSingleton);
+  }
+
+void Utilities::put_overlay ( Ogre::OverlayManager *overMgr, const char* name, bool visible )
 {
-    assert(msSingleton);
-    return msSingleton;
+    Ogre::Overlay *over = NULL;
+
+    over = overMgr->getByName ( name );
+
+    if ( over )
+      {
+        if ( visible )
+            over->show();
+        else
+            over->hide();
+      }
+    else
+      {
+        cerr << "Overlay name was not found!!" << endl;
+      }
 }
 
-void Utilities::put_overlay ( Ogre::Rectangle2D* rect, const char* name, Ogre::Real left, Ogre::Real top, Ogre::Real right, Ogre::Real bottom, bool visible )
+void Utilities::put_overlay_on_rectangle ( Ogre::Rectangle2D* rect, const char* name, Ogre::Real left, Ogre::Real top, Ogre::Real right, Ogre::Real bottom, bool visible )
   {
     // Create background rectangle covering the whole screen
     rect = new Ogre::Rectangle2D ( true );
