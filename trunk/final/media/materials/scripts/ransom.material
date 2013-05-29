@@ -59,6 +59,21 @@ material Menu/HighScores
  }
 }
 
+material Common/InputBox
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture inputbox.png
+     }
+   }
+ }
+}
+
 material Game/Titulo
 {
  technique
