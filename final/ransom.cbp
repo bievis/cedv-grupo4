@@ -90,6 +90,7 @@
 		<Unit filename="media/materials/scripts/pointer.material" />
 		<Unit filename="media/materials/scripts/ransom.material" />
 		<Unit filename="media/materials/scripts/ransom.overlay" />
+		<Unit filename="ogre.cfg" />
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
 		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
