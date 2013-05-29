@@ -73,6 +73,19 @@ void MenuState::createMenuScene()
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", true );
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Background_Menu", true );
+
+    // En caso de cambiar la resolución de la pantalla, se adaptan los overlays
+    //***************************************************************************
+    Ogre::OverlayElement *elem;
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Background_Menu");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Creditos_Menu");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_HighScores_Menu");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+    //***************************************************************************
   }
 
 void MenuState::exit()

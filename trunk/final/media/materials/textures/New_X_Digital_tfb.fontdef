@@ -1,7 +1,7 @@
-Computerfont
+New_Digital 
 {
 	type truetype
-	source Computerfont.ttf
+	source New_X_Digital_tfb.ttf
 	size 25
 	resolution 96
 }
