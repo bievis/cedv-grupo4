@@ -30,7 +30,7 @@ Records* Records::getSingletonPtr()
     return (msSingleton);
   }
 
-void Records::add ( int seconds )
+void Records::add ( int hostages, int seconds )
   {
     // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
     // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds " << seconds << endl;
@@ -44,21 +44,21 @@ void Records::add ( int seconds )
 
     getFechaHora ( fecha, hora );
 
-    sprintf ( cad, "%d|%s|%s", seconds, fecha.c_str(), hora.c_str() );
+    sprintf ( cad, "%d|%d|%s|%s", hostages, seconds, fecha.c_str(), hora.c_str() );
 
     if ( _records.size() == 0 )
       {
-	it = _records.begin();
+        it = _records.begin();
       }
     else
       {
-	for ( it = _records.begin(); it != _records.end(); ++it )
-	  {
-	    if ( compare ( seconds, *it ) > 0 ) //newValue > *it
-	      {
-		break;
-	      }
-	  }
+        for ( it = _records.begin(); it != _records.end(); ++it )
+          {
+            if ( compare ( hostages, seconds, *it ) > 0 ) //newValue > *it
+              {
+                break;
+              }
+          }
       }
 
     _records.insert ( it, string(cad) );
@@ -66,20 +66,22 @@ void Records::add ( int seconds )
     // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
   }
 
-int Records::compare ( int seconds, string value2 )
+int Records::compare ( int hostages, int seconds, string value2 )
   {
     // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
     // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": seconds " << seconds << " - value2 " << value2 << endl;
 
-    int seconds2;
+    int seconds2 = 0;
+    int hostages2 = 0;
     int ret = 0;
     char resto[100];
 
-    sscanf ( value2.c_str(), "%d|%s", &seconds2, resto );
+    sscanf ( value2.c_str(), "%d|%d|%s", &hostages2, &seconds2, resto );
 
-    if ( seconds < seconds2 )
+    if ( ( hostages > hostages2 ) ||
+        ( hostages == hostages2 && seconds < seconds2 ) )
       {
-	ret = 1;
+        ret = 1;
       }
 
     // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
@@ -94,12 +96,12 @@ string Records::getValue ( unsigned int index )
 
     if ( index >= 0 && index < _records.size() )
       {
-	it = _records.begin();
-	advance ( it, index );
-	if ( it != _records.end() )
-	  {
-	    value = *it;
-	  }
+        it = _records.begin();
+        advance ( it, index );
+        if ( it != _records.end() )
+          {
+            value = *it;
+          }
       }
 
     return value;
@@ -140,51 +142,48 @@ void Records::write()
         std::list<string>::iterator it;
 
         for ( it = _records.begin(); it != _records.end(); ++it )
-	  {
+          {
             os << *it << endl;
-	  }
+          }
 
         os.close();
-    }
+      }
   }
 
  void Records::read()
-   {
-     ifstream is ( FILENAME );
-     string value = "";
-     string final = "";
+  {
+    ifstream is ( FILENAME );
+    string value = "";
+    string final = "";
 
-     _records.clear();
+    _records.clear();
 
-     if ( !is.is_open() )
-       {
-	 cout << "Error opening " << FILENAME << " for read" << endl;
-	 return;
-       }
-     else
-       {
-	 // cout << "Opened " << FILENAME << " for read" << endl;
-
-	 while ( !is.eof() )
-	   {
-	     is >> value;
-	     if (!is.eof())
-	       {
-		 // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
-		 _records.push_back ( value );
-	       }
-	   }
+    if ( !is.is_open() )
+      {
+        cout << "Error opening " << FILENAME << " for read" << endl;
+        return;
+      }
+    else
+      {
+        while ( !is.eof() )
+          {
+            is >> value;
+            if (!is.eof())
+              {
+                // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
+                _records.push_back ( value );
+              }
+          }
 
         is.close();
-    }
-
-   }
+      }
+  }
 
 void Records::compacta ( unsigned int max_size )
   {
     while ( _records.size() > max_size )
       {
-	_records.pop_back();
+        _records.pop_back();
       }
   }
 
@@ -195,25 +194,24 @@ void Records::print()
 
     for ( it = _records.begin(); it != _records.end(); ++it, ++i )
       {
-	cout << " elem " << i+1 << " : " << *it << endl;
+        cout << " elem " << i+1 << " : " << *it << endl;
       }
-
   }
 
 void Records::getFechaHora ( string &fecha, string &hora )
-{
-  time_t timer;
-  struct tm *t;
-  char cad[100];
+  {
+    time_t timer;
+    struct tm *t;
+    char cad[100];
 
-  timer = time(NULL);
-  t = localtime(&timer);
+    timer = time(NULL);
+    t = localtime(&timer);
 
-  sprintf ( cad, "%02d-%02d-%04d", t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
+    sprintf ( cad, "%02d-%02d-%04d", t->tm_mday, t->tm_mon + 1, t->tm_year + 1900);
 
-  fecha = cad;
+    fecha = cad;
 
-  sprintf ( cad, "%02d:%02d", t->tm_hour, t->tm_min );
+    sprintf ( cad, "%02d:%02d", t->tm_hour, t->tm_min );
 
-  hora = cad;
-}
+    hora = cad;
+  }

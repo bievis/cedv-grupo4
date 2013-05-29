@@ -13,6 +13,8 @@ using namespace std;
 
 class Records {
 
+private:
+
   static Records* msSingleton;
 
   std::list<string> _records;
@@ -24,11 +26,11 @@ class Records {
 
   Records ( Records& source );
 
-  int compare ( int seconds, string value2 );
+  int compare ( int hostages, int seconds, string value2 );
 
   void getFechaHora ( string &fecha, string &hora );
 
- public:
+public:
 
   static Records& getSingleton();
   static Records* getSingletonPtr();
@@ -38,7 +40,7 @@ class Records {
   inline unsigned int getSize() { return _records.size(); };
   string getValue ( unsigned int index );
 
-  void add ( int seconds );
+  void add ( int hostages, int seconds );
 
   void write();
   void read();

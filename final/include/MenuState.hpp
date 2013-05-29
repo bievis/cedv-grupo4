@@ -10,6 +10,11 @@
 class MenuState : public AppState
   {
 
+    enum eScreens {
+      CREDITS_SCREEN,
+      HIGHSCORES_SCREEN
+    };
+
 public:
     MenuState();
 
@@ -33,8 +38,8 @@ public:
 
     void update ( double timeSinceLastFrame );
 
-    // void mostrarOverlayCreditos ( bool mostrar );
-    // void mostrarOverlayHighScores ( bool mostrar );
+    void show_screen ( eScreens scr, bool visible );
+
     // void muestra_highscores();
     // void refresca_highscores();
 
@@ -46,10 +51,7 @@ private:
     SoundFXPtr                  _menuFX;
 
     bool                        _mostradoCreditos; // Nos dice si se estan mostrando los creditos o no ahora
-    // bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
-
-    Ogre::Rectangle2D*          _rect_background;
-    // Ogre::Rectangle2D*          _rect_creditos;
+    bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
 
     // string                      _msg_highscore;  //Este string contiene los registros de los records a la hora de invocar al refresca_highscores()
 
