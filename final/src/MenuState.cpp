@@ -7,8 +7,8 @@ MenuState::MenuState()
     m_bQuit             = false;
     m_FrameEvent        = Ogre::FrameEvent();
     _mostradoCreditos   = false;
-    // _mostradoHighScores = false;
-    // _rect_creditos       = NULL;
+    _mostradoHighScores = false;
+    _show_inputbox      = false;
   }
 
 void MenuState::enter()
@@ -110,6 +110,10 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
           {
              m_bQuit = true;
           }
+      }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_A ) )
+      {
+        inputbox(!_show_inputbox);
       }
 
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
@@ -291,6 +295,26 @@ void MenuState::show_screen ( eScreens scr, bool visible )
         _mostradoHighScores = visible;
         Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "HighScores_Menu", visible );
       }
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", !visible );
+
+    if ( visible )
+      {
+        hideButtons();
+        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
+      }
+    else
+      {
+        showButtons();
+        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showCursor();
+      }
+  }
+
+void MenuState::inputbox ( bool visible )
+  {
+    _show_inputbox = visible;
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Common_InputBox", visible );
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", !visible );
 
