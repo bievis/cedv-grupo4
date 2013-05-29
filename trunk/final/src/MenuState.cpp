@@ -73,42 +73,6 @@ void MenuState::createMenuScene()
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", true );
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Background_Menu", true );
-
-//    Ogre::Overlay *overlay = m_pOverlayMgr->getByName ( "GUI_Menu" );
-//    overlay->show();
-
-    // _rect_background = new Ogre::Rectangle2D ( true );
-    // _rect_background->setCorners ( -1, 1, 1, -1 );
-    // _rect_background->setMaterial ( "Menu/Background" );
-
-    // // Render the background before everything else
-    // _rect_background->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
-
-    // // Attach background to the scene
-    // Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "Background" );
-    // node->attachObject ( _rect_background );
-
-    // // Create background rectangle covering the whole screen
-    // _rect_creditos = new Rectangle2D(true);
-    // _rect_creditos->setCorners(-1.0, 1.0, 1.0, -1.0);
-    // _rect_creditos->setMaterial("Menu/Creditos");
-
-    // // Render the background before everything else
-    // _rect_creditos->setRenderQueueGroup(RENDER_QUEUE_BACKGROUND);
-
-    // // Use infinite AAB to always stay visible
-    // //    _rect_creditos->setBoundingBox(aabInf);
-
-    // _rect_creditos->setVisible ( false );
-
-    // // Attach background to the scene
-    // node->attachObject(_rect_creditos);
-
-    // Ogre::OverlayElement *elem;
-    // elem = m_pOverlayMgr->getOverlayElement("panelRecords");
-    // elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
-    // //    elem->hide();
-
   }
 
 void MenuState::exit()
@@ -125,12 +89,6 @@ void MenuState::exit()
     Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Menu");
     overlay->hide();
 
-    // if ( _rect_background )
-    //    delete _rect_background;
-
-    // if ( _rect_creditos )
-    //   delete _rect_creditos;
-
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->clearAllTrays();
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->destroyAllWidgets();
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->setListener(0);
@@ -140,19 +98,14 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
   {
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
       {
-
         if ( _mostradoCreditos )
           {
-             _mostradoCreditos = false;
-             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", false );
-             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", true );
-             showButtons();
-             OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showCursor();
+            show_screen ( CREDITS_SCREEN, false );
           }
-        // else if ( _mostradoHighScores )
-        //   {
-        //     mostrarOverlayHighScores ( false );
-        //   }
+        else if ( _mostradoHighScores )
+          {
+            show_screen ( HIGHSCORES_SCREEN, false );
+          }
         else
           {
              m_bQuit = true;
@@ -208,9 +161,6 @@ void MenuState::update(double timeSinceLastFrame)
 // {
 //     OverlayElement *oe = NULL;
 
-//     oe = m_pOverlayMgr->getOverlayElement("tituloHighScores");
-//     oe->setCaption ( "BEST TIMES" );
-
 //     oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
 //     oe->setCaption ( _msg_highscore );
 // }
@@ -225,15 +175,17 @@ void MenuState::buttonHit(OgreBites::Button *button)
     // 	hideButtons();
     // 	changeAppState(findByName("GameState"));
     //   }
-    // else if ( button->getName() == "HighScoresBtn" )
+    else if ( button->getName() == "HighScoresBtn" )
+      show_screen ( HIGHSCORES_SCREEN, true );
     //   mostrarOverlayHighScores ( true );
     else if ( button->getName() == "CreditsBtn" )
       {
-        _mostradoCreditos = true;
-        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
-        hideButtons();
-        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", false );
-        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", true );
+//        _mostradoCreditos = true;
+//        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
+//        hideButtons();
+//        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", false );
+//        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", true );
+        show_screen ( CREDITS_SCREEN, true );
       }
 
   }
@@ -326,3 +278,30 @@ void MenuState::buttonHit(OgreBites::Button *button)
 
 //     _msg_highscore = msg;
 // }
+
+void MenuState::show_screen ( eScreens scr, bool visible )
+  {
+    if ( CREDITS_SCREEN == scr )
+      {
+        _mostradoCreditos = visible;
+        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", visible );
+      }
+    else if ( HIGHSCORES_SCREEN == scr )
+      {
+        _mostradoHighScores = visible;
+        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "HighScores_Menu", visible );
+      }
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", !visible );
+
+    if ( visible )
+      {
+        hideButtons();
+        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
+      }
+    else
+      {
+        showButtons();
+        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showCursor();
+      }
+  }
