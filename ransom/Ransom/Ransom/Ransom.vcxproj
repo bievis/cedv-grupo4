@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{9DCF060F-C688-4818-BEF1-D57E2DA60833}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Ransom</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\$(Configuration);$(OGRE_HOME)\boost\lib;D:\Libs\bullet-2.81-rev2613\build\cmakebuild\lib\$(Configuration);D:\Libs\SDL_mixer-1.2.12\lib\x86;D:\Libs\SDL-1.2.15\lib\x86;D:\Libs\ogrebullet\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain_d.lib;ois_d.lib;OgreTerrain_d.lib;OgreBulletCollisions_d.lib;OgreBulletDynamics_d.lib;BulletCollision_Debug.lib;BulletDynamics_Debug.lib;LinearMath_Debug.lib;ConvexDecomposition_Debug.lib;SDL.lib;SDL_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(OGRE_HOME)\bin\$(Configuration)\*.dll" "$(SolutionDir)$(Configuration)"
+copy "D:\Libs\SDL_mixer-1.2.12-win32\*.dll" "$(SolutionDir)$(Configuration)"
+copy "D:\Libs\SDL-1.2.15-win32\*.dll" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)config\$(Configuration)\*.cfg" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>del /F/Q/S "$(SolutionDir)$(Configuration)\*"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(OGRE_HOME)\lib\$(Configuration);$(OGRE_HOME)\boost\lib;D:\Libs\bullet-2.81-rev2613\build\cmakebuild\lib\$(Configuration);D:\Libs\SDL_mixer-1.2.12\lib\x86;D:\Libs\SDL-1.2.15\lib\x86;D:\Libs\ogrebullet\lib\$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OgreMain.lib;ois.lib;OgreTerrain.lib;OgreBulletCollisions.lib;OgreBulletDynamics.lib;BulletCollision.lib;BulletDynamics.lib;LinearMath.lib;ConvexDecomposition.lib;SDL.lib;SDL_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy "$(OGRE_HOME)\bin\$(Configuration)\*.dll" "$(SolutionDir)$(Configuration)"
+copy "D:\Libs\SDL_mixer-1.2.12-win32\*.dll" "$(SolutionDir)$(Configuration)"
+copy "D:\Libs\SDL-1.2.15-win32\*.dll" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)config\$(Configuration)\*.cfg" "$(SolutionDir)$(Configuration)"
+copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
+    </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>del /F/Q/S "$(SolutionDir)$(Configuration)\*"</Command>
+    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\AdvancedOgreFramework.cpp" />
+    <ClCompile Include="..\..\src\AnimationBlender.cpp" />
+    <ClCompile Include="..\..\src\AppStateManager.cpp" />
+    <ClCompile Include="..\..\src\DotSceneLoader.cpp" />
+    <ClCompile Include="..\..\src\GameConfig.cpp" />
+    <ClCompile Include="..\..\src\GameConfigException.cpp" />
+    <ClCompile Include="..\..\src\GameState.cpp" />
+    <ClCompile Include="..\..\src\main.cpp" />
+    <ClCompile Include="..\..\src\MenuState.cpp" />
+    <ClCompile Include="..\..\src\PauseState.cpp" />
+    <ClCompile Include="..\..\src\RansomApp.cpp" />
+    <ClCompile Include="..\..\src\Records.cpp" />
+    <ClCompile Include="..\..\src\SoundFX.cpp" />
+    <ClCompile Include="..\..\src\SoundFXManager.cpp" />
+    <ClCompile Include="..\..\src\Track.cpp" />
+    <ClCompile Include="..\..\src\TrackManager.cpp" />
+    <ClCompile Include="..\..\src\Utilities.cpp" />
+    <ClCompile Include="..\..\src\XMLCharger.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp" />
+    <ClInclude Include="..\..\include\AnimationBlender.h" />
+    <ClInclude Include="..\..\include\AppState.hpp" />
+    <ClInclude Include="..\..\include\AppStateManager.hpp" />
+    <ClInclude Include="..\..\include\DotSceneLoader.hpp" />
+    <ClInclude Include="..\..\include\GameConfig.h" />
+    <ClInclude Include="..\..\include\GameConfigException.hpp" />
+    <ClInclude Include="..\..\include\GameState.hpp" />
+    <ClInclude Include="..\..\include\MenuState.hpp" />
+    <ClInclude Include="..\..\include\PauseState.hpp" />
+    <ClInclude Include="..\..\include\RansomApp.hpp" />
+    <ClInclude Include="..\..\include\rapidxml.hpp" />
+    <ClInclude Include="..\..\include\Records.h" />
+    <ClInclude Include="..\..\include\SoundFX.h" />
+    <ClInclude Include="..\..\include\SoundFXManager.h" />
+    <ClInclude Include="..\..\include\Track.h" />
+    <ClInclude Include="..\..\include\TrackManager.h" />
+    <ClInclude Include="..\..\include\Utilities.h" />
+    <ClInclude Include="..\..\include\XMLCharger.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\config\Debug\plugins.cfg" />
+    <None Include="..\config\ogre.cfg" />
+    <None Include="..\config\Release\plugins.cfg" />
+    <None Include="..\config\resources.cfg" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
