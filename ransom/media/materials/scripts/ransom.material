@@ -1,0 +1,92 @@
+material Menu/Background
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			scene_blend alpha_blend
+			texture_unit
+			{
+				texture background.png
+			}
+		}
+	}
+}
+
+material Menu/Vacio
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture panel_transparente.png
+     }
+   }
+ }
+}
+
+material Menu/Creditos
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture creditos.png
+     }
+   }
+ }
+}
+
+material Menu/HighScores
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture highscores.png
+     }
+   }
+ }
+}
+
+material Common/InputBox
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture inputbox.png
+     }
+   }
+ }
+}
+
+material Game/Titulo
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture titulo.png
+     }
+   }
+ }
+}
+
+
