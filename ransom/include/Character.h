@@ -2,13 +2,19 @@
 #define CHARACTER_H
 
 #include "Utilities.h"
-#include "AdvancedOgreFramework.hpp"
-#include <pthread.h>
+//#include "AdvancedOgreFramework.hpp"
+//#include <pthread.h>
 
 class Character
 {
   public:
-    Character ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, const string& name );
+    Character ( Ogre::SceneManager* sceneMgr,
+                OgreBulletDynamics::DynamicsWorld* world,
+                const string& name,
+                float initial_pos_X,
+                float initial_pos_Y,
+                float initial_pos_Z,
+                eColor color );
     virtual ~Character();
     Character(const Character& other);
 
@@ -23,13 +29,15 @@ class Character
     inline string getName() const { return m_name; };
     inline void   setName ( const string& newName ) { m_name = newName; };
 
-//    inline void   setPosX ( float newX ) { m_posX = newX; };
-//    inline void   setPosY ( float newY ) { m_posY = newY; };
-//    inline void   setPosZ ( float newZ ) { m_posZ = newZ; };
-//
-//    inline float  getPosX() const { return m_posX; };
-//    inline float  getPosY() const { return m_posY; };
-//    inline float  getPosZ() const { return m_posZ; };
+    inline void   setInitial_PosX ( float newX ) { m_posX = newX; };
+    inline void   setInitial_PosY ( float newY ) { m_posY = newY; };
+    inline void   setInitial_PosZ ( float newZ ) { m_posZ = newZ; };
+
+    inline float  getInitial_PosX() const { return m_posX; };
+    inline float  getInitial_PosY() const { return m_posY; };
+    inline float  getInitial_PosZ() const { return m_posZ; };
+
+    inline Ogre::SceneNode* getSceneNode() const { return m_node; };
 
     void          print();
 
@@ -39,9 +47,9 @@ class Character
 
   private:
     string            m_name;
-//    float             m_posX;
-//    float             m_posY;
-//    float             m_posZ;
+    float             m_posX;
+    float             m_posY;
+    float             m_posZ;
     float             m_health; // 0% - 100%
 
     Ogre::SceneNode*  m_node;

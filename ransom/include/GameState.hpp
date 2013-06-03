@@ -74,9 +74,10 @@ private:
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
 
-    Character *hero;
+    Character*                m_hero;
+    std::deque<Character*>    m_enemies;
 
-    //Methods
+    //Private Methods
 
     void CreatePlane();
 
