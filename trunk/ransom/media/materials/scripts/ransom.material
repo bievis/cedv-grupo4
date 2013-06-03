@@ -89,4 +89,20 @@ material Game/Titulo
  }
 }
 
+material Pruebas/BumpyMetal
+{
+        technique
+        {
+                pass
+                {
+                        ambient 0.75 0.75 0.75
+                        cull_hardware none
+                        cull_software none
 
+                        texture_unit
+                        {
+                                texture BumpyMetal.jpg
+                        }
+                }
+        }
+}

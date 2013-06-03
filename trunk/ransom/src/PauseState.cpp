@@ -14,7 +14,7 @@ void PauseState::enter()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering PauseState...");
 
     // Carga del sonido.
-    // _menuFX = SoundFXManager::getSingleton().load("boton.wav");
+    _menuFX = SoundFXManager::getSingleton().load("boton.wav");
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "PauseSceneMgr");
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.7f, 0.7f, 0.7f));
@@ -36,7 +36,6 @@ void PauseState::enter()
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createButton(OgreBites::TL_CENTER, "ExitBtn", "Exit Game", 350);
 
     m_bQuit = false;
-
   }
 
 void PauseState::exit()
