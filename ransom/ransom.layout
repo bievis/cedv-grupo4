@@ -7,10 +7,13 @@
 	<File name="include/AppState.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="1842" topLine="0" />
 	</File>
+	<File name="include/Character.h" open="1" top="0" tabpos="4">
+		<Cursor position="1363" topLine="23" />
+	</File>
 	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="5" />
 	</File>
-	<File name="include/MenuState.hpp" open="1" top="0" tabpos="3">
+	<File name="include/MenuState.hpp" open="0" top="0" tabpos="3">
 		<Cursor position="983" topLine="25" />
 	</File>
 	<File name="include/RansomApp.hpp" open="0" top="0" tabpos="9">
@@ -19,32 +22,38 @@
 	<File name="include/Records.h" open="0" top="0" tabpos="11">
 		<Cursor position="211" topLine="0" />
 	</File>
-	<File name="include/Utilities.h" open="1" top="0" tabpos="4">
+	<File name="include/Utilities.h" open="0" top="0" tabpos="4">
 		<Cursor position="505" topLine="0" />
 	</File>
 	<File name="media/materials/scripts/info.overlay" open="0" top="0" tabpos="0">
 		<Cursor position="31" topLine="0" />
 	</File>
-	<File name="media/materials/scripts/ransom.material" open="1" top="0" tabpos="6">
+	<File name="media/materials/scripts/ransom.material" open="0" top="0" tabpos="6">
 		<Cursor position="820" topLine="54" />
 	</File>
-	<File name="media/materials/scripts/ransom.overlay" open="1" top="0" tabpos="5">
+	<File name="media/materials/scripts/ransom.overlay" open="0" top="0" tabpos="5">
 		<Cursor position="1172" topLine="0" />
 	</File>
 	<File name="ogre.cfg" open="0" top="0" tabpos="0">
 		<Cursor position="197" topLine="0" />
 	</File>
-	<File name="src/AdvancedOgreFramework.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="3590" topLine="98" />
+	<File name="src/AdvancedOgreFramework.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="3628" topLine="95" />
+	</File>
+	<File name="src/Character.cpp" open="1" top="1" tabpos="2">
+		<Cursor position="1050" topLine="39" />
 	</File>
 	<File name="src/DotSceneLoader.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13507" topLine="375" />
 	</File>
-	<File name="src/GameState.cpp" open="0" top="0" tabpos="7">
-		<Cursor position="444" topLine="0" />
+	<File name="src/GameState.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="11177" topLine="372" />
 	</File>
-	<File name="src/MenuState.cpp" open="1" top="0" tabpos="2">
+	<File name="src/MenuState.cpp" open="0" top="0" tabpos="2">
 		<Cursor position="3715" topLine="68" />
+	</File>
+	<File name="src/PauseState.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="4109" topLine="106" />
 	</File>
 	<File name="src/RansomApp.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="509" topLine="0" />
@@ -55,8 +64,8 @@
 	<File name="src/TrackManager.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="99" topLine="0" />
 	</File>
-	<File name="src/Utilities.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="593" topLine="7" />
+	<File name="src/Utilities.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="3069" topLine="81" />
 	</File>
 	<File name="src/XMLCharger.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="135" topLine="0" />

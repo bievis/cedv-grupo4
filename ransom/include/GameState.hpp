@@ -13,7 +13,10 @@
 #include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
 #include <Shapes/OgreBulletCollisionsBoxShape.h>
 
-#include <vector>
+#include "Utilities.h"
+#include "Character.h"
+
+//#include <vector>
 // #include <Coche.hpp>
 
 // #define _NUM_COCHES_ 1
@@ -56,21 +59,26 @@ private:
     bool                      m_bRMouseDown;
     Ogre::OverlayManager*     m_pOverlayMgr;
 
-    double                    _tiempo;
-    double                    _mejorTiempo;
-    bool                      _empieza_a_contar;
+    OgreBulletCollisions::CollisionShape *ShapeFloor;
+    OgreBulletDynamics::RigidBody *defaultPlaneBodyFloor;
 
-    TrackPtr                  _gameTrack;
-    SoundFXPtr                _sonidoMetaFX;
+//    double                    _tiempo;
+//    double                    _mejorTiempo;
+//    bool                      _empieza_a_contar;
 
-    btScalar                  _velocidad;
+//    TrackPtr                  _gameTrack;
+//    SoundFXPtr                _sonidoMetaFX;
+
+//    btScalar                  _velocidad;
 
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
 
-    // std::vector<Coche *> _vCoches;
+    Character *hero;
 
     //Methods
+
+    void CreatePlane();
 
     void CreateInitialWorld();
 

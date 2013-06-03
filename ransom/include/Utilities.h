@@ -16,22 +16,53 @@
 
 using namespace std;
 
+/// \brief this class will be a set of utility methods
 class Utilities {
 
  public:
 
+    /// \brief method to put an overlay in the scene
+    /// This method put an overlay created in ransom.overlay file, also the name should be defined in this file with the set of specifications
+    /// \param overMgr reference to overlay manager (Advanced Ogre Framework)
+    /// \param name this name was set in the ransom.overlay file and this name identifies the overlay to be found in the file
+    /// \param visible this boolean value set if the overlay will be visible from starting or will not
     void put_overlay ( Ogre::OverlayManager *overMgr, const char* name, bool visible );
+    /// \brief method to put an overlay in an object Rectangle2D
+    /// This method put an overlay created in ransom.material file, also the name should be defined in this file with the set of specifications
+    /// \param rect referente to the object Rectangle2D where the overlay will be put
+    /// \param name this name was set in the ransom.material file and this name identifies the overlay to be found in the file
+    /// \param left value left corner
+    /// \param top value top corner
+    /// \param right value right corner
+    /// \param bottom value bottom corner
+    /// \param visible this boolean value set if the overlay will be visible from starting or will not
     void put_overlay_on_rectangle ( Ogre::Rectangle2D* rect, const char* name, Ogre::Real left, Ogre::Real top, Ogre::Real right, Ogre::Real bottom, bool visible );
-    void put_background_with_rotation ( Ogre::SceneManager* m_pSceneMgr,const char* background );
-    void put_element_in_scene ( Ogre::SceneManager* m_pSceneMgr, OgreBulletDynamics::DynamicsWorld* _world, string name_element );
-
-    static Utilities& getSingleton ();
-    static Utilities* getSingletonPtr ();
+    /// \brief method to create a rotate background
+    /// This method uses the method put_overlay_on_rectangle() to do part of it logic
+    /// \param sceneMgr reference to the scene manager
+    /// \param background name for the background
+    void put_background_with_rotation ( Ogre::SceneManager* sceneMgr,const char* background );
+    /// \brief this method add an element (mesh name) in the scene (Ogre) and in the world (OgreBullet)
+    /// This method load in the scene (and in the world of OgreBullet) the object with the name (name + ".mesh") in the media/models folder
+    /// \param sceneMgr reference to the scene manager (Ogre)
+    /// \param world reference to world (OgreBullet)
+    /// \param name_element name to set at the scene element
+    /// \return reference to scene node created
+    Ogre::SceneNode* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_element );
+    /// \brief method to get the Utilities object
+    /// \return static Utilities object
+    static Utilities& getSingleton();
+    /// \brief method to get the Utilities reference
+    /// \return reference to Utilities object
+    static Utilities* getSingletonPtr();
 
  private:
+    /// \brief reference to Utitlies object
     static Utilities* msSingleton;
 
+    /// \brief default constructor
     Utilities() {};
+    /// \brief virtual destructor
     virtual ~Utilities() {};
 
 };

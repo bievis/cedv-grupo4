@@ -17,7 +17,9 @@ using namespace OgreBulletDynamics;
 
 using namespace Ogre;
 
-#define MAX_SPEED 70
+float incX = 0.5;
+float incZ = 0.5;
+
 GameState::GameState()
   {
     m_bLMouseDown       = false;
@@ -27,7 +29,7 @@ GameState::GameState()
 
 void GameState::enter()
   {
-    // OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
+    OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -45,16 +47,23 @@ void GameState::enter()
     // // Reproducción del track principal...
     // _gameTrack->play();
 
-    // m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
-    // m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
+    m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
+    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
-    // m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
-    // m_pCamera->setPosition(Ogre::Vector3 ( 40.0f, 80.0f, 0.0f ) );
-    // m_pCamera->lookAt(Ogre::Vector3 ( 0.0f, 13.0f, 0.0f ) );
-    // m_pCamera->setNearClipDistance(5);
-    // m_pCamera->setFarClipDistance(10000);
+    m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
 
-    // OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
+//    m_pCamera->setPosition(Ogre::Vector3 ( 40.0f, 80.0f, 0.0f ) );
+//    m_pCamera->lookAt(Ogre::Vector3 ( 0.0f, 13.0f, 0.0f ) );
+//    m_pCamera->setNearClipDistance(5);
+//    m_pCamera->setFarClipDistance(10000);
+
+    // Position it at 500 in Z direction
+    m_pCamera->setPosition(Vector3(0,18,70));
+      // Look back along -Z
+    m_pCamera->lookAt(Vector3(0,0,-300));
+    m_pCamera->setNearClipDistance(5);
+
+    OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
 
     // m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
 
@@ -64,43 +73,47 @@ void GameState::enter()
     // param.insert ( std::make_pair ( "WINDOW", wHandleStr.str() ) );
 
     // // Creacion del modulo de debug visual de Bullet ------------------
-    // _debugDrawer = new OgreBulletCollisions::DebugDrawer();
-    // _debugDrawer->setDrawWireframe(true);
-    // SceneNode *node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "debugNode", Vector3::ZERO );
-    // node->attachObject(static_cast <SimpleRenderable *>(_debugDrawer));
+    _debugDrawer = new OgreBulletCollisions::DebugDrawer();
+    _debugDrawer->setDrawWireframe(true);
+    SceneNode *node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "debugNode", Vector3::ZERO );
+    node->attachObject(static_cast <SimpleRenderable *>(_debugDrawer));
 
-    // // Creacion del mundo (definicion de los limites y la gravedad) ---
-    // AxisAlignedBox worldBounds = AxisAlignedBox (
-    // Vector3 (-100, -100, -100),
-    // Vector3 (100,  100,  100));
-    // Vector3 gravity = Vector3(0, -9.8, 0);
+    // Creacion del mundo (definicion de los limites y la gravedad) ---
+    AxisAlignedBox worldBounds = AxisAlignedBox (
+    Vector3 (-100, -100, -100),
+    Vector3 (100,  100,  100));
+    Vector3 gravity = Vector3(0, -9.8, 0);
 
-    // _world = new OgreBulletDynamics::DynamicsWorld ( m_pSceneMgr,
-    // 	   worldBounds, gravity);
-    // _world->setDebugDrawer (_debugDrawer);
+    _world = new OgreBulletDynamics::DynamicsWorld ( m_pSceneMgr,
+     	   worldBounds, gravity);
+    _world->setDebugDrawer (_debugDrawer);
 
-    // // Creacion de los elementos iniciales del mundo
-    // CreateInitialWorld();
+    // Creacion de los elementos iniciales del mundo
+    CreateInitialWorld();
 
-    // buildGUI();
+    buildGUI();
 
-    // createScene();
+    createScene();
 
   }
 
 void GameState::CreateInitialWorld()
   {
-    // // Activamos las sombras
-    // m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-    // m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
-    // m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
+    // Activamos las sombras
+    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+    m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
+    m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
 
-    // m_pSceneMgr->setShadowTextureCount(2);
-    // m_pSceneMgr->setShadowTextureSize(512);
+    m_pSceneMgr->setShadowTextureCount(2);
+    m_pSceneMgr->setShadowTextureSize(512);
 
-    // // Crear el fondo de tierra
-
+    // Crear el plano
+    CreatePlane();
     // insertarElementoEscena(string("Suelo"));
+
+    hero = new Character ( m_pSceneMgr, _world, "Hero" );
+    hero->print();
+    //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
 
     // // Crear el circuito
 
@@ -186,7 +199,7 @@ void GameState::resume()
     m_bQuit = false;
     // Mostrar_Velocidad ( 0 );
 
-    Ogre::OverlayElement *elem;
+//    Ogre::OverlayElement *elem = NULL;
 
     // elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
     // elem->show();
@@ -194,8 +207,8 @@ void GameState::resume()
     // elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
     // elem->show();
 
-    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
-    elem->hide();
+//    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
+//    elem->hide();
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
@@ -222,12 +235,13 @@ void GameState::exit()
     // _gameTrack->stop();
 
     m_pSceneMgr->destroyCamera(m_pCamera);
+
     if(m_pSceneMgr)
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager(m_pSceneMgr);
 
     // Ocultar overlays
-    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-    overlay->hide();
+//    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+//    overlay->hide();
   }
 
 void GameState::createScene()
@@ -240,8 +254,8 @@ void GameState::createScene()
     luz->setDiffuseColour(1, 1, 1);
 
     //Cargamos overlay con la GUI ( Tiempo )
-    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-    overlay->show();
+//    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
+//    overlay->show();
   }
 
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
@@ -353,8 +367,34 @@ void GameState::update(double timeSinceLastFrame)
     // 	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 0 );
     // 	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 1 );
 
-    // 	if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
-    // 	  {
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+      {
+        if ( hero )
+          {
+            hero->move ( incX, 0.0, 0.0 );
+          }
+      }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
+      {
+        if ( hero )
+          {
+            hero->move ( (-1)*incX, 0.0, 0.0 );
+          }
+      }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
+      {
+        if ( hero )
+          {
+            hero->move ( 0.0, 0.0, incZ );
+          }
+      }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
+      {
+        if ( hero )
+          {
+            hero->move ( 0.0, 0.0, (-1)*incZ );
+          }
+      }
     // 	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
     // 	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
     // 		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
@@ -433,20 +473,20 @@ void GameState::update(double timeSinceLastFrame)
 
 void GameState::buildGUI()
   {
-    Ogre::OverlayElement *elem = NULL;
+//    Ogre::OverlayElement *elem = NULL;
 
-    elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
-    elem->show();
+//    elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
+//    elem->show();
+//
+//    elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
+//    elem->setCaption ( "Best Time:" );
+//    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
+//    elem->show();
 
-    elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
-    elem->setCaption ( "Best Time:" );
-    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
-    elem->show();
-
-    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
-
-    if ( elem )
-      elem->hide();
+//    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
+//
+//    if ( elem )
+//      elem->hide();
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
   }
@@ -532,3 +572,30 @@ void GameState::buildGUI()
 //   _empieza_a_contar = true;
 //   _vCoches[0]->reset();
 // }
+
+void GameState::CreatePlane()
+  {
+    // Define a floor plane mesh
+ 		Entity *ent;
+    Plane p;
+    p.normal = Vector3(0,1,0); p.d = 0;
+    MeshManager::getSingleton().createPlane ( "FloorPlane",
+                                                        ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+                                                        p, 200000, 200000, 20, 20, true, 1, 9000, 9000,
+                                                        Vector3::UNIT_Z );
+    // Create an entity (the floor)
+    ent = m_pSceneMgr->createEntity("floor", "FloorPlane");
+ 		ent->setMaterialName("Pruebas/BumpyMetal");
+ 		m_pSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject ( ent );
+
+ 		// add collision detection to it
+ 		//OgreBulletCollisions::CollisionShape *Shape;
+ 		ShapeFloor = new OgreBulletCollisions::StaticPlaneCollisionShape ( Ogre::Vector3 ( 0, 1, 0 ), 0 ); // (normal vector, distance)
+ 		// a body is needed for the shape
+ 		//OgreBulletDynamics::RigidBody *defaultPlaneBodyFloor = new OgreBulletDynamics::RigidBody("BasePlane",
+    defaultPlaneBodyFloor = new OgreBulletDynamics::RigidBody ( "BasePlane", _world );
+ 		defaultPlaneBodyFloor->setStaticShape ( ShapeFloor, 0.1, 0.8 );// (shape, restitution, friction)
+ 		// push the created objects to the deques
+// 		mShapes.push_back(Shape);
+// 		mBodies.push_back(defaultPlaneBody);
+  }

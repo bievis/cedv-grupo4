@@ -95,6 +95,8 @@ void MenuState::exit()
     // // Parar del track principal...
     // _menuTrack->stop();
 
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Background_Menu", false );
+
     m_pSceneMgr->destroyCamera(m_pCamera);
     if(m_pSceneMgr)
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager(m_pSceneMgr);
@@ -186,22 +188,20 @@ void MenuState::buttonHit(OgreBites::Button *button)
   {
     // _menuFX->play();
     if ( button->getName() == "ExitBtn" )
-      m_bQuit = true;
-    // else if ( button->getName() == "StartBtn" )
-    //   {
-    // 	hideButtons();
-    // 	changeAppState(findByName("GameState"));
-    //   }
+      {
+        m_bQuit = true;
+      }
+    else if ( button->getName() == "StartBtn" )
+      {
+        hideButtons();
+        changeAppState(findByName("GameState"));
+      }
     else if ( button->getName() == "HighScoresBtn" )
-      show_screen ( HIGHSCORES_SCREEN, true );
-    //   mostrarOverlayHighScores ( true );
+      {
+        show_screen ( HIGHSCORES_SCREEN, true );
+      }
     else if ( button->getName() == "CreditsBtn" )
       {
-//        _mostradoCreditos = true;
-//        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
-//        hideButtons();
-//        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", false );
-//        Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Creditos_Menu", true );
         show_screen ( CREDITS_SCREEN, true );
       }
 

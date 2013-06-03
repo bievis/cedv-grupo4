@@ -164,7 +164,7 @@
 	<new>
 	<exception>
 
-1369817778 /home/diego/CEDV/cedv-grupo4/final/include/Records.h
+1369938933 /home/diego/CEDV/cedv-grupo4/final/include/Records.h
 	<list>
 	<fstream>
 	<iostream>
@@ -187,7 +187,7 @@
 	"AdvancedOgreFramework.hpp"
 	"AppStateManager.hpp"
 
-1369726934 /home/diego/CEDV/cedv-grupo4/final/include/Utilities.h
+1369937582 /home/diego/CEDV/cedv-grupo4/final/include/Utilities.h
 	"AdvancedOgreFramework.hpp"
 	<OgreRectangle2D.h>
 	<OgreMaterial.h>
@@ -1588,4 +1588,85 @@
 	"OgreTerrainPrerequisites.h"
 	"OgreTerrainMaterialGenerator.h"
 	"OgreGpuProgramParams.h"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/AdvancedOgreFramework.cpp
+	"AdvancedOgreFramework.hpp"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/AnimationBlender.cpp
+	"AnimationBlender.h"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/AppStateManager.cpp
+	"AppStateManager.hpp"
+	<OgreWindowEventUtilities.h>
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/DotSceneLoader.cpp
+	"DotSceneLoader.hpp"
+	<Ogre.h>
+	<Terrain/OgreTerrain.h>
+	<Terrain/OgreTerrainGroup.h>
+	<Terrain/OgreTerrainMaterialGeneratorA.h>
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfig.cpp
+	<GameConfig.h>
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfigException.cpp
+	<GameConfigException.hpp>
+
+1370257343 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MenuState.cpp
+	"MenuState.hpp"
+
+1370280349 source:/home/diego/CEDV/cedv-grupo4/ransom/src/PauseState.cpp
+	"PauseState.hpp"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/RansomApp.cpp
+	"RansomApp.hpp"
+	"MenuState.hpp"
+	"GameState.hpp"
+	"PauseState.hpp"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Records.cpp
+	"Records.h"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/SoundFX.cpp
+	<fstream>
+	"SoundFX.h"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/SoundFXManager.cpp
+	<SDL_mixer.h>
+	"SoundFXManager.h"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Track.cpp
+	<OgreArchive.h>
+	<OgreResourceGroupManager.h>
+	<OgreLogManager.h>
+	<Track.h>
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/TrackManager.cpp
+	<TrackManager.h>
+
+1370268581 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Utilities.cpp
+	"Utilities.h"
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/XMLCharger.cpp
+	<XMLCharger.h>
+
+1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/main.cpp
+	"RansomApp.hpp"
+	"windows.h"
+
+1370275876 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameState.cpp
+	"GameState.hpp"
+	"Shapes/OgreBulletCollisionsBoxShape.h"
+	"Shapes/OgreBulletCollisionsCompoundShape.h"
+	"OgreBulletDynamicsWorld.h"
+	"OgreBulletDynamicsRigidBody.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+	"Constraints/OgreBulletDynamicsRaycastVehicle.h"
+	"Shapes/OgreBulletCollisionsTrimeshShape.h"
+	"Shapes/OgreBulletCollisionsSphereShape.h"
+	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+
+1370276016 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Character.cpp
+	"Character.h"
+	<cassert>
 
