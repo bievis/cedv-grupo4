@@ -39,7 +39,7 @@ bool OgreFramework::initOgre(Ogre::String wndTitle, OIS::KeyListener *pKeyListen
     // string msg = "pruebas";
     // logMgr->logMessage ( msg, LML_NORMAL );
 
-    m_pLog = Ogre::LogManager::getSingleton().createLog ( "nitro.log", true, true, false );
+    m_pLog = Ogre::LogManager::getSingleton().createLog ( "ransom.log", true, true, false );
     m_pLog->setDebugOutputEnabled ( true );
 
     m_pRoot = new Ogre::Root();
@@ -129,7 +129,7 @@ bool OgreFramework::keyPressed(const OIS::KeyEvent &keyEventRef)
   {
     if ( m_pKeyboard->isKeyDown(OIS::KC_SYSRQ) )
       {
-        m_pRenderWnd->writeContentsToTimestampedFile ( "Nitro_Screenshot_", ".jpg" );
+        m_pRenderWnd->writeContentsToTimestampedFile ( "Ransom_Screenshot_", ".jpg" );
         return true;
       }
 

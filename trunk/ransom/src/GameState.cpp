@@ -17,8 +17,7 @@ using namespace OgreBulletDynamics;
 
 using namespace Ogre;
 
-float incX = 0.5;
-float incZ = 0.5;
+#define NUM_ENEMIES 2
 
 GameState::GameState()
   {
@@ -111,9 +110,64 @@ void GameState::CreateInitialWorld()
     CreatePlane();
     // insertarElementoEscena(string("Suelo"));
 
-    hero = new Character ( m_pSceneMgr, _world, "Hero" );
-    hero->print();
+    m_hero = new Character ( m_pSceneMgr, _world, "Hero", 0, 0, 10, AZUL );
+    m_hero->print();
     //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
+
+    Character *enemy = NULL;
+    string name_enemy = "";
+
+    for ( unsigned int i = 0, j = 8; i < NUM_ENEMIES; i++, j+=8 )
+      {
+        name_enemy = "Enemy" + StringConverter::toString(i);
+        enemy = new Character ( m_pSceneMgr, _world, name_enemy, j, 0, 0, ROJO );
+        m_enemies.push_back ( enemy );
+      }
+
+    //Plano donde se verá lo que está viendo el personaje principal
+    //*************************************************************************
+    TexturePtr rtt = TextureManager::getSingleton().createManual(
+            "RttT", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            TEX_TYPE_2D, 512, 512, 0, PF_SHORT_L, TU_RENDERTARGET );
+
+    RenderTexture *rtex = rtt->getBuffer()->getRenderTarget();
+
+    Camera *cam = m_pSceneMgr->createCamera ( "POVCamera" );
+    cam->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
+    cam->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
+    cam->setNearClipDistance ( 5 );
+    cam->setFOVy ( Degree ( 38 ) );
+
+    rtex->addViewport ( cam );
+    rtex->getViewport(0)->setClearEveryFrame ( true );
+    rtex->getViewport(0)->setBackgroundColour ( ColourValue::Black );
+    rtex->getViewport(0)->setOverlaysEnabled ( false );
+    rtex->setAutoUpdated(true);
+
+    CompositorManager* cMgr = CompositorManager::getSingletonPtr();
+    cMgr->addCompositor(rtex->getViewport(0), "myFX");
+    cMgr->setCompositorEnabled(rtex->getViewport(0), "myFX", true);
+
+    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
+    Technique* matTechnique = mPtr->createTechnique();
+    matTechnique->createPass();
+    mPtr->getTechnique(0)->getPass(0)->setLightingEnabled(true);
+    mPtr->getTechnique(0)->getPass(0)->setDiffuse(0.9,0.9,0.9,1);
+    mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
+
+    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT");
+
+    Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
+    _rect->setCorners ( -0.5, 1, 0.5, 0 ); //( -0.5, 0, 0.5, -1 );
+    _rect->setMaterial ( "RttMat" );
+
+    // Render the background before everything else
+    _rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
+
+    // Attach background to the scene
+    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "POV" );
+    node->attachObject ( _rect );
+    //*************************************************************************
 
     // // Crear el circuito
 
@@ -233,6 +287,14 @@ void GameState::exit()
     // // Parar del track principal...
     // _gameTrack->play();
     // _gameTrack->stop();
+
+    // Erase the enemies deque
+    std::deque<Character *>::iterator itEnemy = m_enemies.begin();
+ 		while ( m_enemies.end() != itEnemy )
+ 		{
+ 			delete *itEnemy;
+ 			++itEnemy;
+ 		}
 
     m_pSceneMgr->destroyCamera(m_pCamera);
 
@@ -367,34 +429,72 @@ void GameState::update(double timeSinceLastFrame)
     // 	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 0 );
     // 	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 1 );
 
+    bool bMove = false;
+    float valX = 0, valZ = 0;
+
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
-        if ( hero )
-          {
-            hero->move ( incX, 0.0, 0.0 );
-          }
+        bMove = true;
+        valX = 0.05;
       }
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
       {
-        if ( hero )
-          {
-            hero->move ( (-1)*incX, 0.0, 0.0 );
-          }
+        bMove = true;
+        valX = -0.05;
       }
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
       {
-        if ( hero )
-          {
-            hero->move ( 0.0, 0.0, incZ );
-          }
+        bMove = true;
+        valZ = 0.05;
       }
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
-        if ( hero )
-          {
-            hero->move ( 0.0, 0.0, (-1)*incZ );
-          }
+        bMove = true;
+        valZ = -0.05;
       }
+    if ( bMove && m_hero )
+      {
+        m_hero->move ( valX, 0.0, valZ );
+      }
+
+
+    float top_max = 4;
+    float top_min = -4;
+    static float vX[] = { 0.1, 0.1 };
+    static float vZ[] = { 0.0, 0.0 };
+    Ogre::Vector3 v = Ogre::Vector3::ZERO;
+    unsigned int i = 0;
+
+    // Simulacion chorra de movimiento de los enemigos
+    for ( std::deque<Character *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
+ 		  {
+ 			  (*itEnemy)->move ( vX[i], 0, vZ[i] );
+
+ 			  v = (*itEnemy)->getSceneNode()->getPosition();
+ 			  //cout << " X = " << v.x << " Y = " << v.y << " Z = " << v.z << endl;
+ 			  if ( v.x >= 20 && vX[i] > 0 ) // De izq a der
+ 			  {
+ 			    //val[i] = -0.1;
+          vX[i] = 0;
+          vZ[i] = 0.1;
+ 			  }
+ 			  else if ( v.z >= 20 && vZ[i] > 0 ) // De arr a aba
+        {
+          vX[i] = -0.1;
+          vZ[i] = 0;
+        }
+ 			  else if ( v.x <= -20 && vX[i] < 0 )
+ 			  {
+          vX[i] = 0;
+          vZ[i] = -0.1;
+ 			  }
+ 			  else if ( v.z <= -20 && vZ[i] < 0 ) // De arr a aba
+        {
+          vX[i] = 0.1;
+          vZ[i] = 0;
+        }
+ 		  }
+
     // 	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
     // 	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
     // 		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
@@ -586,6 +686,7 @@ void GameState::CreatePlane()
     // Create an entity (the floor)
     ent = m_pSceneMgr->createEntity("floor", "FloorPlane");
  		ent->setMaterialName("Pruebas/BumpyMetal");
+
  		m_pSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject ( ent );
 
  		// add collision detection to it

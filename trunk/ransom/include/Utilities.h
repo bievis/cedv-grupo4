@@ -16,6 +16,12 @@
 
 using namespace std;
 
+enum eColor
+{
+  ROJO,
+  AZUL
+};
+
 /// \brief this class will be a set of utility methods
 class Utilities {
 
@@ -46,9 +52,21 @@ class Utilities {
     /// This method load in the scene (and in the world of OgreBullet) the object with the name (name + ".mesh") in the media/models folder
     /// \param sceneMgr reference to the scene manager (Ogre)
     /// \param world reference to world (OgreBullet)
+    /// \param name_mesh name to charge mesh file
     /// \param name_element name to set at the scene element
+    /// \param initial_posX initial coordenate in the axis X
+    /// \param initial_posY initial coordenate in the axis Y
+    /// \param initial_posZ initial coordenate in the axis Z
     /// \return reference to scene node created
-    Ogre::SceneNode* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_element );
+    Ogre::SceneNode* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_mesh, string name_element, float initial_posX, float initial_posY, float initial_posZ );
+    Ogre::SceneNode* put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
+                                                  OgreBulletDynamics::DynamicsWorld* world,
+                                                  string name_mesh,
+                                                  string name_element,
+                                                  float initial_posX,
+                                                  float initial_posY,
+                                                  float initial_posZ,
+                                                  eColor color );
     /// \brief method to get the Utilities object
     /// \return static Utilities object
     static Utilities& getSingleton();
