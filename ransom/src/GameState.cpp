@@ -12,6 +12,8 @@
 #include "Shapes/OgreBulletCollisionsSphereShape.h"
 #include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 
+#include <cassert>
+
 using namespace OgreBulletCollisions;
 using namespace OgreBulletDynamics;
 
@@ -126,46 +128,42 @@ void GameState::CreateInitialWorld()
 
     //Plano donde se verá lo que está viendo el personaje principal
     //*************************************************************************
-    TexturePtr rtt = TextureManager::getSingleton().createManual(
-            "RttT", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-            TEX_TYPE_2D, 512, 512, 0, PF_SHORT_L, TU_RENDERTARGET );
+    rtt = TextureManager::getSingleton().createManual(
+            "RttT_Hero", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            TEX_TYPE_2D, 64, 64, 0, PF_A8R8G8B8, TU_RENDERTARGET );
 
-    RenderTexture *rtex = rtt->getBuffer()->getRenderTarget();
+    rtex = rtt->getBuffer()->getRenderTarget();
 
-    Camera *cam = m_pSceneMgr->createCamera ( "POVCamera" );
-    cam->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
-    cam->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
-    cam->setNearClipDistance ( 5 );
-    cam->setFOVy ( Degree ( 38 ) );
+    camPOV = m_pSceneMgr->createCamera ( "cameraPOV_Hero" );
+    camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
+    camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
+    camPOV->setNearClipDistance ( 5 );
+    camPOV->setFOVy ( Degree ( 38 ) );
 
-    rtex->addViewport ( cam );
+    rtex->addViewport ( camPOV );
     rtex->getViewport(0)->setClearEveryFrame ( true );
     rtex->getViewport(0)->setBackgroundColour ( ColourValue::Black );
     rtex->getViewport(0)->setOverlaysEnabled ( false );
     rtex->setAutoUpdated(true);
 
-    CompositorManager* cMgr = CompositorManager::getSingletonPtr();
-    cMgr->addCompositor(rtex->getViewport(0), "myFX");
-    cMgr->setCompositorEnabled(rtex->getViewport(0), "myFX", true);
-
-    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
+    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Hero", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
     Technique* matTechnique = mPtr->createTechnique();
     matTechnique->createPass();
     mPtr->getTechnique(0)->getPass(0)->setLightingEnabled(true);
     mPtr->getTechnique(0)->getPass(0)->setDiffuse(0.9,0.9,0.9,1);
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
 
-    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT");
+    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Hero");
 
     Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
     _rect->setCorners ( -0.5, 1, 0.5, 0 ); //( -0.5, 0, 0.5, -1 );
-    _rect->setMaterial ( "RttMat" );
+    _rect->setMaterial ( "RttMat_Hero" );
 
     // Render the background before everything else
     _rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
 
     // Attach background to the scene
-    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "POV" );
+    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Hero" );
     node->attachObject ( _rect );
     //*************************************************************************
 
@@ -292,9 +290,13 @@ void GameState::exit()
     std::deque<Character *>::iterator itEnemy = m_enemies.begin();
  		while ( m_enemies.end() != itEnemy )
  		{
- 			delete *itEnemy;
+      if ( *itEnemy )
+        delete *itEnemy;
  			++itEnemy;
  		}
+
+ 		if ( m_hero )
+      delete m_hero;
 
     m_pSceneMgr->destroyCamera(m_pCamera);
 
@@ -335,6 +337,12 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
     //   // Volver a poner el coche en el inicio
     //   reiniciarCoche();
     // }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_W ) )
+    {
+      //m_hero->check_vision();
+      check_vision();
+    }
+
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -434,28 +442,32 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
-        bMove = true;
-        valX = 0.05;
+//        bMove = true;
+//        valX = 0.05;
+        m_hero->turn ( (-1) * Ogre::Math::HALF_PI / 32 );
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
       {
-        bMove = true;
-        valX = -0.05;
+//        bMove = true;
+//        valX = -0.05;
+        m_hero->turn ( Ogre::Math::HALF_PI / 32 );
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
       {
-        bMove = true;
-        valZ = 0.05;
+//        bMove = true;
+//        valZ = 0.05;
+        m_hero->walk ( true );
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
-        bMove = true;
-        valZ = -0.05;
+//        bMove = true;
+//        valZ = -0.05;
+        m_hero->walk();
       }
-    if ( bMove && m_hero )
-      {
-        m_hero->move ( valX, 0.0, valZ );
-      }
+//    if ( bMove && m_hero )
+//      {
+//        m_hero->walk();
+//      }
 
 
     float top_max = 4;
@@ -468,7 +480,7 @@ void GameState::update(double timeSinceLastFrame)
     // Simulacion chorra de movimiento de los enemigos
     for ( std::deque<Character *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
  		  {
- 			  (*itEnemy)->move ( vX[i], 0, vZ[i] );
+ 			  (*itEnemy)->move_to ( vX[i], 0, vZ[i] );
 
  			  v = (*itEnemy)->getSceneNode()->getPosition();
  			  //cout << " X = " << v.x << " Y = " << v.y << " Z = " << v.z << endl;
@@ -494,6 +506,8 @@ void GameState::update(double timeSinceLastFrame)
           vZ[i] = 0;
         }
  		  }
+
+//    check_POV();
 
     // 	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
     // 	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
@@ -676,7 +690,6 @@ void GameState::buildGUI()
 void GameState::CreatePlane()
   {
     // Define a floor plane mesh
- 		Entity *ent;
     Plane p;
     p.normal = Vector3(0,1,0); p.d = 0;
     MeshManager::getSingleton().createPlane ( "FloorPlane",
@@ -684,10 +697,10 @@ void GameState::CreatePlane()
                                                         p, 200000, 200000, 20, 20, true, 1, 9000, 9000,
                                                         Vector3::UNIT_Z );
     // Create an entity (the floor)
-    ent = m_pSceneMgr->createEntity("floor", "FloorPlane");
- 		ent->setMaterialName("Pruebas/BumpyMetal");
+    entFloor = m_pSceneMgr->createEntity ( "floor", "FloorPlane" );
+ 		entFloor->setMaterialName("Pruebas/BumpyMetal");
 
- 		m_pSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject ( ent );
+ 		m_pSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject ( entFloor );
 
  		// add collision detection to it
  		//OgreBulletCollisions::CollisionShape *Shape;
@@ -699,4 +712,103 @@ void GameState::CreatePlane()
  		// push the created objects to the deques
 // 		mShapes.push_back(Shape);
 // 		mBodies.push_back(defaultPlaneBody);
+  }
+
+void GameState::check_vision()
+  {
+    Ogre::Image img;
+//    Ogre::PixelBox pixBox;
+    string nameEntity = "";
+    Ogre::Entity* ptrEntity = NULL;
+
+    // Ponemos material blanco a todos los enemigos
+
+    for ( unsigned int i = 0; i < NUM_ENEMIES; i++ )
+      {
+        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
+        if ( m_pSceneMgr->hasEntity ( nameEntity ) )
+          {
+            ptrEntity = m_pSceneMgr->getEntity ( nameEntity );
+            ptrEntity->setMaterialName ( "MaterialBlanco" );
+            ptrEntity->setCastShadows ( false );
+          }
+      }
+
+    // Ocultamos el suelo
+
+    entFloor->setVisible ( false );
+//    nameEntity = "floor";
+//    if ( m_sceneMgr->hasEntity ( nameEntity ) )
+//      {
+//        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
+//        ptrEntity->setVisible ( false );
+//      }
+
+    // Realizamos el render a textura
+
+//    rtt = Ogre::TextureManager::getSingleton().createManual (
+//            "RttT_Hero", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+//            Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
+//
+//    rtex = rtt->getBuffer()->getRenderTarget();
+//
+//    camPOV = m_pSceneMgr->createCamera ( "cameraPOV_Hero" );
+//    camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
+//    camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
+//    camPOV->setNearClipDistance ( 5 );
+//    camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+//
+//    rtex->addViewport ( camPOV );
+//    rtex->getViewport(0)->setClearEveryFrame ( true );
+//    rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
+//    rtex->getViewport(0)->setOverlaysEnabled ( false );
+//    rtex->setAutoUpdated(true);
+
+    // Cogemos la imagen del momento
+
+    rtt->convertToImage ( img );
+
+//    pixBox = img.getPixelBox();
+
+//    for ( unsigned int i = 0; i < pixBox.getWidth(); i++ )
+//      {
+//        for ( unsigned int j = 0; j < pixBox.getHeight(); j++ )
+//          {
+//            printf ( "%02x ", img.getColourAt(i,j,0) );
+//          }
+//          printf ( "\n" );
+//      }
+
+    // Volcamos a disco la captura, para ver si aparecen los objetos en blanco y el suelo ha desaparecido
+    static int cont = 1;
+    img.save ( "prueba" + Ogre::StringConverter::toString(cont++) + ".png" );
+
+    // Restablecemos a material rojo a todos los enemigos
+
+//    for ( unsigned int i = 0; i < NUM_ENEMIES; i++ )
+//      {
+//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
+//        if ( m_pSceneMgr->hasEntity ( nameEntity ) )
+//          {
+//            ptrEntity = m_pSceneMgr->getEntity ( nameEntity );
+//            ptrEntity->setMaterialName("MaterialRojo");
+//            ptrEntity->setCastShadows ( true );
+//          }
+//      }
+
+    // Restablecemos a visible el suelo
+
+    entFloor->setVisible ( true );
+//    nameEntity = "floor";
+//    if ( m_sceneMgr->hasEntity ( nameEntity ) )
+//      {
+//        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
+//        ptrEntity->setVisible ( true );
+//      }
+
+    // ---------------------------------------------
+
+    //delete rtex;
+    //m_pSceneMgr->destroyCamera ( camPOV );
+
   }

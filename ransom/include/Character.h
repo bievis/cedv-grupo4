@@ -2,8 +2,11 @@
 #define CHARACTER_H
 
 #include "Utilities.h"
+#include <OgreTextureManager.h>
 //#include "AdvancedOgreFramework.hpp"
-//#include <pthread.h>
+#include <pthread.h>
+
+using namespace std;
 
 class Character
 {
@@ -20,10 +23,13 @@ class Character
 
     Character&    operator=(const Character& other);
 
-    void          move ( float posX, float posY, float posZ );
-    void          is_death();
+    void          move_to ( float posX, float posY, float posZ );
+    void          walk ( bool reverse = false );
+    void          turn ( Ogre::Real angle );
 
-    float         getHealth() const;
+    inline bool   is_death() const { return ( m_health <= 0 ); };
+
+    inline float  getHealth() const { return m_health; };
     void          setHealth ( float newHealth );
 
     inline string getName() const { return m_name; };
@@ -38,8 +44,15 @@ class Character
     inline float  getInitial_PosZ() const { return m_posZ; };
 
     inline Ogre::SceneNode* getSceneNode() const { return m_node; };
+    inline OgreBulletDynamics::RigidBody* getRigidBody() const { return m_rigidBody; };
+//    inline Ogre::TexturePtr& getTexturePtr() { return m_rtt; };
+//    inline Ogre::RenderTexture* getRenderTexture() const { return m_rtex; };
+//    inline Ogre::Camera* getCameraPOV() const { return m_camPOV; };
+    inline Ogre::Entity* getEntity() const { return m_entity; };
 
     void          print();
+
+//    bool          check_vision();
 
   protected:
 
@@ -52,9 +65,20 @@ class Character
     float             m_posZ;
     float             m_health; // 0% - 100%
 
-    Ogre::SceneNode*  m_node;
+    Ogre::SceneManager* m_sceneMgr;
 
-//    pthread_mutex_t   m_mutex;
+    Ogre::Entity* m_entity;
+    Ogre::SceneNode*  m_node;
+    OgreBulletDynamics::RigidBody* m_rigidBody;
+
+    // Para el render a textura
+//    Ogre::TexturePtr m_rtt;
+//    Ogre::RenderTexture* m_rtex;
+//    Ogre::Camera* m_camPOV;
+
+    pthread_mutex_t   m_mutex_move;
+    pthread_mutex_t   m_mutex_turn;
+    pthread_mutex_t   m_mutex_walk;
 
 };
 

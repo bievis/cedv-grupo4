@@ -118,41 +118,41 @@ Ogre::SceneNode* Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
     return node;
 }
 
-Ogre::SceneNode* Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
+void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
                                                   float initial_posX,
                                                   float initial_posY,
                                                   float initial_posZ,
-                                                  eColor color )
+                                                  eColor color,
+                                                  Ogre::Entity** entity,
+                                                  Ogre::SceneNode** node,
+                                                  OgreBulletDynamics::RigidBody** rigidTrack )
   {
     Ogre::Vector3 size = Ogre::Vector3::ZERO;
-    Ogre::Entity *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
-    Ogre::SceneNode *node = sceneMgr->createSceneNode ( name_element );
-    entity->setCastShadows(true);
+    *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
+    *node = sceneMgr->createSceneNode ( name_element );
+    (*entity)->setCastShadows(true);
 
     if ( color == ROJO )
-      entity->setMaterialName ( "MaterialRojo" );
+      (*entity)->setMaterialName ( "MaterialRojo" );
     else
-      entity->setMaterialName ( "MaterialAzul" );
+      (*entity)->setMaterialName ( "MaterialAzul" );
 
-    node->attachObject ( entity );
+    (*node)->attachObject ( *entity );
 
-    sceneMgr->getRootSceneNode()->addChild ( node );
+    sceneMgr->getRootSceneNode()->addChild ( *node );
 
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
-      OgreBulletCollisions::StaticMeshToShapeConverter ( entity );
+    OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
+      OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
 
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
+    OgreBulletCollisions::TriangleMeshCollisionShape* trackTrimesh =
       trimeshConverter->createTrimesh();
 
-    OgreBulletDynamics::RigidBody *rigidTrack = new
-      OgreBulletDynamics::RigidBody ( name_element, world );
-    rigidTrack->setShape ( node, trackTrimesh, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
+    *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
+    (*rigidTrack)->setShape ( *node, trackTrimesh, 0.6f, 0.6f, 0.05f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
 			   Ogre::Quaternion::IDENTITY );
 
     delete trimeshConverter;
-
-    return node;
-}
+  }

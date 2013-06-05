@@ -59,14 +59,17 @@ class Utilities {
     /// \param initial_posZ initial coordenate in the axis Z
     /// \return reference to scene node created
     Ogre::SceneNode* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_mesh, string name_element, float initial_posX, float initial_posY, float initial_posZ );
-    Ogre::SceneNode* put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
+    void put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
                                                   float initial_posX,
                                                   float initial_posY,
                                                   float initial_posZ,
-                                                  eColor color );
+                                                  eColor color,
+                                                  Ogre::Entity** entity,
+                                                  Ogre::SceneNode** node,
+                                                  OgreBulletDynamics::RigidBody** rigidTrack );
     /// \brief method to get the Utilities object
     /// \return static Utilities object
     static Utilities& getSingleton();
