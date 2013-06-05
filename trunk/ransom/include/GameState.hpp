@@ -77,9 +77,16 @@ private:
     Character*                m_hero;
     std::deque<Character*>    m_enemies;
 
+    Ogre::Entity*             entFloor;
+    Ogre::TexturePtr          rtt;
+    Ogre::RenderTexture*      rtex;
+    Ogre::Camera*             camPOV;
+
     //Private Methods
 
     void CreatePlane();
+
+    void check_vision();
 
     void CreateInitialWorld();
 
