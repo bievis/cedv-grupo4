@@ -119,7 +119,7 @@ void GameState::CreateInitialWorld()
     CreatePlane();
     // insertarElementoEscena(string("Suelo"));
 
-    m_hero = new Character ( m_pSceneMgr, _world, "Hero", 0, 0, 10, AZUL );
+    m_hero = new Character ( m_pSceneMgr, _world, "Hero", 0, 0, 10, AZUL, true );
     m_hero->print();
     //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
 
@@ -129,7 +129,7 @@ void GameState::CreateInitialWorld()
     for ( unsigned int i = 0, j = 8; i < NUM_ENEMIES; i++, j+=8 )
       {
         name_enemy = "Enemy" + StringConverter::toString(i);
-        enemy = new Character ( m_pSceneMgr, _world, name_enemy, j, 0, 0, ROJO );
+        enemy = new Character ( m_pSceneMgr, _world, name_enemy, j, 0, 0, ROJO, false );
         m_enemies.push_back ( enemy );
       }
 
@@ -577,7 +577,7 @@ void GameState::update(double timeSinceLastFrame)
     //   }
     // _estaEnPreMeta = _vCoches[0]->isPreMeta(_world);
 
-    if (m_hero->doYouSeeAnybody())
+    if (m_hero->haveYouSeenAnybody())
       cout << "te veo!!" << endl;
     else
       cout << "nada" << endl;

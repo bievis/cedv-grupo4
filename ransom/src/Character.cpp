@@ -12,7 +12,8 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                         float initial_pos_X,
                         float initial_pos_Y,
                         float initial_pos_Z,
-                        eColor color )
+                        eColor color,
+                        bool checkingObjects )
 {
   m_mutex_move = PTHREAD_MUTEX_INITIALIZER;
   m_mutex_turn = PTHREAD_MUTEX_INITIALIZER;
@@ -53,40 +54,47 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
   m_posY = initial_pos_Y;
   m_posZ = initial_pos_Z;
 
-  m_rtt = Ogre::TextureManager::getSingleton().createManual (
+  m_checkingObjects = checkingObjects;
+
+  if ( checkingObjects )
+    {
+      m_rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
-  m_rtex = m_rtt->getBuffer()->getRenderTarget();
+      m_rtex = m_rtt->getBuffer()->getRenderTarget();
 
-  m_camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
-  m_camPOV->setPosition ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z ) ); //( 0, 2, -4 )
-  m_camPOV->lookAt ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z-10 ) ); //( 0, 2, -14 )
-  m_camPOV->setNearClipDistance ( 5 );
-  m_camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+      m_camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
+      m_camPOV->setPosition ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z ) ); //( 0, 2, -4 )
+      m_camPOV->lookAt ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z-10 ) ); //( 0, 2, -14 )
+      m_camPOV->setNearClipDistance ( 5 );
+      m_camPOV->setFOVy ( Ogre::Degree ( 38 ) );
 
-  m_rtex->addViewport ( m_camPOV );
-  m_rtex->getViewport(0)->setClearEveryFrame ( true );
-  m_rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
-  m_rtex->getViewport(0)->setOverlaysEnabled ( false );
-  m_rtex->setAutoUpdated(true);
+      m_rtex->addViewport ( m_camPOV );
+      m_rtex->getViewport(0)->setClearEveryFrame ( true );
+      m_rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
+      m_rtex->getViewport(0)->setOverlaysEnabled ( false );
+      m_rtex->setAutoUpdated(true);
 
-  // Para ocultar el despliegue recursivo de la vision del personaje
-  m_textureListener = new MyTextureListener ( m_sceneMgr, m_rtt );
-  m_rtex->addListener ( m_textureListener );
+      // Para ocultar el despliegue recursivo de la vision del personaje
+      m_textureListener = new MyTextureListener ( m_sceneMgr, m_rtt );
+      m_rtex->addListener ( m_textureListener );
+    }
 }
 
 Character::~Character()
 {
-  //dtor
-  if ( m_textureListener )
-  {
-    m_rtex->removeListener ( m_textureListener );
-    delete m_textureListener;
-  }
+  if ( m_checkingObjects )
+    {
+      if ( m_textureListener )
+        {
+          m_rtex->removeListener ( m_textureListener );
+          delete m_textureListener;
+        }
 
-  if ( m_camPOV )
-    m_sceneMgr->destroyCamera ( m_camPOV );
+      if ( m_camPOV )
+        m_sceneMgr->destroyCamera ( m_camPOV );
+    }
 }
 
 Character::Character ( const Character& other )
@@ -113,9 +121,9 @@ void Character::copy ( const Character& source )
   m_posZ = source.getInitial_PosZ();
   m_node = source.getSceneNode();
   m_rigidBody = source.getRigidBody();
-  //m_rtex = source.getRenderTexture();
-  //m_rtt = source.getTexturePtr();
-  //m_camPOV = source.getCameraPOV();
+  m_rtex = source.getRenderTexture();
+  m_rtt = source.getTexturePtr();
+  m_camPOV = source.getCameraPOV();
 }
 
 void Character::setHealth ( float newHealth )
@@ -128,11 +136,6 @@ void Character::setHealth ( float newHealth )
       m_health = newHealth;
   }
 }
-
-//void Character::walk()
-//{
-//  move ( )
-//}
 
 void Character::walk ( bool reverse )
   {
@@ -194,82 +197,7 @@ void Character::print()
   cout << "==============" << endl;
 }
 
-//bool Character::check_vision()
-//  {
-//    Ogre::Image img;
-//    Ogre::PixelBox pixBox;
-//    string nameEntity = "";
-//    Ogre::Entity* ptrEntity = NULL;
-//
-//    // Ponemos material blanco a todos los enemigos
-//
-//    for ( unsigned int i = 0; i < MAX_ENEMIES; i++ )
-//      {
-//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
-//        if ( m_sceneMgr->hasEntity ( nameEntity ) )
-//          {
-//            ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-//            ptrEntity->setMaterialName ( "MaterialBlanco" );
-//            ptrEntity->setCastShadows ( false );
-//          }
-//      }
-//
-//    // Ocultamos el suelo
-//
-//    nameEntity = "floor";
-//    if ( m_sceneMgr->hasEntity ( nameEntity ) )
-//      {
-//        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-//        ptrEntity->setVisible ( false );
-//      }
-//
-//    // Cogemos la imagen del momento
-//    //Ogre::Root::getSingleton().renderOneFrame();
-//
-//    m_rtt->convertToImage ( img );
-//
-////    pixBox = img.getPixelBox();
-//
-////    for ( unsigned int i = 0; i < pixBox.getWidth(); i++ )
-////      {
-////        for ( unsigned int j = 0; j < pixBox.getHeight(); j++ )
-////          {
-////            printf ( "%02x ", img.getColourAt(i,j,0) );
-////          }
-////          printf ( "\n" );
-////      }
-//
-//    // Volcamos a disco la captura, para ver si aparecen los objetos en blanco y el suelo ha desaparecido
-//    static int cont = 1;
-//    img.save ( "prueba" + Ogre::StringConverter::toString(cont++) + ".png" );
-//
-//    // Restablecemos a material rojo a todos los enemigos
-//
-//    for ( unsigned int i = 0; i < MAX_ENEMIES; i++ )
-//      {
-//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
-//        if ( m_sceneMgr->hasEntity ( nameEntity ) )
-//          {
-//            ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-//            ptrEntity->setMaterialName("MaterialRojo");
-//            ptrEntity->setCastShadows ( true );
-//          }
-//      }
-//
-//    // Restablecemos a visible el suelo
-//
-//    nameEntity = "floor";
-//    if ( m_sceneMgr->hasEntity ( nameEntity ) )
-//      {
-//        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-//        ptrEntity->setVisible ( true );
-//      }
-//
-//    // ---------------------------------------------
-//
-//}
-
-bool Character::doYouSeeAnybody() const
+bool Character::haveYouSeenAnybody() const
 {
   assert ( m_textureListener );
   return m_textureListener->enemyViewed();
