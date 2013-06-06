@@ -72,10 +72,6 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
   m_rtex->setAutoUpdated(true);
 
   // Para ocultar el despliegue recursivo de la vision del personaje
-//  SceneNode *node = sceneMgr->getSceneNode ( "rectanglePOV_" + name );
-//  assert ( node );
-//  Rectangle2D *rect = node->getAttachedObject(0);
-//  assert ( rect );
   m_textureListener = new MyTextureListener ( m_sceneMgr, m_rtt );
   m_rtex->addListener ( m_textureListener );
 }
@@ -83,7 +79,14 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 Character::~Character()
 {
   //dtor
-  m_sceneMgr->destroyCamera ( m_camPOV );
+  if ( m_textureListener )
+  {
+    m_rtex->removeListener ( m_textureListener );
+    delete m_textureListener;
+  }
+
+  if ( m_camPOV )
+    m_sceneMgr->destroyCamera ( m_camPOV );
 }
 
 Character::Character ( const Character& other )

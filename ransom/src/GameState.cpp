@@ -26,6 +26,13 @@ GameState::GameState()
     m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
+    m_pSceneMgr         = NULL;
+    m_hero              = NULL;
+    m_pOverlayMgr       = NULL;
+    m_enemies.clear();
+    defaultPlaneBodyFloor = NULL;
+    ShapeFloor          = NULL;
+    _world              = NULL;
   }
 
 void GameState::enter()
@@ -167,60 +174,6 @@ void GameState::CreateInitialWorld()
     node->attachObject ( _rect );
     //*************************************************************************
 
-    // // Crear el circuito
-
-    // insertarElementoEscena(string("Circuito"));
-
-    // // Crear la linea de meta
-
-    // insertarElementoEscena(string("PreMeta"));
-    // insertarElementoEscena(string("Meta"));
-
-    // // Crear la valla externa del circuito
-
-    // insertarElementoEscena(string("Valla_Externa"));
-
-    // // Crear la valla interna del circuito
-
-    // insertarElementoEscena(string("Valla_Interna"));
-
-    // // Creamos el/los vehiculo/s =============================================
-
-    // char name[100];
-    // eColour_Chassis color = RED;
-    // float posX = 13.0f;
-    // float posY = 12.0f;
-    // float posZ = 0.0f;
-    // float base = 7.0f;
-
-    // for ( unsigned int i = 0; i < _NUM_COCHES_; i++ )
-    //   {
-    // 	if ( i % 2 == 0 )
-    // 	  {
-    // 	    if ( i > 0 )
-    // 	      base -= 7.0f;
-    // 	    posX = 18.0f;
-    //         posZ = base;
-    // 	  }
-    //     else
-    // 	  {
-    //         posX = 22.0f;
-    //         posZ = base - 3.0f;
-    // 	  }
-
-    // 	memset ( name, 0, sizeof(char)*100 );
-    // 	sprintf ( name, "Coche%03u", i+1 );
-    // 	_vCoches.push_back ( new Coche ( name, posX, posY, posZ,  m_pSceneMgr, _world, color ) );
-    // 	_vCoches[i]->print_info();
-
-    // 	if ( i == 0 )
-    // 	  color = BLUE;
-    // 	else if ( i == 1 )
-    // 	  color = GREEN;
-    // 	else if ( i == 2 )
-    // 	  color = YELLOW;
-    //   }
-
   }
 
 
@@ -265,6 +218,7 @@ void GameState::resume()
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
     // _gameTrack->play();
+
   }
 
 void GameState::exit()
@@ -295,17 +249,57 @@ void GameState::exit()
  			++itEnemy;
  		}
 
+ 		m_enemies.clear();
+
  		if ( m_hero )
+ 		{
+ 		  cout << "delete hero" << endl;
       delete m_hero;
+ 		}
 
-    m_pSceneMgr->destroyCamera(m_pCamera);
+    if ( defaultPlaneBodyFloor )
+    {
+      cout << "delete defaultPlaneBodyFloor" << endl;
+      delete defaultPlaneBodyFloor;
+    }
 
-    if(m_pSceneMgr)
-      OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager(m_pSceneMgr);
+    if ( ShapeFloor )
+    {
+      cout << "delete ShapeFloor" << endl;
+      delete ShapeFloor;
+    }
+
+
+    if ( m_pCamera )
+    {
+      cout << "delete camera" << endl;
+      m_pSceneMgr->destroyCamera ( m_pCamera );
+    }
+
+    if ( _world )
+    {
+      cout << "delete world" << endl;
+      delete _world;
+    }
+
+
+    if ( _debugDrawer )
+    {
+      cout << "delete debugdrawer" << endl;
+      delete _debugDrawer;
+    }
+
+
+    if ( m_pSceneMgr )
+    {
+      cout << "delete scene manager" << endl;
+      OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager ( m_pSceneMgr );
+    }
 
     // Ocultar overlays
 //    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
 //    overlay->hide();
+
   }
 
 void GameState::createScene()
@@ -405,8 +399,8 @@ void GameState::update(double timeSinceLastFrame)
     // if ( _empieza_a_contar )
     //   _tiempo += timeSinceLastFrame;
 
-    // m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
-    // OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->frameRenderingQueued ( m_FrameEvent );
+    m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
+    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->frameRenderingQueued ( m_FrameEvent );
 
     // if(m_bQuit == true)
     //   {
