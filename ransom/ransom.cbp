@@ -76,6 +76,7 @@
 		<Unit filename="include/GameConfigException.hpp" />
 		<Unit filename="include/GameState.hpp" />
 		<Unit filename="include/MenuState.hpp" />
+		<Unit filename="include/MyTextureListener.h" />
 		<Unit filename="include/PauseState.hpp" />
 		<Unit filename="include/RansomApp.hpp" />
 		<Unit filename="include/Records.h" />
@@ -101,6 +102,7 @@
 		<Unit filename="src/GameConfigException.cpp" />
 		<Unit filename="src/GameState.cpp" />
 		<Unit filename="src/MenuState.cpp" />
+		<Unit filename="src/MyTextureListener.cpp" />
 		<Unit filename="src/PauseState.cpp" />
 		<Unit filename="src/RansomApp.cpp" />
 		<Unit filename="src/Records.cpp" />

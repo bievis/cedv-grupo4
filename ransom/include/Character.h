@@ -5,6 +5,7 @@
 #include <OgreTextureManager.h>
 //#include "AdvancedOgreFramework.hpp"
 #include <pthread.h>
+#include "MyTextureListener.h"
 
 using namespace std;
 
@@ -45,14 +46,15 @@ class Character
 
     inline Ogre::SceneNode* getSceneNode() const { return m_node; };
     inline OgreBulletDynamics::RigidBody* getRigidBody() const { return m_rigidBody; };
-//    inline Ogre::TexturePtr& getTexturePtr() { return m_rtt; };
-//    inline Ogre::RenderTexture* getRenderTexture() const { return m_rtex; };
-//    inline Ogre::Camera* getCameraPOV() const { return m_camPOV; };
+    inline Ogre::TexturePtr& getTexturePtr() { return m_rtt; };
+    inline Ogre::RenderTexture* getRenderTexture() const { return m_rtex; };
+    inline Ogre::Camera* getCameraPOV() const { return m_camPOV; };
     inline Ogre::Entity* getEntity() const { return m_entity; };
 
     void          print();
 
 //    bool          check_vision();
+    bool          doYouSeeAnybody() const;
 
   protected:
 
@@ -72,9 +74,11 @@ class Character
     OgreBulletDynamics::RigidBody* m_rigidBody;
 
     // Para el render a textura
-//    Ogre::TexturePtr m_rtt;
-//    Ogre::RenderTexture* m_rtex;
-//    Ogre::Camera* m_camPOV;
+    Ogre::TexturePtr m_rtt;
+    Ogre::RenderTexture* m_rtex;
+    Ogre::Camera* m_camPOV;
+
+    MyTextureListener* m_textureListener;
 
     pthread_mutex_t   m_mutex_move;
     pthread_mutex_t   m_mutex_turn;
