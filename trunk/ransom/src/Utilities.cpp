@@ -132,8 +132,13 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
   {
     Ogre::Vector3 size = Ogre::Vector3::ZERO;
     *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
-    *node = sceneMgr->createSceneNode ( name_element );
     (*entity)->setCastShadows(true);
+
+    Ogre::AxisAlignedBox boundingB = (*entity)->getBoundingBox();
+    size = boundingB.getSize(); size /= 2.0f; // only the half needed
+    size *= 0.95f;	// Bullet margin is a bit bigger so we need a smaller size
+
+    *node = sceneMgr->createSceneNode ( name_element );
 
     if ( color == ROJO )
       (*entity)->setMaterialName ( "MaterialRojo" );
@@ -144,15 +149,21 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
 
     sceneMgr->getRootSceneNode()->addChild ( *node );
 
-    OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
-      OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
+//    OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
+//      OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
 
-    OgreBulletCollisions::TriangleMeshCollisionShape* trackTrimesh =
-      trimeshConverter->createTrimesh();
+//    OgreBulletCollisions::TriangleMeshCollisionShape* trackTrimesh =
+//      trimeshConverter->createTrimesh();
+
+    OgreBulletCollisions::BoxCollisionShape *sceneBoxShape =
+      new OgreBulletCollisions::BoxCollisionShape(size);
 
     *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
-    (*rigidTrack)->setShape ( *node, trackTrimesh, 0.6f, 0.6f, 0.05f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
+
+    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
 			   Ogre::Quaternion::IDENTITY );
 
-    delete trimeshConverter;
+    (*rigidTrack)->setLinearVelocity ( Ogre::Vector3 ( 2, 2, 2 ) * 7.0f ); // shooting speed
+
+//    delete trimeshConverter;
   }

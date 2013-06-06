@@ -4,6 +4,8 @@
 // Mesh file to load how to a Character
 #define MESH_FILE_WITHOUT_EXTENSION "Cube"
 
+//#define MAX_ENEMIES 20
+
 Character::Character ( Ogre::SceneManager* sceneMgr,
                         OgreBulletDynamics::DynamicsWorld* world,
                         const string& name,
@@ -51,29 +53,37 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
   m_posY = initial_pos_Y;
   m_posZ = initial_pos_Z;
 
-//  m_rtt = Ogre::TextureManager::getSingleton().createManual (
-//            "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-//            Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
-//
-//  m_rtex = m_rtt->getBuffer()->getRenderTarget();
-//
-//  m_camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
-//  m_camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
-//  m_camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
-//  m_camPOV->setNearClipDistance ( 5 );
-//  m_camPOV->setFOVy ( Ogre::Degree ( 38 ) );
-//
-//  m_rtex->addViewport ( m_camPOV );
-//  m_rtex->getViewport(0)->setClearEveryFrame ( true );
-//  m_rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
-//  m_rtex->getViewport(0)->setOverlaysEnabled ( false );
-//  m_rtex->setAutoUpdated(true);
+  m_rtt = Ogre::TextureManager::getSingleton().createManual (
+            "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
+  m_rtex = m_rtt->getBuffer()->getRenderTarget();
+
+  m_camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
+  m_camPOV->setPosition ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z ) ); //( 0, 2, -4 )
+  m_camPOV->lookAt ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z-10 ) ); //( 0, 2, -14 )
+  m_camPOV->setNearClipDistance ( 5 );
+  m_camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+
+  m_rtex->addViewport ( m_camPOV );
+  m_rtex->getViewport(0)->setClearEveryFrame ( true );
+  m_rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
+  m_rtex->getViewport(0)->setOverlaysEnabled ( false );
+  m_rtex->setAutoUpdated(true);
+
+  // Para ocultar el despliegue recursivo de la vision del personaje
+//  SceneNode *node = sceneMgr->getSceneNode ( "rectanglePOV_" + name );
+//  assert ( node );
+//  Rectangle2D *rect = node->getAttachedObject(0);
+//  assert ( rect );
+  m_textureListener = new MyTextureListener ( m_sceneMgr, m_rtt );
+  m_rtex->addListener ( m_textureListener );
 }
 
 Character::~Character()
 {
   //dtor
+  m_sceneMgr->destroyCamera ( m_camPOV );
 }
 
 Character::Character ( const Character& other )
@@ -127,7 +137,7 @@ void Character::walk ( bool reverse )
 
     assert ( m_rigidBody );
 
-    m_rigidBody->applyForce ( Ogre::Vector3 ( 0, 100, 0 ), Ogre::Vector3::ZERO );
+    m_rigidBody->applyImpulse ( Ogre::Vector3 ( 0, 100, 0 ), Ogre::Vector3::ZERO );
 
     pthread_mutex_unlock( &m_mutex_walk );
   }
@@ -147,9 +157,17 @@ void Character::turn ( Ogre::Real angle )
   {
     pthread_mutex_lock( &m_mutex_turn );
 
+//    Ogre::Vector3 v;
+
     assert ( m_node );
 
     m_node->yaw ( Ogre::Radian(angle) );
+
+//    v = m_camPOV->getPosition();
+
+//    m_camPOV->move ( Ogre::Vector3::ZERO );
+    m_camPOV->yaw ( Ogre::Radian(angle) );
+//    m_camPOV->move ( v );
 
     pthread_mutex_unlock( &m_mutex_turn );
   }
@@ -163,9 +181,9 @@ void Character::print()
   cout << "health         : " << m_health << endl;
   printf ( "node ref.      : %p\n", m_node );
   printf ( "body ref.      : %p\n", m_rigidBody );
-//  printf ( "render tex ref.: %p\n", m_rtex );
-//  printf ( "texture ref.   : %p\n", m_rtt.get() );
-//  printf ( "camera ref.    : %p\n", m_camPOV );
+  printf ( "render tex ref.: %p\n", m_rtex );
+  printf ( "texture ref.   : %p\n", m_rtt.get() );
+  printf ( "camera ref.    : %p\n", m_camPOV );
   cout << "initial position" << endl;
   cout << "X              : " << m_posX << endl;
   cout << "Y              : " << m_posY << endl;
@@ -180,13 +198,9 @@ void Character::print()
 //    string nameEntity = "";
 //    Ogre::Entity* ptrEntity = NULL;
 //
-//    Ogre::TexturePtr rtt;
-//    Ogre::RenderTexture* rtex = NULL;
-//    Ogre::Camera* camPOV = NULL;
-//
 //    // Ponemos material blanco a todos los enemigos
 //
-//    for ( unsigned int i = 0; i < 20; i++ )
+//    for ( unsigned int i = 0; i < MAX_ENEMIES; i++ )
 //      {
 //        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
 //        if ( m_sceneMgr->hasEntity ( nameEntity ) )
@@ -206,29 +220,10 @@ void Character::print()
 //        ptrEntity->setVisible ( false );
 //      }
 //
-//    // Realizamos el render a textura
-//
-//    rtt = Ogre::TextureManager::getSingleton().createManual (
-//            "RttT_" + m_name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-//            Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
-//
-//    rtex = rtt->getBuffer()->getRenderTarget();
-//
-//    camPOV = m_sceneMgr->createCamera ( "cameraPOV_" + m_name );
-//    camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
-//    camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
-//    camPOV->setNearClipDistance ( 5 );
-//    camPOV->setFOVy ( Ogre::Degree ( 38 ) );
-//
-//    rtex->addViewport ( camPOV );
-//    rtex->getViewport(0)->setClearEveryFrame ( true );
-//    rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
-//    rtex->getViewport(0)->setOverlaysEnabled ( false );
-//    rtex->setAutoUpdated(true);
-//
 //    // Cogemos la imagen del momento
+//    //Ogre::Root::getSingleton().renderOneFrame();
 //
-//    rtt->convertToImage ( img );
+//    m_rtt->convertToImage ( img );
 //
 ////    pixBox = img.getPixelBox();
 //
@@ -247,7 +242,7 @@ void Character::print()
 //
 //    // Restablecemos a material rojo a todos los enemigos
 //
-//    for ( unsigned int i = 0; i < 20; i++ )
+//    for ( unsigned int i = 0; i < MAX_ENEMIES; i++ )
 //      {
 //        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
 //        if ( m_sceneMgr->hasEntity ( nameEntity ) )
@@ -258,7 +253,7 @@ void Character::print()
 //          }
 //      }
 //
-//    // Ponemos material negro al suelo
+//    // Restablecemos a visible el suelo
 //
 //    nameEntity = "floor";
 //    if ( m_sceneMgr->hasEntity ( nameEntity ) )
@@ -269,7 +264,10 @@ void Character::print()
 //
 //    // ---------------------------------------------
 //
-//    //delete rtex;
-//    m_sceneMgr->destroyCamera ( camPOV );
-//
 //}
+
+bool Character::doYouSeeAnybody() const
+{
+  assert ( m_textureListener );
+  return m_textureListener->enemyViewed();
+}

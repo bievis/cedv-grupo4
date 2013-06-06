@@ -8,8 +8,8 @@
 #include <OgreSceneNode.h>
 #include <OgreOverlay.h>
 #include <string>
-#include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
-//#include <Shapes/OgreBulletCollisionsBoxShape.h>
+//#include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
+#include <Shapes/OgreBulletCollisionsBoxShape.h>
 #include <OgreBulletDynamicsRigidBody.h>
 #include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 #include "Shapes/OgreBulletCollisionsTrimeshShape.h"
