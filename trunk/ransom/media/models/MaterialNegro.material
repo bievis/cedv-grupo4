@@ -2,7 +2,7 @@
 
 material MaterialNegro 
 {
-    receive_shadows off 
+    receive_shadows on 
 
     technique
     {
@@ -10,7 +10,7 @@ material MaterialNegro
         {
             ambient 0.0 0.0 0.0 1.0
             diffuse 0.0 0.0 0.0 1.0
-            specular 0.5 0.5 0.5 1.0 12.5
+            specular 0.0 0.0 0.0 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
             alpha_to_coverage off
