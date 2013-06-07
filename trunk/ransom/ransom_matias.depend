@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/AdvancedOgreFramework.cpp
+1370295499 source:/home/matisnow/cedv-grupo4/ransom/src/AdvancedOgreFramework.cpp
 	"AdvancedOgreFramework.hpp"
 
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/AnimationBlender.cpp
 	"AnimationBlender.h"
 
-1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/AppStateManager.cpp
+1370470740 source:/home/matisnow/cedv-grupo4/ransom/src/AppStateManager.cpp
 	"AppStateManager.hpp"
 	<OgreWindowEventUtilities.h>
 
@@ -1376,7 +1376,7 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfigException.cpp
 	<GameConfigException.hpp>
 
-1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
+1370619490 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
 	"GameState.hpp"
 	"Shapes/OgreBulletCollisionsBoxShape.h"
 	"Shapes/OgreBulletCollisionsCompoundShape.h"
@@ -1387,15 +1387,16 @@
 	"Shapes/OgreBulletCollisionsTrimeshShape.h"
 	"Shapes/OgreBulletCollisionsSphereShape.h"
 	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+	<cassert>
 
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/main.cpp
 	"RansomApp.hpp"
 	"windows.h"
 
-1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/MenuState.cpp
+1370539825 source:/home/matisnow/cedv-grupo4/ransom/src/MenuState.cpp
 	"MenuState.hpp"
 
-1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/PauseState.cpp
+1370295289 source:/home/matisnow/cedv-grupo4/ransom/src/PauseState.cpp
 	"PauseState.hpp"
 
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/RansomApp.cpp
@@ -1424,9 +1425,811 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/TrackManager.cpp
 	<TrackManager.h>
 
-1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
+1370553142 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
 	"Utilities.h"
 
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/XMLCharger.cpp
 	<XMLCharger.h>
+
+1370620648 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
+	"Character.h"
+	<cassert>
+
+1370539825 source:/home/matisnow/cedv-grupo4/ransom/src/MyTextureListener.cpp
+	"MyTextureListener.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsBoxShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsPreRequisites.h
+	"btBulletCollisionCommon.h"
+	"BulletCollision/Gimpact/btGImpactShape.h"
+	"BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+	"Ogre.h"
+
+1343755071 /usr/local/include/bullet/btBulletCollisionCommon.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"BulletCollision/CollisionShapes/btBoxShape.h"
+	"BulletCollision/CollisionShapes/btSphereShape.h"
+	"BulletCollision/CollisionShapes/btCapsuleShape.h"
+	"BulletCollision/CollisionShapes/btCylinderShape.h"
+	"BulletCollision/CollisionShapes/btConeShape.h"
+	"BulletCollision/CollisionShapes/btStaticPlaneShape.h"
+	"BulletCollision/CollisionShapes/btConvexHullShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMesh.h"
+	"BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h"
+	"BulletCollision/CollisionShapes/btCompoundShape.h"
+	"BulletCollision/CollisionShapes/btTetrahedronShape.h"
+	"BulletCollision/CollisionShapes/btEmptyShape.h"
+	"BulletCollision/CollisionShapes/btMultiSphereShape.h"
+	"BulletCollision/CollisionShapes/btUniformScalingShape.h"
+	"BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h"
+	"BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btAxisSweep3.h"
+	"BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
+	"LinearMath/btQuaternion.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btDefaultMotionState.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btIDebugDraw.h"
+	"LinearMath/btSerializer.h"
+
+1347491945 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionWorld.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btCollisionObject.h"
+	"btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1347897827 /usr/local/include/bullet/LinearMath/btVector3.h
+	"btScalar.h"
+	"btMinMax.h"
+	"btAlignedAllocator.h"
+
+1347335390 /usr/local/include/bullet/LinearMath/btScalar.h
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<ppcintrinsics.h>
+	<emmintrin.h>
+	<stdio.h>
+	<assert.h>
+	<assert.h>
+	<spu_printf.h>
+	<assert.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	<arm_neon.h>
+	<assert.h>
+	<stdio.h>
+	<assert.h>
+	<arm_neon.h>
+
+1323708999 /usr/local/include/bullet/LinearMath/btMinMax.h
+	"btScalar.h"
+
+1234997523 /usr/local/include/bullet/LinearMath/btAlignedAllocator.h
+	"btScalar.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btTransform.h
+	"btMatrix3x3.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btMatrix3x3.h
+	"btVector3.h"
+	"btQuaternion.h"
+	<stdio.h>
+
+1346608470 /usr/local/include/bullet/LinearMath/btQuaternion.h
+	"btVector3.h"
+	"btQuadWord.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btQuadWord.h
+	"btScalar.h"
+	"btMinMax.h"
+	<altivec.h>
+
+1348270644 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionObject.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1234997523 /usr/local/include/bullet/LinearMath/btMotionState.h
+	"btTransform.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btAlignedObjectArray.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<memory.h>
+	<string.h>
+	<new>
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionDispatcher.h
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionCreateFunc.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btDispatcher.h
+	"LinearMath/btScalar.h"
+
+1347324971 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btManifoldPoint.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1347691937 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransformUtil.h"
+	"physics_effects/base_level/solver/pfx_constraint_row.h"
+
+1301678092 /usr/local/include/bullet/LinearMath/btTransformUtil.h
+	"btTransform.h"
+
+1349471711 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btManifoldResult.h
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h
+	"LinearMath/btScalar.h"
+
+1327354784 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionCreateFunc.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h
+	"btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1219803851 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btBoxShape.h
+	"btPolyhedralConvexShape.h"
+	"btCollisionMargin.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMinMax.h"
+
+1348816488 /usr/local/include/bullet/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h
+	"LinearMath/btMatrix3x3.h"
+	"btConvexInternalShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexInternalShape.h
+	"btConvexShape.h"
+	"LinearMath/btAabbUtil2.h"
+
+1330487453 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexShape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCollisionShape.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1316110640 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCollisionMargin.h
+
+1339030590 /usr/local/include/bullet/LinearMath/btAabbUtil2.h
+	"btTransform.h"
+	"btVector3.h"
+	"btMinMax.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btSphereShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCapsuleShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCylinderShape.h
+	"btBoxShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConeShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+	"btConcaveShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConcaveShape.h
+	"btCollisionShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"btTriangleCallback.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleCallback.h
+	"LinearMath/btVector3.h"
+
+1348816488 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexHullShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1347213542 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleMesh.h
+	"btTriangleIndexVertexArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1330494055 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h
+	"btStridingMeshInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btScalar.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btStridingMeshInterface.h
+	"LinearMath/btVector3.h"
+	"btTriangleCallback.h"
+	"btConcaveShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h
+	"btTriangleMeshShape.h"
+	"btOptimizedBvh.h"
+	"LinearMath/btAlignedAllocator.h"
+	"btTriangleInfoMap.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleMeshShape.h
+	"btConcaveShape.h"
+	"btStridingMeshInterface.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btOptimizedBvh.h
+	"BulletCollision/BroadphaseCollision/btQuantizedBvh.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
+	<stdio.h>
+	<stdlib.h>
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1347338217 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleInfoMap.h
+	"LinearMath/btHashMap.h"
+	"LinearMath/btSerializer.h"
+
+1301678092 /usr/local/include/bullet/LinearMath/btHashMap.h
+	"btAlignedObjectArray.h"
+
+1348279569 /usr/local/include/bullet/LinearMath/btSerializer.h
+	"btScalar.h"
+	"btStackAlloc.h"
+	"btHashMap.h"
+	<memory.h>
+	<string.h>
+
+1234997523 /usr/local/include/bullet/LinearMath/btStackAlloc.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h
+	"BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCompoundShape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTetrahedronShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btEmptyShape.h
+	"btConcaveShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btMultiSphereShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btAabbUtil2.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btUniformScalingShape.h
+	"btConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h
+	"btActivatingCollisionAlgorithm.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
+	"btCollisionDispatcher.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1343755071 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h
+	"btCollisionConfiguration.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionConfiguration.h
+
+1301678092 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btSimpleBroadphase.h
+	"btOverlappingPairCache.h"
+
+1349382724 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
+	"LinearMath/btVector3.h"
+	"btOverlappingPairCache.h"
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"btDbvtBroadphase.h"
+	<stdio.h>
+
+1265912750 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btDbvtBroadphase.h
+	"BulletCollision/BroadphaseCollision/btDbvt.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btQuickprof.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btDbvt.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btAabbUtil2.h"
+	<emmintrin.h>
+	<memory.h>
+	<string.h>
+
+1314674912 /usr/local/include/bullet/LinearMath/btQuickprof.h
+	<stdio.h>
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<new>
+
+1243044954 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h
+	"btBroadphaseInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btOverlappingPairCache.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btDefaultMotionState.h
+	"btMotionState.h"
+
+1347211350 /usr/local/include/bullet/LinearMath/btIDebugDraw.h
+	"btVector3.h"
+	"btTransform.h"
+
+1347211350 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactShape.h
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"BulletCollision/CollisionShapes/btTriangleShape.h"
+	"BulletCollision/CollisionShapes/btStridingMeshInterface.h"
+	"BulletCollision/CollisionShapes/btCollisionMargin.h"
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletCollision/CollisionShapes/btConcaveShape.h"
+	"BulletCollision/CollisionShapes/btTetrahedronShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btGImpactQuantizedBvh.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleShape.h
+	"btConvexShape.h"
+	"btBoxShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactQuantizedBvh.h
+	"btGImpactBvh.h"
+	"btQuantization.h"
+
+1286326782 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactBvh.h
+	"LinearMath/btAlignedObjectArray.h"
+	"btBoxCollision.h"
+	"btTriangleShapeEx.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/Gimpact/btBoxCollision.h
+	"LinearMath/btTransform.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/Gimpact/btTriangleShapeEx.h
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"BulletCollision/CollisionShapes/btTriangleShape.h"
+	"btBoxCollision.h"
+	"btClipPolygon.h"
+	"btGeometryOperations.h"
+
+1281467892 /usr/local/include/bullet/BulletCollision/Gimpact/btClipPolygon.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btGeometryUtil.h"
+
+1234997523 /usr/local/include/bullet/LinearMath/btGeometryUtil.h
+	"btVector3.h"
+	"btAlignedObjectArray.h"
+
+1281467892 /usr/local/include/bullet/BulletCollision/Gimpact/btGeometryOperations.h
+	"btBoxCollision.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/Gimpact/btQuantization.h
+	"LinearMath/btTransform.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h
+	"BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h"
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseInterface.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btGImpactShape.h"
+	"BulletCollision/CollisionShapes/btStaticPlaneShape.h"
+	"BulletCollision/CollisionShapes/btCompoundShape.h"
+	"BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.h"
+	"LinearMath/btIDebugDraw.h"
+	"BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.h
+	"btActivatingCollisionAlgorithm.h"
+	"BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.h"
+	"btCollisionCreateFunc.h"
+	"btCollisionDispatcher.h"
+	"LinearMath/btTransformUtil.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h
+	"btDiscreteCollisionDetectorInterface.h"
+	"BulletCollision/CollisionShapes/btCollisionMargin.h"
+	"btSimplexSolverInterface.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btSimplexSolverInterface.h
+	"LinearMath/btVector3.h"
+	"btVoronoiSimplexSolver.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.h
+	"btSimplexSolverInterface.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsCompoundShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsWorld.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletCollisionsWorld.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsPreRequisites.h
+	"btBulletCollisionCommon.h"
+	"btBulletDynamicsCommon.h"
+	"Ogre.h"
+	"OgreBulletCollisions.h"
+
+1347576039 /usr/local/include/bullet/btBulletDynamicsCommon.h
+	"btBulletCollisionCommon.h"
+	"BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btSimpleDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHingeConstraint.h"
+	"BulletDynamics/ConstraintSolver/btConeTwistConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
+	"BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h"
+	"BulletDynamics/ConstraintSolver/btUniversalConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHinge2Constraint.h"
+	"BulletDynamics/ConstraintSolver/btGearConstraint.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/Vehicle/btRaycastVehicle.h"
+
+1349471711 /usr/local/include/bullet/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h
+	"btDynamicsWorld.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1348270644 /usr/local/include/bullet/BulletDynamics/Dynamics/btDynamicsWorld.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1348279569 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btContactSolverInfo.h
+	"LinearMath/btScalar.h"
+
+1316112433 /usr/local/include/bullet/BulletDynamics/Dynamics/btSimpleDynamicsWorld.h
+	"btDynamicsWorld.h"
+
+1348111972 /usr/local/include/bullet/BulletDynamics/Dynamics/btRigidBody.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1346442384 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btJacobianEntry.h
+	"LinearMath/btMatrix3x3.h"
+
+1349415432 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btTypedConstraint.h
+	"LinearMath/btScalar.h"
+	"btSolverConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+
+1347132074 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSolverConstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"btJacobianEntry.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btSolverBody.h"
+
+1347132074 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSolverBody.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btTransformUtil.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btHingeConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1347132074 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btConeTwistConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSliderConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1347338217 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btUniversalConstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btHinge2Constraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofSpringConstraint.h"
+
+1347576039 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btGearConstraint.h
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+
+1347691937 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"BulletDynamics/ConstraintSolver/btSolverBody.h"
+	"BulletDynamics/ConstraintSolver/btSolverConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+	"BulletDynamics/ConstraintSolver/btConstraintSolver.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btConstraintSolver.h
+	"LinearMath/btScalar.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/Vehicle/btRaycastVehicle.h
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"btVehicleRaycaster.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btWheelInfo.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/Vehicle/btVehicleRaycaster.h
+	"LinearMath/btVector3.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/Vehicle/btWheelInfo.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+
+1283906295 /usr/local/include/bullet/BulletDynamics/Dynamics/btActionInterface.h
+	"LinearMath/btScalar.h"
+	"btRigidBody.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisions.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Utils/OgreBulletConverter.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+	"Debug/OgreBulletCollisionsDebugShape.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+	"Debug/OgreBulletCollisionsDebugContact.h"
+	"OgreBulletCollisionsShape.h"
+	"Shapes/OgreBulletCollisionsBoxShape.h"
+	"Shapes/OgreBulletCollisionsConeShape.h"
+	"Shapes/OgreBulletCollisionsSphereShape.h"
+	"Shapes/OgreBulletCollisionsCylinderShape.h"
+	"Shapes/OgreBulletCollisionsTriangleShape.h"
+	"Shapes/OgreBulletCollisionsTerrainShape.h"
+	"Shapes/OgreBulletCollisionsCylinderShape.h"
+	"Shapes/OgreBulletCollisionsCapsuleShape.h"
+	"Shapes/OgreBulletCollisionsStaticPlaneShape.h"
+	"Shapes/OgreBulletCollisionsCompoundShape.h"
+	"Shapes/OgreBulletCollisionsMultiSphereShape.h"
+	"Shapes/OgreBulletCollisionsConvexHullShape.h"
+	"Shapes/OgreBulletCollisionsMinkowskiSumShape.h"
+	"Shapes/OgreBulletCollisionsTrimeshShape.h"
+	"Shapes/OgreBulletCollisionsGImpactShape.h"
+	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+	"OgreBulletCollisionsObject.h"
+	"OgreBulletCollisionsObjectState.h"
+	"OgreBulletCollisionsWorld.h"
+	"OgreBulletCollisionsRay.h"
+	"OgreString.h"
+	"OgreFontManager.h"
+	"BulletCollision/CollisionShapes/btMinkowskiSumShape.h"
+	"BulletCollision/CollisionShapes/btTriangleShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Utils/OgreBulletConverter.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugLines.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugDrawer.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugContact.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsConeShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsSphereShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsCylinderShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsTriangleShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsTerrainShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+	"BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+	"BulletCollision/CollisionShapes/btTriangleCallback.h"
+
+1347230900 /usr/local/include/bullet/BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h
+	"btConcaveShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsCapsuleShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsStaticPlaneShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsMultiSphereShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsConvexHullShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsMinkowskiSumShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsTrimeshShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsGImpactShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"BulletCollision/Gimpact/btGImpactShape.h"
+	"BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Utils/OgreBulletCollisionsMeshToShapeConverter.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsObject.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsWorld.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsWorld.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsObjectState.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsRay.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreFontManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreFont.h"
+
+1346563635 /usr/local/include/OGRE/OgreFont.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreTexture.h"
+	"OgreMaterial.h"
+	"OgreCommon.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btMinkowskiSumShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsRigidBody.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletCollisionsObject.h"
+	"OgreBulletCollisionsWorld.h"
+	"Utils/OgreBulletConverter.h"
+	"OgreBulletDynamicsWorld.h"
+	"Constraints/OgreBulletDynamicsRaycastVehicle.h"
+	"BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/Constraints/OgreBulletDynamicsRaycastVehicle.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletDynamicsConstraint.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsConstraint.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletCollisionsObject.h"
 

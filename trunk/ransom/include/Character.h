@@ -9,7 +9,8 @@
 
 using namespace std;
 
-/// \brief Class to manage the character
+#define VELOCIDAD 10.0
+
 class Character
 {
   public:
@@ -22,22 +23,24 @@ class Character
     /// \param pos_Z initial position in coordenate Z
     /// \param color character color
     /// \param checkingObjects enable/disable everything related to render to texture
-    Character     ( Ogre::SceneManager* sceneMgr,
-                    OgreBulletDynamics::DynamicsWorld* world,
-                    const string& name,
-                    float initial_pos_X,
-                    float initial_pos_Y,
-                    float initial_pos_Z,
+    Character ( Ogre::SceneManager* sceneMgr,
+                OgreBulletDynamics::DynamicsWorld* world,
+                const string& name,
+                float initial_pos_X,
+                float initial_pos_Y,
+                float initial_pos_Z,
                     eColor color,
                     bool checkingObjects );
     /// \brief default destructor
     virtual ~Character();
     /// \brief copy constructor
     /// \param other source character to copy
-    Character     ( const Character& other );
+    Character(const Character& other);
+
     /// \brief assignment operator to copy another character
     /// \param other source character to copy
     Character&    operator=(const Character& other);
+
     /// \brief method to move the character to the position (X,Y,Z)
     /// This method uses Ogre to move the character
     /// \param posX destiny position in coordenate X
@@ -51,21 +54,25 @@ class Character
     /// \brief method to rotate the character "angle" (radians)
     /// \param angle value in radians to rotate
     void          turn ( Ogre::Real angle );
+
     /// \brief method to return if the character is dead
     /// \return true/false according to the character was dead or not
     inline bool   is_death() const { return ( m_health <= 0 ); };
+
     /// \brief method to get health level (0-100)
     /// \return float value with the health level
     inline float  getHealth() const { return m_health; };
     /// \brief method to set health level (0-100)
     /// \param newHealth float value to set
     void          setHealth ( float newHealth );
+
     /// \brief method to get the character name
     /// \return character name
     inline string getName() const { return m_name; };
     /// \brief method to set the character name
     /// \param newName new character name
     inline void   setName ( const string& newName ) { m_name = newName; };
+
     /// \brief method to set the coordenate X for the initial position
     /// \param newX initial coordenate X
     inline void   setInitial_PosX ( float newX ) { m_posX = newX; };
@@ -75,6 +82,7 @@ class Character
     /// \brief method to set the coordenate Z for the initial position
     /// \param newZ initial coordenate Z
     inline void   setInitial_PosZ ( float newZ ) { m_posZ = newZ; };
+
     /// \brief method to get the coordenate X for the initial position
     /// \return initial coordenate X
     inline float  getInitial_PosX() const { return m_posX; };
@@ -84,6 +92,7 @@ class Character
     /// \brief method to get the coordenate Z for the initial position
     /// \return initial coordenate Z
     inline float  getInitial_PosZ() const { return m_posZ; };
+
     /// \brief method to get the scene node reference
     /// \return scene node reference
     inline Ogre::SceneNode* getSceneNode() const { return m_node; };
@@ -103,8 +112,10 @@ class Character
     /// \brief method to get entity reference
     /// \return entity reference
     inline Ogre::Entity* getEntity() const { return m_entity; };
+
     /// \brief method to print character info
     void          print();
+
     /// \brief this method is used to check if anybody is in our camera scope
     /// \return true/false according to see or not to see anybody
     bool          haveYouSeenAnybody() const;
@@ -127,8 +138,10 @@ class Character
     float             m_posZ;
     /// \brief health level with values between 0 and 100
     float             m_health; // 0% - 100%
+
     /// \brief reference to scene manager
     Ogre::SceneManager* m_sceneMgr;
+
     /// \brief reference to entity
     Ogre::Entity* m_entity;
     /// \brief reference to scene node
@@ -145,8 +158,10 @@ class Character
     Ogre::RenderTexture* m_rtex;
     /// \brief reference to camera used to character POV
     Ogre::Camera* m_camPOV;
+
     /// \brief reference to texture listener
     MyTextureListener* m_textureListener;
+
     /// \brief mutex for the method move_to
     pthread_mutex_t   m_mutex_move;
     /// \brief mutex for the method turn
