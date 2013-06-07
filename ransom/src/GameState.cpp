@@ -346,6 +346,10 @@ bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
   {
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
 
+    if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN) {
+        m_hero->getRigidBody()->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
+    }
+
     return true;
   }
 
@@ -418,12 +422,12 @@ void GameState::update(double timeSinceLastFrame)
     // elem->show();
 
     // Ogre::Vector3 vt(0,0,0);
-    // Ogre::Real deltaT = timeSinceLastFrame;
+    Ogre::Real deltaT = timeSinceLastFrame;
     // bool endereza = false;
 
     // //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
 
-    // _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
+    _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
 
     // if ( _vCoches.size() > 0 )
     //   {

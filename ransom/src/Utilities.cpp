@@ -142,28 +142,23 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
 
     if ( color == ROJO )
       (*entity)->setMaterialName ( "MaterialRojo" );
-    else
-      (*entity)->setMaterialName ( "MaterialAzul" );
 
     (*node)->attachObject ( *entity );
 
     sceneMgr->getRootSceneNode()->addChild ( *node );
 
-//    OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
-//      OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
+    OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
+      OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
 
-//    OgreBulletCollisions::TriangleMeshCollisionShape* trackTrimesh =
-//      trimeshConverter->createTrimesh();
+    OgreBulletCollisions::CollisionShape* sceneBoxShape = (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
 
-    OgreBulletCollisions::BoxCollisionShape *sceneBoxShape =
-      new OgreBulletCollisions::BoxCollisionShape(size);
+//    OgreBulletCollisions::BoxCollisionShape *sceneBoxShape =
+//      new OgreBulletCollisions::BoxCollisionShape(size);
 
     *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
 
-    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
-			   Ogre::Quaternion::IDENTITY );
+    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6f, 0.6f, 80.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
+			   (*node)->_getDerivedOrientation() );
 
-    (*rigidTrack)->setLinearVelocity ( Ogre::Vector3 ( 2, 2, 2 ) * 7.0f ); // shooting speed
-
-//    delete trimeshConverter;
+    delete trimeshConverter;
   }

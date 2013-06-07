@@ -58,42 +58,45 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 
   if ( checkingObjects )
     {
-      m_rtt = Ogre::TextureManager::getSingleton().createManual (
+  m_rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
-      m_rtex = m_rtt->getBuffer()->getRenderTarget();
+  m_rtex = m_rtt->getBuffer()->getRenderTarget();
 
-      m_camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
-      m_camPOV->setPosition ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z ) ); //( 0, 2, -4 )
-      m_camPOV->lookAt ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z-10 ) ); //( 0, 2, -14 )
-      m_camPOV->setNearClipDistance ( 5 );
-      m_camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+  m_camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
+  m_camPOV->setPosition ( Ogre::Vector3 ( 0, initial_pos_Y+1, 0 ) ); //( 0, 2, -4 )
+  //m_camPOV->lookAt ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z-10 ) ); //( 0, 2, -14 )
+  m_camPOV->setNearClipDistance ( 5 );
+  m_camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+  Ogre::SceneNode* nodeCamara = m_sceneMgr->createSceneNode("NodeCameraPov" + name);
+  nodeCamara->attachObject(m_camPOV);
+  m_node->addChild(nodeCamara);
 
-      m_rtex->addViewport ( m_camPOV );
-      m_rtex->getViewport(0)->setClearEveryFrame ( true );
-      m_rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
-      m_rtex->getViewport(0)->setOverlaysEnabled ( false );
-      m_rtex->setAutoUpdated(true);
+  m_rtex->addViewport ( m_camPOV );
+  m_rtex->getViewport(0)->setClearEveryFrame ( true );
+  m_rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
+  m_rtex->getViewport(0)->setOverlaysEnabled ( false );
+  m_rtex->setAutoUpdated(true);
 
-      // Para ocultar el despliegue recursivo de la vision del personaje
-      m_textureListener = new MyTextureListener ( m_sceneMgr, m_rtt );
-      m_rtex->addListener ( m_textureListener );
-    }
+  // Para ocultar el despliegue recursivo de la vision del personaje
+  m_textureListener = new MyTextureListener ( m_sceneMgr, m_rtt );
+  m_rtex->addListener ( m_textureListener );
+}
 }
 
 Character::~Character()
 {
   if ( m_checkingObjects )
     {
-      if ( m_textureListener )
-        {
-          m_rtex->removeListener ( m_textureListener );
-          delete m_textureListener;
-        }
+  if ( m_textureListener )
+  {
+    m_rtex->removeListener ( m_textureListener );
+    delete m_textureListener;
+  }
 
-      if ( m_camPOV )
-        m_sceneMgr->destroyCamera ( m_camPOV );
+  if ( m_camPOV )
+    m_sceneMgr->destroyCamera ( m_camPOV );
     }
 }
 
@@ -143,7 +146,13 @@ void Character::walk ( bool reverse )
 
     assert ( m_rigidBody );
 
-    m_rigidBody->applyImpulse ( Ogre::Vector3 ( 0, 100, 0 ), Ogre::Vector3::ZERO );
+    float velocidad = VELOCIDAD;
+    if (reverse) velocidad *= -1;
+
+    m_rigidBody->enableActiveState();
+    Ogre::Vector3 orientacion = m_rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
+    orientacion.y = 0.0; // Movemos solo en los ejes Z y X
+    m_rigidBody->setLinearVelocity(orientacion * velocidad);
 
     pthread_mutex_unlock( &m_mutex_walk );
   }
@@ -167,13 +176,10 @@ void Character::turn ( Ogre::Real angle )
 
     assert ( m_node );
 
+    m_rigidBody->enableActiveState();
     m_node->yaw ( Ogre::Radian(angle) );
-
-//    v = m_camPOV->getPosition();
-
-//    m_camPOV->move ( Ogre::Vector3::ZERO );
-    m_camPOV->yaw ( Ogre::Radian(angle) );
-//    m_camPOV->move ( v );
+    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(m_node->getOrientation());
+    m_rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
 
     pthread_mutex_unlock( &m_mutex_turn );
   }
