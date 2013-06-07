@@ -23,7 +23,7 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
     Ogre::PixelBox pixBox;
     string nameEntity = "";
     Ogre::Entity* ptrEntity = NULL;
-    std::map<float,int> mColors;
+    unsigned int cont = 0;
 
     // Ponemos material blanco a todos los enemigos
 
@@ -53,8 +53,6 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
 
     pixBox = img.getPixelBox();
 
-    std::map<float,int>::iterator it;
-
     for ( unsigned int i = 0; i < pixBox.getWidth(); i++ )
       {
         for ( unsigned int j = 0; j < pixBox.getHeight(); j++ )
@@ -63,39 +61,16 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
 
             float c = color.r + color.g + color.b + color.a;
 
-            it = mColors.find ( c );
-
-            if ( it != mColors.end() )
-              it->second=it->second+1;
-            else
-              mColors.insert ( std::pair<float,int>(c,1) );
+            if ( c == 4.0 ) // Blanco ( 1, 1, 1, 1 ) [ r, g, b, a ]
+              cont++;
           }
       }
 
-      // Blanco [R,G,B,A] = ( 1, 1, 1, 1 )
-      // Negro [R,G,B,A] = ( 0, 0, 0, 1 )
-      it = mColors.find ( 1.0 );
+    m_enemyViewed = false;
 
-      m_enemyViewed = false;
+    if ( cont >= THRESHOLD_VIEW )
+      m_enemyViewed = true;
 
-      if ( it != mColors.end() )
-        {
- //         cout << "it->second = " << it->second << " : NUM_PIXELS - THRESHOLD_VIEW = " << NUM_PIXELS - THRESHOLD_VIEW << endl;
-          if ( it->second < ( NUM_PIXELS - THRESHOLD_VIEW ) )
-            m_enemyViewed = true;
-        }
-
-//if ( mColors.size() > 1 )
-//{
-//    cout << "=============" << endl;
-//    for (it=mColors.begin(); it!=mColors.end(); ++it)
-//      std::cout << it->first << " => " << it->second << std::endl;
-//    cout << "*************" << endl;
-//}
-    mColors.clear();
-    // Volcamos a disco la captura, para ver si aparecen los objetos en blanco y el suelo ha desaparecido
-//    static int cont = 1;
-//    img.save ( "prueba" + Ogre::StringConverter::toString(cont++) + ".png" );
   }
 
 void MyTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
