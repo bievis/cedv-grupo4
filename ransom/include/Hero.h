@@ -45,8 +45,6 @@ class Hero : public Character
     /// \brief method to rotate the character "angle" (radians)
     /// \param angle value in radians to rotate
     void          turn ( Ogre::Real angle );
-    /// \brief method to stop hero movement
-    void          stop_move();
 
   protected:
     /// \brief protected method to copy an hero

@@ -346,7 +346,7 @@ bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
   {
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
 
-    if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN) {
+    if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN || keyEventRef.key == OIS::KC_X ) {
         m_hero->stop_move(); //getRigidBody()->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
     }
 
@@ -461,6 +461,11 @@ void GameState::update(double timeSinceLastFrame)
 //        valZ = -0.05;
         m_hero->walk();
       }
+    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_X ) )
+      {
+        m_hero->walk_to(m_enemies[0]->getSceneNode()->getPosition());
+      }
+
 //    if ( bMove && m_hero )
 //      {
 //        m_hero->walk();
@@ -589,72 +594,6 @@ void GameState::buildGUI()
 //     return ret;
 //   }
 
-// void GameState::Mostrar_Velocidad ( float velocidad, bool ocultar )
-//   {
-//     Ogre::OverlayElement *elem, *textArea;
-//     int tipo = 0;
-//     float porcion = MAX_SPEED / 5.5;
-
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad5_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad4_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad3_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad2_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad1_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad0_Game");
-//     elem->hide();
-
-//     if ( !ocultar )
-//       {
-// 	tipo = velocidad / porcion;
-
-// 	switch ( tipo )
-// 	  {
-// 	  case 5:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad5_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad5");
-// 	    break;
-// 	  case 4:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad4_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad4");
-// 	    break;
-// 	  case 3:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad3_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad3");
-// 	    break;
-// 	  case 2:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad2_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad2");
-// 	    break;
-// 	  case 1:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad1_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad1");
-// 	    break;
-// 	  default:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad0_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad0");
-// 	    break;
-// 	  }
-
-// 	char cad[30];
-// 	sprintf ( cad, " %d", (int)_velocidad );
-
-// 	textArea->setCaption ( cad );
-// 	elem->show();
-//       }
-//   }
-
-// void GameState::reiniciarCoche () {
-//   _tiempo = 0;
-//   _controlMeta = 0;
-//   _empieza_a_contar = true;
-//   _vCoches[0]->reset();
-// }
-
 void GameState::CreatePlane()
   {
     // Define a floor plane mesh
@@ -681,105 +620,3 @@ void GameState::CreatePlane()
 // 		mShapes.push_back(Shape);
 // 		mBodies.push_back(defaultPlaneBody);
   }
-
-//void GameState::check_vision()
-//  {
-//    Ogre::Image img;
-////    Ogre::PixelBox pixBox;
-//    string nameEntity = "";
-//    Ogre::Entity* ptrEntity = NULL;
-//
-//    // Ponemos material blanco a todos los enemigos
-//
-//    for ( unsigned int i = 0; i < NUM_ENEMIES; i++ )
-//      {
-//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
-//        if ( m_pSceneMgr->hasEntity ( nameEntity ) )
-//          {
-//            ptrEntity = m_pSceneMgr->getEntity ( nameEntity );
-//            ptrEntity->setMaterialName ( "MaterialBlanco" );
-//            ptrEntity->setCastShadows ( false );
-//            m_pSceneMgr->_updateSceneGraph ( camPOV );
-//          }
-//      }
-//
-//    // Ocultamos el suelo
-//
-//    entFloor->setVisible ( false );
-//    m_pSceneMgr->_updateSceneGraph ( camPOV );
-//
-////    nameEntity = "floor";
-////    if ( m_sceneMgr->hasEntity ( nameEntity ) )
-////      {
-////        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-////        ptrEntity->setVisible ( false );
-////      }
-//
-//    // Realizamos el render a textura
-//
-////    rtt = Ogre::TextureManager::getSingleton().createManual (
-////            "RttT_Hero", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-////            Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
-////
-////    rtex = rtt->getBuffer()->getRenderTarget();
-////
-////    camPOV = m_pSceneMgr->createCamera ( "cameraPOV_Hero" );
-////    camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
-////    camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
-////    camPOV->setNearClipDistance ( 5 );
-////    camPOV->setFOVy ( Ogre::Degree ( 38 ) );
-////
-////    rtex->addViewport ( camPOV );
-////    rtex->getViewport(0)->setClearEveryFrame ( true );
-////    rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
-////    rtex->getViewport(0)->setOverlaysEnabled ( false );
-////    rtex->setAutoUpdated(true);
-//
-//    // Cogemos la imagen del momento
-//
-//    rtt->convertToImage ( img );
-//
-////    pixBox = img.getPixelBox();
-//
-////    for ( unsigned int i = 0; i < pixBox.getWidth(); i++ )
-////      {
-////        for ( unsigned int j = 0; j < pixBox.getHeight(); j++ )
-////          {
-////            printf ( "%02x ", img.getColourAt(i,j,0) );
-////          }
-////          printf ( "\n" );
-////      }
-//
-//    // Volcamos a disco la captura, para ver si aparecen los objetos en blanco y el suelo ha desaparecido
-//    static int cont = 1;
-//    img.save ( "prueba" + Ogre::StringConverter::toString(cont++) + ".png" );
-//
-//    // Restablecemos a material rojo a todos los enemigos
-//
-//    for ( unsigned int i = 0; i < NUM_ENEMIES; i++ )
-//      {
-//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
-//        if ( m_pSceneMgr->hasEntity ( nameEntity ) )
-//          {
-//            ptrEntity = m_pSceneMgr->getEntity ( nameEntity );
-//            ptrEntity->setMaterialName("MaterialRojo");
-//            ptrEntity->setCastShadows ( true );
-//          }
-//      }
-//
-//    // Restablecemos a visible el suelo
-//
-//    entFloor->setVisible ( true );
-////    nameEntity = "floor";
-////    if ( m_sceneMgr->hasEntity ( nameEntity ) )
-////      {
-////        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-////        ptrEntity->setVisible ( true );
-////      }
-//
-//    // ---------------------------------------------
-//
-//    //delete rtex;
-//    //m_pSceneMgr->destroyCamera ( camPOV );
-//
-//  }
