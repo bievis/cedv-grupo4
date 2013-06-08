@@ -10,7 +10,8 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         name,
                                                         initial_pos_X,
                                                         initial_pos_Y,
-                                                        initial_pos_Z )
+                                                        initial_pos_Z,
+                                                        false )
   {
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );

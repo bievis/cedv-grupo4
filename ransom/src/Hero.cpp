@@ -10,7 +10,8 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
                                                         name,
                                                         initial_pos_X,
                                                         initial_pos_Y,
-                                                        initial_pos_Z )
+                                                        initial_pos_Z,
+                                                        false )
   {
     Ogre::Vector3 size = Ogre::Vector3::ZERO;
     _entityDummy = sceneMgr->createEntity ( name + "DUMMY", MESH_FILE_WITHOUT_EXTENSION + string ( ".mesh" ) );

@@ -77,6 +77,7 @@ private:
 
     Hero*                     m_hero;
     std::deque<Enemy*>        m_enemies;
+    OgreBulletDynamics::RigidBody* m_swat;
 
     Ogre::Entity*             entFloor;
 //    Ogre::TexturePtr          rtt;
@@ -85,7 +86,7 @@ private:
 
     //Private Methods
 
-    void CreatePlane();
+    void CreateMap(string map);
 
     void check_vision();
 

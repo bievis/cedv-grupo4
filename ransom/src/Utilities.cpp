@@ -83,7 +83,7 @@ void Utilities::put_background_with_rotation ( Ogre::SceneManager* sceneMgr, con
     material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation ( -0.015, 0.0 );
   }
 
-Ogre::SceneNode* Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
+OgreBulletDynamics::RigidBody* Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
@@ -99,23 +99,24 @@ Ogre::SceneNode* Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
 
     sceneMgr->getRootSceneNode()->addChild ( node );
 
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
-      OgreBulletCollisions::StaticMeshToShapeConverter ( entity );
+    OgreBulletCollisions::AnimatedMeshToShapeConverter* trimeshConverter = new
+      OgreBulletCollisions::AnimatedMeshToShapeConverter ( entity );
 
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
-      trimeshConverter->createTrimesh();
+    OgreBulletCollisions::CollisionShape* sceneBoxShape =
+        (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
+
 
     OgreBulletDynamics::RigidBody *rigidTrack = new
       OgreBulletDynamics::RigidBody ( name_element, world );
-    rigidTrack->setShape ( node, trackTrimesh, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
+    rigidTrack->setShape ( node, sceneBoxShape, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
 			   Ogre::Quaternion::IDENTITY );
 
     delete trimeshConverter;
 
-    return node;
+    return rigidTrack;
 }
 
-void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
+void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
@@ -125,16 +126,12 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   Ogre::Entity** entity,
                                                   Ogre::SceneNode** node,
                                                   OgreBulletDynamics::RigidBody** rigidTrack,
-                                                  bool visible )
+                                                  bool visible,
+                                                  string initAnimation )
   {
-    Ogre::Vector3 size = Ogre::Vector3::ZERO;
     *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
     (*entity)->setCastShadows(true);
     (*entity)->setVisible(visible);
-
-    Ogre::AxisAlignedBox boundingB = (*entity)->getBoundingBox();
-    size = boundingB.getSize(); size /= 2.0f; // only the half needed
-    size *= 0.95f;	// Bullet margin is a bit bigger so we need a smaller size
 
     *node = sceneMgr->createSceneNode ( name_element );
 
@@ -142,15 +139,19 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
 
     sceneMgr->getRootSceneNode()->addChild ( *node );
 
-    OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
-      OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
+    OgreBulletCollisions::AnimatedMeshToShapeConverter* trimeshConverter = new
+      OgreBulletCollisions::AnimatedMeshToShapeConverter ( *entity );
 
     OgreBulletCollisions::CollisionShape* sceneBoxShape = (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
 
     *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
 
-    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6f, 0.6f, 80.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
-			   (*node)->_getDerivedOrientation() );
+    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.05, 0.05, 0.3,
+                            Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
+                            (*node)->_getDerivedOrientation() );
+
+    Ogre::AnimationState *animation = (*entity)->getAnimationState(initAnimation);
+    animation->setEnabled(true);
 
     delete trimeshConverter;
   }
