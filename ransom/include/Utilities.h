@@ -16,11 +16,8 @@
 
 using namespace std;
 
-enum eColor
-{
-  ROJO,
-  AZUL
-};
+// Mesh file to load how to a Character
+#define MESH_FILE_WITHOUT_EXTENSION "Cube"
 
 /// \brief this class will be a set of utility methods
 class Utilities {
@@ -57,6 +54,7 @@ class Utilities {
     /// \param initial_posX initial coordenate in the axis X
     /// \param initial_posY initial coordenate in the axis Y
     /// \param initial_posZ initial coordenate in the axis Z
+    /// \param visible set entity to visible or not
     /// \return reference to scene node created
     Ogre::SceneNode* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_mesh, string name_element, float initial_posX, float initial_posY, float initial_posZ );
     void put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
@@ -66,10 +64,10 @@ class Utilities {
                                                   float initial_posX,
                                                   float initial_posY,
                                                   float initial_posZ,
-                                                  eColor color,
                                                   Ogre::Entity** entity,
                                                   Ogre::SceneNode** node,
-                                                  OgreBulletDynamics::RigidBody** rigidTrack );
+                                                  OgreBulletDynamics::RigidBody** rigidTrack,
+                                                  bool visible );
     /// \brief method to get the Utilities object
     /// \return static Utilities object
     static Utilities& getSingleton();

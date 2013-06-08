@@ -14,11 +14,13 @@ class MyTextureListener : public RenderTargetListener
 {
   private:
     /// \brief reference to scene manager
-    Ogre::SceneManager* m_sceneMgr;
+    Ogre::SceneManager* _sceneMgr;
     /// \brief texture pointer
-    Ogre::TexturePtr m_rtt;
+    Ogre::TexturePtr _rtt;
     /// \brief boolean value to check if there is any object in the texture
-    bool m_enemyViewed;
+    bool _enemyViewed;
+    /// \brief material name will be get in pre render operation and reset in post render operation
+    string _materialName;
 
   public:
     /// \brief constructor for the texture listener
@@ -35,7 +37,7 @@ class MyTextureListener : public RenderTargetListener
     virtual void postRenderTargetUpdate ( const RenderTargetEvent& evt );
     /// \brief this method returned if there is any object in the texture
     /// \return true/false according to any object is in the texture
-    inline bool enemyViewed() { return m_enemyViewed; };
+    inline bool enemyViewed() { return _enemyViewed; };
 };
 
 #endif // MYTEXTURELISTENER_H

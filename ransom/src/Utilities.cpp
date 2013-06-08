@@ -47,9 +47,6 @@ void Utilities::put_overlay_on_rectangle ( Ogre::Rectangle2D* rect, const char* 
     // Render the background before everything else
     rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
 
-    // Use infinite AAB to always stay visible
-//    rect->setBoundingBox ( aabInf );
-
     rect->setVisible ( visible );
   }
 
@@ -125,23 +122,21 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   float initial_posX,
                                                   float initial_posY,
                                                   float initial_posZ,
-                                                  eColor color,
                                                   Ogre::Entity** entity,
                                                   Ogre::SceneNode** node,
-                                                  OgreBulletDynamics::RigidBody** rigidTrack )
+                                                  OgreBulletDynamics::RigidBody** rigidTrack,
+                                                  bool visible )
   {
     Ogre::Vector3 size = Ogre::Vector3::ZERO;
     *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
     (*entity)->setCastShadows(true);
+    (*entity)->setVisible(visible);
 
     Ogre::AxisAlignedBox boundingB = (*entity)->getBoundingBox();
     size = boundingB.getSize(); size /= 2.0f; // only the half needed
     size *= 0.95f;	// Bullet margin is a bit bigger so we need a smaller size
 
     *node = sceneMgr->createSceneNode ( name_element );
-
-    if ( color == ROJO )
-      (*entity)->setMaterialName ( "MaterialRojo" );
 
     (*node)->attachObject ( *entity );
 
@@ -151,9 +146,6 @@ void Utilities::put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
       OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
 
     OgreBulletCollisions::CollisionShape* sceneBoxShape = (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
-
-//    OgreBulletCollisions::BoxCollisionShape *sceneBoxShape =
-//      new OgreBulletCollisions::BoxCollisionShape(size);
 
     *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
 
