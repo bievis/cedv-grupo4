@@ -93,8 +93,3 @@ void Hero::turn ( Ogre::Real angle )
 
     _nodeDummy->setPosition ( v );
   }
-
-void Hero::stop_move()
-  {
-    _rigidBody->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
-  }

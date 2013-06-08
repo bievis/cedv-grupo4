@@ -8,22 +8,25 @@
 		<Cursor position="1842" topLine="0" />
 	</File>
 	<File name="include/Character.h" open="1" top="0" tabpos="4">
-		<Cursor position="4067" topLine="70" />
+		<Cursor position="4402" topLine="66" />
 	</File>
 	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="5" />
 	</File>
 	<File name="include/Enemy.h" open="1" top="0" tabpos="6">
-		<Cursor position="2120" topLine="27" />
+		<Cursor position="2120" topLine="15" />
 	</File>
 	<File name="include/GameState.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="407" topLine="0" />
+		<Cursor position="407" topLine="44" />
+	</File>
+	<File name="include/Hero.h" open="1" top="0" tabpos="8">
+		<Cursor position="1871" topLine="33" />
 	</File>
 	<File name="include/MenuState.hpp" open="0" top="0" tabpos="9">
 		<Cursor position="1495" topLine="17" />
 	</File>
-	<File name="include/MyTextureListener.h" open="1" top="0" tabpos="8">
-		<Cursor position="1787" topLine="0" />
+	<File name="include/MyTextureListener.h" open="0" top="0" tabpos="8">
+		<Cursor position="1787" topLine="13" />
 	</File>
 	<File name="include/RansomApp.hpp" open="0" top="0" tabpos="9">
 		<Cursor position="215" topLine="0" />
@@ -31,8 +34,8 @@
 	<File name="include/Records.h" open="0" top="0" tabpos="11">
 		<Cursor position="211" topLine="0" />
 	</File>
-	<File name="include/Utilities.h" open="1" top="0" tabpos="11">
-		<Cursor position="3157" topLine="54" />
+	<File name="include/Utilities.h" open="0" top="0" tabpos="11">
+		<Cursor position="4375" topLine="6" />
 	</File>
 	<File name="media/materials/scripts/info.overlay" open="0" top="0" tabpos="0">
 		<Cursor position="31" topLine="0" />
@@ -49,26 +52,26 @@
 	<File name="src/AdvancedOgreFramework.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="1171" topLine="26" />
 	</File>
-	<File name="src/Character.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="968" topLine="17" />
+	<File name="src/Character.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="3235" topLine="90" />
 	</File>
 	<File name="src/DotSceneLoader.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13507" topLine="375" />
 	</File>
 	<File name="src/Enemy.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="2938" topLine="66" />
+		<Cursor position="2907" topLine="62" />
 	</File>
 	<File name="src/GameState.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="5971" topLine="143" />
+		<Cursor position="10873" topLine="334" />
 	</File>
-	<File name="src/Hero.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="1894" topLine="0" />
+	<File name="src/Hero.cpp" open="1" top="0" tabpos="7">
+		<Cursor position="2534" topLine="26" />
 	</File>
 	<File name="src/MenuState.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="255" topLine="90" />
 	</File>
-	<File name="src/MyTextureListener.cpp" open="1" top="0" tabpos="7">
-		<Cursor position="1337" topLine="33" />
+	<File name="src/MyTextureListener.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="698" topLine="0" />
 	</File>
 	<File name="src/PauseState.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="1619" topLine="18" />
@@ -82,8 +85,8 @@
 	<File name="src/TrackManager.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="99" topLine="0" />
 	</File>
-	<File name="src/Utilities.cpp" open="1" top="1" tabpos="12">
-		<Cursor position="4241" topLine="111" />
+	<File name="src/Utilities.cpp" open="0" top="0" tabpos="12">
+		<Cursor position="5824" topLine="120" />
 	</File>
 	<File name="src/XMLCharger.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="135" topLine="0" />

@@ -38,6 +38,10 @@ class Character
     /// This method uses OgreBullet to move the character
     /// \param reverse if value is true then wall to backward else will be forward (by default)
     void          walk ( bool reverse = false );
+    /// \brief method to perform the character walk movement to position
+    /// This method uses OgreBullet to move the character
+    /// \param pos destiny position to walk
+    void          walk_to ( const Ogre::Vector3& pos );
     /// \brief method to rotate the character "angle" (radians)
     /// \param angle value in radians to rotate
     void          turn ( Ogre::Real angle );
@@ -85,6 +89,8 @@ class Character
     inline Ogre::Entity* getEntity() const { return _entity; };
     /// \brief method to print character info
     void          print();
+    /// \brief method to stop character movement
+    void          stop_move();
 
   protected:
 
