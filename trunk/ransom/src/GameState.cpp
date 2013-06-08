@@ -119,17 +119,17 @@ void GameState::CreateInitialWorld()
     CreatePlane();
     // insertarElementoEscena(string("Suelo"));
 
-    m_hero = new Character ( m_pSceneMgr, _world, "Hero", 0, 0, 10, AZUL, true );
+    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", 0, 0, 10 );
     m_hero->print();
     //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
 
-    Character *enemy = NULL;
+    Enemy *enemy = NULL;
     string name_enemy = "";
 
     for ( unsigned int i = 0, j = 8; i < NUM_ENEMIES; i++, j+=8 )
       {
         name_enemy = "Enemy" + StringConverter::toString(i);
-        enemy = new Character ( m_pSceneMgr, _world, name_enemy, j, 0, 0, ROJO, false );
+        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, j, 0, 0 );
         m_enemies.push_back ( enemy );
       }
 
@@ -153,24 +153,24 @@ void GameState::CreateInitialWorld()
 //    rtex->getViewport(0)->setOverlaysEnabled ( false );
 //    rtex->setAutoUpdated(true);
 
-    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Hero", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
+    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Enemy0", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
     Technique* matTechnique = mPtr->createTechnique();
     matTechnique->createPass();
     mPtr->getTechnique(0)->getPass(0)->setLightingEnabled(true);
     mPtr->getTechnique(0)->getPass(0)->setDiffuse(0.9,0.9,0.9,1);
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
 
-    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Hero");
+    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Enemy0");
 
     Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
     _rect->setCorners ( -0.25, 1, 0.25, 0.5 ); //( -0.5, 0, 0.5, -1 );
-    _rect->setMaterial ( "RttMat_Hero" );
+    _rect->setMaterial ( "RttMat_Enemy0" );
 
     // Render the background before everything else
     _rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
 
     // Attach background to the scene
-    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Hero" );
+    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Enemy0" );
     node->attachObject ( _rect );
     //*************************************************************************
 
@@ -241,7 +241,7 @@ void GameState::exit()
     // _gameTrack->stop();
 
     // Erase the enemies deque
-    std::deque<Character *>::iterator itEnemy = m_enemies.begin();
+    std::deque<Enemy *>::iterator itEnemy = m_enemies.begin();
  		while ( m_enemies.end() != itEnemy )
  		{
       if ( *itEnemy )
@@ -347,7 +347,7 @@ bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
 
     if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN) {
-        m_hero->getRigidBody()->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
+        m_hero->stop_move(); //getRigidBody()->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
     }
 
     return true;
@@ -466,46 +466,6 @@ void GameState::update(double timeSinceLastFrame)
 //        m_hero->walk();
 //      }
 
-
-    float top_max = 4;
-    float top_min = -4;
-    static float vX[] = { 0.1, 0.1 };
-    static float vZ[] = { 0.0, 0.0 };
-    Ogre::Vector3 v = Ogre::Vector3::ZERO;
-    unsigned int i = 0;
-
-    // Simulacion chorra de movimiento de los enemigos
-    for ( std::deque<Character *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
- 		  {
- 			  (*itEnemy)->move_to ( vX[i], 0, vZ[i] );
-
- 			  v = (*itEnemy)->getSceneNode()->getPosition();
- 			  //cout << " X = " << v.x << " Y = " << v.y << " Z = " << v.z << endl;
- 			  if ( v.x >= 20 && vX[i] > 0 ) // De izq a der
- 			  {
- 			    //val[i] = -0.1;
-          vX[i] = 0;
-          vZ[i] = 0.1;
- 			  }
- 			  else if ( v.z >= 20 && vZ[i] > 0 ) // De arr a aba
-        {
-          vX[i] = -0.1;
-          vZ[i] = 0;
-        }
- 			  else if ( v.x <= -20 && vX[i] < 0 )
- 			  {
-          vX[i] = 0;
-          vZ[i] = -0.1;
- 			  }
- 			  else if ( v.z <= -20 && vZ[i] < 0 ) // De arr a aba
-        {
-          vX[i] = 0.1;
-          vZ[i] = 0;
-        }
- 		  }
-
-//    check_POV();
-
     // 	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
     // 	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
     // 		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
@@ -581,10 +541,16 @@ void GameState::update(double timeSinceLastFrame)
     //   }
     // _estaEnPreMeta = _vCoches[0]->isPreMeta(_world);
 
-    if (m_hero->haveYouSeenAnybody())
-      cout << "te veo!!" << endl;
-    else
-      cout << "nada" << endl;
+    if ( m_enemies.size() > 0 )
+      {
+        unsigned int i = 1;
+        for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
+ 	        {
+            if ( (*itEnemy)->haveYouSeenAnybody() )
+              cout << "Enemy" + StringConverter::toString(i) + "::te veo!!" << endl;
+ 	        }
+      }
+
   }
 
 void GameState::buildGUI()

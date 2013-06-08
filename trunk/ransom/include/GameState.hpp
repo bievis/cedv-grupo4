@@ -14,7 +14,8 @@
 #include <Shapes/OgreBulletCollisionsBoxShape.h>
 
 #include "Utilities.h"
-#include "Character.h"
+#include "Enemy.h"
+#include "Hero.h"
 
 //#include <vector>
 // #include <Coche.hpp>
@@ -74,8 +75,8 @@ private:
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
 
-    Character*                m_hero;
-    std::deque<Character*>    m_enemies;
+    Hero*                     m_hero;
+    std::deque<Enemy*>        m_enemies;
 
     Ogre::Entity*             entFloor;
 //    Ogre::TexturePtr          rtt;

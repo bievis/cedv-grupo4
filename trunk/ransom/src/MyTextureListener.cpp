@@ -1,16 +1,16 @@
 #include "MyTextureListener.h"
 
-#define MAX_ENEMIES 20
+//#define MAX_ENEMIES 20
 
-// 64 x 64 = 4096 pixeles en la textura
-#define NUM_PIXELS 4096
 // si al menos hay 100 pixeles blancos significa que vemos algo
 #define THRESHOLD_VIEW 100
 
 MyTextureListener::MyTextureListener ( Ogre::SceneManager* sceneMgr, const TexturePtr& rtt )
 {
-  m_sceneMgr = sceneMgr;
-  m_rtt = rtt;
+  _sceneMgr = sceneMgr;
+  _rtt = rtt;
+  _materialName = "";
+  _enemyViewed = false;
 }
 
 MyTextureListener::~MyTextureListener()
@@ -21,35 +21,33 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
   {
     Ogre::Image img;
     Ogre::PixelBox pixBox;
-    string nameEntity = "";
+    string nameEntityDummy = "HeroDUMMY";
+    string nameEntity = "Hero";
     Ogre::Entity* ptrEntity = NULL;
     unsigned int cont = 0;
 
     // Ponemos material blanco a todos los enemigos
 
-    for ( unsigned int i = 0; i < MAX_ENEMIES; i++ )
+    if ( _sceneMgr->hasEntity ( nameEntity ) && _sceneMgr->hasEntity ( nameEntityDummy ) )
       {
-        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
-        if ( m_sceneMgr->hasEntity ( nameEntity ) )
-          {
-            ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-            ptrEntity->setMaterialName ( "MaterialBlanco" );
-            ptrEntity->setCastShadows ( false );
-          }
+        ptrEntity = _sceneMgr->getEntity ( nameEntity );
+        ptrEntity->setVisible ( false );
+        ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
+        ptrEntity->setVisible ( true );
       }
 
     // Ocultamos el suelo
 
     nameEntity = "floor";
-    if ( m_sceneMgr->hasEntity ( nameEntity ) )
+    if ( _sceneMgr->hasEntity ( nameEntity ) )
       {
-        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
+        ptrEntity = _sceneMgr->getEntity ( nameEntity );
         ptrEntity->setVisible ( false );
       }
 
     // Cogemos la imagen del momento
 
-    m_rtt->convertToImage ( img );
+    _rtt->convertToImage ( img );
 
     pixBox = img.getPixelBox();
 
@@ -66,38 +64,35 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
           }
       }
 
-    m_enemyViewed = false;
+    _enemyViewed = false;
 
     if ( cont >= THRESHOLD_VIEW )
-      m_enemyViewed = true;
+      _enemyViewed = true;
 
   }
 
 void MyTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
   {
-    string nameEntity = "";
+    string nameEntity = "Hero";
+    string nameEntityDummy = "HeroDUMMY";
     Ogre::Entity* ptrEntity = NULL;
+
     // Restablecemos a material rojo a todos los enemigos
 
-    for ( unsigned int i = 0; i < MAX_ENEMIES; i++ )
+    if ( _sceneMgr->hasEntity ( nameEntity ) && _sceneMgr->hasEntity ( nameEntityDummy ) )
       {
-        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
-        if ( m_sceneMgr->hasEntity ( nameEntity ) )
-          {
-            ptrEntity = m_sceneMgr->getEntity ( nameEntity );
-            ptrEntity->setMaterialName("MaterialRojo");
-            ptrEntity->setCastShadows ( true );
-          }
+        ptrEntity = _sceneMgr->getEntity ( nameEntity );
+        ptrEntity->setVisible ( true );
+        ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
+        ptrEntity->setVisible ( false );
       }
 
     // Restablecemos a visible el suelo
 
     nameEntity = "floor";
-    if ( m_sceneMgr->hasEntity ( nameEntity ) )
+    if ( _sceneMgr->hasEntity ( nameEntity ) )
       {
-        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
+        ptrEntity = _sceneMgr->getEntity ( nameEntity );
         ptrEntity->setVisible ( true );
       }
-
-    // ---------------------------------------------
   }
