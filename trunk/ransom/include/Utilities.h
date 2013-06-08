@@ -17,7 +17,7 @@
 using namespace std;
 
 // Mesh file to load how to a Character
-#define MESH_FILE_WITHOUT_EXTENSION "Cube"
+#define MESH_FILE_WITHOUT_EXTENSION "SWAT"
 
 /// \brief this class will be a set of utility methods
 class Utilities {
@@ -56,8 +56,8 @@ class Utilities {
     /// \param initial_posZ initial coordenate in the axis Z
     /// \param visible set entity to visible or not
     /// \return reference to scene node created
-    Ogre::SceneNode* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_mesh, string name_element, float initial_posX, float initial_posY, float initial_posZ );
-    void put_cube_in_scene ( Ogre::SceneManager* sceneMgr,
+    OgreBulletDynamics::RigidBody* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_mesh, string name_element, float initial_posX, float initial_posY, float initial_posZ );
+    void put_character_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
@@ -67,7 +67,8 @@ class Utilities {
                                                   Ogre::Entity** entity,
                                                   Ogre::SceneNode** node,
                                                   OgreBulletDynamics::RigidBody** rigidTrack,
-                                                  bool visible );
+                                                  bool visible,
+                                                  string initAnimation );
     /// \brief method to get the Utilities object
     /// \return static Utilities object
     static Utilities& getSingleton();

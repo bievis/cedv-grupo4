@@ -1376,7 +1376,7 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfigException.cpp
 	<GameConfigException.hpp>
 
-1370619490 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
+1370718574 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
 	"GameState.hpp"
 	"Shapes/OgreBulletCollisionsBoxShape.h"
 	"Shapes/OgreBulletCollisionsCompoundShape.h"
@@ -1425,17 +1425,17 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/TrackManager.cpp
 	<TrackManager.h>
 
-1370553142 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
+1370718628 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
 	"Utilities.h"
 
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/XMLCharger.cpp
 	<XMLCharger.h>
 
-1370620648 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
+1370715701 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
 	"Character.h"
 	<cassert>
 
-1370539825 source:/home/matisnow/cedv-grupo4/ransom/src/MyTextureListener.cpp
+1370706799 source:/home/matisnow/cedv-grupo4/ransom/src/MyTextureListener.cpp
 	"MyTextureListener.h"
 
 1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsBoxShape.h
@@ -2232,4 +2232,10 @@
 1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsConstraint.h
 	"OgreBulletDynamicsPreRequisites.h"
 	"OgreBulletCollisionsObject.h"
+
+1370716375 source:/home/matisnow/cedv-grupo4/ransom/src/Enemy.cpp
+	"Enemy.h"
+
+1370714321 source:/home/matisnow/cedv-grupo4/ransom/src/Hero.cpp
+	"Hero.h"
 

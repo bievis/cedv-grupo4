@@ -6,7 +6,8 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                         const string& name,
                         float initial_pos_X,
                         float initial_pos_Y,
-                        float initial_pos_Z ) : _name(name),
+                        float initial_pos_Z,
+                        bool isEnemy ) : _name(name),
                                                 _sceneMgr(sceneMgr),
                                                 _posX(initial_pos_X),
                                                 _posY(initial_pos_Y),
@@ -20,9 +21,14 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 
     _health = 100.0;
 
-    Utilities::getSingleton().put_cube_in_scene ( sceneMgr,
+    string mesh = MESH_FILE_WITHOUT_EXTENSION;
+    if (isEnemy) {
+        mesh = MESH_FILE_WITHOUT_EXTENSION;
+    }
+
+    Utilities::getSingleton().put_character_in_scene ( sceneMgr,
                                                   world,
-                                                  MESH_FILE_WITHOUT_EXTENSION,
+                                                  mesh,
                                                   name,
                                                   initial_pos_X,
                                                   initial_pos_Y,
@@ -30,8 +36,9 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                                                   &_entity,
                                                   &_node,
                                                   &_rigidBody,
-                                                  true );
-
+                                                  true,
+                                                  STOP_ANIMATION );
+    _currentAnimation = _entity->getAnimationState(STOP_ANIMATION);
   }
 
 Character::~Character()
@@ -75,6 +82,28 @@ void Character::setHealth ( float newHealth )
     }
   }
 
+void Character::changeAnimation(string nameAnimation) {
+    if (_currentAnimation->getAnimationName() != nameAnimation) {
+        Ogre::AnimationState *animation;
+        if (STOP_ANIMATION == nameAnimation) {
+            animation = (_entity)->getAnimationState(MOVE_ANIMATION);
+            animation->setEnabled(false);
+        } else if (MOVE_ANIMATION == nameAnimation) {
+            animation = (_entity)->getAnimationState(STOP_ANIMATION);
+            animation->setEnabled(false);
+        }
+        animation = (_entity)->getAnimationState(nameAnimation);
+        animation->setEnabled(true);
+        animation->setLoop(true);
+    }
+}
+
+void Character::update(double timeSinceLastFrame) {
+    assert ( _currentAnimation );
+
+    _currentAnimation->addTime(timeSinceLastFrame);
+}
+
 void Character::walk ( bool reverse )
   {
     pthread_mutex_lock( &_mutex_walk );
@@ -88,6 +117,8 @@ void Character::walk ( bool reverse )
     Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
     orientacion.y = 0.0; // Movemos solo en los ejes Z y X
     _rigidBody->setLinearVelocity(orientacion * velocidad);
+
+    changeAnimation(MOVE_ANIMATION);
 
     pthread_mutex_unlock( &_mutex_walk );
   }
@@ -111,7 +142,8 @@ void Character::walk_to ( const Ogre::Vector3& p )
 
 void Character::stop_move()
   {
-    _rigidBody->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
+    _rigidBody->setLinearVelocity(Ogre::Vector3::ZERO);
+    changeAnimation(STOP_ANIMATION);
   }
 
 void Character::turn ( Ogre::Real angle )

@@ -9,6 +9,10 @@ using namespace std;
 
 #define VELOCIDAD 10.0
 
+// Animation Name of Mesh
+#define MOVE_ANIMATION "Move"
+#define STOP_ANIMATION "Stop"
+
 /// \brief Class to manage the character
 class Character
 {
@@ -20,12 +24,14 @@ class Character
     /// \param pos_X initial position in coordenate X
     /// \param pos_Y initial position in coordenate Y
     /// \param pos_Z initial position in coordenate Z
+    /// \param isEnemy Enemy or no enemy
     Character     ( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
                     float initial_pos_X,
                     float initial_pos_Y,
-                    float initial_pos_Z );
+                    float initial_pos_Z,
+                    bool isEnemy);
     /// \brief default destructor
     virtual ~Character();
     /// \brief copy constructor
@@ -91,7 +97,10 @@ class Character
     void          print();
     /// \brief method to stop character movement
     void          stop_move();
-
+    /// \brief method to update character in frame
+    void          update(double timeSinceLastFrame);
+    /// \brief method to change animation of character
+    void          changeAnimation(string nameAnimation);
   protected:
 
     /// \brief protected method to copy a character
@@ -117,7 +126,8 @@ class Character
     Ogre::SceneNode*  _node;
     /// \brief reference to rigid body
     OgreBulletDynamics::RigidBody* _rigidBody;
-
+    /// \brief reference to current animation
+    Ogre::AnimationState* _currentAnimation;
   private:
     /// \brief mutex for the method turn
     pthread_mutex_t   _mutex_turn;
