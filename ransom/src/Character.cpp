@@ -21,9 +21,9 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 
     _health = 100.0;
 
-    string mesh = MESH_FILE_WITHOUT_EXTENSION;
+    string mesh = HERO_MESH_FILE_WITHOUT_EXTENSION;
     if (isEnemy) {
-        mesh = MESH_FILE_WITHOUT_EXTENSION;
+        mesh = ENEMY_MESH_FILE_WITHOUT_EXTENSION;
     }
 
     Utilities::getSingleton().put_character_in_scene ( sceneMgr,
@@ -37,8 +37,8 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                                                   &_node,
                                                   &_rigidBody,
                                                   true,
-                                                  STOP_ANIMATION );
-    _currentAnimation = _entity->getAnimationState(STOP_ANIMATION);
+                                                  "" );
+    _currentAnimation = NULL; // _entity->getAnimationState(STOP_ANIMATION);
   }
 
 Character::~Character()
@@ -83,7 +83,8 @@ void Character::setHealth ( float newHealth )
   }
 
 void Character::changeAnimation(string nameAnimation) {
-    if (_currentAnimation->getAnimationName() != nameAnimation) {
+    if (_currentAnimation != NULL &&
+        _currentAnimation->getAnimationName() != nameAnimation) {
         Ogre::AnimationState *animation;
         if (STOP_ANIMATION == nameAnimation) {
             animation = (_entity)->getAnimationState(MOVE_ANIMATION);
@@ -95,13 +96,14 @@ void Character::changeAnimation(string nameAnimation) {
         animation = (_entity)->getAnimationState(nameAnimation);
         animation->setEnabled(true);
         animation->setLoop(true);
+        _currentAnimation = animation;
     }
 }
 
 void Character::update(double timeSinceLastFrame) {
-    assert ( _currentAnimation );
-
-    _currentAnimation->addTime(timeSinceLastFrame);
+    if (_currentAnimation != NULL) {
+        _currentAnimation->addTime(timeSinceLastFrame);
+    }
 }
 
 void Character::walk ( bool reverse )
@@ -114,7 +116,7 @@ void Character::walk ( bool reverse )
     if (reverse) velocidad *= -1;
 
     _rigidBody->enableActiveState();
-    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z;
+    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z;
     orientacion.y = 0.0; // Movemos solo en los ejes Z y X
     _rigidBody->setLinearVelocity(orientacion * velocidad);
 
@@ -129,7 +131,7 @@ void Character::walk_to ( const Ogre::Vector3& p )
 
     Ogre::Vector3 v = p - o; // 1er vector
 
-    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::NEGATIVE_UNIT_Z; // 2do vector
+    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
 
     Ogre::Radian angle = orientacion.angleBetween ( v );
     Ogre::Real distance = o.distance ( p );

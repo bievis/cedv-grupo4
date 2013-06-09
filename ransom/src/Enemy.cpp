@@ -11,10 +11,10 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         initial_pos_X,
                                                         initial_pos_Y,
                                                         initial_pos_Z,
-                                                        false )
+                                                        true )
   {
     //Material del enemigo
-    _entity->setMaterialName ( "MaterialRojo" );
+    //_entity->setMaterialName ( "MaterialRojo" );
 
     _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
