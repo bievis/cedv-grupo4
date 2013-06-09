@@ -1,4 +1,4 @@
-// MaterialAzul genrated by blender2ogre 0.5.8
+// MaterialAzul genrated by blender2ogre 0.5.9
 
 material MaterialAzul 
 {
@@ -8,8 +8,8 @@ material MaterialAzul
     {
         pass MaterialAzul
         {
-            ambient 0.24970178306102753 0.1582246869802475 0.800000011920929 1.0
-            diffuse 0.19976142942549924 0.12657975147038325 0.6400000190734865 1.0
+            ambient 0.09036598354578018 0.23895569145679474 0.800000011920929 1.0
+            diffuse 0.07229278791387062 0.1911645560140096 0.6400000190734865 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 

@@ -1376,7 +1376,7 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfigException.cpp
 	<GameConfigException.hpp>
 
-1370718574 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
+1370808434 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
 	"GameState.hpp"
 	"Shapes/OgreBulletCollisionsBoxShape.h"
 	"Shapes/OgreBulletCollisionsCompoundShape.h"
@@ -1425,13 +1425,13 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/TrackManager.cpp
 	<TrackManager.h>
 
-1370718628 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
+1370806927 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
 	"Utilities.h"
 
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/XMLCharger.cpp
 	<XMLCharger.h>
 
-1370715701 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
+1370808263 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
 	"Character.h"
 	<cassert>
 
@@ -2233,9 +2233,9 @@
 	"OgreBulletDynamicsPreRequisites.h"
 	"OgreBulletCollisionsObject.h"
 
-1370716375 source:/home/matisnow/cedv-grupo4/ransom/src/Enemy.cpp
+1370806324 source:/home/matisnow/cedv-grupo4/ransom/src/Enemy.cpp
 	"Enemy.h"
 
-1370714321 source:/home/matisnow/cedv-grupo4/ransom/src/Hero.cpp
+1370805641 source:/home/matisnow/cedv-grupo4/ransom/src/Hero.cpp
 	"Hero.h"
 

@@ -134,24 +134,37 @@ void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
     (*entity)->setVisible(visible);
 
     *node = sceneMgr->createSceneNode ( name_element );
-
     (*node)->attachObject ( *entity );
+
+    if (initAnimation != "") {
+        Ogre::AnimationState *animation = (*entity)->getAnimationState(initAnimation);
+        animation->setEnabled(true);
+        animation->setLoop(true);
+    }
 
     sceneMgr->getRootSceneNode()->addChild ( *node );
 
-    OgreBulletCollisions::AnimatedMeshToShapeConverter* trimeshConverter = new
-      OgreBulletCollisions::AnimatedMeshToShapeConverter ( *entity );
+    OgreBulletCollisions::CollisionShape* sceneBoxShape = NULL;
 
-    OgreBulletCollisions::CollisionShape* sceneBoxShape = (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
+    if (initAnimation == "") {
+        OgreBulletCollisions::StaticMeshToShapeConverter* trimeshConverter = new
+          OgreBulletCollisions::StaticMeshToShapeConverter ( *entity );
+
+        sceneBoxShape = (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
+
+        delete trimeshConverter;
+    } else {
+        OgreBulletCollisions::AnimatedMeshToShapeConverter* trimeshConverter = new
+          OgreBulletCollisions::AnimatedMeshToShapeConverter ( *entity );
+
+        sceneBoxShape = (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
+
+        delete trimeshConverter;
+    }
 
     *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
 
-    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.05, 0.05, 0.3,
+    (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6, 0.6, 80.0f,
                             Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
                             (*node)->_getDerivedOrientation() );
-
-    Ogre::AnimationState *animation = (*entity)->getAnimationState(initAnimation);
-    animation->setEnabled(true);
-
-    delete trimeshConverter;
   }

@@ -7,7 +7,7 @@
 
 using namespace std;
 
-#define VELOCIDAD 10.0
+#define VELOCIDAD 5.0
 
 // Animation Name of Mesh
 #define MOVE_ANIMATION "Move"

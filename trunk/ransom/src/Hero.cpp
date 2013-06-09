@@ -27,7 +27,7 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
     sceneMgr->getRootSceneNode()->addChild ( _nodeDummy );
 
     //Material del Heroe
-    _entity->setMaterialName ( "MaterialAzul" );
+    //_entity->setMaterialName ( "MaterialAzul" );
 
     _entityDummy->setMaterialName ( "MaterialBlanco" );
   }

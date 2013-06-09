@@ -90,7 +90,7 @@ void GameState::enter()
     AxisAlignedBox worldBounds = AxisAlignedBox (
     Vector3 (-10000, -10000, -10000),
     Vector3 (10000,  10000,  10000));
-    Vector3 gravity = Vector3(0, -9.8 * 3, 0);
+    Vector3 gravity = Vector3(0, -9.8, 0);
 
     _world = new OgreBulletDynamics::DynamicsWorld ( m_pSceneMgr,
      	   worldBounds, gravity);
@@ -118,19 +118,19 @@ void GameState::CreateInitialWorld()
     CreateMap("Mapa1");
     // insertarElementoEscena(string("Suelo"));
 
-    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", 0, 0, 2 );
+    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", -7.50000, 1, 7.50000 );
     m_hero->print();
     //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
 
-    /* Enemy *enemy = NULL;
+    Enemy *enemy = NULL;
     string name_enemy = "";
 
-    for ( unsigned int i = 0, j = 8; i < NUM_ENEMIES; i++, j+=8 )
+    for ( unsigned int i = 0, j = 8; i < NUM_ENEMIES; i++, j+=2 )
       {
         name_enemy = "Enemy" + StringConverter::toString(i);
         enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, j, 0, 0 );
         m_enemies.push_back ( enemy );
-      } */
+      }
 
     //Plano donde se verá lo que está viendo el personaje principal
     //*************************************************************************
