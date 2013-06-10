@@ -19,13 +19,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -51,6 +51,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -71,7 +72,7 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
@@ -79,6 +80,7 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,12 +105,14 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClCompile Include="..\..\src\AdvancedOgreFramework.cpp" />
     <ClCompile Include="..\..\src\AnimationBlender.cpp" />
     <ClCompile Include="..\..\src\AppStateManager.cpp" />
+    <ClCompile Include="..\..\src\Character.cpp" />
     <ClCompile Include="..\..\src\DotSceneLoader.cpp" />
-    <ClCompile Include="..\..\src\GameConfig.cpp" />
-    <ClCompile Include="..\..\src\GameConfigException.cpp" />
+    <ClCompile Include="..\..\src\Enemy.cpp" />
     <ClCompile Include="..\..\src\GameState.cpp" />
+    <ClCompile Include="..\..\src\Hero.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\MenuState.cpp" />
+    <ClCompile Include="..\..\src\MyTextureListener.cpp" />
     <ClCompile Include="..\..\src\PauseState.cpp" />
     <ClCompile Include="..\..\src\RansomApp.cpp" />
     <ClCompile Include="..\..\src\Records.cpp" />
@@ -117,18 +121,19 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClCompile Include="..\..\src\Track.cpp" />
     <ClCompile Include="..\..\src\TrackManager.cpp" />
     <ClCompile Include="..\..\src\Utilities.cpp" />
-    <ClCompile Include="..\..\src\XMLCharger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp" />
     <ClInclude Include="..\..\include\AnimationBlender.h" />
     <ClInclude Include="..\..\include\AppState.hpp" />
     <ClInclude Include="..\..\include\AppStateManager.hpp" />
+    <ClInclude Include="..\..\include\Character.h" />
     <ClInclude Include="..\..\include\DotSceneLoader.hpp" />
-    <ClInclude Include="..\..\include\GameConfig.h" />
-    <ClInclude Include="..\..\include\GameConfigException.hpp" />
+    <ClInclude Include="..\..\include\Enemy.h" />
     <ClInclude Include="..\..\include\GameState.hpp" />
+    <ClInclude Include="..\..\include\Hero.h" />
     <ClInclude Include="..\..\include\MenuState.hpp" />
+    <ClInclude Include="..\..\include\MyTextureListener.h" />
     <ClInclude Include="..\..\include\PauseState.hpp" />
     <ClInclude Include="..\..\include\RansomApp.hpp" />
     <ClInclude Include="..\..\include\rapidxml.hpp" />
@@ -138,7 +143,6 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClInclude Include="..\..\include\Track.h" />
     <ClInclude Include="..\..\include\TrackManager.h" />
     <ClInclude Include="..\..\include\Utilities.h" />
-    <ClInclude Include="..\..\include\XMLCharger.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\config\Debug\plugins.cfg" />
