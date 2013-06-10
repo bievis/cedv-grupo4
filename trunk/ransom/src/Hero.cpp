@@ -19,12 +19,10 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
     _entityDummy->setVisible(false);
 
     _nodeDummy = sceneMgr->createSceneNode ( name + "DUMMY" );
-
+	_nodeDummy->setPosition(0, (_entityDummy->getBoundingBox().getSize().y / -2), 0);
     _nodeDummy->attachObject ( _entityDummy );
-	
-    _nodeDummy->setPosition ( Ogre::Vector3 ( initial_pos_X, 0.0, initial_pos_Z ) );
-
-    sceneMgr->getRootSceneNode()->addChild ( _nodeDummy );
+	// Atachamos el dummy para que se mueva con el personaje
+    _node->addChild ( _nodeDummy );
 
     //Material del Heroe
     _entity->setMaterialName ( "MaterialAzul" );
@@ -67,26 +65,4 @@ void Hero::print()
   printf ( "entity DUMMY ref.: %p\n", _entityDummy );
   printf ( "node ref.        : %p\n", _nodeDummy );
   cout << "==============" << endl;
-}
-
-void Hero::walk ( bool reverse )
-  {
-    Character::walk ( reverse );
-	updateDummy();
-  }
-
-void Hero::turn ( Ogre::Real angle )
-  {
-    Character::turn ( angle );
-	updateDummy();    
-  }
-
-void Hero::updateDummy() {
-	Ogre::Quaternion qt = Character::getSceneNode()->getOrientation();
-
-    _nodeDummy->setOrientation ( qt );
-
-    Ogre::Vector3 v = Character::getSceneNode()->getPosition();
-	v.y = 0.0;
-    _nodeDummy->setPosition ( v );
 }
