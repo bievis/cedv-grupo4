@@ -19,8 +19,6 @@ using namespace OgreBulletDynamics;
 
 using namespace Ogre;
 
-#define NUM_ENEMIES 2
-
 GameState::GameState()
   {
     m_bLMouseDown       = false;
@@ -38,6 +36,10 @@ GameState::GameState()
 void GameState::enter()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
+
+    XMLCharger::getSingleton().LoadFile ( FILE_ROUTE_XML, _gc );
+
+    _gc.print();
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -118,40 +120,36 @@ void GameState::CreateInitialWorld()
     CreateMap("Mapa1");
     // insertarElementoEscena(string("Suelo"));
 
-    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", -7.50000, 1, 7.50000 );
+    //m_hero = new Hero ( m_pSceneMgr, _world, "Hero", -7.50000, 1, 7.50000 );
+    Ogre::Vector3 v_pos;
+    _gc.getInitialPosHero ( v_pos );
+    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos.x, v_pos.y, v_pos.z );
     m_hero->print();
     //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
 
     Enemy *enemy = NULL;
     string name_enemy = "";
+    EnemyRoute route;
+    Ogre::Vector3 v;
 
-    for ( unsigned int i = 0, j = 8; i < NUM_ENEMIES; i++, j+=2 )
+    for ( unsigned int i = 0; i < _gc.getNumEnemies(); i++ )
       {
+        _gc.getEnemyRoute ( i+1, route );
+
+        assert ( route.getNumPoints() != 0 );
+
+        route.getPoint ( 0, v );
+
         name_enemy = "Enemy" + StringConverter::toString(i);
-        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, j, 0, 0 );
+
+        cout << name_enemy << ": " << v << endl;
+
+        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v.x, v.y, v.z );
         m_enemies.push_back ( enemy );
       }
 
     //Plano donde se verá lo que está viendo el personaje principal
     //*************************************************************************
-//    rtt = TextureManager::getSingleton().createManual(
-//            "RttT_Hero", ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-//            TEX_TYPE_2D, 64, 64, 0, PF_A8R8G8B8, TU_RENDERTARGET );
-//
-//    rtex = rtt->getBuffer()->getRenderTarget();
-//
-//    camPOV = m_pSceneMgr->createCamera ( "cameraPOV_Hero" );
-//    camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
-//    camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
-//    camPOV->setNearClipDistance ( 5 );
-//    camPOV->setFOVy ( Degree ( 38 ) );
-//
-//    rtex->addViewport ( camPOV );
-//    rtex->getViewport(0)->setClearEveryFrame ( true );
-//    rtex->getViewport(0)->setBackgroundColour ( ColourValue::Black );
-//    rtex->getViewport(0)->setOverlaysEnabled ( false );
-//    rtex->setAutoUpdated(true);
-
     MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Enemy0", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
     Technique* matTechnique = mPtr->createTechnique();
     matTechnique->createPass();
