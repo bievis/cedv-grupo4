@@ -105,7 +105,7 @@ void Character::changeAnimation(string nameAnimation) {
 
 void Character::update(double timeSinceLastFrame) {
     if (_currentAnimation != NULL) {
-        _currentAnimation->addTime(timeSinceLastFrame * 4);
+        _currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
     }
 }
 
