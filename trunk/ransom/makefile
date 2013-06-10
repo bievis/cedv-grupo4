@@ -11,7 +11,7 @@ DIRHEA := include/
 CXX := g++
 
 # Flags de compilación -----------------------------------------------
-CXXFLAGS := -I $(DIRHEA) -Wall `pkg-config --cflags OGRE OIS OgreBullet bullet`	\
+CXXFLAGS := -I $(DIRHEA) -Wall -fpermissive `pkg-config --cflags OGRE OIS OgreBullet bullet`	\
 `sdl-config --cflags` \
 -g -D_DEBUG
 
