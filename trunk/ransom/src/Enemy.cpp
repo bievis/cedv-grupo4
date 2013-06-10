@@ -21,12 +21,15 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
             Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
     _rtex = _rtt->getBuffer()->getRenderTarget();
-
+	
     _camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
-    _camPOV->setPosition ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z ) ); //( 0, 2, -4 )
-    _camPOV->lookAt ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y+2, initial_pos_Z-10 ) ); //( 0, 2, -14 )
+    _camPOV->setPosition ( Ogre::Vector3 ( 0, 0, -3.5 ) );
+    _camPOV->lookAt ( Ogre::Vector3 ( 0, 0, 5 ) );
     _camPOV->setNearClipDistance ( 5 );
     _camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+	Ogre::SceneNode *nodeCamera = sceneMgr->createSceneNode("cameraPOV_" + name);
+	nodeCamera->attachObject(_camPOV);
+	_node->addChild(nodeCamera);
 
     _rtex->addViewport ( _camPOV );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
@@ -68,7 +71,9 @@ Enemy& Enemy::operator=(const Enemy& rhs)
 void Enemy::copy ( const Enemy& source )
   {
     _rtex = source.getRenderTexture();
-    _rtt = source.getTexturePtr();
+	#ifndef _WIN32
+		_rtt = source.getTexturePtr();
+	#endif
     _camPOV = source.getCameraPOV();
   }
 

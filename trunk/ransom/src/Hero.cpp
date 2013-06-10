@@ -21,8 +21,8 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
     _nodeDummy = sceneMgr->createSceneNode ( name + "DUMMY" );
 
     _nodeDummy->attachObject ( _entityDummy );
-
-    _nodeDummy->setPosition ( Ogre::Vector3 ( initial_pos_X, initial_pos_Y, initial_pos_Z ) );
+	
+    _nodeDummy->setPosition ( Ogre::Vector3 ( initial_pos_X, 0.0, initial_pos_Z ) );
 
     sceneMgr->getRootSceneNode()->addChild ( _nodeDummy );
 
@@ -72,25 +72,21 @@ void Hero::print()
 void Hero::walk ( bool reverse )
   {
     Character::walk ( reverse );
-
-    Ogre::Quaternion qt = Character::getSceneNode()->getOrientation();
-
-    _nodeDummy->setOrientation ( qt );
-
-    Ogre::Vector3 v = Character::getSceneNode()->getPosition();
-
-    _nodeDummy->setPosition ( v );
+	updateDummy();
   }
 
 void Hero::turn ( Ogre::Real angle )
   {
     Character::turn ( angle );
+	updateDummy();    
+  }
 
-    Ogre::Quaternion qt = Character::getSceneNode()->getOrientation();
+void Hero::updateDummy() {
+	Ogre::Quaternion qt = Character::getSceneNode()->getOrientation();
 
     _nodeDummy->setOrientation ( qt );
 
     Ogre::Vector3 v = Character::getSceneNode()->getPosition();
-
+	v.y = 0.0;
     _nodeDummy->setPosition ( v );
-  }
+}

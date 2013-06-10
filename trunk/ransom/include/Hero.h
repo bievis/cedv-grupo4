@@ -53,6 +53,8 @@ class Hero : public Character
     void copy ( const Hero& source );
 
   private:
+	/// \brief method to udate position of dummy
+    void          updateDummy();
       /// \brief reference to entity DUMMY
     Ogre::Entity* _entityDummy;
     /// \brief reference to scene node DUMMY
