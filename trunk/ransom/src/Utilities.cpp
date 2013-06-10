@@ -167,4 +167,7 @@ void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
     (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6, 0.6, 80.0f,
                             Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
                             (*node)->_getDerivedOrientation() );
+    (*rigidTrack)->getBulletRigidBody()->setSleepingThresholds(0.0f,0.0f);
+    (*rigidTrack)->getBulletRigidBody()->setRestitution(0.0f);
+    (*rigidTrack)->getBulletRigidBody()->setAngularFactor(0.0f);
   }

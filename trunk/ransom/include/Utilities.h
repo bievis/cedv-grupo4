@@ -18,8 +18,8 @@ using namespace std;
 
 // Mesh file to load how to a Character
 #define MESH_FILE_WITHOUT_EXTENSION "Cube"
-#define HERO_MESH_FILE_WITHOUT_EXTENSION "CubeHero"
-#define ENEMY_MESH_FILE_WITHOUT_EXTENSION "CubeEnemy"
+#define HERO_MESH_FILE_WITHOUT_EXTENSION "SWAT"
+#define ENEMY_MESH_FILE_WITHOUT_EXTENSION "SWAT"
 
 /// \brief this class will be a set of utility methods
 class Utilities {
