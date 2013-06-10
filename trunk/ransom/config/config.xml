@@ -1,129 +1,36 @@
 <?xml version="1.0"?>
 <config>
-	<level id="1">
-		<crater>
-			<row id="1">
-				<name>carril1</name>
-				<speed>2.0</speed>
-				<way>RIGHT</way>
-				<distance>12.0</distance>
-			</row>
-			<row id="2">
-				<name>carril2</name>
-				<speed>1.5</speed>
-				<way>LEFT</way>
-				<distance>10.0</distance>
-			</row>
-			<row id="3">
-				<name>carril3</name>
-				<speed>1.0</speed>
-				<way>RIGHT</way>
-				<distance>15.0</distance>
-			</row>
-		</crater>
-		<road>
-			<row id="4">
-				<name>carril4</name>
-				<speed>3.0</speed>
-				<way>LEFT</way>
-				<distance>6.0</distance>
-			</row>
-			<row id="5">
-				<name>carril5</name>
-				<speed>2.0</speed>
-				<way>RIGHT</way>
-				<distance>10.0</distance>
-			</row>
-			<row id="6">
-				<name>carril6</name>
-				<speed>1.5</speed>
-				<way>LEFT</way>
-				<distance>8.0</distance>
-			</row>
-		</road>
-	</level>
-	<level id="2">
-		<crater>
-			<row id="1">
-				<name>carril1</name>
-				<speed>2.5</speed>
-				<way>LEFT</way>
-				<distance>13.0</distance>
-			</row>
-			<row id="2">
-				<name>carril2</name>
-				<speed>2.0</speed>
-				<way>RIGHT</way>
-				<distance>11.0</distance>
-			</row>
-			<row id="3">
-				<name>carril3</name>
-				<speed>1.5</speed>
-				<way>LEFT</way>
-				<distance>16.0</distance>
-			</row>
-		</crater>
-		<road>
-			<row id="1">
-				<name>carril4</name>
-				<speed>4.0</speed>
-				<way>RIGHT</way>
-				<distance>5.5</distance>
-			</row>
-			<row id="2">
-				<name>carril5</name>
-				<speed>2.5</speed>
-				<way>LEFT</way>
-				<distance>9.0</distance>
-			</row>
-			<row id="3">
-				<name>carril6</name>
-				<speed>2.5</speed>
-				<way>RIGHT</way>
-				<distance>7.0</distance>
-			</row>
-		</road>
-	</level>
-	<level id="3">
-		<crater>
-			<row id="1">
-				<name>carril1</name>
-				<speed>3.0</speed>
-				<way>LEFT</way>
-				<distance>10.0</distance>
-			</row>
-			<row id="2">
-				<name>carril2</name>
-				<speed>2.0</speed>
-				<way>LEFT</way>
-				<distance>8.0</distance>
-			</row>
-			<row id="3">
-				<name>carril3</name>
-				<speed>2.5</speed>
-				<way>RIGHT</way>
-				<distance>12.0</distance>
-			</row>
-		</crater>
-		<road>
-			<row id="1">
-				<name>carril4</name>
-				<speed>4.5</speed>
-				<way>RIGHT</way>
-				<distance>5.0</distance>
-			</row>
-			<row id="2">
-				<name>carril5</name>
-				<speed>3.5</speed>
-				<way>LEFT</way>
-				<distance>8.5</distance>
-			</row>
-			<row id="3">
-				<name>carril6</name>
-				<speed>4.0</speed>
-				<way>RIGHT</way>
-				<distance>6.5</distance>
-			</row>
-		</road>
-	</level>
+
+  <hero posX="-7.5" posY="1" posZ="7.5" />
+
+  <enemy num="2">
+
+    <enemy_routes>
+
+      <route id="1" closed="true">
+        <points>
+          <point id="1" posX="-13.5" posY="1" posZ="0.5" />
+          <point id="2" posX="-1.5" posY="1" posZ="0.5" />
+          <point id="3" posX="-1.5" posY="1" posZ="13.5" />
+          <point id="4" posX="-13.5" posY="1" posZ="13.5" />
+        </points>
+      </route>
+
+      <route id="2" closed="false">
+        <points>
+          <point id="1" posX="13.5" posY="1" posZ="13.5" />
+          <point id="2" posX="6.5" posY="1" posZ="13.5" />
+          <point id="3" posX="6.5" posY="1" posZ="8.5" />
+          <point id="4" posX="12.5" posY="1" posZ="8.5" />
+          <point id="5" posX="12.5" posY="1" posZ="3.5" />
+          <point id="6" posX="2.5" posY="1" posZ="3.5" />
+          <point id="7" posX="2.5" posY="1" posZ="13.5" />
+        </points>
+      </route>
+
+    </enemy_routes>
+
+  </enemy>
+
 </config>
+

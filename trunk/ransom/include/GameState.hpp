@@ -16,11 +16,14 @@
 #include "Utilities.h"
 #include "Enemy.h"
 #include "Hero.h"
+#include "XMLCharger.h"
+#include "GameConfig.h"
 
 //#include <vector>
 // #include <Coche.hpp>
 
 // #define _NUM_COCHES_ 1
+#define FILE_ROUTE_XML "./config/config.xml"
 
 class GameState : public AppState
   {
@@ -83,6 +86,9 @@ private:
 //    Ogre::TexturePtr          rtt;
 //    Ogre::RenderTexture*      rtex;
 //    Ogre::Camera*             camPOV;
+
+    // Game configuration
+    GameConfig _gc;
 
     //Private Methods
 
