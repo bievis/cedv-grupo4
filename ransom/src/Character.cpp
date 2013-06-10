@@ -21,6 +21,7 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 
     _health = 100.0;
 
+    string animation = STOP_ANIMATION;
     string mesh = HERO_MESH_FILE_WITHOUT_EXTENSION;
     if (isEnemy) {
         mesh = ENEMY_MESH_FILE_WITHOUT_EXTENSION;
@@ -37,8 +38,12 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                                                   &_node,
                                                   &_rigidBody,
                                                   true,
-                                                  "" );
-    _currentAnimation = NULL; // _entity->getAnimationState(STOP_ANIMATION);
+                                                  animation);
+    if (animation == "") {
+        _currentAnimation = NULL;
+    } else {
+        _currentAnimation = _entity->getAnimationState(animation);
+    }
   }
 
 Character::~Character()
@@ -69,6 +74,7 @@ void Character::copy ( const Character& source )
     _posZ = source.getInitial_PosZ();
     _node = source.getSceneNode();
     _rigidBody = source.getRigidBody();
+    _currentAnimation = source._currentAnimation;
   }
 
 void Character::setHealth ( float newHealth )
