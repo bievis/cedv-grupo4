@@ -23,9 +23,9 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _rtex = _rtt->getBuffer()->getRenderTarget();
 	
     _camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
-    _camPOV->setPosition ( Ogre::Vector3 ( 0, 0, -3.5 ) );
+    _camPOV->setPosition ( Ogre::Vector3 ( 0, 0, 0.2 ) );
     _camPOV->lookAt ( Ogre::Vector3 ( 0, 0, 5 ) );
-    _camPOV->setNearClipDistance ( 5 );
+    _camPOV->setNearClipDistance ( 0.1 );
     _camPOV->setFOVy ( Ogre::Degree ( 38 ) );
 	Ogre::SceneNode *nodeCamera = sceneMgr->createSceneNode("cameraPOV_" + name);
 	nodeCamera->attachObject(_camPOV);

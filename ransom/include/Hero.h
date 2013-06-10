@@ -38,13 +38,6 @@ class Hero : public Character
     inline Ogre::Entity* getEntityDUMMY() const { return _entity; };
     /// \brief method to print hero info
     void          print();
-    /// \brief method to perform the character walk movement ( forward or backward )
-    /// This method uses OgreBullet to move the character
-    /// \param reverse if value is true then wall to backward else will be forward (by default)
-    void          walk ( bool reverse = false );
-    /// \brief method to rotate the character "angle" (radians)
-    /// \param angle value in radians to rotate
-    void          turn ( Ogre::Real angle );
 
   protected:
     /// \brief protected method to copy an hero
@@ -53,8 +46,6 @@ class Hero : public Character
     void copy ( const Hero& source );
 
   private:
-	/// \brief method to udate position of dummy
-    void          updateDummy();
       /// \brief reference to entity DUMMY
     Ogre::Entity* _entityDummy;
     /// \brief reference to scene node DUMMY

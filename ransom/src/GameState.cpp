@@ -346,7 +346,7 @@ bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
 
     if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN || keyEventRef.key == OIS::KC_X ) {
-        m_hero->stop_move(); //getRigidBody()->setLinearVelocity(Ogre::Vector3(0.0, 0.0, 0.0));
+        m_hero->stop_move();
     }
 
     return true;
