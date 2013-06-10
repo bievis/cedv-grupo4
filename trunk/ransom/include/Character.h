@@ -2,8 +2,6 @@
 #define CHARACTER_H
 
 #include "Utilities.h"
-//#include "AdvancedOgreFramework.hpp"
-#include <pthread.h>
 
 using namespace std;
 
@@ -129,10 +127,6 @@ class Character
     /// \brief reference to current animation
     Ogre::AnimationState* _currentAnimation;
   private:
-    /// \brief mutex for the method turn
-    pthread_mutex_t   _mutex_turn;
-    /// \brief mutex for the method walk
-    pthread_mutex_t   _mutex_walk;
 
 };
 

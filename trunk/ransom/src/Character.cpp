@@ -13,9 +13,6 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                                                 _posY(initial_pos_Y),
                                                 _posZ(initial_pos_Z)
   {
-    _mutex_turn = PTHREAD_MUTEX_INITIALIZER;
-    _mutex_walk = PTHREAD_MUTEX_INITIALIZER;
-
     _node = NULL;
     _rigidBody = NULL;
 
@@ -108,14 +105,12 @@ void Character::changeAnimation(string nameAnimation) {
 
 void Character::update(double timeSinceLastFrame) {
     if (_currentAnimation != NULL) {
-        _currentAnimation->addTime(timeSinceLastFrame);
+        _currentAnimation->addTime(timeSinceLastFrame * 4);
     }
 }
 
 void Character::walk ( bool reverse )
   {
-    pthread_mutex_lock( &_mutex_walk );
-
     assert ( _rigidBody );
 
     float velocidad = VELOCIDAD;
@@ -128,7 +123,6 @@ void Character::walk ( bool reverse )
 
     changeAnimation(MOVE_ANIMATION);
 
-    pthread_mutex_unlock( &_mutex_walk );
   }
 
 void Character::walk_to ( const Ogre::Vector3& p )
@@ -156,7 +150,6 @@ void Character::stop_move()
 
 void Character::turn ( Ogre::Real angle )
   {
-    pthread_mutex_lock( &_mutex_turn );
 
     assert ( _node );
 
@@ -165,7 +158,6 @@ void Character::turn ( Ogre::Real angle )
     btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
     _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
 
-    pthread_mutex_unlock( &_mutex_turn );
   }
 
 void Character::print()
