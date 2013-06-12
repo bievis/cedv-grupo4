@@ -16,7 +16,7 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
     _node = NULL;
     _rigidBody = NULL;
 
-    _health = 100.0;
+    _health = MAX_HEALTH;
 
     string animation = STOP_ANIMATION;
     string mesh = HERO_MESH_FILE_WITHOUT_EXTENSION;
@@ -76,10 +76,12 @@ void Character::copy ( const Character& source )
 
 void Character::setHealth ( float newHealth )
   {
-    if ( _health < 100 )
+    if ( _health <= 100 )
     {
       if ( newHealth > 100 )
         _health = 100;
+      else if ( newHealth < 0 )
+        _health = 0;
       else
         _health = newHealth;
     }

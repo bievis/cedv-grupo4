@@ -5,6 +5,8 @@
 #include <OgreTextureManager.h>
 #include "MyTextureListener.h"
 
+#define SIZE_LIFE_BAR 2.0f
+
 class Enemy : public Character
 {
   public:
@@ -44,6 +46,10 @@ class Enemy : public Character
     bool          haveYouSeenAnybody() const;
     /// \brief method to print enemy info
     void          print();
+    /// \brief method to update lifeBar
+    void updateLifeBar();
+    /// \brief method to update enemy in frame
+    void          update(double timeSinceLastFrame);
 
   protected:
     /// \brief protected method to copy a enemy
@@ -60,7 +66,12 @@ class Enemy : public Character
     Ogre::Camera* _camPOV;
     /// \brief reference to texture listener
     MyTextureListener* _textureListener;
-
+    /// \brief reference to BillboardSet of Lifebar
+    Ogre::BillboardSet* _bbSetLife;
+    /// \brief reference to Billboard of Lifebar
+    Ogre::Billboard* _lifeBar;
+    /// \brief reference to node of Lifebar
+    Ogre::SceneNode* _lifeNode;
 };
 
 #endif // ENEMY_H
