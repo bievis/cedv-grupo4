@@ -7,6 +7,7 @@ using namespace std;
 
 #define VELOCIDAD 5.0
 #define VELOCIDAD_ANIMACION 4.0
+#define MAX_HEALTH 100.0
 
 // Animation Name of Mesh
 #define MOVE_ANIMATION "Move"
@@ -97,7 +98,7 @@ class Character
     /// \brief method to stop character movement
     void          stop_move();
     /// \brief method to update character in frame
-    void          update(double timeSinceLastFrame);
+    virtual void          update(double timeSinceLastFrame);
     /// \brief method to change animation of character
     void          changeAnimation(string nameAnimation);
   protected:
