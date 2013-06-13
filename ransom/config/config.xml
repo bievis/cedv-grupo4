@@ -7,7 +7,7 @@
 
     <enemy_routes>
 
-      <route id="1" closed="true">
+      <route id="1" closed="true" proximity="2.9">
         <points>
           <point id="1" posX="-13.5" posY="1" posZ="0.5" />
           <point id="2" posX="-1.5" posY="1" posZ="0.5" />
@@ -16,7 +16,7 @@
         </points>
       </route>
 
-      <route id="2" closed="false">
+      <route id="2" closed="false" proximity="2.5">
         <points>
           <point id="1" posX="13.5" posY="1" posZ="13.5" />
           <point id="2" posX="6.5" posY="1" posZ="13.5" />

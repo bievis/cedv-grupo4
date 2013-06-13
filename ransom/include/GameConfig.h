@@ -30,11 +30,12 @@ class GameConfig {
   inline unsigned int getNumEnemyRoutes() const { return _vEnemyRoutes.size(); };
 
   //Index vendrá dado entre 1 y N
-  void getEnemyRoute ( unsigned int index, EnemyRoute& route );
+  const EnemyRoute& getEnemyRoute ( unsigned int index ) const;
 
   void addEnemyRoute ( const EnemyRoute& newRoute );
 
-  inline void getInitialPosHero ( Ogre::Vector3& v ) { v = _initialPos_Hero; };
+  //inline void getInitialPosHero ( Ogre::Vector3& v ) { v = _initialPos_Hero; };
+  inline const Ogre::Vector3& getInitialPosHero() const { return _initialPos_Hero; };
   inline void setInitialPosHero ( const Ogre::Vector3& pos ) { _initialPos_Hero = pos; };
 
   inline unsigned int getNumEnemies() const { return _numEnemies; };

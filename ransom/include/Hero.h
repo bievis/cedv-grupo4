@@ -10,15 +10,11 @@ class Hero : public Character
     /// \param sceneMgr reference to scene manager (ogre)
     /// \param world reference to dynamic world (bullet)
     /// \param name name to identify the Hero
-    /// \param pos_X initial position in coordenate X
-    /// \param pos_Y initial position in coordenate Y
-    /// \param pos_Z initial position in coordenate Z
+    /// \param initia_pos initial position in coordenate (X, Y, Z)
     Hero     ( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
-                    float initial_pos_X,
-                    float initial_pos_Y,
-                    float initial_pos_Z );
+                    const Ogre::Vector3& initial_pos );
     /** Default destructor */
     virtual ~Hero();
     /** Copy constructor

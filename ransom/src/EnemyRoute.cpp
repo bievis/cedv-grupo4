@@ -46,9 +46,11 @@ void EnemyRoute::copy ( const EnemyRoute& source )
 
   _closed = source.getRouteClosed();
 
+  _proximity = source.getProximity();
+
   for ( unsigned int i = 0; i < source.getNumPoints(); i++ )
     {
-      source.getPoint ( i, v );
+      v = source.getPoint ( i );
       addPoint ( v );
     }
 }
@@ -58,18 +60,17 @@ void EnemyRoute::addPoint ( const Ogre::Vector3& v )
   _vPoints.push_back ( v );
 }
 
-void EnemyRoute::getPoint ( unsigned int index, Ogre::Vector3& v )
+const Ogre::Vector3& EnemyRoute::getPoint ( unsigned int index )
 {
-  if ( ( index < _vPoints.size() ) && ( index >= 0 ) )
-    {
-      v = _vPoints[index];
-    }
+  assert ( index < _vPoints.size() );
+
+  return _vPoints[index];
 }
 
 void EnemyRoute::print()
 {
   cout << "========================" << endl;
-  cout << " - Route " << _id << " : Closed = " << (_closed?"true":"false") << endl;
+  cout << " - Route " << _id << " : Closed = " << (_closed?"true":"false") << " : Proximity = " << _proximity << endl;
   cout << "========================" << endl;
   for ( unsigned int i = 0; i < _vPoints.size(); i++ )
     {

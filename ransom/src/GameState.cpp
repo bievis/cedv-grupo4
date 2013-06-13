@@ -122,8 +122,8 @@ void GameState::CreateInitialWorld()
 
     //m_hero = new Hero ( m_pSceneMgr, _world, "Hero", -7.50000, 1, 7.50000 );
     Ogre::Vector3 v_pos;
-    _gc.getInitialPosHero ( v_pos );
-    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos.x, v_pos.y, v_pos.z );
+    v_pos = _gc.getInitialPosHero();
+    m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos );
     m_hero->print();
     //ptrNode = Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Cube" );
 
@@ -134,17 +134,17 @@ void GameState::CreateInitialWorld()
 
     for ( unsigned int i = 0; i < _gc.getNumEnemies(); i++ )
       {
-        _gc.getEnemyRoute ( i+1, route );
+        route = _gc.getEnemyRoute ( i+1 );
 
         assert ( route.getNumPoints() != 0 );
 
-        route.getPoint ( 0, v );
+        v = route.getPoint ( 0 );
 
         name_enemy = "Enemy" + StringConverter::toString(i);
 
         cout << name_enemy << ": " << v << endl;
 
-        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v.x, v.y, v.z );
+        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, _gc, i+1 );
         m_enemies.push_back ( enemy );
       }
 
@@ -438,13 +438,17 @@ void GameState::update(double timeSinceLastFrame)
       {
 //        bMove = true;
 //        valX = 0.05;
-        m_hero->turn ( (-1) * Ogre::Math::HALF_PI / 32 );
+
+//        m_hero->turn ( (-1) * Ogre::Math::HALF_PI / 32 );
+        m_hero->turn_right();
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
       {
 //        bMove = true;
 //        valX = -0.05;
-        m_hero->turn ( Ogre::Math::HALF_PI / 32 );
+
+//        m_hero->turn ( Ogre::Math::HALF_PI / 32 );
+        m_hero->turn_left();
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
       {
@@ -559,6 +563,8 @@ void GameState::update(double timeSinceLastFrame)
         unsigned int i = 1;
         for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
  	        {
+ 	          (*itEnemy)->walk_in_route();
+
             if ( (*itEnemy)->haveYouSeenAnybody() )
               cout << "Enemy" + StringConverter::toString(i) + "::te veo!!" << endl;
  	        }
