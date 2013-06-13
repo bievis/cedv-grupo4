@@ -4,6 +4,8 @@
 #include <Character.h>
 #include <OgreTextureManager.h>
 #include "MyTextureListener.h"
+#include "EnemyRoute.h"
+#include "GameConfig.h"
 
 #define SIZE_LIFE_BAR 2.0f
 
@@ -14,15 +16,15 @@ class Enemy : public Character
     /// \param sceneMgr reference to scene manager (ogre)
     /// \param world reference to dynamic world (bullet)
     /// \param name name to identify the Enemy
-    /// \param pos_X initial position in coordenate X
-    /// \param pos_Y initial position in coordenate Y
-    /// \param pos_Z initial position in coordenate Z
+    /// \param v_pos initial position in coordenate X, Y, Z with object Ogre::Vector3
+    /// \param config object with the configuration loaded by xml
+    /// \param id_route route assigned to the enemy
     Enemy     ( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
-                    float initial_pos_X,
-                    float initial_pos_Y,
-                    float initial_pos_Z );
+                    const Ogre::Vector3& v_pos,
+                    const GameConfig& config,
+                    unsigned int id_route );
     /** Default destructor */
     virtual ~Enemy();
     /// \brief copy constructor
@@ -43,9 +45,11 @@ class Enemy : public Character
     inline Ogre::Camera* getCameraPOV() const { return _camPOV; };
     /// \brief this method is used to check if anybody is in our camera scope
     /// \return true/false according to see or not to see anybody
-    bool          haveYouSeenAnybody() const;
+    bool          haveYouSeenAnybody();
     /// \brief method to print enemy info
     void          print();
+    /// \brief method to walk using the route built to the enemy
+    void          walk_in_route();
     /// \brief method to update lifeBar
     void updateLifeBar();
     /// \brief method to update enemy in frame
@@ -66,6 +70,12 @@ class Enemy : public Character
     Ogre::Camera* _camPOV;
     /// \brief reference to texture listener
     MyTextureListener* _textureListener;
+    /// \brief route object with the enemy route
+    EnemyRoute _route;
+    /// \brief current index point to walk
+    unsigned int _current_point;
+    /// \brief way in the route ( true = forward / false = backward )
+    bool _way;
     /// \brief reference to BillboardSet of Lifebar
     Ogre::BillboardSet* _bbSetLife;
     /// \brief reference to Billboard of Lifebar

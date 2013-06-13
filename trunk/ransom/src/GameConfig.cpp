@@ -40,7 +40,7 @@ void GameConfig::copy ( const GameConfig &source )
   {
     clear();
 
-    source.getInitialPosHero ( _initialPos_Hero );
+    _initialPos_Hero = source.getInitialPosHero();
     _numEnemies = source.getNumEnemies();
 
     for ( unsigned int i = 0; i < source.getNumEnemyRoutes(); i++ )
@@ -49,8 +49,9 @@ void GameConfig::copy ( const GameConfig &source )
       }
   }
 
-void GameConfig::getEnemyRoute ( unsigned int index, EnemyRoute& route )
+const EnemyRoute& GameConfig::getEnemyRoute ( unsigned int index ) const
   {
+
     if ( _vEnemyRoutes.size() > 0 )
       {
         for ( unsigned int i = 0; i < _vEnemyRoutes.size(); i++ )
@@ -58,18 +59,16 @@ void GameConfig::getEnemyRoute ( unsigned int index, EnemyRoute& route )
           cout << "_vEnemyRoutes[i]->getID() == " << _vEnemyRoutes[i]->getID() << endl;
           if ( _vEnemyRoutes[i]->getID() == index )
           {
-            route = *(_vEnemyRoutes[i]);
-            break;
+            return *(_vEnemyRoutes[i]);
           }
 
         }
 	    }
-    else
-      {
-	      char cad[100];
-	      sprintf ( cad, "El ID de la ruta %d no ha sido localizado.", index );
-        throw GameConfigException ( cad );
-      }
+
+    char cad[100];
+    sprintf ( cad, "El ID de la ruta %d no ha sido localizado.", index );
+    throw GameConfigException ( cad );
+
   }
 
 void GameConfig::addEnemyRoute ( const EnemyRoute& newRoute )

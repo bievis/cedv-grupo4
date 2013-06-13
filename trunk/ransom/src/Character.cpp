@@ -4,14 +4,10 @@
 Character::Character ( Ogre::SceneManager* sceneMgr,
                         OgreBulletDynamics::DynamicsWorld* world,
                         const string& name,
-                        float initial_pos_X,
-                        float initial_pos_Y,
-                        float initial_pos_Z,
+                        const Ogre::Vector3& v_pos,
                         bool isEnemy ) : _name(name),
-                                                _sceneMgr(sceneMgr),
-                                                _posX(initial_pos_X),
-                                                _posY(initial_pos_Y),
-                                                _posZ(initial_pos_Z)
+                                         _sceneMgr(sceneMgr),
+                                         _v_pos(v_pos)
   {
     _node = NULL;
     _rigidBody = NULL;
@@ -20,17 +16,19 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 
     string animation = STOP_ANIMATION;
     string mesh = HERO_MESH_FILE_WITHOUT_EXTENSION;
-    if (isEnemy) {
+
+    if ( isEnemy )
+      {
         mesh = ENEMY_MESH_FILE_WITHOUT_EXTENSION;
-    }
+      }
 
     Utilities::getSingleton().put_character_in_scene ( sceneMgr,
                                                   world,
                                                   mesh,
                                                   name,
-                                                  initial_pos_X,
-                                                  initial_pos_Y,
-                                                  initial_pos_Z,
+                                                  v_pos.x,
+                                                  v_pos.y,
+                                                  v_pos.z,
                                                   &_entity,
                                                   &_node,
                                                   &_rigidBody,
@@ -66,9 +64,7 @@ void Character::copy ( const Character& source )
   {
     _name = source.getName();
     _health = source.getHealth();
-    _posX = source.getInitial_PosX();
-    _posY = source.getInitial_PosY();
-    _posZ = source.getInitial_PosZ();
+    _v_pos = source.getInitial_Pos();
     _node = source.getSceneNode();
     _rigidBody = source.getRigidBody();
     _currentAnimation = source._currentAnimation;
@@ -127,8 +123,9 @@ void Character::walk ( bool reverse )
 
   }
 
-void Character::walk_to ( const Ogre::Vector3& p )
+bool Character::walk_to ( const Ogre::Vector3& p )
   {
+    bool res = false;
     Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
 
     Ogre::Vector3 v = p - o; // 1er vector
@@ -136,12 +133,24 @@ void Character::walk_to ( const Ogre::Vector3& p )
     Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
 
     Ogre::Radian angle = orientacion.angleBetween ( v );
+
     Ogre::Real distance = o.distance ( p );
 
-    if ( angle.valueRadians() > 0.05 )
-      turn ( angle.valueRadians() );
+//    cout << " prueba = " << orientacion.getRotationTo(v).getYaw().valueDegrees() << endl;
+//    cout << " angle = " << angle.valueAngleUnits() << endl;
+    cout << " distance = " << distance << endl;
+
+    if ( distance < 2.9 )
+      res = true;
+
+    if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
+      turn_left();
+    else
+      turn_right();
 
     walk();
+
+    return res;
   }
 
 void Character::stop_move()
@@ -150,13 +159,37 @@ void Character::stop_move()
     changeAnimation(STOP_ANIMATION);
   }
 
-void Character::turn ( Ogre::Real angle )
+//void Character::turn ( Ogre::Real angle )
+//  {
+//
+//    assert ( _node );
+//
+//    _rigidBody->enableActiveState();
+//    _node->yaw ( Ogre::Radian(angle) );
+//    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
+//    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
+//
+//  }
+
+void Character::turn_left()
   {
 
     assert ( _node );
 
     _rigidBody->enableActiveState();
-    _node->yaw ( Ogre::Radian(angle) );
+    _node->yaw ( Ogre::Radian(Ogre::Math::HALF_PI / 32) );
+    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
+    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
+
+  }
+
+void Character::turn_right()
+  {
+
+    assert ( _node );
+
+    _rigidBody->enableActiveState();
+    _node->yaw ( Ogre::Radian((-1)* Ogre::Math::HALF_PI / 32) );
     btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
     _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
 
@@ -164,12 +197,9 @@ void Character::turn ( Ogre::Real angle )
 
 void Character::print()
   {
-    cout << "name           : " << _name << endl;
-    cout << "health         : " << _health << endl;
-    printf ( "node ref.      : %p\n", _node );
-    printf ( "body ref.      : %p\n", _rigidBody );
-    cout << "initial position" << endl;
-    cout << "X              : " << _posX << endl;
-    cout << "Y              : " << _posY << endl;
-    cout << "Z              : " << _posZ << endl;
+    cout << "name              : " << _name << endl;
+    cout << "health            : " << _health << endl;
+    printf ( "node ref.         : %p\n", _node );
+    printf ( "body ref.         : %p\n", _rigidBody );
+    cout << "initial position  : " << _v_pos << endl;
   }

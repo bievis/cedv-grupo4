@@ -73,6 +73,8 @@ void XMLCharger::LoadFile ( string routeAbsoluteFile, GameConfig &gc )
 
                     std::string cad = v2.second.get<std::string>("<xmlattr>.closed");
 
+                    route.setProximity ( v2.second.get<float>("<xmlattr>.closed") );
+
                     if ( cad == "true" )
                       route.setRouteClosed ( true );
                     else

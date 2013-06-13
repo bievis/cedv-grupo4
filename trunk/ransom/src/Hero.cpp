@@ -3,14 +3,10 @@
 Hero::Hero( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
-                    float initial_pos_X,
-                    float initial_pos_Y,
-                    float initial_pos_Z ) : Character ( sceneMgr,
+                    const Ogre::Vector3& initial_pos ) : Character ( sceneMgr,
                                                         world,
                                                         name,
-                                                        initial_pos_X,
-                                                        initial_pos_Y,
-                                                        initial_pos_Z,
+                                                        initial_pos,
                                                         false )
   {
     Ogre::Vector3 size = Ogre::Vector3::ZERO;
