@@ -39,18 +39,21 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <PreBuildEventUseInBuild>true</PreBuildEventUseInBuild>
+    <PostBuildEventUseInBuild>true</PostBuildEventUseInBuild>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\boost_1_53_0\boost;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;D:\Curso de Experto en Programacion de Videojuegos 2012-2013\cedv-grupo4\ransom\Ransom\libs\Boost_1.53\include\boost-1_53;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -64,7 +67,9 @@
 copy "D:\Libs\SDL_mixer-1.2.12-win32\*.dll" "$(SolutionDir)$(Configuration)"
 copy "D:\Libs\SDL-1.2.15-win32\*.dll" "$(SolutionDir)$(Configuration)"
 copy "$(SolutionDir)config\$(Configuration)\*.cfg" "$(SolutionDir)$(Configuration)"
-copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
+copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"
+mkdir "$(SolutionDir)$(Configuration)\config"
+copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>del /F/Q/S "$(SolutionDir)$(Configuration)\*"</Command>
@@ -73,13 +78,12 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>TurnOffAllWarnings</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\include;$(OGRE_HOME)\include;$(OGRE_HOME)\include\OIS;$(OGRE_HOME)\include\OGRE;$(OGRE_HOME)\boost;$(BULLET_ROOT)\src;D:\Libs\ogrebullet\Collisions\include;D:\Libs\ogrebullet\Dynamics\include;D:\Libs\boost_1_53_0\boost;D:\Libs\SDL_mixer-1.2.12\include;D:\Libs\SDL-1.2.15\include;D:\Curso de Experto en Programacion de Videojuegos 2012-2013\cedv-grupo4\ransom\Ransom\libs\Boost_1.53\include\boost-1_53;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
@@ -95,7 +99,9 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
 copy "D:\Libs\SDL_mixer-1.2.12-win32\*.dll" "$(SolutionDir)$(Configuration)"
 copy "D:\Libs\SDL-1.2.15-win32\*.dll" "$(SolutionDir)$(Configuration)"
 copy "$(SolutionDir)config\$(Configuration)\*.cfg" "$(SolutionDir)$(Configuration)"
-copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
+copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"
+mkdir "$(SolutionDir)$(Configuration)\config"
+copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>del /F/Q/S "$(SolutionDir)$(Configuration)\*"</Command>
@@ -108,6 +114,9 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClCompile Include="..\..\src\Character.cpp" />
     <ClCompile Include="..\..\src\DotSceneLoader.cpp" />
     <ClCompile Include="..\..\src\Enemy.cpp" />
+    <ClCompile Include="..\..\src\EnemyRoute.cpp" />
+    <ClCompile Include="..\..\src\GameConfig.cpp" />
+    <ClCompile Include="..\..\src\GameConfigException.cpp" />
     <ClCompile Include="..\..\src\GameState.cpp" />
     <ClCompile Include="..\..\src\Hero.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
@@ -121,6 +130,7 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClCompile Include="..\..\src\Track.cpp" />
     <ClCompile Include="..\..\src\TrackManager.cpp" />
     <ClCompile Include="..\..\src\Utilities.cpp" />
+    <ClCompile Include="..\..\src\XMLCharger.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp" />
@@ -130,6 +140,9 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClInclude Include="..\..\include\Character.h" />
     <ClInclude Include="..\..\include\DotSceneLoader.hpp" />
     <ClInclude Include="..\..\include\Enemy.h" />
+    <ClInclude Include="..\..\include\EnemyRoute.h" />
+    <ClInclude Include="..\..\include\GameConfig.h" />
+    <ClInclude Include="..\..\include\GameConfigException.hpp" />
     <ClInclude Include="..\..\include\GameState.hpp" />
     <ClInclude Include="..\..\include\Hero.h" />
     <ClInclude Include="..\..\include\MenuState.hpp" />
@@ -143,6 +156,7 @@ copy "$(SolutionDir)config\*.cfg" "$(SolutionDir)$(Configuration)"</Command>
     <ClInclude Include="..\..\include\Track.h" />
     <ClInclude Include="..\..\include\TrackManager.h" />
     <ClInclude Include="..\..\include\Utilities.h" />
+    <ClInclude Include="..\..\include\XMLCharger.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\config\Debug\plugins.cfg" />
