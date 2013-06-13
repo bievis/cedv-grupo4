@@ -49,8 +49,8 @@ void EnemyRoute::copy ( const EnemyRoute& source )
   _proximity = source.getProximity();
 
   for ( unsigned int i = 0; i < source.getNumPoints(); i++ )
-    {
-      v = source.getPoint ( i );
+  {
+      v = ((EnemyRoute&) source).getPoint ( i );
       addPoint ( v );
     }
 }
