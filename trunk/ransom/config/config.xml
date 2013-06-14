@@ -7,16 +7,16 @@
 
     <enemy_routes>
 
-      <route id="1" closed="true" proximity="2.9">
+      <route id="1" closed="true" proximity="2.0">
         <points>
-          <point id="1" posX="-13.5" posY="1" posZ="0.5" />
-          <point id="2" posX="-1.5" posY="1" posZ="0.5" />
-          <point id="3" posX="-1.5" posY="1" posZ="13.5" />
-          <point id="4" posX="-13.5" posY="1" posZ="13.5" />
+          <point id="1" posX="-14.5" posY="1" posZ="-1.0" />
+          <point id="2" posX="-1.5" posY="1" posZ="-1.0" />
+          <point id="3" posX="-1.5" posY="1" posZ="14.5" />
+          <point id="4" posX="-14.5" posY="1" posZ="14.5" />
         </points>
       </route>
 
-      <route id="2" closed="false" proximity="2.5">
+      <route id="2" closed="false" proximity="1.5">
         <points>
           <point id="1" posX="13.5" posY="1" posZ="13.5" />
           <point id="2" posX="6.5" posY="1" posZ="13.5" />
@@ -24,7 +24,7 @@
           <point id="4" posX="12.5" posY="1" posZ="8.5" />
           <point id="5" posX="12.5" posY="1" posZ="3.5" />
           <point id="6" posX="2.5" posY="1" posZ="3.5" />
-          <point id="7" posX="2.5" posY="1" posZ="13.5" />
+          <point id="7" posX="2.5" posY="1" posZ="12.5" />
         </points>
       </route>
 

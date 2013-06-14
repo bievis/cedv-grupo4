@@ -6,6 +6,7 @@
 #include "MyTextureListener.h"
 #include "EnemyRoute.h"
 #include "GameConfig.h"
+#include "StateMachine.h"
 
 #define SIZE_LIFE_BAR 2.0f
 
@@ -36,7 +37,7 @@ class Enemy : public Character
     /// \brief method to get texture pointer
     /// this object inherits from SharedPtr
     /// \return texture pointer
-    inline Ogre::TexturePtr& getTexturePtr() { return _rtt; };
+    inline const Ogre::TexturePtr& getTexturePtr() { return _rtt; };
     /// \brief method to get render to texture reference
     /// \return render to texture reference
     inline Ogre::RenderTexture* getRenderTexture() const { return _rtex; };
@@ -50,12 +51,19 @@ class Enemy : public Character
     void          print();
     /// \brief method to walk using the route built to the enemy
     void          walk_in_route();
+        /// \brief method to perform the character walk movement to position
+    /// This method uses OgreBullet to move the character
+    /// \param pos destiny position to walk
+    /// \return true/false if the character arrived to destiny point
+    bool          walk_to ( const Ogre::Vector3& pos );
     /// \brief method to update lifeBar
-    void updateLifeBar();
+    void          updateLifeBar();
     /// \brief method to update enemy in frame
     void          update(double timeSinceLastFrame);
 	/// \brief method to show dummy or not
     void          showDummy(bool show);
+    const StateMachine& getStateMachine() const { return _sm; };
+
   protected:
     /// \brief protected method to copy a enemy
     /// this method is used in assingnment operator and copy constructor
@@ -83,6 +91,8 @@ class Enemy : public Character
     Ogre::Billboard* _lifeBar;
     /// \brief reference to node of Lifebar
     Ogre::SceneNode* _lifeNode;
+    /// \brief object with the enemy state machine
+    StateMachine _sm;
 };
 
 #endif // ENEMY_H

@@ -38,7 +38,7 @@ class EnemyRoute
 
     inline void setProximity ( float newValue ) { _proximity = newValue; };
 
-    const Ogre::Vector3& getPoint ( unsigned int index );
+    const Ogre::Vector3& getPoint ( unsigned int index ) const;
 
     void addPoint ( const Ogre::Vector3& v );
     void clear();
@@ -51,7 +51,7 @@ class EnemyRoute
     unsigned int _id;
     bool _closed;
     float _proximity;
-    std::deque<Ogre::Vector3> _vPoints;
+    std::vector<Ogre::Vector3> _vPoints;
 };
 
 #endif // ENEMYROUTE_H

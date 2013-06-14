@@ -134,35 +134,38 @@ void Character::walk ( bool reverse )
 
   }
 
-bool Character::walk_to ( const Ogre::Vector3& p )
-  {
-    bool res = false;
-    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
-
-    Ogre::Vector3 v = p - o; // 1er vector
-
-    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
-
-    Ogre::Radian angle = orientacion.angleBetween ( v );
-
-    Ogre::Real distance = o.distance ( p );
-
-//    cout << " prueba = " << orientacion.getRotationTo(v).getYaw().valueDegrees() << endl;
-//    cout << " angle = " << angle.valueAngleUnits() << endl;
-    cout << " distance = " << distance << endl;
-
-    if ( distance < 2.9 )
-      res = true;
-
-    if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
-      turn_left();
-    else
-      turn_right();
-
-    walk();
-
-    return res;
-  }
+//bool Character::walk_to ( const Ogre::Vector3& p )
+//  {
+//    bool res = false;
+//    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
+//
+//    Ogre::Vector3 v = p - o; // 1er vector
+//
+//    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
+//
+//    Ogre::Radian angle = orientacion.angleBetween ( v );
+//
+//    Ogre::Real distance = o.distance ( p );
+//
+////    cout << " prueba = " << orientacion.getRotationTo(v).getYaw().valueDegrees() << endl;
+////    cout << " angle = " << angle.valueAngleUnits() << endl;
+////    cout << " distance = " << distance << endl;
+//
+//    if ( distance < 2.9 )
+//      res = true;
+//
+//    if ( angle.valueDegrees() > 15 )
+//    {
+//      if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
+//        turn_left();
+//      else
+//        turn_right();
+//    }
+//
+//    walk();
+//
+//    return res;
+//  }
 
 void Character::stop_move()
   {

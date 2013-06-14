@@ -60,7 +60,7 @@ void EnemyRoute::addPoint ( const Ogre::Vector3& v )
   _vPoints.push_back ( v );
 }
 
-const Ogre::Vector3& EnemyRoute::getPoint ( unsigned int index )
+const Ogre::Vector3& EnemyRoute::getPoint ( unsigned int index ) const
 {
   assert ( index < _vPoints.size() );
 

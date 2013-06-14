@@ -5,8 +5,8 @@
 
 using namespace std;
 
-#define VELOCIDAD 5.0
-#define VELOCIDAD_ANIMACION 4.0
+#define VELOCIDAD 2.0
+#define VELOCIDAD_ANIMACION 3.0
 #define MAX_HEALTH 100.0
 
 // Animation Name of Mesh
@@ -42,11 +42,6 @@ class Character
     /// This method uses OgreBullet to move the character
     /// \param reverse if value is true then wall to backward else will be forward (by default)
     void          walk ( bool reverse = false );
-    /// \brief method to perform the character walk movement to position
-    /// This method uses OgreBullet to move the character
-    /// \param pos destiny position to walk
-    /// \return true/false if the character arrived to destiny point
-    bool          walk_to ( const Ogre::Vector3& pos );
     /// \brief method to rotate the character to the left
     void          turn_left();
     /// \brief method to rotate the character to the right
