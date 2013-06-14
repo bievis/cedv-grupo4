@@ -47,7 +47,7 @@ class StateMachine
         inline const string& getCurrentState() const { return _currentState; };
         /// \brief get the object state for the current state
         /// \return state object
-        const State& StateMachine::getCurrentStateObject() const;
+        const State& StateMachine::getCurrentStateObject();
         /// \brief set the current state of the state machine
         ///
         /// this method set the current state of the state machine. In case of we like stablish a determinate state.

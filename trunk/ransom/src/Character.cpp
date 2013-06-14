@@ -5,7 +5,7 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                         OgreBulletDynamics::DynamicsWorld* world,
                         const string& name,
                         const Ogre::Vector3& v_pos,
-                        bool isEnemy ) : _name(name),
+                        CHARACTER_TYPE type, string animation ) : _name(name),
                                          _sceneMgr(sceneMgr),
                                          _v_pos(v_pos)
   {
@@ -13,14 +13,15 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
     _rigidBody = NULL;
 
     _health = MAX_HEALTH;
-
-    string animation = STOP_ANIMATION;
+	
     string mesh = HERO_MESH_FILE_WITHOUT_EXTENSION;
 
-    if ( isEnemy )
-      {
+	if ( type == ENEMY )
+    {
         mesh = ENEMY_MESH_FILE_WITHOUT_EXTENSION;
-      }
+	} else if (type == HOSTAGE) {
+		mesh = HOSTAGE_MESH_FILE_WITHOUT_EXTENSION;
+	}
 
     Utilities::getSingleton().put_character_in_scene ( sceneMgr,
                                                   world,

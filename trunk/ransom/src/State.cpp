@@ -32,7 +32,7 @@ State::State( const State& other )
     _name = other.getName();
 
     //Copy actions
-    for ( it_a = other.getActions()->begin(); it_a != other.getActions()->end(); advance ( it_a, 1 ) )
+    for ( it_a = ((State&)other).getActions()->begin(); it_a != ((State&)other).getActions()->end(); advance ( it_a, 1 ) )
     {
         ret_a = _mapActions.insert ( pair<string, Action>( it_a->first, it_a->second ) );
 

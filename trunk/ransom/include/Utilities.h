@@ -20,6 +20,7 @@ using namespace std;
 #define MESH_FILE_WITHOUT_EXTENSION "Cube"
 #define HERO_MESH_FILE_WITHOUT_EXTENSION "SWAT"
 #define ENEMY_MESH_FILE_WITHOUT_EXTENSION "SWAT"
+#define HOSTAGE_MESH_FILE_WITHOUT_EXTENSION "Boy"
 
 /// \brief this class will be a set of utility methods
 class Utilities {

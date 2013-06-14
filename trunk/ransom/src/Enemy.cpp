@@ -9,7 +9,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         world,
                                                         name,
                                                         v_pos,
-                                                        true )
+                                                        ENEMY, STOP_ANIMATION )
   {
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );
