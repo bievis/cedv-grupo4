@@ -61,6 +61,12 @@ void GameState::enter()
     m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
     m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
+
+//    m_pCamera->setPosition(Ogre::Vector3 ( 40.0f, 80.0f, 0.0f ) );
+//    m_pCamera->lookAt(Ogre::Vector3 ( 0.0f, 13.0f, 0.0f ) );
+//    m_pCamera->setNearClipDistance(5);
+//    m_pCamera->setFarClipDistance(10000);
+
     // Position it at 500 in Z direction
     m_pCamera->setPosition(Vector3(0,45,10));
       // Look back along -Z
@@ -113,13 +119,12 @@ void GameState::CreateInitialWorld()
     // Crear el mapa
     CreateMap("Mapa1");
 
-
     // Creamos al Heroe
     Ogre::Vector3 v_pos;
     v_pos = _gc.getInitialPosHero();
     m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos );
 	_vCharacteres.push_back(m_hero);
-    
+
 	// Creamos los enemigos
     Enemy *enemy = NULL;
     string name_enemy = "";
@@ -135,6 +140,7 @@ void GameState::CreateInitialWorld()
         v = route.getPoint ( 0 );
 
         name_enemy = "Enemy" + StringConverter::toString(i);
+
 
         enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, _gc, i+1 );
         m_enemies.push_back ( enemy );
@@ -154,29 +160,28 @@ void GameState::CreateMiniMap() {
     _CameraMiniMap->setPosition(Vector3(0,45,1));
     _CameraMiniMap->lookAt(Vector3(0,0,0));
 	_CameraMiniMap->setNearClipDistance ( 5 );
-
-	// Creamos la textura donde vamos a meter el mapa que va visualizarse a partir de la camara
-	Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
+    // Creamos la textura donde vamos a meter el mapa que va visualizarse a partir de la camara
+    Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 256, 256, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
-	Ogre::RenderTexture* _rtex = _rtt->getBuffer()->getRenderTarget();
+    Ogre::RenderTexture* _rtex = _rtt->getBuffer()->getRenderTarget();
 	// Vinculamos la camara con la textura
     _rtex->addViewport ( _CameraMiniMap );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
     _rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
     _rtex->getViewport(0)->setOverlaysEnabled ( false );
     _rtex->setAutoUpdated(true);
-	// Creamos el material al que le vamos a asginar la textura
+    // Creamos el material al que le vamos a asginar la textura
     MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
     Technique* matTechnique = mPtr->createTechnique();
     matTechnique->createPass();
     mPtr->getTechnique(0)->getPass(0)->setLightingEnabled(true);
     mPtr->getTechnique(0)->getPass(0)->setDiffuse(0.9,0.9,0.9,1);
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
-	// Le asignamos la textura que hemos creado
+    // Le asignamos la textura que hemos creado
     mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
-	// Dibujamos el rectagulo donde vamos a insertar la camara
+    // Dibujamos el rectagulo donde vamos a insertar la camara
     Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
     _rect->setCorners ( 0.5, 1, 1, 0.5 );
     _rect->setMaterial ( "RttMat_Map" );
@@ -191,7 +196,7 @@ void GameState::CreateMiniMap() {
 	// Le vinculamos el listener a la textura
 	MiniMapTextureListener *_textureListener = new MiniMapTextureListener ( _vCharacteres, _rect );
     _rtex->addListener ( _textureListener );
-}
+  }
 
 
 bool GameState::pause()
@@ -490,10 +495,6 @@ void GameState::update(double timeSinceLastFrame)
 //        valZ = -0.05;
         m_hero->walk();
       }
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_X ) )
-      {
-        m_hero->walk_to(m_enemies[0]->getSceneNode()->getPosition());
-      }
 
     // Actalizamos los personajes
     m_hero->update(deltaT);
@@ -591,10 +592,22 @@ void GameState::update(double timeSinceLastFrame)
         unsigned int i = 1;
         for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
  	        {
- 	          (*itEnemy)->walk_in_route();
+ 	          if ( (*itEnemy)->getStateMachine().getCurrentState() == "Vigila" )
+              (*itEnemy)->walk_in_route();
+            else
+              (*itEnemy)->stop_move();
 
+            // Cambios de estado
             if ( (*itEnemy)->haveYouSeenAnybody() )
-              cout << "Enemy" + StringConverter::toString(i) + "::te veo!!" << endl;
+              {
+                if ( (*itEnemy)->getStateMachine().getCurrentState() == "Vigila" )
+                  (*itEnemy)->getStateMachine().setCurrentState ( "Alerta" );
+              }
+            else
+            {
+                if ( (*itEnemy)->getStateMachine().getCurrentState() == "Alerta" )
+                  (*itEnemy)->getStateMachine().setCurrentState ( "Vigila" );
+            }
  	        }
       }
 
@@ -720,3 +733,105 @@ void GameState::CreateMap(string map)
     rigidTrack->setShape(node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
                Quaternion::IDENTITY);
 }
+
+//void GameState::check_vision()
+//  {
+//    Ogre::Image img;
+////    Ogre::PixelBox pixBox;
+//    string nameEntity = "";
+//    Ogre::Entity* ptrEntity = NULL;
+//
+//    // Ponemos material blanco a todos los enemigos
+//
+//    for ( unsigned int i = 0; i < NUM_ENEMIES; i++ )
+//      {
+//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
+//        if ( m_pSceneMgr->hasEntity ( nameEntity ) )
+//          {
+//            ptrEntity = m_pSceneMgr->getEntity ( nameEntity );
+//            ptrEntity->setMaterialName ( "MaterialBlanco" );
+//            ptrEntity->setCastShadows ( false );
+//            m_pSceneMgr->_updateSceneGraph ( camPOV );
+//          }
+//      }
+//
+//    // Ocultamos el suelo
+//
+//    entFloor->setVisible ( false );
+//    m_pSceneMgr->_updateSceneGraph ( camPOV );
+//
+////    nameEntity = "floor";
+////    if ( m_sceneMgr->hasEntity ( nameEntity ) )
+////      {
+////        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
+////        ptrEntity->setVisible ( false );
+////      }
+//
+//    // Realizamos el render a textura
+//
+////    rtt = Ogre::TextureManager::getSingleton().createManual (
+////            "RttT_Hero", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+////            Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
+////
+////    rtex = rtt->getBuffer()->getRenderTarget();
+////
+////    camPOV = m_pSceneMgr->createCamera ( "cameraPOV_Hero" );
+////    camPOV->setPosition ( Ogre::Vector3 ( 0, 2, -4 ) );
+////    camPOV->lookAt ( Ogre::Vector3 ( 0, 2, -14 ) );
+////    camPOV->setNearClipDistance ( 5 );
+////    camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+////
+////    rtex->addViewport ( camPOV );
+////    rtex->getViewport(0)->setClearEveryFrame ( true );
+////    rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
+////    rtex->getViewport(0)->setOverlaysEnabled ( false );
+////    rtex->setAutoUpdated(true);
+//
+//    // Cogemos la imagen del momento
+//
+//    rtt->convertToImage ( img );
+//
+////    pixBox = img.getPixelBox();
+//
+////    for ( unsigned int i = 0; i < pixBox.getWidth(); i++ )
+////      {
+////        for ( unsigned int j = 0; j < pixBox.getHeight(); j++ )
+////          {
+////            printf ( "%02x ", img.getColourAt(i,j,0) );
+////          }
+////          printf ( "\n" );
+////      }
+//
+//    // Volcamos a disco la captura, para ver si aparecen los objetos en blanco y el suelo ha desaparecido
+//    static int cont = 1;
+//    img.save ( "prueba" + Ogre::StringConverter::toString(cont++) + ".png" );
+//
+//    // Restablecemos a material rojo a todos los enemigos
+//
+//    for ( unsigned int i = 0; i < NUM_ENEMIES; i++ )
+//      {
+//        nameEntity = "Enemy" + Ogre::StringConverter::toString(i);
+//        if ( m_pSceneMgr->hasEntity ( nameEntity ) )
+//          {
+//            ptrEntity = m_pSceneMgr->getEntity ( nameEntity );
+//            ptrEntity->setMaterialName("MaterialRojo");
+//            ptrEntity->setCastShadows ( true );
+//          }
+//      }
+//
+//    // Restablecemos a visible el suelo
+//
+//    entFloor->setVisible ( true );
+////    nameEntity = "floor";
+////    if ( m_sceneMgr->hasEntity ( nameEntity ) )
+////      {
+////        ptrEntity = m_sceneMgr->getEntity ( nameEntity );
+////        ptrEntity->setVisible ( true );
+////      }
+//
+//    // ---------------------------------------------
+//
+//    //delete rtex;
+//    //m_pSceneMgr->destroyCamera ( camPOV );
+//
+//  }

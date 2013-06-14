@@ -68,6 +68,8 @@
 			<Add directory="/usr/local/lib" />
 		</Linker>
 		<Unit filename="config/config.xml" />
+		<Unit filename="config/stateMachineConfig.xml" />
+		<Unit filename="include/Action.h" />
 		<Unit filename="include/AdvancedOgreFramework.hpp" />
 		<Unit filename="include/AnimationBlender.h" />
 		<Unit filename="include/AppState.hpp" />
@@ -87,6 +89,10 @@
 		<Unit filename="include/Records.h" />
 		<Unit filename="include/SoundFX.h" />
 		<Unit filename="include/SoundFXManager.h" />
+		<Unit filename="include/State.h" />
+		<Unit filename="include/StateMachine.h" />
+		<Unit filename="include/StateMachineException.h" />
+		<Unit filename="include/StateMachineXMLCharger.h" />
 		<Unit filename="include/Track.h" />
 		<Unit filename="include/TrackManager.h" />
 		<Unit filename="include/Utilities.h" />
@@ -98,6 +104,7 @@
 		<Unit filename="media/materials/scripts/ransom.material" />
 		<Unit filename="media/materials/scripts/ransom.overlay" />
 		<Unit filename="ogre.cfg" />
+		<Unit filename="src/Action.cpp" />
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
 		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
@@ -116,6 +123,10 @@
 		<Unit filename="src/Records.cpp" />
 		<Unit filename="src/SoundFX.cpp" />
 		<Unit filename="src/SoundFXManager.cpp" />
+		<Unit filename="src/State.cpp" />
+		<Unit filename="src/StateMachine.cpp" />
+		<Unit filename="src/StateMachineException.cpp" />
+		<Unit filename="src/StateMachineXMLCharger.cpp" />
 		<Unit filename="src/Track.cpp" />
 		<Unit filename="src/TrackManager.cpp" />
 		<Unit filename="src/Utilities.cpp" />

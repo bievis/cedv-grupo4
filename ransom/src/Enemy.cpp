@@ -29,7 +29,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _camPOV->setNearClipDistance ( 0.1 );
     _camPOV->setFOVy ( Ogre::Degree ( 38 ) );
     Ogre::SceneNode *nodeCamera = _node->createChildSceneNode ( "nodeCameraPOV_" + name );
-	nodeCamera->attachObject(_camPOV);
+	  nodeCamera->attachObject(_camPOV);
 	// Vinculamos la textura con la camara del enemigo
     _rtex->addViewport ( _camPOV );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
@@ -55,6 +55,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _rtex->addListener ( _textureListener );
 
     _current_point = 1;
+    _way = true;
 
     // Cargamos la ruta asociada al enemigo por donde se va a mover
 
@@ -71,6 +72,11 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     print();
 
     cout << " punto de salida = " << _route.getPoint(0) << endl;
+
+    // Maquina de Estados del Enemigo
+    if ( _sm.load_from_file ( "config/stateMachineConfig.xml" ) )
+      _sm.print_info();
+
   }
 
 Enemy::~Enemy()
@@ -154,6 +160,55 @@ void Enemy::update(double timeSinceLastFrame) {
     updateLifeBar();
 }
 
+bool Enemy::walk_to ( const Ogre::Vector3& p )
+  {
+//    cout << _name << ": destino " << p << endl;
+    bool res = false;
+    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
+
+    Ogre::Vector3 v = p - o; // 1er vector
+
+    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
+
+    Ogre::Radian angle = orientacion.angleBetween ( v );
+
+    Ogre::Real distance = o.distance ( p );
+
+//    cout << " prueba = " << orientacion.getRotationTo(v).getYaw().valueDegrees() << endl;
+//    cout << " angle = " << angle.valueAngleUnits() << endl;
+//    cout << _name << ": distance = " << distance << ": proximity = " << _route.getProximity() << endl;
+
+    if ( distance < _route.getProximity() )
+      res = true;
+
+      if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
+      {
+        if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 170 )
+          {
+            turn_left(); turn_left();
+          }
+        if ( angle.valueDegrees() > 10 )
+          {
+            turn_left();
+          }
+      }
+      else
+      {
+        if ( orientacion.getRotationTo(v).getYaw().valueDegrees() < -170 )
+          {
+            turn_right(); turn_right();
+          }
+        if ( angle.valueDegrees() > 10 )
+          {
+            turn_right();
+          }
+      }
+
+    walk();
+
+    return res;
+  }
+
 void Enemy::walk_in_route()
 {
   assert ( _route.getNumPoints() );
@@ -165,7 +220,7 @@ void Enemy::walk_in_route()
   // punto
   if ( walk_to ( v ) )
   {
-    cout << " punto destino = " << v << endl;
+    cout << _name << ": punto destino = " << v << " - puntos = " << _route.getNumPoints() << " : current_point = " << _current_point << endl;
     if ( _way ) // Sentido hacia adelante
       _current_point++;
     else  // Sentido inverso
@@ -175,11 +230,21 @@ void Enemy::walk_in_route()
   // Si esto es así, significa que hemos pasado del último punto
   if ( _current_point == _route.getNumPoints() )
     {
+      cout << _name << ": _route.getRouteClosed() " << _route.getRouteClosed() << endl;
       if ( _route.getRouteClosed() )
         _current_point = 0;
       else
+      {
         _way = !_way;
-
+        _current_point-=2;
+      }
+      cout << _name << ": _current_point = " << _current_point << endl;
+    }
+  else if ( !_way && _current_point == -1 )
+    {
+      _way = !_way;
+      _current_point = 1;
+      cout << _name << ": _current_point = " << _current_point << endl;
     }
 }
 

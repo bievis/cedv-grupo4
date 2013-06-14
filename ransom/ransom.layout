@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="config/config.xml" open="1" top="0" tabpos="13">
-		<Cursor position="91" topLine="0" />
+	<File name="config/config.xml" open="1" top="0" tabpos="11">
+		<Cursor position="508" topLine="0" />
+	</File>
+	<File name="config/stateMachineConfig.xml" open="1" top="0" tabpos="21">
+		<Cursor position="306" topLine="0" />
 	</File>
 	<File name="include/AdvancedOgreFramework.hpp" open="0" top="0" tabpos="0">
 		<Cursor position="131" topLine="4" />
@@ -10,26 +13,26 @@
 	<File name="include/AppState.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="1842" topLine="0" />
 	</File>
-	<File name="include/Character.h" open="1" top="0" tabpos="8">
-		<Cursor position="2095" topLine="39" />
+	<File name="include/Character.h" open="1" top="0" tabpos="6">
+		<Cursor position="1673" topLine="24" />
 	</File>
 	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="5" />
 	</File>
 	<File name="include/Enemy.h" open="1" top="0" tabpos="4">
-		<Cursor position="2039" topLine="20" />
+		<Cursor position="2472" topLine="28" />
 	</File>
-	<File name="include/EnemyRoute.h" open="1" top="0" tabpos="12">
-		<Cursor position="1021" topLine="21" />
+	<File name="include/EnemyRoute.h" open="1" top="0" tabpos="10">
+		<Cursor position="1398" topLine="0" />
 	</File>
-	<File name="include/GameConfig.h" open="1" top="0" tabpos="9">
-		<Cursor position="648" topLine="15" />
+	<File name="include/GameConfig.h" open="1" top="0" tabpos="7">
+		<Cursor position="704" topLine="4" />
 	</File>
 	<File name="include/GameState.hpp" open="1" top="0" tabpos="2">
-		<Cursor position="155" topLine="81" />
+		<Cursor position="155" topLine="66" />
 	</File>
-	<File name="include/Hero.h" open="1" top="0" tabpos="6">
-		<Cursor position="369" topLine="22" />
+	<File name="include/Hero.h" open="0" top="0" tabpos="6">
+		<Cursor position="369" topLine="7" />
 	</File>
 	<File name="include/MenuState.hpp" open="0" top="0" tabpos="9">
 		<Cursor position="1495" topLine="17" />
@@ -42,6 +45,15 @@
 	</File>
 	<File name="include/Records.h" open="0" top="0" tabpos="11">
 		<Cursor position="211" topLine="0" />
+	</File>
+	<File name="include/State.h" open="1" top="0" tabpos="17">
+		<Cursor position="1625" topLine="30" />
+	</File>
+	<File name="include/StateMachine.h" open="1" top="0" tabpos="13">
+		<Cursor position="87" topLine="0" />
+	</File>
+	<File name="include/StateMachineException.h" open="1" top="0" tabpos="15">
+		<Cursor position="1076" topLine="9" />
 	</File>
 	<File name="include/Utilities.h" open="0" top="0" tabpos="11">
 		<Cursor position="4375" topLine="6" />
@@ -61,32 +73,35 @@
 	<File name="ogre.cfg" open="0" top="0" tabpos="0">
 		<Cursor position="197" topLine="0" />
 	</File>
+	<File name="src/Action.cpp" open="1" top="0" tabpos="23">
+		<Cursor position="412" topLine="11" />
+	</File>
 	<File name="src/AdvancedOgreFramework.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="1171" topLine="26" />
 	</File>
-	<File name="src/Character.cpp" open="1" top="1" tabpos="7">
-		<Cursor position="4242" topLine="130" />
+	<File name="src/Character.cpp" open="1" top="0" tabpos="5">
+		<Cursor position="4619" topLine="136" />
 	</File>
 	<File name="src/DotSceneLoader.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13507" topLine="375" />
 	</File>
 	<File name="src/Enemy.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="3609" topLine="106" />
+		<Cursor position="5427" topLine="154" />
 	</File>
-	<File name="src/EnemyRoute.cpp" open="1" top="0" tabpos="11">
-		<Cursor position="704" topLine="35" />
+	<File name="src/EnemyRoute.cpp" open="1" top="0" tabpos="9">
+		<Cursor position="869" topLine="35" />
 	</File>
-	<File name="src/GameConfig.cpp" open="1" top="0" tabpos="10">
-		<Cursor position="905" topLine="36" />
+	<File name="src/GameConfig.cpp" open="1" top="0" tabpos="8">
+		<Cursor position="899" topLine="0" />
 	</File>
 	<File name="src/GameState.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="13962" topLine="445" />
+		<Cursor position="1110" topLine="9" />
 	</File>
-	<File name="src/Hero.cpp" open="1" top="0" tabpos="5">
+	<File name="src/Hero.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="855" topLine="6" />
 	</File>
-	<File name="src/MenuState.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="255" topLine="90" />
+	<File name="src/MenuState.cpp" open="1" top="0" tabpos="24">
+		<Cursor position="1577" topLine="30" />
 	</File>
 	<File name="src/MyTextureListener.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="698" topLine="0" />
@@ -100,14 +115,26 @@
 	<File name="src/Records.cpp" open="0" top="0" tabpos="10">
 		<Cursor position="1731" topLine="62" />
 	</File>
+	<File name="src/State.cpp" open="1" top="0" tabpos="18">
+		<Cursor position="2218" topLine="71" />
+	</File>
+	<File name="src/StateMachine.cpp" open="1" top="0" tabpos="14">
+		<Cursor position="5639" topLine="226" />
+	</File>
+	<File name="src/StateMachineException.cpp" open="1" top="0" tabpos="16">
+		<Cursor position="227" topLine="0" />
+	</File>
+	<File name="src/StateMachineXMLCharger.cpp" open="1" top="1" tabpos="20">
+		<Cursor position="1581" topLine="52" />
+	</File>
 	<File name="src/TrackManager.cpp" open="0" top="0" tabpos="9">
 		<Cursor position="99" topLine="0" />
 	</File>
 	<File name="src/Utilities.cpp" open="0" top="0" tabpos="12">
 		<Cursor position="5824" topLine="120" />
 	</File>
-	<File name="src/XMLCharger.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="1530" topLine="62" />
+	<File name="src/XMLCharger.cpp" open="1" top="0" tabpos="12">
+		<Cursor position="1780" topLine="59" />
 	</File>
 	<File name="src/main.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="284" topLine="0" />

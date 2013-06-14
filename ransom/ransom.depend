@@ -1606,13 +1606,13 @@
 	<Terrain/OgreTerrainGroup.h>
 	<Terrain/OgreTerrainMaterialGeneratorA.h>
 
-1371149146 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfig.cpp
+1371150359 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfig.cpp
 	<GameConfig.h>
 
 1363078305 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfigException.cpp
 	<GameConfigException.hpp>
 
-1370514370 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MenuState.cpp
+1371223056 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MenuState.cpp
 	"MenuState.hpp"
 
 1370280349 source:/home/diego/CEDV/cedv-grupo4/ransom/src/PauseState.cpp
@@ -1647,14 +1647,14 @@
 1370889064 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Utilities.cpp
 	"Utilities.h"
 
-1370892031 source:/home/diego/CEDV/cedv-grupo4/ransom/src/XMLCharger.cpp
+1371155340 source:/home/diego/CEDV/cedv-grupo4/ransom/src/XMLCharger.cpp
 	<XMLCharger.h>
 
 1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/main.cpp
 	"RansomApp.hpp"
 	"windows.h"
 
-1371149190 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameState.cpp
+1371228440 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameState.cpp
 	"GameState.hpp"
 	"Shapes/OgreBulletCollisionsBoxShape.h"
 	"Shapes/OgreBulletCollisionsCompoundShape.h"
@@ -1667,20 +1667,35 @@
 	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 	<cassert>
 
-1371148238 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Character.cpp
+1371226782 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Character.cpp
 	"Character.h"
 	<cassert>
 
-1370705329 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MyTextureListener.cpp
+1371190925 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MyTextureListener.cpp
 	"MyTextureListener.h"
 
-1371149939 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Enemy.cpp
+1371227546 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Enemy.cpp
 	"Enemy.h"
 
 1371052550 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Hero.cpp
 	"Hero.h"
 
-1371065103 source:/home/diego/CEDV/cedv-grupo4/ransom/src/EnemyRoute.cpp
+1371190925 source:/home/diego/CEDV/cedv-grupo4/ransom/src/EnemyRoute.cpp
 	"EnemyRoute.h"
 	<iostream>
+
+1371212255 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Action.cpp
+	"Action.h"
+
+1371212473 source:/home/diego/CEDV/cedv-grupo4/ransom/src/State.cpp
+	"State.h"
+
+1371228606 source:/home/diego/CEDV/cedv-grupo4/ransom/src/StateMachine.cpp
+	"StateMachine.h"
+
+1371214193 source:/home/diego/CEDV/cedv-grupo4/ransom/src/StateMachineException.cpp
+	"StateMachineException.h"
+
+1371223424 source:/home/diego/CEDV/cedv-grupo4/ransom/src/StateMachineXMLCharger.cpp
+	<StateMachineXMLCharger.h>
 

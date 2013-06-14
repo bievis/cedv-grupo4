@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config>
+
+  <StateMachine default="Vigila">
+    <!-- States -->
+
+    <!-- Defined states in the state machine -->
+    <States>
+
+      <State name="Vigila">
+        <Actions>
+          <Action name="walk_in_route" />
+        </Actions>
+      </State>
+
+      <State name="Alerta">
+        <Actions>
+          <Action name="walk_to" />
+        </Actions>
+      </State>
+
+      <State name="Dispara">
+        <Actions>
+          <Action name="shoot" />
+        </Actions>
+      </State>
+
+      <State name="Persigue">
+        <Actions>
+          <Action name="run_to" />
+        </Actions>
+      </State>
+
+    </States>
+
+  </StateMachine>
+
+</config>
