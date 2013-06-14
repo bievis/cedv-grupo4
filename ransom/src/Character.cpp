@@ -118,11 +118,11 @@ void Character::update(double timeSinceLastFrame) {
     }
 }
 
-void Character::walk ( bool reverse )
+void Character::walk ( bool reverse, float velocidad )
   {
     assert ( _rigidBody );
 
-    float velocidad = VELOCIDAD;
+//    float velocidad = VELOCIDAD;
     if (reverse) velocidad *= -1;
 
     _rigidBody->enableActiveState();

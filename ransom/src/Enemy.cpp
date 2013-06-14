@@ -158,6 +158,18 @@ void Enemy::updateLifeBar() {
 void Enemy::update(double timeSinceLastFrame) {
     Character::update(timeSinceLastFrame);
     updateLifeBar();
+
+    //Cambios de estado del enemigo
+    if ( haveYouSeenAnybody() )
+      {
+        if ( _sm.getCurrentState() == "Watching" )
+          _sm.setCurrentState ( "Alert" );
+      }
+    else
+      {
+        if ( _sm.getCurrentState() == "Alert" )
+          _sm.setCurrentState ( "Watching" );
+      }
 }
 
 bool Enemy::walk_to ( const Ogre::Vector3& p )
@@ -204,7 +216,7 @@ bool Enemy::walk_to ( const Ogre::Vector3& p )
           }
       }
 
-    walk();
+    walk ( false );
 
     return res;
   }
