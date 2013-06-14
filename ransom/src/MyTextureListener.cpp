@@ -26,7 +26,7 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
     Ogre::Entity* ptrEntity = NULL;
     unsigned int cont = 0;
 
-    // Ponemos material blanco a todos los enemigos
+    // Ocultamos el heroe y mostramos su Dummy
 
     if ( _sceneMgr->hasEntity ( nameEntity ) && _sceneMgr->hasEntity ( nameEntityDummy ) )
       {
@@ -51,6 +51,7 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
 
     pixBox = img.getPixelBox();
 
+	// Contamos los blancos y si hay los suficientes es que ha detectado al heroe
     for ( unsigned int i = 0; i < pixBox.getWidth(); i++ )
       {
         for ( unsigned int j = 0; j < pixBox.getHeight(); j++ )

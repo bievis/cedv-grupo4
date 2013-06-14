@@ -148,26 +148,39 @@ void GameState::CreateInitialWorld()
         m_enemies.push_back ( enemy );
       }
 
-    //Plano donde se verá lo que está viendo el personaje principal
+    // Creamos el Mapa
     //*************************************************************************
-    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Enemy0", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
+	// Creamos la textura donde vamos a meter el mapa que va visualizarse a partir de la camara
+	Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
+            "RttT_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            Ogre::TEX_TYPE_2D, 256, 256, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
+
+	Ogre::RenderTexture* _rtex = _rtt->getBuffer()->getRenderTarget();
+	// Vinculamos la camara con la tectura
+    _rtex->addViewport ( m_pCamera );
+    _rtex->getViewport(0)->setClearEveryFrame ( true );
+    _rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
+    _rtex->getViewport(0)->setOverlaysEnabled ( false );
+    _rtex->setAutoUpdated(true);
+	// Creamos el material al que le vamos a asginar la textura
+    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
     Technique* matTechnique = mPtr->createTechnique();
     matTechnique->createPass();
     mPtr->getTechnique(0)->getPass(0)->setLightingEnabled(true);
     mPtr->getTechnique(0)->getPass(0)->setDiffuse(0.9,0.9,0.9,1);
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
-
-    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Enemy0");
-
+	// Le asignamos la textura que hemos creado
+    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
+	// Dibujamos el rectagulo donde vamos a insertar la camara
     Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
-    _rect->setCorners ( -0.25, 1, 0.25, 0.5 ); //( -0.5, 0, 0.5, -1 );
-    _rect->setMaterial ( "RttMat_Enemy0" );
+    _rect->setCorners ( 0.5, 1, 1, 0.5 );
+    _rect->setMaterial ( "RttMat_Map" );
 
     // Render the background before everything else
     _rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
 
     // Attach background to the scene
-    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Enemy0" );
+    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Map" );
     node->attachObject ( _rect );
     //*************************************************************************
 
