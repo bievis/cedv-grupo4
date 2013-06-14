@@ -1,33 +1,37 @@
 <?xml version="1.0"?>
 <config>
 
-  <StateMachine default="Vigila">
-    <!-- States -->
+  <StateMachine default="Watching">
 
     <!-- Defined states in the state machine -->
     <States>
 
-      <State name="Vigila">
+      <!-- Estado de vigilancia -->
+      <State name="Watching">
         <Actions>
           <Action name="walk_in_route" />
         </Actions>
       </State>
 
-      <State name="Alerta">
+      <!-- Estado de avistamiento aun sin disparo -->
+      <State name="Alert">
         <Actions>
-          <Action name="walk_to" />
+          <Action name="stop_move" />
         </Actions>
       </State>
 
-      <State name="Dispara">
+      <!-- Estado de enfrentamiento con disparos -->
+      <State name="Shooting">
         <Actions>
           <Action name="shoot" />
         </Actions>
       </State>
 
-      <State name="Persigue">
+      <!-- Estado de persecución -->
+      <State name="Chasing">
         <Actions>
           <Action name="run_to" />
+          <Action name="watch_around" />
         </Actions>
       </State>
 

@@ -193,8 +193,8 @@ void GameState::CreateMiniMap() {
     Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Map" );
     node->attachObject ( _rect );
 
-	// Le vinculamos el listener a la textura
-	MiniMapTextureListener *_textureListener = new MiniMapTextureListener ( _vCharacteres, _rect );
+	  // Le vinculamos el listener a la textura
+  	MiniMapTextureListener *_textureListener = new MiniMapTextureListener ( _vCharacteres, _rect );
     _rtex->addListener ( _textureListener );
   }
 
@@ -487,13 +487,13 @@ void GameState::update(double timeSinceLastFrame)
       {
 //        bMove = true;
 //        valZ = 0.05;
-        m_hero->walk ( true );
+        m_hero->walk ( true, 4.0 );
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
 //        bMove = true;
 //        valZ = -0.05;
-        m_hero->walk();
+        m_hero->walk ( false, 4.0 );
       }
 
     // Actalizamos los personajes
@@ -590,24 +590,36 @@ void GameState::update(double timeSinceLastFrame)
     if ( m_enemies.size() > 0 )
       {
         unsigned int i = 1;
+
+        //Comprobamos según el estado en el que está el enemigo la(s) acción(es) que vamos a realizar
         for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
  	        {
- 	          if ( (*itEnemy)->getStateMachine().getCurrentState() == "Vigila" )
-              (*itEnemy)->walk_in_route();
-            else
-              (*itEnemy)->stop_move();
+            // NOTA!! : En el metodo Update() del enemigo se realizan los cambios de estado de éste
+ 	          State current_state = (*itEnemy)->getStateMachine().getCurrentStateObject();
 
-            // Cambios de estado
-            if ( (*itEnemy)->haveYouSeenAnybody() )
+            for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
               {
-                if ( (*itEnemy)->getStateMachine().getCurrentState() == "Vigila" )
-                  (*itEnemy)->getStateMachine().setCurrentState ( "Alerta" );
+                if ( it_a->second.getName() == "walk_in_route" )
+                  {
+                    (*itEnemy)->walk_in_route();
+                  }
+                else if ( it_a->second.getName() == "stop_move" )
+                  {
+                    (*itEnemy)->stop_move();
+                  }
+                else if ( it_a->second.getName() == "shoot" )
+                  {
+                    //PENDIENTE
+                  }
+                else if ( it_a->second.getName() == "run_to" )
+                  {
+                    //PENDIENTE
+                  }
+                else if ( it_a->second.getName() == "watch_around" )
+                  {
+                    //PENDIENTE
+                  }
               }
-            else
-            {
-                if ( (*itEnemy)->getStateMachine().getCurrentState() == "Alerta" )
-                  (*itEnemy)->getStateMachine().setCurrentState ( "Vigila" );
-            }
  	        }
       }
 

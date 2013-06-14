@@ -98,8 +98,6 @@ bool State::find_action ( const string &name )
 
     if ( it_a != _mapActions.end() )
       res = true;
-    else
-      cout << "The action '" << name << "' was not found in the state '" << _name << "'" << endl;
 
     return res;
 }

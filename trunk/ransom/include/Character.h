@@ -40,8 +40,9 @@ class Character
     Character&    operator=(const Character& other);
     /// \brief method to perform the character walk movement ( forward or backward )
     /// This method uses OgreBullet to move the character
-    /// \param reverse if value is true then wall to backward else will be forward (by default)
-    void          walk ( bool reverse = false );
+    /// \param reverse if value is true then wall to backward else will be forward
+    /// \param velocity value to set the linear velocity of the character
+    void          walk ( bool reverse, float velocidad = VELOCIDAD );
     /// \brief method to rotate the character to the left
     void          turn_left();
     /// \brief method to rotate the character to the right
@@ -116,7 +117,7 @@ class Character
     /// \brief reference to scene node DUMMY
     Ogre::SceneNode*  _nodeDummy;
   private:
-	
+
 };
 
 #endif // CHARACTER_H
