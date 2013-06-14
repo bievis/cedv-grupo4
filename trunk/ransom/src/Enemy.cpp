@@ -14,12 +14,13 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );
 
+	// Textura para mostrar la visualizacion de lo que ve el enemigo
     _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
     _rtex = _rtt->getBuffer()->getRenderTarget();
-
+	// Camara de lo que visualiza el enemigo
     _camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
     _camPOV->setPosition ( Ogre::Vector3 ( 0, 0, 0.2 ) );
     _camPOV->lookAt ( Ogre::Vector3 ( 0, 0, 5 ) );
@@ -27,7 +28,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _camPOV->setFOVy ( Ogre::Degree ( 38 ) );
     Ogre::SceneNode *nodeCamera = _node->createChildSceneNode ( "nodeCameraPOV_" + name );
 	nodeCamera->attachObject(_camPOV);
-
+	// Vinculamos la textura con la camara del enemigo
     _rtex->addViewport ( _camPOV );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
     _rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
