@@ -33,12 +33,14 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
         ptrEntity = _sceneMgr->getEntity ( nameEntity );
         ptrEntity->setVisible ( false );
         ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
+		ptrEntity->setMaterialName("MaterialBlanco");
         ptrEntity->setVisible ( true );
       }
 
     // Ocultamos el suelo
 
     nameEntity = "floor";
+	
     if ( _sceneMgr->hasEntity ( nameEntity ) )
       {
         ptrEntity = _sceneMgr->getEntity ( nameEntity );
@@ -85,6 +87,7 @@ void MyTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
         ptrEntity = _sceneMgr->getEntity ( nameEntity );
         ptrEntity->setVisible ( true );
         ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
+		ptrEntity->setMaterialName("MaterialAzul");
         ptrEntity->setVisible ( false );
       }
 

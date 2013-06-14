@@ -18,6 +18,7 @@
 #include "Hero.h"
 #include "XMLCharger.h"
 #include "GameConfig.h"
+#include "MiniMapTextureListener.h"
 
 //#include <vector>
 // #include <Coche.hpp>
@@ -80,12 +81,11 @@ private:
 
     Hero*                     m_hero;
     std::deque<Enemy*>        m_enemies;
+	std::vector<Character*> _vCharacteres;
     OgreBulletDynamics::RigidBody* m_swat;
 
     Ogre::Entity*             entFloor;
-//    Ogre::TexturePtr          rtt;
-//    Ogre::RenderTexture*      rtex;
-//    Ogre::Camera*             camPOV;
+	Ogre::Camera*             _CameraMiniMap;
 
     // Game configuration
     GameConfig _gc;
@@ -97,6 +97,8 @@ private:
     void check_vision();
 
     void CreateInitialWorld();
+	// \brief method to create mini map of game
+	void CreateMiniMap();
 
     // string getTime(double tiempo);
     // void Mostrar_Velocidad ( float velocidad, bool ocultar = false );

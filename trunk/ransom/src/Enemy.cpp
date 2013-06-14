@@ -14,6 +14,8 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );
 
+	_entityDummy->setMaterialName ( "MaterialRojo" );
+
 	// Textura para mostrar la visualizacion de lo que ve el enemigo
     _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -179,4 +181,9 @@ void Enemy::walk_in_route()
         _way = !_way;
 
     }
+}
+
+void Enemy::showDummy(bool show) {
+	Character::showDummy(show);
+	_lifeNode->setVisible(!show);
 }

@@ -9,21 +9,10 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
                                                         initial_pos,
                                                         false )
   {
-    Ogre::Vector3 size = Ogre::Vector3::ZERO;
-    _entityDummy = sceneMgr->createEntity ( name + "DUMMY", MESH_FILE_WITHOUT_EXTENSION + string ( ".mesh" ) );
-    _entityDummy->setCastShadows(false);
-    _entityDummy->setVisible(false);
-
-    _nodeDummy = sceneMgr->createSceneNode ( name + "DUMMY" );
-	_nodeDummy->setPosition(0, (_entityDummy->getBoundingBox().getSize().y / -2), 0);
-    _nodeDummy->attachObject ( _entityDummy );
-	// Atachamos el dummy para que se mueva con el personaje
-    _node->addChild ( _nodeDummy );
-
     //Material del Heroe
     _entity->setMaterialName ( "MaterialAzul" );
 
-    _entityDummy->setMaterialName ( "MaterialBlanco" );
+    _entityDummy->setMaterialName ( "MaterialAzul" );
   }
 
 Hero::~Hero()
@@ -46,8 +35,7 @@ Hero& Hero::operator=(const Hero& rhs)
 
 void Hero::copy ( const Hero& source )
   {
-    _entityDummy = source.getEntityDUMMY();
-    _nodeDummy = source.getSceneNodeDUMMY();
+	
   }
 
 void Hero::print()

@@ -81,6 +81,8 @@ class Character
     /// \brief method to get entity reference
     /// \return entity reference
     inline Ogre::Entity* getEntity() const { return _entity; };
+	/// \return entity reference
+    inline Ogre::Entity* getEntityDummy() const { return _entityDummy; };
     /// \brief method to print character info
     void          print();
     /// \brief method to stop character movement
@@ -89,6 +91,8 @@ class Character
     virtual void          update(double timeSinceLastFrame);
     /// \brief method to change animation of character
     void          changeAnimation(string nameAnimation);
+	/// \brief method to show dummy or not
+    virtual void          showDummy(bool show);
   protected:
 
     /// \brief protected method to copy a character
@@ -112,8 +116,12 @@ class Character
     OgreBulletDynamics::RigidBody* _rigidBody;
     /// \brief reference to current animation
     Ogre::AnimationState* _currentAnimation;
+	/// \brief reference to entity DUMMY
+    Ogre::Entity* _entityDummy;
+    /// \brief reference to scene node DUMMY
+    Ogre::SceneNode*  _nodeDummy;
   private:
-
+	
 };
 
 #endif // CHARACTER_H

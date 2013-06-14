@@ -26,12 +26,6 @@ class Hero : public Character
      *  \return A reference to this
      */
     Hero& operator=(const Hero& other);
-    /// \brief method to get the scene node reference
-    /// \return scene node reference
-    inline Ogre::SceneNode* getSceneNodeDUMMY() const { return _node; };
-    /// \brief method to get entity reference
-    /// \return entity reference
-    inline Ogre::Entity* getEntityDUMMY() const { return _entity; };
     /// \brief method to print hero info
     void          print();
 
@@ -42,11 +36,6 @@ class Hero : public Character
     void copy ( const Hero& source );
 
   private:
-      /// \brief reference to entity DUMMY
-    Ogre::Entity* _entityDummy;
-    /// \brief reference to scene node DUMMY
-    Ogre::SceneNode*  _nodeDummy;
-
 };
 
 #endif // HERO_H

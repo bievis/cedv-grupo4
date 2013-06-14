@@ -54,7 +54,8 @@ class Enemy : public Character
     void updateLifeBar();
     /// \brief method to update enemy in frame
     void          update(double timeSinceLastFrame);
-
+	/// \brief method to show dummy or not
+    void          showDummy(bool show);
   protected:
     /// \brief protected method to copy a enemy
     /// this method is used in assingnment operator and copy constructor
