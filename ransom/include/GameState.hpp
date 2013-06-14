@@ -16,6 +16,7 @@
 #include "Utilities.h"
 #include "Enemy.h"
 #include "Hero.h"
+#include "Hostage.h"
 #include "XMLCharger.h"
 #include "GameConfig.h"
 #include "MiniMapTextureListener.h"
@@ -81,6 +82,7 @@ private:
 
     Hero*                     m_hero;
     std::deque<Enemy*>        m_enemies;
+	std::vector<Hostage*>	  m_hostages;
 	std::vector<Character*> _vCharacteres;
     OgreBulletDynamics::RigidBody* m_swat;
 

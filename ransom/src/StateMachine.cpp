@@ -77,7 +77,7 @@ StateMachine::StateMachine ( const StateMachine& other )
     _currentState = other.getCurrentState();
 
     //Copy states
-    for ( it_s = other.getStates()->begin(); it_s != other.getStates()->end(); advance ( it_s, 1 ) )
+    for ( it_s = ((StateMachine&)other).getStates()->begin(); it_s != ((StateMachine&)other).getStates()->end(); advance ( it_s, 1 ) )
       {
         ret_s = _mapStates.insert ( pair<string, State>( it_s->first, it_s->second ) );
 
@@ -103,7 +103,7 @@ void StateMachine::setCurrentState( const string &newCurrentState )
     cout << "The current state is '" << msgCurrent << "'" << endl;
   }
 
-const State& StateMachine::getCurrentStateObject() const
+const State& StateMachine::getCurrentStateObject()
   {
     bool res = false;
     map<string, State>::iterator it_state;

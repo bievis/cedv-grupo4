@@ -1,30 +1,30 @@
-#include "Hero.h"
+#include "Hostage.h"
 
-Hero::Hero( Ogre::SceneManager* sceneMgr,
+Hostage::Hostage( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
                     const Ogre::Vector3& initial_pos ) : Character ( sceneMgr,
                                                         world,
                                                         name,
                                                         initial_pos,
-                                                        HERO, STOP_ANIMATION )
+                                                        HOSTAGE, MOVE_ANIMATION )
   {
-    //Material del Heroe
-    _entity->setMaterialName ( "MaterialAzul" );
+    //Material del Hostagee
+    _entity->setMaterialName ( "MaterialAmarillo" );
 
-    _entityDummy->setMaterialName ( "MaterialAzul" );
+    _entityDummy->setMaterialName ( "MaterialAmarillo" );
   }
 
-Hero::~Hero()
+Hostage::~Hostage()
 {
 }
 
-Hero::Hero(const Hero& other) : Character ( other )
+Hostage::Hostage(const Hostage& other) : Character ( other )
 {
   copy ( other );
 }
 
-Hero& Hero::operator=(const Hero& rhs)
+Hostage& Hostage::operator=(const Hostage& rhs)
 {
   if (this == &rhs) return *this; // handle self assignment
 
@@ -33,20 +33,20 @@ Hero& Hero::operator=(const Hero& rhs)
   return *this;
 }
 
-void Hero::copy ( const Hero& source )
+void Hostage::copy ( const Hostage& source )
   {
 	
   }
 
-void Hero::print()
+void Hostage::changeAnimation(string nameAnimation) {
+
+}
+
+void Hostage::print()
 {
   cout << "==============" << endl;
-  cout << "Hero Info" << endl;
+  cout << "Hostage Info" << endl;
   cout << "==============" << endl;
 
   Character::print();
-
-  printf ( "entity DUMMY ref.: %p\n", _entityDummy );
-  printf ( "node ref.        : %p\n", _nodeDummy );
-  cout << "==============" << endl;
 }

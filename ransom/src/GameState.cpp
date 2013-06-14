@@ -28,6 +28,7 @@ GameState::GameState()
     m_hero              = NULL;
     m_pOverlayMgr       = NULL;
     m_enemies.clear();
+	m_hostages.clear();
     defaultPlaneBodyFloor = NULL;
     ShapeFloor          = NULL;
     _world              = NULL;
@@ -146,6 +147,11 @@ void GameState::CreateInitialWorld()
         m_enemies.push_back ( enemy );
 		_vCharacteres.push_back(enemy);
       }
+
+	Ogre::Vector3 v_posHostage(9.50000, 1, -9.50000);
+	Hostage* hostage = new Hostage(m_pSceneMgr, _world, "Hostage", v_posHostage);
+	m_hostages.push_back(hostage);
+	_vCharacteres.push_back(hostage);
 
     // Creamos el Mapa
     //*************************************************************************
@@ -278,6 +284,16 @@ void GameState::exit()
  		  cout << "delete hero" << endl;
       delete m_hero;
  		}
+
+	std::vector<Hostage *>::iterator itHostage = m_hostages.begin();
+ 		while ( m_hostages.end() != itHostage )
+ 		{
+      if ( *itHostage )
+        delete *itHostage;
+ 			++itHostage;
+ 		}
+
+ 		m_hostages.clear();
 
 	_vCharacteres.clear();
 
@@ -506,6 +522,14 @@ void GameState::update(double timeSinceLastFrame)
             (*itEnemy)->update(deltaT);
         }
     }
+	if ( m_hostages.size() > 0 )
+    {
+        unsigned int i = 1;
+        for ( std::vector<Hostage *>::iterator itHostage = m_hostages.begin(); m_hostages.end() != itHostage; itHostage++, i++ )
+        {
+            (*itHostage)->update(deltaT);
+        }
+    }
 
 //    if ( bMove && m_hero )
 //      {
@@ -595,7 +619,7 @@ void GameState::update(double timeSinceLastFrame)
         for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
  	        {
             // NOTA!! : En el metodo Update() del enemigo se realizan los cambios de estado de éste
- 	          State current_state = (*itEnemy)->getStateMachine().getCurrentStateObject();
+ 	          State current_state = ((StateMachine&) (*itEnemy)->getStateMachine()).getCurrentStateObject();
 
             for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
               {

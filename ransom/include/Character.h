@@ -13,6 +13,10 @@ using namespace std;
 #define MOVE_ANIMATION "Move"
 #define STOP_ANIMATION "Stop"
 
+enum CHARACTER_TYPE {
+	HERO, ENEMY, HOSTAGE
+};
+
 /// \brief Class to manage the character
 class Character
 {
@@ -24,12 +28,13 @@ class Character
     /// \param v_pos initial position in coordenate X, Y, Z with object Ogre::Vector3
     /// \param pos_Y initial position in coordenate Y
     /// \param pos_Z initial position in coordenate Z
-    /// \param isEnemy Enemy or no enemy (to load the correct MESH file)
+    /// \param type Type of character (to load the correct MESH file)
+	/// \param animation Name of animation init
     Character     ( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
                     const Ogre::Vector3& v_pos,
-                    bool isEnemy);
+                    CHARACTER_TYPE type, string animation);
     /// \brief default destructor
     virtual ~Character();
     /// \brief copy constructor
@@ -86,7 +91,7 @@ class Character
     /// \brief method to update character in frame
     virtual void          update(double timeSinceLastFrame);
     /// \brief method to change animation of character
-    void          changeAnimation(string nameAnimation);
+    virtual void          changeAnimation(string nameAnimation);
 	/// \brief method to show dummy or not
     virtual void          showDummy(bool show);
   protected:
