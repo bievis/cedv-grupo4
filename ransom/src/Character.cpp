@@ -39,6 +39,17 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
     } else {
         _currentAnimation = _entity->getAnimationState(animation);
     }
+
+	// Creamos el Dummy para la vision y para el mini mapa
+	_entityDummy = sceneMgr->createEntity ( name + "DUMMY", MESH_FILE_WITHOUT_EXTENSION + string ( ".mesh" ) );
+    _entityDummy->setCastShadows(false);
+    _entityDummy->setVisible(false);
+
+    _nodeDummy = sceneMgr->createSceneNode ( name + "DUMMY" );
+	_nodeDummy->setPosition(0, (_entityDummy->getBoundingBox().getSize().y / -2), 0);
+    _nodeDummy->attachObject ( _entityDummy );
+	// Atachamos el dummy para que se mueva con el personaje
+    _node->addChild ( _nodeDummy );
   }
 
 Character::~Character()
@@ -194,6 +205,11 @@ void Character::turn_right()
     _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
 
   }
+
+void Character::showDummy(bool show) {
+	this->getEntity()->setVisible(!show);
+	this->getEntityDummy()->setVisible(show);
+}
 
 void Character::print()
   {

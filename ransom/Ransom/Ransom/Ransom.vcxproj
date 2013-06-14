@@ -121,6 +121,7 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     <ClCompile Include="..\..\src\Hero.cpp" />
     <ClCompile Include="..\..\src\main.cpp" />
     <ClCompile Include="..\..\src\MenuState.cpp" />
+    <ClCompile Include="..\..\src\MiniMapTextureListener.cpp" />
     <ClCompile Include="..\..\src\MyTextureListener.cpp" />
     <ClCompile Include="..\..\src\PauseState.cpp" />
     <ClCompile Include="..\..\src\RansomApp.cpp" />
@@ -146,6 +147,7 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     <ClInclude Include="..\..\include\GameState.hpp" />
     <ClInclude Include="..\..\include\Hero.h" />
     <ClInclude Include="..\..\include\MenuState.hpp" />
+    <ClInclude Include="..\..\include\MiniMapTextureListener.h" />
     <ClInclude Include="..\..\include\MyTextureListener.h" />
     <ClInclude Include="..\..\include\PauseState.hpp" />
     <ClInclude Include="..\..\include\RansomApp.hpp" />

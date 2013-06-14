@@ -84,6 +84,9 @@
     <ClCompile Include="..\..\src\XMLCharger.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\MiniMapTextureListener.cpp">
+      <Filter>Archivos de código fuente</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp">
@@ -156,6 +159,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\XMLCharger.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\MiniMapTextureListener.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
