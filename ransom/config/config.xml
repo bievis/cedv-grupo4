@@ -1,7 +1,17 @@
 <?xml version="1.0"?>
 <config>
 
-  <hero posX="-7.5" posY="1" posZ="7.5" />
+  <hero posX="-7.5" posY="1.0" posZ="7.5" />
+
+  <hostage>
+
+    <hostage_positions>
+
+      <position posX="9.5" posY="1.0" posZ="-9.5" />
+
+    </hostage_positions>
+
+  </hostage>
 
   <enemy num="2">
 

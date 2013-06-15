@@ -79,17 +79,39 @@ void GameConfig::addEnemyRoute ( const EnemyRoute& newRoute )
 
 void GameConfig::print()
   {
+    string msg = "";
+    unsigned int i;
+
     cout << "========================" << endl;
     cout << " * Game Configuration *" << endl;
     cout << "========================" << endl;
     cout << "Num Enemies      : " << _numEnemies << endl;
-    cout << "Initial Pos Hero : X(" << _initialPos_Hero.x << ") Y(" << _initialPos_Hero.y << ") Z(" << _initialPos_Hero.z << ")" << endl;
+    cout << "Initial Pos Hero : " << _initialPos_Hero << endl;
     cout << "Enemy Routes     : " << _vEnemyRoutes.size() << endl;
-    for ( unsigned int i = 0; i < _vEnemyRoutes.size(); i++ )
+
+    for ( i = 0; i < _vEnemyRoutes.size(); i++ )
       {
         _vEnemyRoutes[i]->print();
+      }
+
+    for ( i = 0; i < _vPositionHostages.size(); i++ )
+      {
+        msg = "Pos. Hostage" + Ogre::StringConverter::toString(i);
+        cout << msg << "    : " << _vPositionHostages[i] << endl;
       }
 
     cout << "========================" << endl;
   }
 
+const Ogre::Vector3& GameConfig::getPositionHostage ( unsigned int index ) const
+  {
+    if ( index < _vPositionHostages.size() )
+      return _vPositionHostages[index];
+    else
+      throw GameConfigException ( "Error Index Out of Bounds" );
+  }
+
+void GameConfig::addHostagePosition ( const Ogre::Vector3& p )
+  {
+    _vPositionHostages.push_back ( p );
+  }
