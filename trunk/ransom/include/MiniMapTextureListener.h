@@ -17,11 +17,13 @@ class MiniMapTextureListener : public RenderTargetListener
   private:
     std::vector<Character*> _vCharacteres;
 	Ogre::Rectangle2D* _rect;
+	/// \brief reference to scene manager
+    Ogre::SceneManager* _sceneMgr;
   public:
     /// \brief constructor for the texture listener
     /// \param sceneMgr reference to scene manager
     /// \param rtt texture pointer
-    MiniMapTextureListener ( std::vector<Character*> vCharacteres, Ogre::Rectangle2D* rect );
+    MiniMapTextureListener ( Ogre::SceneManager* sceneMgr, std::vector<Character*> vCharacteres, Ogre::Rectangle2D* rect );
     /// \brief default destructor
     ~MiniMapTextureListener();
     /// \brief this method is executed before the texture is put into the rectangle2D
