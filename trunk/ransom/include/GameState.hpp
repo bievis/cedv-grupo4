@@ -82,15 +82,17 @@ private:
 
     Hero*                     m_hero;
     std::deque<Enemy*>        m_enemies;
-	std::vector<Hostage*>	  m_hostages;
-	std::vector<Character*> _vCharacteres;
+    std::vector<Hostage*>	    m_hostages;
+    std::vector<Character*>   _vCharacteres;
     OgreBulletDynamics::RigidBody* m_swat;
 
     Ogre::Entity*             entFloor;
-	Ogre::Camera*             _CameraMiniMap;
+    Ogre::Camera*             _CameraMiniMap;
+    MiniMapTextureListener*   _textureListener;
+    Ogre::RenderTexture*      _rtex;
 
     // Game configuration
-    GameConfig _gc;
+    GameConfig                _gc;
 
     //Private Methods
 

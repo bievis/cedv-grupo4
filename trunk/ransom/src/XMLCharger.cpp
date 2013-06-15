@@ -53,6 +53,24 @@ void XMLCharger::LoadFile ( string routeAbsoluteFile, GameConfig &gc )
             gc.setInitialPosHero ( Ogre::Vector3 ( posX, posY, posZ ) );
 
           }
+        else if ( v.first == "hostage" )
+          {
+
+            boost::property_tree::ptree positions = (boost::property_tree::ptree) v.second;
+
+            BOOST_FOREACH ( ptree::value_type const& v2, positions.get_child("hostage_positions") )
+              {
+                if ( v2.first == "position" )
+                  {
+                    posX = v2.second.get<float>("<xmlattr>.posX");
+                    posY = v2.second.get<float>("<xmlattr>.posY");
+                    posZ = v2.second.get<float>("<xmlattr>.posZ");
+
+                    gc.addHostagePosition ( Ogre::Vector3 ( posX, posY, posZ ) );
+                  }
+              }
+
+          }
         else if ( v.first == "enemy" )
           {
 
@@ -64,7 +82,6 @@ void XMLCharger::LoadFile ( string routeAbsoluteFile, GameConfig &gc )
               {
                 if ( v2.first == "route" )
                   {
-
                     EnemyRoute route;
 
                     unsigned int id = v2.second.get<unsigned int>("<xmlattr>.id");
@@ -99,7 +116,6 @@ void XMLCharger::LoadFile ( string routeAbsoluteFile, GameConfig &gc )
                     route.clear();
                   }
               }
-
           }
       }
 

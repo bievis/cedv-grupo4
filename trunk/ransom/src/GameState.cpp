@@ -142,16 +142,24 @@ void GameState::CreateInitialWorld()
 
         name_enemy = "Enemy" + StringConverter::toString(i);
 
-
         enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, _gc, i+1 );
         m_enemies.push_back ( enemy );
-		_vCharacteres.push_back(enemy);
+        _vCharacteres.push_back(enemy);
       }
 
-	Ogre::Vector3 v_posHostage(9.50000, 1, -9.50000);
-	Hostage* hostage = new Hostage(m_pSceneMgr, _world, "Hostage", v_posHostage);
-	m_hostages.push_back(hostage);
-	_vCharacteres.push_back(hostage);
+    for ( unsigned int i = 0; i < _gc.getNumHostages(); i++ )
+      {
+        string name_hostage = "Hostage" + StringConverter::toString(i);
+
+        Hostage* hostage = new Hostage ( m_pSceneMgr, _world, name_hostage, _gc.getPositionHostage(i) );
+        m_hostages.push_back ( hostage );
+        _vCharacteres.push_back ( hostage );
+      }
+
+//	Ogre::Vector3 v_posHostage(9.50000, 1, -9.50000);
+//	Hostage* hostage = new Hostage(m_pSceneMgr, _world, "Hostage", v_posHostage);
+//	m_hostages.push_back(hostage);
+//	_vCharacteres.push_back(hostage);
 
     // Creamos el Mapa
     //*************************************************************************
@@ -161,18 +169,18 @@ void GameState::CreateInitialWorld()
   }
 
 void GameState::CreateMiniMap() {
-	// Creamos la camara del mini mapa
-	_CameraMiniMap = m_pSceneMgr->createCamera ( "CameraMiniMap" );
+	  // Creamos la camara del mini mapa
+	  _CameraMiniMap = m_pSceneMgr->createCamera ( "CameraMiniMap" );
     _CameraMiniMap->setPosition(Vector3(0,45,1));
     _CameraMiniMap->lookAt(Vector3(0,0,0));
-	_CameraMiniMap->setNearClipDistance ( 5 );
+	  _CameraMiniMap->setNearClipDistance ( 5 );
     // Creamos la textura donde vamos a meter el mapa que va visualizarse a partir de la camara
     Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 256, 256, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
-    Ogre::RenderTexture* _rtex = _rtt->getBuffer()->getRenderTarget();
-	// Vinculamos la camara con la textura
+    _rtex = _rtt->getBuffer()->getRenderTarget();
+	  // Vinculamos la camara con la textura
     _rtex->addViewport ( _CameraMiniMap );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
     _rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
@@ -200,7 +208,7 @@ void GameState::CreateMiniMap() {
     node->attachObject ( _rect );
 
 	  // Le vinculamos el listener a la textura
-  	MiniMapTextureListener *_textureListener = new MiniMapTextureListener ( _vCharacteres, _rect );
+  	_textureListener = new MiniMapTextureListener ( _vCharacteres, _rect );
     _rtex->addListener ( _textureListener );
   }
 
@@ -316,7 +324,13 @@ void GameState::exit()
       m_pSceneMgr->destroyCamera ( m_pCamera );
     }
 
-	if ( _CameraMiniMap )
+    if ( _textureListener )
+      {
+        _rtex->removeListener ( _textureListener );
+        delete _textureListener;
+      }
+
+	  if ( _CameraMiniMap )
     {
       cout << "delete camera" << endl;
       m_pSceneMgr->destroyCamera ( _CameraMiniMap );

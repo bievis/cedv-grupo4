@@ -5,6 +5,7 @@
 #include <iostream>
 #include <GameConfigException.hpp>
 #include <EnemyRoute.h>
+#include <OgreStringConverter.h>
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class GameConfig {
   unsigned int _numEnemies;
   Ogre::Vector3 _initialPos_Hero;
   std::vector<EnemyRoute*> _vEnemyRoutes;
+  std::deque<Ogre::Vector3> _vPositionHostages;
 
  public:
   GameConfig();
@@ -40,6 +42,10 @@ class GameConfig {
 
   inline unsigned int getNumEnemies() const { return _numEnemies; };
   inline void setNumEnemies ( unsigned int newValue ) { _numEnemies = newValue; };
+
+  inline unsigned int getNumHostages() const { return _vPositionHostages.size(); };
+  const Ogre::Vector3& getPositionHostage ( unsigned int index ) const;
+  void addHostagePosition ( const Ogre::Vector3& p );
 
   void print();
 };
