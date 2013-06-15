@@ -15,6 +15,8 @@ void GameConfig::clear()
       }
 
     _vEnemyRoutes.clear();
+
+    _vPositionHostages.clear();
   }
 
 GameConfig::~GameConfig()

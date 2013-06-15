@@ -21,10 +21,7 @@
 #include "GameConfig.h"
 #include "MiniMapTextureListener.h"
 
-//#include <vector>
-// #include <Coche.hpp>
-
-// #define _NUM_COCHES_ 1
+#define NAME_MAP "Map"
 #define FILE_ROUTE_XML "./config/config.xml"
 
 class GameState : public AppState

@@ -1,7 +1,5 @@
 #include "MyTextureListener.h"
 
-//#define MAX_ENEMIES 20
-
 // si al menos hay 100 pixeles blancos significa que vemos algo
 #define THRESHOLD_VIEW 100
 
@@ -35,16 +33,6 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
         ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
 		ptrEntity->setMaterialName("MaterialBlanco");
         ptrEntity->setVisible ( true );
-      }
-
-    // Ocultamos el suelo
-
-    nameEntity = "floor";
-	
-    if ( _sceneMgr->hasEntity ( nameEntity ) )
-      {
-        ptrEntity = _sceneMgr->getEntity ( nameEntity );
-        ptrEntity->setVisible ( false );
       }
 
     // Cogemos la imagen del momento
@@ -89,14 +77,5 @@ void MyTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
         ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
 		ptrEntity->setMaterialName("MaterialAzul");
         ptrEntity->setVisible ( false );
-      }
-
-    // Restablecemos a visible el suelo
-
-    nameEntity = "floor";
-    if ( _sceneMgr->hasEntity ( nameEntity ) )
-      {
-        ptrEntity = _sceneMgr->getEntity ( nameEntity );
-        ptrEntity->setVisible ( true );
       }
   }
