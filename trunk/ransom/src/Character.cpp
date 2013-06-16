@@ -11,6 +11,8 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
   {
     _node = NULL;
     _rigidBody = NULL;
+	_visible = true;
+	_world = world;
 
     _health = MAX_HEALTH;
 	
@@ -213,6 +215,16 @@ void Character::turn_right()
 void Character::showDummy(bool show) {
 	this->getEntity()->setVisible(!show);
 	this->getEntityDummy()->setVisible(show);
+}
+
+void Character::setVisible ( const bool visible ) { 
+	_visible = visible;
+	_node->setVisible(visible, true);
+	if (visible) {
+		_world->getBulletDynamicsWorld()->addCollisionObject(_rigidBody->getBulletObject());
+	} else {
+		_world->getBulletDynamicsWorld()->removeCollisionObject(_rigidBody->getBulletObject());
+	}
 }
 
 void Character::print()

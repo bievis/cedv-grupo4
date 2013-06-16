@@ -13,10 +13,24 @@ Hostage::Hostage( Ogre::SceneManager* sceneMgr,
     _entity->setMaterialName ( "MaterialAmarillo" );
 
     _entityDummy->setMaterialName ( "MaterialAmarillo" );
+
+	_state = CAPTURE;
+
+	// Creamos el sistema de partículas
+	_particleLiberation = _sceneMgr->createParticleSystem("particleHostage" + _name, "particleHostage");
+	_particleLiberation->setVisible(false);
+	// Creamos un nodo
+	_particleLiberationNode = _node->createChildSceneNode("particleHostageNode" + _name);
+	// Ajuntamos las partículas al nodo
+	_particleLiberationNode->attachObject(_particleLiberation);
   }
 
 Hostage::~Hostage()
-{
+{ 
+	// Destruimos el nodo
+	_sceneMgr->destroySceneNode(_particleLiberationNode);
+	// Destruimos el sistema de partículas
+	_sceneMgr->destroyParticleSystem(_particleLiberation);
 }
 
 Hostage::Hostage(const Hostage& other) : Character ( other )
@@ -40,6 +54,33 @@ void Hostage::copy ( const Hostage& source )
 
 void Hostage::changeAnimation(string nameAnimation) {
 
+}
+
+void Hostage::liberate() {
+	_state = LIBERATE;
+	setVisible(false);
+}
+
+void Hostage::setVisible ( const bool visible ) {
+	Character::setVisible(visible);
+	_particleLiberation->setVisible(!visible);
+	if (visible) _state = CAPTURE;
+}
+
+void Hostage::update(double timeSinceLastFrame) {
+	static double timer = 0.0;
+	Character::update(timeSinceLastFrame);
+	
+	if (_state == LIBERATE) {
+		timer += timeSinceLastFrame;
+		_particleLiberation->setEmitting(true);
+		if (timer > TIMER_PATICLE_LIBERATE) {
+			_particleLiberation->setEmitting(false);
+			_state = LIBERATED;
+		}
+	} else {
+		timer = 0.0;
+	}
 }
 
 void Hostage::print()

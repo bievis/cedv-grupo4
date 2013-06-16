@@ -92,7 +92,7 @@ private:
     GameConfig                _gc;
 
     //Private Methods
-
+	// \brief method to create map
     void CreateMap(string map);
 
     void check_vision();
@@ -100,6 +100,14 @@ private:
     void CreateInitialWorld();
 	// \brief method to create mini map of game
 	void CreateMiniMap();
+	// \brief method to detecting collisions between Hero with Hostages
+	/// \param world reference to world (OgreBullet)
+    /// \param hero Hero
+    /// \param hostages List of hostages
+    /// \return reference to Hostage colliding with hero
+	Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world, 
+												Hero* hero, 
+												std::vector<Hostage*> hostages);
 
     // string getTime(double tiempo);
     // void Mostrar_Velocidad ( float velocidad, bool ocultar = false );
