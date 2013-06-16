@@ -388,6 +388,9 @@ bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
     if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN || keyEventRef.key == OIS::KC_X ) {
         m_hero->stop_move();
     }
+	if (keyEventRef.key == OIS::KC_L) {
+		m_hostages[0]->liberate();
+	}
 
     return true;
   }
@@ -460,48 +463,29 @@ void GameState::update(double timeSinceLastFrame)
     // elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
     // elem->show();
 
-    // Ogre::Vector3 vt(0,0,0);
     Ogre::Real deltaT = timeSinceLastFrame;
-    // bool endereza = false;
 
     // //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
 
     _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
-
-    // if ( _vCoches.size() > 0 )
-    //   {
-    // 	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 0 );
-    // 	_vCoches[0]->getVehiclePtr()->applyEngineForce ( 0, 1 );
 
     bool bMove = false;
     float valX = 0, valZ = 0;
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
-//        bMove = true;
-//        valX = 0.05;
-
-//        m_hero->turn ( (-1) * Ogre::Math::HALF_PI / 32 );
         m_hero->turn_right();
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
       {
-//        bMove = true;
-//        valX = -0.05;
-
-//        m_hero->turn ( Ogre::Math::HALF_PI / 32 );
         m_hero->turn_left();
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
       {
-//        bMove = true;
-//        valZ = 0.05;
         m_hero->walk ( true, 4.0 );
       }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
       {
-//        bMove = true;
-//        valZ = -0.05;
         m_hero->walk ( false, 4.0 );
       }
 
@@ -523,6 +507,12 @@ void GameState::update(double timeSinceLastFrame)
             (*itHostage)->update(deltaT);
         }
     }
+
+	// Miramos si el heroe a encontrado a algun rehen
+	Hostage* hostageRescue = detectCollisionHeroWithHostages(_world, m_hero, m_hostages);
+	if (hostageRescue != NULL) {
+		hostageRescue->liberate();
+	}
 
 //    if ( bMove && m_hero )
 //      {
@@ -761,4 +751,38 @@ void GameState::CreateMap(string map)
     OgreBulletDynamics::RigidBody(map, _world);
     rigidTrack->setShape(node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
                Quaternion::IDENTITY);
+}
+
+Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world, 
+												Hero* hero, 
+												std::vector<Hostage*> hostages) {
+	bool isCollition = false;
+	Hostage* hostageCollisition = NULL;
+	Hostage* hostage = NULL;
+	btCollisionWorld *bulletWorld = world->getBulletCollisionWorld();
+	int numManifolds = bulletWorld->getDispatcher()->getNumManifolds();
+	int numHostages = hostages.size();
+	btPersistentManifold* contactManifold = NULL;
+	btCollisionObject* obA;
+	btCollisionObject* obB;
+
+	// Recorremos las colisiones que se esten produciendo
+	for (int i=0;i<numManifolds && !isCollition;i++) {
+		contactManifold = bulletWorld->getDispatcher()->getManifoldByIndexInternal(i);
+		obA = const_cast<btCollisionObject*>(contactManifold->getBody0());
+		obB = const_cast<btCollisionObject*>(contactManifold->getBody1());
+		
+		OgreBulletCollisions::Object* obOB_A = world->findObject(obA);
+		OgreBulletCollisions::Object* obOB_B = world->findObject(obB);
+
+		for (int j=0;j<numHostages && !isCollition;j++) {
+			hostage = hostages[j];
+			if (hostage->getState() == CAPTURE) {
+				isCollition = (obOB_A == hero->getRigidBody() || obOB_B == hero->getRigidBody())
+							&& (obOB_A == hostage->getRigidBody() || obOB_B == hostage->getRigidBody());
+				if (isCollition) hostageCollisition = hostage;
+			}
+		}
+	}
+	return hostageCollisition;
 }

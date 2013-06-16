@@ -67,6 +67,12 @@ class Character
     /// \brief method to set the character name
     /// \param newName new character name
     inline void   setName ( const string& newName ) { _name = newName; };
+	/// \brief method to get is visibility the character
+    /// \return visibility
+    inline bool isVisible() const { return _visible; };
+    /// \brief method to set change visibility of character
+    /// \param visible new visivility
+    virtual void   setVisible ( const bool visible );
     /// \brief method to set the coordenates ( X, Y, Z ) for the initial position
     /// \param newPos initial coordenate X, Y, Z
     inline void   setInitial_Pos ( const Ogre::Vector3& newPos ) { _v_pos = newPos; };
@@ -121,6 +127,10 @@ class Character
     Ogre::Entity* _entityDummy;
     /// \brief reference to scene node DUMMY
     Ogre::SceneNode*  _nodeDummy;
+	/// \brief visibility of character
+    bool _visible;
+	/// \brief World of fisic
+	OgreBulletDynamics::DynamicsWorld* _world;
   private:
 
 };

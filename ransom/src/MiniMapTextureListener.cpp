@@ -25,8 +25,10 @@ void MiniMapTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& ev
 	for (unsigned int i = 0; i < _vCharacteres.size(); i++) {
 		character = _vCharacteres[i];
 
-		character->showDummy(true);
-		character->getEntity()->setCastShadows(false);
+		if (character->isVisible()) {
+			character->showDummy(true);
+			character->getEntity()->setCastShadows(false);
+		}
 	}
   }
 
@@ -41,7 +43,9 @@ void MiniMapTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& e
 	for (unsigned int i = 0; i < _vCharacteres.size(); i++) {
 		character = _vCharacteres[i];
 
-		character->showDummy(false);
-		character->getEntity()->setCastShadows(true);
+		if (character->isVisible()) {
+			character->showDummy(false);
+			character->getEntity()->setCastShadows(true);
+		}
 	}
   }
