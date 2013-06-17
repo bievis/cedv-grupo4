@@ -83,46 +83,44 @@ void Utilities::put_background_with_rotation ( Ogre::SceneManager* sceneMgr, con
     material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation ( -0.015, 0.0 );
   }
 
-OgreBulletDynamics::RigidBody* Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
-                                                  OgreBulletDynamics::DynamicsWorld* world,
-                                                  string name_mesh,
-                                                  string name_element,
-                                                  float initial_posX,
-                                                  float initial_posY,
-                                                  float initial_posZ )
-  {
-    Ogre::Vector3 size = Ogre::Vector3::ZERO;
-    Ogre::Entity *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
-    Ogre::SceneNode *node = sceneMgr->createSceneNode ( name_element );
-    entity->setCastShadows(true);
-    node->attachObject ( entity );
-
-    sceneMgr->getRootSceneNode()->addChild ( node );
-
-    OgreBulletCollisions::AnimatedMeshToShapeConverter* trimeshConverter = new
-      OgreBulletCollisions::AnimatedMeshToShapeConverter ( entity );
-
-    OgreBulletCollisions::CollisionShape* sceneBoxShape =
-        (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
-
-
-    OgreBulletDynamics::RigidBody *rigidTrack = new
-      OgreBulletDynamics::RigidBody ( name_element, world );
-    rigidTrack->setShape ( node, sceneBoxShape, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
-			   Ogre::Quaternion::IDENTITY );
-
-    delete trimeshConverter;
-
-    return rigidTrack;
-}
+//OgreBulletDynamics::RigidBody* Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
+//                                                  OgreBulletDynamics::DynamicsWorld* world,
+//                                                  string name_mesh,
+//                                                  string name_element,
+//                                                  float initial_posX,
+//                                                  float initial_posY,
+//                                                  float initial_posZ )
+//  {
+//    Ogre::Vector3 size = Ogre::Vector3::ZERO;
+//    Ogre::Entity *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
+//    Ogre::SceneNode *node = sceneMgr->createSceneNode ( name_element );
+//    entity->setCastShadows(true);
+//    node->attachObject ( entity );
+//
+//    sceneMgr->getRootSceneNode()->addChild ( node );
+//
+//    OgreBulletCollisions::AnimatedMeshToShapeConverter* trimeshConverter = new
+//      OgreBulletCollisions::AnimatedMeshToShapeConverter ( entity );
+//
+//    OgreBulletCollisions::CollisionShape* sceneBoxShape =
+//        (OgreBulletCollisions::CollisionShape*) trimeshConverter->createConvex();
+//
+//
+//    OgreBulletDynamics::RigidBody *rigidTrack = new
+//      OgreBulletDynamics::RigidBody ( name_element, world );
+//    rigidTrack->setShape ( node, sceneBoxShape, 0.6f, 0.6f, 1.0f, Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
+//			   Ogre::Quaternion::IDENTITY );
+//
+//    delete trimeshConverter;
+//
+//    return rigidTrack;
+//}
 
 void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
-                                                  float initial_posX,
-                                                  float initial_posY,
-                                                  float initial_posZ,
+                                                  const Ogre::Vector3& initial_pos,
                                                   Ogre::Entity** entity,
                                                   Ogre::SceneNode** node,
                                                   OgreBulletDynamics::RigidBody** rigidTrack,
@@ -165,8 +163,7 @@ void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
     *rigidTrack = new OgreBulletDynamics::RigidBody ( name_element, world );
 
     (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6, 0.6, 80.0f,
-                            Ogre::Vector3 ( initial_posX, initial_posY, initial_posZ ),
-                            (*node)->_getDerivedOrientation() );
+                            initial_pos, (*node)->_getDerivedOrientation() );
     (*rigidTrack)->getBulletRigidBody()->setSleepingThresholds(0.0f,0.0f);
     (*rigidTrack)->getBulletRigidBody()->setRestitution(0.0f);
     (*rigidTrack)->getBulletRigidBody()->setAngularFactor(0.0f);

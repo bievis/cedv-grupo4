@@ -7,8 +7,7 @@
 using namespace std;
 
 /// \brief Define an exception in our state machine
-///
-/// \brief This class define the standard exception in our state machine
+/// This class define the standard exception in our state machine
 class StateMachineException
 {
     public:

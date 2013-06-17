@@ -10,7 +10,7 @@ class Hero : public Character
     /// \param sceneMgr reference to scene manager (ogre)
     /// \param world reference to dynamic world (bullet)
     /// \param name name to identify the Hero
-    /// \param initia_pos initial position in coordenate (X, Y, Z)
+    /// \param initial_pos initial position in coordenate (X, Y, Z)
     Hero     ( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,

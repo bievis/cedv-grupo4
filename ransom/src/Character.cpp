@@ -6,52 +6,55 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
                         const string& name,
                         const Ogre::Vector3& v_pos,
                         CHARACTER_TYPE type, string animation ) : _name(name),
-                                         _sceneMgr(sceneMgr),
-                                         _v_pos(v_pos)
+                                                                  _sceneMgr(sceneMgr),
+                                                                  _v_pos(v_pos)
   {
     _node = NULL;
     _rigidBody = NULL;
-	_visible = true;
-	_world = world;
+    _visible = true;
+    _world = world;
 
     _health = MAX_HEALTH;
-	
+
     string mesh = HERO_MESH_FILE_WITHOUT_EXTENSION;
 
-	if ( type == ENEMY )
-    {
+    if ( type == ENEMY )
+      {
         mesh = ENEMY_MESH_FILE_WITHOUT_EXTENSION;
-	} else if (type == HOSTAGE) {
-		mesh = HOSTAGE_MESH_FILE_WITHOUT_EXTENSION;
-	}
+      }
+    else if (type == HOSTAGE)
+      {
+        mesh = HOSTAGE_MESH_FILE_WITHOUT_EXTENSION;
+      }
 
     Utilities::getSingleton().put_character_in_scene ( sceneMgr,
                                                   world,
                                                   mesh,
                                                   name,
-                                                  v_pos.x,
-                                                  v_pos.y,
-                                                  v_pos.z,
+                                                  v_pos,
                                                   &_entity,
                                                   &_node,
                                                   &_rigidBody,
                                                   true,
                                                   animation);
-    if (animation == "") {
+    if (animation == "")
+      {
         _currentAnimation = NULL;
-    } else {
+      }
+    else
+      {
         _currentAnimation = _entity->getAnimationState(animation);
-    }
+      }
 
-	// Creamos el Dummy para la vision y para el mini mapa
-	_entityDummy = sceneMgr->createEntity ( name + "DUMMY", MESH_FILE_WITHOUT_EXTENSION + string ( ".mesh" ) );
+    // Creamos el Dummy para la vision y para el mini mapa
+    _entityDummy = sceneMgr->createEntity ( name + "DUMMY", CUBE_MESH_FILE_WITHOUT_EXTENSION + string ( ".mesh" ) );
     _entityDummy->setCastShadows(false);
     _entityDummy->setVisible(false);
 
     _nodeDummy = sceneMgr->createSceneNode ( name + "DUMMY" );
-	_nodeDummy->setPosition(0, (_entityDummy->getBoundingBox().getSize().y / -2), 0);
+    _nodeDummy->setPosition(0, (_entityDummy->getBoundingBox().getSize().y / -2), 0);
     _nodeDummy->attachObject ( _entityDummy );
-	// Atachamos el dummy para que se mueva con el personaje
+    // Atachamos el dummy para que se mueva con el personaje
     _node->addChild ( _nodeDummy );
   }
 
@@ -87,39 +90,48 @@ void Character::copy ( const Character& source )
 void Character::setHealth ( float newHealth )
   {
     if ( _health <= 100 )
-    {
-      if ( newHealth > 100 )
-        _health = 100;
-      else if ( newHealth < 0 )
-        _health = 0;
-      else
-        _health = newHealth;
-    }
+      {
+        if ( newHealth > 100 )
+          _health = 100;
+        else if ( newHealth < 0 )
+          _health = 0;
+        else
+          _health = newHealth;
+      }
   }
 
-void Character::changeAnimation(string nameAnimation) {
-    if (_currentAnimation != NULL &&
-        _currentAnimation->getAnimationName() != nameAnimation) {
+void Character::changeAnimation ( const string& nameAnimation )
+  {
+    if ( ( _currentAnimation != NULL ) &&
+        ( _currentAnimation->getAnimationName() != nameAnimation ) )
+      {
         Ogre::AnimationState *animation;
-        if (STOP_ANIMATION == nameAnimation) {
+
+        if ( STOP_ANIMATION == nameAnimation )
+          {
             animation = (_entity)->getAnimationState(MOVE_ANIMATION);
             animation->setEnabled(false);
-        } else if (MOVE_ANIMATION == nameAnimation) {
+          }
+        else if ( MOVE_ANIMATION == nameAnimation )
+          {
             animation = (_entity)->getAnimationState(STOP_ANIMATION);
             animation->setEnabled(false);
-        }
+          }
+
         animation = (_entity)->getAnimationState(nameAnimation);
         animation->setEnabled(true);
         animation->setLoop(true);
         _currentAnimation = animation;
-    }
-}
+      }
+  }
 
-void Character::update(double timeSinceLastFrame) {
-    if (_currentAnimation != NULL) {
+void Character::update(double timeSinceLastFrame)
+  {
+    if ( _currentAnimation != NULL )
+      {
         _currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
-    }
-}
+      }
+  }
 
 void Character::walk ( bool reverse, float velocidad )
   {
@@ -217,7 +229,7 @@ void Character::showDummy(bool show) {
 	this->getEntityDummy()->setVisible(show);
 }
 
-void Character::setVisible ( const bool visible ) { 
+void Character::setVisible ( const bool visible ) {
 	_visible = visible;
 	_node->setVisible(visible, true);
 	if (visible) {

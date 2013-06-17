@@ -13,7 +13,7 @@ using namespace std;
 
 /// \brief class to manage the state machine
 ///
-/// this class manage all around the state machine, ie, contains the states, modes and actions
+/// this class manage all around the state machine, ie, contains the states and actions
 class StateMachine
 {
     public:
@@ -21,9 +21,9 @@ class StateMachine
         ///
         /// this constructor make a empty state machine without states
         StateMachine();
-        /// \brief constructor with a initial state and mode
+        /// \brief constructor with a initial state
         ///
-        /// this constructor make a empty state machine without states but with a initial state and mode
+        /// this constructor make a empty state machine without states but with a initial state
         /// \param initState initial state of the state machine
         StateMachine( const string &initState );
         /// \brief copy constructor
@@ -33,7 +33,7 @@ class StateMachine
         StateMachine( const StateMachine &other );
         /// \brief default destructor
         ///
-        /// the destructor will clean the state's map and the initial state and mode
+        /// the destructor will clean the state's map and the initial state
         virtual ~StateMachine();
         /// \brief get the states for this state machine
         ///
@@ -47,7 +47,7 @@ class StateMachine
         inline const string& getCurrentState() const { return _currentState; };
         /// \brief get the object state for the current state
         /// \return state object
-        const State& StateMachine::getCurrentStateObject();
+        const State& getCurrentStateObject();
         /// \brief set the current state of the state machine
         ///
         /// this method set the current state of the state machine. In case of we like stablish a determinate state.
@@ -58,27 +58,23 @@ class StateMachine
         /// this method add a state in the state machine, concretly, insert the state new_state in the map mapStates with the key name of the state
         /// \param new_state state will to be inserted in the map
         bool addState ( const State &new_state );
-        /// \brief validate if the action "name" is posible in the current state/mode
+        /// \brief validate if the action "name" is posible in the current state
         ///
-        /// this method ask to the state machine if it's posible in the current state/mode to do the action "name"
+        /// this method ask to the state machine if it's posible in the current state to do the action "name"
         /// \param name the name of the action than we try to execute
-        /// \return true/false if it's posible perform the action "name" inside the actions in the current mode
+        /// \return true/false if it's posible perform the action "name" inside the actions in the current state
         bool validateAction ( const string &name );
         /// \brief validate the correct configuration of the XML file
         ///
         /// this method validate :
         ///     - exist at least one state inside the state machine
-        ///     - exist at least one mode inside each state
-        ///     - exist at least one action inside each mode
-        ///     - exist the state "NextStateOK" inside the states of the state machine
-        ///     - exist the state "NextStateKO" inside the states of the state machine
-        ///     - exist all the next states defined in each state
+        ///     - exist at least one action inside each state
         ///
         /// \return true/false if it's correct the configuration of the XML file
         bool validateXML();
         /// \brief print the info about state machine in console, also print current info
         ///
-        /// this method print info about the states, actions, next states and next modes of the state machine. Also print current info
+        /// this method print info about the states and actions of the state machine. Also print current info
         void print_info();
         /// \brief clean map inside state machine
         ///
@@ -102,18 +98,17 @@ class StateMachine
         /// \brief current state of the state machine
         string _currentState;
 
-        /// \brief find the action inside the current state/mode
+        /// \brief find the action inside the current state
         ///
-        /// this method find the action inside the current state/mode and returned true/false if it's found. The action will be returned in the parameter "ac"
+        /// this method find the action inside the current state and returned true/false if it's found. The action will be returned in the parameter "ac"
         /// \param name name of the action to find
         /// \param ac the action returned
-        /// \return true/false if it's found the action in the current state/mode
+        /// \return true/false if it's found the action in the current state
         bool find_action ( const string &name, Action &ac );
         /// \brief initialize the state machine with a set of values
         ///
         /// this method is used by all constructors to set the state machine (only for unified code purposes)
         /// \param initState initial state
-        /// \param initMode initial mode
         void initialize_machine ( const string &initState );
 
 };

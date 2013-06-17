@@ -9,47 +9,72 @@
 
 using namespace std;
 
+/// \brief Class to manage the game configuration
+/// Hostages, Enemies & Hero config
 class GameConfig {
 
  private:
+  /// \brief Method to copy object
+  /// \param source source object to copy
   void copy ( const GameConfig& source );
 
  protected:
+  /// \brief enemy number to view
   unsigned int _numEnemies;
+  /// \brief initial position point for the hero
   Ogre::Vector3 _initialPos_Hero;
+  /// \brief set of enemy routes
   std::vector<EnemyRoute*> _vEnemyRoutes;
+  /// \brief set of hostages positions
   std::deque<Ogre::Vector3> _vPositionHostages;
 
  public:
+  /// \brief default constructor
   GameConfig();
+  /// \brief default destructor
   virtual ~GameConfig();
-
+  /// \brief copy constructor
+  /// \param source source object to copy
   GameConfig ( const GameConfig& source );
+  /// \brief assignment operator
+  /// \param source source object to copy
   GameConfig operator= ( const GameConfig& source );
-
+  /// \brief method to clear the object
+  /// free the vector and deque, also clear the elements in the object
   void clear();
-
+  /// \brief method to get routes vector size
+  /// \return number of routes
   inline unsigned int getNumEnemyRoutes() const { return _vEnemyRoutes.size(); };
-
-  //Index vendrá dado entre 1 y N
+  /// \brief method to get the enemy route assigned with identificator (index)
+  /// \param index identificator route to get
+  /// \return route associated to identificator
   const EnemyRoute& getEnemyRoute ( unsigned int index ) const;
-
+  /// \brief method to add an enemy route
+  /// \param newRoute new route to add
   void addEnemyRoute ( const EnemyRoute& newRoute );
-
-  //inline void getInitialPosHero ( Ogre::Vector3& v ) { v = _initialPos_Hero; };
+  /// \brief method to get initial position of the hero
+  /// \return initial position of the hero
   inline const Ogre::Vector3& getInitialPosHero() const { return _initialPos_Hero; };
+  /// \brief method to set initial position of the hero
+  /// \param pos initial position of the hero
   inline void setInitialPosHero ( const Ogre::Vector3& pos ) { _initialPos_Hero = pos; };
-
+  /// \brief method to get enemies number
+  /// \return enemies number
   inline unsigned int getNumEnemies() const { return _numEnemies; };
+  /// \brief method to set enemies number
+  /// \param newValue new enemies number to set
   inline void setNumEnemies ( unsigned int newValue ) { _numEnemies = newValue; };
-
+  /// \brief method to get hostages number
+  /// \return hostages number
   inline unsigned int getNumHostages() const { return _vPositionHostages.size(); };
+  /// \brief method to get the position of the hostage(index)
+  /// \param index the hostage index to find in the deque
   const Ogre::Vector3& getPositionHostage ( unsigned int index ) const;
+  /// \brief method to add a hostage position, namely, a hostage
+  /// \param p hostage position
   void addHostagePosition ( const Ogre::Vector3& p );
-
+  /// \brief method to print info
   void print();
 };
-
-
 
 #endif

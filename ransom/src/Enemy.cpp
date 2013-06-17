@@ -14,15 +14,15 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );
 
-	_entityDummy->setMaterialName ( "MaterialRojo" );
+    _entityDummy->setMaterialName ( "MaterialRojo" );
 
-	// Textura para mostrar la visualizacion de lo que ve el enemigo
+    // Textura para mostrar la visualizacion de lo que ve el enemigo
     _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
     _rtex = _rtt->getBuffer()->getRenderTarget();
-	// Camara de lo que visualiza el enemigo
+    // Camara de lo que visualiza el enemigo
     _camPOV = sceneMgr->createCamera ( "cameraPOV_" + name );
     _camPOV->setPosition ( Ogre::Vector3 ( 0, 0, 0.2 ) );
     _camPOV->lookAt ( Ogre::Vector3 ( 0, 0, 5 ) );
@@ -30,7 +30,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _camPOV->setFOVy ( Ogre::Degree ( 38 ) );
     Ogre::SceneNode *nodeCamera = _node->createChildSceneNode ( "nodeCameraPOV_" + name );
 	  nodeCamera->attachObject(_camPOV);
-	// Vinculamos la textura con la camara del enemigo
+    // Vinculamos la textura con la camara del enemigo
     _rtex->addViewport ( _camPOV );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
     _rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
@@ -73,9 +73,18 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     cout << " punto de salida = " << _route.getPoint(0) << endl;
 
-    // Maquina de Estados del Enemigo
-    if ( _sm.load_from_file ( "config/stateMachineConfig.xml" ) )
-      _sm.print_info();
+    try {
+      // Maquina de Estados del Enemigo
+      if ( _sm.load_from_file ( "config/stateMachineConfig.xml" ) )
+        {
+          assert ( _sm.validateXML() );
+          _sm.print_info();
+        }
+    }
+    catch ( StateMachineException& exc )
+    {
+      cout << exc.what() << endl;
+    }
 
   }
 
@@ -114,9 +123,9 @@ Enemy& Enemy::operator=(const Enemy& rhs)
 void Enemy::copy ( const Enemy& source )
   {
     _rtex = source.getRenderTexture();
-	#ifndef _WIN32
-		_rtt = source.getTexturePtr();
-	#endif
+//	#ifndef _WIN32
+		_rtt = ((Enemy&)source).getTexturePtr();
+//	#endif
     _camPOV = source.getCameraPOV();
   }
 

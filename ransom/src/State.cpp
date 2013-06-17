@@ -68,7 +68,7 @@ void State::print_info()
 
     cout << "+ state # name = '" << _name << "'" << endl;
 
-    sprintf ( cad, "%d", _mapActions.size() );
+    sprintf ( cad, "%d", (unsigned int)(_mapActions.size()) );
     cout << "        # actions = " << cad << endl;
 
     for ( map<string, Action>::iterator it_a = _mapActions.begin(); it_a != _mapActions.end(); advance ( it_a, 1 ) )

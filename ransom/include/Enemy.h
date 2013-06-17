@@ -20,12 +20,12 @@ class Enemy : public Character
     /// \param v_pos initial position in coordenate X, Y, Z with object Ogre::Vector3
     /// \param config object with the configuration loaded by xml
     /// \param id_route route assigned to the enemy
-    Enemy     ( Ogre::SceneManager* sceneMgr,
-                    OgreBulletDynamics::DynamicsWorld* world,
-                    const string& name,
-                    const Ogre::Vector3& v_pos,
-                    const GameConfig& config,
-                    unsigned int id_route );
+    Enemy ( Ogre::SceneManager* sceneMgr,
+            OgreBulletDynamics::DynamicsWorld* world,
+            const string& name,
+            const Ogre::Vector3& v_pos,
+            const GameConfig& config,
+            unsigned int id_route );
     /** Default destructor */
     virtual ~Enemy();
     /// \brief copy constructor
@@ -37,38 +37,40 @@ class Enemy : public Character
     /// \brief method to get texture pointer
     /// this object inherits from SharedPtr
     /// \return texture pointer
-    inline const Ogre::TexturePtr& getTexturePtr() { return _rtt; };
+    inline const Ogre::TexturePtr&  getTexturePtr() { return _rtt; };
     /// \brief method to get render to texture reference
     /// \return render to texture reference
-    inline Ogre::RenderTexture* getRenderTexture() const { return _rtex; };
+    inline Ogre::RenderTexture*     getRenderTexture() const { return _rtex; };
     /// \brief method to get the camera POV reference
     /// \return camera reference
-    inline Ogre::Camera* getCameraPOV() const { return _camPOV; };
+    inline Ogre::Camera*            getCameraPOV() const { return _camPOV; };
     /// \brief this method is used to check if anybody is in our camera scope
     /// \return true/false according to see or not to see anybody
-    bool          haveYouSeenAnybody();
+    bool                            haveYouSeenAnybody();
     /// \brief method to print enemy info
-    void          print();
+    void                            print();
     /// \brief method to walk using the route built to the enemy
-    void          walk_in_route();
+    void                            walk_in_route();
         /// \brief method to perform the character walk movement to position
     /// This method uses OgreBullet to move the character
     /// \param pos destiny position to walk
     /// \return true/false if the character arrived to destiny point
-    bool          walk_to ( const Ogre::Vector3& pos );
+    bool                            walk_to ( const Ogre::Vector3& pos );
     /// \brief method to update lifeBar
-    void          updateLifeBar();
+    void                            updateLifeBar();
     /// \brief method to update enemy in frame
-    void          update(double timeSinceLastFrame);
-	/// \brief method to show dummy or not
-    void          showDummy(bool show);
-    const StateMachine& getStateMachine() const { return _sm; };
+    void                            update ( double timeSinceLastFrame );
+    /// \brief method to show dummy or not
+    void                            showDummy ( bool show );
+    /// \brief method to get the state machine assigned to the character
+    /// \return the state machine object
+    const StateMachine&             getStateMachine() const { return _sm; };
 
   protected:
     /// \brief protected method to copy a enemy
-    /// this method is used in assingnment operator and copy constructor
+    /// this method is used in assignment operator and copy constructor
     /// \param other source enemy to copy
-    void          copy ( const Enemy& source );
+    void                            copy ( const Enemy& source );
 
   private:
     /// \brief texture pointer
@@ -82,7 +84,7 @@ class Enemy : public Character
     /// \brief route object with the enemy route
     EnemyRoute _route;
     /// \brief current index point to walk
-    unsigned int _current_point;
+    int _current_point;
     /// \brief way in the route ( true = forward / false = backward )
     bool _way;
     /// \brief reference to BillboardSet of Lifebar

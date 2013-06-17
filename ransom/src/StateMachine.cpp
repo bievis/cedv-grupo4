@@ -148,7 +148,7 @@ void StateMachine::print_info()
     char cad[250];
     string msg = "";
 
-    sprintf ( cad, "states = %d", _mapStates.size() );
+    sprintf ( cad, "states = %d", (int)(_mapStates.size()) );
 
     msg = cad;
 

@@ -8,7 +8,6 @@
 #include <OgreSceneNode.h>
 #include <OgreOverlay.h>
 #include <string>
-//#include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
 #include <Shapes/OgreBulletCollisionsBoxShape.h>
 #include <OgreBulletDynamicsRigidBody.h>
 #include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
@@ -17,16 +16,16 @@
 using namespace std;
 
 // Mesh file to load how to a Character
-#define MESH_FILE_WITHOUT_EXTENSION "Cube"
+#define CUBE_MESH_FILE_WITHOUT_EXTENSION "Cube"
 #define HERO_MESH_FILE_WITHOUT_EXTENSION "SWAT"
 #define ENEMY_MESH_FILE_WITHOUT_EXTENSION "SWAT"
 #define HOSTAGE_MESH_FILE_WITHOUT_EXTENSION "Boy"
 
 /// \brief this class will be a set of utility methods
+/// This class follow the singleton pattern
 class Utilities {
 
  public:
-
     /// \brief method to put an overlay in the scene
     /// This method put an overlay created in ransom.overlay file, also the name should be defined in this file with the set of specifications
     /// \param overMgr reference to overlay manager (Advanced Ogre Framework)
@@ -54,19 +53,17 @@ class Utilities {
     /// \param world reference to world (OgreBullet)
     /// \param name_mesh name to charge mesh file
     /// \param name_element name to set at the scene element
-    /// \param initial_posX initial coordenate in the axis X
-    /// \param initial_posY initial coordenate in the axis Y
-    /// \param initial_posZ initial coordenate in the axis Z
+    /// \param initial_pos initial coordenate for the character
+    /// \param entity entity reference for the character created inside
+    /// \param node node reference for the character created inside
+    /// \param rigidTrack rigid body reference for the character created inside
     /// \param visible set entity to visible or not
-    /// \return reference to scene node created
-    OgreBulletDynamics::RigidBody* put_element_in_scene ( Ogre::SceneManager* sceneMgr, OgreBulletDynamics::DynamicsWorld* world, string name_mesh, string name_element, float initial_posX, float initial_posY, float initial_posZ );
+    /// \param initAnimation name for the initial animation to assign
     void put_character_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
-                                                  float initial_posX,
-                                                  float initial_posY,
-                                                  float initial_posZ,
+                                                  const Ogre::Vector3& initial_pos,
                                                   Ogre::Entity** entity,
                                                   Ogre::SceneNode** node,
                                                   OgreBulletDynamics::RigidBody** rigidTrack,
@@ -82,7 +79,6 @@ class Utilities {
  private:
     /// \brief reference to Utitlies object
     static Utilities* msSingleton;
-
     /// \brief default constructor
     Utilities() {};
     /// \brief virtual destructor
