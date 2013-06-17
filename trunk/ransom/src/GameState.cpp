@@ -469,8 +469,8 @@ void GameState::update(double timeSinceLastFrame)
 
     _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
 
-    bool bMove = false;
-    float valX = 0, valZ = 0;
+//    bool bMove = false;
+//    float valX = 0, valZ = 0;
 
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
@@ -753,8 +753,8 @@ void GameState::CreateMap(string map)
                Quaternion::IDENTITY);
 }
 
-Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world, 
-												Hero* hero, 
+Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
+												Hero* hero,
 												std::vector<Hostage*> hostages) {
 	bool isCollition = false;
 	Hostage* hostageCollisition = NULL;
@@ -771,7 +771,7 @@ Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::Dynamics
 		contactManifold = bulletWorld->getDispatcher()->getManifoldByIndexInternal(i);
 		obA = const_cast<btCollisionObject*>(contactManifold->getBody0());
 		obB = const_cast<btCollisionObject*>(contactManifold->getBody1());
-		
+
 		OgreBulletCollisions::Object* obOB_A = world->findObject(obA);
 		OgreBulletCollisions::Object* obOB_B = world->findObject(obB);
 

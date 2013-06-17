@@ -7,16 +7,22 @@
 
 using namespace std;
 
+/// \brief Class with the Exception in the GameConfig class
 class GameConfigException: public exception {
 
- private:
-  char *_msg;
+  private:
+    /// \brief message to set
+    char *_msg;
 
-public:
-  GameConfigException ( const char *msg );
-
-  virtual ~GameConfigException() throw ();
-  virtual const char* what() const throw();  
+  public:
+    /// \brief default constructor with the message
+    /// \param msg message to show
+    GameConfigException ( const char *msg );
+    /// \brief default destructor
+    virtual ~GameConfigException() throw ();
+    /// Method to get the message configured
+    /// \return message to show
+    virtual const char* what() const throw();
 };
 
 #endif

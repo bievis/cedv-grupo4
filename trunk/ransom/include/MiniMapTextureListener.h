@@ -8,10 +8,8 @@
 using namespace std;
 using namespace Ogre;
 
-/// \brief class to be used how listener in the texture for the conversion to black & white colours
-/// This class performs a setMaterialName() in the preRender to black/white colours for the object
-/// int the texture, also in the postRender reset Material to origin values. In the class, there is
-/// a method which checks white/black colour levels to tell us if any object exists in the scene
+/// \brief class to be used how listener in the texture for the mini map
+/// This class performs a change between real objects (enemyes, heroes, hostages) and dummy objects (cubes with colors)
 class MiniMapTextureListener : public RenderTargetListener
 {
   private:
