@@ -66,6 +66,8 @@ class Enemy : public Character
     /// \return the state machine object
     const StateMachine&             getStateMachine() const { return _sm; };
 
+    void                            watch_around();
+
   protected:
     /// \brief protected method to copy a enemy
     /// this method is used in assignment operator and copy constructor
@@ -95,6 +97,11 @@ class Enemy : public Character
     Ogre::SceneNode* _lifeNode;
     /// \brief object with the enemy state machine
     StateMachine _sm;
+
+    double _timeElapsed;
+    double _timeElapsedPartial_Watching;
+    double _timeFirstVision;
+    double _timeStartChasing;
 };
 
 #endif // ENEMY_H

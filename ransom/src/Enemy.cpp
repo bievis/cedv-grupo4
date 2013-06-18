@@ -11,6 +11,11 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         v_pos,
                                                         ENEMY, STOP_ANIMATION )
   {
+    _timeElapsed = 0;
+    _timeElapsedPartial_Watching = 0;
+    _timeFirstVision = 0;
+    _timeStartChasing = 0;
+
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );
 
@@ -164,23 +169,88 @@ void Enemy::updateLifeBar() {
                               1.0);
 }
 
-void Enemy::update(double timeSinceLastFrame)
-{
+void Enemy::update ( double timeSinceLastFrame )
+  {
+    _timeElapsed += timeSinceLastFrame;
+
     Character::update(timeSinceLastFrame);
     updateLifeBar();
 
     // Cambios de estado del enemigo
 
-    if ( haveYouSeenAnybody() )
+    // Si estamos en el estado normal de vigilancia
+    if ( _sm.getCurrentState() == "Watching" )
       {
-        if ( _sm.getCurrentState() == "Watching" )
-          _sm.setCurrentState ( "Alert" );
+        if ( haveYouSeenAnybody() )
+          {
+            // Pasamos al estado en alerta
+            // almacenamos el tiempo actual de primer contacto visual
+            _timeFirstVision = _timeElapsed;
+            _sm.setCurrentState ( "Alert" );
+          }
       }
-    else
+    else if ( _sm.getCurrentState() == "Alert" )
       {
-        if ( _sm.getCurrentState() == "Alert" )
-          _sm.setCurrentState ( "Watching" );
+        if ( !haveYouSeenAnybody() )
+          {
+            // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
+            // al estado persecucion (Chasing)
+            if ( _timeElapsed - _timeFirstVision > 2 )
+              {
+                _timeStartChasing = _timeElapsed;
+                _sm.setCurrentState ( "Chasing" );
+              }
+            else
+              {
+                _sm.setCurrentState ( "Watching" );
+              }
+          }
       }
+    else if ( _sm.getCurrentState() == "Chasing" )
+      {
+        if ( !haveYouSeenAnybody() &&
+            ( _timeElapsed - _timeStartChasing ) > 10 )
+          {
+            _sm.setCurrentState ( "Watching" );
+          }
+      }
+
+//    // Si el enemigo ve al heroe
+//    if ( haveYouSeenAnybody() )
+//      {
+//        // Si estamos en el estado normal de vigilancia
+//        if ( _sm.getCurrentState() == "Watching" )
+//          {
+//            // Pasamos al estado en alerta
+//            // almacenamos el tiempo actual de primer contacto visual
+//            _timeFirstVision = _timeElapsed;
+//            _sm.setCurrentState ( "Alert" );
+//          }
+//
+//      }
+//    else
+//      {
+//        // Si NO vemos a nadie y venimos del estado en alerta
+//        if ( _sm.getCurrentState() == "Alert" )
+//          {
+//            // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
+//            // al estado persecucion (Chasing)
+//            if ( ( _timeElapsed - _timeFirstVision ) > 2 )
+//              {
+//                _sm.setCurrentState ( "Chasing" );
+//              }
+//            else
+//              {
+//                _sm.setCurrentState ( "Watching" );
+//              }
+//          }
+//        // Si NO vemos a nadie y estamos en estado de persecucion
+//        else if ( _sm.getCurrentState() == "Chasing" )
+//          {
+//
+//          }
+//
+//      }
 
     // Acciones según el estado
 
@@ -190,27 +260,49 @@ void Enemy::update(double timeSinceLastFrame)
       {
         if ( it_a->second.getName() == "walk_in_route" )
           {
+            _timeElapsedPartial_Watching = 0;
             walk_in_route();
           }
         else if ( it_a->second.getName() == "stop_move" )
           {
+            _timeElapsedPartial_Watching = 0;
             stop_move();
           }
         else if ( it_a->second.getName() == "shoot" )
           {
+            _timeElapsedPartial_Watching = 0;
             //PENDIENTE
           }
         else if ( it_a->second.getName() == "run_to" )
           {
+            _timeElapsedPartial_Watching = 0;
             //PENDIENTE
           }
         else if ( it_a->second.getName() == "watch_around" )
           {
+
             //PENDIENTE
+            _timeElapsedPartial_Watching += timeSinceLastFrame;
+
+            if ( _timeElapsedPartial_Watching >= 2 )
+              {
+                _timeElapsedPartial_Watching = 0;
+
+                _rigidBody->enableActiveState();
+                _node->yaw ( Ogre::Radian ( Ogre::Math::HALF_PI ) );
+                btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to ( _node->getOrientation() );
+                _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation ( quaternion );
+
+                //cout << _timeElapsed << endl;
+              }
+            else
+              {
+                stop_move();
+              }
+
           }
       }
-
-}
+  }
 
 bool Enemy::walk_to ( const Ogre::Vector3& p )
   {
@@ -260,6 +352,17 @@ bool Enemy::walk_to ( const Ogre::Vector3& p )
 
     return res;
   }
+
+void Enemy::watch_around()
+{
+
+
+    _rigidBody->enableActiveState();
+    _node->yaw ( Ogre::Radian( Ogre::Math::HALF_PI ) );
+    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
+    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
+
+}
 
 void Enemy::walk_in_route()
 {

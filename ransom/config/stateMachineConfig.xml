@@ -30,7 +30,7 @@
       <!-- Estado de persecución -->
       <State name="Chasing">
         <Actions>
-          <Action name="run_to" />
+<!--          <Action name="run_to" />-->
           <Action name="watch_around" />
         </Actions>
       </State>
