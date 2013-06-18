@@ -164,11 +164,13 @@ void Enemy::updateLifeBar() {
                               1.0);
 }
 
-void Enemy::update(double timeSinceLastFrame) {
+void Enemy::update(double timeSinceLastFrame)
+{
     Character::update(timeSinceLastFrame);
     updateLifeBar();
 
-    //Cambios de estado del enemigo
+    // Cambios de estado del enemigo
+
     if ( haveYouSeenAnybody() )
       {
         if ( _sm.getCurrentState() == "Watching" )
@@ -179,6 +181,35 @@ void Enemy::update(double timeSinceLastFrame) {
         if ( _sm.getCurrentState() == "Alert" )
           _sm.setCurrentState ( "Watching" );
       }
+
+    // Acciones según el estado
+
+    State current_state = _sm.getCurrentStateObject();
+
+    for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
+      {
+        if ( it_a->second.getName() == "walk_in_route" )
+          {
+            walk_in_route();
+          }
+        else if ( it_a->second.getName() == "stop_move" )
+          {
+            stop_move();
+          }
+        else if ( it_a->second.getName() == "shoot" )
+          {
+            //PENDIENTE
+          }
+        else if ( it_a->second.getName() == "run_to" )
+          {
+            //PENDIENTE
+          }
+        else if ( it_a->second.getName() == "watch_around" )
+          {
+            //PENDIENTE
+          }
+      }
+
 }
 
 bool Enemy::walk_to ( const Ogre::Vector3& p )

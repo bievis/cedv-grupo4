@@ -7,7 +7,7 @@
 
 #include "State.h"
 #include "StateMachineException.h"
-#include "StateMachineXMLCharger.h"
+#include "XMLCharger.h"
 
 using namespace std;
 

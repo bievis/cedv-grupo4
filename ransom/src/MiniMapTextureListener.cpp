@@ -17,9 +17,9 @@ void MiniMapTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& ev
   {
 	// Ocultamos el recuadro donde pintamos el mapa para que no se repita
 	_rect->setVisible(false);
-	
+
 	_sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
-	_sceneMgr->getEntity(NAME_MAP)->setCastShadows(false);
+//	_sceneMgr->getEntity(NAME_MAP)->setCastShadows(false);
 
 	Character *character;
 	for (unsigned int i = 0; i < _vCharacteres.size(); i++) {
@@ -37,7 +37,7 @@ void MiniMapTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& e
 	_rect->setVisible(true);
 
 	_sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
-	_sceneMgr->getEntity(NAME_MAP)->setCastShadows(true);
+//	_sceneMgr->getEntity(NAME_MAP)->setCastShadows(true);
 
     Character *character;
 	for (unsigned int i = 0; i < _vCharacteres.size(); i++) {

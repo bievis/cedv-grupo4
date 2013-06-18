@@ -27,6 +27,12 @@ class GameConfig {
   std::vector<EnemyRoute*> _vEnemyRoutes;
   /// \brief set of hostages positions
   std::deque<Ogre::Vector3> _vPositionHostages;
+  /// \brief plane height
+  unsigned int _planeHeight;
+  /// \brief plane width
+  unsigned int _planeWidth;
+  /// \brief deque with the columns which define the walls
+  std::deque<Ogre::Vector3> _vColumns;
 
  public:
   /// \brief default constructor
@@ -73,6 +79,27 @@ class GameConfig {
   /// \brief method to add a hostage position, namely, a hostage
   /// \param p hostage position
   void addHostagePosition ( const Ogre::Vector3& p );
+  /// \brief method to get the plane height
+  /// \return plane height
+  inline unsigned int getPlaneHeight() { return _planeHeight; };
+  /// /brief method to set the plane height
+  /// /param newValue new plane height to set
+  inline void setPlaneHeight ( unsigned int newValue ) { _planeHeight = newValue; };
+  /// \brief method to get the plane width
+  /// \return plane width
+  inline unsigned int getPlaneWidth() { return _planeWidth; };
+  /// /brief method to set the plane width
+  /// /param newValue new plane width to set
+  inline void setPlaneWidth ( unsigned int newValue ) { _planeWidth = newValue; };
+  /// \brief method to get hostages number
+  /// \return hostages number
+  inline unsigned int getNumColumns() const { return _vColumns.size(); };
+  /// \brief method to get the position of the column(index)
+  /// \param index the column index to find in the deque
+  const Ogre::Vector3& getPositionColumn ( unsigned int index ) const;
+  /// \brief method to add a column position
+  /// \param p column position
+  void addColumnPosition ( const Ogre::Vector3& p );
   /// \brief method to print info
   void print();
 };

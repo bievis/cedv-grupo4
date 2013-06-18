@@ -200,5 +200,5 @@ void StateMachine::clear()
 
 bool StateMachine::load_from_file ( const string& route_absolute )
   {
-    return StateMachineXMLCharger::getSingleton().LoadFile( route_absolute, *this );
+    return XMLCharger::getSingleton().LoadStateMachine ( route_absolute, *this );
   }

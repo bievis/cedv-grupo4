@@ -60,6 +60,21 @@ HighScores_Menu
   }
 }
 
+Loading_Game
+{
+  container Panel(Panel_Loading_Game)
+  {
+    metrics_mode pixels
+    top 0
+    left 0
+    width 1024
+    height 768
+    horz_align left
+    vert_align top
+    material Game/Loading
+  }
+}
+
 GUI_Game
 {
   zorder 500
