@@ -58,7 +58,6 @@ void GameState::enter()
     // _gameTrack->play();
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
-    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
     // OgreFramework::getSingletonPtr()->getRenderWindowPtr()->getCustomAttribute ( "WINDOW", &windowHandle );
 
@@ -105,7 +104,7 @@ void GameState::enter()
 void GameState::CreateInitialWorld()
   {
     // Activamos las sombras
-    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+	m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
 
@@ -361,7 +360,7 @@ void GameState::createScene()
     // Luz de la escena
     Light* luz = m_pSceneMgr->createLight("Luz");
     luz->setType(Light::LT_POINT);
-    luz->setPosition(75,75,75);
+    luz->setPosition(50,100,50);
     luz->setSpecularColour(1, 1, 1);
     luz->setDiffuseColour(1, 1, 1);
 
