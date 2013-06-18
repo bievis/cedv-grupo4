@@ -17,6 +17,8 @@ void GameConfig::clear()
     _vEnemyRoutes.clear();
 
     _vPositionHostages.clear();
+
+    _vColumns.clear();
   }
 
 GameConfig::~GameConfig()
@@ -40,14 +42,29 @@ GameConfig GameConfig::operator= ( const GameConfig &source )
 
 void GameConfig::copy ( const GameConfig &source )
   {
+    unsigned int i = 0;
+
     clear();
 
     _initialPos_Hero = source.getInitialPosHero();
     _numEnemies = source.getNumEnemies();
 
-    for ( unsigned int i = 0; i < source.getNumEnemyRoutes(); i++ )
+    for ( i = 0; i < source.getNumEnemyRoutes(); i++ )
       {
         _vEnemyRoutes[i] = source._vEnemyRoutes[i];
+      }
+
+    for ( i = 0; i < source.getNumHostages(); i++ )
+      {
+        _vPositionHostages[i] = source._vPositionHostages[i];
+      }
+
+    _planeHeight = source._planeHeight;
+    _planeWidth = source._planeWidth;
+
+    for ( i = 0; i < source.getNumColumns(); i++ )
+      {
+        _vColumns[i] = source._vColumns[i];
       }
   }
 
@@ -102,6 +119,12 @@ void GameConfig::print()
         cout << msg << "    : " << _vPositionHostages[i] << endl;
       }
 
+    for ( i = 0; i < _vColumns.size(); i++ )
+      {
+        msg = "Pos. Column" + Ogre::StringConverter::toString(i);
+        cout << msg << "    : " << _vColumns[i] << endl;
+      }
+
     cout << "========================" << endl;
   }
 
@@ -110,10 +133,23 @@ const Ogre::Vector3& GameConfig::getPositionHostage ( unsigned int index ) const
     if ( index < _vPositionHostages.size() )
       return _vPositionHostages[index];
     else
-      throw GameConfigException ( "Error Index Out of Bounds" );
+      throw GameConfigException ( "Error Position Hostage : Index Out of Bounds" );
   }
 
 void GameConfig::addHostagePosition ( const Ogre::Vector3& p )
   {
     _vPositionHostages.push_back ( p );
+  }
+
+const Ogre::Vector3& GameConfig::getPositionColumn ( unsigned int index ) const
+  {
+    if ( index < _vColumns.size() )
+      return _vColumns[index];
+    else
+      throw GameConfigException ( "Error Position Column : Index Out of Bounds" );
+  }
+
+void GameConfig::addColumnPosition ( const Ogre::Vector3& p )
+  {
+    _vColumns.push_back ( p );
   }

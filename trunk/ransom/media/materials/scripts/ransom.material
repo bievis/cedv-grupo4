@@ -44,6 +44,21 @@ material Menu/Creditos
  }
 }
 
+material Game/Loading
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture loading_screen.png
+     }
+   }
+ }
+}
+
 material Menu/HighScores
 {
  technique

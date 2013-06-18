@@ -23,6 +23,7 @@
 
 #define NAME_MAP "Map"
 #define FILE_ROUTE_XML "./config/config.xml"
+#define MAP_ROUTE_XML "./config/Mapa.tmx"
 
 class GameState : public AppState
   {
@@ -52,6 +53,8 @@ public:
     void update(double timeSinceLastFrame);
 
     void LoadScenaryParts();
+
+    void CreatePlane();
 
 private:
     bool          _estaEnMeta; // Indica que ya ha entrado en la linea de la meta
@@ -98,15 +101,15 @@ private:
     void check_vision();
 
     void CreateInitialWorld();
-	// \brief method to create mini map of game
-	void CreateMiniMap();
-	// \brief method to detecting collisions between Hero with Hostages
-	/// \param world reference to world (OgreBullet)
+    // \brief method to create mini map of game
+    void CreateMiniMap();
+    // \brief method to detecting collisions between Hero with Hostages
+    /// \param world reference to world (OgreBullet)
     /// \param hero Hero
     /// \param hostages List of hostages
     /// \return reference to Hostage colliding with hero
-	Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world, 
-												Hero* hero, 
+    Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
+												Hero* hero,
 												std::vector<Hostage*> hostages);
 
     // string getTime(double tiempo);
@@ -115,6 +118,8 @@ private:
     // void reiniciarCoche ();
     // // \brief Reiniciar coche y lo vuelve a poner el inicio
     // void insertarElementoEscena (string nombreElemento);
+
+    void put_column ( const Ogre::Vector3& pos, unsigned int index );
 };
 
 #endif

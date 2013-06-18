@@ -67,6 +67,7 @@
 			<Add library="/usr/local/lib/libConvexDecomposition.so" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
+		<Unit filename="config/EjemploMapa.tmx" />
 		<Unit filename="config/config.xml" />
 		<Unit filename="config/stateMachineConfig.xml" />
 		<Unit filename="include/Action.h" />
@@ -93,7 +94,6 @@
 		<Unit filename="include/State.h" />
 		<Unit filename="include/StateMachine.h" />
 		<Unit filename="include/StateMachineException.h" />
-		<Unit filename="include/StateMachineXMLCharger.h" />
 		<Unit filename="include/Track.h" />
 		<Unit filename="include/TrackManager.h" />
 		<Unit filename="include/Utilities.h" />
@@ -128,7 +128,6 @@
 		<Unit filename="src/State.cpp" />
 		<Unit filename="src/StateMachine.cpp" />
 		<Unit filename="src/StateMachineException.cpp" />
-		<Unit filename="src/StateMachineXMLCharger.cpp" />
 		<Unit filename="src/Track.cpp" />
 		<Unit filename="src/TrackManager.cpp" />
 		<Unit filename="src/Utilities.cpp" />

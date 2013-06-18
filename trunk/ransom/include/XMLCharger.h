@@ -6,6 +6,8 @@
 #include <boost/foreach.hpp>
 #include <GameConfig.h>
 
+class StateMachine;
+
 using boost::property_tree::ptree;
 
 /// \brief This class manage the XML charger for the game configuration
@@ -30,8 +32,15 @@ public:
     /// \brief method to load the xml config from disk
     /// \param routeAbsoluteFile absolute route to xml file with the configuration
     /// \param sm object where we charge the xml configuration loaded
-    void LoadFile ( string routeAbsoluteFile, GameConfig &gc );
-
+    void LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &gc );
+    /// \brief method to load the xml config from disk
+    /// \param routeAbsoluteMap absolute route to xml file with the map
+    /// \param sm object where we charge the xml configuration loaded
+    void LoadMap ( const string& routeAbsoluteMap, GameConfig &gc );
+    /// \brief method to load the xml config from disk
+    /// \param routeAbsoluteFile absolute route to xml file with the configuration
+    /// \param sm object where we charge the xml configuration loaded
+    bool LoadStateMachine ( const string& routeAbsoluteFile, StateMachine &sm );
 };
 
 #endif

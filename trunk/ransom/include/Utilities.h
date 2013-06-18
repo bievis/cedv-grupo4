@@ -69,6 +69,12 @@ class Utilities {
                                                   OgreBulletDynamics::RigidBody** rigidTrack,
                                                   bool visible,
                                                   string initAnimation );
+
+    void put_element_in_scene ( Ogre::SceneManager* sceneMgr,
+                                                  OgreBulletDynamics::DynamicsWorld* world,
+                                                  string name_mesh,
+                                                  string name_element,
+                                                  const Ogre::Vector3& initial_pos );
     /// \brief method to get the Utilities object
     /// \return static Utilities object
     static Utilities& getSingleton();

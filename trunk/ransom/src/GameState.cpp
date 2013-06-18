@@ -38,9 +38,7 @@ void GameState::enter()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
-    XMLCharger::getSingleton().LoadFile ( FILE_ROUTE_XML, _gc );
-
-    _gc.print();
+    m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -71,8 +69,6 @@ void GameState::enter()
 
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
 
-    // m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
-
     // OgreFramework::getSingletonPtr()->getRenderWindowPtr()->getCustomAttribute ( "WINDOW", &windowHandle );
 
     // wHandleStr << windowHandle;
@@ -94,12 +90,22 @@ void GameState::enter()
      	   worldBounds, gravity);
     _world->setDebugDrawer (_debugDrawer);
 
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", true );
+    Ogre::Root::getSingleton().renderOneFrame();
+
+    XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
+    XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
+
+    _gc.print();
+
     // Creacion de los elementos iniciales del mundo
     CreateInitialWorld();
 
     buildGUI();
 
     createScene();
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
   }
 
 void GameState::CreateInitialWorld()
@@ -113,7 +119,8 @@ void GameState::CreateInitialWorld()
     m_pSceneMgr->setShadowTextureSize(512);
 
     // Crear el mapa
-    CreateMap("Mapa1");
+//    CreateMap("Mapa1");
+    CreatePlane();
 
     // Creamos al Heroe
     Ogre::Vector3 v_pos;
@@ -594,41 +601,41 @@ void GameState::update(double timeSinceLastFrame)
     //   }
     // _estaEnPreMeta = _vCoches[0]->isPreMeta(_world);
 
-    if ( m_enemies.size() > 0 )
-      {
-        unsigned int i = 1;
-
-        //Comprobamos según el estado en el que está el enemigo la(s) acción(es) que vamos a realizar
-        for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
- 	        {
-            // NOTA!! : En el metodo Update() del enemigo se realizan los cambios de estado de éste
- 	          State current_state = ((StateMachine&) (*itEnemy)->getStateMachine()).getCurrentStateObject();
-
-            for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
-              {
-                if ( it_a->second.getName() == "walk_in_route" )
-                  {
-                    (*itEnemy)->walk_in_route();
-                  }
-                else if ( it_a->second.getName() == "stop_move" )
-                  {
-                    (*itEnemy)->stop_move();
-                  }
-                else if ( it_a->second.getName() == "shoot" )
-                  {
-                    //PENDIENTE
-                  }
-                else if ( it_a->second.getName() == "run_to" )
-                  {
-                    //PENDIENTE
-                  }
-                else if ( it_a->second.getName() == "watch_around" )
-                  {
-                    //PENDIENTE
-                  }
-              }
- 	        }
-      }
+//    if ( m_enemies.size() > 0 )
+//      {
+//        unsigned int i = 1;
+//
+//        //Comprobamos según el estado en el que está el enemigo la(s) acción(es) que vamos a realizar
+//        for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
+// 	        {
+//            // NOTA!! : En el metodo Update() del enemigo se realizan los cambios de estado de éste
+// 	          State current_state = ((StateMachine&) (*itEnemy)->getStateMachine()).getCurrentStateObject();
+//
+//            for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
+//              {
+//                if ( it_a->second.getName() == "walk_in_route" )
+//                  {
+//                    (*itEnemy)->walk_in_route();
+//                  }
+//                else if ( it_a->second.getName() == "stop_move" )
+//                  {
+//                    (*itEnemy)->stop_move();
+//                  }
+//                else if ( it_a->second.getName() == "shoot" )
+//                  {
+//                    //PENDIENTE
+//                  }
+//                else if ( it_a->second.getName() == "run_to" )
+//                  {
+//                    //PENDIENTE
+//                  }
+//                else if ( it_a->second.getName() == "watch_around" )
+//                  {
+//                    //PENDIENTE
+//                  }
+//              }
+// 	        }
+//      }
 
   }
 
@@ -786,3 +793,89 @@ Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::Dynamics
 	}
 	return hostageCollisition;
 }
+
+void GameState::CreatePlane()
+  {
+    assert ( _gc.getPlaneHeight() > 0 );
+    assert ( _gc.getPlaneWidth() > 0 );
+
+    // Define a floor plane mesh
+ 		Entity *ent;
+    Plane p;
+    p.normal = Vector3(0,1,0); p.d = 0;
+    MeshManager::getSingleton().createPlane ( "FloorPlane",
+                                              ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+                                              p, _gc.getPlaneHeight(), _gc.getPlaneWidth(),
+                                              1, 1, true, 1, 1, 1,
+                                              Vector3::UNIT_Z );
+    // Create an entity (the floor)
+    ent = m_pSceneMgr->createEntity("floor", "FloorPlane");
+    ent->setMaterialName("MaterialMapa1");
+
+//    Ogre::SceneNode *node = m_pSceneMgr->createSceneNode ( "FloorPlane" );
+//    node->attachObject ( ent );
+//    node->setPosition ( Ogre::Vector3::ZERO );
+//    m_pSceneMgr->getRootSceneNode()->addChild ( node );
+
+ 		m_pSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject ( ent );
+
+ 		// add collision detection to it
+ 		//OgreBulletCollisions::CollisionShape *Shape;
+ 		ShapeFloor = new OgreBulletCollisions::StaticPlaneCollisionShape ( Ogre::Vector3 ( 0, 1, 0 ), 0 ); // (normal vector, distance)
+ 		// a body is needed for the shape
+ 		//OgreBulletDynamics::RigidBody *defaultPlaneBodyFloor = new OgreBulletDynamics::RigidBody("BasePlane",
+    defaultPlaneBodyFloor = new OgreBulletDynamics::RigidBody ( "BasePlane", _world );
+ 		defaultPlaneBodyFloor->setStaticShape ( ShapeFloor, 0.1, 0.8 );// (shape, restitution, friction)
+ 		// push the created objects to the deques
+// 		mShapes.push_back(Shape);
+// 		mBodies.push_back(defaultPlaneBody);
+    Ogre::Vector3 pos;
+
+    for ( unsigned int i = 0; i < _gc.getNumColumns(); i++ )
+      {
+        pos = _gc.getPositionColumn(i);
+
+        put_column ( pos, i );
+      }
+  }
+
+void GameState::put_column ( const Ogre::Vector3& pos, unsigned int index )
+  {
+    string name = "Columna" + StringConverter::toString(index);
+
+    Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Plano_Alzado", name, pos );
+//    string name = "Columna" + StringConverter::toString(index);
+//
+//    Entity *entity = m_pSceneMgr->createEntity ( name, "Plano_Alzado.mesh" );
+//
+//    entity->setVisible ( true );
+//
+//    SceneNode *node = m_pSceneMgr->createSceneNode ( name );
+//    node->attachObject ( entity );
+//
+//    node->setPosition ( pos );
+//
+//    m_pSceneMgr->getRootSceneNode()->addChild ( node );
+//    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
+//                      OgreBulletCollisions::StaticMeshToShapeConverter ( entity );
+//
+//    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
+//                      trimeshConverter->createTrimesh();
+//
+//    OgreBulletDynamics::RigidBody *rigidTrack = new
+//                      OgreBulletDynamics::RigidBody ( name, _world );
+//    rigidTrack->setShape ( node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
+//                      Quaternion::IDENTITY );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
