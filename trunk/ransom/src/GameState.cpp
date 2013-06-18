@@ -90,6 +90,8 @@ void GameState::enter()
      	   worldBounds, gravity);
     _world->setDebugDrawer (_debugDrawer);
 
+    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
+
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", true );
     Ogre::Root::getSingleton().renderOneFrame();
 
@@ -101,11 +103,12 @@ void GameState::enter()
     // Creacion de los elementos iniciales del mundo
     CreateInitialWorld();
 
-    buildGUI();
+//    buildGUI();
 
     createScene();
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
+
   }
 
 void GameState::CreateInitialWorld()
@@ -119,8 +122,8 @@ void GameState::CreateInitialWorld()
     m_pSceneMgr->setShadowTextureSize(512);
 
     // Crear el mapa
-//    CreateMap("Mapa1");
-    CreatePlane();
+    CreateMap("Mapa1");
+//    CreatePlane();
 
     // Creamos al Heroe
     Ogre::Vector3 v_pos;
@@ -656,7 +659,7 @@ void GameState::buildGUI()
 //    if ( elem )
 //      elem->hide();
 
-    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
+//    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
   }
 
 // string GameState::getTime ( double tiempo )
