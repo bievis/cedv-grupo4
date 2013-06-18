@@ -102,7 +102,7 @@
     <ClCompile Include="..\..\src\StateMachineException.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\StateMachineXMLCharger.cpp">
+    <ClCompile Include="..\..\src\CamerasController.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
   </ItemGroup>
@@ -197,7 +197,7 @@
     <ClInclude Include="..\..\include\StateMachineException.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\StateMachineXMLCharger.h">
+    <ClInclude Include="..\..\include\CamerasController.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

@@ -32,6 +32,7 @@ GameState::GameState()
     defaultPlaneBodyFloor = NULL;
     ShapeFloor          = NULL;
     _world              = NULL;
+	_camerasController = NULL;
   }
 
 void GameState::enter()
@@ -58,16 +59,6 @@ void GameState::enter()
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
     m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
-
-    m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
-
-    // Position it at 500 in Z direction
-    m_pCamera->setPosition(Vector3(0,45,10));
-      // Look back along -Z
-    m_pCamera->lookAt(Vector3(0,0,0));
-    m_pCamera->setNearClipDistance(5);
-
-    OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
 
     // OgreFramework::getSingletonPtr()->getRenderWindowPtr()->getCustomAttribute ( "WINDOW", &windowHandle );
 
@@ -96,7 +87,7 @@ void GameState::enter()
     Ogre::Root::getSingleton().renderOneFrame();
 
     XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
-    XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
+    //XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
 
     _gc.print();
 
@@ -161,19 +152,30 @@ void GameState::CreateInitialWorld()
         _vCharacteres.push_back ( hostage );
       }
 
+	// Creamos las camaras
+    //*************************************************************************
+	CreateCameras();
+
     // Creamos el Mapa
     //*************************************************************************
 	CreateMiniMap();
-    //*************************************************************************
+}
 
-  }
+void GameState::CreateCameras() {
+	m_pCamera = m_pSceneMgr->createCamera ( "GameCamera" );
+    m_pCamera->setNearClipDistance(1);
+    OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera ( m_pCamera );
+	m_pCamera->setAspectRatio(Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualWidth()) /
+                            Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualHeight()));
+
+	// Creamos la camara del mini mapa
+	_cameraMiniMap = m_pSceneMgr->createCamera ( "CameraMiniMap" );
+
+	// Creamos la camara del heroe
+	_camerasController = new CamerasController(m_pSceneMgr, m_pCamera, _cameraMiniMap, m_hero);
+}
 
 void GameState::CreateMiniMap() {
-	  // Creamos la camara del mini mapa
-	  _CameraMiniMap = m_pSceneMgr->createCamera ( "CameraMiniMap" );
-    _CameraMiniMap->setPosition(Vector3(0,45,1));
-    _CameraMiniMap->lookAt(Vector3(0,0,0));
-	  _CameraMiniMap->setNearClipDistance ( 5 );
     // Creamos la textura donde vamos a meter el mapa que va visualizarse a partir de la camara
     Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -181,7 +183,7 @@ void GameState::CreateMiniMap() {
 
     _rtex = _rtt->getBuffer()->getRenderTarget();
 	  // Vinculamos la camara con la textura
-    _rtex->addViewport ( _CameraMiniMap );
+    _rtex->addViewport ( _cameraMiniMap );
     _rtex->getViewport(0)->setClearEveryFrame ( true );
     _rtex->getViewport(0)->setBackgroundColour ( Ogre::ColourValue::Black );
     _rtex->getViewport(0)->setOverlaysEnabled ( false );
@@ -197,9 +199,12 @@ void GameState::CreateMiniMap() {
     mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
     // Dibujamos el rectagulo donde vamos a insertar la camara
     Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
-    _rect->setCorners ( 0.5, 1, 1, 0.5 );
+    _rect->setCorners ( 0.5, 0.98, 0.98, 0.5 );
     _rect->setMaterial ( "RttMat_Map" );
-
+	// Use infinite AAB to always stay visible
+	Ogre::AxisAlignedBox aabInf;
+	aabInf.setInfinite();
+	_rect->setBoundingBox(aabInf);
     // Render the background before everything else
     _rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
 
@@ -319,10 +324,10 @@ void GameState::exit()
         delete _textureListener;
       }
 
-	  if ( _CameraMiniMap )
+	  if ( _cameraMiniMap )
     {
       cout << "delete camera" << endl;
-      m_pSceneMgr->destroyCamera ( _CameraMiniMap );
+      m_pSceneMgr->destroyCamera ( _cameraMiniMap );
     }
 
     if ( _world )
@@ -376,15 +381,6 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-    // else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_R ) ) {
-    //   // Volver a poner el coche en el inicio
-    //   reiniciarCoche();
-    // }
-//    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_W ) )
-//    {
-//      m_hero->check_vision();
-//      //check_vision();
-//    }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -398,9 +394,6 @@ bool GameState::keyReleased(const OIS::KeyEvent &keyEventRef)
     if (keyEventRef.key == OIS::KC_UP || keyEventRef.key == OIS::KC_DOWN || keyEventRef.key == OIS::KC_X ) {
         m_hero->stop_move();
     }
-	if (keyEventRef.key == OIS::KC_L) {
-		m_hostages[0]->liberate();
-	}
 
     return true;
   }
@@ -454,6 +447,8 @@ void GameState::update(double timeSinceLastFrame)
   {
     // if ( _empieza_a_contar )
     //   _tiempo += timeSinceLastFrame;
+	m_pCamera->setAspectRatio(Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualWidth()) /
+                            Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualHeight()));
 
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->frameRenderingQueued ( m_FrameEvent );
@@ -473,11 +468,9 @@ void GameState::update(double timeSinceLastFrame)
     // elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
     // elem->show();
 
-    Ogre::Real deltaT = timeSinceLastFrame;
-
     // //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
 
-    _world->stepSimulation(deltaT); // Actualizar simulacion Bullet
+    _world->stepSimulation(timeSinceLastFrame); // Actualizar simulacion Bullet
 
 //    bool bMove = false;
 //    float valX = 0, valZ = 0;
@@ -500,13 +493,13 @@ void GameState::update(double timeSinceLastFrame)
       }
 
     // Actalizamos los personajes
-    m_hero->update(deltaT);
+    m_hero->update(timeSinceLastFrame);
     if ( m_enemies.size() > 0 )
     {
         unsigned int i = 1;
         for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
         {
-            (*itEnemy)->update(deltaT);
+            (*itEnemy)->update(timeSinceLastFrame);
         }
     }
 	if ( m_hostages.size() > 0 )
@@ -514,7 +507,7 @@ void GameState::update(double timeSinceLastFrame)
         unsigned int i = 1;
         for ( std::vector<Hostage *>::iterator itHostage = m_hostages.begin(); m_hostages.end() != itHostage; itHostage++, i++ )
         {
-            (*itHostage)->update(deltaT);
+            (*itHostage)->update(timeSinceLastFrame);
         }
     }
 
@@ -523,6 +516,10 @@ void GameState::update(double timeSinceLastFrame)
 	if (hostageRescue != NULL) {
 		hostageRescue->liberate();
 	}
+
+	// Actualizamos la camara
+	if (_camerasController != NULL)
+		_camerasController->update(timeSinceLastFrame);
 
 //    if ( bMove && m_hero )
 //      {
@@ -759,7 +756,7 @@ void GameState::CreateMap(string map)
 
     OgreBulletDynamics::RigidBody *rigidTrack = new
     OgreBulletDynamics::RigidBody(map, _world);
-    rigidTrack->setShape(node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
+	rigidTrack->setStaticShape(node, trackTrimesh, 0.8, 0.95, Vector3::ZERO,
                Quaternion::IDENTITY);
 }
 
