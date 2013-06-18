@@ -20,6 +20,7 @@
 #include "XMLCharger.h"
 #include "GameConfig.h"
 #include "MiniMapTextureListener.h"
+#include "CamerasController.h"
 
 #define NAME_MAP "Map"
 #define FILE_ROUTE_XML "./config/config.xml"
@@ -87,7 +88,8 @@ private:
     OgreBulletDynamics::RigidBody* m_swat;
 
     Ogre::Entity*             entFloor;
-    Ogre::Camera*             _CameraMiniMap;
+    Ogre::Camera*             _cameraMiniMap;
+	CamerasController*		  _camerasController;
     MiniMapTextureListener*   _textureListener;
     Ogre::RenderTexture*      _rtex;
 
@@ -97,10 +99,11 @@ private:
     //Private Methods
 	// \brief method to create map
     void CreateMap(string map);
-
-    void check_vision();
-
+	
+	// \brief method to Create woeld of the scene
     void CreateInitialWorld();
+	// \brief method to create game camera and minimap camera
+	void GameState::CreateCameras();
     // \brief method to create mini map of game
     void CreateMiniMap();
     // \brief method to detecting collisions between Hero with Hostages
