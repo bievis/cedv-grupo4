@@ -35,7 +35,6 @@ public:
     DECLARE_APPSTATE_CLASS(GameState)
 
     void enter();
-    void createScene();
     void exit();
     bool pause();
     void resume();
@@ -99,7 +98,7 @@ private:
     //Private Methods
 	// \brief method to create map
     void CreateMap(string map);
-	
+
 	// \brief method to Create woeld of the scene
     void CreateInitialWorld();
 	// \brief method to create game camera and minimap camera

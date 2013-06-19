@@ -59,10 +59,7 @@ void GameState::enter()
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
 
-    // OgreFramework::getSingletonPtr()->getRenderWindowPtr()->getCustomAttribute ( "WINDOW", &windowHandle );
-
-    // wHandleStr << windowHandle;
-    // param.insert ( std::make_pair ( "WINDOW", wHandleStr.str() ) );
+    CreateCameras();
 
     // // Creacion del modulo de debug visual de Bullet ------------------
     _debugDrawer = new OgreBulletCollisions::DebugDrawer();
@@ -82,11 +79,15 @@ void GameState::enter()
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
+    // Mostramos el loading a pantalla completa
+    Ogre::OverlayElement *elem;
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Loading_Game");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", true );
-    Ogre::Root::getSingleton().renderOneFrame();
+    OgreFramework::getSingletonPtr()->getRootPtr()->renderOneFrame();
 
     XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
-    //XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
+    // TODO XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
 
     _gc.print();
 
@@ -94,8 +95,6 @@ void GameState::enter()
     CreateInitialWorld();
 
 //    buildGUI();
-
-    createScene();
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
 
@@ -151,13 +150,19 @@ void GameState::CreateInitialWorld()
         _vCharacteres.push_back ( hostage );
       }
 
-	// Creamos las camaras
-    //*************************************************************************
-	CreateCameras();
+	// Creamos el controlador de las camaras para que sigan al heroe
+	_camerasController = new CamerasController(m_pSceneMgr, m_pCamera, _cameraMiniMap, m_hero);
 
     // Creamos el Mapa
     //*************************************************************************
 	CreateMiniMap();
+
+	// Creamos las luz del escenario
+    Light* luz = m_pSceneMgr->createLight("Luz");
+    luz->setType(Light::LT_POINT);
+    luz->setPosition(50,100,50);
+    luz->setSpecularColour(1, 1, 1);
+    luz->setDiffuseColour(1, 1, 1);
 }
 
 void GameState::CreateCameras() {
@@ -169,9 +174,6 @@ void GameState::CreateCameras() {
 
 	// Creamos la camara del mini mapa
 	_cameraMiniMap = m_pSceneMgr->createCamera ( "CameraMiniMap" );
-
-	// Creamos la camara del heroe
-	_camerasController = new CamerasController(m_pSceneMgr, m_pCamera, _cameraMiniMap, m_hero);
 }
 
 void GameState::CreateMiniMap() {
@@ -353,20 +355,6 @@ void GameState::exit()
 //    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
 //    overlay->hide();
 
-  }
-
-void GameState::createScene()
-  {
-    // Luz de la escena
-    Light* luz = m_pSceneMgr->createLight("Luz");
-    luz->setType(Light::LT_POINT);
-    luz->setPosition(50,100,50);
-    luz->setSpecularColour(1, 1, 1);
-    luz->setDiffuseColour(1, 1, 1);
-
-    //Cargamos overlay con la GUI ( Tiempo )
-//    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-//    overlay->show();
   }
 
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)

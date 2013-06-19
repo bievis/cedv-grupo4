@@ -1370,7 +1370,7 @@
 	"OgreTerrainMaterialGenerator.h"
 	"OgreGpuProgramParams.h"
 
-1370901903 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfig.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfig.cpp
 	<GameConfig.h>
 
 1370901903 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfigException.cpp
@@ -1425,17 +1425,19 @@
 1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/TrackManager.cpp
 	<TrackManager.h>
 
-1370884153 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
 	"Utilities.h"
+	<OgreVector3.h>
 
-1370901903 source:/home/matisnow/cedv-grupo4/ransom/src/XMLCharger.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/XMLCharger.cpp
 	<XMLCharger.h>
+	<StateMachine.h>
 
-1371071544 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
 	"Character.h"
 	<cassert>
 
-1370706799 source:/home/matisnow/cedv-grupo4/ransom/src/MyTextureListener.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/MyTextureListener.cpp
 	"MyTextureListener.h"
 
 1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsBoxShape.h
@@ -2233,13 +2235,35 @@
 	"OgreBulletDynamicsPreRequisites.h"
 	"OgreBulletCollisionsObject.h"
 
-1371071067 source:/home/matisnow/cedv-grupo4/ransom/src/Enemy.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Enemy.cpp
 	"Enemy.h"
 
-1370900852 source:/home/matisnow/cedv-grupo4/ransom/src/Hero.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Hero.cpp
 	"Hero.h"
 
-1370901903 source:/home/matisnow/cedv-grupo4/ransom/src/EnemyRoute.cpp
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/EnemyRoute.cpp
 	"EnemyRoute.h"
 	<iostream>
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Action.cpp
+	"Action.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/CamerasController.cpp
+	"CamerasController.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Hostage.cpp
+	"Hostage.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/MiniMapTextureListener.cpp
+	"MiniMapTextureListener.h"
+	"GameState.hpp"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/State.cpp
+	"State.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/StateMachine.cpp
+	"StateMachine.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/StateMachineException.cpp
+	"StateMachineException.h"
 
