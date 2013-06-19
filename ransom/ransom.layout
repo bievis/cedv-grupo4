@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
 <CodeBlocks_layout_file>
 	<ActiveTarget name="Debug" />
-	<File name="config/EjemploMapa.tmx" open="0" top="0" tabpos="0">
-		<Cursor position="852" topLine="0" />
+	<File name="config/config.xml" open="1" top="0" tabpos="10">
+		<Cursor position="299" topLine="0" />
 	</File>
-	<File name="config/config.xml" open="1" top="1" tabpos="10">
-		<Cursor position="168" topLine="1" />
-	</File>
-	<File name="config/stateMachineConfig.xml" open="0" top="0" tabpos="7">
-		<Cursor position="429" topLine="0" />
+	<File name="config/stateMachineConfig.xml" open="1" top="1" tabpos="13">
+		<Cursor position="795" topLine="0" />
 	</File>
 	<File name="include/Action.h" open="0" top="0" tabpos="9">
 		<Cursor position="561" topLine="0" />
@@ -19,14 +16,17 @@
 	<File name="include/AppState.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="1842" topLine="0" />
 	</File>
-	<File name="include/Character.h" open="0" top="0" tabpos="10">
-		<Cursor position="595" topLine="19" />
+	<File name="include/CamerasController.h" open="1" top="0" tabpos="17">
+		<Cursor position="123" topLine="0" />
+	</File>
+	<File name="include/Character.h" open="1" top="0" tabpos="15">
+		<Cursor position="6265" topLine="101" />
 	</File>
 	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="5" />
 	</File>
-	<File name="include/Enemy.h" open="0" top="0" tabpos="11">
-		<Cursor position="3395" topLine="55" />
+	<File name="include/Enemy.h" open="1" top="0" tabpos="12">
+		<Cursor position="4349" topLine="66" />
 	</File>
 	<File name="include/EnemyRoute.h" open="0" top="0" tabpos="12">
 		<Cursor position="1341" topLine="12" />
@@ -38,9 +38,9 @@
 		<Cursor position="614" topLine="0" />
 	</File>
 	<File name="include/GameState.hpp" open="1" top="0" tabpos="8">
-		<Cursor position="666" topLine="2" />
+		<Cursor position="666" topLine="0" />
 	</File>
-	<File name="include/Hero.h" open="0" top="0" tabpos="15">
+	<File name="include/Hero.h" open="1" top="0" tabpos="16">
 		<Cursor position="325" topLine="0" />
 	</File>
 	<File name="include/MenuState.hpp" open="0" top="0" tabpos="9">
@@ -67,8 +67,8 @@
 	<File name="include/StateMachineException.h" open="0" top="0" tabpos="15">
 		<Cursor position="1077" topLine="0" />
 	</File>
-	<File name="include/Utilities.h" open="0" top="0" tabpos="20">
-		<Cursor position="4620" topLine="36" />
+	<File name="include/Utilities.h" open="1" top="0" tabpos="14">
+		<Cursor position="0" topLine="0" />
 	</File>
 	<File name="include/XMLCharger.h" open="1" top="0" tabpos="9">
 		<Cursor position="1388" topLine="0" />
@@ -91,14 +91,14 @@
 	<File name="src/AdvancedOgreFramework.cpp" open="0" top="0" tabpos="7">
 		<Cursor position="1171" topLine="26" />
 	</File>
-	<File name="src/Character.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="1092" topLine="3" />
+	<File name="src/Character.cpp" open="1" top="0" tabpos="11">
+		<Cursor position="7352" topLine="226" />
 	</File>
 	<File name="src/DotSceneLoader.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13507" topLine="375" />
 	</File>
 	<File name="src/Enemy.cpp" open="1" top="0" tabpos="5">
-		<Cursor position="7929" topLine="258" />
+		<Cursor position="9313" topLine="267" />
 	</File>
 	<File name="src/EnemyRoute.cpp" open="0" top="0" tabpos="24">
 		<Cursor position="783" topLine="0" />
@@ -107,7 +107,7 @@
 		<Cursor position="3594" topLine="110" />
 	</File>
 	<File name="src/GameState.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1133" topLine="0" />
+		<Cursor position="4079" topLine="116" />
 	</File>
 	<File name="src/Hero.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
@@ -146,7 +146,7 @@
 		<Cursor position="3850" topLine="81" />
 	</File>
 	<File name="src/XMLCharger.cpp" open="1" top="0" tabpos="3">
-		<Cursor position="7754" topLine="232" />
+		<Cursor position="4847" topLine="151" />
 	</File>
 	<File name="src/main.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="284" topLine="0" />

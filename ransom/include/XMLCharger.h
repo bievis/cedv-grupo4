@@ -37,10 +37,6 @@ public:
     /// \param routeAbsoluteMap absolute route to xml file with the map
     /// \param sm object where we charge the xml configuration loaded
     void LoadMap ( const string& routeAbsoluteMap, GameConfig &gc );
-    /// \brief method to load the xml config from disk
-    /// \param routeAbsoluteFile absolute route to xml file with the configuration
-    /// \param sm object where we charge the xml configuration loaded
-    bool LoadStateMachine ( const string& routeAbsoluteFile, StateMachine &sm );
 };
 
 #endif

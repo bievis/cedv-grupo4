@@ -247,3 +247,26 @@ void Character::print()
     printf ( "body ref.         : %p\n", _rigidBody );
     cout << "initial position  : " << _v_pos << endl;
   }
+
+const Ogre::Vector3& Character::getPosition()
+  {
+    assert ( _node );
+    return _node->getPosition();
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
