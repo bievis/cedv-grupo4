@@ -58,6 +58,7 @@ void GameState::enter()
     // _gameTrack->play();
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
+    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
     CreateCameras();
 
@@ -96,6 +97,7 @@ void GameState::enter()
 
 //    buildGUI();
 
+
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
 
   }
@@ -103,7 +105,7 @@ void GameState::enter()
 void GameState::CreateInitialWorld()
   {
     // Activamos las sombras
-	m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+    m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
     m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
 
@@ -118,9 +120,9 @@ void GameState::CreateInitialWorld()
     Ogre::Vector3 v_pos;
     v_pos = _gc.getInitialPosHero();
     m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos );
-	_vCharacteres.push_back(m_hero);
+    _vCharacteres.push_back(m_hero);
 
-	// Creamos los enemigos
+    // Creamos los enemigos
     Enemy *enemy = NULL;
     string name_enemy = "";
     EnemyRoute route;
@@ -136,7 +138,7 @@ void GameState::CreateInitialWorld()
 
         name_enemy = "Enemy" + StringConverter::toString(i);
 
-        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, _gc, i+1 );
+        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, _gc, i+1, m_hero );
         m_enemies.push_back ( enemy );
         _vCharacteres.push_back(enemy);
       }
@@ -155,7 +157,7 @@ void GameState::CreateInitialWorld()
 
     // Creamos el Mapa
     //*************************************************************************
-	CreateMiniMap();
+    CreateMiniMap();
 
 	// Creamos las luz del escenario
     Light* luz = m_pSceneMgr->createLight("Luz");

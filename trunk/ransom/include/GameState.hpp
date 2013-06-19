@@ -96,13 +96,14 @@ private:
     GameConfig                _gc;
 
     //Private Methods
-	// \brief method to create map
+
+    // \brief method to create map
     void CreateMap(string map);
 
-	// \brief method to Create woeld of the scene
+    // \brief method to Create woeld of the scene
     void CreateInitialWorld();
-	// \brief method to create game camera and minimap camera
-	void GameState::CreateCameras();
+    // \brief method to create game camera and minimap camera
+    void CreateCameras();
     // \brief method to create mini map of game
     void CreateMiniMap();
     // \brief method to detecting collisions between Hero with Hostages

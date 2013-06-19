@@ -6,9 +6,17 @@
 #include "MyTextureListener.h"
 #include "EnemyRoute.h"
 #include "GameConfig.h"
-#include "StateMachine.h"
+#include "Hero.h"
 
 #define SIZE_LIFE_BAR 2.0f
+
+/// \brief enumerator with the states of our enemy character
+enum eSTATES_ENEMY {
+  WATCHING,
+  ALERT,
+  SHOOTING,
+  CHASING
+};
 
 class Enemy : public Character
 {
@@ -25,7 +33,8 @@ class Enemy : public Character
             const string& name,
             const Ogre::Vector3& v_pos,
             const GameConfig& config,
-            unsigned int id_route );
+            unsigned int id_route,
+            Hero* ptrHero );
     /** Default destructor */
     virtual ~Enemy();
     /// \brief copy constructor
@@ -55,16 +64,13 @@ class Enemy : public Character
     /// This method uses OgreBullet to move the character
     /// \param pos destiny position to walk
     /// \return true/false if the character arrived to destiny point
-    bool                            walk_to ( const Ogre::Vector3& pos );
+    bool                            walk_to ( const Ogre::Vector3& pos, bool running = false );
     /// \brief method to update lifeBar
     void                            updateLifeBar();
     /// \brief method to update enemy in frame
     void                            update ( double timeSinceLastFrame );
     /// \brief method to show dummy or not
     void                            showDummy ( bool show );
-    /// \brief method to get the state machine assigned to the character
-    /// \return the state machine object
-    const StateMachine&             getStateMachine() const { return _sm; };
 
     void                            watch_around();
 
@@ -73,6 +79,10 @@ class Enemy : public Character
     /// this method is used in assignment operator and copy constructor
     /// \param other source enemy to copy
     void                            copy ( const Enemy& source );
+
+    void                            setCurrentState ( const eSTATES_ENEMY& newState );
+
+    inline const eSTATES_ENEMY&     getCurrentState() { return _currentState; };
 
   private:
     /// \brief texture pointer
@@ -96,12 +106,22 @@ class Enemy : public Character
     /// \brief reference to node of Lifebar
     Ogre::SceneNode* _lifeNode;
     /// \brief object with the enemy state machine
-    StateMachine _sm;
+//    StateMachine _sm;
+    eSTATES_ENEMY _currentState;
 
-    double _timeElapsed;
-    double _timeElapsedPartial_Watching;
+
+    double _timeElapsed_Global;
+
+    double _timeElapsed_Watching;
+
     double _timeFirstVision;
     double _timeStartChasing;
+
+    bool _centinel_dest;
+
+    Hero* _refHero;
+
+    Ogre::Vector3 _positionLastViewed;
 };
 
 #endif // ENEMY_H

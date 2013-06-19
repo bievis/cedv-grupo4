@@ -1,5 +1,4 @@
 #include <XMLCharger.h>
-#include <StateMachine.h>
 
 XMLCharger* XMLCharger::_instance = 0;
 
@@ -148,59 +147,11 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
           }
       }
 
-//    // Lectura del mapa
-//
-//    try {
-//      is.open ( routeAbsoluteFileMap.c_str() );
-//    }
-//    catch ( std::ifstream::failure e ) {
-//      std::cerr << "Exception opening/reading file '" << routeAbsoluteFileMap << "'" << endl;
-//      return;
-//    }
-//
-//    ptree pt2;
-//
-//    read_xml ( is, pt2 );
-//
-//    int width, height, gid, cont;
-//
-//    BOOST_FOREACH ( ptree::value_type const& v, pt2.get_child("map") )
-//      {
-//        // <layer name="Mapa" width="320" height="320">
-//        if ( v.first == "layer" )
-//          {
-//            width = v.second.get<int>("<xmlattr>.width");
-//            height = v.second.get<int>("<xmlattr>.height");
-//
-//            cont = 1;
-//
-//            boost::property_tree::ptree data = (boost::property_tree::ptree) v.second;
-//
-//            BOOST_FOREACH ( ptree::value_type const& v2, data.get_child("data") )
-//              {
-//                if ( v2.first == "tile" )
-//                {
-//                  gid = v2.second.get<int>("<xmlattr>.gid");
-//
-//                  if ( gid != 0 )
-//                    {
-//                      cout << "Fila, Columna = " << cont / width << ", " << cont % width << endl;
-//                    }
-//
-//                  cont++;
-//                }
-//              }
-//          }
-//      }
-//
-//    is.close();
   }
 
 void XMLCharger::LoadMap ( const string& routeAbsoluteMap, GameConfig& gc )
   {
     ifstream is;
-
-    // Lectura del mapa
 
     try {
       is.open ( routeAbsoluteMap.c_str() );
@@ -218,27 +169,12 @@ void XMLCharger::LoadMap ( const string& routeAbsoluteMap, GameConfig& gc )
 
     BOOST_FOREACH ( ptree::value_type const& v, pt.get_child("map") )
       {
-        // <layer name="Mapa" width="320" height="320">
         if ( v.first == "layer" )
           {
             width = v.second.get<int>("<xmlattr>.width");
             gc.setPlaneWidth ( width );
             height = v.second.get<int>("<xmlattr>.height");
             gc.setPlaneHeight ( height );
-
-//            boost::property_tree::ptree columns = (boost::property_tree::ptree) v.second;
-//
-//            BOOST_FOREACH ( ptree::value_type const& v2, columns.get_child("columns") )
-//              {
-//                if ( v2.first == "column" )
-//                  {
-//                    posX = v2.second.get<float>("<xmlattr>.posX");
-//                    posY = v2.second.get<float>("<xmlattr>.posY");
-//                    posZ = v2.second.get<float>("<xmlattr>.posZ");
-//
-//                    gc.addColumnPosition ( Ogre::Vector3 ( posX, posY, posZ ) );
-//                  }
-//              }
 
             cont = 1;
 
@@ -254,7 +190,6 @@ void XMLCharger::LoadMap ( const string& routeAbsoluteMap, GameConfig& gc )
                     {
                       fila = (( cont % width == 0)?( cont / width ):(( cont / width ) + 1));
                       col = (( cont % width == 0)?320:( cont % width ));
-//                      cout << "Fila, Columna = " << fila << ", " << col << endl;
                       gc.addColumnPosition ( Ogre::Vector3 ( fila, 0, col ) );
                     }
 
@@ -267,71 +202,6 @@ void XMLCharger::LoadMap ( const string& routeAbsoluteMap, GameConfig& gc )
     is.close();
 
 }
-
-bool XMLCharger::LoadStateMachine ( const string& routeAbsoluteFile, StateMachine &sm )
-  {
-    ifstream is;
-
-    try
-      {
-        is.open ( routeAbsoluteFile.c_str() );
-      }
-    catch ( std::ifstream::failure e )
-      {
-        std::cerr << "Exception opening/reading file '" << routeAbsoluteFile << "'" << endl;
-        return false;
-      }
-
-    sm.clear();
-
-    ptree pt;
-
-    read_xml ( is, pt );
-
-    string default_state = "";
-
-    BOOST_FOREACH ( ptree::value_type const& v, pt.get_child("config") )
-      {
-        if ( v.first == "StateMachine" )
-          {
-            default_state = v.second.get<std::string>("<xmlattr>.default");
-            sm.setCurrentState ( default_state );
-
-            boost::property_tree::ptree states = (boost::property_tree::ptree) v.second;
-
-            BOOST_FOREACH ( ptree::value_type const& v2, states.get_child("States") )
-              {
-                if ( v2.first == "State" )
-                  {
-                    State st;
-
-                    string name = v2.second.get<std::string>("<xmlattr>.name");
-
-                    st.setName ( name );
-
-                    boost::property_tree::ptree actions = (boost::property_tree::ptree) v2.second;
-
-                    BOOST_FOREACH ( ptree::value_type const& v3, actions.get_child("Actions") )
-                      {
-                        if ( v3.first == "Action" )
-                          {
-                            Action a;
-                            string name_action = v3.second.get<std::string>("<xmlattr>.name");
-                            a.setName ( name_action );
-                            st.addAction ( a );
-                          }
-                      }
-
-                    sm.addState ( st );
-                  }
-              }
-          }
-      }
-
-    is.close();
-
-    return true;
-  }
 
 XMLCharger::XMLCharger()
   {

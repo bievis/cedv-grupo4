@@ -67,7 +67,6 @@
 			<Add library="/usr/local/lib/libConvexDecomposition.so" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
-		<Unit filename="config/EjemploMapa.tmx" />
 		<Unit filename="config/config.xml" />
 		<Unit filename="config/stateMachineConfig.xml" />
 		<Unit filename="include/Action.h" />
@@ -75,6 +74,7 @@
 		<Unit filename="include/AnimationBlender.h" />
 		<Unit filename="include/AppState.hpp" />
 		<Unit filename="include/AppStateManager.hpp" />
+		<Unit filename="include/CamerasController.h" />
 		<Unit filename="include/Character.h" />
 		<Unit filename="include/DotSceneLoader.hpp" />
 		<Unit filename="include/Enemy.h" />
@@ -109,6 +109,7 @@
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
 		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
+		<Unit filename="src/CamerasController.cpp" />
 		<Unit filename="src/Character.cpp" />
 		<Unit filename="src/DotSceneLoader.cpp" />
 		<Unit filename="src/Enemy.cpp" />

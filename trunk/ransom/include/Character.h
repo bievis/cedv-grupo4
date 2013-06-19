@@ -7,6 +7,10 @@ using namespace std;
 
 #define VELOCIDAD 2.0
 #define VELOCIDAD_ANIMACION 3.0
+
+#define VELOCIDAD_RUNNING 5.0
+//#define VELOCIDAD_RUNNING_ANIMACION 6.0
+
 #define MAX_HEALTH 100.0
 
 // Animation Name of Mesh
@@ -136,6 +140,8 @@ class Character
     /// \brief method to set visible the dummy entity or not
     /// \param show to show dummy or not
     virtual void                  showDummy ( bool show );
+
+    const Ogre::Vector3&          getPosition();
 
 };
 

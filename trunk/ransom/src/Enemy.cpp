@@ -5,16 +5,21 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                     const string& name,
                     const Ogre::Vector3& v_pos,
                     const GameConfig& config,
-                    unsigned int id_route ) : Character ( sceneMgr,
+                    unsigned int id_route,
+                    Hero* ptrHero ) : Character ( sceneMgr,
                                                         world,
                                                         name,
                                                         v_pos,
                                                         ENEMY, STOP_ANIMATION )
   {
-    _timeElapsed = 0;
-    _timeElapsedPartial_Watching = 0;
+    _timeElapsed_Global = 0;
+    _timeElapsed_Watching = 0;
     _timeFirstVision = 0;
     _timeStartChasing = 0;
+
+    _centinel_dest = false;
+
+    _refHero = ptrHero;
 
     //Material del enemigo
     _entity->setMaterialName ( "MaterialRojo" );
@@ -78,18 +83,20 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     cout << " punto de salida = " << _route.getPoint(0) << endl;
 
-    try {
-      // Maquina de Estados del Enemigo
-      if ( _sm.load_from_file ( "config/stateMachineConfig.xml" ) )
-        {
-          assert ( _sm.validateXML() );
-          _sm.print_info();
-        }
-    }
-    catch ( StateMachineException& exc )
-    {
-      cout << exc.what() << endl;
-    }
+    _currentState = WATCHING;
+
+//    try {
+//      // Maquina de Estados del Enemigo
+//      if ( _sm.load_from_file ( "config/stateMachineConfig.xml" ) )
+//        {
+//          assert ( _sm.validateXML() );
+//          _sm.print_info();
+//        }
+//    }
+//    catch ( StateMachineException& exc )
+//    {
+//      cout << exc.what() << endl;
+//    }
 
   }
 
@@ -171,140 +178,148 @@ void Enemy::updateLifeBar() {
 
 void Enemy::update ( double timeSinceLastFrame )
   {
-    _timeElapsed += timeSinceLastFrame;
+    _timeElapsed_Global += timeSinceLastFrame;
 
     Character::update(timeSinceLastFrame);
     updateLifeBar();
 
     // Cambios de estado del enemigo
 
-    // Si estamos en el estado normal de vigilancia
-    if ( _sm.getCurrentState() == "Watching" )
+    switch ( _currentState )
       {
-        if ( haveYouSeenAnybody() )
-          {
-            // Pasamos al estado en alerta
-            // almacenamos el tiempo actual de primer contacto visual
-            _timeFirstVision = _timeElapsed;
-            _sm.setCurrentState ( "Alert" );
-          }
-      }
-    else if ( _sm.getCurrentState() == "Alert" )
-      {
-        if ( !haveYouSeenAnybody() )
-          {
-            // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
-            // al estado persecucion (Chasing)
-            if ( _timeElapsed - _timeFirstVision > 2 )
+        // ################## ESTADO WATCHING ##################
+        // Si estamos en el estado normal de WATCHING
+        case WATCHING:
+
+            // Si avistamos al heroe :
+            // - tomamos su posición actual
+            // - cogemos el tiempo actual
+            // - pasamos al estado ALERT
+            if ( haveYouSeenAnybody() )
               {
-                _timeStartChasing = _timeElapsed;
-                _sm.setCurrentState ( "Chasing" );
+                _positionLastViewed = _refHero->getPosition();
+                _timeFirstVision = _timeElapsed_Global;
+                setCurrentState ( ALERT );
+              }
+            // Si no vemos al heroe :
+            // - reseteamos el tiempo que lo hemos estado viendo a 0
+            // - el centinela usado para saber si hemos llegado al punto donde lo vimos lo ponemos a false
+            // - seguimos caminando por nuestra ruta
+            else
+              {
+                _timeElapsed_Watching = 0;
+                _centinel_dest = false;
+                walk_in_route();
+              }
+
+            break;
+
+        // ################## ESTADO ALERT ##################
+        case ALERT:
+
+            // Partiendo de la premisa de que para estar en estado ALERT
+            // el enemigo ha tenido que ver al heroe.
+            //    - Pues si ahora ya no lo vemos :
+            //        # Si el tiempo actual menos el tiempo que cogimos al verlo es mayor
+            //          a 2 segundos, entonces pasamos al estado CHASING y almacenamos
+            //          el tiempo cuando iniciamos la persecución
+            //        # Sino, si el tiempo de vision es inferior a 2 segundos pasaremos
+            //          al estado WATCHING
+            //    - Si por el contrario, seguimos viendo habiendo cambiado de estado
+            //      entonces, nos quedaremos inmoviles**
+            //@TODO **(ESTO EN EL FUTURO PASARA AL ESTADO SHOOTING
+            if ( !haveYouSeenAnybody() )
+              {
+                // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
+                // al estado persecucion (CHASING)
+                if ( _timeElapsed_Global - _timeFirstVision > 2 )
+                  {
+                    _timeStartChasing = _timeElapsed_Global;
+                    setCurrentState ( CHASING );
+                  }
+                // Sino es asi volveremos al estado WATCHING
+                else
+                  {
+                    setCurrentState ( WATCHING );
+                  }
               }
             else
               {
-                _sm.setCurrentState ( "Watching" );
-              }
-          }
-      }
-    else if ( _sm.getCurrentState() == "Chasing" )
-      {
-        if ( !haveYouSeenAnybody() &&
-            ( _timeElapsed - _timeStartChasing ) > 10 )
-          {
-            _sm.setCurrentState ( "Watching" );
-          }
-      }
+                _timeElapsed_Watching = 0;
+                _centinel_dest = false;
 
-//    // Si el enemigo ve al heroe
-//    if ( haveYouSeenAnybody() )
-//      {
-//        // Si estamos en el estado normal de vigilancia
-//        if ( _sm.getCurrentState() == "Watching" )
-//          {
-//            // Pasamos al estado en alerta
-//            // almacenamos el tiempo actual de primer contacto visual
-//            _timeFirstVision = _timeElapsed;
-//            _sm.setCurrentState ( "Alert" );
-//          }
-//
-//      }
-//    else
-//      {
-//        // Si NO vemos a nadie y venimos del estado en alerta
-//        if ( _sm.getCurrentState() == "Alert" )
-//          {
-//            // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
-//            // al estado persecucion (Chasing)
-//            if ( ( _timeElapsed - _timeFirstVision ) > 2 )
-//              {
-//                _sm.setCurrentState ( "Chasing" );
-//              }
-//            else
-//              {
-//                _sm.setCurrentState ( "Watching" );
-//              }
-//          }
-//        // Si NO vemos a nadie y estamos en estado de persecucion
-//        else if ( _sm.getCurrentState() == "Chasing" )
-//          {
-//
-//          }
-//
-//      }
-
-    // Acciones según el estado
-
-    State current_state = _sm.getCurrentStateObject();
-
-    for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
-      {
-        if ( it_a->second.getName() == "walk_in_route" )
-          {
-            _timeElapsedPartial_Watching = 0;
-            walk_in_route();
-          }
-        else if ( it_a->second.getName() == "stop_move" )
-          {
-            _timeElapsedPartial_Watching = 0;
-            stop_move();
-          }
-        else if ( it_a->second.getName() == "shoot" )
-          {
-            _timeElapsedPartial_Watching = 0;
-            //PENDIENTE
-          }
-        else if ( it_a->second.getName() == "run_to" )
-          {
-            _timeElapsedPartial_Watching = 0;
-            //PENDIENTE
-          }
-        else if ( it_a->second.getName() == "watch_around" )
-          {
-
-            //PENDIENTE
-            _timeElapsedPartial_Watching += timeSinceLastFrame;
-
-            if ( _timeElapsedPartial_Watching >= 2 )
-              {
-                _timeElapsedPartial_Watching = 0;
-
-                _rigidBody->enableActiveState();
-                _node->yaw ( Ogre::Radian ( Ogre::Math::HALF_PI ) );
-                btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to ( _node->getOrientation() );
-                _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation ( quaternion );
-
-                //cout << _timeElapsed << endl;
-              }
-            else
-              {
                 stop_move();
               }
 
-          }
+            break;
+
+        // ################## ESTADO SHOOTING ##################
+        case SHOOTING:
+
+            // PENDIENTE
+
+            _timeElapsed_Watching = 0;
+            _centinel_dest = false;
+
+            break;
+
+        // ################## ESTADO CHASING ##################
+        case CHASING:
+
+            // Si entramos en estado CHASING
+            //    - Si no ve al heroe y ademas han pasado unos 10 segundos desde el
+            //      ultimo avistamiento pasaremos al estado WATCHING.
+            //      NOTA: Lo de poner 10 segundos es porque el mirar a las 4 esquinas
+            //      dura aproximadamente éste tiempo
+            //    - Si por el contrario, seguimos viendo al enemigo, pasaremos al
+            //      estado ALERT
+            //    - Por ultimo, si no lo vemos y el tiempo entre que hemos desaparecido
+            //      de su vision y cuando pasamos a éste estado es inferior a 10
+            //      el enemigo se movera hasta el punto ultimo visto del heroe y llegado
+            //      a éste hara una visión alrededor para buscar al heroe
+            if ( !haveYouSeenAnybody() &&
+                ( _timeElapsed_Global - _timeStartChasing ) > 10 )
+              {
+                setCurrentState ( WATCHING );
+              }
+            else if ( haveYouSeenAnybody() )
+              {
+                setCurrentState ( ALERT );
+              }
+            else
+              {
+                // Si ya estamos en el punto donde vimos al heroe por
+                // ultima vez, entonces dejamos de movernos
+                if ( !_centinel_dest )
+                  {
+                    _centinel_dest = walk_to ( _positionLastViewed, true );
+                  }
+
+                if ( _centinel_dest )
+                  {
+                    _timeElapsed_Watching += timeSinceLastFrame;
+
+                    if ( _timeElapsed_Watching >= 2 )
+                      {
+                        _timeElapsed_Watching = 0;
+
+                        watch_around();
+                      }
+                    else
+                      {
+                        stop_move();
+                      }
+                  }
+              }
+
+            break;
+
       }
+    // ######################################################
+
   }
 
-bool Enemy::walk_to ( const Ogre::Vector3& p )
+bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
   {
 //    cout << _name << ": destino " << p << endl;
     bool res = false;
@@ -348,14 +363,16 @@ bool Enemy::walk_to ( const Ogre::Vector3& p )
           }
       }
 
-    walk ( false );
+    if ( running )
+      walk ( false, VELOCIDAD_RUNNING );
+    else
+      walk ( false );
 
     return res;
   }
 
 void Enemy::watch_around()
 {
-
 
     _rigidBody->enableActiveState();
     _node->yaw ( Ogre::Radian( Ogre::Math::HALF_PI ) );
@@ -406,4 +423,25 @@ void Enemy::walk_in_route()
 void Enemy::showDummy(bool show) {
 	Character::showDummy(show);
 	_lifeNode->setVisible(!show);
+}
+
+void Enemy::setCurrentState( const eSTATES_ENEMY& newValue )
+{
+  string msg = "";
+
+  _currentState = newValue;
+
+  switch ( _currentState )
+    {
+      case WATCHING:
+        msg = "WATCHING"; break;
+      case ALERT:
+        msg = "ALERT"; break;
+      case SHOOTING:
+        msg = "SHOOTING"; break;
+      case CHASING:
+        msg = "CHASING"; break;
+    }
+
+  cout << "The new state is '" << msg << "'" << endl;
 }
