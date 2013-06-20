@@ -12,12 +12,16 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         v_pos,
                                                         ENEMY, STOP_ANIMATION )
   {
+    // Inicialización del generador de numeros aleatorios
+    srand(time(NULL));
+
     _timeElapsed_Global = 0;
     _timeElapsed_Watching = 0;
     _timeFirstVision = 0;
     _timeStartChasing = 0;
+    _timeElapsed_Shooting = 0;
 
-    _centinel_dest = false;
+    _sentinel_dest = false;
 
     _refHero = ptrHero;
 
@@ -208,7 +212,7 @@ void Enemy::update ( double timeSinceLastFrame )
             else
               {
                 _timeElapsed_Watching = 0;
-                _centinel_dest = false;
+                _sentinel_dest = false;
                 walk_in_route();
               }
 
@@ -245,10 +249,7 @@ void Enemy::update ( double timeSinceLastFrame )
               }
             else
               {
-                _timeElapsed_Watching = 0;
-                _centinel_dest = false;
-
-                stop_move();
+                setCurrentState ( SHOOTING );
               }
 
             break;
@@ -259,7 +260,36 @@ void Enemy::update ( double timeSinceLastFrame )
             // PENDIENTE
 
             _timeElapsed_Watching = 0;
-            _centinel_dest = false;
+            _sentinel_dest = false;
+
+            stop_move();
+
+            if ( haveYouSeenAnybody() )
+              {
+                _positionLastViewed = _refHero->getPosition();
+
+                reorient_enemy_to_hero();
+
+                if ( _timeElapsed_Global - _timeElapsed_Shooting > 2 )
+                {
+                  double distance = 0.0;
+                  double rate = 0.0;
+
+                  _timeElapsed_Shooting = _timeElapsed_Global;
+
+                  distance = get_distance_with_hero();
+
+                  if ( validate_success_rate ( distance, &rate ) )
+                    cout << "TOCADO!!! (" << rate << "%) distance = " << distance << endl;
+                  else
+                    cout << "AGUA!!! (" << rate << "%) distance = " << distance << endl;
+                }
+              }
+            else
+              {
+                _timeStartChasing = _timeElapsed_Global;
+                setCurrentState ( CHASING );
+              }
 
             break;
 
@@ -290,12 +320,12 @@ void Enemy::update ( double timeSinceLastFrame )
               {
                 // Si ya estamos en el punto donde vimos al heroe por
                 // ultima vez, entonces dejamos de movernos
-                if ( !_centinel_dest )
+                if ( !_sentinel_dest )
                   {
-                    _centinel_dest = walk_to ( _positionLastViewed, true );
+                    _sentinel_dest = walk_to ( _positionLastViewed, true );
                   }
 
-                if ( _centinel_dest )
+                if ( _sentinel_dest )
                   {
                     _timeElapsed_Watching += timeSinceLastFrame;
 
@@ -317,6 +347,60 @@ void Enemy::update ( double timeSinceLastFrame )
       }
     // ######################################################
 
+  }
+
+bool Enemy::validate_success_rate ( double distance, double* rate )
+  {
+    bool res = false;
+
+    //Numeros aleatorios entre 1 y 100
+    *rate = 1 + rand() % ( 100 );
+
+    // Si la distancia al heroe está entre 5 y 10
+    // entonces si el valor está por encima del 50%
+    // nos habrá dado, sino fallo
+    if ( ( distance > 5 ) && ( distance < 10 ) )
+      {
+        // Del 50% en adelante nos habrá acertado
+        if ( *rate > 50 )
+        {
+          res = true;
+        }
+      }
+    // Si la distancia al heroe está entre 10 y 15
+    // entonces si el valor está por encima del 65%
+    // nos habrá dado, sino fallo
+    if ( ( distance > 10 ) && ( distance < 15 ) )
+      {
+        // Del 65% en adelante nos habrá acertado
+        if ( *rate > 65 )
+          {
+            res = true;
+          }
+      }
+    // Si la distancia al heroe está es mayor a 20
+    // entonces si el valor está por encima del 75%
+    // nos habrá dado, sino fallo
+    if ( distance > 20 )
+      {
+        // Del 75% en adelante nos habrá acertado
+        if ( *rate > 75 )
+          {
+            res = true;
+          }
+      }
+
+    return res;
+  }
+
+const Ogre::Real& Enemy::get_distance_with_hero()
+  {
+    Ogre::Vector3 p = _refHero->getSceneNode()->getPosition();
+    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
+
+    Ogre::Real distance = o.distance ( p );
+
+    return distance;
   }
 
 bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
@@ -444,4 +528,32 @@ void Enemy::setCurrentState( const eSTATES_ENEMY& newValue )
     }
 
   cout << "The new state is '" << msg << "'" << endl;
+}
+
+void Enemy::reorient_enemy_to_hero()
+  {
+    Ogre::Vector3 p = _refHero->getSceneNode()->getPosition();
+
+    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
+
+    Ogre::Vector3 v = p - o; // 1er vector
+
+    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
+
+    Ogre::Radian angle = orientacion.angleBetween ( v );
+
+    if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
+      {
+        if ( angle.valueDegrees() > 5 )
+          {
+            turn_left();
+          }
+      }
+    else
+      {
+        if ( angle.valueDegrees() > 5 )
+          {
+            turn_right();
+          }
+      }
 }

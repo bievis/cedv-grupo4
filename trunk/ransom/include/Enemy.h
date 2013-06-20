@@ -1,6 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
+#include <stdlib.h> // Numeros Aleatorios
 #include <Character.h>
 #include <OgreTextureManager.h>
 #include "MyTextureListener.h"
@@ -65,23 +66,39 @@ class Enemy : public Character
     /// \param pos destiny position to walk
     /// \return true/false if the character arrived to destiny point
     bool                            walk_to ( const Ogre::Vector3& pos, bool running = false );
+    /// \brief method to watch around the enemy 360º
+    void                            watch_around();
     /// \brief method to update lifeBar
     void                            updateLifeBar();
     /// \brief method to update enemy in frame
     void                            update ( double timeSinceLastFrame );
     /// \brief method to show dummy or not
     void                            showDummy ( bool show );
+    /// \brief method to get the distance between the enemy and the hero
+    /// \return a real value with the distance
+    const Ogre::Real&               get_distance_with_hero();
+    /// \brief method to validate the success rate to shoot and hurt our hero or fail
+    /// This method perform the next:
+    /// a) Generate a random number between 1 and 100
+    /// b) According the distance, the farther will be more difficult to hit the hero
+    /// Joining the random value and the distance obtaining the result
+    /// \param distance distance between the enemy and the hero
+    /// \param rate success rate returned by the method (only for info purposes)
+    /// \return true/false if it was hit the shoot in the hero
+    bool                            validate_success_rate ( double distance, double* rate );
 
-    void                            watch_around();
+    void                            reorient_enemy_to_hero();
 
   protected:
     /// \brief protected method to copy a enemy
     /// this method is used in assignment operator and copy constructor
     /// \param other source enemy to copy
     void                            copy ( const Enemy& source );
-
+    /// \brief method to set the enemy state
+    /// \param newState new state to set
     void                            setCurrentState ( const eSTATES_ENEMY& newState );
-
+    /// \brief method to get the enemy state
+    /// \return the current enemy state
     inline const eSTATES_ENEMY&     getCurrentState() { return _currentState; };
 
   private:
@@ -105,22 +122,23 @@ class Enemy : public Character
     Ogre::Billboard* _lifeBar;
     /// \brief reference to node of Lifebar
     Ogre::SceneNode* _lifeNode;
-    /// \brief object with the enemy state machine
-//    StateMachine _sm;
+    /// \brief current enemy state
     eSTATES_ENEMY _currentState;
-
-
+    /// \brief time elapsed in the game
     double _timeElapsed_Global;
-
+    /// \brief time elapsed between the enemy watch to the hero and dissapear him
     double _timeElapsed_Watching;
-
+    /// \brief time elapsed between shoots
+    double _timeElapsed_Shooting;
+    /// \brief attribute to save the time when the enemy sees the hero for the first time
     double _timeFirstVision;
+    /// \brief time when start the chasing
     double _timeStartChasing;
-
-    bool _centinel_dest;
-
+    /// \brief sentinel used to validate if the enemy is at the point where he saw the hero the last time
+    bool _sentinel_dest;
+    /// \brief reference to the hero object
     Hero* _refHero;
-
+    /// \brief last position of our hero when he was viewed
     Ogre::Vector3 _positionLastViewed;
 };
 
