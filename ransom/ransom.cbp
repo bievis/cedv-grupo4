@@ -68,8 +68,6 @@
 			<Add directory="/usr/local/lib" />
 		</Linker>
 		<Unit filename="config/config.xml" />
-		<Unit filename="config/stateMachineConfig.xml" />
-		<Unit filename="include/Action.h" />
 		<Unit filename="include/AdvancedOgreFramework.hpp" />
 		<Unit filename="include/AnimationBlender.h" />
 		<Unit filename="include/AppState.hpp" />
@@ -83,6 +81,7 @@
 		<Unit filename="include/GameConfigException.hpp" />
 		<Unit filename="include/GameState.hpp" />
 		<Unit filename="include/Hero.h" />
+		<Unit filename="include/Hostage.h" />
 		<Unit filename="include/MenuState.hpp" />
 		<Unit filename="include/MiniMapTextureListener.h" />
 		<Unit filename="include/MyTextureListener.h" />
@@ -91,9 +90,6 @@
 		<Unit filename="include/Records.h" />
 		<Unit filename="include/SoundFX.h" />
 		<Unit filename="include/SoundFXManager.h" />
-		<Unit filename="include/State.h" />
-		<Unit filename="include/StateMachine.h" />
-		<Unit filename="include/StateMachineException.h" />
 		<Unit filename="include/Track.h" />
 		<Unit filename="include/TrackManager.h" />
 		<Unit filename="include/Utilities.h" />
@@ -105,7 +101,6 @@
 		<Unit filename="media/materials/scripts/ransom.material" />
 		<Unit filename="media/materials/scripts/ransom.overlay" />
 		<Unit filename="ogre.cfg" />
-		<Unit filename="src/Action.cpp" />
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
 		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
@@ -118,6 +113,7 @@
 		<Unit filename="src/GameConfigException.cpp" />
 		<Unit filename="src/GameState.cpp" />
 		<Unit filename="src/Hero.cpp" />
+		<Unit filename="src/Hostage.cpp" />
 		<Unit filename="src/MenuState.cpp" />
 		<Unit filename="src/MiniMapTextureListener.cpp" />
 		<Unit filename="src/MyTextureListener.cpp" />
@@ -126,9 +122,6 @@
 		<Unit filename="src/Records.cpp" />
 		<Unit filename="src/SoundFX.cpp" />
 		<Unit filename="src/SoundFXManager.cpp" />
-		<Unit filename="src/State.cpp" />
-		<Unit filename="src/StateMachine.cpp" />
-		<Unit filename="src/StateMachineException.cpp" />
 		<Unit filename="src/Track.cpp" />
 		<Unit filename="src/TrackManager.cpp" />
 		<Unit filename="src/Utilities.cpp" />
