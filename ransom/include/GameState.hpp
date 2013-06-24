@@ -73,7 +73,7 @@ private:
 //    bool                      _empieza_a_contar;
 
 //    TrackPtr                  _gameTrack;
-//    SoundFXPtr                _sonidoMetaFX;
+    SoundFXPtr                _sonidoShootFX;
 
 //    btScalar                  _velocidad;
 
@@ -88,7 +88,7 @@ private:
 
     Ogre::Entity*             entFloor;
     Ogre::Camera*             _cameraMiniMap;
-	CamerasController*		  _camerasController;
+    CamerasController*		    _camerasController;
     MiniMapTextureListener*   _textureListener;
     Ogre::RenderTexture*      _rtex;
 

@@ -52,7 +52,7 @@ void GameState::enter()
     // _controlMeta = 0;
 
     // _gameTrack = TrackManager::getSingleton().load("musicGame.mp3");
-    // _sonidoMetaFX = SoundFXManager::getSingleton().load("claxon.wav");
+    _sonidoShootFX = SoundFXManager::getSingleton().load("shoot.wav");
 
     // // Reproducción del track principal...
     // _gameTrack->play();
@@ -370,6 +370,14 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
+      _sonidoShootFX->play();
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_K ) )
+      {
+        if ( m_enemies.size() > 0 && m_enemies[0] )
+          m_enemies[0]->play_sound_death();
+      }
+
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
