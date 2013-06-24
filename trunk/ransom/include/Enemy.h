@@ -134,6 +134,10 @@ class Enemy : public Character
     double _timeFirstVision;
     /// \brief time when start the chasing
     double _timeStartChasing;
+    /// \brief time used to know if the enemy is blocked
+    double _timeBlocked;
+    /// \brief current position to use when we check if the enemy is blocked
+    Ogre::Vector3 _currentPosition;
     /// \brief sentinel used to validate if the enemy is at the point where he saw the hero the last time
     bool _sentinel_dest;
     /// \brief reference to the hero object
