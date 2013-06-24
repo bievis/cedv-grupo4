@@ -19,7 +19,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _timeElapsed_Watching = 0;
     _timeFirstVision = 0;
     _timeStartChasing = 0;
-    _timeElapsed_Shooting = 0;
+    _timeElapsed_Shooting = 2;
     _timeBlocked = 0;
 
     _currentPosition = Ogre::Vector3::ZERO;
@@ -91,6 +91,18 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     cout << " punto de salida = " << _route.getPoint(0) << endl;
 
     _currentState = WATCHING;
+
+    _soundAlert1FX = SoundFXManager::getSingleton().load("alert1.wav");
+    _soundAlert2FX = SoundFXManager::getSingleton().load("alert2.wav");
+
+    _soundDeath1FX = SoundFXManager::getSingleton().load("death1.wav");
+    _soundDeath2FX = SoundFXManager::getSingleton().load("death2.wav");
+    _soundDeath3FX = SoundFXManager::getSingleton().load("death3.wav");
+
+    _sonidoShootFX = SoundFXManager::getSingleton().load("shoot.wav");
+
+    _currentSoundAlert = 1;
+    _currentSoundDeath = 1;
 
 //    try {
 //      // Maquina de Estados del Enemigo
@@ -233,8 +245,8 @@ void Enemy::update ( double timeSinceLastFrame )
             //        # Sino, si el tiempo de vision es inferior a 2 segundos pasaremos
             //          al estado WATCHING
             //    - Si por el contrario, seguimos viendo habiendo cambiado de estado
-            //      entonces, nos quedaremos inmoviles**
-            //@TODO **(ESTO EN EL FUTURO PASARA AL ESTADO SHOOTING
+            //      entonces, nos pasamos al estado shooting y registramos el momento temporal
+            //      para el tema de que despues de verlo y pasados 2 segundos dispare.
             if ( !haveYouSeenAnybody() )
               {
                 // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
@@ -252,15 +264,15 @@ void Enemy::update ( double timeSinceLastFrame )
               }
             else
               {
+                play_sound_alert();
                 setCurrentState ( SHOOTING );
+                _timeElapsed_Shooting = _timeElapsed_Global;
               }
 
             break;
 
         // ################## ESTADO SHOOTING ##################
         case SHOOTING:
-
-            // PENDIENTE
 
             _timeElapsed_Watching = 0;
             _sentinel_dest = false;
@@ -282,8 +294,13 @@ void Enemy::update ( double timeSinceLastFrame )
 
                   distance = get_distance_with_hero();
 
+                  _sonidoShootFX->play();
+
                   if ( validate_success_rate ( distance, &rate ) )
+                  {
                     cout << "TOCADO!!! (" << rate << "%) distance = " << distance << endl;
+                    _refHero->setHealth ( _refHero->getHealth() - 25 );
+                  }
                   else
                     cout << "AGUA!!! (" << rate << "%) distance = " << distance << endl;
                 }
@@ -368,6 +385,41 @@ void Enemy::update ( double timeSinceLastFrame )
       }
 
   }
+
+void Enemy::play_sound_alert()
+{
+  if ( _currentSoundAlert == 1 )
+    {
+      _soundAlert1FX->play();
+      _currentSoundAlert = 2;
+    }
+  else
+    {
+      _soundAlert2FX->play();
+      _currentSoundAlert = 1;
+    }
+
+}
+
+void Enemy::play_sound_death()
+{
+  if ( _currentSoundDeath == 1 )
+    {
+      _soundDeath1FX->play();
+      _currentSoundDeath++;
+    }
+  else if ( _currentSoundDeath == 2 )
+    {
+      _soundDeath2FX->play();
+      _currentSoundDeath++;
+    }
+  else
+    {
+      _soundDeath3FX->play();
+      _currentSoundDeath = 1;
+    }
+
+}
 
 bool Enemy::validate_success_rate ( double distance, double* rate )
   {
