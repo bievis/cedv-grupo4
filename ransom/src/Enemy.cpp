@@ -20,6 +20,9 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _timeFirstVision = 0;
     _timeStartChasing = 0;
     _timeElapsed_Shooting = 0;
+    _timeBlocked = 0;
+
+    _currentPosition = Ogre::Vector3::ZERO;
 
     _sentinel_dest = false;
 
@@ -346,6 +349,23 @@ void Enemy::update ( double timeSinceLastFrame )
 
       }
     // ######################################################
+
+    // Cada 11 segundos, comprobaremos si el enemigo se ha quedado bloqueado
+    // en algun sitio del escenario
+
+    if ( _timeElapsed_Global - _timeBlocked > 11 )
+      {
+        _timeBlocked = _timeElapsed_Global;
+
+        if ( ( _currentPosition == _node->getPosition() ) &&
+            ( ( _currentState == WATCHING ) ||
+             ( _currentState == CHASING ) ) )
+          {
+            turn_right(); turn_right(); turn_right();
+          }
+
+        _currentPosition = _node->getPosition();
+      }
 
   }
 
