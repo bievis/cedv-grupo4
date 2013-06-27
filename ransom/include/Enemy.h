@@ -72,7 +72,7 @@ class Enemy : public Character
     /// \brief method to update lifeBar
     void                            updateLifeBar();
     /// \brief method to update enemy in frame
-    void                            update ( double timeSinceLastFrame );
+    void                            update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
     /// \brief method to show dummy or not
     void                            showDummy ( bool show );
     /// \brief method to get the distance between the enemy and the hero

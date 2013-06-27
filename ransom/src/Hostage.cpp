@@ -67,9 +67,9 @@ void Hostage::setVisible ( const bool visible ) {
 	if (visible) _state = CAPTURE;
 }
 
-void Hostage::update(double timeSinceLastFrame) {
+void Hostage::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres) {
 	static double timer = 0.0;
-	Character::update(timeSinceLastFrame);
+	Character::update(timeSinceLastFrame, vCharacteres);
 	
 	if (_state == LIBERATE) {
 		timer += timeSinceLastFrame;
