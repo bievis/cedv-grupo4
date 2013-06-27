@@ -52,7 +52,6 @@ void GameState::enter()
     // _controlMeta = 0;
 
     // _gameTrack = TrackManager::getSingleton().load("musicGame.mp3");
-    _sonidoShootFX = SoundFXManager::getSingleton().load("shoot.wav");
 
     // // Reproducción del track principal...
     // _gameTrack->play();
@@ -370,8 +369,6 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
-      _sonidoShootFX->play();
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_K ) )
       {
         if ( m_enemies.size() > 0 && m_enemies[0] )
@@ -471,7 +468,10 @@ void GameState::update(double timeSinceLastFrame)
 
 //    bool bMove = false;
 //    float valX = 0, valZ = 0;
-
+	if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
+      {
+		  m_hero->shoot();
+      }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
         m_hero->turn_right();
@@ -490,13 +490,13 @@ void GameState::update(double timeSinceLastFrame)
       }
 
     // Actalizamos los personajes
-    m_hero->update(timeSinceLastFrame);
+    m_hero->update(timeSinceLastFrame, _vCharacteres);
     if ( m_enemies.size() > 0 )
     {
         unsigned int i = 1;
         for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
         {
-            (*itEnemy)->update(timeSinceLastFrame);
+			(*itEnemy)->update(timeSinceLastFrame, _vCharacteres);
         }
     }
 	if ( m_hostages.size() > 0 )
@@ -504,7 +504,7 @@ void GameState::update(double timeSinceLastFrame)
         unsigned int i = 1;
         for ( std::vector<Hostage *>::iterator itHostage = m_hostages.begin(); m_hostages.end() != itHostage; itHostage++, i++ )
         {
-            (*itHostage)->update(timeSinceLastFrame);
+            (*itHostage)->update(timeSinceLastFrame, _vCharacteres);
         }
     }
 
@@ -779,12 +779,13 @@ Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::Dynamics
 		OgreBulletCollisions::Object* obOB_A = world->findObject(obA);
 		OgreBulletCollisions::Object* obOB_B = world->findObject(obB);
 
-		for (int j=0;j<numHostages && !isCollition;j++) {
-			hostage = hostages[j];
-			if (hostage->getState() == CAPTURE) {
-				isCollition = (obOB_A == hero->getRigidBody() || obOB_B == hero->getRigidBody())
-							&& (obOB_A == hostage->getRigidBody() || obOB_B == hostage->getRigidBody());
-				if (isCollition) hostageCollisition = hostage;
+		if (obOB_A == hero->getRigidBody() || obOB_B == hero->getRigidBody()) {
+			for (int j=0;j<numHostages && !isCollition;j++) {
+				hostage = hostages[j];
+				if (hostage->getState() == CAPTURE) {
+					isCollition = (obOB_A == hostage->getRigidBody() || obOB_B == hostage->getRigidBody());
+					if (isCollition) hostageCollisition = hostage;
+				}
 			}
 		}
 	}

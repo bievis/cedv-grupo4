@@ -2,11 +2,16 @@
 #define CHARACTER_H
 
 #include "Utilities.h"
+#include "SoundFXManager.h"
+#include "OgreBulletCollisionsRay.h"
 
 using namespace std;
 
 #define VELOCIDAD 2.0
 #define VELOCIDAD_ANIMACION 3.0
+#define VELOCITY_SHOT 20.0f
+
+#define HEALTH_SHOT 25.0
 
 #define VELOCIDAD_RUNNING 5.0
 //#define VELOCIDAD_RUNNING_ANIMACION 6.0
@@ -17,8 +22,15 @@ using namespace std;
 #define MOVE_ANIMATION "Move"
 #define STOP_ANIMATION "Stop"
 
+// Position of shot with respect to character
+#define POSITION_SHOT Ogre::Vector3(-0.2780,1.0726,1.6939) 
+
 enum CHARACTER_TYPE {
 	HERO, ENEMY, HOSTAGE
+};
+
+enum CHARACTER_STATE {
+	LIVE, DEAD
 };
 
 /// \brief Class to manage the character
@@ -34,6 +46,8 @@ class Character
   protected:
     /// \brief character name
     string            _name;
+	/// \brief type of character
+	CHARACTER_TYPE _type;
     /// \brief character initial coordenate (X, Y, Z)
     Ogre::Vector3     _v_pos;
     /// \brief health level with values between 0 and 100
@@ -52,10 +66,35 @@ class Character
     Ogre::Entity* _entityDummy;
     /// \brief reference to scene node DUMMY
     Ogre::SceneNode*  _nodeDummy;
+	/// \brief reference to position of shot
+    Ogre::SceneNode*  _nodeShot;
+	/// \brief reference to shot of character
+	Ogre::ManualObject* _shot;
     /// \brief visibility of character
     bool _visible;
+	// \brief is shooting
+	bool _isShooting;
     /// \brief World of fisic
     OgreBulletDynamics::DynamicsWorld* _world;
+	/// \brief State of Character
+	CHARACTER_STATE _stateCaracter;
+	// \brief Sound of shoot
+	SoundFXPtr                _sonidoShootFX;
+
+	/// \brief method to get scene node of shot reference
+    /// \return scene node reference
+	inline Ogre::SceneNode* getNodeShot() const { return _nodeShot; };
+	// \brief method to detecting collisions between Shot whit characteres
+    /// \param world reference to world (OgreBullet)
+    /// \param characteres List of characteres
+	/// \param characterCollision Character collisions shot
+    /// \return if collition or not
+    bool detectCollisionShot(OgreBulletDynamics::DynamicsWorld* world,
+												std::vector<Character*> characteres,
+												Character** characterCollision);
+	// \brief method to scale shot
+    /// \param scaleZ Scale of shot
+	void setScaleShot (Ogre::Real scaleZ);
 
   public:
     /// \brief character constructor parametrized
@@ -104,6 +143,12 @@ class Character
     /// \brief method to set the character name
     /// \param newName new character name
     inline void                   setName ( const string& newName ) { _name = newName; };
+	/// \brief method to get the character type
+    /// \return Type of charater
+    inline CHARACTER_TYPE                 getType() const { return _type; };
+	/// \brief method to get the State of character
+    /// \return State of character
+    inline CHARACTER_STATE                 getStateCharater() const { return _stateCaracter; };
 	/// \brief method to get is visibility the character
     /// \return visibility
     inline bool                   isVisible() const { return _visible; };
@@ -133,13 +178,15 @@ class Character
     /// \brief method to stop character movement
     void                          stop_move();
     /// \brief method to update character in frame
-    virtual void                  update ( double timeSinceLastFrame );
+    virtual void                  update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
     /// \brief method to change animation of character
     /// \param nameAnimation animation name to change
     virtual void                  changeAnimation ( const string& nameAnimation );
     /// \brief method to set visible the dummy entity or not
     /// \param show to show dummy or not
     virtual void                  showDummy ( bool show );
+	/// \brief method shoot
+    void                          shoot();
 
     const Ogre::Vector3&          getPosition();
 

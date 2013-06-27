@@ -108,7 +108,6 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\Action.cpp" />
     <ClCompile Include="..\..\src\AdvancedOgreFramework.cpp" />
     <ClCompile Include="..\..\src\AnimationBlender.cpp" />
     <ClCompile Include="..\..\src\AppStateManager.cpp" />
@@ -131,16 +130,12 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     <ClCompile Include="..\..\src\Records.cpp" />
     <ClCompile Include="..\..\src\SoundFX.cpp" />
     <ClCompile Include="..\..\src\SoundFXManager.cpp" />
-    <ClCompile Include="..\..\src\State.cpp" />
-    <ClCompile Include="..\..\src\StateMachine.cpp" />
-    <ClCompile Include="..\..\src\StateMachineException.cpp" />
     <ClCompile Include="..\..\src\Track.cpp" />
     <ClCompile Include="..\..\src\TrackManager.cpp" />
     <ClCompile Include="..\..\src\Utilities.cpp" />
     <ClCompile Include="..\..\src\XMLCharger.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\include\Action.h" />
     <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp" />
     <ClInclude Include="..\..\include\AnimationBlender.h" />
     <ClInclude Include="..\..\include\AppState.hpp" />
@@ -164,9 +159,6 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     <ClInclude Include="..\..\include\Records.h" />
     <ClInclude Include="..\..\include\SoundFX.h" />
     <ClInclude Include="..\..\include\SoundFXManager.h" />
-    <ClInclude Include="..\..\include\State.h" />
-    <ClInclude Include="..\..\include\StateMachine.h" />
-    <ClInclude Include="..\..\include\StateMachineException.h" />
     <ClInclude Include="..\..\include\Track.h" />
     <ClInclude Include="..\..\include\TrackManager.h" />
     <ClInclude Include="..\..\include\Utilities.h" />

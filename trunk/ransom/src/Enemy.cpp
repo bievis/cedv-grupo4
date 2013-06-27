@@ -195,11 +195,11 @@ void Enemy::updateLifeBar() {
                               1.0);
 }
 
-void Enemy::update ( double timeSinceLastFrame )
+void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
   {
     _timeElapsed_Global += timeSinceLastFrame;
 
-    Character::update(timeSinceLastFrame);
+    Character::update(timeSinceLastFrame, vCharacteres);
     updateLifeBar();
 
     // Cambios de estado del enemigo

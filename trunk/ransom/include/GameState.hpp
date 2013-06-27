@@ -73,7 +73,6 @@ private:
 //    bool                      _empieza_a_contar;
 
 //    TrackPtr                  _gameTrack;
-    SoundFXPtr                _sonidoShootFX;
 
 //    btScalar                  _velocidad;
 

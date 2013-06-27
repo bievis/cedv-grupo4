@@ -112,6 +112,21 @@ void Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
 
 }
 
+void Utilities::put_shot_in_scene ( Ogre::SceneManager* sceneMgr,
+												  string name,
+												  Ogre::SceneNode* nodeShot,
+												  Ogre::ManualObject** shot)
+  {
+    *shot =  sceneMgr->createManualObject(name + "LineSHOT");
+	(*shot)->begin("MaterialBlanco", Ogre::RenderOperation::OT_LINE_LIST); 
+	(*shot)->position(Ogre::Vector3::ZERO);
+	Ogre::Vector3 posFin(nodeShot->getOrientation().zAxis() * 1);
+	(*shot)->position(posFin);
+	(*shot)->end();
+    (*shot)->setCastShadows(true);
+    nodeShot->attachObject ( (*shot) );
+}
+
 void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
@@ -160,7 +175,5 @@ void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
 
     (*rigidTrack)->setShape ( *node, sceneBoxShape, 0.6, 0.6, 80.0f,
                             initial_pos, (*node)->_getDerivedOrientation() );
-    (*rigidTrack)->getBulletRigidBody()->setSleepingThresholds(0.0f,0.0f);
-    (*rigidTrack)->getBulletRigidBody()->setRestitution(0.0f);
     (*rigidTrack)->getBulletRigidBody()->setAngularFactor(0.0f);
   }

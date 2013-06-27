@@ -20,6 +20,7 @@ using namespace std;
 #define HERO_MESH_FILE_WITHOUT_EXTENSION "SWAT"
 #define ENEMY_MESH_FILE_WITHOUT_EXTENSION "SWAT"
 #define HOSTAGE_MESH_FILE_WITHOUT_EXTENSION "Boy"
+#define NAME_RIGID_BODY_SHOT "RigidBodyShot"
 
 /// \brief this class will be a set of utility methods
 /// This class follow the singleton pattern
@@ -75,6 +76,15 @@ class Utilities {
                                                   string name_mesh,
                                                   string name_element,
                                                   const Ogre::Vector3& initial_pos );
+	// \brief this method add an shot at character
+    /// \param sceneMgr reference to the scene manager (Ogre)
+    /// \param name name to character
+    /// \param nodeShot node reference for the shot
+    /// \param shot ManualObject refrence to shot
+	void put_shot_in_scene ( Ogre::SceneManager* sceneMgr,
+												  string name,
+												  Ogre::SceneNode* nodeShot,
+												  Ogre::ManualObject** shot);
     /// \brief method to get the Utilities object
     /// \return static Utilities object
     static Utilities& getSingleton();
