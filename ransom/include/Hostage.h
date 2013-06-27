@@ -47,6 +47,8 @@ class Hostage : public Character
     void   setVisible ( const bool visible );
 	/// \brief method to update character in frame
     void update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
+
+	double _timerParticleLiberate;
   protected:
     /// \brief protected method to copy an hero
     /// this method is used in assingnment operator and copy constructor
