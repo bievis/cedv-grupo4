@@ -240,6 +240,12 @@ void GameState::CreateMiniMap() {
 	  // Le vinculamos el listener a la textura
   	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres, _rect );
     _rtex->addListener ( _textureListener );
+
+     Ogre::OverlayElement *elem;
+
+     elem = m_pOverlayMgr->getOverlayElement("Panel_Mini_Map_Game");
+     elem->setMaterialName ( "RttMat_Map" );
+
   }
 
 

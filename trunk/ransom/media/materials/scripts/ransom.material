@@ -119,6 +119,21 @@ material Game/Recuadro
  }
 }
 
+material Game/Recuadro_MiniMapa
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture recuadro_minimapa.png
+     }
+   }
+ }
+}
+
 material Game/Face
 {
  technique
