@@ -124,6 +124,30 @@ GUI_Game
 
   }
 
+  container Panel(Panel_Mini_Map_Border_Game)
+  {
+    metrics_mode pixels
+    left -270
+    top 10
+    width 260
+    height 210
+    horz_align right
+    vert_align top
+    material Game/Recuadro_MiniMapa
+
+    container Panel(Panel_Mini_Map_Game)
+    {
+      metrics_mode pixels
+      left 5
+      top 5
+      width 250
+      height 200
+      horz_align left
+      vert_align top
+    }
+
+  }
+
   container Panel(Panel_Time_Game)
   {
     metrics_mode pixels
