@@ -28,11 +28,14 @@ GameState::GameState()
     m_hero              = NULL;
     m_pOverlayMgr       = NULL;
     m_enemies.clear();
-	m_hostages.clear();
+    m_hostages.clear();
     defaultPlaneBodyFloor = NULL;
     ShapeFloor          = NULL;
     _world              = NULL;
-	_camerasController = NULL;
+    _camerasController  = NULL;
+    _vFader.clear();
+    _tiempo             = 0;
+    _hostages           = 1;
   }
 
 void GameState::enter()
@@ -40,6 +43,24 @@ void GameState::enter()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
+
+    // Overlays con fundidos de negro al color del overlay
+    Fader* fader = NULL;
+
+    fader = new Fader ( "GUI_Game", "Game/Recuadro", NULL );
+    _vFader.push_back ( fader );
+
+    fader = new Fader ( "GUI_Game", "Game/Face", NULL );
+    _vFader.push_back ( fader );
+
+    fader = new Fader ( "GUI_Game", "Game/Life4", NULL );
+    _vFader.push_back ( fader );
+
+    fader = new Fader ( "GUI_Game", "Game/Time", NULL );
+    _vFader.push_back ( fader );
+
+    fader = new Fader ( "GUI_Game", "Game/Hostages", NULL );
+    _vFader.push_back ( fader );
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -99,6 +120,8 @@ void GameState::enter()
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
 
+    for ( unsigned int i = 0; i < _vFader.size(); i++ )
+      if (_vFader[i]) _vFader[i]->startFadeOut(4.0);
   }
 
 void GameState::CreateInitialWorld()
@@ -224,6 +247,8 @@ bool GameState::pause()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Pausing GameState...");
 
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
+
     // Mostrar_Velocidad ( 0, true );
 
     // Ogre::OverlayElement *elem;
@@ -245,6 +270,9 @@ void GameState::resume()
 
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
     m_bQuit = false;
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", true );
+
     // Mostrar_Velocidad ( 0 );
 
 //    Ogre::OverlayElement *elem = NULL;
@@ -267,6 +295,11 @@ void GameState::resume()
 void GameState::exit()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Leaving GameState...");
+
+    for ( unsigned int i = 0; i < _vFader.size(); i++ )
+      if (_vFader[i]) delete _vFader[i];
+
+    _vFader.clear();
 
     // // Parar del track principal...
     // _gameTrack->play();
@@ -439,13 +472,26 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 
 void GameState::update(double timeSinceLastFrame)
   {
+    _tiempo += timeSinceLastFrame;
+
     // if ( _empieza_a_contar )
     //   _tiempo += timeSinceLastFrame;
-	m_pCamera->setAspectRatio(Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualWidth()) /
+    m_pCamera->setAspectRatio(Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualWidth()) /
                             Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualHeight()));
 
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->frameRenderingQueued ( m_FrameEvent );
+
+    // Fade in/out
+    for ( unsigned int i = 0; i < _vFader.size(); i++ )
+      if (_vFader[i]) _vFader[i]->fade ( timeSinceLastFrame );
+
+    Ogre::OverlayElement *elem = NULL;
+    elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
+    elem->setCaption ( getTime(_tiempo) );
+
+    elem = m_pOverlayMgr->getOverlayElement("txtHostages");
+    elem->setCaption ( Ogre::StringConverter::toString(_hostages) );
 
     // if(m_bQuit == true)
     //   {
@@ -512,6 +558,7 @@ void GameState::update(double timeSinceLastFrame)
 	Hostage* hostageRescue = detectCollisionHeroWithHostages(_world, m_hero, m_hostages);
 	if (hostageRescue != NULL) {
 		hostageRescue->liberate();
+		_hostages--;
 	}
 
 	// Actualizamos la camara
@@ -866,14 +913,18 @@ void GameState::put_column ( const Ogre::Vector3& pos, unsigned int index )
 //                      Quaternion::IDENTITY );
   }
 
+string GameState::getTime ( double tiempo )
+  {
+    unsigned int minutos = 0, segundos = 0;
+    char cad[6];
+    string ret = "";
 
+    minutos = (int)tiempo / 60;
+    segundos = (int)tiempo % 60;
 
+    sprintf ( cad, "%02d:%02d", minutos, segundos );
 
+    ret = cad;
 
-
-
-
-
-
-
-
+    return ret;
+  }

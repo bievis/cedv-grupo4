@@ -89,7 +89,7 @@ material Common/InputBox
  }
 }
 
-material Game/Titulo
+material Menu/Titulo
 {
  technique
  {
@@ -99,6 +99,126 @@ material Game/Titulo
      texture_unit
      {
        texture titulo.png
+     }
+   }
+ }
+}
+
+material Game/Recuadro
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture recuadro.png
+     }
+   }
+ }
+}
+
+material Game/Face
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture face.png
+     }
+   }
+ }
+}
+
+material Game/Life4
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture life4.png
+     }
+   }
+ }
+}
+
+material Game/Life3
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture life3.png
+     }
+   }
+ }
+}
+
+material Game/Life2
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture life2.png
+     }
+   }
+ }
+}
+
+material Game/Life1
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture life1.png
+     }
+   }
+ }
+}
+
+material Game/Time
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture recuadro_time.png
+     }
+   }
+ }
+}
+
+material Game/Hostages
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture recuadro_hostages.png
      }
    }
  }

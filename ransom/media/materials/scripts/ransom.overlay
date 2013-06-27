@@ -1,3 +1,11 @@
+template element TextArea(Plantillas/Tiempo)
+{
+    font_name DS_DIGIT
+                metrics_mode pixels
+                char_height 64
+                colour 1.0 1.0 0.0
+}
+
 Background_Menu
 {
   zorder 0
@@ -26,7 +34,7 @@ GUI_Menu
     height 113
     horz_align center
     vert_align top
-    material Game/Titulo
+    material Menu/Titulo
   }
 }
 
@@ -77,32 +85,81 @@ Loading_Game
 
 GUI_Game
 {
-  zorder 500
+  zorder 650
 
-  container Panel(Panel_Titulo_Game)
+  container Panel(Panel_Hero_Game)
   {
     metrics_mode pixels
-    left -56
-    top 15
-    width 350
-    height 113
-    horz_align center
-    vert_align top
-    material Game/Titulo
-  }
-}
-
-Common_InputBox
-{
-  container Panel(Panel_Common_InputBox)
-  {
-    metrics_mode pixels
-    top 334
-    left -150
-    width 300
+    left 10
+    top -110
+    width 250
     height 100
-    horz_align center
-    vert_align top
-    material Common/InputBox
+    horz_align left
+    vert_align bottom
+    material Game/Recuadro
+
+    container Panel(Panel_Face_Hero_Game)
+    {
+      metrics_mode pixels
+      left 10
+      top 10
+      width 90
+      height 80
+      horz_align left
+      vert_align top
+      material Game/Face
+    }
+
+    container Panel(Panel_Life_Hero_Game)
+    {
+      metrics_mode pixels
+      left 108
+      top 65
+      width 130
+      height 24
+      horz_align left
+      vert_align top
+      material Game/Life4
+    }
+
   }
+
+  container Panel(Panel_Time_Game)
+  {
+    metrics_mode pixels
+    left 10
+    top 10
+    width 150
+    height 100
+    horz_align left
+    vert_align top
+    material Game/Time
+
+    element TextArea(txtTiempo) : Plantillas/Tiempo
+    {
+      top 35
+      left 10
+    }
+  }
+
+  container Panel(Panel_Hostages_Game)
+  {
+    metrics_mode pixels
+    left 170
+    top 10
+    width 150
+    height 100
+    horz_align left
+    vert_align top
+    material Game/Hostages
+
+    element TextArea(txtHostages) : Plantillas/Tiempo
+    {
+      top 35
+      left -5
+      horz_align center
+    }
+
+  }
+
 }
