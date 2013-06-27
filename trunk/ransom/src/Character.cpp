@@ -20,6 +20,7 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
     _world = world;
 	_stateCaracter = LIVE;
 	_isShooting = false;
+	_timerParticleDeath = 0.0;
 
     _health = MAX_HEALTH;
 
@@ -63,9 +64,22 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
     _nodeDummy->setPosition(0, (_entityDummy->getBoundingBox().getSize().y / -2), 0);
     _nodeDummy->attachObject ( _entityDummy );
 
+	// Cargamos los sonidos
+	_soundDeath1FX = SoundFXManager::getSingleton().load("death1.wav");
+    _soundDeath2FX = SoundFXManager::getSingleton().load("death2.wav");
+    _soundDeath3FX = SoundFXManager::getSingleton().load("death3.wav");
+
+	// Creamos el sistema de partículas
+	_particleDeath = _sceneMgr->createParticleSystem("particleDeath" + _name, "particleDeath");
+	_particleDeath->setVisible(false);
+	// Creamos un nodo
+	_particleDeathNode = _node->createChildSceneNode("particleDeathNode" + _name);
+	// Ajuntamos las partículas al nodo
+	_particleDeathNode->attachObject(_particleDeath);
+
 	// Creamos el disparo, cuando no sea Rehen
 	if (type != HOSTAGE) {
-		_sonidoShootFX = SoundFXManager::getSingleton().load("shoot.wav");
+		_soundShootFX = SoundFXManager::getSingleton().load("shoot.wav");
 
 		_nodeShot = sceneMgr->getRootSceneNode()->createChildSceneNode( name + "SHOT" );
 		_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
@@ -78,16 +92,25 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
  }
 
 Character::~Character()
-  {
-	_node = NULL;
-    _rigidBody = NULL;
-	_shot = NULL;
-	_nodeShot = NULL;
-	_nodeDummy = NULL;
-	_entityDummy = NULL;
-    _visible = true;
-    _world = NULL;
-  }
+{
+	_node->detachAllObjects();
+	_sceneMgr->destroySceneNode(_node);
+	_rigidBody = NULL;
+	if (_nodeShot) {
+		_nodeShot->detachAllObjects();
+		_sceneMgr->destroySceneNode(_nodeShot);
+		_sceneMgr->destroyManualObject(_shot);
+	}
+	_sceneMgr->destroyEntity(_entity);
+	_nodeDummy->detachAllObjects();
+	_sceneMgr->destroySceneNode(_nodeDummy);
+	_sceneMgr->destroyEntity(_entityDummy);
+	_visible = true;
+	_world = NULL;
+	_particleDeathNode->detachAllObjects();
+	_sceneMgr->destroySceneNode(_particleDeathNode);
+	_sceneMgr->destroyParticleSystem(_particleDeath);
+}
 
 Character::Character ( const Character& other )
   {
@@ -121,24 +144,37 @@ void Character::copy ( const Character& source )
     _world = source._world;
 	_stateCaracter = source._stateCaracter;
 	_isShooting = source._isShooting;
-	_sonidoShootFX = source._sonidoShootFX;
+	_soundShootFX = source._soundShootFX;
+	_soundDeath1FX = source._soundDeath1FX;
+	_soundDeath2FX = source._soundDeath2FX;
+	_soundDeath3FX = source._soundDeath3FX;
+	_timerParticleDeath = source._timerParticleDeath;
+	_particleDeath = source._particleDeath;
+	_particleDeathNode = source._particleDeathNode;
 }
 
 void Character::setHealth ( float newHealth )
-  {
-    if ( _health <= 100 )
-      {
-        if ( newHealth > 100 )
-          _health = 100;
-        else if ( newHealth < 0 ) {
-			_health = 0;
-			_stateCaracter = DEAD;
-			setVisible (false);
+{
+	if ( _health <= 100 )
+	{
+		if ( newHealth > 100 )
+			_health = 100;
+		else if ( newHealth <= 0 ) {
+			// Si ha muerto
+			death();
 		}
-        else
-          _health = newHealth;
-      }
-  }
+		else
+			_health = newHealth;
+	}
+}
+
+void Character::death() {
+	_health = 0;
+	_stateCaracter = DEAD;
+	setVisible (false);
+	_particleDeath->setVisible(true);
+	play_sound_death();
+}
 
 void Character::changeAnimation ( const string& nameAnimation )
   {
@@ -166,37 +202,48 @@ void Character::changeAnimation ( const string& nameAnimation )
   }
 
 void Character::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
-  {
-    if ( _currentAnimation != NULL )
-      {
-        _currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
-      }
-	
-	if (_nodeShot && _isShooting) {
-		// Colocamos el disparo
-		_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
-								+ _rigidBody->getCenterOfMassPosition());
-		_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
-		// Vamos alargando el disparo
-		setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
-		Character* shootingCharacter = NULL;
-		if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
-			// Si hemos dado a algo
-			_nodeShot->setVisible(false);
-			_isShooting = false;
-			// Vemos a que le hemos dado otro personaje
-			if (shootingCharacter) {
-				shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
-			}
+{
+	if (_stateCaracter == DEAD) {
+		_timerParticleDeath += timeSinceLastFrame;
+		_particleDeath->setEmitting(true);
+		if (_timerParticleDeath > TIMER_PATICLE_DEATH) {
+			_particleDeath->setEmitting(false);
+			_stateCaracter = END;
 		}
+	} else {
+		if ( _currentAnimation != NULL )
+		{
+			_currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
+		}
+	
+		if (_nodeShot && _isShooting) {
+			// Colocamos el disparo
+			_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
+									+ _rigidBody->getCenterOfMassPosition());
+			_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
+			// Vamos alargando el disparo
+			setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
+			Character* shootingCharacter = NULL;
+			if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
+				// Si hemos dado a algo
+				_nodeShot->setVisible(false);
+				_isShooting = false;
+				// Vemos a que le hemos dado otro personaje
+				if (shootingCharacter) {
+					shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+				}
+			}
+		}	
+	
+		_timerParticleDeath = 0.0;
 	}
 }
 
 void Character::shoot() {
-	if (!_isShooting) {
-		_sonidoShootFX->play();
+	if (!_isShooting && _stateCaracter == LIVE) {
+		_soundShootFX->play();
 		_nodeShot->setVisible(true);
-		setScaleShot (1.0f);
+		setScaleShot (0.1f);
 		_isShooting = true;
 	}
 }
@@ -234,7 +281,7 @@ bool Character::detectCollisionShot(OgreBulletDynamics::DynamicsWorld* world,
 			if (obOB_A != getRigidBody()) {
 				for (int i = 0; i < sizeCharacteres && (*characterCollision) == NULL; i++) {
 					character = characteres[i];
-					if (obOB_A == character->getRigidBody()) {
+					if (obOB_A == character->getRigidBody() && character->_stateCaracter == LIVE) {
 						(*characterCollision) = character;
 					}
 				}
@@ -250,7 +297,7 @@ void Character::walk ( bool reverse, float velocidad )
   {
     assert ( _rigidBody );
 
-	if (!_isShooting) {
+	if (!_isShooting && _stateCaracter == LIVE) {
 		if (reverse) velocidad *= -1;
 
 		_rigidBody->enableActiveState();
@@ -318,7 +365,7 @@ void Character::turn_left()
   {
 
     assert ( _node );
-	if (!_isShooting) {
+	if (!_isShooting && _stateCaracter == LIVE) {
 		_rigidBody->enableActiveState();
 		_node->yaw ( Ogre::Radian(Ogre::Math::HALF_PI / 32) );
 		btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
@@ -330,7 +377,7 @@ void Character::turn_right()
   {
 
     assert ( _node );
-	if (!_isShooting) {
+	if (!_isShooting && _stateCaracter == LIVE) {
 		_rigidBody->enableActiveState();
 		_node->yaw ( Ogre::Radian((-1)* Ogre::Math::HALF_PI / 32) );
 		btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
@@ -338,10 +385,29 @@ void Character::turn_right()
 	}
   }
 
+void Character::play_sound_death()
+{
+	//Numeros aleatorios entre 1 y 3
+	double _currentSoundDeath = 1 + rand() % ( 3 );
+	if ( _currentSoundDeath == 1 )
+	{
+		_soundDeath1FX->play();
+	}
+	else if ( _currentSoundDeath == 2 )
+	{
+		_soundDeath2FX->play();
+	}
+	else
+	{
+		_soundDeath3FX->play();
+	}
+}
+
 void Character::showDummy(bool show) {
 	this->getEntity()->setVisible(!show);
 	this->getEntityDummy()->setVisible(show);
-	
+	if (_isShooting)
+		this->getNodeShot()->setVisible(!show);
 }
 
 void Character::setVisible ( const bool visible ) {

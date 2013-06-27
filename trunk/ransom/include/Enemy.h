@@ -1,9 +1,7 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <stdlib.h> // Numeros Aleatorios
 #include <Character.h>
-#include "SoundFXManager.h"
 #include <OgreTextureManager.h>
 #include "MyTextureListener.h"
 #include "EnemyRoute.h"
@@ -89,8 +87,6 @@ class Enemy : public Character
     bool                            validate_success_rate ( double distance, double* rate );
     /// \brief this method reorient the enemy direction to the hero position
     void                            reorient_enemy_to_hero();
-    /// \brief method to play the sound associated to the death of an enemy
-    void                            play_sound_death();
 
   protected:
     /// \brief protected method to copy a enemy
@@ -105,8 +101,6 @@ class Enemy : public Character
     inline const eSTATES_ENEMY&     getCurrentState() { return _currentState; };
     /// \brief method to play the sound associated to the alert of an enemy
     void                            play_sound_alert();
-//    /// \brief method to play the sound associated to the death of an enemy
-//    void                            play_sound_death();
 
   private:
     /// \brief texture pointer
@@ -155,18 +149,8 @@ class Enemy : public Character
     SoundFXPtr                _soundAlert1FX;
     /// \brief reference to sound alert number 2
     SoundFXPtr                _soundAlert2FX;
-    /// \brief reference to sound alert number 1
-    SoundFXPtr                _soundDeath1FX;
-    /// \brief reference to sound alert number 1
-    SoundFXPtr                _soundDeath2FX;
-    /// \brief reference to sound alert number 1
-    SoundFXPtr                _soundDeath3FX;
-    /// \brief reference to sound shoot
-    SoundFXPtr                _sonidoShootFX;
     /// \brief counter to use with the alert current sound (it can be 1 or 2)
     unsigned int              _currentSoundAlert;
-    /// \brief counter to use with the death current sound (it can be 1, 2 or 3)
-    unsigned int              _currentSoundDeath;
 };
 
 #endif // ENEMY_H

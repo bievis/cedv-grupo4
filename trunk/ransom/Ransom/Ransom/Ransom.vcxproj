@@ -116,6 +116,7 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     <ClCompile Include="..\..\src\DotSceneLoader.cpp" />
     <ClCompile Include="..\..\src\Enemy.cpp" />
     <ClCompile Include="..\..\src\EnemyRoute.cpp" />
+    <ClCompile Include="..\..\src\Fader.cpp" />
     <ClCompile Include="..\..\src\GameConfig.cpp" />
     <ClCompile Include="..\..\src\GameConfigException.cpp" />
     <ClCompile Include="..\..\src\GameState.cpp" />
@@ -145,6 +146,7 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
     <ClInclude Include="..\..\include\DotSceneLoader.hpp" />
     <ClInclude Include="..\..\include\Enemy.h" />
     <ClInclude Include="..\..\include\EnemyRoute.h" />
+    <ClInclude Include="..\..\include\Fader.h" />
     <ClInclude Include="..\..\include\GameConfig.h" />
     <ClInclude Include="..\..\include\GameConfigException.hpp" />
     <ClInclude Include="..\..\include\GameState.hpp" />

@@ -222,23 +222,9 @@ void GameState::CreateMiniMap() {
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
     // Le asignamos la textura que hemos creado
     mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
-    // Dibujamos el rectagulo donde vamos a insertar la camara
-    Ogre::Rectangle2D* _rect = new Ogre::Rectangle2D ( true );
-    _rect->setCorners ( 0.5, 0.98, 0.98, 0.5 );
-    _rect->setMaterial ( "RttMat_Map" );
-	// Use infinite AAB to always stay visible
-	Ogre::AxisAlignedBox aabInf;
-	aabInf.setInfinite();
-	_rect->setBoundingBox(aabInf);
-    // Render the background before everything else
-    _rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
-
-    // Attach background to the scene
-    Ogre::SceneNode* node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "rectanglePOV_Map" );
-    node->attachObject ( _rect );
 
 	  // Le vinculamos el listener a la textura
-  	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres, _rect );
+  	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres );
     _rtex->addListener ( _textureListener );
 
      Ogre::OverlayElement *elem;
@@ -408,12 +394,10 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_K ) )
-      {
-        if ( m_enemies.size() > 0 && m_enemies[0] )
-          m_enemies[0]->play_sound_death();
-      }
-
+	else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
+    {
+		m_hero->shoot();
+    }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -520,10 +504,6 @@ void GameState::update(double timeSinceLastFrame)
 
 //    bool bMove = false;
 //    float valX = 0, valZ = 0;
-	if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
-      {
-		  m_hero->shoot();
-      }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
         m_hero->turn_right();

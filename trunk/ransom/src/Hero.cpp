@@ -13,6 +13,8 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
     _entity->setMaterialName ( "MaterialAzul" );
 
     _entityDummy->setMaterialName ( "MaterialAzul" );
+
+	_particleDeath->setMaterialName("MaterialAzul");
   }
 
 Hero::~Hero()

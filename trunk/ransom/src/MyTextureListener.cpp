@@ -29,10 +29,12 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
     if ( _sceneMgr->hasEntity ( nameEntity ) && _sceneMgr->hasEntity ( nameEntityDummy ) )
       {
         ptrEntity = _sceneMgr->getEntity ( nameEntity );
-        ptrEntity->setVisible ( false );
-        ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
-        ptrEntity->setMaterialName("MaterialBlanco");
-        ptrEntity->setVisible ( true );
+		if (ptrEntity->isVisible()) {
+			ptrEntity->setVisible ( false );
+			ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
+			ptrEntity->setMaterialName("MaterialBlanco");
+			ptrEntity->setVisible ( true );
+		}
       }
 
     // Cogemos la imagen del momento
@@ -72,10 +74,12 @@ void MyTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
 
     if ( _sceneMgr->hasEntity ( nameEntity ) && _sceneMgr->hasEntity ( nameEntityDummy ) )
       {
-        ptrEntity = _sceneMgr->getEntity ( nameEntity );
-        ptrEntity->setVisible ( true );
-        ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
-        ptrEntity->setMaterialName("MaterialAzul");
-        ptrEntity->setVisible ( false );
+		ptrEntity = _sceneMgr->getEntity ( nameEntityDummy );
+		if (ptrEntity->isVisible()) {
+			ptrEntity->setMaterialName("MaterialAzul");
+			ptrEntity->setVisible ( false );
+			ptrEntity = _sceneMgr->getEntity ( nameEntity );
+			ptrEntity->setVisible ( true );
+		}
       }
   }

@@ -1,6 +1,7 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
+#include <stdlib.h> // Numeros Aleatorios
 #include "Utilities.h"
 #include "SoundFXManager.h"
 #include "OgreBulletCollisionsRay.h"
@@ -22,6 +23,9 @@ using namespace std;
 #define MOVE_ANIMATION "Move"
 #define STOP_ANIMATION "Stop"
 
+/// \brief timer show the hostage when is death
+#define TIMER_PATICLE_DEATH 2.0f
+
 // Position of shot with respect to character
 #define POSITION_SHOT Ogre::Vector3(-0.2780,1.0726,1.6939) 
 
@@ -30,7 +34,7 @@ enum CHARACTER_TYPE {
 };
 
 enum CHARACTER_STATE {
-	LIVE, DEAD
+	LIVE, DEAD, END
 };
 
 /// \brief Class to manage the character
@@ -79,7 +83,17 @@ class Character
 	/// \brief State of Character
 	CHARACTER_STATE _stateCaracter;
 	// \brief Sound of shoot
-	SoundFXPtr                _sonidoShootFX;
+	SoundFXPtr                _soundShootFX;
+	/// \brief reference to sound alert number 1
+    SoundFXPtr                _soundDeath1FX;
+    /// \brief reference to sound alert number 1
+    SoundFXPtr                _soundDeath2FX;
+    /// \brief reference to sound alert number 1
+    SoundFXPtr                _soundDeath3FX;
+
+	Ogre::ParticleSystem* _particleDeath;
+	Ogre::SceneNode* _particleDeathNode;
+	double _timerParticleDeath;
 
 	/// \brief method to get scene node of shot reference
     /// \return scene node reference
@@ -96,6 +110,11 @@ class Character
     /// \param scaleZ Scale of shot
 	void setScaleShot (Ogre::Real scaleZ);
 
+	/// \brief method to play the sound associated to the death of an character
+    void                            play_sound_death();
+
+	/// \brief method to death the caracter
+    void  death();
   public:
     /// \brief character constructor parametrized
     /// \param sceneMgr reference to scene manager (ogre)

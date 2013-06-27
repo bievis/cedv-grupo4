@@ -33,6 +33,8 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     _entityDummy->setMaterialName ( "MaterialRojo" );
 
+	_particleDeath->setMaterialName("MaterialRojo");
+
     // Textura para mostrar la visualizacion de lo que ve el enemigo
     _rtt = Ogre::TextureManager::getSingleton().createManual (
             "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
@@ -95,14 +97,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _soundAlert1FX = SoundFXManager::getSingleton().load("alert1.wav");
     _soundAlert2FX = SoundFXManager::getSingleton().load("alert2.wav");
 
-    _soundDeath1FX = SoundFXManager::getSingleton().load("death1.wav");
-    _soundDeath2FX = SoundFXManager::getSingleton().load("death2.wav");
-    _soundDeath3FX = SoundFXManager::getSingleton().load("death3.wav");
-
-    _sonidoShootFX = SoundFXManager::getSingleton().load("shoot.wav");
-
     _currentSoundAlert = 1;
-    _currentSoundDeath = 1;
 
 //    try {
 //      // Maquina de Estados del Enemigo
@@ -294,7 +289,7 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
 
                   distance = get_distance_with_hero();
 
-                  _sonidoShootFX->play();
+				  shoot();
 
                   if ( validate_success_rate ( distance, &rate ) )
                   {
@@ -397,26 +392,6 @@ void Enemy::play_sound_alert()
     {
       _soundAlert2FX->play();
       _currentSoundAlert = 1;
-    }
-
-}
-
-void Enemy::play_sound_death()
-{
-  if ( _currentSoundDeath == 1 )
-    {
-      _soundDeath1FX->play();
-      _currentSoundDeath++;
-    }
-  else if ( _currentSoundDeath == 2 )
-    {
-      _soundDeath2FX->play();
-      _currentSoundDeath++;
-    }
-  else
-    {
-      _soundDeath3FX->play();
-      _currentSoundDeath = 1;
     }
 
 }

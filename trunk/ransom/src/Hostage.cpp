@@ -9,6 +9,8 @@ Hostage::Hostage( Ogre::SceneManager* sceneMgr,
                                                         initial_pos,
                                                         HOSTAGE, MOVE_ANIMATION )
   {
+	_timerParticleLiberate = 0.0;
+
     //Material del Hostagee
     _entity->setMaterialName ( "MaterialAmarillo" );
 
@@ -49,7 +51,9 @@ Hostage& Hostage::operator=(const Hostage& rhs)
 
 void Hostage::copy ( const Hostage& source )
   {
-	
+	  _particleLiberation = source._particleLiberation;
+	  _particleLiberationNode = source._particleLiberationNode;
+	  _timerParticleLiberate = source._timerParticleLiberate;
   }
 
 void Hostage::changeAnimation(string nameAnimation) {
@@ -68,18 +72,17 @@ void Hostage::setVisible ( const bool visible ) {
 }
 
 void Hostage::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres) {
-	static double timer = 0.0;
 	Character::update(timeSinceLastFrame, vCharacteres);
 	
 	if (_state == LIBERATE) {
-		timer += timeSinceLastFrame;
+		_timerParticleLiberate += timeSinceLastFrame;
 		_particleLiberation->setEmitting(true);
-		if (timer > TIMER_PATICLE_LIBERATE) {
+		if (_timerParticleLiberate > TIMER_PATICLE_LIBERATE) {
 			_particleLiberation->setEmitting(false);
 			_state = LIBERATED;
 		}
 	} else {
-		timer = 0.0;
+		_timerParticleLiberate = 0.0;
 	}
 }
 
