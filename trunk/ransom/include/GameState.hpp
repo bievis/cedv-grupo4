@@ -22,6 +22,8 @@
 #include "MiniMapTextureListener.h"
 #include "CamerasController.h"
 
+#include "Fader.h"
+
 #define NAME_MAP "Map"
 #define FILE_ROUTE_XML "./config/config.xml"
 #define MAP_ROUTE_XML "./config/Mapa.tmx"
@@ -55,6 +57,8 @@ public:
     void LoadScenaryParts();
 
     void CreatePlane();
+
+    string getTime ( double tiempo );
 
 private:
     bool          _estaEnMeta; // Indica que ya ha entrado en la linea de la meta
@@ -93,6 +97,10 @@ private:
 
     // Game configuration
     GameConfig                _gc;
+
+    std::vector<Fader*>       _vFader;
+    double                    _tiempo;
+    unsigned int              _hostages;
 
     //Private Methods
 

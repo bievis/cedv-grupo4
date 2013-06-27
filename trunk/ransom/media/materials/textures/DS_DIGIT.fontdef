@@ -1,0 +1,7 @@
+DS_DIGIT
+{
+	type truetype
+	source DS_DIGIT.ttf
+	size 25
+	resolution 96
+}
