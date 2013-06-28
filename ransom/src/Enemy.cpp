@@ -21,6 +21,9 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _timeStartChasing = 0;
     _timeElapsed_Shooting = 2;
     _timeBlocked = 0;
+	_stopAround = true;
+	_aroundNumber = 0;
+	_timeSeach = 0;
 
     _currentPosition = Ogre::Vector3::ZERO;
 
@@ -131,6 +134,8 @@ Enemy::~Enemy()
     _sceneMgr->destroyBillboardSet(_bbSetLife);
     _lifeNode->getParent()->removeChild(_lifeNode);
     _sceneMgr->destroySceneNode(_lifeNode);
+
+	_vReturnsPoints.clear();
   }
 
 Enemy::Enemy(const Enemy& other) : Character ( other )
@@ -154,6 +159,10 @@ void Enemy::copy ( const Enemy& source )
 		_rtt = ((Enemy&)source).getTexturePtr();
 //	#endif
     _camPOV = source.getCameraPOV();
+	_stopAround = source._stopAround;
+	_aroundNumber = source._aroundNumber;
+	_vReturnsPoints = source._vReturnsPoints;
+	_timeSeach = source._timeSeach;
   }
 
 void Enemy::print()
@@ -223,9 +232,17 @@ if (_stateCaracter == LIVE) {
             // - seguimos caminando por nuestra ruta
             else
               {
-                _timeElapsed_Watching = 0;
-                _sentinel_dest = false;
-                walk_in_route();
+				  // Si no se ha perdido cuando perseguia al enemigo
+				  if (_vReturnsPoints.size() == 0) {
+					_timeElapsed_Watching = 0;
+					_sentinel_dest = false;
+					walk_in_route();
+				  } else {
+					  // Si se ha perdido returna por los puntos de retorno
+					  if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1])) {
+						  _vReturnsPoints.pop_back();
+					  }
+				  }
               }
 
             break;
@@ -316,9 +333,10 @@ if (_stateCaracter == LIVE) {
             //      el enemigo se movera hasta el punto ultimo visto del heroe y llegado
             //      a éste hara una visión alrededor para buscar al heroe
             if ( !haveYouSeenAnybody() &&
-                ( _timeElapsed_Global - _timeStartChasing ) > 10 )
+                _aroundNumber > 4 )
               {
                 setCurrentState ( WATCHING );
+				_aroundNumber = 0;
               }
             else if ( haveYouSeenAnybody() )
               {
@@ -331,22 +349,29 @@ if (_stateCaracter == LIVE) {
                 if ( !_sentinel_dest )
                   {
                     _sentinel_dest = walk_to ( _positionLastViewed, true );
-                  }
+					// Cada segundo añadimos puntos de retorno por si se pierde
+					if ( _timeElapsed_Global - _timeSeach > 1.0 )
+					  {
+						_timeSeach = _timeElapsed_Global;
+						_vReturnsPoints.push_back(_node->getPosition());
+					}
 
-                if ( _sentinel_dest )
-                  {
+					_stopAround = true;
+                  } else {					
                     _timeElapsed_Watching += timeSinceLastFrame;
-
-                    if ( _timeElapsed_Watching >= 2 )
-                      {
-                        _timeElapsed_Watching = 0;
-
-                        watch_around();
-                      }
-                    else
-                      {
-                        stop_move();
-                      }
+					
+					// Hacemos que pare y guiere cada segundo
+					if ( _timeElapsed_Watching >= 1.0 )
+					{
+						_timeElapsed_Watching = 0;
+						_stopAround = !_stopAround;
+						if (!_stopAround) _aroundNumber++;
+					}
+					if (_stopAround) {
+						stop_move();
+					} else {
+						watch_around(timeSinceLastFrame);
+					}
                   }
               }
 
@@ -355,18 +380,17 @@ if (_stateCaracter == LIVE) {
       }
     // ######################################################
 
-    // Cada 11 segundos, comprobaremos si el enemigo se ha quedado bloqueado
+    // Cada 4 segundos, comprobaremos si el enemigo se ha quedado bloqueado
     // en algun sitio del escenario
 
-    if ( _timeElapsed_Global - _timeBlocked > 11 )
+    if ( _timeElapsed_Global - _timeBlocked > TIMER_MAX_BLOCKED )
       {
         _timeBlocked = _timeElapsed_Global;
 
         if ( ( _currentPosition == _node->getPosition() ) &&
-            ( ( _currentState == WATCHING ) ||
-             ( _currentState == CHASING ) ) )
+            ( _currentState == CHASING && !_sentinel_dest) )
           {
-            turn_right(); turn_right(); turn_right();
+			  _currentState = WATCHING;
           }
 
         _currentPosition = _node->getPosition();
@@ -452,11 +476,11 @@ bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
     return res;
   }
 
-void Enemy::watch_around()
+void Enemy::watch_around(double timeSinceLastFrame)
 {
-
+	changeAnimation(MOVE_ANIMATION);
     _rigidBody->enableActiveState();
-    _node->yaw ( Ogre::Radian( Ogre::Math::HALF_PI ) );
+	_node->yaw ( Ogre::Radian(Ogre::Math::DegreesToRadians(135)) * timeSinceLastFrame);
     btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
     _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
 
