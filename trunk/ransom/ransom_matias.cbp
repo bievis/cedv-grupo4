@@ -71,7 +71,6 @@
 			<Add library="/usr/local/lib/libConvexDecomposition.so" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
-		<Unit filename="include/Action.h" />
 		<Unit filename="include/AdvancedOgreFramework.hpp" />
 		<Unit filename="include/AnimationBlender.h" />
 		<Unit filename="include/AppState.hpp" />
@@ -81,6 +80,7 @@
 		<Unit filename="include/DotSceneLoader.hpp" />
 		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/EnemyRoute.h" />
+		<Unit filename="include/Fader.h" />
 		<Unit filename="include/GameConfig.h" />
 		<Unit filename="include/GameConfigException.hpp" />
 		<Unit filename="include/GameState.hpp" />
@@ -94,9 +94,6 @@
 		<Unit filename="include/Records.h" />
 		<Unit filename="include/SoundFX.h" />
 		<Unit filename="include/SoundFXManager.h" />
-		<Unit filename="include/State.h" />
-		<Unit filename="include/StateMachine.h" />
-		<Unit filename="include/StateMachineException.h" />
 		<Unit filename="include/Track.h" />
 		<Unit filename="include/TrackManager.h" />
 		<Unit filename="include/Utilities.h" />
@@ -108,7 +105,6 @@
 		<Unit filename="media/materials/scripts/ransom.material" />
 		<Unit filename="media/materials/scripts/ransom.overlay" />
 		<Unit filename="ogre.cfg" />
-		<Unit filename="src/Action.cpp" />
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
 		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
@@ -117,6 +113,7 @@
 		<Unit filename="src/DotSceneLoader.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/EnemyRoute.cpp" />
+		<Unit filename="src/Fader.cpp" />
 		<Unit filename="src/GameConfig.cpp" />
 		<Unit filename="src/GameConfigException.cpp" />
 		<Unit filename="src/GameState.cpp" />
@@ -133,9 +130,6 @@
 		<Unit filename="src/Records.cpp" />
 		<Unit filename="src/SoundFX.cpp" />
 		<Unit filename="src/SoundFXManager.cpp" />
-		<Unit filename="src/State.cpp" />
-		<Unit filename="src/StateMachine.cpp" />
-		<Unit filename="src/StateMachineException.cpp" />
 		<Unit filename="src/Track.cpp" />
 		<Unit filename="src/TrackManager.cpp" />
 		<Unit filename="src/Utilities.cpp" />

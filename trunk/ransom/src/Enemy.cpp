@@ -240,6 +240,7 @@ if (_stateCaracter == LIVE) {
 				  } else {
 					  // Si se ha perdido returna por los puntos de retorno
 					  if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1])) {
+                          cout << "QUITANDO PUNTO RETORNO" << endl;
 						  _vReturnsPoints.pop_back();
 					  }
 				  }
@@ -349,17 +350,18 @@ if (_stateCaracter == LIVE) {
                 if ( !_sentinel_dest )
                   {
                     _sentinel_dest = walk_to ( _positionLastViewed, true );
-					// Cada segundo añadimos puntos de retorno por si se pierde
-					if ( _timeElapsed_Global - _timeSeach > 1.0 )
+					// Cada medio segundo añadimos puntos de retorno por si se pierde
+					if ( _timeElapsed_Global - _timeSeach > 0.5 )
 					  {
 						_timeSeach = _timeElapsed_Global;
 						_vReturnsPoints.push_back(_node->getPosition());
+						cout << "INSERTADO PUNTO RETORNO" << endl;
 					}
 
 					_stopAround = true;
-                  } else {					
+                  } else {
                     _timeElapsed_Watching += timeSinceLastFrame;
-					
+
 					// Hacemos que pare y guiere cada segundo
 					if ( _timeElapsed_Watching >= 1.0 )
 					{
