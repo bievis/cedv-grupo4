@@ -74,15 +74,18 @@ void Hostage::setVisible ( const bool visible ) {
 void Hostage::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres) {
 	Character::update(timeSinceLastFrame, vCharacteres);
 	
-	if (_state == LIBERATE) {
-		_timerParticleLiberate += timeSinceLastFrame;
-		_particleLiberation->setEmitting(true);
-		if (_timerParticleLiberate > TIMER_PATICLE_LIBERATE) {
-			_particleLiberation->setEmitting(false);
-			_state = LIBERATED;
+	if (_stateCaracter != END) {
+		if (_state == LIBERATE) {
+			_timerParticleLiberate += timeSinceLastFrame;
+			_particleLiberation->setEmitting(true);
+			if (_timerParticleLiberate > TIMER_PATICLE_LIBERATE) {
+				_particleLiberation->setEmitting(false);
+				_state = LIBERATED;
+				_stateCaracter = END;
+			}
+		} else {
+			_timerParticleLiberate = 0.0;
 		}
-	} else {
-		_timerParticleLiberate = 0.0;
 	}
 }
 

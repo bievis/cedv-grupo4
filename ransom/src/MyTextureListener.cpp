@@ -13,6 +13,9 @@ MyTextureListener::MyTextureListener ( Ogre::SceneManager* sceneMgr, const Textu
 
 MyTextureListener::~MyTextureListener()
 {
+  _sceneMgr = NULL;
+  _materialName = "";
+  _enemyViewed = false;
 }
 
 void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )

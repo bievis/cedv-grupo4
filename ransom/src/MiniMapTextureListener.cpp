@@ -9,7 +9,8 @@ MiniMapTextureListener::MiniMapTextureListener ( Ogre::SceneManager* sceneMgr, s
 
 MiniMapTextureListener::~MiniMapTextureListener()
 {
-	_vCharacteres.clear();
+  _vCharacteres.clear();
+  _sceneMgr = NULL;
 }
 
 void MiniMapTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
