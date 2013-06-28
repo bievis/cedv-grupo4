@@ -11,6 +11,7 @@
 #define SIZE_LIFE_BAR 2.0f
 #define NAME_TEXTUTE_CAM "RttT_"
 #define NAME_MATERIAL_CAM "RttMat_"
+#define TIMER_MAX_BLOCKED 3.0f
 
 /// \brief enumerator with the states of our enemy character
 enum eSTATES_ENEMY {
@@ -68,7 +69,7 @@ class Enemy : public Character
     /// \return true/false if the character arrived to destiny point
     bool                            walk_to ( const Ogre::Vector3& pos, bool running = false );
     /// \brief method to watch around the enemy 360º
-    void                            watch_around();
+    void                            watch_around(double timeSinceLastFrame);
     /// \brief method to update lifeBar
     void                            updateLifeBar();
     /// \brief method to update enemy in frame
@@ -144,6 +145,12 @@ class Enemy : public Character
     SoundFXPtr                _soundAlert2FX;
     /// \brief counter to use with the alert current sound (it can be 1 or 2)
     unsigned int              _currentSoundAlert;
+
+	std::vector<Ogre::Vector3>   _vReturnsPoints;
+
+	bool _stopAround;
+	unsigned int _aroundNumber;
+	double _timeSeach;
 };
 
 #endif // ENEMY_H
