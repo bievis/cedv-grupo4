@@ -19,6 +19,8 @@ using namespace std;
 
 #define MAX_HEALTH 100.0
 
+#define ZERO_DISTANCE 0.0
+
 // Animation Name of Mesh
 #define MOVE_ANIMATION "Move"
 #define STOP_ANIMATION "Stop"
@@ -90,10 +92,13 @@ class Character
     SoundFXPtr                _soundDeath2FX;
     /// \brief reference to sound alert number 1
     SoundFXPtr                _soundDeath3FX;
-
+	/// \brief reference to particle with character dead
 	Ogre::ParticleSystem* _particleDeath;
+	/// \brief reference to node of particle with character dead
 	Ogre::SceneNode* _particleDeathNode;
 	double _timerParticleDeath;
+	/// \brief distance with other character when this character shoot to other character
+	double _distanceWithOtherCaracter;
 
 	/// \brief method to get scene node of shot reference
     /// \return scene node reference
@@ -115,6 +120,15 @@ class Character
 
 	/// \brief method to death the caracter
     void  death();
+	 /// \brief method to validate the success rate to shoot and hurt our hero or fail
+    /// This method perform the next:
+    /// a) Generate a random number between 1 and 100
+    /// b) According the distance, the farther will be more difficult to hit the hero
+    /// Joining the random value and the distance obtaining the result
+    /// \param distance distance between the enemy and the hero
+    /// \param rate success rate returned by the method (only for info purposes)
+    /// \return true/false if it was hit the shoot in the hero
+    bool                            validate_success_rate ( double distance, double* rate );
   public:
     /// \brief character constructor parametrized
     /// \param sceneMgr reference to scene manager (ogre)
@@ -205,7 +219,8 @@ class Character
     /// \param show to show dummy or not
     virtual void                  showDummy ( bool show );
 	/// \brief method shoot
-    void                          shoot();
+	/// \distanceWithOtherCaracter distance with enemy
+    void                          shoot(double distanceWithOtherCaracter = ZERO_DISTANCE);
 
     const Ogre::Vector3&          getPosition();
 

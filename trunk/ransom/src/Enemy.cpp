@@ -286,21 +286,13 @@ if (_stateCaracter == LIVE) {
                 if ( _timeElapsed_Global - _timeElapsed_Shooting > 2 )
                 {
                   double distance = 0.0;
-                  double rate = 0.0;
+                  
 
                   _timeElapsed_Shooting = _timeElapsed_Global;
 
                   distance = get_distance_with_hero();
 
-				  shoot();
-
-                  if ( validate_success_rate ( distance, &rate ) )
-                  {
-                    cout << "TOCADO!!! (" << rate << "%) distance = " << distance << endl;
-                    _refHero->setHealth ( _refHero->getHealth() - 25 );
-                  }
-                  else
-                    cout << "AGUA!!! (" << rate << "%) distance = " << distance << endl;
+				  shoot(distance);
                 }
               }
             else
@@ -399,54 +391,10 @@ void Enemy::play_sound_alert()
 
 }
 
-bool Enemy::validate_success_rate ( double distance, double* rate )
-  {
-    bool res = false;
-
-    //Numeros aleatorios entre 1 y 100
-    *rate = 1 + rand() % ( 100 );
-
-    // Si la distancia al heroe está entre 5 y 10
-    // entonces si el valor está por encima del 50%
-    // nos habrá dado, sino fallo
-    if ( ( distance > 5 ) && ( distance < 10 ) )
-      {
-        // Del 50% en adelante nos habrá acertado
-        if ( *rate > 50 )
-        {
-          res = true;
-        }
-      }
-    // Si la distancia al heroe está entre 10 y 15
-    // entonces si el valor está por encima del 65%
-    // nos habrá dado, sino fallo
-    if ( ( distance > 10 ) && ( distance < 15 ) )
-      {
-        // Del 65% en adelante nos habrá acertado
-        if ( *rate > 65 )
-          {
-            res = true;
-          }
-      }
-    // Si la distancia al heroe está es mayor a 20
-    // entonces si el valor está por encima del 75%
-    // nos habrá dado, sino fallo
-    if ( distance > 20 )
-      {
-        // Del 75% en adelante nos habrá acertado
-        if ( *rate > 75 )
-          {
-            res = true;
-          }
-      }
-
-    return res;
-  }
-
 const Ogre::Real& Enemy::get_distance_with_hero()
   {
     Ogre::Vector3 p = _refHero->getSceneNode()->getPosition();
-    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
+    Ogre::Vector3 o = _node->getPosition();
 
     Ogre::Real distance = o.distance ( p );
 
