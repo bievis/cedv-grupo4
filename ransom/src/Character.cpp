@@ -21,6 +21,7 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 	_stateCaracter = LIVE;
 	_isShooting = false;
 	_timerParticleDeath = 0.0;
+	_distanceWithOtherCaracter = 0.0;
 
     _health = MAX_HEALTH;
 
@@ -151,6 +152,7 @@ void Character::copy ( const Character& source )
 	_timerParticleDeath = source._timerParticleDeath;
 	_particleDeath = source._particleDeath;
 	_particleDeathNode = source._particleDeathNode;
+	_distanceWithOtherCaracter = source._distanceWithOtherCaracter;
 }
 
 void Character::setHealth ( float newHealth )
@@ -231,7 +233,17 @@ void Character::update ( double timeSinceLastFrame, std::vector<Character*>   vC
 					_isShooting = false;
 					// Vemos a que le hemos dado otro personaje
 					if (shootingCharacter) {
-						shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+						double rate = 0.0;
+
+						// Vemos si le hemos pasado la distancia para que calcule aleatoriamente si le damos o no
+						if (_distanceWithOtherCaracter == ZERO_DISTANCE || 
+							validate_success_rate ( _distanceWithOtherCaracter, &rate ) )
+						{
+							cout << "TOCADO!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
+							shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+						}
+						else
+							cout << "AGUA!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
 					}
 				}
 			}	
@@ -241,12 +253,57 @@ void Character::update ( double timeSinceLastFrame, std::vector<Character*>   vC
 	}
 }
 
-void Character::shoot() {
+bool Character::validate_success_rate ( double distance, double* rate )
+  {
+    bool res = false;
+
+    //Numeros aleatorios entre 1 y 100
+    *rate = 1 + rand() % ( 100 );
+
+    // Si la distancia al heroe está entre 5 y 10
+    // entonces si el valor está por encima del 50%
+    // nos habrá dado, sino fallo
+    if ( ( distance > 5 ) && ( distance < 10 ) )
+      {
+        // Del 50% en adelante nos habrá acertado
+        if ( *rate > 50 )
+        {
+          res = true;
+        }
+      }
+    // Si la distancia al heroe está entre 10 y 15
+    // entonces si el valor está por encima del 65%
+    // nos habrá dado, sino fallo
+    if ( ( distance > 10 ) && ( distance < 15 ) )
+      {
+        // Del 65% en adelante nos habrá acertado
+        if ( *rate > 65 )
+          {
+            res = true;
+          }
+      }
+    // Si la distancia al heroe está es mayor a 20
+    // entonces si el valor está por encima del 75%
+    // nos habrá dado, sino fallo
+    if ( distance > 20 )
+      {
+        // Del 75% en adelante nos habrá acertado
+        if ( *rate > 75 )
+          {
+            res = true;
+          }
+      }
+
+    return res;
+  }
+
+void Character::shoot(double distanceWithOtherCaracter) {
 	if (!_isShooting && _stateCaracter == LIVE) {
 		_soundShootFX->play();
 		_nodeShot->setVisible(true);
 		setScaleShot (0.1f);
 		_isShooting = true;
+		_distanceWithOtherCaracter = distanceWithOtherCaracter;
 	}
 }
 

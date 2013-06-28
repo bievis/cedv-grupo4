@@ -78,15 +78,6 @@ class Enemy : public Character
     /// \brief method to get the distance between the enemy and the hero
     /// \return a real value with the distance
     const Ogre::Real&               get_distance_with_hero();
-    /// \brief method to validate the success rate to shoot and hurt our hero or fail
-    /// This method perform the next:
-    /// a) Generate a random number between 1 and 100
-    /// b) According the distance, the farther will be more difficult to hit the hero
-    /// Joining the random value and the distance obtaining the result
-    /// \param distance distance between the enemy and the hero
-    /// \param rate success rate returned by the method (only for info purposes)
-    /// \return true/false if it was hit the shoot in the hero
-    bool                            validate_success_rate ( double distance, double* rate );
     /// \brief this method reorient the enemy direction to the hero position
     void                            reorient_enemy_to_hero();
 
