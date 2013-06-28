@@ -60,6 +60,8 @@ public:
 
     string getTime ( double tiempo );
 
+    void updatePanelLife();
+
 private:
     bool          _estaEnMeta; // Indica que ya ha entrado en la linea de la meta
     bool          _estaEnPreMeta; // Indica que ya ha entrado en la linea de la meta

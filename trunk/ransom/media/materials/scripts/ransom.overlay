@@ -127,10 +127,10 @@ GUI_Game
   container Panel(Panel_Mini_Map_Border_Game)
   {
     metrics_mode pixels
-    left -270
+    left -210
     top 10
-    width 260
-    height 210
+    width 200
+    height 170
     horz_align right
     vert_align top
     material Game/Recuadro_MiniMapa
@@ -140,8 +140,8 @@ GUI_Game
       metrics_mode pixels
       left 5
       top 5
-      width 250
-      height 200
+      width 190
+      height 160
       horz_align left
       vert_align top
     }

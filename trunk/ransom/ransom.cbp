@@ -77,6 +77,7 @@
 		<Unit filename="include/DotSceneLoader.hpp" />
 		<Unit filename="include/Enemy.h" />
 		<Unit filename="include/EnemyRoute.h" />
+		<Unit filename="include/Fader.h" />
 		<Unit filename="include/GameConfig.h" />
 		<Unit filename="include/GameConfigException.hpp" />
 		<Unit filename="include/GameState.hpp" />
@@ -109,6 +110,7 @@
 		<Unit filename="src/DotSceneLoader.cpp" />
 		<Unit filename="src/Enemy.cpp" />
 		<Unit filename="src/EnemyRoute.cpp" />
+		<Unit filename="src/Fader.cpp" />
 		<Unit filename="src/GameConfig.cpp" />
 		<Unit filename="src/GameConfigException.cpp" />
 		<Unit filename="src/GameState.cpp" />

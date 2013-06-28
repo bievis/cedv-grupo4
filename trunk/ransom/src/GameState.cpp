@@ -483,6 +483,8 @@ void GameState::update(double timeSinceLastFrame)
     elem = m_pOverlayMgr->getOverlayElement("txtHostages");
     elem->setCaption ( Ogre::StringConverter::toString(_hostages) );
 
+    updatePanelLife();
+
     // if(m_bQuit == true)
     //   {
     //     popAppState();
@@ -913,4 +915,20 @@ string GameState::getTime ( double tiempo )
     ret = cad;
 
     return ret;
+  }
+
+void GameState::updatePanelLife()
+  {
+     Ogre::OverlayElement *elem = NULL;
+
+     elem = m_pOverlayMgr->getOverlayElement("Panel_Life_Hero_Game");
+
+     if ( m_hero->getHealth() >= 75 )
+       elem->setMaterialName ( "Game/Life4" );
+     else if ( m_hero->getHealth() >= 50 && m_hero->getHealth() < 75 )
+       elem->setMaterialName ( "Game/Life3" );
+     else if ( m_hero->getHealth() >= 25 && m_hero->getHealth() < 50 )
+       elem->setMaterialName ( "Game/Life2" );
+     else
+       elem->setMaterialName ( "Game/Life1" );
   }

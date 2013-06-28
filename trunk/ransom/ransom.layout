@@ -14,13 +14,13 @@
 		<Cursor position="123" topLine="0" />
 	</File>
 	<File name="include/Character.h" open="1" top="0" tabpos="5">
-		<Cursor position="3664" topLine="75" />
+		<Cursor position="3664" topLine="82" />
 	</File>
 	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4">
 		<Cursor position="0" topLine="5" />
 	</File>
 	<File name="include/Enemy.h" open="1" top="0" tabpos="3">
-		<Cursor position="7409" topLine="127" />
+		<Cursor position="7409" topLine="133" />
 	</File>
 	<File name="include/EnemyRoute.h" open="0" top="0" tabpos="12">
 		<Cursor position="1341" topLine="12" />
@@ -31,8 +31,8 @@
 	<File name="include/GameConfigException.hpp" open="0" top="0" tabpos="14">
 		<Cursor position="614" topLine="0" />
 	</File>
-	<File name="include/GameState.hpp" open="0" top="0" tabpos="6">
-		<Cursor position="1870" topLine="66" />
+	<File name="include/GameState.hpp" open="1" top="0" tabpos="6">
+		<Cursor position="4102" topLine="109" />
 	</File>
 	<File name="include/Hero.h" open="0" top="0" tabpos="11">
 		<Cursor position="325" topLine="0" />
@@ -61,11 +61,11 @@
 	<File name="media/materials/scripts/info.overlay" open="0" top="0" tabpos="0">
 		<Cursor position="31" topLine="0" />
 	</File>
-	<File name="media/materials/scripts/ransom.material" open="0" top="0" tabpos="13">
-		<Cursor position="820" topLine="48" />
+	<File name="media/materials/scripts/ransom.material" open="1" top="0" tabpos="8">
+		<Cursor position="1527" topLine="105" />
 	</File>
-	<File name="media/materials/scripts/ransom.overlay" open="0" top="0" tabpos="5">
-		<Cursor position="542" topLine="33" />
+	<File name="media/materials/scripts/ransom.overlay" open="1" top="0" tabpos="7">
+		<Cursor position="1682" topLine="97" />
 	</File>
 	<File name="ogre.cfg" open="0" top="0" tabpos="0">
 		<Cursor position="197" topLine="0" />
@@ -74,22 +74,25 @@
 		<Cursor position="1171" topLine="26" />
 	</File>
 	<File name="src/Character.cpp" open="1" top="0" tabpos="2">
-		<Cursor position="7217" topLine="209" />
+		<Cursor position="7217" topLine="204" />
 	</File>
 	<File name="src/DotSceneLoader.cpp" open="0" top="0" tabpos="3">
 		<Cursor position="13507" topLine="375" />
 	</File>
-	<File name="src/Enemy.cpp" open="1" top="1" tabpos="4">
-		<Cursor position="12358" topLine="362" />
+	<File name="src/Enemy.cpp" open="1" top="0" tabpos="4">
+		<Cursor position="6874" topLine="189" />
 	</File>
 	<File name="src/EnemyRoute.cpp" open="0" top="0" tabpos="24">
 		<Cursor position="783" topLine="0" />
 	</File>
+	<File name="src/Fader.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="293" topLine="63" />
+	</File>
 	<File name="src/GameConfig.cpp" open="0" top="0" tabpos="4">
 		<Cursor position="3594" topLine="110" />
 	</File>
-	<File name="src/GameState.cpp" open="1" top="0" tabpos="1">
-		<Cursor position="1559" topLine="39" />
+	<File name="src/GameState.cpp" open="1" top="1" tabpos="1">
+		<Cursor position="15367" topLine="484" />
 	</File>
 	<File name="src/Hero.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="0" topLine="0" />
