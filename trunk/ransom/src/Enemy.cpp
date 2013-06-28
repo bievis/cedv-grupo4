@@ -124,7 +124,6 @@ Enemy::~Enemy()
 
     if ( _camPOV )
       _sceneMgr->destroyCamera ( _camPOV );
-
 	Ogre::MaterialManager::getSingleton().remove(NAME_TEXTUTE_CAM + _name);
 
     // Destruimos el billboardset
@@ -197,7 +196,7 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
 	  Character::update(timeSinceLastFrame, vCharacteres);
 if (_stateCaracter == LIVE) {
     _timeElapsed_Global += timeSinceLastFrame;
-	
+
     updateLifeBar();
 
     // Cambios de estado del enemigo
@@ -286,7 +285,6 @@ if (_stateCaracter == LIVE) {
                 if ( _timeElapsed_Global - _timeElapsed_Shooting > 2 )
                 {
                   double distance = 0.0;
-                  
 
                   _timeElapsed_Shooting = _timeElapsed_Global;
 
@@ -373,8 +371,9 @@ if (_stateCaracter == LIVE) {
 
         _currentPosition = _node->getPosition();
       }
+
 }
-}
+  }
 
 void Enemy::play_sound_alert()
 {
@@ -389,7 +388,7 @@ void Enemy::play_sound_alert()
       _currentSoundAlert = 1;
     }
 
-}
+  }
 
 const Ogre::Real& Enemy::get_distance_with_hero()
   {

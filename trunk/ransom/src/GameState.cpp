@@ -25,7 +25,7 @@ GameState::GameState()
   }
 
 void GameState::clear() {
-	m_bLMouseDown       = false;
+    m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
     m_pSceneMgr         = NULL;
@@ -44,12 +44,14 @@ void GameState::clear() {
 	_rtex = NULL;
 	_textureListener = NULL;
 	_cameraMiniMap = NULL;
-}
+  }
 
 void GameState::enter()
   {
 	clear();
-	
+
+    _faderGameOver = NULL;
+
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
@@ -71,6 +73,11 @@ void GameState::enter()
 
     fader = new Fader ( "GUI_Game", "Game/Hostages", NULL );
     _vFader.push_back ( fader );
+
+    fader = new Fader ( "GUI_Game", "Game/Recuadro_MiniMapa", NULL );
+    _vFader.push_back ( fader );
+
+    _soundGameOver = SoundFXManager::getSingleton().load("gameover.wav");
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -114,7 +121,14 @@ void GameState::enter()
     Ogre::OverlayElement *elem;
     elem = m_pOverlayMgr->getOverlayElement("Panel_Loading_Game");
     elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Game_Over");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_GameOver", false );
+
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", true );
+
     OgreFramework::getSingletonPtr()->getRootPtr()->renderOneFrame();
 
     XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
@@ -127,11 +141,11 @@ void GameState::enter()
 
 //    buildGUI();
 
-
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
 
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
       if (_vFader[i]) _vFader[i]->startFadeOut(4.0);
+
   }
 
 void GameState::CreateInitialWorld()
@@ -215,7 +229,7 @@ void GameState::CreateMiniMap() {
     Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
             NAME_TEXTUTE_MINIMAP, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 256, 256, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
-	
+
     _rtex = _rtt->getBuffer()->getRenderTarget();
 	  // Vinculamos la camara con la textura
     _rtex->addViewport ( _cameraMiniMap );
@@ -232,7 +246,7 @@ void GameState::CreateMiniMap() {
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
     // Le asignamos la textura que hemos creado
     mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
-	
+
 	  // Le vinculamos el listener a la textura
   	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres );
     _rtex->addListener ( _textureListener );
@@ -250,6 +264,8 @@ bool GameState::pause()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Pausing GameState...");
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_GameOver", false );
 
     // Mostrar_Velocidad ( 0, true );
 
@@ -302,6 +318,9 @@ void GameState::exit()
       if (_vFader[i]) delete _vFader[i];
 
     _vFader.clear();
+
+    if ( _faderGameOver )
+      delete _faderGameOver;
 
     // // Parar del track principal...
     // _gameTrack->play();
@@ -370,7 +389,6 @@ void GameState::exit()
 	Ogre::TextureManager::getSingleton().remove(NAME_TEXTUTE_MINIMAP);
 
 	Ogre::MaterialManager::getSingleton().remove(NAME_MATERIAL_MINIMAP);
-
     if ( _world )
     {
       cout << "delete world" << endl;
@@ -498,6 +516,21 @@ void GameState::update(double timeSinceLastFrame)
     elem->setCaption ( Ogre::StringConverter::toString(_hostages) );
 
     updatePanelLife();
+
+    if ( m_hero->getHealth() == 0 )
+      {
+        if ( !_faderGameOver )
+          {
+            Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
+
+            _faderGameOver = new Fader ( "GUI_GameOver", "Game/GameOver", this );
+            _faderGameOver->startFadeOut ( 2.0 );
+          }
+
+        if ( _faderGameOver )
+          _faderGameOver->fade ( timeSinceLastFrame );
+      }
+
 
     // if(m_bQuit == true)
     //   {
@@ -937,12 +970,17 @@ void GameState::updatePanelLife()
 
      elem = m_pOverlayMgr->getOverlayElement("Panel_Life_Hero_Game");
 
-     if ( m_hero->getHealth() >= 75 )
+     if ( m_hero->getHealth() > 75 )
        elem->setMaterialName ( "Game/Life4" );
-     else if ( m_hero->getHealth() >= 50 && m_hero->getHealth() < 75 )
+     else if ( m_hero->getHealth() > 50 && m_hero->getHealth() <= 75 )
        elem->setMaterialName ( "Game/Life3" );
-     else if ( m_hero->getHealth() >= 25 && m_hero->getHealth() < 50 )
+     else if ( m_hero->getHealth() > 25 && m_hero->getHealth() <= 50 )
        elem->setMaterialName ( "Game/Life2" );
      else
        elem->setMaterialName ( "Game/Life1" );
+  }
+
+void GameState::fadeOutCallback(void)
+  {
+    _soundGameOver->play();
   }
