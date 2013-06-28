@@ -9,6 +9,8 @@
 #include "Hero.h"
 
 #define SIZE_LIFE_BAR 2.0f
+#define NAME_TEXTUTE_CAM "RttT_"
+#define NAME_MATERIAL_CAM "RttMat_"
 
 /// \brief enumerator with the states of our enemy character
 enum eSTATES_ENEMY {

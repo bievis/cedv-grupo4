@@ -27,6 +27,8 @@
 #define NAME_MAP "Map"
 #define FILE_ROUTE_XML "./config/config.xml"
 #define MAP_ROUTE_XML "./config/Mapa.tmx"
+#define NAME_TEXTUTE_MINIMAP "RttT_Map"
+#define NAME_MATERIAL_MINIMAP "RttMat_Map"
 
 class GameState : public AppState
   {
@@ -89,7 +91,6 @@ private:
     std::deque<Enemy*>        m_enemies;
     std::vector<Hostage*>	    m_hostages;
     std::vector<Character*>   _vCharacteres;
-    OgreBulletDynamics::RigidBody* m_swat;
 
     Ogre::Entity*             entFloor;
     Ogre::Camera*             _cameraMiniMap;
@@ -105,6 +106,8 @@ private:
     unsigned int              _hostages;
 
     //Private Methods
+	// \brief method to create the state
+	void clear();
 
     // \brief method to create map
     void CreateMap(string map);

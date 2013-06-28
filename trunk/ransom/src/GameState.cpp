@@ -21,7 +21,11 @@ using namespace Ogre;
 
 GameState::GameState()
   {
-    m_bLMouseDown       = false;
+    clear();
+  }
+
+void GameState::clear() {
+	m_bLMouseDown       = false;
     m_bRMouseDown       = false;
     m_bQuit             = false;
     m_pSceneMgr         = NULL;
@@ -29,6 +33,7 @@ GameState::GameState()
     m_pOverlayMgr       = NULL;
     m_enemies.clear();
     m_hostages.clear();
+	_vCharacteres.clear();
     defaultPlaneBodyFloor = NULL;
     ShapeFloor          = NULL;
     _world              = NULL;
@@ -36,10 +41,15 @@ GameState::GameState()
     _vFader.clear();
     _tiempo             = 0;
     _hostages           = 1;
-  }
+	_rtex = NULL;
+	_textureListener = NULL;
+	_cameraMiniMap = NULL;
+}
 
 void GameState::enter()
   {
+	clear();
+	
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
     m_pOverlayMgr = Ogre::OverlayManager::getSingletonPtr();
@@ -203,9 +213,9 @@ void GameState::CreateCameras() {
 void GameState::CreateMiniMap() {
     // Creamos la textura donde vamos a meter el mapa que va visualizarse a partir de la camara
     Ogre::TexturePtr _rtt = Ogre::TextureManager::getSingleton().createManual (
-            "RttT_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            NAME_TEXTUTE_MINIMAP, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 256, 256, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
-
+	
     _rtex = _rtt->getBuffer()->getRenderTarget();
 	  // Vinculamos la camara con la textura
     _rtex->addViewport ( _cameraMiniMap );
@@ -214,7 +224,7 @@ void GameState::CreateMiniMap() {
     _rtex->getViewport(0)->setOverlaysEnabled ( false );
     _rtex->setAutoUpdated(true);
     // Creamos el material al que le vamos a asginar la textura
-    MaterialPtr mPtr = MaterialManager::getSingleton().create ( "RttMat_Map", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
+    MaterialPtr mPtr = MaterialManager::getSingleton().create ( NAME_MATERIAL_MINIMAP, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME );
     Technique* matTechnique = mPtr->createTechnique();
     matTechnique->createPass();
     mPtr->getTechnique(0)->getPass(0)->setLightingEnabled(true);
@@ -222,7 +232,7 @@ void GameState::CreateMiniMap() {
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
     // Le asignamos la textura que hemos creado
     mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
-
+	
 	  // Le vinculamos el listener a la textura
   	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres );
     _rtex->addListener ( _textureListener );
@@ -356,6 +366,10 @@ void GameState::exit()
       cout << "delete camera" << endl;
       m_pSceneMgr->destroyCamera ( _cameraMiniMap );
     }
+
+	Ogre::TextureManager::getSingleton().remove(NAME_TEXTUTE_MINIMAP);
+
+	Ogre::MaterialManager::getSingleton().remove(NAME_MATERIAL_MINIMAP);
 
     if ( _world )
     {

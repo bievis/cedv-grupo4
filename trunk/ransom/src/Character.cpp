@@ -203,39 +203,41 @@ void Character::changeAnimation ( const string& nameAnimation )
 
 void Character::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
 {
-	if (_stateCaracter == DEAD) {
-		_timerParticleDeath += timeSinceLastFrame;
-		_particleDeath->setEmitting(true);
-		if (_timerParticleDeath > TIMER_PATICLE_DEATH) {
-			_particleDeath->setEmitting(false);
-			_stateCaracter = END;
-		}
-	} else {
-		if ( _currentAnimation != NULL )
-		{
-			_currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
-		}
-	
-		if (_nodeShot && _isShooting) {
-			// Colocamos el disparo
-			_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
-									+ _rigidBody->getCenterOfMassPosition());
-			_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
-			// Vamos alargando el disparo
-			setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
-			Character* shootingCharacter = NULL;
-			if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
-				// Si hemos dado a algo
-				_nodeShot->setVisible(false);
-				_isShooting = false;
-				// Vemos a que le hemos dado otro personaje
-				if (shootingCharacter) {
-					shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
-				}
+	if (_stateCaracter != END) {
+		if (_stateCaracter == DEAD) {
+			_timerParticleDeath += timeSinceLastFrame;
+			_particleDeath->setEmitting(true);
+			if (_timerParticleDeath > TIMER_PATICLE_DEATH) {
+				_particleDeath->setEmitting(false);
+				_stateCaracter = END;
 			}
-		}	
+		} else {
+			if ( _currentAnimation != NULL )
+			{
+				_currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
+			}
 	
-		_timerParticleDeath = 0.0;
+			if (_nodeShot && _isShooting) {
+				// Colocamos el disparo
+				_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
+										+ _rigidBody->getCenterOfMassPosition());
+				_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
+				// Vamos alargando el disparo
+				setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
+				Character* shootingCharacter = NULL;
+				if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
+					// Si hemos dado a algo
+					_nodeShot->setVisible(false);
+					_isShooting = false;
+					// Vemos a que le hemos dado otro personaje
+					if (shootingCharacter) {
+						shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+					}
+				}
+			}	
+	
+			_timerParticleDeath = 0.0;
+		}
 	}
 }
 

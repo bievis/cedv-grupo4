@@ -37,7 +37,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     // Textura para mostrar la visualizacion de lo que ve el enemigo
     _rtt = Ogre::TextureManager::getSingleton().createManual (
-            "RttT_" + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+            NAME_TEXTUTE_CAM + name, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
             Ogre::TEX_TYPE_2D, 64, 64, 0, Ogre::PF_A8R8G8B8, Ogre::TU_RENDERTARGET );
 
     _rtex = _rtt->getBuffer()->getRenderTarget();
@@ -125,6 +125,8 @@ Enemy::~Enemy()
     if ( _camPOV )
       _sceneMgr->destroyCamera ( _camPOV );
 
+	Ogre::MaterialManager::getSingleton().remove(NAME_TEXTUTE_CAM + _name);
+
     // Destruimos el billboardset
     _lifeNode->detachObject(_bbSetLife);
     _sceneMgr->destroyBillboardSet(_bbSetLife);
@@ -192,9 +194,10 @@ void Enemy::updateLifeBar() {
 
 void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
   {
+	  Character::update(timeSinceLastFrame, vCharacteres);
+if (_stateCaracter == LIVE) {
     _timeElapsed_Global += timeSinceLastFrame;
-
-    Character::update(timeSinceLastFrame, vCharacteres);
+	
     updateLifeBar();
 
     // Cambios de estado del enemigo
@@ -378,8 +381,8 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
 
         _currentPosition = _node->getPosition();
       }
-
-  }
+}
+}
 
 void Enemy::play_sound_alert()
 {

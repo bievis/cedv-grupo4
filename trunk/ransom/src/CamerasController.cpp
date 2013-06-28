@@ -47,6 +47,8 @@ void CamerasController::update(double timeSinceLastFrame) {
 CamerasController::~CamerasController() {
 	_cameraNode->detachAllObjects();
 	_cameraMiniMapNode->detachAllObjects();
+	_targetNode->detachAllObjects();
+	_targetNode->getCreator()->destroySceneNode(_targetNode);
 	_cameraNode->getCreator()->destroySceneNode(_cameraNode);
 	_cameraMiniMapNode->getCreator()->destroySceneNode(_cameraNode);
 
@@ -56,4 +58,7 @@ CamerasController::~CamerasController() {
 	_cameraNode = NULL;
 	_cameraMiniMapNode = NULL;
 	_targetNode = NULL;
+	_camera = NULL;
+	_cameraMiniMap = NULL;
+	_hero = NULL;
 }
