@@ -134,6 +134,21 @@ material Game/Recuadro_MiniMapa
  }
 }
 
+material Game/GameOver
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture gameover.png
+     }
+   }
+ }
+}
+
 material Game/Face
 {
  technique

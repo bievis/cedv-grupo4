@@ -30,7 +30,7 @@
 #define NAME_TEXTUTE_MINIMAP "RttT_Map"
 #define NAME_MATERIAL_MINIMAP "RttMat_Map"
 
-class GameState : public AppState
+class GameState : public AppState, FaderCallback
   {
 
 public:
@@ -63,6 +63,8 @@ public:
     string getTime ( double tiempo );
 
     void updatePanelLife();
+
+    void fadeOutCallback(void);
 
 private:
     bool          _estaEnMeta; // Indica que ya ha entrado en la linea de la meta
@@ -102,8 +104,11 @@ private:
     GameConfig                _gc;
 
     std::vector<Fader*>       _vFader;
+    Fader*                    _faderGameOver;
     double                    _tiempo;
     unsigned int              _hostages;
+
+    SoundFXPtr                _soundGameOver;
 
     //Private Methods
 	// \brief method to create the state

@@ -187,3 +187,20 @@ GUI_Game
   }
 
 }
+
+GUI_GameOver
+{
+  zorder 650
+
+  container Panel(Panel_Game_Over)
+  {
+    metrics_mode pixels
+    left 0
+    top 0
+    width 768
+    height 1024
+    horz_align left
+    vert_align top
+    material Game/GameOver
+  }
+}
