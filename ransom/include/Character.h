@@ -10,7 +10,7 @@ using namespace std;
 
 #define VELOCIDAD 2.0
 #define VELOCIDAD_ANIMACION 3.0
-#define VELOCITY_SHOT 20.0f
+#define VELOCITY_SHOT 30.0f
 
 #define HEALTH_SHOT 25.0
 
@@ -129,6 +129,8 @@ class Character
     /// \param rate success rate returned by the method (only for info purposes)
     /// \return true/false if it was hit the shoot in the hero
     bool                            validate_success_rate ( double distance, double* rate );
+	/// \brief method to update the shot
+    void                  updateShot ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
   public:
     /// \brief character constructor parametrized
     /// \param sceneMgr reference to scene manager (ogre)
@@ -221,7 +223,8 @@ class Character
 	/// \brief method shoot
 	/// \distanceWithOtherCaracter distance with enemy
     void                          shoot(double distanceWithOtherCaracter = ZERO_DISTANCE);
-
+	/// \brief method to get the position of character
+    /// \return position of character
     const Ogre::Vector3&          getPosition();
 
 };

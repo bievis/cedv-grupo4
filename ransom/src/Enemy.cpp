@@ -342,6 +342,7 @@ if (_stateCaracter == LIVE) {
             else if ( haveYouSeenAnybody() )
               {
                 setCurrentState ( ALERT );
+				_aroundNumber = 0;
               }
             else
               {
