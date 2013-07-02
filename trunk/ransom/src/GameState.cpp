@@ -51,6 +51,7 @@ void GameState::enter()
 	clear();
 
     _faderGameOver = NULL;
+    _faderFinish = NULL;
 
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
@@ -78,6 +79,7 @@ void GameState::enter()
     _vFader.push_back ( fader );
 
     _soundGameOver = SoundFXManager::getSingleton().load("gameover.wav");
+    //_soundFinish = SoundFXManager::getSingleton().load("finish.wav");
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -125,7 +127,11 @@ void GameState::enter()
     elem = m_pOverlayMgr->getOverlayElement("Panel_Game_Over");
     elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
 
+    elem = m_pOverlayMgr->getOverlayElement("Panel_Finish");
+    elem->setDimensions(OgreFramework::getSingletonPtr()->_factorX, OgreFramework::getSingletonPtr()->_factorY);
+
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_GameOver", false );
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Finish", false );
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", true );
 
@@ -267,6 +273,8 @@ bool GameState::pause()
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_GameOver", false );
 
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Finish", false );
+
     // Mostrar_Velocidad ( 0, true );
 
     // Ogre::OverlayElement *elem;
@@ -321,6 +329,9 @@ void GameState::exit()
 
     if ( _faderGameOver )
       delete _faderGameOver;
+
+    if ( _faderFinish )
+      delete _faderFinish;
 
     // // Parar del track principal...
     // _gameTrack->play();
@@ -426,10 +437,10 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       _world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
-	else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
-    {
-		m_hero->shoot();
-    }
+    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
+      {
+        m_hero->shoot();
+      }
 
     OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
@@ -531,6 +542,19 @@ void GameState::update(double timeSinceLastFrame)
           _faderGameOver->fade ( timeSinceLastFrame );
       }
 
+    if ( _hostages == 0 )
+      {
+        if ( !_faderFinish )
+          {
+            Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
+
+            _faderFinish = new Fader ( "GUI_Finish", "Game/Finish", this );
+            _faderFinish->startFadeOut ( 2.0 );
+          }
+
+        if ( _faderFinish )
+          _faderFinish->fade ( timeSinceLastFrame );
+      }
 
     // if(m_bQuit == true)
     //   {
@@ -982,5 +1006,8 @@ void GameState::updatePanelLife()
 
 void GameState::fadeOutCallback(void)
   {
-    _soundGameOver->play();
+//    if ( _hostages == 0 )
+//      _soundFinish->play;
+//    else
+      _soundGameOver->play();
   }

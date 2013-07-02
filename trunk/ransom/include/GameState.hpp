@@ -105,10 +105,12 @@ private:
 
     std::vector<Fader*>       _vFader;
     Fader*                    _faderGameOver;
+    Fader*                    _faderFinish;
     double                    _tiempo;
     unsigned int              _hostages;
 
     SoundFXPtr                _soundGameOver;
+    //SoundFXPtr                _soundFinish;
 
     //Private Methods
 	// \brief method to create the state
