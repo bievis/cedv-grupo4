@@ -77,7 +77,7 @@ HighScores_Menu
     element TextArea(highScoresValues) : Plantillas/HighScores
     {
       horz_align right
-      top 130
+      top 250
       left -525
     }
   }

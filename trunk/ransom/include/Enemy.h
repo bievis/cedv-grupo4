@@ -81,20 +81,22 @@ class Enemy : public Character
     const Ogre::Real&               get_distance_with_hero();
     /// \brief this method reorient the enemy direction to the hero position
     void                            reorient_enemy_to_hero();
-
-  protected:
-    /// \brief protected method to copy a enemy
-    /// this method is used in assignment operator and copy constructor
-    /// \param other source enemy to copy
-    void                            copy ( const Enemy& source );
     /// \brief method to set the enemy state
     /// \param newState new state to set
     void                            setCurrentState ( const eSTATES_ENEMY& newState );
     /// \brief method to get the enemy state
     /// \return the current enemy state
     inline const eSTATES_ENEMY&     getCurrentState() { return _currentState; };
+
+  protected:
+    /// \brief protected method to copy a enemy
+    /// this method is used in assignment operator and copy constructor
+    /// \param other source enemy to copy
+    void                            copy ( const Enemy& source );
     /// \brief method to play the sound associated to the alert of an enemy
     void                            play_sound_alert();
+    /// \brief method to play the sound associated to the enemy hurt
+    void                            play_sound_hurt();
 
   private:
     /// \brief texture pointer
@@ -143,8 +145,14 @@ class Enemy : public Character
     SoundFXPtr                _soundAlert1FX;
     /// \brief reference to sound alert number 2
     SoundFXPtr                _soundAlert2FX;
+    /// \brief reference to sound hurt number 1
+    SoundFXPtr                _soundHurt1FX;
+    /// \brief reference to sound hurt number 2
+    SoundFXPtr                _soundHurt2FX;
     /// \brief counter to use with the alert current sound (it can be 1 or 2)
     unsigned int              _currentSoundAlert;
+    /// \brief counter to use with the hurt current sound (it can be 1 or 2)
+    unsigned int              _currentSoundHurt;
 
 	std::vector<Ogre::Vector3>   _vReturnsPoints;
 

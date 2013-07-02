@@ -29,7 +29,7 @@ using namespace std;
 #define TIMER_PATICLE_DEATH 2.0f
 
 // Position of shot with respect to character
-#define POSITION_SHOT Ogre::Vector3(-0.2780,1.0726,1.6939) 
+#define POSITION_SHOT Ogre::Vector3(-0.2780,1.0726,1.6939)
 
 enum CHARACTER_TYPE {
 	HERO, ENEMY, HOSTAGE
@@ -84,14 +84,29 @@ class Character
     OgreBulletDynamics::DynamicsWorld* _world;
 	/// \brief State of Character
 	CHARACTER_STATE _stateCaracter;
-	// \brief Sound of shoot
+	/// \brief reference to Sound of shoot
 	SoundFXPtr                _soundShootFX;
-	/// \brief reference to sound alert number 1
+	/// \brief reference to sound death number 1
     SoundFXPtr                _soundDeath1FX;
-    /// \brief reference to sound alert number 1
+    /// \brief reference to sound death number 2
     SoundFXPtr                _soundDeath2FX;
-    /// \brief reference to sound alert number 1
+    /// \brief reference to sound death number 3
     SoundFXPtr                _soundDeath3FX;
+    /// \brief reference to sound hurt number 1
+    SoundFXPtr                _soundHurt1FX;
+    /// \brief reference to sound hurt number 1
+    SoundFXPtr                _soundHurt2FX;
+    /// \brief reference to sound walk
+//    SoundFXPtr                _soundWalkFX;
+    /// \brief reference to sound missed shot number 1
+    SoundFXPtr                _soundMiss1FX;
+    /// \brief reference to sound missed shot number 2
+    SoundFXPtr                _soundMiss2FX;
+
+    unsigned int _currentSoundHurt;
+
+    unsigned int _currentSoundMiss;
+
 	/// \brief reference to particle with character dead
 	Ogre::ParticleSystem* _particleDeath;
 	/// \brief reference to node of particle with character dead
@@ -131,6 +146,11 @@ class Character
     bool                            validate_success_rate ( double distance, double* rate );
 	/// \brief method to update the shot
     void                  updateShot ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
+/// \brief method to play the sound associated to the character hurt
+    void                            play_sound_hurt();
+/// \brief method to play the sound associated to the missed shot
+    void                            play_sound_miss();
+
   public:
     /// \brief character constructor parametrized
     /// \param sceneMgr reference to scene manager (ogre)

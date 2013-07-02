@@ -203,203 +203,211 @@ void Enemy::updateLifeBar() {
 void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
   {
 	  Character::update(timeSinceLastFrame, vCharacteres);
-if (_stateCaracter == LIVE) {
-    _timeElapsed_Global += timeSinceLastFrame;
 
-    updateLifeBar();
-
-    // Cambios de estado del enemigo
-
-    switch ( _currentState )
+    if (_stateCaracter == LIVE)
       {
-        // ################## ESTADO WATCHING ##################
-        // Si estamos en el estado normal de WATCHING
-        case WATCHING:
+        _timeElapsed_Global += timeSinceLastFrame;
 
-            // Si avistamos al heroe :
-            // - tomamos su posición actual
-            // - cogemos el tiempo actual
-            // - pasamos al estado ALERT
-            if ( haveYouSeenAnybody() )
-              {
-                _positionLastViewed = _refHero->getPosition();
-                _timeFirstVision = _timeElapsed_Global;
-                setCurrentState ( ALERT );
+        updateLifeBar();
+
+        // Cambios de estado del enemigo
+
+        switch ( _currentState )
+          {
+            // ################## ESTADO WATCHING ##################
+            // Si estamos en el estado normal de WATCHING
+            case WATCHING:
+
+                // Si avistamos al heroe :
+                // - tomamos su posición actual
+                // - cogemos el tiempo actual
+                // - pasamos al estado ALERT
+                if ( haveYouSeenAnybody() )
+                  {
+                    _positionLastViewed = _refHero->getPosition();
+                    _timeFirstVision = _timeElapsed_Global;
+                    setCurrentState ( ALERT );
+                  }
+                // Si no vemos al heroe :
+                // - reseteamos el tiempo que lo hemos estado viendo a 0
+                // - el centinela usado para saber si hemos llegado al punto donde lo vimos lo ponemos a false
+                // - seguimos caminando por nuestra ruta
+                else
+                  {
+              // Si no se ha perdido cuando perseguia al enemigo
+              if (_vReturnsPoints.size() == 0) {
+              _timeElapsed_Watching = 0;
+              _sentinel_dest = false;
+              walk_in_route();
+              } else {
+                // Si se ha perdido returna por los puntos de retorno
+                if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1])) {
+                              cout << "QUITANDO PUNTO RETORNO" << endl;
+                  _vReturnsPoints.pop_back();
+                }
               }
-            // Si no vemos al heroe :
-            // - reseteamos el tiempo que lo hemos estado viendo a 0
-            // - el centinela usado para saber si hemos llegado al punto donde lo vimos lo ponemos a false
-            // - seguimos caminando por nuestra ruta
-            else
-              {
-				  // Si no se ha perdido cuando perseguia al enemigo
-				  if (_vReturnsPoints.size() == 0) {
-					_timeElapsed_Watching = 0;
-					_sentinel_dest = false;
-					walk_in_route();
-				  } else {
-					  // Si se ha perdido returna por los puntos de retorno
-					  if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1])) {
-                          cout << "QUITANDO PUNTO RETORNO" << endl;
-						  _vReturnsPoints.pop_back();
-					  }
-				  }
-              }
+                  }
 
-            break;
+                break;
 
-        // ################## ESTADO ALERT ##################
-        case ALERT:
+            // ################## ESTADO ALERT ##################
+            case ALERT:
 
-            // Partiendo de la premisa de que para estar en estado ALERT
-            // el enemigo ha tenido que ver al heroe.
-            //    - Pues si ahora ya no lo vemos :
-            //        # Si el tiempo actual menos el tiempo que cogimos al verlo es mayor
-            //          a 2 segundos, entonces pasamos al estado CHASING y almacenamos
-            //          el tiempo cuando iniciamos la persecución
-            //        # Sino, si el tiempo de vision es inferior a 2 segundos pasaremos
-            //          al estado WATCHING
-            //    - Si por el contrario, seguimos viendo habiendo cambiado de estado
-            //      entonces, nos pasamos al estado shooting y registramos el momento temporal
-            //      para el tema de que despues de verlo y pasados 2 segundos dispare.
-            if ( !haveYouSeenAnybody() )
-              {
-                // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
-                // al estado persecucion (CHASING)
-                if ( _timeElapsed_Global - _timeFirstVision > 2 )
+                // Partiendo de la premisa de que para estar en estado ALERT
+                // el enemigo ha tenido que ver al heroe.
+                //    - Pues si ahora ya no lo vemos :
+                //        # Si el tiempo actual menos el tiempo que cogimos al verlo es mayor
+                //          a 2 segundos, entonces pasamos al estado CHASING y almacenamos
+                //          el tiempo cuando iniciamos la persecución
+                //        # Sino, si el tiempo de vision es inferior a 2 segundos pasaremos
+                //          al estado WATCHING
+                //    - Si por el contrario, seguimos viendo habiendo cambiado de estado
+                //      entonces, nos pasamos al estado shooting y registramos el momento temporal
+                //      para el tema de que despues de verlo y pasados 2 segundos dispare.
+                if ( !haveYouSeenAnybody() )
+                  {
+                    // Si hemos estado al menos 2 segundos delante del enemigo pasaremos
+                    // al estado persecucion (CHASING)
+                    if ( _timeElapsed_Global - _timeFirstVision > 2 )
+                      {
+                        _timeStartChasing = _timeElapsed_Global;
+                        setCurrentState ( CHASING );
+                      }
+                    // Sino es asi volveremos al estado WATCHING
+                    else
+                      {
+                        setCurrentState ( WATCHING );
+                      }
+                  }
+                else
+                  {
+                    play_sound_alert();
+                    setCurrentState ( SHOOTING );
+                    _timeElapsed_Shooting = _timeElapsed_Global;
+                  }
+
+                break;
+
+            // ################## ESTADO SHOOTING ##################
+            case SHOOTING:
+
+                _timeElapsed_Watching = 0;
+                _sentinel_dest = false;
+
+                stop_move();
+
+                if ( haveYouSeenAnybody() )
+                  {
+                    _positionLastViewed = _refHero->getPosition();
+
+                    reorient_enemy_to_hero();
+
+                    if ( _timeElapsed_Global - _timeElapsed_Shooting > 2 )
+                    {
+                      double distance = 0.0;
+
+                      _timeElapsed_Shooting = _timeElapsed_Global;
+
+                      distance = get_distance_with_hero();
+
+                      shoot(distance);
+                    }
+                  }
+                else
                   {
                     _timeStartChasing = _timeElapsed_Global;
                     setCurrentState ( CHASING );
                   }
-                // Sino es asi volveremos al estado WATCHING
-                else
+
+                break;
+
+            // ################## ESTADO CHASING ##################
+            case CHASING:
+
+                // Si entramos en estado CHASING
+                //    - Si no ve al heroe y ademas han pasado unos 10 segundos desde el
+                //      ultimo avistamiento pasaremos al estado WATCHING.
+                //      NOTA: Lo de poner 10 segundos es porque el mirar a las 4 esquinas
+                //      dura aproximadamente éste tiempo
+                //    - Si por el contrario, seguimos viendo al enemigo, pasaremos al
+                //      estado ALERT
+                //    - Por ultimo, si no lo vemos y el tiempo entre que hemos desaparecido
+                //      de su vision y cuando pasamos a éste estado es inferior a 10
+                //      el enemigo se movera hasta el punto ultimo visto del heroe y llegado
+                //      a éste hara una visión alrededor para buscar al heroe
+                if ( !haveYouSeenAnybody() &&
+                    _aroundNumber > 4 )
                   {
                     setCurrentState ( WATCHING );
+                    _aroundNumber = 0;
                   }
-              }
-            else
-              {
-                play_sound_alert();
-                setCurrentState ( SHOOTING );
-                _timeElapsed_Shooting = _timeElapsed_Global;
-              }
-
-            break;
-
-        // ################## ESTADO SHOOTING ##################
-        case SHOOTING:
-
-            _timeElapsed_Watching = 0;
-            _sentinel_dest = false;
-
-            stop_move();
-
-            if ( haveYouSeenAnybody() )
-              {
-                _positionLastViewed = _refHero->getPosition();
-
-                reorient_enemy_to_hero();
-
-                if ( _timeElapsed_Global - _timeElapsed_Shooting > 2 )
-                {
-                  double distance = 0.0;
-
-                  _timeElapsed_Shooting = _timeElapsed_Global;
-
-                  distance = get_distance_with_hero();
-
-				  shoot(distance);
-                }
-              }
-            else
-              {
-                _timeStartChasing = _timeElapsed_Global;
-                setCurrentState ( CHASING );
-              }
-
-            break;
-
-        // ################## ESTADO CHASING ##################
-        case CHASING:
-
-            // Si entramos en estado CHASING
-            //    - Si no ve al heroe y ademas han pasado unos 10 segundos desde el
-            //      ultimo avistamiento pasaremos al estado WATCHING.
-            //      NOTA: Lo de poner 10 segundos es porque el mirar a las 4 esquinas
-            //      dura aproximadamente éste tiempo
-            //    - Si por el contrario, seguimos viendo al enemigo, pasaremos al
-            //      estado ALERT
-            //    - Por ultimo, si no lo vemos y el tiempo entre que hemos desaparecido
-            //      de su vision y cuando pasamos a éste estado es inferior a 10
-            //      el enemigo se movera hasta el punto ultimo visto del heroe y llegado
-            //      a éste hara una visión alrededor para buscar al heroe
-            if ( !haveYouSeenAnybody() &&
-                _aroundNumber > 4 )
-              {
-                setCurrentState ( WATCHING );
-				_aroundNumber = 0;
-              }
-            else if ( haveYouSeenAnybody() )
-              {
-                setCurrentState ( ALERT );
-				_aroundNumber = 0;
-              }
-            else
-              {
-                // Si ya estamos en el punto donde vimos al heroe por
-                // ultima vez, entonces dejamos de movernos
-                if ( !_sentinel_dest )
+                else if ( haveYouSeenAnybody() )
                   {
-                    _sentinel_dest = walk_to ( _positionLastViewed, true );
-					// Cada medio segundo añadimos puntos de retorno por si se pierde
-					if ( _timeElapsed_Global - _timeSeach > 0.5 )
-					  {
-						_timeSeach = _timeElapsed_Global;
-						_vReturnsPoints.push_back(_node->getPosition());
-						cout << "INSERTADO PUNTO RETORNO" << endl;
-					}
-
-					_stopAround = true;
-                  } else {
-                    _timeElapsed_Watching += timeSinceLastFrame;
-
-					// Hacemos que pare y guiere cada segundo
-					if ( _timeElapsed_Watching >= 1.0 )
-					{
-						_timeElapsed_Watching = 0;
-						_stopAround = !_stopAround;
-						if (!_stopAround) _aroundNumber++;
-					}
-					if (_stopAround) {
-						stop_move();
-					} else {
-						watch_around(timeSinceLastFrame);
-					}
+                    setCurrentState ( ALERT );
+				_aroundNumber = 0;
                   }
+                else
+                  {
+                    // Si ya estamos en el punto donde vimos al heroe por
+                    // ultima vez, entonces dejamos de movernos
+                    if ( !_sentinel_dest )
+                      {
+                        _sentinel_dest = walk_to ( _positionLastViewed, true );
+                        // Cada medio segundo añadimos puntos de retorno por si se pierde
+                        if ( _timeElapsed_Global - _timeSeach > 0.5 )
+                          {
+                            _timeSeach = _timeElapsed_Global;
+                            _vReturnsPoints.push_back(_node->getPosition());
+                            cout << "INSERTADO PUNTO RETORNO" << endl;
+                          }
+
+                        _stopAround = true;
+                      }
+                    else
+                      {
+                        _timeElapsed_Watching += timeSinceLastFrame;
+
+                        // Hacemos que pare y guiere cada segundo
+                        if ( _timeElapsed_Watching >= 1.0 )
+                          {
+                            _timeElapsed_Watching = 0;
+                            _stopAround = !_stopAround;
+                            if (!_stopAround) _aroundNumber++;
+                          }
+
+                        if (_stopAround)
+                          {
+                            stop_move();
+                          }
+                        else
+                          {
+                            watch_around(timeSinceLastFrame);
+                          }
+                      }
+                  }
+
+                break;
+
+          }
+        // ######################################################
+
+        // Cada 4 segundos, comprobaremos si el enemigo se ha quedado bloqueado
+        // en algun sitio del escenario
+
+        if ( _timeElapsed_Global - _timeBlocked > TIMER_MAX_BLOCKED )
+          {
+            _timeBlocked = _timeElapsed_Global;
+
+            if ( ( _currentPosition == _node->getPosition() ) &&
+                ( _currentState == CHASING && !_sentinel_dest) )
+              {
+            _currentState = WATCHING;
               }
 
-            break;
-
-      }
-    // ######################################################
-
-    // Cada 4 segundos, comprobaremos si el enemigo se ha quedado bloqueado
-    // en algun sitio del escenario
-
-    if ( _timeElapsed_Global - _timeBlocked > TIMER_MAX_BLOCKED )
-      {
-        _timeBlocked = _timeElapsed_Global;
-
-        if ( ( _currentPosition == _node->getPosition() ) &&
-            ( _currentState == CHASING && !_sentinel_dest) )
-          {
-			  _currentState = WATCHING;
+            _currentPosition = _node->getPosition();
           }
 
-        _currentPosition = _node->getPosition();
-      }
-
-}
+    }
   }
 
 void Enemy::play_sound_alert()
