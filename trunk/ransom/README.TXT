@@ -1,5 +1,5 @@
-Juego starAttack
-===============   
+Juego Ransom
+============   
 El juego consiste en superar nuestro mejor tiempo en dar una vuelta completa al circuito.
 El juego está implementado bajo licencia GNU GPL v2.
 
@@ -8,7 +8,7 @@ Ejecución
 En la carpeta "bin" se encuentra los ejecutables del juego y la carpeta "media" que 
 contiene los elementos multimedia que se manejan en el Juego.
 - Ejecución en Linux, basta con entrar en la carpeta "bin" y ejecutar el
-binario "nitro". 
+binario "ransom". 
 
 Menú
 ====
@@ -37,4 +37,4 @@ La documentación (diagramas de clases, metodos y atributos de los objetos, etc.
 
 Repositorio publico
 ===================
-https://cedv-grupo4.googlecode.com/svn/trunk/nitro
+https://cedv-grupo4.googlecode.com/svn/trunk/ransom

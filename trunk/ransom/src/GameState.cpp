@@ -532,6 +532,13 @@ void GameState::update(double timeSinceLastFrame)
       {
         if ( !_faderGameOver )
           {
+            if ( ( _gc.getNumHostages() - _hostages ) > 0 )
+              {
+                Records::getSingleton().add ( _gc.getNumHostages() - _hostages, _tiempo );
+                Records::getSingleton().compacta ( 10 );
+                Records::getSingleton().write();
+              }
+
             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
 
             _faderGameOver = new Fader ( "GUI_GameOver", "Game/GameOver", this );
@@ -546,6 +553,10 @@ void GameState::update(double timeSinceLastFrame)
       {
         if ( !_faderFinish )
           {
+            Records::getSingleton().add ( _gc.getNumHostages(), _tiempo );
+            Records::getSingleton().compacta ( 10 );
+            Records::getSingleton().write();
+
             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
 
             _faderFinish = new Fader ( "GUI_Finish", "Game/Finish", this );
@@ -933,44 +944,44 @@ void GameState::CreatePlane()
  		// push the created objects to the deques
 // 		mShapes.push_back(Shape);
 // 		mBodies.push_back(defaultPlaneBody);
-    Ogre::Vector3 pos;
-
-    for ( unsigned int i = 0; i < _gc.getNumColumns(); i++ )
-      {
-        pos = _gc.getPositionColumn(i);
-
-        put_column ( pos, i );
-      }
+//    Ogre::Vector3 pos;
+//
+//    for ( unsigned int i = 0; i < _gc.getNumColumns(); i++ )
+//      {
+//        pos = _gc.getPositionColumn(i);
+//
+//        put_column ( pos, i );
+//      }
   }
 
-void GameState::put_column ( const Ogre::Vector3& pos, unsigned int index )
-  {
-    string name = "Columna" + StringConverter::toString(index);
-
-    Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Plano_Alzado", name, pos );
+//void GameState::put_column ( const Ogre::Vector3& pos, unsigned int index )
+//  {
 //    string name = "Columna" + StringConverter::toString(index);
 //
-//    Entity *entity = m_pSceneMgr->createEntity ( name, "Plano_Alzado.mesh" );
-//
-//    entity->setVisible ( true );
-//
-//    SceneNode *node = m_pSceneMgr->createSceneNode ( name );
-//    node->attachObject ( entity );
-//
-//    node->setPosition ( pos );
-//
-//    m_pSceneMgr->getRootSceneNode()->addChild ( node );
-//    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
-//                      OgreBulletCollisions::StaticMeshToShapeConverter ( entity );
-//
-//    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
-//                      trimeshConverter->createTrimesh();
-//
-//    OgreBulletDynamics::RigidBody *rigidTrack = new
-//                      OgreBulletDynamics::RigidBody ( name, _world );
-//    rigidTrack->setShape ( node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
-//                      Quaternion::IDENTITY );
-  }
+//    Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Plano_Alzado", name, pos );
+////    string name = "Columna" + StringConverter::toString(index);
+////
+////    Entity *entity = m_pSceneMgr->createEntity ( name, "Plano_Alzado.mesh" );
+////
+////    entity->setVisible ( true );
+////
+////    SceneNode *node = m_pSceneMgr->createSceneNode ( name );
+////    node->attachObject ( entity );
+////
+////    node->setPosition ( pos );
+////
+////    m_pSceneMgr->getRootSceneNode()->addChild ( node );
+////    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
+////                      OgreBulletCollisions::StaticMeshToShapeConverter ( entity );
+////
+////    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
+////                      trimeshConverter->createTrimesh();
+////
+////    OgreBulletDynamics::RigidBody *rigidTrack = new
+////                      OgreBulletDynamics::RigidBody ( name, _world );
+////    rigidTrack->setShape ( node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
+////                      Quaternion::IDENTITY );
+//  }
 
 string GameState::getTime ( double tiempo )
   {

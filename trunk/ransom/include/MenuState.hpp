@@ -4,7 +4,7 @@
 #include "AppState.hpp"
 #include "TrackManager.h"
 #include "SoundFXManager.h"
-//#include "Records.h"
+#include "Records.h"
 #include "Utilities.h"
 
 class MenuState : public AppState
@@ -41,8 +41,8 @@ public:
     void show_screen ( eScreens scr, bool visible );
     //void inputbox ( bool visible );
 
-    // void muestra_highscores();
-    // void refresca_highscores();
+    void muestra_highscores();
+    void refresca_highscores();
 
 private:
     bool                        m_bQuit;
@@ -55,7 +55,7 @@ private:
     bool                        _mostradoHighScores; // Nos dice si se estan mostrando los highscores o no ahora
     //bool                        _show_inputbox;
 
-    // string                      _msg_highscore;  //Este string contiene los registros de los records a la hora de invocar al refresca_highscores()
+    string                      _msg_highscore;  //Este string contiene los registros de los records a la hora de invocar al refresca_highscores()
 
   };
 

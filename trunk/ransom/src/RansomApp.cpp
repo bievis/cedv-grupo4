@@ -3,12 +3,12 @@
 #include "MenuState.hpp"
 #include "GameState.hpp"
 #include "PauseState.hpp"
-// #include "Records.h"
+#include "Records.h"
 
 RansomApp::RansomApp()
   {
     m_pAppStateManager = 0;
-//    Records::getSingleton().read();
+    Records::getSingleton().read();
   }
 
 RansomApp::~RansomApp()

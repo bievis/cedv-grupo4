@@ -15,7 +15,7 @@ void MenuState::enter()
   {
     // // Carga del sonido.
     // _menuTrack = TrackManager::getSingleton().load("menu.mp3");
-    // _menuFX = SoundFXManager::getSingleton().load("boton.wav");
+    _menuFX = SoundFXManager::getSingleton().load("boton.wav");
 
     // // Reproducción del track principal...
     // _menuTrack->play();
@@ -128,10 +128,6 @@ bool MenuState::keyPressed ( const OIS::KeyEvent &keyEventRef )
              m_bQuit = true;
           }
       }
-//    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_A ) )
-//      {
-//        inputbox(!_show_inputbox);
-//      }
 
     OgreFramework::getSingletonPtr()->keyPressed ( keyEventRef );
     return true;
@@ -167,10 +163,10 @@ void MenuState::update(double timeSinceLastFrame)
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->frameRenderingQueued ( m_FrameEvent );
 
-    // if ( _mostradoHighScores )
-    //   {
-    //     refresca_highscores();
-    //   }
+    if ( _mostradoHighScores )
+     {
+       refresca_highscores();
+     }
 
     if ( m_bQuit == true )
       {
@@ -180,17 +176,17 @@ void MenuState::update(double timeSinceLastFrame)
 
   }
 
-// void MenuState::refresca_highscores()
-// {
-//     OverlayElement *oe = NULL;
+ void MenuState::refresca_highscores()
+  {
+    OverlayElement *oe = NULL;
 
-//     oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
-//     oe->setCaption ( _msg_highscore );
-// }
+    oe = m_pOverlayMgr->getOverlayElement("highScoresValues");
+    oe->setCaption ( _msg_highscore );
+  }
 
 void MenuState::buttonHit(OgreBites::Button *button)
   {
-    // _menuFX->play();
+    _menuFX->play();
     if ( button->getName() == "ExitBtn" )
       {
         m_bQuit = true;
@@ -211,39 +207,40 @@ void MenuState::buttonHit(OgreBites::Button *button)
 
   }
 
-// void MenuState::muestra_highscores()
-//   {
-//     Records::getSingleton().read();
+ void MenuState::muestra_highscores()
+  {
+    Records::getSingleton().read();
 
-//     string msg = "";
-//     int seconds = 0;
-//     char fecha[100];
-//     char hora[100];
-//     char new_hora[100];
-//     int minutes = 0;
+    string msg = "POS. #HOSTAGES# TIME #DATE#\n\n";
+    int seconds = 0;
+    int hostages = 0;
+    char fecha[100];
+    char hora[100];
+    char new_hora[100];
+    int minutes = 0;
 
-//     if ( Records::getSingleton().getSize() > 0 )
-//       {
-//         char cad[100];
+    if ( Records::getSingleton().getSize() > 0 )
+      {
+        char cad[100];
 
-//         for ( unsigned int i = 0; i < Records::getSingleton().getSize(); i++ )
-//           {
-//      	    //Entre la fecha y la hora no detecta el separador '|' así que plan B, es decir, cojo posiciones de bytes
-//      	    //y luego formateo la hora en new_hora que ya no tendría dentro el caracter '|'
-//      	    sscanf ( Records::getSingleton().getValue(i).c_str(), "%d|%10s%6s", &seconds, fecha, hora );
-//      	    memcpy ( new_hora, hora+1, strlen(hora)-1);
-//      	    new_hora[5]=0;
-//     	    minutes = seconds / 60;
-//     	    seconds = seconds % 60;
-//             sprintf ( cad, " %d - %02d:%02d [ %s - %s ]\n", i+1, minutes, seconds, fecha, new_hora );
-//             msg += string ( cad );
-//           }
-//       }
-//     else
-//       msg = "        No hay registros";
+        for ( unsigned int i = 0; i < Records::getSingleton().getSize(); i++ )
+          {
+            //Entre la fecha y la hora no detecta el separador '|' así que plan B, es decir, cojo posiciones de bytes
+            //y luego formateo la hora en new_hora que ya no tendría dentro el caracter '|'
+            sscanf ( Records::getSingleton().getValue(i).c_str(), "%d|%d|%10s%6s", &hostages, &seconds, fecha, hora );
+            memcpy ( new_hora, hora+1, strlen(hora)-1);
+            new_hora[5]=0;
+            minutes = seconds / 60;
+            seconds = seconds % 60;
+            sprintf ( cad, " %d #%02d# %02d:%02d #%s@%s#\n", i+1, hostages, minutes, seconds, fecha, new_hora );
+            msg += string ( cad );
+          }
+      }
+    else
+      msg = "        No hay registros";
 
-//     _msg_highscore = msg;
-// }
+    _msg_highscore = msg;
+  }
 
 void MenuState::show_screen ( eScreens scr, bool visible )
   {
@@ -256,6 +253,9 @@ void MenuState::show_screen ( eScreens scr, bool visible )
       {
         _mostradoHighScores = visible;
         Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "HighScores_Menu", visible );
+
+        if ( visible )
+          muestra_highscores();
       }
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", !visible );
@@ -271,23 +271,3 @@ void MenuState::show_screen ( eScreens scr, bool visible )
         OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showCursor();
       }
   }
-
-//void MenuState::inputbox ( bool visible )
-//  {
-//    _show_inputbox = visible;
-//
-//    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Common_InputBox", visible );
-//
-//    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", !visible );
-//
-//    if ( visible )
-//      {
-//        hideButtons();
-//        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
-//      }
-//    else
-//      {
-//        showButtons();
-//        OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->showCursor();
-//      }
-//  }
