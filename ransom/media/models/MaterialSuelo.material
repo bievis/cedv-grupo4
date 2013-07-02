@@ -1,15 +1,15 @@
-// MaterialBordes1 genrated by blender2ogre 0.5.9
+// MaterialSuelo genrated by blender2ogre 0.6.0
 
-material MaterialBordes1 
+material MaterialSuelo 
 {
     receive_shadows on 
 
     technique
     {
-        pass MaterialBordes1
+        pass MaterialSuelo
         {
-            ambient 0.3413333594799042 0.800000011920929 0.800000011920929 1.0
-            diffuse 0.27306669165293407 0.6400000190734865 0.6400000190734865 1.0
+            ambient 0.0019381856545805931 0.0007144492119550705 0.06997796148061752 1.0
+            diffuse 0.001550548546769448 0.0005715593780809547 0.055982370018696326 1.0
             specular 0.5 0.5 0.5 1.0 12.5
             emissive 0.0 0.0 0.0 1.0
 
