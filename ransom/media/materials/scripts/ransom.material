@@ -149,6 +149,21 @@ material Game/GameOver
  }
 }
 
+material Game/Finish
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture finish.png
+     }
+   }
+ }
+}
+
 material Game/Face
 {
  technique
