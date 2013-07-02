@@ -25,10 +25,12 @@ Hostage::Hostage( Ogre::SceneManager* sceneMgr,
 	_particleLiberationNode = _node->createChildSceneNode("particleHostageNode" + _name);
 	// Ajuntamos las partículas al nodo
 	_particleLiberationNode->attachObject(_particleLiberation);
+
+	_soundFreeFX = SoundFXManager::getSingleton().load("thank_you.wav");
   }
 
 Hostage::~Hostage()
-{ 
+{
 	// Destruimos el nodo
 	_sceneMgr->destroySceneNode(_particleLiberationNode);
 	// Destruimos el sistema de partículas
@@ -63,6 +65,7 @@ void Hostage::changeAnimation(string nameAnimation) {
 void Hostage::liberate() {
 	_state = LIBERATE;
 	setVisible(false);
+	_soundFreeFX->play();
 }
 
 void Hostage::setVisible ( const bool visible ) {
@@ -73,7 +76,7 @@ void Hostage::setVisible ( const bool visible ) {
 
 void Hostage::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres) {
 	Character::update(timeSinceLastFrame, vCharacteres);
-	
+
 	if (_stateCaracter != END) {
 		if (_state == LIBERATE) {
 			_timerParticleLiberate += timeSinceLastFrame;

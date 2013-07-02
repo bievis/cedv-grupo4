@@ -14,11 +14,11 @@ MenuState::MenuState()
 void MenuState::enter()
   {
     // // Carga del sonido.
-    // _menuTrack = TrackManager::getSingleton().load("menu.mp3");
+    _menuTrack = TrackManager::getSingleton().load("menu.mp3");
     _menuFX = SoundFXManager::getSingleton().load("boton.wav");
 
     // // Reproducción del track principal...
-    // _menuTrack->play();
+    _menuTrack->play();
 
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage ( "Entering MenuState..." );
 
@@ -94,7 +94,7 @@ void MenuState::exit()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Leaving MenuState...");
 
     // // Parar del track principal...
-    // _menuTrack->stop();
+    _menuTrack->stop();
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Menu", false );
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Background_Menu", false );
@@ -211,7 +211,7 @@ void MenuState::buttonHit(OgreBites::Button *button)
   {
     Records::getSingleton().read();
 
-    string msg = "POS. #HOSTAGES# TIME #DATE#\n\n";
+    string msg = "  POS. #HOSTAGES# TIME #DATE#\n\n";
     int seconds = 0;
     int hostages = 0;
     char fecha[100];

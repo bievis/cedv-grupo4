@@ -79,7 +79,7 @@ void GameState::enter()
     _vFader.push_back ( fader );
 
     _soundGameOver = SoundFXManager::getSingleton().load("gameover.wav");
-    //_soundFinish = SoundFXManager::getSingleton().load("finish.wav");
+    _soundFinish = SoundFXManager::getSingleton().load("finish.wav");
 
     // OIS::ParamList param;
     // size_t windowHandle;
@@ -890,8 +890,8 @@ Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::Dynamics
 	// Recorremos las colisiones que se esten produciendo
 	for (int i=0;i<numManifolds && !isCollition;i++) {
 		contactManifold = bulletWorld->getDispatcher()->getManifoldByIndexInternal(i);
-		obA = const_cast<btCollisionObject*>(contactManifold->getBody0());
-		obB = const_cast<btCollisionObject*>(contactManifold->getBody1());
+		obA = (btCollisionObject*)(contactManifold->getBody0());
+		obB = (btCollisionObject*)(contactManifold->getBody1());
 
 		OgreBulletCollisions::Object* obOB_A = world->findObject(obA);
 		OgreBulletCollisions::Object* obOB_B = world->findObject(obB);
@@ -1017,8 +1017,8 @@ void GameState::updatePanelLife()
 
 void GameState::fadeOutCallback(void)
   {
-//    if ( _hostages == 0 )
-//      _soundFinish->play;
-//    else
+    if ( _hostages == 0 )
+      _soundFinish->play();
+    else
       _soundGameOver->play();
   }

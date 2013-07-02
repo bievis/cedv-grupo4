@@ -49,6 +49,7 @@ class Hostage : public Character
     void update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
 
 	double _timerParticleLiberate;
+
   protected:
     /// \brief protected method to copy an hero
     /// this method is used in assingnment operator and copy constructor
@@ -59,6 +60,7 @@ class Hostage : public Character
 	Ogre::ParticleSystem* _particleLiberation;
 	Ogre::SceneNode* _particleLiberationNode;
 	STATE_HOSTAGE _state;
+	SoundFXPtr                _soundFreeFX;
 };
 
 #endif // HOSTAGE_H

@@ -66,7 +66,7 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
     _nodeDummy->attachObject ( _entityDummy );
 
 	// Cargamos los sonidos
-	_soundDeath1FX = SoundFXManager::getSingleton().load("death1.wav");
+    _soundDeath1FX = SoundFXManager::getSingleton().load("death1.wav");
     _soundDeath2FX = SoundFXManager::getSingleton().load("death2.wav");
     _soundDeath3FX = SoundFXManager::getSingleton().load("death3.wav");
 
@@ -90,6 +90,17 @@ Character::Character ( Ogre::SceneManager* sceneMgr,
 													_nodeShot, &_shot);
 		_nodeShot->setVisible(false);
 	}
+
+    _soundHurt1FX = SoundFXManager::getSingleton().load("hurt1.wav");
+    _soundHurt2FX = SoundFXManager::getSingleton().load("hurt2.wav");
+
+    _currentSoundHurt = 1;
+
+    //_soundWalkFX = SoundFXManager::getSingleton().load("walk.wav");
+
+    _soundMiss1FX = SoundFXManager::getSingleton().load("missed_shot1.wav");
+    _soundMiss2FX = SoundFXManager::getSingleton().load("missed_shot2.wav");
+
  }
 
 Character::~Character()
@@ -149,6 +160,11 @@ void Character::copy ( const Character& source )
 	_soundDeath1FX = source._soundDeath1FX;
 	_soundDeath2FX = source._soundDeath2FX;
 	_soundDeath3FX = source._soundDeath3FX;
+	_soundHurt1FX = source._soundHurt1FX;
+	_soundHurt2FX = source._soundHurt2FX;
+//	_soundWalkFX = source._soundWalkFX;
+	_soundMiss1FX = source._soundHurt1FX;
+	_soundMiss2FX = source._soundHurt2FX;
 	_timerParticleDeath = source._timerParticleDeath;
 	_particleDeath = source._particleDeath;
 	_particleDeathNode = source._particleDeathNode;
@@ -248,11 +264,20 @@ void Character::updateShot ( double timeSinceLastFrame, std::vector<Character*> 
 					validate_success_rate ( _distanceWithOtherCaracter, &rate ) )
 				{
 					cout << "TOCADO!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
-			shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
-		}
+	    		shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+                  play_sound_hurt();
+		        }
 				else
+                 {
 					cout << "AGUA!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
+                    play_sound_miss();
+                 }
 			}
+         else
+          {
+            cout << "AGUA!!!" << endl;
+            play_sound_miss();
+          }
 	} else {
 		// Vamos alargando el disparo
 		setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
@@ -364,6 +389,10 @@ void Character::walk ( bool reverse, float velocidad )
 
 	if (!_isShooting && _stateCaracter == LIVE) {
 		if (reverse) velocidad *= -1;
+
+//    NOTA: Al estar dentro del update, hace que se repita muchas veces el sonido y peta
+//    if ( _type == HERO )
+//      _soundWalkFX->play();
 
 		_rigidBody->enableActiveState();
 		Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z;
@@ -503,19 +532,32 @@ const Ogre::Vector3& Character::getPosition()
     return _node->getPosition();
   }
 
+void Character::play_sound_hurt()
+{
+  if ( _currentSoundHurt == 1 )
+    {
+      _soundHurt1FX->play();
+      _currentSoundHurt = 2;
+    }
+  else
+    {
+      _soundHurt2FX->play();
+      _currentSoundHurt = 1;
+    }
 
+  }
 
+void Character::play_sound_miss()
+{
+  if ( _currentSoundMiss == 1 )
+    {
+      _soundMiss1FX->play();
+      _currentSoundMiss = 2;
+    }
+  else
+    {
+      _soundMiss2FX->play();
+      _currentSoundMiss = 1;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+  }

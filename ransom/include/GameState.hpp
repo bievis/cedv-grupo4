@@ -110,7 +110,7 @@ private:
     unsigned int              _hostages;
 
     SoundFXPtr                _soundGameOver;
-    //SoundFXPtr                _soundFinish;
+    SoundFXPtr                _soundFinish;
 
     //Private Methods
 	// \brief method to create the state
