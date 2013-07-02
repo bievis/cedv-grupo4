@@ -206,51 +206,57 @@ void Character::changeAnimation ( const string& nameAnimation )
 void Character::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
 {
 	if (_stateCaracter != END) {
-	if (_stateCaracter == DEAD) {
-		_timerParticleDeath += timeSinceLastFrame;
-		_particleDeath->setEmitting(true);
-		if (_timerParticleDeath > TIMER_PATICLE_DEATH) {
-			_particleDeath->setEmitting(false);
-			_stateCaracter = END;
-		}
-	} else {
-		if ( _currentAnimation != NULL )
-		{
-			_currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
-		}
-
-		if (_nodeShot && _isShooting) {
-			// Colocamos el disparo
-			_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
-									+ _rigidBody->getCenterOfMassPosition());
-			_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
-			// Vamos alargando el disparo
-			setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
-			Character* shootingCharacter = NULL;
-			if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
-				// Si hemos dado a algo
-				_nodeShot->setVisible(false);
-				_isShooting = false;
-				// Vemos a que le hemos dado otro personaje
-				if (shootingCharacter) {
-						double rate = 0.0;
-
-						// Vemos si le hemos pasado la distancia para que calcule aleatoriamente si le damos o no
-						if (_distanceWithOtherCaracter == ZERO_DISTANCE || 
-							validate_success_rate ( _distanceWithOtherCaracter, &rate ) )
-						{
-							cout << "TOCADO!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
-					shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
-				}
-						else
-							cout << "AGUA!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
-					}
+		if (_stateCaracter == DEAD) {
+			_timerParticleDeath += timeSinceLastFrame;
+			_particleDeath->setEmitting(true);
+			if (_timerParticleDeath > TIMER_PATICLE_DEATH) {
+				_particleDeath->setEmitting(false);
+				_stateCaracter = END;
 			}
-		}
+		} else {
+			if ( _currentAnimation != NULL )
+			{
+				_currentAnimation->addTime(timeSinceLastFrame * VELOCIDAD_ANIMACION);
+			}
 
-		_timerParticleDeath = 0.0;
+			if (_nodeShot && _isShooting) {
+				updateShot(timeSinceLastFrame, vCharacteres);
+			}
+
+			_timerParticleDeath = 0.0;
+		}
 	}
 }
+
+void Character::updateShot ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres) {
+	// Colocamos el disparo
+	_nodeShot->setPosition((_rigidBody->getCenterOfMassOrientation() * POSITION_SHOT)
+							+ _rigidBody->getCenterOfMassPosition());
+	_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
+	// Vemos si el disparo ha colisionado con algun elemento
+	Character* shootingCharacter = NULL;
+	if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
+		// Si hemos dado a algo
+		_nodeShot->setVisible(false);
+		_isShooting = false;
+		// Vemos a que le hemos dado otro personaje
+		if (shootingCharacter) {
+				double rate = 0.0;
+
+				// Vemos si le hemos pasado la distancia para que calcule aleatoriamente si le damos o no
+				if (_distanceWithOtherCaracter == ZERO_DISTANCE || 
+					validate_success_rate ( _distanceWithOtherCaracter, &rate ) )
+				{
+					cout << "TOCADO!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
+			shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+		}
+				else
+					cout << "AGUA!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
+			}
+	} else {
+		// Vamos alargando el disparo
+		setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
+	}
 }
 
 bool Character::validate_success_rate ( double distance, double* rate )
