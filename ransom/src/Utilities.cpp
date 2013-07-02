@@ -127,6 +127,58 @@ void Utilities::put_shot_in_scene ( Ogre::SceneManager* sceneMgr,
     nodeShot->attachObject ( (*shot) );
 }
 
+void Utilities::put_plane_in_scene ( Ogre::SceneManager* sceneMgr,
+                                                  OgreBulletDynamics::DynamicsWorld* world,
+												  Ogre::StaticGeometry *staticGeometry,
+                                                  string namePlane,
+												  string nameMaterial,
+												  float width,
+												  float height,
+												  Ogre::Vector3 upVector,
+												  Ogre::Vector3 normal,
+                                                  const Ogre::Vector3& initial_pos ) {
+	// Define a floor plane mesh
+	Ogre::Entity *entPlane;
+	Ogre::Plane plane;
+	plane.normal = normal; plane.d = 0;
+	Ogre::MeshManager::getSingleton().createPlane ( namePlane + "PlaneMesh",
+								Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
+								plane, width, height,
+								1, 1, true, 1, 1, 1,
+								upVector );
+	// Create an entity plane
+	entPlane = sceneMgr->createEntity(namePlane  + "PlaneEntity", namePlane  + "PlaneMesh");
+	entPlane->setMaterialName(nameMaterial);
+	entPlane->setCastShadows(true);
+
+	staticGeometry->addEntity(entPlane, initial_pos);
+
+	// add collision detection to it
+	OgreBulletCollisions::CollisionShape *shapePlane = new OgreBulletCollisions::StaticPlaneCollisionShape ( normal, 0 ); // (normal vector, distance)
+	// a body is needed for the shape
+	OgreBulletDynamics::RigidBody *defaultPlaneBody = new OgreBulletDynamics::RigidBody ( namePlane  + "PlaneBody", world );
+	defaultPlaneBody->setStaticShape ( shapePlane, 0.1, 0.8, initial_pos);// (shape, restitution, friction, position)
+}
+
+ void Utilities::put_part_map_in_scene ( Ogre::SceneManager* sceneMgr,
+                                                  OgreBulletDynamics::DynamicsWorld* world,
+												  Ogre::StaticGeometry *staticGeometry,
+                                                  string namePart,
+												  string namePartMesh,
+                                                  const Ogre::Vector3& initial_pos) {
+	Ogre::Entity *entity = sceneMgr->createEntity(namePart, namePartMesh + ".mesh");
+	entity->setCastShadows(true);
+	staticGeometry->addEntity(entity, initial_pos);
+    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
+    OgreBulletCollisions::StaticMeshToShapeConverter(entity);
+    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
+    trimeshConverter->createTrimesh();
+    OgreBulletDynamics::RigidBody *rigidTrack = new
+    OgreBulletDynamics::RigidBody(namePart, world);
+	rigidTrack->setStaticShape(trackTrimesh, 0.8, 0.95, initial_pos);
+	delete trimeshConverter;
+ }
+
 void Utilities::put_character_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
