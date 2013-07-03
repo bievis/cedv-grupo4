@@ -15,7 +15,7 @@
 
   <map>
 
-    <piece mesh_file="pieza1" posX="-16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
+    <piece mesh_file="Pieza1" posX="-16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
 
       <hostages>
 
@@ -40,7 +40,7 @@
 
     </piece>
 
-    <piece mesh_file="pieza2" posX="16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
+    <piece mesh_file="Pieza2" posX="16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
 
       <hostages>
 
@@ -66,7 +66,7 @@
 
     </piece>
 
-    <piece mesh_file="pieza3" posX="-16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
+    <piece mesh_file="Pieza3" posX="-16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
 
       <hostages>
 
@@ -96,7 +96,7 @@
 
     </piece>
 
-    <piece mesh_file="pieza4" posX="16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
+    <piece mesh_file="Pieza4" posX="16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
 
       <hostages>
 
