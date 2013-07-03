@@ -62,10 +62,13 @@ void GameConfig::copy ( const GameConfig &source )
     _planeHeight = source._planeHeight;
     _planeWidth = source._planeWidth;
 
-//    for ( i = 0; i < source.getNumColumns(); i++ )
-//      {
-//        _vColumns[i] = source._vColumns[i];
-//      }
+    Piece *ptr = NULL;
+    for ( i = 0; i < source.getPieces().size(); i++ )
+      {
+        ptr = new Piece ( *(source.getPieces()[i]) );
+        _pieces.push_back ( ptr );
+      }
+
   }
 
 const EnemyRoute& GameConfig::getEnemyRoute ( unsigned int index ) const
@@ -119,11 +122,11 @@ void GameConfig::print()
         cout << msg << "    : " << _vPositionHostages[i] << endl;
       }
 
-    for ( i = 0; i < m_pieces.size(); i++ )
+    for ( i = 0; i < _pieces.size(); i++ )
       {
         msg = "Piece" + Ogre::StringConverter::toString(i);
         cout << msg << "    : " << endl;
-        if ( m_pieces[i] ) m_pieces[i]->print();
+        if ( _pieces[i] ) _pieces[i]->print();
       }
 
     cout << "========================" << endl;
@@ -145,5 +148,5 @@ void GameConfig::addHostagePosition ( const Ogre::Vector3& p )
 void GameConfig::addPiece ( const Piece& newPiece )
   {
     Piece* ptrNew = new Piece ( newPiece );
-    m_pieces.push_back ( ptrNew );
+    _pieces.push_back ( ptrNew );
   }
