@@ -44,6 +44,7 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
     read_xml ( is, pt );
 
     float posX, posY, posZ;
+    float posXpiece, posYpiece, posZpiece;
 
     BOOST_FOREACH ( ptree::value_type const& v, pt.get_child("config") )
       {
@@ -57,24 +58,24 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
             gc.setInitialPosHero ( Ogre::Vector3 ( posX, posY, posZ ) );
 
           }
-        else if ( v.first == "hostage" )
-          {
-
-            boost::property_tree::ptree positions = (boost::property_tree::ptree) v.second;
-
-            BOOST_FOREACH ( ptree::value_type const& v2, positions.get_child("hostage_positions") )
-              {
-                if ( v2.first == "position" )
-                  {
-                    posX = v2.second.get<float>("<xmlattr>.posX");
-                    posY = v2.second.get<float>("<xmlattr>.posY");
-                    posZ = v2.second.get<float>("<xmlattr>.posZ");
-
-                    gc.addHostagePosition ( Ogre::Vector3 ( posX, posY, posZ ) );
-                  }
-              }
-
-          }
+//        else if ( v.first == "hostage" )
+//          {
+//
+//            boost::property_tree::ptree positions = (boost::property_tree::ptree) v.second;
+//
+//            BOOST_FOREACH ( ptree::value_type const& v2, positions.get_child("hostage_positions") )
+//              {
+//                if ( v2.first == "position" )
+//                  {
+//                    posX = v2.second.get<float>("<xmlattr>.posX");
+//                    posY = v2.second.get<float>("<xmlattr>.posY");
+//                    posZ = v2.second.get<float>("<xmlattr>.posZ");
+//
+//                    gc.addHostagePosition ( Ogre::Vector3 ( posX, posY, posZ ) );
+//                  }
+//              }
+//
+//          }
         else if ( v.first == "map" )
           {
 
@@ -93,18 +94,40 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
                         if ( v11.first == "<xmlattr>" )
                           {
                             float value = 0;
+                            string strValue = "";
 
-                            posX = v11.second.get<float>("posX");
-                            posY = v11.second.get<float>("posY");
-                            posZ = v11.second.get<float>("posZ");
-                            piece.setPosition ( Ogre::Vector3 ( posX, posY, posZ ) );
+                            posXpiece = v11.second.get<float>("posX");
+                            posYpiece = v11.second.get<float>("posY");
+                            posZpiece = v11.second.get<float>("posZ");
+                            piece.setPosition ( Ogre::Vector3 ( posXpiece, posYpiece, posZpiece ) );
 
                             value = v11.second.get<float>("width");
                             piece.setWidth ( value );
 
                             value = v11.second.get<float>("height");
                             piece.setHeight ( value );
+
+                            strValue = v11.second.get<std::string>("mesh_file");
+                            piece.setNameMeshFile ( strValue );
                           }
+                        else if ( v11.first == "hostages" )
+                          {
+
+                            boost::property_tree::ptree positions = (boost::property_tree::ptree) v11.second;
+
+                            BOOST_FOREACH ( ptree::value_type const& v2, v11.second )
+                              {
+                                if ( v2.first == "position" )
+                                  {
+                                    posX = posXpiece + v2.second.get<float>("<xmlattr>.posX");
+                                    posY = posYpiece + v2.second.get<float>("<xmlattr>.posY");
+                                    posZ = posZpiece + ( ( -1 ) * v2.second.get<float>("<xmlattr>.posZ") );
+                                    gc.addHostagePosition ( Ogre::Vector3 ( posX, posY, posZ ) );
+                                  }
+                              }
+
+                          }
+
                         else if ( v11.first == "routes" )
                           {
 
@@ -137,9 +160,9 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
 
                                         if ( v3.first == "point" )
                                           {
-                                              posX = v3.second.get<float>("<xmlattr>.posX");
-                                              posY = v3.second.get<float>("<xmlattr>.posY");
-                                              posZ = v3.second.get<float>("<xmlattr>.posZ");
+                                              posX = posXpiece + v3.second.get<float>("<xmlattr>.posX");
+                                              posY = posYpiece + v3.second.get<float>("<xmlattr>.posY");
+                                              posZ = posZpiece + ( ( -1 ) * v3.second.get<float>("<xmlattr>.posZ") );
                                               route->addPoint ( Ogre::Vector3 ( posX, posY, posZ ) );
                                           }
                                       }

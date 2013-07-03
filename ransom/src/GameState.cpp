@@ -165,7 +165,6 @@ void GameState::CreateInitialWorld()
     Ogre::Vector3 v;
 
     for ( unsigned int i = 0; i < _gc.getNumEnemies(); i++ )
-//    for ( unsigned int i = 0; i < 1; i++ )
       {
         route = _gc.getEnemyRoute ( i+1 );
 
@@ -179,6 +178,8 @@ void GameState::CreateInitialWorld()
         m_enemies.push_back ( enemy );
         _vCharacteres.push_back(enemy);
       }
+
+    _hostages = _gc.getNumHostages();
 
     for ( unsigned int i = 0; i < _gc.getNumHostages(); i++ )
       {
@@ -398,6 +399,8 @@ void GameState::exit()
     // Ocultar overlays
 //    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
 //    overlay->hide();
+
+    _gc.clear();
 
   }
 

@@ -18,7 +18,15 @@ void GameConfig::clear()
 
     _vPositionHostages.clear();
 
-//    _vColumns.clear();
+    for ( unsigned int i = 0; i < _pieces.size(); i++ )
+      {
+        if ( _pieces[i] )
+          {
+            delete _pieces[i];
+          }
+      }
+
+    _pieces.clear();
   }
 
 GameConfig::~GameConfig()
