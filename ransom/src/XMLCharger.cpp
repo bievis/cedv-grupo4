@@ -144,7 +144,8 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
                                           }
                                       }
 
-                                    piece.getEnemyRoutes().push_back ( route );
+                                    piece.addEnemyRoute ( *route );
+
                                     gc.addEnemyRoute ( *route );
                                   }
                               }

@@ -63,10 +63,13 @@ void GameConfig::copy ( const GameConfig &source )
     _planeWidth = source._planeWidth;
 
     Piece *ptr = NULL;
-    for ( i = 0; i < source.getPieces().size(); i++ )
+    for ( i = 0; i < source.getNumPieces(); i++ )
       {
-        ptr = new Piece ( *(source.getPieces()[i]) );
-        _pieces.push_back ( ptr );
+        if ( source.getPiece(i) )
+          {
+            ptr = new Piece ( *(source.getPiece(i)) );
+            _pieces.push_back ( ptr );
+          }
       }
 
   }
@@ -149,4 +152,14 @@ void GameConfig::addPiece ( const Piece& newPiece )
   {
     Piece* ptrNew = new Piece ( newPiece );
     _pieces.push_back ( ptrNew );
+  }
+
+Piece* GameConfig::getPiece ( unsigned int index )
+  {
+    Piece* ptr = NULL;
+
+    if ( index < _pieces.size() )
+      ptr = _pieces[index];
+
+    return ptr;
   }

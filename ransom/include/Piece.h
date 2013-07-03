@@ -41,7 +41,14 @@ class Piece
     inline void setHeight ( double val ) { m_height = val; };
     /// \brief method to get the enemy routes in this piece
     /// \return deque with the enemy routes in this piece
-    inline const std::deque<EnemyRoute*>& getEnemyRoutes() const { return m_routes; };
+//    inline const std::deque<EnemyRoute*>& getEnemyRoutes() const { return m_routes; };
+
+    inline unsigned int getNumEnemyRoutes() const { return m_routes.size(); };
+
+    void addEnemyRoute ( const EnemyRoute& newRoute );
+
+    EnemyRoute* getEnemyRoute ( unsigned int index );
+
     /// \brief method to print info over the piece
     void print();
     /// \brief method to clear the piece

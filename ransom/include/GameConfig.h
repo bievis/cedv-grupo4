@@ -99,7 +99,11 @@ class GameConfig {
   void addPiece ( const Piece& newPiece );
   /// \brief method to get pieces queue
   /// \return pieces queue
-  inline const std::deque<Piece *>& getPieces() const { return _pieces; };
+//  inline const std::deque<Piece *>& getPieces() const { return _pieces; };
+
+  inline unsigned int getNumPieces() const { return _pieces.size(); };
+
+  Piece* getPiece ( unsigned int index );
 
 };
 
