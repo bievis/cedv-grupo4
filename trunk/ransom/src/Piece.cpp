@@ -45,11 +45,13 @@ void Piece::copy ( const Piece& source )
     m_width = source.getWidth();
     m_pos = source.getPosition();
 
-    for ( std::deque<EnemyRoute *>::const_iterator itRoute = source.getEnemyRoutes().begin(); source.getEnemyRoutes().end() != itRoute; ++itRoute )
- 		{
-      if ( *itRoute )
-        m_routes.push_back ( new EnemyRoute (**itRoute) );
- 		}
+    for ( unsigned int i = 0; i != source.getNumEnemyRoutes(); ++i )
+      {
+        if ( m_routes[i] )
+          {
+            addEnemyRoute ( *(m_routes[i]) );
+          }
+      }
   }
 
 void Piece::print()
@@ -60,9 +62,25 @@ void Piece::print()
     std::cout << "   Num. Routes   : " << m_routes.size() << std::endl;
 
     for ( std::deque<EnemyRoute *>::const_iterator itRoute = m_routes.begin(); m_routes.end() != itRoute; ++itRoute )
- 		{
-      if ( *itRoute)
-        std::cout << "      Route ID   : " << (*itRoute)->getID() << std::endl;
-//        (*itRoute)->print();
-    }
+      {
+        if ( *itRoute)
+          std::cout << "      Route ID   : " << (*itRoute)->getID() << std::endl;
+  //        (*itRoute)->print();
+      }
+  }
+
+void Piece::addEnemyRoute ( const EnemyRoute& newRoute )
+  {
+    EnemyRoute* ptr = new EnemyRoute ( newRoute );
+    m_routes.push_back ( ptr );
+  }
+
+EnemyRoute* Piece::getEnemyRoute ( unsigned int index )
+  {
+    EnemyRoute* ptr = NULL;
+
+    if ( index < m_routes.size() )
+      ptr = m_routes[index];
+
+    return ptr;
   }

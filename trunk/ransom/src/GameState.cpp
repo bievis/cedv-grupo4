@@ -132,8 +132,6 @@ void GameState::enter()
     // Creacion de los elementos iniciales del mundo
     CreateInitialWorld();
 
-//    buildGUI();
-
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "Loading_Game", false );
 
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
@@ -161,12 +159,13 @@ void GameState::CreateInitialWorld()
     _vCharacteres.push_back(m_hero);
 
     //TODO Creamos los enemigos
-    /* Enemy *enemy = NULL;
+    Enemy *enemy = NULL;
     string name_enemy = "";
     EnemyRoute route;
     Ogre::Vector3 v;
 
     for ( unsigned int i = 0; i < _gc.getNumEnemies(); i++ )
+//    for ( unsigned int i = 0; i < 1; i++ )
       {
         route = _gc.getEnemyRoute ( i+1 );
 
@@ -180,7 +179,7 @@ void GameState::CreateInitialWorld()
         m_enemies.push_back ( enemy );
         _vCharacteres.push_back(enemy);
       }
-	  */
+
     for ( unsigned int i = 0; i < _gc.getNumHostages(); i++ )
       {
         string name_hostage = "Hostage" + StringConverter::toString(i);
@@ -611,225 +610,7 @@ void GameState::update(double timeSinceLastFrame)
 	if (_camerasController != NULL)
 		_camerasController->update(timeSinceLastFrame);
 
-//    if ( bMove && m_hero )
-//      {
-//        m_hero->walk();
-//      }
-
-    // 	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
-    // 	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
-    // 		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
-    // 		endereza = true;
-
-    // 	    //Se le aplica el empujón al coche
-    // 	    _vCoches[0]->accelerate ( endereza );
-    // 	  }
-    // 	else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
-    // 	  {
-    // 	    //Si no se tienen pulsadas las teclas DER o IZQ ponemos las ruedas rectas
-    // 	    if ( !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) &&
-    // 		 !OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
-    // 		endereza = true;
-
-    // 	    //Se le aplica el empujón al coche
-    // 	    _vCoches[0]->decelerate ( endereza );
-    // 	  }
-
-    // 	if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
-    // 	  {
-    // 	    _vCoches[0]->turn_left();
-    // 	  }
-    // 	else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
-    // 	  {
-    // 	    _vCoches[0]->turn_right();
-    // 	  }
-
-    // 	_velocidad = Math::Abs(_vCoches[0]->getVehiclePtr()->getBulletVehicle()->getCurrentSpeedKmHour());
-
-    // 	Mostrar_Velocidad ( _velocidad );
-
-    //   }
-
-    // if ( _vCoches[0]->isMeta(_world) )
-    //   {
-    //     if (!_estaEnMeta) {
-    //       // Cuando pisa la meta, para controlar que ha entrado en la linea y no esta encima
-    //       if (_controlMeta == 1 && _estaEnPreMeta) {
-    //         // Ha finalizado la vuelta
-    //         _sonidoMetaFX->play();
-    //         if ( _tiempo > 1  )
-    //         {
-    //           if ( _mejorTiempo > _tiempo || _mejorTiempo < 1 )
-    //           {
-    //             _mejorTiempo = _tiempo;
-    //           }
-    // 	          Records::getSingleton().add ( _tiempo );
-    // 		      Records::getSingleton().compacta ( 10 );
-    // 		      Records::getSingleton().write();
-
-    //           _controlMeta = 0;
-    //           _tiempo = 0;
-    //           _empieza_a_contar = true;
-    //         }
-    //       }
-    //     }
-    //     _estaEnMeta = true;
-
-    //     if (_estaEnPreMeta) {
-    //       _controlMeta++; // Viene de premeta el coche
-    //     }
-    //   } else {
-    //     if (_vCoches[0]->isPreMeta(_world) && _estaEnMeta) {
-    //       _controlMeta--; // Viene de premeta el coche
-    //     }
-    //     // Cuando sale de la linea de meta
-    //     _estaEnMeta = false;
-    //     if (!_vCoches[0]->isCircuito(_world)) {
-    //       // Si se ha salido lo volvemos a poner en la meta
-    //       reiniciarCoche();
-    //     }
-    //   }
-    // _estaEnPreMeta = _vCoches[0]->isPreMeta(_world);
-
-//    if ( m_enemies.size() > 0 )
-//      {
-//        unsigned int i = 1;
-//
-//        //Comprobamos según el estado en el que está el enemigo la(s) acción(es) que vamos a realizar
-//        for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
-// 	        {
-//            // NOTA!! : En el metodo Update() del enemigo se realizan los cambios de estado de éste
-// 	          State current_state = ((StateMachine&) (*itEnemy)->getStateMachine()).getCurrentStateObject();
-//
-//            for ( std::map<string, Action>::iterator it_a = current_state.getActions()->begin(); it_a != current_state.getActions()->end(); advance(it_a,1) )
-//              {
-//                if ( it_a->second.getName() == "walk_in_route" )
-//                  {
-//                    (*itEnemy)->walk_in_route();
-//                  }
-//                else if ( it_a->second.getName() == "stop_move" )
-//                  {
-//                    (*itEnemy)->stop_move();
-//                  }
-//                else if ( it_a->second.getName() == "shoot" )
-//                  {
-//                    //PENDIENTE
-//                  }
-//                else if ( it_a->second.getName() == "run_to" )
-//                  {
-//                    //PENDIENTE
-//                  }
-//                else if ( it_a->second.getName() == "watch_around" )
-//                  {
-//                    //PENDIENTE
-//                  }
-//              }
-// 	        }
-//      }
-
   }
-
-void GameState::buildGUI()
-  {
-//    Ogre::OverlayElement *elem = NULL;
-
-//    elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
-//    elem->show();
-//
-//    elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
-//    elem->setCaption ( "Best Time:" );
-//    elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
-//    elem->show();
-
-//    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
-//
-//    if ( elem )
-//      elem->hide();
-
-//    OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
-  }
-
-// string GameState::getTime ( double tiempo )
-//   {
-//     unsigned int minutos = 0, segundos = 0;
-//     char cad[6];
-//     string ret = "";
-
-//     minutos = (int)tiempo / 60;
-//     segundos = (int)tiempo % 60;
-
-//     sprintf ( cad, "%02d:%02d", minutos, segundos );
-
-//     ret = cad;
-
-//     return ret;
-//   }
-
-// void GameState::Mostrar_Velocidad ( float velocidad, bool ocultar )
-//   {
-//     Ogre::OverlayElement *elem, *textArea;
-//     int tipo = 0;
-//     float porcion = MAX_SPEED / 5.5;
-
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad5_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad4_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad3_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad2_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad1_Game");
-//     elem->hide();
-//     elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad0_Game");
-//     elem->hide();
-
-//     if ( !ocultar )
-//       {
-// 	tipo = velocidad / porcion;
-
-// 	switch ( tipo )
-// 	  {
-// 	  case 5:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad5_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad5");
-// 	    break;
-// 	  case 4:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad4_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad4");
-// 	    break;
-// 	  case 3:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad3_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad3");
-// 	    break;
-// 	  case 2:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad2_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad2");
-// 	    break;
-// 	  case 1:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad1_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad1");
-// 	    break;
-// 	  default:
-// 	    elem = m_pOverlayMgr->getOverlayElement("Panel_Velocidad0_Game");
-// 	    textArea = m_pOverlayMgr->getOverlayElement("txtVelocidad0");
-// 	    break;
-// 	  }
-
-// 	char cad[30];
-// 	sprintf ( cad, " %d", (int)_velocidad );
-
-// 	textArea->setCaption ( cad );
-// 	elem->show();
-//       }
-//   }
-
-// void GameState::reiniciarCoche () {
-//   _tiempo = 0;
-//   _controlMeta = 0;
-//   _empieza_a_contar = true;
-//   _vCoches[0]->reset();
-// }
 
 void GameState::CreateMap()
 {
@@ -839,31 +620,48 @@ void GameState::CreateMap()
 	float widthScene = 32.0f * 2.0;
 	float heightScene = 32.0f * 2.0f;
 	float heightWall = 10.0f;
-	
+
 	_staticGeometry = m_pSceneMgr->createStaticGeometry("StaticMap");
 
 	// Creamos las paredes
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "MaterialSuelo", widthScene, heightWall, 
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "MaterialSuelo", widthScene, heightWall,
 													Vector3::UNIT_Y, Vector3(1,0,0), Vector3(widthScene / -2.0f,0,0));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "MaterialSuelo", widthScene, heightWall, 
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "MaterialSuelo", widthScene, heightWall,
 													Vector3::UNIT_Y, Vector3(-1,0,0), Vector3(widthScene / 2.0f,0,0));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "upWall", "MaterialSuelo", widthScene, heightWall, 
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "upWall", "MaterialSuelo", widthScene, heightWall,
 													Vector3::UNIT_Y, Vector3(0,0,1), Vector3(0,0,widthScene / -2.0f));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "downWall", "MaterialSuelo", widthScene, heightWall, 
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "downWall", "MaterialSuelo", widthScene, heightWall,
 													Vector3::UNIT_Y, Vector3(0,0,-1), Vector3(0,0,widthScene / 2.0f));
 
+  Piece* pieza = NULL;
+  string nomPieza = "";
+  for ( unsigned int i = 0; i < _gc.getNumPieces(); i++ )
+    {
+      nomPieza = "Pieza" + StringConverter::toString ( i+1 );
+
+      pieza = _gc.getPiece ( i );
+
+      Utilities::getSingleton().put_part_map_in_scene
+                    ( m_pSceneMgr,
+                      _world,
+                      _staticGeometry,
+                      nomPieza,
+                      nomPieza,
+                      pieza->getPosition() );
+    }
+
 	// Creamos el mapa
-	Vector3 posPieza = Vector3(-16.0f, 0.0f, -16.0f);
-	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza1", "Pieza1", posPieza);
-	
-	posPieza = Vector3(16.0f, 0.0f, -16.0f);
-	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza2", "Pieza2", posPieza);
-
-	posPieza = Vector3(-16.0f, 0.0f, 16.0f);
-	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza3", "Pieza3", posPieza);
-
-	posPieza = Vector3(16.0f, 0.0f, 16.0f);
-	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza4", "Pieza4", posPieza);
+//	Vector3 posPieza = Vector3(-16.0f, 0.0f, -16.0f);
+//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza1", "Pieza1", posPieza);
+//
+//	posPieza = Vector3(16.0f, 0.0f, -16.0f);
+//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza2", "Pieza2", posPieza);
+//
+//	posPieza = Vector3(-16.0f, 0.0f, 16.0f);
+//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza3", "Pieza3", posPieza);
+//
+//	posPieza = Vector3(16.0f, 0.0f, 16.0f);
+//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza4", "Pieza4", posPieza);
 
 	_staticGeometry->build();
 }

@@ -15,14 +15,14 @@
 
   <map>
 
-    <piece posX="-7.5" posY="1.0" posZ="7.5" width="4.0" height="5.0">
+    <piece posX="-16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
 
       <routes>
 
         <route id="1" closed="true" proximity="2.0">
           <points>
-            <point id="1" posX="-14.5" posY="1" posZ="-1.0" />
-            <point id="2" posX="-1.5" posY="1" posZ="-1.0" />
+<!--            <point id="1" posX="-14.5" posY="1" posZ="-1.0" />-->
+<!--            <point id="2" posX="-1.5" posY="1" posZ="-1.0" />-->
             <point id="3" posX="-1.5" posY="1" posZ="14.5" />
             <point id="4" posX="-14.5" posY="1" posZ="14.5" />
           </points>
@@ -32,19 +32,53 @@
 
     </piece>
 
-    <piece posX="1" posY="2" posZ="3" width="4" height="5">
+    <piece posX="16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
 
       <routes>
 
         <route id="2" closed="false" proximity="1.5">
           <points>
-            <point id="1" posX="13.5" posY="1" posZ="13.5" />
-            <point id="2" posX="6.5" posY="1" posZ="13.5" />
-            <point id="3" posX="6.5" posY="1" posZ="8.5" />
-            <point id="4" posX="12.5" posY="1" posZ="8.5" />
-            <point id="5" posX="12.5" posY="1" posZ="3.5" />
+<!--            <point id="1" posX="13.5" posY="1" posZ="13.5" />-->
+<!--            <point id="2" posX="6.5" posY="1" posZ="13.5" />-->
+<!--            <point id="3" posX="6.5" posY="1" posZ="8.5" />-->
+<!--            <point id="4" posX="12.5" posY="1" posZ="8.5" />-->
+<!--            <point id="5" posX="12.5" posY="1" posZ="3.5" />-->
             <point id="6" posX="2.5" posY="1" posZ="3.5" />
             <point id="7" posX="2.5" posY="1" posZ="12.5" />
+          </points>
+        </route>
+
+      </routes>
+
+    </piece>
+
+    <piece posX="-16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
+
+      <routes>
+
+        <route id="3" closed="true" proximity="2.0">
+          <points>
+            <point id="1" posX="-14.5" posY="1" posZ="-1.0" />
+            <point id="2" posX="-1.5" posY="1" posZ="-1.0" />
+<!--            <point id="3" posX="-1.5" posY="1" posZ="14.5" />-->
+<!--            <point id="4" posX="-14.5" posY="1" posZ="14.5" />-->
+          </points>
+        </route>
+
+      </routes>
+
+    </piece>
+
+    <piece posX="16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
+
+      <routes>
+
+        <route id="4" closed="true" proximity="2.0">
+          <points>
+<!--            <point id="1" posX="-14.5" posY="1" posZ="-1.0" />-->
+            <point id="2" posX="-1.5" posY="1" posZ="-1.0" />
+            <point id="3" posX="-1.5" posY="1" posZ="14.5" />
+<!--            <point id="4" posX="-14.5" posY="1" posZ="14.5" />-->
           </points>
         </route>
 
