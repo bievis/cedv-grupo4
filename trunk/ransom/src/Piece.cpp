@@ -41,6 +41,7 @@ Piece& Piece::operator=(const Piece& rhs)
 
 void Piece::copy ( const Piece& source )
   {
+    m_name_mesh = source.getNameMeshFile();
     m_height = source.getHeight();
     m_width = source.getWidth();
     m_pos = source.getPosition();
@@ -56,6 +57,7 @@ void Piece::copy ( const Piece& source )
 
 void Piece::print()
   {
+    std::cout << "   Mesh Filename : " << m_name_mesh << std::endl;
     std::cout << "   Height        : " << m_height << std::endl;
     std::cout << "   Width         : " << m_width << std::endl;
     std::cout << "   Position      : " << m_pos << std::endl;
