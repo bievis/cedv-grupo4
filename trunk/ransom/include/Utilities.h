@@ -12,6 +12,7 @@
 #include <OgreBulletDynamicsRigidBody.h>
 #include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 #include "Shapes/OgreBulletCollisionsTrimeshShape.h"
+#include "Shapes/OgreBulletCollisionsStaticPlaneShape.h"
 
 using namespace std;
 
@@ -75,6 +76,22 @@ class Utilities {
                                                   OgreBulletDynamics::DynamicsWorld* world,
                                                   string name_mesh,
                                                   string name_element,
+                                                  const Ogre::Vector3& initial_pos );
+	 void put_plane_in_scene ( Ogre::SceneManager* sceneMgr,
+                                                  OgreBulletDynamics::DynamicsWorld* world,
+												  Ogre::StaticGeometry *staticGeometry,
+                                                  string namePlane,
+												  string nameMaterial,
+												  float width,
+												  float height,
+												  Ogre::Vector3 upVector,
+												  Ogre::Vector3 normal,
+                                                  const Ogre::Vector3& initial_pos );
+	 void put_part_map_in_scene ( Ogre::SceneManager* sceneMgr,
+                                                  OgreBulletDynamics::DynamicsWorld* world,
+												  Ogre::StaticGeometry *staticGeometry,
+                                                  string namePart,
+												  string namePartMesh,
                                                   const Ogre::Vector3& initial_pos );
 	// \brief this method add an shot at character
     /// \param sceneMgr reference to the scene manager (Ogre)

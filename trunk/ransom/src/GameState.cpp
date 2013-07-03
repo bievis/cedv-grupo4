@@ -1,17 +1,5 @@
 #include "GameState.hpp"
 
-#include "Shapes/OgreBulletCollisionsBoxShape.h"
-#include "Shapes/OgreBulletCollisionsCompoundShape.h"
-
-#include "OgreBulletDynamicsWorld.h"
-#include "OgreBulletDynamicsRigidBody.h"
-#include "Debug/OgreBulletCollisionsDebugDrawer.h"
-
-#include "Constraints/OgreBulletDynamicsRaycastVehicle.h"
-#include "Shapes/OgreBulletCollisionsTrimeshShape.h"
-#include "Shapes/OgreBulletCollisionsSphereShape.h"
-#include "Utils/OgreBulletCollisionsMeshToShapeConverter.h"
-
 #include <cassert>
 
 using namespace OgreBulletCollisions;
@@ -34,8 +22,6 @@ void GameState::clear() {
     m_enemies.clear();
     m_hostages.clear();
 	_vCharacteres.clear();
-    defaultPlaneBodyFloor = NULL;
-    ShapeFloor          = NULL;
     _world              = NULL;
     _camerasController  = NULL;
     _vFader.clear();
@@ -44,6 +30,7 @@ void GameState::clear() {
 	_rtex = NULL;
 	_textureListener = NULL;
 	_cameraMiniMap = NULL;
+	_staticGeometry = NULL;
   }
 
 void GameState::enter()
@@ -138,6 +125,7 @@ void GameState::enter()
     OgreFramework::getSingletonPtr()->getRootPtr()->renderOneFrame();
 
     XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
+    //TODO XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
 
     _gc.print();
 
@@ -164,8 +152,7 @@ void GameState::CreateInitialWorld()
     m_pSceneMgr->setShadowTextureSize(512);
 
     // Crear el mapa
-    CreateMap("Mapa1");
-//    CreatePlane();
+    CreateMap();
 
     // Creamos al Heroe
     Ogre::Vector3 v_pos;
@@ -173,8 +160,8 @@ void GameState::CreateInitialWorld()
     m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos );
     _vCharacteres.push_back(m_hero);
 
-    // Creamos los enemigos
-    Enemy *enemy = NULL;
+    //TODO Creamos los enemigos
+    /* Enemy *enemy = NULL;
     string name_enemy = "";
     EnemyRoute route;
     Ogre::Vector3 v;
@@ -193,7 +180,7 @@ void GameState::CreateInitialWorld()
         m_enemies.push_back ( enemy );
         _vCharacteres.push_back(enemy);
       }
-
+	  */
     for ( unsigned int i = 0; i < _gc.getNumHostages(); i++ )
       {
         string name_hostage = "Hostage" + StringConverter::toString(i);
@@ -206,7 +193,7 @@ void GameState::CreateInitialWorld()
 	// Creamos el controlador de las camaras para que sigan al heroe
 	_camerasController = new CamerasController(m_pSceneMgr, m_pCamera, _cameraMiniMap, m_hero);
 
-    // Creamos el Mapa
+    // Creamos el MiniMapa
     //*************************************************************************
     CreateMiniMap();
 
@@ -365,19 +352,6 @@ void GameState::exit()
 
 	_vCharacteres.clear();
 
-    if ( defaultPlaneBodyFloor )
-    {
-      cout << "delete defaultPlaneBodyFloor" << endl;
-      delete defaultPlaneBodyFloor;
-    }
-
-    if ( ShapeFloor )
-    {
-      cout << "delete ShapeFloor" << endl;
-      delete ShapeFloor;
-    }
-
-
     if ( m_pCamera )
     {
       cout << "delete camera" << endl;
@@ -405,6 +379,9 @@ void GameState::exit()
       delete _world;
     }
 
+	if (_staticGeometry) {
+		m_pSceneMgr->destroyStaticGeometry(_staticGeometry);
+	}
 
     if ( _debugDrawer )
     {
@@ -433,7 +410,7 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
       return true;
     }
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
-      _world->setShowDebugShapes (true);
+		_world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
       _world->setShowDebugShapes (false);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
@@ -854,23 +831,41 @@ void GameState::buildGUI()
 //   _vCoches[0]->reset();
 // }
 
-void GameState::CreateMap(string map)
+void GameState::CreateMap()
 {
-    Entity *entity = m_pSceneMgr->createEntity(NAME_MAP, map + ".mesh");
-    SceneNode *node = m_pSceneMgr->createSceneNode(NAME_MAP);
-    node->attachObject(entity);
+    assert ( _gc.getPlaneHeight() > 0 );
+    assert ( _gc.getPlaneWidth() > 0 );
 
-    m_pSceneMgr->getRootSceneNode()->addChild(node);
-    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
-    OgreBulletCollisions::StaticMeshToShapeConverter(entity);
+	float widthScene = 32.0f * 2.0;
+	float heightScene = 32.0f * 2.0f;
+	float heightWall = 10.0f;
+	
+	_staticGeometry = m_pSceneMgr->createStaticGeometry("StaticMap");
 
-    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
-    trimeshConverter->createTrimesh();
+	// Creamos las paredes
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "MaterialSuelo", widthScene, heightWall, 
+													Vector3::UNIT_Y, Vector3(1,0,0), Vector3(widthScene / -2.0f,0,0));
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "MaterialSuelo", widthScene, heightWall, 
+													Vector3::UNIT_Y, Vector3(-1,0,0), Vector3(widthScene / 2.0f,0,0));
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "upWall", "MaterialSuelo", widthScene, heightWall, 
+													Vector3::UNIT_Y, Vector3(0,0,1), Vector3(0,0,widthScene / -2.0f));
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "downWall", "MaterialSuelo", widthScene, heightWall, 
+													Vector3::UNIT_Y, Vector3(0,0,-1), Vector3(0,0,widthScene / 2.0f));
 
-    OgreBulletDynamics::RigidBody *rigidTrack = new
-    OgreBulletDynamics::RigidBody(map, _world);
-	rigidTrack->setStaticShape(node, trackTrimesh, 0.8, 0.95, Vector3::ZERO,
-               Quaternion::IDENTITY);
+	// Creamos el mapa
+	Vector3 posPieza = Vector3(-16.0f, 0.0f, -16.0f);
+	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza1", "Pieza1", posPieza);
+	
+	posPieza = Vector3(16.0f, 0.0f, -16.0f);
+	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza2", "Pieza2", posPieza);
+
+	posPieza = Vector3(-16.0f, 0.0f, 16.0f);
+	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza3", "Pieza3", posPieza);
+
+	posPieza = Vector3(16.0f, 0.0f, 16.0f);
+	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza4", "Pieza4", posPieza);
+
+	_staticGeometry->build();
 }
 
 Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
@@ -907,80 +902,6 @@ Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::Dynamics
 	}
 	return hostageCollisition;
 }
-
-void GameState::CreatePlane()
-  {
-    assert ( _gc.getPlaneHeight() > 0 );
-    assert ( _gc.getPlaneWidth() > 0 );
-
-    // Define a floor plane mesh
- 		Entity *ent;
-    Plane p;
-    p.normal = Vector3(0,1,0); p.d = 0;
-    MeshManager::getSingleton().createPlane ( "FloorPlane",
-                                              ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
-                                              p, _gc.getPlaneHeight(), _gc.getPlaneWidth(),
-                                              1, 1, true, 1, 1, 1,
-                                              Vector3::UNIT_Z );
-    // Create an entity (the floor)
-    ent = m_pSceneMgr->createEntity("floor", "FloorPlane");
-    ent->setMaterialName("MaterialMapa1");
-
-//    Ogre::SceneNode *node = m_pSceneMgr->createSceneNode ( "FloorPlane" );
-//    node->attachObject ( ent );
-//    node->setPosition ( Ogre::Vector3::ZERO );
-//    m_pSceneMgr->getRootSceneNode()->addChild ( node );
-
- 		m_pSceneMgr->getRootSceneNode()->createChildSceneNode()->attachObject ( ent );
-
- 		// add collision detection to it
- 		//OgreBulletCollisions::CollisionShape *Shape;
- 		ShapeFloor = new OgreBulletCollisions::StaticPlaneCollisionShape ( Ogre::Vector3 ( 0, 1, 0 ), 0 ); // (normal vector, distance)
- 		// a body is needed for the shape
- 		//OgreBulletDynamics::RigidBody *defaultPlaneBodyFloor = new OgreBulletDynamics::RigidBody("BasePlane",
-    defaultPlaneBodyFloor = new OgreBulletDynamics::RigidBody ( "BasePlane", _world );
- 		defaultPlaneBodyFloor->setStaticShape ( ShapeFloor, 0.1, 0.8 );// (shape, restitution, friction)
- 		// push the created objects to the deques
-// 		mShapes.push_back(Shape);
-// 		mBodies.push_back(defaultPlaneBody);
-//    Ogre::Vector3 pos;
-//
-//    for ( unsigned int i = 0; i < _gc.getNumColumns(); i++ )
-//      {
-//        pos = _gc.getPositionColumn(i);
-//
-//        put_column ( pos, i );
-//      }
-  }
-
-//void GameState::put_column ( const Ogre::Vector3& pos, unsigned int index )
-//  {
-//    string name = "Columna" + StringConverter::toString(index);
-//
-//    Utilities::getSingleton().put_element_in_scene ( m_pSceneMgr, _world, "Plano_Alzado", name, pos );
-////    string name = "Columna" + StringConverter::toString(index);
-////
-////    Entity *entity = m_pSceneMgr->createEntity ( name, "Plano_Alzado.mesh" );
-////
-////    entity->setVisible ( true );
-////
-////    SceneNode *node = m_pSceneMgr->createSceneNode ( name );
-////    node->attachObject ( entity );
-////
-////    node->setPosition ( pos );
-////
-////    m_pSceneMgr->getRootSceneNode()->addChild ( node );
-////    OgreBulletCollisions::StaticMeshToShapeConverter *trimeshConverter = new
-////                      OgreBulletCollisions::StaticMeshToShapeConverter ( entity );
-////
-////    OgreBulletCollisions::TriangleMeshCollisionShape *trackTrimesh =
-////                      trimeshConverter->createTrimesh();
-////
-////    OgreBulletDynamics::RigidBody *rigidTrack = new
-////                      OgreBulletDynamics::RigidBody ( name, _world );
-////    rigidTrack->setShape ( node, trackTrimesh, 0.8, 0.95, 0, Vector3::ZERO,
-////                      Quaternion::IDENTITY );
-//  }
 
 string GameState::getTime ( double tiempo )
   {
