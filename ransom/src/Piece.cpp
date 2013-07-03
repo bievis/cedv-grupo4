@@ -47,9 +47,9 @@ void Piece::copy ( const Piece& source )
 
     for ( unsigned int i = 0; i != source.getNumEnemyRoutes(); ++i )
       {
-        if ( m_routes[i] )
+        if ( source.m_routes[i] )
           {
-            addEnemyRoute ( *(m_routes[i]) );
+            addEnemyRoute ( *(source.m_routes[i]) );
           }
       }
   }

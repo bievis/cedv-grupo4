@@ -65,9 +65,9 @@ void GameConfig::copy ( const GameConfig &source )
     Piece *ptr = NULL;
     for ( i = 0; i < source.getNumPieces(); i++ )
       {
-        if ( source.getPiece(i) )
+        if ( ((GameConfig&)source).getPiece(i) )
           {
-            ptr = new Piece ( *(source.getPiece(i)) );
+            ptr = new Piece ( *(((GameConfig&)source).getPiece(i)) );
             _pieces.push_back ( ptr );
           }
       }
