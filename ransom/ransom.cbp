@@ -87,6 +87,7 @@
 		<Unit filename="include/MiniMapTextureListener.h" />
 		<Unit filename="include/MyTextureListener.h" />
 		<Unit filename="include/PauseState.hpp" />
+		<Unit filename="include/Piece.h" />
 		<Unit filename="include/RansomApp.hpp" />
 		<Unit filename="include/Records.h" />
 		<Unit filename="include/SoundFX.h" />
@@ -120,6 +121,7 @@
 		<Unit filename="src/MiniMapTextureListener.cpp" />
 		<Unit filename="src/MyTextureListener.cpp" />
 		<Unit filename="src/PauseState.cpp" />
+		<Unit filename="src/Piece.cpp" />
 		<Unit filename="src/RansomApp.cpp" />
 		<Unit filename="src/Records.cpp" />
 		<Unit filename="src/SoundFX.cpp" />

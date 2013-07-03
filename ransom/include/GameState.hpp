@@ -9,6 +9,9 @@
 #include <OgreSubEntity.h>
 #include <OgreMaterialManager.h>
 #include "Records.h"
+#include <OgreBulletDynamicsRigidBody.h>
+#include <Shapes/OgreBulletCollisionsStaticPlaneShape.h>
+#include <Shapes/OgreBulletCollisionsBoxShape.h>
 
 #include "Utilities.h"
 #include "Enemy.h"
@@ -55,6 +58,8 @@ public:
 
     void LoadScenaryParts();
 
+    void CreatePlane();
+
     string getTime ( double tiempo );
 
     void updatePanelLife();
@@ -69,6 +74,9 @@ private:
     bool		      m_bLMouseDown;
     bool                      m_bRMouseDown;
     Ogre::OverlayManager*     m_pOverlayMgr;
+
+    OgreBulletCollisions::CollisionShape *ShapeFloor;
+    OgreBulletDynamics::RigidBody *defaultPlaneBodyFloor;
 
 //    double                    _tiempo;
 //    double                    _mejorTiempo;
@@ -85,7 +93,8 @@ private:
     std::deque<Enemy*>        m_enemies;
     std::vector<Hostage*>	    m_hostages;
     std::vector<Character*>   _vCharacteres;
-	
+
+    Ogre::Entity*             entFloor;
     Ogre::Camera*             _cameraMiniMap;
     CamerasController*		    _camerasController;
     MiniMapTextureListener*   _textureListener;
@@ -100,8 +109,6 @@ private:
     double                    _tiempo;
     unsigned int              _hostages;
 
-	Ogre::StaticGeometry *_staticGeometry;
-
     SoundFXPtr                _soundGameOver;
     SoundFXPtr                _soundFinish;
 
@@ -110,7 +117,7 @@ private:
 	void clear();
 
     // \brief method to create map
-    void CreateMap();
+    void CreateMap(string map);
 
     // \brief method to Create woeld of the scene
     void CreateInitialWorld();
@@ -126,6 +133,15 @@ private:
     Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
 												Hero* hero,
 												std::vector<Hostage*> hostages);
+
+    // string getTime(double tiempo);
+    // void Mostrar_Velocidad ( float velocidad, bool ocultar = false );
+    // // \brief Reiniciar coche y lo vuelve a poner el inicio
+    // void reiniciarCoche ();
+    // // \brief Reiniciar coche y lo vuelve a poner el inicio
+    // void insertarElementoEscena (string nombreElemento);
+
+    void put_column ( const Ogre::Vector3& pos, unsigned int index );
 };
 
 #endif

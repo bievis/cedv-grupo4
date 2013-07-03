@@ -18,7 +18,7 @@ void GameConfig::clear()
 
     _vPositionHostages.clear();
 
-    _vColumns.clear();
+//    _vColumns.clear();
   }
 
 GameConfig::~GameConfig()
@@ -62,10 +62,10 @@ void GameConfig::copy ( const GameConfig &source )
     _planeHeight = source._planeHeight;
     _planeWidth = source._planeWidth;
 
-    for ( i = 0; i < source.getNumColumns(); i++ )
-      {
-        _vColumns[i] = source._vColumns[i];
-      }
+//    for ( i = 0; i < source.getNumColumns(); i++ )
+//      {
+//        _vColumns[i] = source._vColumns[i];
+//      }
   }
 
 const EnemyRoute& GameConfig::getEnemyRoute ( unsigned int index ) const
@@ -119,10 +119,11 @@ void GameConfig::print()
         cout << msg << "    : " << _vPositionHostages[i] << endl;
       }
 
-    for ( i = 0; i < _vColumns.size(); i++ )
+    for ( i = 0; i < m_pieces.size(); i++ )
       {
-        msg = "Pos. Column" + Ogre::StringConverter::toString(i);
-        cout << msg << "    : " << _vColumns[i] << endl;
+        msg = "Piece" + Ogre::StringConverter::toString(i);
+        cout << msg << "    : " << endl;
+        if ( m_pieces[i] ) m_pieces[i]->print();
       }
 
     cout << "========================" << endl;
@@ -141,15 +142,8 @@ void GameConfig::addHostagePosition ( const Ogre::Vector3& p )
     _vPositionHostages.push_back ( p );
   }
 
-const Ogre::Vector3& GameConfig::getPositionColumn ( unsigned int index ) const
+void GameConfig::addPiece ( const Piece& newPiece )
   {
-    if ( index < _vColumns.size() )
-      return _vColumns[index];
-    else
-      throw GameConfigException ( "Error Position Column : Index Out of Bounds" );
-  }
-
-void GameConfig::addColumnPosition ( const Ogre::Vector3& p )
-  {
-    _vColumns.push_back ( p );
+    Piece* ptrNew = new Piece ( newPiece );
+    m_pieces.push_back ( ptrNew );
   }
