@@ -33,7 +33,7 @@ class GameConfig {
   /// \brief plane width
   unsigned int _planeWidth;
   /// \brief the pieces which compounds the map
-  std::deque<Piece *> m_pieces;
+  std::deque<Piece *> _pieces;
 
  public:
   /// \brief default constructor
@@ -99,7 +99,7 @@ class GameConfig {
   void addPiece ( const Piece& newPiece );
   /// \brief method to get pieces queue
   /// \return pieces queue
-  inline const std::deque<Piece *>& getPieces() const { return m_pieces; };
+  inline const std::deque<Piece *>& getPieces() const { return _pieces; };
 
 };
 

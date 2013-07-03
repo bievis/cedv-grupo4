@@ -25,11 +25,6 @@ void Piece::clear()
 
 }
 
-const std::deque<EnemyRoute*>& Piece::getEnemyRoutes() const
-  {
-    return m_routes;
-  }
-
 Piece::Piece(const Piece& other)
 {
   copy ( other );
@@ -63,6 +58,7 @@ void Piece::print()
     std::cout << "   Width         : " << m_width << std::endl;
     std::cout << "   Position      : " << m_pos << std::endl;
     std::cout << "   Num. Routes   : " << m_routes.size() << std::endl;
+
     for ( std::deque<EnemyRoute *>::const_iterator itRoute = m_routes.begin(); m_routes.end() != itRoute; ++itRoute )
  		{
       if ( *itRoute)
