@@ -649,7 +649,7 @@ void GameState::CreateMap()
                       _world,
                       _staticGeometry,
                       nomPieza,
-                      nomPieza,
+                      pieza->getNameMeshFile(),
                       pieza->getPosition() );
     }
 
