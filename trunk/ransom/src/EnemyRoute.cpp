@@ -69,12 +69,10 @@ const Ogre::Vector3& EnemyRoute::getPoint ( unsigned int index ) const
 
 void EnemyRoute::print()
 {
-  cout << "========================" << endl;
   cout << " - Route " << _id << " : Closed = " << (_closed?"true":"false") << " : Proximity = " << _proximity << endl;
-  cout << "========================" << endl;
   for ( unsigned int i = 0; i < _vPoints.size(); i++ )
     {
-      cout << "Coordenada : " << _vPoints[i] << endl;
+      cout << "   Coordenada : " << _vPoints[i] << endl;
     }
 
 }

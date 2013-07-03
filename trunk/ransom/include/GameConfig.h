@@ -6,6 +6,7 @@
 #include <GameConfigException.hpp>
 #include <EnemyRoute.h>
 #include <OgreStringConverter.h>
+#include <Piece.h>
 
 using namespace std;
 
@@ -31,8 +32,8 @@ class GameConfig {
   unsigned int _planeHeight;
   /// \brief plane width
   unsigned int _planeWidth;
-  /// \brief deque with the columns which define the walls
-  std::deque<Ogre::Vector3> _vColumns;
+  /// \brief the pieces which compounds the map
+  std::deque<Piece *> m_pieces;
 
  public:
   /// \brief default constructor
@@ -91,17 +92,15 @@ class GameConfig {
   /// /brief method to set the plane width
   /// /param newValue new plane width to set
   inline void setPlaneWidth ( unsigned int newValue ) { _planeWidth = newValue; };
-  /// \brief method to get hostages number
-  /// \return hostages number
-  inline unsigned int getNumColumns() const { return _vColumns.size(); };
-  /// \brief method to get the position of the column(index)
-  /// \param index the column index to find in the deque
-  const Ogre::Vector3& getPositionColumn ( unsigned int index ) const;
-  /// \brief method to add a column position
-  /// \param p column position
-  void addColumnPosition ( const Ogre::Vector3& p );
   /// \brief method to print info
   void print();
+  /// \brief method to add a map piece
+  /// \param newPiece new piece to add
+  void addPiece ( const Piece& newPiece );
+  /// \brief method to get pieces queue
+  /// \return pieces queue
+  inline const std::deque<Piece *>& getPieces() const { return m_pieces; };
+
 };
 
 #endif
