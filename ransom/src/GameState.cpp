@@ -85,7 +85,6 @@ void GameState::enter()
     _gameTrack->play();
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
-//    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
     CreateCameras();
 
@@ -138,7 +137,41 @@ void GameState::enter()
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
       if (_vFader[i]) _vFader[i]->startFadeOut(4.0);
 
+	// Para insertar el nombre record
+	Ogre::DisplayString title = "Insert name";
+	_recordTextBox = OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createTextBox(OgreBites::TL_RIGHT, "NameBox", title, 200, 150);
+	_recordTextBox->hide();
+
   }
+
+
+void GameState::writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &keyEventRef)
+{
+   Ogre::String str;
+   str = keyEventRef.text;
+   //Wenn die Backspacetaste gedrueckt wird
+   if (keyEventRef.text == 8)
+   {
+      Ogre::String strEr = pTextBox->getText();
+      if (strEr.size() > 0)
+      {
+         //das letzte Zeichen loeschen
+          strEr.pop_back();
+         pTextBox->setText(strEr);
+      }
+   }
+   //ueber keyEventRef.text kommen alle Ascii Zeichen an, auch z.B. shift usw.
+   //Diese Spezialtasten außer die 9 (Backspacetaste) muessen ignoriert werden, sonst kommt es zu Fehlern bei der Textuebertragung
+   else if ((keyEventRef.text >= 0 && keyEventRef.text < 9) || (keyEventRef.text > 9 && keyEventRef.text <= 32))
+   {
+      return;
+   }
+   else
+   {
+      //neuen Text aus Tastatur uebernehmen
+       pTextBox->appendText(str);
+   }
+}
 
 void GameState::CreateInitialWorld()
   {
@@ -408,15 +441,18 @@ void GameState::exit()
 
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
   {
+	  if (_recordTextBox->isVisible()) {
+		writeText(_recordTextBox, keyEventRef);
+	  }
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
     {
       pushAppState(findByName("PauseState"));
       return true;
     }
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
+    /*else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
 		_world->setShowDebugShapes (true);
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
-      _world->setShowDebugShapes (false);
+      _world->setShowDebugShapes (false);*/
     else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
       {
         m_hero->shoot();
