@@ -10,7 +10,7 @@ using namespace std;
 
 #define VELOCIDAD 2.0
 #define VELOCIDAD_ANIMACION 3.0
-#define VELOCITY_SHOT 30.0f
+#define VELOCITY_SHOT 50.0f
 
 #define HEALTH_SHOT 25.0
 
