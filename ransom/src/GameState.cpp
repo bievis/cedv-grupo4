@@ -343,6 +343,12 @@ void GameState::exit()
   {
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Leaving GameState...");
 
+	Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_GameOver", false );
+
+    Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Finish", false );
+
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
       if (_vFader[i]) delete _vFader[i];
 
@@ -441,24 +447,29 @@ void GameState::exit()
 
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
   {
-	  if (_recordTextBox->isVisible()) {
-		writeText(_recordTextBox, keyEventRef);
-	  }
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
-    {
-      pushAppState(findByName("PauseState"));
-      return true;
-    }
-    /*else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
-		_world->setShowDebugShapes (true);
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
-      _world->setShowDebugShapes (false);*/
-    else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
-      {
-        m_hero->shoot();
-      }
+	if (m_bQuit) {
+		popAllAndPushAppState(findByName("MenuState"));
+		return true;
+	} else {
+		if (_recordTextBox->isVisible()) {
+			writeText(_recordTextBox, keyEventRef);
+		}
+		if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
+		{
+			pushAppState(findByName("PauseState"));
+		return true;
+		}
+		/*else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
+			_world->setShowDebugShapes (true);
+		else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
+			_world->setShowDebugShapes (false);*/
+		else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
+		{
+			m_hero->shoot();
+		}
+	}
 
-    OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
+	OgreFramework::getSingletonPtr()->keyPressed(keyEventRef);
 
     return true;
   }
@@ -547,7 +558,7 @@ void GameState::update(double timeSinceLastFrame)
     if ( m_hero->getHealth() == 0 )
       {
         _gameTrack->stop();
-
+		m_bQuit = true;
         if ( !_faderGameOver )
           {
             if ( ( _gc.getNumHostages() - _hostages ) > 0 )
@@ -570,7 +581,7 @@ void GameState::update(double timeSinceLastFrame)
     if ( _hostages == 0 )
       {
         _gameTrack->stop();
-
+		m_bQuit = true;
         if ( !_faderFinish )
           {
             Records::getSingleton().add ( _gc.getNumHostages(), _tiempo );
@@ -586,12 +597,6 @@ void GameState::update(double timeSinceLastFrame)
         if ( _faderFinish )
           _faderFinish->fade ( timeSinceLastFrame );
       }
-
-    // if(m_bQuit == true)
-    //   {
-    //     popAppState();
-    //     return;
-    //   }
 
     // Ogre::OverlayElement *elem = NULL;
     // elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
