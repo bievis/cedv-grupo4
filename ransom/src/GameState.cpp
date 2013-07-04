@@ -640,6 +640,7 @@ void GameState::CreateMap()
 
 	Piece* pieza = NULL;
 	string nomPieza = "";
+	// Creamos el mapa que habia en la cofig y que hemos generado
 	for ( unsigned int i = 0; i < _gc.getNumPiecesMap(); i++ )
 	{
 		nomPieza = "Pieza" + StringConverter::toString ( i+1 );
@@ -654,19 +655,6 @@ void GameState::CreateMap()
 						pieza->getNameMeshFile(),
 						_gc.getPieceMap(i).pos );
 	}
-
-	// Creamos el mapa
-//	Vector3 posPieza = Vector3(-16.0f, 0.0f, -16.0f);
-//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza1", "Pieza1", posPieza);
-//
-//	posPieza = Vector3(16.0f, 0.0f, -16.0f);
-//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza2", "Pieza2", posPieza);
-//
-//	posPieza = Vector3(-16.0f, 0.0f, 16.0f);
-//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza3", "Pieza3", posPieza);
-//
-//	posPieza = Vector3(16.0f, 0.0f, 16.0f);
-//	Utilities::getSingleton().put_part_map_in_scene(m_pSceneMgr, _world, _staticGeometry, "Pieza4", "Pieza4", posPieza);
 
 	_staticGeometry->build();
 }
