@@ -1,5 +1,7 @@
 #include "Enemy.h"
 
+static bool forcedIN = false;
+
 Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
@@ -11,6 +13,8 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         v_pos,
                                                         ENEMY, STOP_ANIMATION )
   {
+
+    _lastHealth = 0;
 
     _timeElapsed_Global = 0;
     _timeElapsed_Watching = 0;
@@ -162,15 +166,27 @@ bool Enemy::haveYouSeenAnybody()
 }
 
 void Enemy::updateLifeBar() {
-    Ogre::Real ratio = _health / MAX_HEALTH;
 
-    if (ratio < 0.0f)
-        ratio = 0.0f;
+    if ( _health != _lastHealth )
+    {
+      if ( _lastHealth != 0 )
+        {
+          setCurrentState( SHOOTING );
+          forcedIN = true;
+          _timeElapsed_Shooting = _timeElapsed_Global;
+        }
+      _lastHealth = _health;
 
-    _lifeBar->setTexcoordRect((1.0 - ratio) / SIZE_LIFE_BAR,
-                              0.0f,
-                              0.50f + (1.0 - ratio) / SIZE_LIFE_BAR,
-                              1.0);
+      Ogre::Real ratio = _health / MAX_HEALTH;
+
+      if (ratio < 0.0f)
+          ratio = 0.0f;
+
+      _lifeBar->setTexcoordRect((1.0 - ratio) / SIZE_LIFE_BAR,
+                                0.0f,
+                                0.50f + (1.0 - ratio) / SIZE_LIFE_BAR,
+                                1.0);
+    }
 }
 
 void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
@@ -269,8 +285,10 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
 
                 stop_move();
 
-                if ( haveYouSeenAnybody() )
+                if ( haveYouSeenAnybody() || forcedIN )
                   {
+                    forcedIN = false;
+
                     _positionLastViewed = _refHero->getPosition();
 
                     reorient_enemy_to_hero();
@@ -364,17 +382,18 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
           }
         // ######################################################
 
-        // Cada 4 segundos, comprobaremos si el enemigo se ha quedado bloqueado
-        // en algun sitio del escenario
+        // Cada TIMER_MAX_BLOCKED segundos, comprobaremos si el enemigo
+        // se ha quedado bloqueado en algun sitio del escenario
 
         if ( _timeElapsed_Global - _timeBlocked > TIMER_MAX_BLOCKED )
           {
             _timeBlocked = _timeElapsed_Global;
 
             if ( ( _currentPosition == _node->getPosition() ) &&
-                ( _currentState == CHASING && !_sentinel_dest) )
+                ( _currentState == CHASING ) )
+                //( _currentState == CHASING && !_sentinel_dest) )
               {
-            _currentState = WATCHING;
+                _currentState = WATCHING;
               }
 
             _currentPosition = _node->getPosition();
