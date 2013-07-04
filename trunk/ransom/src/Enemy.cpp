@@ -317,7 +317,7 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
                 else if ( haveYouSeenAnybody() )
                   {
                     setCurrentState ( ALERT );
-				_aroundNumber = 0;
+                    _aroundNumber = 0;
                   }
                 else
                   {

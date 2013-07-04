@@ -254,41 +254,31 @@ void Character::updateShot ( double timeSinceLastFrame, std::vector<Character*> 
 	_nodeShot->setOrientation(_rigidBody->getCenterOfMassOrientation());
 	// Vemos si el disparo ha colisionado con algun elemento
 	Character* shootingCharacter = NULL;
-	if (detectCollisionShot(_world, vCharacteres, &shootingCharacter)) {
-		// Si hemos dado a algo
-		_nodeShot->setVisible(false);
-		_isShooting = false;
-		// Vemos a que le hemos dado otro personaje
-		if (shootingCharacter) {
-//				double rate = 0.0;
 
-        cout << "TOCADO!!!" << endl;
-        shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
-        play_sound_hurt();
+	if (detectCollisionShot(_world, vCharacteres, &shootingCharacter))
+    {
+      // Si hemos dado a algo
+      _nodeShot->setVisible(false);
+      _isShooting = false;
 
-				// Vemos si le hemos pasado la distancia para que calcule aleatoriamente si le damos o no
-//				if (_distanceWithOtherCaracter == ZERO_DISTANCE ||
-//					validate_success_rate ( _distanceWithOtherCaracter, &rate ) )
-//				{
-//					cout << "TOCADO!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
-//	    		shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
-//                  play_sound_hurt();
-//		        }
-//				else
-//                 {
-//					cout << "AGUA!!! (" << rate << "%) distance = " << _distanceWithOtherCaracter << endl;
-//                    play_sound_miss();
-//                 }
-			}
-         else
-          {
-            cout << "AGUA!!!" << endl;
-            play_sound_miss();
-          }
-	} else {
-		// Vamos alargando el disparo
-		setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
-	}
+      // Vemos a que le hemos dado otro personaje
+      if (shootingCharacter)
+        {
+          cout << "TOCADO!!!" << endl;
+          shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
+          play_sound_hurt();
+        }
+      else
+        {
+          cout << "AGUA!!!" << endl;
+          play_sound_miss();
+        }
+    }
+  else
+    {
+      // Vamos alargando el disparo
+      setScaleShot ((timeSinceLastFrame * VELOCITY_SHOT) + _nodeShot->getScale().z);
+    }
 }
 
 //bool Character::validate_success_rate ( double distance, double* rate )

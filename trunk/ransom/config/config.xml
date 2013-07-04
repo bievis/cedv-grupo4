@@ -3,17 +3,7 @@
 
   <hero posX="-7.5" posY="1.0" posZ="7.5" />
 
-<!--  <hostage>-->
-<!---->
-<!--    <hostage_positions>-->
-<!---->
-<!--      <position posX="9.5" posY="1.0" posZ="-9.5" />-->
-<!---->
-<!--    </hostage_positions>-->
-<!---->
-<!--  </hostage>-->
-
-  <map rows="4" cols="4">
+  <map rows="2" cols="2">
 
     <piece mesh_file="Pieza1" posX="-16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
 

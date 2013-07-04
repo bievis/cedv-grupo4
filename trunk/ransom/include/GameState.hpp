@@ -105,6 +105,8 @@ private:
     SoundFXPtr                _soundGameOver;
     SoundFXPtr                _soundFinish;
 
+    unsigned int _lastPanelLife;
+
     //Private Methods
 	// \brief method to create the state
 	void clear();

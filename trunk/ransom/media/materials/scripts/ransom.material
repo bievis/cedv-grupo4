@@ -74,21 +74,6 @@ material Menu/HighScores
  }
 }
 
-material Common/InputBox
-{
- technique
- {
-   pass
-   {
-     scene_blend src_alpha one_minus_src_alpha
-     texture_unit
-     {
-       texture inputbox.png
-     }
-   }
- }
-}
-
 material Menu/Titulo
 {
  technique
@@ -174,6 +159,21 @@ material Game/Face
      texture_unit
      {
        texture face.png
+     }
+   }
+ }
+}
+
+material Game/Face_RED
+{
+ technique
+ {
+   pass
+   {
+     scene_blend src_alpha one_minus_src_alpha
+     texture_unit
+     {
+       texture face_red.png
      }
    }
  }
@@ -267,22 +267,4 @@ material Game/Hostages
      }
    }
  }
-}
-
-material Pruebas/BumpyMetal
-{
-        technique
-        {
-                pass
-                {
-                        ambient 0.75 0.75 0.75
-                        cull_hardware none
-                        cull_software none
-
-                        texture_unit
-                        {
-                                texture BumpyMetal.jpg
-                        }
-                }
-        }
 }
