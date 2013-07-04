@@ -4,8 +4,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                     OgreBulletDynamics::DynamicsWorld* world,
                     const string& name,
                     const Ogre::Vector3& v_pos,
-                    const GameConfig& config,
-                    unsigned int id_route,
+                    const EnemyRoute &route,
                     Hero* ptrHero ) : Character ( sceneMgr,
                                                         world,
                                                         name,
@@ -79,17 +78,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     // Cargamos la ruta asociada al enemigo por donde se va a mover
 
-    try {
-
-      _route = config.getEnemyRoute ( id_route );
-
-    }
-    catch ( GameConfigException& exc )
-    {
-      cerr << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": EXCEPTION : " << exc.what() << endl;
-    }
-
-    print();
+    _route = route;
 
     cout << " punto de salida = " << _route.getPoint(0) << endl;
 
@@ -99,20 +88,6 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _soundAlert2FX = SoundFXManager::getSingleton().load("alert2.wav");
 
     _currentSoundAlert = 1;
-
-//    try {
-//      // Maquina de Estados del Enemigo
-//      if ( _sm.load_from_file ( "config/stateMachineConfig.xml" ) )
-//        {
-//          assert ( _sm.validateXML() );
-//          _sm.print_info();
-//        }
-//    }
-//    catch ( StateMachineException& exc )
-//    {
-//      cout << exc.what() << endl;
-//    }
-
   }
 
 Enemy::~Enemy()

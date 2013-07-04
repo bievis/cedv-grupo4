@@ -29,14 +29,13 @@ class Enemy : public Character
     /// \param world reference to dynamic world (bullet)
     /// \param name name to identify the Enemy
     /// \param v_pos initial position in coordenate X, Y, Z with object Ogre::Vector3
-    /// \param config object with the configuration loaded by xml
-    /// \param id_route route assigned to the enemy
+    /// \param route route of enemy
+    /// \param ptrHero reference to hero
     Enemy ( Ogre::SceneManager* sceneMgr,
             OgreBulletDynamics::DynamicsWorld* world,
             const string& name,
             const Ogre::Vector3& v_pos,
-            const GameConfig& config,
-            unsigned int id_route,
+            const EnemyRoute &route,
             Hero* ptrHero );
     /** Default destructor */
     virtual ~Enemy();
