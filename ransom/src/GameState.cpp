@@ -31,6 +31,7 @@ void GameState::clear() {
 	_textureListener = NULL;
 	_cameraMiniMap = NULL;
 	_staticGeometry = NULL;
+	_lastPanelLife = 0;
   }
 
 void GameState::enter()
@@ -713,18 +714,72 @@ string GameState::getTime ( double tiempo )
 
 void GameState::updatePanelLife()
   {
-     Ogre::OverlayElement *elem = NULL;
+    unsigned int currentPanelLife = 0;
 
-     elem = m_pOverlayMgr->getOverlayElement("Panel_Life_Hero_Game");
+    // Esto es una ñapa, para que la cara del prota en rojo aparezca durante unos minimos instantes
+    // y no sea un visto y no visto
+    static unsigned int contREDFace = 0;
 
-     if ( m_hero->getHealth() > 75 )
-       elem->setMaterialName ( "Game/Life4" );
-     else if ( m_hero->getHealth() > 50 && m_hero->getHealth() <= 75 )
-       elem->setMaterialName ( "Game/Life3" );
-     else if ( m_hero->getHealth() > 25 && m_hero->getHealth() <= 50 )
-       elem->setMaterialName ( "Game/Life2" );
-     else
-       elem->setMaterialName ( "Game/Life1" );
+    if ( m_hero->getHealth() > 75 )
+      currentPanelLife = 4;
+    else if ( m_hero->getHealth() > 50 && m_hero->getHealth() <= 75 )
+      currentPanelLife = 3;
+    else if ( m_hero->getHealth() > 25 && m_hero->getHealth() <= 50 )
+      currentPanelLife = 2;
+    else
+      currentPanelLife = 1;
+
+    Ogre::OverlayElement *elem = NULL;
+
+    if ( currentPanelLife != _lastPanelLife )
+      {
+
+        elem = m_pOverlayMgr->getOverlayElement("Panel_Life_Hero_Game");
+
+        if ( m_hero->getHealth() > 75 ) {
+         elem->setMaterialName ( "Game/Life4" );
+         _lastPanelLife = 4;
+        } else if ( m_hero->getHealth() > 50 && m_hero->getHealth() <= 75 ) {
+         elem->setMaterialName ( "Game/Life3" );
+         _lastPanelLife = 3;
+        }
+        else if ( m_hero->getHealth() > 25 && m_hero->getHealth() <= 50 ) {
+         elem->setMaterialName ( "Game/Life2" );
+         _lastPanelLife = 2;
+        }
+        else {
+         elem->setMaterialName ( "Game/Life1" );
+         _lastPanelLife = 1;
+        }
+
+        if ( _lastPanelLife != 0 && currentPanelLife != 4 )
+        {
+          elem = m_pOverlayMgr->getOverlayElement("Panel_Face_Hero_Game");
+          elem->setMaterialName ( "Game/Face_RED" );
+
+          // Pasará 100 veces por éste método antes de quitar la cara roja
+          contREDFace = 100;
+        }
+
+      }
+    else
+      {
+        // Si estamos a 0 es que hemos pasado ya todas las veces necesarias
+        // por este metodo y volvemos a restablecer la cara azul normal del prota
+        if ( contREDFace == 0 )
+          {
+            elem = m_pOverlayMgr->getOverlayElement("Panel_Face_Hero_Game");
+            elem->setMaterialName ( "Game/Face" );
+          }
+        // Si el valor es positivo, quiere decir que nos quedan mas veces que
+        // pasar por este metodo antes de quitar la cara roja
+        else if ( contREDFace > 0 )
+          {
+            contREDFace--;
+          }
+
+      }
+
   }
 
 void GameState::fadeOutCallback(void)

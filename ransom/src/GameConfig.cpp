@@ -240,13 +240,15 @@ void GameConfig::createMapRandom () {
 		partMap.pos = pointsParts[i];
 		partMap.pPiece = piece;
 		_piecesMap.push_back(partMap);
+        Ogre::Vector3 p = Ogre::Vector3::ZERO;
 
 		// Recalculamos las rutas de los enemigos
 		for ( unsigned int j = 0; j < piece->getNumEnemyRoutes(); j++ ) {
 			enemyRoute = piece->getEnemyRoute(j);
 			newEnemyRoute = new EnemyRoute(*enemyRoute);
 			for ( unsigned int k = 0; k < newEnemyRoute->getNumPoints(); k++ ) {
-				newEnemyRoute->setPoint(newEnemyRoute->getPoint(k) + partMap.pos, k);
+				p = newEnemyRoute->getPoint(k) + partMap.pos;
+				newEnemyRoute->setPoint(p, k);
 			}
 			_vEnemyRoutes.push_back(newEnemyRoute);
 		}
