@@ -19,6 +19,7 @@ void Piece::clear()
         delete *itRoute;
     }
   m_routes.clear();
+  m_posHostages.clear();
   m_height = 0;
   m_width = 0;
   m_pos = Ogre::Vector3::ZERO;
@@ -53,6 +54,11 @@ void Piece::copy ( const Piece& source )
             addEnemyRoute ( *(source.m_routes[i]) );
           }
       }
+
+	for ( unsigned int i = 0; i != source.getNumPosHostages(); ++i )
+      {
+		  addPosHostage ( source.m_posHostages[i] );
+      }
   }
 
 void Piece::print()
@@ -85,4 +91,14 @@ EnemyRoute* Piece::getEnemyRoute ( unsigned int index )
       ptr = m_routes[index];
 
     return ptr;
+  }
+
+void Piece::addPosHostage ( const Ogre::Vector3& newPos )
+  {
+    m_posHostages.push_back ( newPos );
+  }
+
+Ogre::Vector3 Piece::getPosHostage ( unsigned int index )
+  {
+    return m_posHostages[index];
   }

@@ -67,6 +67,13 @@ const Ogre::Vector3& EnemyRoute::getPoint ( unsigned int index ) const
   return _vPoints[index];
 }
 
+void EnemyRoute::setPoint ( Ogre::Vector3& newPos, unsigned int index )
+{
+  assert ( index < _vPoints.size() );
+
+  _vPoints[index] = newPos;
+}
+
 void EnemyRoute::print()
 {
   cout << " - Route " << _id << " : Closed = " << (_closed?"true":"false") << " : Proximity = " << _proximity << endl;

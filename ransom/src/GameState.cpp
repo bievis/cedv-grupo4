@@ -124,8 +124,8 @@ void GameState::enter()
 
     OgreFramework::getSingletonPtr()->getRootPtr()->renderOneFrame();
 
+	// Cargamos el fichero de configuracion
     XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
-    //TODO XMLCharger::getSingleton().LoadMap ( MAP_ROUTE_XML, _gc );
 
     _gc.print();
 
@@ -144,11 +144,12 @@ void GameState::CreateInitialWorld()
     // Activamos las sombras
     m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
-//    m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.8, 0.8, 0.8));
 
     m_pSceneMgr->setShadowTextureCount(2);
     m_pSceneMgr->setShadowTextureSize(512);
 
+	// Generamos la configuracion de del Mapa aleatorio
+	_gc.createMapRandom();
     // Crear el mapa
     CreateMap();
 
@@ -158,7 +159,7 @@ void GameState::CreateInitialWorld()
     m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos );
     _vCharacteres.push_back(m_hero);
 
-    //TODO Creamos los enemigos
+    // Creamos los enemigos
     Enemy *enemy = NULL;
     string name_enemy = "";
     EnemyRoute route;
@@ -166,7 +167,7 @@ void GameState::CreateInitialWorld()
 
     for ( unsigned int i = 0; i < _gc.getNumEnemies(); i++ )
       {
-        route = _gc.getEnemyRoute ( i+1 );
+        route = _gc.getEnemyRoute ( i );
 
         assert ( route.getNumPoints() != 0 );
 
@@ -174,7 +175,7 @@ void GameState::CreateInitialWorld()
 
         name_enemy = "Enemy" + StringConverter::toString(i);
 
-        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, _gc, i+1, m_hero );
+        enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, route, m_hero );
         m_enemies.push_back ( enemy );
         _vCharacteres.push_back(enemy);
       }
@@ -621,41 +622,38 @@ void GameState::update(double timeSinceLastFrame)
 
 void GameState::CreateMap()
 {
-    assert ( _gc.getPlaneHeight() > 0 );
-    assert ( _gc.getPlaneWidth() > 0 );
-
-	float widthScene = 32.0f * 2.0;
-	float heightScene = 32.0f * 2.0f;
+	float widthScene = SIZE_PART * _gc.getColsMap();
+	float heightScene = SIZE_PART * _gc.getRowsMap();
 	float heightWall = 10.0f;
 
 	_staticGeometry = m_pSceneMgr->createStaticGeometry("StaticMap");
 
 	// Creamos las paredes
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "MaterialSuelo", widthScene, heightWall,
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "MaterialSuelo", heightScene, heightWall,
 													Vector3::UNIT_Y, Vector3(1,0,0), Vector3(widthScene / -2.0f,0,0));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "MaterialSuelo", widthScene, heightWall,
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "MaterialSuelo", heightScene, heightWall,
 													Vector3::UNIT_Y, Vector3(-1,0,0), Vector3(widthScene / 2.0f,0,0));
 	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "upWall", "MaterialSuelo", widthScene, heightWall,
-													Vector3::UNIT_Y, Vector3(0,0,1), Vector3(0,0,widthScene / -2.0f));
+													Vector3::UNIT_Y, Vector3(0,0,1), Vector3(0,0,heightScene / -2.0f));
 	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "downWall", "MaterialSuelo", widthScene, heightWall,
-													Vector3::UNIT_Y, Vector3(0,0,-1), Vector3(0,0,widthScene / 2.0f));
+													Vector3::UNIT_Y, Vector3(0,0,-1), Vector3(0,0,heightScene / 2.0f));
 
-  Piece* pieza = NULL;
-  string nomPieza = "";
-  for ( unsigned int i = 0; i < _gc.getNumPieces(); i++ )
-    {
-      nomPieza = "Pieza" + StringConverter::toString ( i+1 );
+	Piece* pieza = NULL;
+	string nomPieza = "";
+	for ( unsigned int i = 0; i < _gc.getNumPiecesMap(); i++ )
+	{
+		nomPieza = "Pieza" + StringConverter::toString ( i+1 );
 
-      pieza = _gc.getPiece ( i );
+		pieza = _gc.getPieceMap(i).pPiece;
 
-      Utilities::getSingleton().put_part_map_in_scene
-                    ( m_pSceneMgr,
-                      _world,
-                      _staticGeometry,
-                      nomPieza,
-                      pieza->getNameMeshFile(),
-                      pieza->getPosition() );
-    }
+		Utilities::getSingleton().put_part_map_in_scene
+					( m_pSceneMgr,
+						_world,
+						_staticGeometry,
+						nomPieza,
+						pieza->getNameMeshFile(),
+						_gc.getPieceMap(i).pos );
+	}
 
 	// Creamos el mapa
 //	Vector3 posPieza = Vector3(-16.0f, 0.0f, -16.0f);

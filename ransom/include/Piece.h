@@ -56,6 +56,16 @@ class Piece
     /// \param index element index to get from the queue
     /// \return reference to the enemy route
     EnemyRoute* getEnemyRoute ( unsigned int index );
+	/// \brief method to get the number of pisitions in the queue
+    /// \return number of positions of hostages
+    inline unsigned int getNumPosHostages() const { return m_posHostages.size(); };
+    /// \brief method to add a position of hostage
+    /// \param newPos new position to add
+    void addPosHostage ( const Ogre::Vector3& newPos );
+    /// \brief method to get the position of hostage in this piece
+    /// \param index element index to get from the queue
+    /// \return reference to the position of hostage
+    Ogre::Vector3 getPosHostage ( unsigned int index );
 
     /// \brief method to print info over the piece
     void print();
@@ -76,6 +86,8 @@ class Piece
     double m_height;
     /// \brief deque with the enemy routes in this piece
     std::deque<EnemyRoute*> m_routes;
+	/// \brief deque with the position of hostages in the piece
+	std::deque<Ogre::Vector3> m_posHostages;
     /// \brief name mesh file to load
     std::string m_name_mesh;
 

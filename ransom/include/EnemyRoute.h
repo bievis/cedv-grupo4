@@ -36,6 +36,10 @@ class EnemyRoute
     /// \brief Method to get proximity value
     /// \return The current value of _proximity
     inline float getProximity() const { return _proximity; };
+	/// \brief Method to set point in the list
+    /// \param newPos New point to set
+	/// \param index Index of new point
+	void setPoint ( Ogre::Vector3& newPos, unsigned int index );
     /// \brief Method to set proximity value
     /// \param newValue New value to set
     inline void setProximity ( float newValue ) { _proximity = newValue; };

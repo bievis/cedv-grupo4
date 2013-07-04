@@ -8,6 +8,15 @@
 #include <OgreStringConverter.h>
 #include <Piece.h>
 
+#define SIZE_PART 32.0f
+
+struct ST_PART_MAP {
+	Piece *pPiece;
+	Ogre::Vector3 pos;
+};
+
+typedef struct ST_PART_MAP T_PART_MAP;
+
 using namespace std;
 
 /// \brief Class to manage the game configuration
@@ -28,12 +37,14 @@ class GameConfig {
   std::vector<EnemyRoute*> _vEnemyRoutes;
   /// \brief set of hostages positions
   std::deque<Ogre::Vector3> _vPositionHostages;
-  /// \brief plane height
-  unsigned int _planeHeight;
-  /// \brief plane width
-  unsigned int _planeWidth;
+  /// \brief rows of map
+  unsigned int _rowsMap;
+  /// \brief cols map
+  unsigned int _colsMap;
   /// \brief the pieces which compounds the map
   std::deque<Piece *> _pieces;
+  /// \brief the pieces which compounds the map
+  std::vector<T_PART_MAP> _piecesMap;
 
  public:
   /// \brief default constructor
@@ -80,31 +91,39 @@ class GameConfig {
   /// \brief method to add a hostage position, namely, a hostage
   /// \param p hostage position
   void addHostagePosition ( const Ogre::Vector3& p );
-  /// \brief method to get the plane height
-  /// \return plane height
-  inline unsigned int getPlaneHeight() { return _planeHeight; };
-  /// /brief method to set the plane height
-  /// /param newValue new plane height to set
-  inline void setPlaneHeight ( unsigned int newValue ) { _planeHeight = newValue; };
-  /// \brief method to get the plane width
-  /// \return plane width
-  inline unsigned int getPlaneWidth() { return _planeWidth; };
-  /// /brief method to set the plane width
-  /// /param newValue new plane width to set
-  inline void setPlaneWidth ( unsigned int newValue ) { _planeWidth = newValue; };
+  /// \brief method to get the rows Map
+  /// \return rows Map
+  inline unsigned int getRowsMap() { return _rowsMap; };
+  /// /brief method to set the rows Map
+  /// /param newValue new rows Map to set
+  inline void setRowsMap ( unsigned int rowsMap ) { _rowsMap = rowsMap; };
+  /// \brief method to get the cols Map
+  /// \return cols Map
+  inline unsigned int getColsMap() { return _colsMap; };
+  /// /brief method to set the cols Map
+  /// /param newValue new cols Map to set
+  inline void setColsMap ( unsigned int colsMap ) { _colsMap = colsMap; };
   /// \brief method to print info
   void print();
   /// \brief method to add a map piece
   /// \param newPiece new piece to add
   void addPiece ( const Piece& newPiece );
-  /// \brief method to get pieces queue
-  /// \return pieces queue
-//  inline const std::deque<Piece *>& getPieces() const { return _pieces; };
-
+  /// \brief method to create Map random
+  void createMapRandom ();
+  /// \brief method to get the number of pieces
+  /// \return number of pieces
   inline unsigned int getNumPieces() const { return _pieces.size(); };
-
+  /// \brief method to get piece of config
+  /// \param index identificator piece to get
+  /// \return piece associated to identificator
   Piece* getPiece ( unsigned int index );
-
+  /// \brief method to get the number of piece of map
+  /// \return number of pieces of map
+  T_PART_MAP getPieceMap ( unsigned int index );
+  /// \brief method to get piece of map
+  /// \param index identificator piece of map to get
+  /// \return piece of map associated to identificator
+  inline unsigned int getNumPiecesMap() const { return _piecesMap.size(); };
 };
 
 #endif

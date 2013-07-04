@@ -27,6 +27,8 @@ void GameConfig::clear()
       }
 
     _pieces.clear();
+
+	_piecesMap.clear();
   }
 
 GameConfig::~GameConfig()
@@ -59,16 +61,16 @@ void GameConfig::copy ( const GameConfig &source )
 
     for ( i = 0; i < source.getNumEnemyRoutes(); i++ )
       {
-        _vEnemyRoutes[i] = source._vEnemyRoutes[i];
+		  _vEnemyRoutes.push_back(source._vEnemyRoutes[i]);
       }
 
     for ( i = 0; i < source.getNumHostages(); i++ )
       {
-        _vPositionHostages[i] = source._vPositionHostages[i];
+		  _vPositionHostages.push_back(source._vPositionHostages[i]);
       }
 
-    _planeHeight = source._planeHeight;
-    _planeWidth = source._planeWidth;
+	_rowsMap = source._rowsMap;
+    _colsMap = source._colsMap;
 
     Piece *ptr = NULL;
     for ( i = 0; i < source.getNumPieces(); i++ )
@@ -80,23 +82,23 @@ void GameConfig::copy ( const GameConfig &source )
           }
       }
 
+	for ( i = 0; i < source._piecesMap.size(); i++ )
+      {
+		  T_PART_MAP part;
+		  part.pos = source._piecesMap[i].pos;
+		  part.pPiece = source._piecesMap[i].pPiece;
+		  _piecesMap.push_back(part);
+      }
+
   }
 
 const EnemyRoute& GameConfig::getEnemyRoute ( unsigned int index ) const
   {
 
-    if ( _vEnemyRoutes.size() > 0 )
-      {
-        for ( unsigned int i = 0; i < _vEnemyRoutes.size(); i++ )
-        {
-          cout << "_vEnemyRoutes[i]->getID() == " << _vEnemyRoutes[i]->getID() << endl;
-          if ( _vEnemyRoutes[i]->getID() == index )
-          {
-            return *(_vEnemyRoutes[i]);
-          }
-
-        }
-	    }
+	if ( _vEnemyRoutes.size() > 0 )
+	{
+		return *(_vEnemyRoutes[index]);
+	}
 
     char cad[100];
     sprintf ( cad, "El ID de la ruta %d no ha sido localizado.", index );
@@ -171,3 +173,89 @@ Piece* GameConfig::getPiece ( unsigned int index )
 
     return ptr;
   }
+
+T_PART_MAP GameConfig::getPieceMap ( unsigned int index )
+  {
+	  return _piecesMap[index];
+  }
+
+void GameConfig::createMapRandom () {
+	srand(time(NULL));
+
+	/*
+	* Calculamos las posiciones donde podemos poner piezas en el mapa
+	*/
+
+	float sizeX = _colsMap;
+	float sizeZ = _rowsMap;
+	float widthScene = SIZE_PART * sizeX;
+	float heightScene = SIZE_PART * sizeZ;
+	float heightWall = 10.0f;
+
+	float size = sizeX * sizeZ;
+	// numero de piezas por cuadrante a lo anchho y a lo largo
+	float nPartsCX = sizeX / 2.0f; // Dividir en 2 cuadrantes
+	float nPartsCZ = sizeZ / 2.0f; // Dividir en 2 cuadrantes
+
+	// Coordenada de referencia de cada cuadrante
+	Ogre::Vector3 C1(-1,1,-1);
+	Ogre::Vector3 C2(1,1,-1);
+	Ogre::Vector3 C3(-1,1,1);
+	Ogre::Vector3 C4(1,1,1);
+	std::vector<Ogre::Vector3> pointsParts;
+
+	// Posicion de la primera pieza en cada cuadrante
+	float posX = SIZE_PART / 2.0;
+	float posZ = SIZE_PART / 2.0;
+	Ogre::Vector3 p(posX,0,posZ);
+	
+	for (unsigned int iz = 0; iz < nPartsCZ; iz++ ) {
+		p.x = SIZE_PART / 2.0;
+		for (unsigned int ix = 0; ix < nPartsCX; ix++ ) {		
+			pointsParts.push_back(p * C1);
+			pointsParts.push_back(p * C2);
+			pointsParts.push_back(p * C3);
+			pointsParts.push_back(p * C4);
+
+			p.x = p.x + SIZE_PART;
+		}
+		p.z = p.z + SIZE_PART;
+	}
+
+	/*
+	* Por cada posicion añadimos una pieza aleatoriamente
+	*/
+	Piece* piece;
+	EnemyRoute *enemyRoute;
+	EnemyRoute *newEnemyRoute;
+	unsigned int aleatorio;
+	for ( unsigned int i = 0; i < pointsParts.size(); i++ )
+	{
+		aleatorio = rand() % getNumPieces();
+
+		piece = getPiece(aleatorio);
+
+		// Posicion de la pieza en el mapa
+		T_PART_MAP partMap;
+		partMap.pos = pointsParts[i];
+		partMap.pPiece = piece;
+		_piecesMap.push_back(partMap);
+
+		// Recalculamos las rutas de los enemigos
+		for ( unsigned int j = 0; j < piece->getNumEnemyRoutes(); j++ ) {
+			enemyRoute = piece->getEnemyRoute(j);
+			newEnemyRoute = new EnemyRoute(*enemyRoute);
+			for ( unsigned int k = 0; k < newEnemyRoute->getNumPoints(); k++ ) {
+				newEnemyRoute->setPoint(newEnemyRoute->getPoint(k) + partMap.pos, k);
+			}
+			_vEnemyRoutes.push_back(newEnemyRoute);
+		}
+
+		// Recalculamos las rutas de los rehenes
+		for ( unsigned int j = 0; j < piece->getNumPosHostages(); j++ ) {
+			_vPositionHostages.push_back(piece->getPosHostage(j) + partMap.pos);
+		}
+	}
+
+	_numEnemies = _vEnemyRoutes.size();
+}

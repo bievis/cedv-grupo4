@@ -58,26 +58,12 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
             gc.setInitialPosHero ( Ogre::Vector3 ( posX, posY, posZ ) );
 
           }
-//        else if ( v.first == "hostage" )
-//          {
-//
-//            boost::property_tree::ptree positions = (boost::property_tree::ptree) v.second;
-//
-//            BOOST_FOREACH ( ptree::value_type const& v2, positions.get_child("hostage_positions") )
-//              {
-//                if ( v2.first == "position" )
-//                  {
-//                    posX = v2.second.get<float>("<xmlattr>.posX");
-//                    posY = v2.second.get<float>("<xmlattr>.posY");
-//                    posZ = v2.second.get<float>("<xmlattr>.posZ");
-//
-//                    gc.addHostagePosition ( Ogre::Vector3 ( posX, posY, posZ ) );
-//                  }
-//              }
-//
-//          }
+		
         else if ( v.first == "map" )
           {
+
+			gc.setRowsMap(v.second.get<int>("<xmlattr>.rows"));
+			gc.setColsMap(v.second.get<int>("<xmlattr>.cols"));
 
             boost::property_tree::ptree pieces = (boost::property_tree::ptree) v.second;
 
@@ -119,10 +105,10 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
                               {
                                 if ( v2.first == "position" )
                                   {
-                                    posX = posXpiece + v2.second.get<float>("<xmlattr>.posX");
-                                    posY = posYpiece + v2.second.get<float>("<xmlattr>.posY");
-                                    posZ = posZpiece + ( ( -1 ) * v2.second.get<float>("<xmlattr>.posZ") );
-                                    gc.addHostagePosition ( Ogre::Vector3 ( posX, posY, posZ ) );
+                                    posX = v2.second.get<float>("<xmlattr>.posX");
+                                    posY = v2.second.get<float>("<xmlattr>.posY");
+                                    posZ = ( ( -1 ) * v2.second.get<float>("<xmlattr>.posZ") );
+									piece.addPosHostage ( Ogre::Vector3 ( posX, posY, posZ ) );
                                   }
                               }
 
@@ -160,16 +146,14 @@ void XMLCharger::LoadGameConfig ( const string& routeAbsoluteFile, GameConfig &g
 
                                         if ( v3.first == "point" )
                                           {
-                                              posX = posXpiece + v3.second.get<float>("<xmlattr>.posX");
-                                              posY = posYpiece + v3.second.get<float>("<xmlattr>.posY");
-                                              posZ = posZpiece + ( ( -1 ) * v3.second.get<float>("<xmlattr>.posZ") );
+                                              posX = v3.second.get<float>("<xmlattr>.posX");
+                                              posY = v3.second.get<float>("<xmlattr>.posY");
+                                              posZ = ( ( -1 ) * v3.second.get<float>("<xmlattr>.posZ") );
                                               route->addPoint ( Ogre::Vector3 ( posX, posY, posZ ) );
                                           }
                                       }
 
                                     piece.addEnemyRoute ( *route );
-
-                                    gc.addEnemyRoute ( *route );
                                   }
                               }
                           }
