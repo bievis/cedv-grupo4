@@ -74,7 +74,7 @@ private:
 //    double                    _mejorTiempo;
 //    bool                      _empieza_a_contar;
 
-//    TrackPtr                  _gameTrack;
+    TrackPtr                  _gameTrack;
 
 //    btScalar                  _velocidad;
 
@@ -85,7 +85,7 @@ private:
     std::deque<Enemy*>        m_enemies;
     std::vector<Hostage*>	    m_hostages;
     std::vector<Character*>   _vCharacteres;
-	
+
     Ogre::Camera*             _cameraMiniMap;
     CamerasController*		    _camerasController;
     MiniMapTextureListener*   _textureListener;

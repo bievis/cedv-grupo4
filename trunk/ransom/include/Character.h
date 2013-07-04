@@ -143,7 +143,7 @@ class Character
     /// \param distance distance between the enemy and the hero
     /// \param rate success rate returned by the method (only for info purposes)
     /// \return true/false if it was hit the shoot in the hero
-    bool                            validate_success_rate ( double distance, double* rate );
+//    bool                            validate_success_rate ( double distance, double* rate );
 	/// \brief method to update the shot
     void                  updateShot ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
 /// \brief method to play the sound associated to the character hurt
