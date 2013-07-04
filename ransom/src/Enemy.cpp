@@ -12,8 +12,6 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
                                                         v_pos,
                                                         ENEMY, STOP_ANIMATION )
   {
-    // Inicialización del generador de numeros aleatorios
-    srand(time(NULL));
 
     _timeElapsed_Global = 0;
     _timeElapsed_Watching = 0;

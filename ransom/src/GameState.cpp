@@ -78,13 +78,13 @@ void GameState::enter()
     // _estaEnMeta         = false;
     // _controlMeta = 0;
 
-    // _gameTrack = TrackManager::getSingleton().load("musicGame.mp3");
+    _gameTrack = TrackManager::getSingleton().load("ingame.mp3");
 
     // // Reproducción del track principal...
-    // _gameTrack->play();
+    _gameTrack->play();
 
     m_pSceneMgr = OgreFramework::getSingletonPtr()->getRootPtr()->createSceneManager(ST_GENERIC, "GameSceneMgr");
-    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
+//    m_pSceneMgr->setAmbientLight ( Ogre::ColourValue ( 0.9f, 0.9f, 0.9f ) );
 
     CreateCameras();
 
@@ -144,7 +144,7 @@ void GameState::CreateInitialWorld()
     // Activamos las sombras
     m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
-    m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.9, 0.9, 0.9));
+//    m_pSceneMgr->setAmbientLight(Ogre::ColourValue(0.8, 0.8, 0.8));
 
     m_pSceneMgr->setShadowTextureCount(2);
     m_pSceneMgr->setShadowTextureSize(512);
@@ -300,7 +300,7 @@ void GameState::resume()
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
-    // _gameTrack->play();
+    _gameTrack->play();
 
   }
 
@@ -320,8 +320,8 @@ void GameState::exit()
       delete _faderFinish;
 
     // // Parar del track principal...
-    // _gameTrack->play();
-    // _gameTrack->stop();
+//     _gameTrack->play();
+     _gameTrack->stop();
 
     // Erase the enemies deque
     std::deque<Enemy *>::iterator itEnemy = m_enemies.begin();
@@ -508,6 +508,8 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( m_hero->getHealth() == 0 )
       {
+        _gameTrack->stop();
+
         if ( !_faderGameOver )
           {
             if ( ( _gc.getNumHostages() - _hostages ) > 0 )
@@ -529,6 +531,8 @@ void GameState::update(double timeSinceLastFrame)
 
     if ( _hostages == 0 )
       {
+        _gameTrack->stop();
+
         if ( !_faderFinish )
           {
             Records::getSingleton().add ( _gc.getNumHostages(), _tiempo );
@@ -668,6 +672,7 @@ void GameState::CreateMap()
 
 	_staticGeometry->build();
 }
+
 
 Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
 												Hero* hero,
