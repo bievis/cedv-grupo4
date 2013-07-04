@@ -158,6 +158,8 @@ class Enemy : public Character
 	bool _stopAround;
 	unsigned int _aroundNumber;
 	double _timeSeach;
+
+	float _lastHealth;
 };
 
 #endif // ENEMY_H

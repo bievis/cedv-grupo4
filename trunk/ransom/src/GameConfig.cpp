@@ -188,11 +188,6 @@ void GameConfig::createMapRandom () {
 
 	float sizeX = _colsMap;
 	float sizeZ = _rowsMap;
-	float widthScene = SIZE_PART * sizeX;
-	float heightScene = SIZE_PART * sizeZ;
-	float heightWall = 10.0f;
-
-	float size = sizeX * sizeZ;
 	// numero de piezas por cuadrante a lo anchho y a lo largo
 	float nPartsCX = sizeX / 2.0f; // Dividir en 2 cuadrantes
 	float nPartsCZ = sizeZ / 2.0f; // Dividir en 2 cuadrantes
@@ -208,10 +203,10 @@ void GameConfig::createMapRandom () {
 	float posX = SIZE_PART / 2.0;
 	float posZ = SIZE_PART / 2.0;
 	Ogre::Vector3 p(posX,0,posZ);
-	
+
 	for (unsigned int iz = 0; iz < nPartsCZ; iz++ ) {
 		p.x = SIZE_PART / 2.0;
-		for (unsigned int ix = 0; ix < nPartsCX; ix++ ) {		
+		for (unsigned int ix = 0; ix < nPartsCX; ix++ ) {
 			pointsParts.push_back(p * C1);
 			pointsParts.push_back(p * C2);
 			pointsParts.push_back(p * C3);
@@ -240,13 +235,13 @@ void GameConfig::createMapRandom () {
 		partMap.pos = pointsParts[i];
 		partMap.pPiece = piece;
 		_piecesMap.push_back(partMap);
-        Ogre::Vector3 p = Ogre::Vector3::ZERO;
+    Ogre::Vector3 p = Ogre::Vector3::ZERO;
 
 		// Recalculamos las rutas de los enemigos
 		for ( unsigned int j = 0; j < piece->getNumEnemyRoutes(); j++ ) {
 			enemyRoute = piece->getEnemyRoute(j);
 			newEnemyRoute = new EnemyRoute(*enemyRoute);
-			for ( unsigned int k = 0; k < newEnemyRoute->getNumPoints(); k++ ) {
+			for ( int k = 0; k < newEnemyRoute->getNumPoints(); k++ ) {
 				p = newEnemyRoute->getPoint(k) + partMap.pos;
 				newEnemyRoute->setPoint(p, k);
 			}
