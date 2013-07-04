@@ -128,6 +128,8 @@ private:
     Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
 												Hero* hero,
 												std::vector<Hostage*> hostages);
+	void writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &keyEventRef);
+	OgreBites::TextBox* _recordTextBox;
 };
 
 #endif
