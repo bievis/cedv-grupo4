@@ -149,19 +149,19 @@ void GameState::writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &key
 {
    Ogre::String str;
    str = keyEventRef.text;
-   //Wenn die Backspacetaste gedrueckt wird
+   //Miramos si se ha pulsado el eliminar un caracter
    if (keyEventRef.text == 8)
    {
       Ogre::String strEr = pTextBox->getText();
       if (strEr.size() > 0)
       {
          //das letzte Zeichen loeschen
-          strEr.pop_back();
+         // TODO Falla en Linux: strEr.pop_back();
          pTextBox->setText(strEr);
       }
    }
-   //ueber keyEventRef.text kommen alle Ascii Zeichen an, auch z.B. shift usw.
-   //Diese Spezialtasten außer die 9 (Backspacetaste) muessen ignoriert werden, sonst kommt es zu Fehlern bei der Textuebertragung
+   //keyEventRef.text vienen los caracteres ASCII.
+   //Ignoramos las teclas que no sean letras
    else if ((keyEventRef.text >= 0 && keyEventRef.text < 9) || (keyEventRef.text > 9 && keyEventRef.text <= 32))
    {
       return;
