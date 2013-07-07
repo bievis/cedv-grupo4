@@ -62,21 +62,12 @@ public:
     void fadeOutCallback(void);
 
 private:
-    bool          _estaEnMeta; // Indica que ya ha entrado en la linea de la meta
-    bool          _estaEnPreMeta; // Indica que ya ha entrado en la linea de la meta
-    int           _controlMeta; // Controla el paso por meta
     bool		      m_bQuit;
     bool		      m_bLMouseDown;
     bool                      m_bRMouseDown;
     Ogre::OverlayManager*     m_pOverlayMgr;
 
-//    double                    _tiempo;
-//    double                    _mejorTiempo;
-//    bool                      _empieza_a_contar;
-
     TrackPtr                  _gameTrack;
-
-//    btScalar                  _velocidad;
 
     OgreBulletDynamics::DynamicsWorld * _world;
     OgreBulletCollisions::DebugDrawer * _debugDrawer;
@@ -128,6 +119,9 @@ private:
     Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
 												Hero* hero,
 												std::vector<Hostage*> hostages);
+	// \brief method to insert text in a texbox
+    /// \param pTextBox reference to textBox
+    /// \param keyEventRef event of keyboard
 	void writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &keyEventRef);
 	OgreBites::TextBox* _recordTextBox;
 };

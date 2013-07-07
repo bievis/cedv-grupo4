@@ -316,16 +316,12 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
             case CHASING:
 
                 // Si entramos en estado CHASING
-                //    - Si no ve al heroe y ademas han pasado unos 10 segundos desde el
-                //      ultimo avistamiento pasaremos al estado WATCHING.
-                //      NOTA: Lo de poner 10 segundos es porque el mirar a las 4 esquinas
-                //      dura aproximadamente éste tiempo
+                //    - Si no ve al heroe desde el ultimo avistamiento pasaremos al estado WATCHING.
                 //    - Si por el contrario, seguimos viendo al enemigo, pasaremos al
                 //      estado ALERT
-                //    - Por ultimo, si no lo vemos y el tiempo entre que hemos desaparecido
-                //      de su vision y cuando pasamos a éste estado es inferior a 10
-                //      el enemigo se movera hasta el punto ultimo visto del heroe y llegado
-                //      a éste hara una visión alrededor para buscar al heroe
+                //    - Por ultimo, si no lo vemos y el tiempo entre que ha desaparecido el heroe
+                //      de su vision; el enemigo se movera hasta el punto ultimo visto del heroe y llegado
+                //      a éste hara una visión alrededor para buscar al heroe.
                 if ( !haveYouSeenAnybody() &&
                     _aroundNumber > 4 )
                   {
@@ -429,7 +425,6 @@ const Ogre::Real& Enemy::get_distance_with_hero()
 
 bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
   {
-//    cout << _name << ": destino " << p << endl;
     bool res = false;
     Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
 
@@ -440,10 +435,6 @@ bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
     Ogre::Radian angle = orientacion.angleBetween ( v );
 
     Ogre::Real distance = o.distance ( p );
-
-//    cout << " prueba = " << orientacion.getRotationTo(v).getYaw().valueDegrees() << endl;
-//    cout << " angle = " << angle.valueAngleUnits() << endl;
-//    cout << _name << ": distance = " << distance << ": proximity = " << _route.getProximity() << endl;
 
     if ( distance < _route.getProximity() )
       res = true;

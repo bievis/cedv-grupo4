@@ -47,7 +47,7 @@ class Hostage : public Character
     void   setVisible ( const bool visible );
 	/// \brief method to update character in frame
     void update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
-
+	/// \brief timer it is showing the particle of liberate
 	double _timerParticleLiberate;
 
   protected:

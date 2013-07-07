@@ -13,6 +13,7 @@ using namespace Ogre;
 class MiniMapTextureListener : public RenderTargetListener
 {
   private:
+	/// \brief list of chracteres in the scene
     std::vector<Character*> _vCharacteres;
 	/// \brief reference to scene manager
     Ogre::SceneManager* _sceneMgr;
