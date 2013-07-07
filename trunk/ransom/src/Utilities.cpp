@@ -63,14 +63,6 @@ void Utilities::put_background_with_rotation ( Ogre::SceneManager* sceneMgr, con
     Ogre::Rectangle2D* rect = NULL;
     put_overlay_on_rectangle ( rect, "Background", -2.0, 1.0, 2.0, -1.0, true );
 
-    // Create background rectangle covering the whole screen
-//    Ogre::Rectangle2D* rect = new Ogre::Rectangle2D ( true );
-//    rect->setCorners ( -2.0, 1.0, 2.0, -1.0 );
-//    rect->setMaterial ( "Background" );
-//
-//    // Render the background before everything else
-//    rect->setRenderQueueGroup ( Ogre::RENDER_QUEUE_BACKGROUND );
-
     // Use infinite AAB to always stay visible
     Ogre::AxisAlignedBox aabInf;
     aabInf.setInfinite();
@@ -83,34 +75,6 @@ void Utilities::put_background_with_rotation ( Ogre::SceneManager* sceneMgr, con
     // Example of background scrolling
     material->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setScrollAnimation ( -0.015, 0.0 );
   }
-
-void Utilities::put_element_in_scene ( Ogre::SceneManager* sceneMgr,
-                                                  OgreBulletDynamics::DynamicsWorld* world,
-                                                  string name_mesh,
-                                                  string name_element,
-                                                  const Ogre::Vector3& initial_pos )
-  {
-    Ogre::Vector3 size = Ogre::Vector3::ZERO;
-    Ogre::Entity *entity = sceneMgr->createEntity ( name_element, name_mesh + string ( ".mesh" ) );
-    Ogre::SceneNode *node = sceneMgr->createSceneNode ( name_element );
-    entity->setCastShadows(true);
-    node->attachObject ( entity );
-
-    sceneMgr->getRootSceneNode()->addChild ( node );
-
-    Ogre::AxisAlignedBox boundingB = entity->getBoundingBox();
-
-    size = boundingB.getSize();
-
-    OgreBulletCollisions::BoxCollisionShape *sceneBoxShape = new OgreBulletCollisions::BoxCollisionShape(size);
-
-    OgreBulletDynamics::RigidBody *rigidTrack = new
-      OgreBulletDynamics::RigidBody ( name_element, world );
-
-    rigidTrack->setStaticShape ( node, sceneBoxShape, 0.6f, 0.6f, Ogre::Vector3 ( initial_pos.x, initial_pos.y, initial_pos.z ),
-			   Ogre::Quaternion::IDENTITY );
-
-}
 
 void Utilities::put_shot_in_scene ( Ogre::SceneManager* sceneMgr,
 												  string name,

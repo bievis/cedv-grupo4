@@ -66,19 +66,9 @@ void GameState::enter()
     fader = new Fader ( "GUI_Game", "Game/Recuadro_MiniMapa", NULL );
     _vFader.push_back ( fader );
 
+	// Carga de sonidos
     _soundGameOver = SoundFXManager::getSingleton().load("gameover.wav");
     _soundFinish = SoundFXManager::getSingleton().load("finish.wav");
-
-    // OIS::ParamList param;
-    // size_t windowHandle;
-    // std::ostringstream wHandleStr;
-
-    // _tiempo = 0;
-    // _mejorTiempo = 0;
-    // _empieza_a_contar = true;
-    // _estaEnMeta         = false;
-    // _controlMeta = 0;
-
     _gameTrack = TrackManager::getSingleton().load("ingame.mp3");
 
     // // Reproducción del track principal...
@@ -168,7 +158,7 @@ void GameState::writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &key
    }
    else
    {
-      //neuen Text aus Tastatur uebernehmen
+      //insertamos el texto
        pTextBox->appendText(str);
    }
 }
@@ -296,18 +286,6 @@ bool GameState::pause()
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Finish", false );
 
-    // Mostrar_Velocidad ( 0, true );
-
-    // Ogre::OverlayElement *elem;
-
-    // elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
-    // elem->hide();
-
-    // elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
-    // elem->hide();
-
-    // _gameTrack->pause();
-
     return true;
   }
 
@@ -319,19 +297,6 @@ void GameState::resume()
     m_bQuit = false;
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", true );
-
-    // Mostrar_Velocidad ( 0 );
-
-//    Ogre::OverlayElement *elem = NULL;
-
-    // elem = m_pOverlayMgr->getOverlayElement("Panel_Tiempo_Game");
-    // elem->show();
-
-    // elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
-    // elem->show();
-
-//    elem = m_pOverlayMgr->getOverlayElement ( "cursor" );
-//    elem->hide();
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
@@ -360,8 +325,7 @@ void GameState::exit()
     if ( _faderFinish )
       delete _faderFinish;
 
-    // // Parar del track principal...
-//     _gameTrack->play();
+    // Parar del track principal...
      _gameTrack->stop();
 
     // Erase the enemies deque
@@ -436,10 +400,6 @@ void GameState::exit()
       cout << "delete scene manager" << endl;
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager ( m_pSceneMgr );
     }
-
-    // Ocultar overlays
-//    Ogre::Overlay *overlay = m_pOverlayMgr->getByName("GUI_Game");
-//    overlay->hide();
 
     _gc.clear();
 
@@ -533,28 +493,28 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 void GameState::update(double timeSinceLastFrame)
   {
     _tiempo += timeSinceLastFrame;
-
-    // if ( _empieza_a_contar )
-    //   _tiempo += timeSinceLastFrame;
+	
     m_pCamera->setAspectRatio(Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualWidth()) /
                             Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualHeight()));
 
     m_FrameEvent.timeSinceLastFrame = timeSinceLastFrame;
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->frameRenderingQueued ( m_FrameEvent );
 
-    // Fade in/out
+    // Fade in/out de los everlays
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
       if (_vFader[i]) _vFader[i]->fade ( timeSinceLastFrame );
 
+	// Actualizacion del overlay del tiempo
     Ogre::OverlayElement *elem = NULL;
     elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
     elem->setCaption ( getTime(_tiempo) );
-
+	// Actualizacion del overlay de la vida
     elem = m_pOverlayMgr->getOverlayElement("txtHostages");
     elem->setCaption ( Ogre::StringConverter::toString(_hostages) );
 
     updatePanelLife();
 
+	// En el caso de que el heroe haya muerto
     if ( m_hero->getHealth() == 0 )
       {
         _gameTrack->stop();
@@ -577,7 +537,7 @@ void GameState::update(double timeSinceLastFrame)
         if ( _faderGameOver )
           _faderGameOver->fade ( timeSinceLastFrame );
       }
-
+	// En el caso de que se hayan rescatado todos los rehenes
     if ( _hostages == 0 )
       {
         _gameTrack->stop();
@@ -598,21 +558,9 @@ void GameState::update(double timeSinceLastFrame)
           _faderFinish->fade ( timeSinceLastFrame );
       }
 
-    // Ogre::OverlayElement *elem = NULL;
-    // elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
-    // elem->setCaption ( getTime(_tiempo) );
-
-    // elem = m_pOverlayMgr->getOverlayElement("txtMejorTiempo");
-    // elem->setCaption ( "Best Time:\n  " + getTime(_mejorTiempo) );
-    // elem = m_pOverlayMgr->getOverlayElement("Panel_MejorTiempo_Game");
-    // elem->show();
-
-    // //    bool mbleft, mbmiddle, mbright; // Botones del raton pulsados
-
     _world->stepSimulation(timeSinceLastFrame); // Actualizar simulacion Bullet
-
-//    bool bMove = false;
-//    float valX = 0, valZ = 0;
+	
+	// Movemos al heroe
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {
         m_hero->turn_right();

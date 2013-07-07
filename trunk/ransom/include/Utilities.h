@@ -71,13 +71,18 @@ class Utilities {
                                                   OgreBulletDynamics::RigidBody** rigidTrack,
                                                   bool visible,
                                                   string initAnimation );
-
-    void put_element_in_scene ( Ogre::SceneManager* sceneMgr,
-                                                  OgreBulletDynamics::DynamicsWorld* world,
-                                                  string name_mesh,
-                                                  string name_element,
-                                                  const Ogre::Vector3& initial_pos );
-	 void put_plane_in_scene ( Ogre::SceneManager* sceneMgr,
+	/// \brief this method add an plane in the scene
+	/// \param sceneMgr reference to the scene manager (Ogre)
+	/// \param world reference to world (OgreBullet)
+	/// \param staticGeometry reference to static geometric if the scene (Ogre)
+	/// \param namePlane name to plane
+	/// \param nameMaterial name to material plane
+	/// \param width width of plane
+	/// \param height height of plane
+	/// \param upVector axis on which rests the plane
+	/// \param normal normal vector of plane
+	/// \param initial_pos inicial position
+	void put_plane_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
 												  Ogre::StaticGeometry *staticGeometry,
                                                   string namePlane,
@@ -87,13 +92,20 @@ class Utilities {
 												  Ogre::Vector3 upVector,
 												  Ogre::Vector3 normal,
                                                   const Ogre::Vector3& initial_pos );
+	/// \brief this method add an part map in the scene
+	/// \param sceneMgr reference to the scene manager (Ogre)
+	/// \param world reference to world (OgreBullet)
+	/// \param staticGeometry reference to static geometric if the scene (Ogre)
+	/// \param namePart name to part
+	/// \param namePartMesh name to mesh part
+	/// \param initial_pos inicial position
 	 void put_part_map_in_scene ( Ogre::SceneManager* sceneMgr,
                                                   OgreBulletDynamics::DynamicsWorld* world,
 												  Ogre::StaticGeometry *staticGeometry,
                                                   string namePart,
 												  string namePartMesh,
                                                   const Ogre::Vector3& initial_pos );
-	// \brief this method add an shot at character
+	/// \brief this method add an shot at character
     /// \param sceneMgr reference to the scene manager (Ogre)
     /// \param name name to character
     /// \param nodeShot node reference for the shot
