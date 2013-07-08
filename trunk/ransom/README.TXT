@@ -1,6 +1,6 @@
-Juego Ransom
+﻿Juego Ransom
 ============   
-El juego consiste en superar nuestro mejor tiempo en dar una vuelta completa al circuito.
+El juego consiste en liberar a los rehenes sin ser interceptado por los enemigos.
 El juego está implementado bajo licencia GNU GPL v2.
 
 Ejecución
@@ -9,6 +9,8 @@ En la carpeta "bin" se encuentra los ejecutables del juego y la carpeta "media" 
 contiene los elementos multimedia que se manejan en el Juego.
 - Ejecución en Linux, basta con entrar en la carpeta "bin" y ejecutar el
 binario "ransom". 
+- Ejecución en Windows, basta con entrar en la carpeta "bin" y ejecutar el
+binario "Ransom.exe". 
 
 Menú
 ====
@@ -16,12 +18,11 @@ Menú
 la tecla ESC, donde aparecerá un menú con 3 opciones (Resume Game, Return to Main Menu y
 Exit Game).
   - Teclas:
-    - ARRIBA: Acelera el coche.
-    - ABAJO: Mete la marcha atras del coche.
-    - IZQUIERDA: Gira el las ruedas del coche a la izquierda.
-    - DERECHA: Gira las ruedas del coche a la derecha.
-    - G: Muestra la malla de colisiones de Bullet.
-    - H: Oculta la malla de colisiones de Bullet.
+    - ARRIBA: Mueve el heroe hacia adelante.
+    - ABAJO: Mueve el heroe hacia atras.
+    - IZQUIERDA: Rota el heroe hacia la izquierda.
+    - DERECHA: Rota el heroe hacia la derecha.
+    - ESPACIO: Disparo del personaje.
     - O: Muestra/Oculta un panel de información.
 - BEST TIMES: Ventana en la que se mostraran los 10 mejores tiempos que se han
 obtenido en el juego, reflejando el tiempo empleado, ademas de la fecha y hora en la que 
