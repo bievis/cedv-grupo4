@@ -1,0 +1,18 @@
+<map id="XMLCharger::LoadGameConfig" name="XMLCharger::LoadGameConfig">
+<area shape="rect" id="node2" href="$classGameConfig.html#a6e679ea9de32cb431462a47596bb102a" title="method to clear the object free the vector and deque, also clear the elements in the object ..." alt="" coords="289,5,418,32"/>
+<area shape="rect" id="node3" href="$classGameConfig.html#aba4f4ec62b861102f7652975f50a4b3d" title="method to set initial position of the hero " alt="" coords="254,56,453,83"/>
+<area shape="rect" id="node4" href="$classGameConfig.html#ae7a72a30872d6a401199efd05eaeb374" title="/brief method to set the rows Map /param newValue new rows Map to set " alt="" coords="265,107,441,133"/>
+<area shape="rect" id="node5" href="$classGameConfig.html#a465a6b5cfa27dd5da13369435740b451" title="/brief method to set the cols Map /param newValue new cols Map to set " alt="" coords="268,157,439,184"/>
+<area shape="rect" id="node6" href="$classPiece.html#a7cb3d06967a35c33036d681d706a3bc3" title="method to set the piece position in the map " alt="" coords="289,208,417,235"/>
+<area shape="rect" id="node7" href="$classPiece.html#aa9af65af8434c79a8f9cbc80e9e17f47" title="method to set the piece width " alt="" coords="296,259,411,285"/>
+<area shape="rect" id="node8" href="$classPiece.html#a3b740664bd4868874a0b32dbcb9acce2" title="method to set the piece height " alt="" coords="294,309,413,336"/>
+<area shape="rect" id="node9" href="$classPiece.html#a4683f0c0efaaf627f93779e72aa884d0" title="method to set the mesh file name " alt="" coords="269,360,437,387"/>
+<area shape="rect" id="node10" href="$classPiece.html#add132b82d23ee93ecfebb7e2f7f7b0e4" title="method to add a position of hostage " alt="" coords="276,411,431,437"/>
+<area shape="rect" id="node11" href="$classEnemyRoute.html#adeae2c4536f2cc81866a6d0e61013797" title="Method to set value identificator for the route. " alt="" coords="286,461,421,488"/>
+<area shape="rect" id="node12" href="$classEnemyRoute.html#aaf0fca313057a40e44a8c8f7f31bd2b2" title="Method to set proximity value. " alt="" coords="264,512,443,539"/>
+<area shape="rect" id="node13" href="$classEnemyRoute.html#aa509208beb123e6c1e8b0d36600077ca" title="Method to set value of route closed. " alt="" coords="255,563,452,589"/>
+<area shape="rect" id="node14" href="$classEnemyRoute.html#a0be7951ad74eff43b0f356dcb4b457b1" title="Method to add a point to the vector. " alt="" coords="275,613,431,640"/>
+<area shape="rect" id="node15" href="$classPiece.html#a7813de6ae6defe1c958fe8dd11d96eb2" title="method to add an enemy route " alt="" coords="274,664,433,691"/>
+<area shape="rect" id="node16" href="$classGameConfig.html#a3f816e251ba1e5b98d802357d02799c0" title="method to add a map piece " alt="" coords="276,715,431,741"/>
+<area shape="rect" id="node17" href="$classGameConfig.html#ab24949d090963144f10cf239413cfc70" title="method to set enemies number " alt="" coords="255,765,452,792"/>
+</map>

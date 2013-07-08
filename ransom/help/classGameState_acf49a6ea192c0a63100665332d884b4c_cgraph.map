@@ -1,0 +1,5 @@
+<map id="GameState::exit" name="GameState::exit">
+<area shape="rect" id="node2" href="$classUtilities.html#aac351cff9a13eb2d6bd02f38c5b062c0" title="method to get the Utilities object " alt="" coords="171,5,317,32"/>
+<area shape="rect" id="node4" href="$classUtilities.html#a153165e07ae59015a8abdecb84b8d521" title="method to put an overlay in the scene This method put an overlay created in ransom.overlay file, also the name should be defined in this file with the set of specifications " alt="" coords="175,56,313,83"/>
+<area shape="rect" id="node3" href="$classUtilities.html#ab1676c9ce35cf347a73d16f1094e1271" title="default constructor " alt="" coords="366,5,482,32"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Character::setHealth" name="Character::setHealth">
+<area shape="rect" id="node2" href="$classCharacter.html#a127f5ee58b01289418cf080a8328b6c7" title="method to death the caracter " alt="" coords="195,35,314,61"/>
+<area shape="rect" id="node3" href="$classCharacter.html#aef00837905f9141e7100ccb5d16ed7ce" title="method to set change visibility of character " alt="" coords="367,5,510,32"/>
+<area shape="rect" id="node4" href="$classCharacter.html#a64ec7aba00ddafc0d148b6b39dfc6448" title="method to play the sound associated to the death of an character " alt="" coords="363,57,515,98"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Character::getName" name="Character::getName">
+<area shape="rect" id="node2" href="$classCamerasController.html#afdd5502e65e41a082bd15eb0a8f79f11" title="CamerasController::\lCamerasController" alt="" coords="193,5,330,46"/>
+<area shape="rect" id="node3" href="$classCharacter.html#a3987571d84e265d508e990546c7b86f1" title="protected method to copy a character this method is used in assingnment operator and copy constructor..." alt="" coords="204,71,319,97"/>
+<area shape="rect" id="node4" href="$classCharacter.html#a0eac14bff9a793857bb2a86a2c0fcf9c" title="copy constructor " alt="" coords="379,45,522,72"/>
+<area shape="rect" id="node5" href="$classCharacter.html#a020a6412390cc5375455a77cd27320ca" title="assignment operator to copy another character " alt="" coords="380,96,521,123"/>
+</map>

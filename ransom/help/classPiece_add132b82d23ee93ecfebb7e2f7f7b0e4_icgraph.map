@@ -1,0 +1,7 @@
+<map id="Piece::addPosHostage" name="Piece::addPosHostage">
+<area shape="rect" id="node2" href="$classPiece.html#a611369b196a8b31f8c0074b4ec53fe3c" title="Method to copy the piece. " alt="" coords="263,56,353,83"/>
+<area shape="rect" id="node5" href="$classXMLCharger.html#ab3db94490a43ee8587a21deef467671e" title="method to load the xml config from disk " alt="" coords="209,107,407,133"/>
+<area shape="rect" id="node3" href="$classPiece.html#a347594badb9adb8b83d588fe801e5d41" title="Copy constructor. " alt="" coords="471,5,567,32"/>
+<area shape="rect" id="node4" href="$classPiece.html#a8b059420684d0bf0ed7cde80b42a6286" title="Assignment operator. " alt="" coords="459,56,578,83"/>
+<area shape="rect" id="node6" href="$classGameState.html#ad5fb5f0049130bf300410c9f31220f7f" title="GameState::enter" alt="" coords="456,107,581,133"/>
+</map>

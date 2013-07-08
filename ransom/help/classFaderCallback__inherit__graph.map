@@ -1,0 +1,3 @@
+<map id="FaderCallback" name="FaderCallback">
+<area shape="rect" id="node2" href="$classGameState.html" title="{GameState\n|&#45; m_bQuit\l&#45; m_bLMouseDown\l&#45; m_bRMouseDown\l&#45; m_pOverlayMgr\l&#45; _gameTrack\l&#45; _world\l&#45; _debugDrawer\l&#45; m_hero\l&#45; m_enemies\l&#45; m_hostages\ly 16 más...\l|+ GameState()\l+ enter()\l+ exit()\l+ pause()\l+ resume()\l+ buildGUI()\l+ keyPressed()\l+ keyReleased()\l+ mouseMoved()\l+ mousePressed()\ly 7 más...\l&#45; clear()\l&#45; CreateMap()\l&#45; CreateInitialWorld()\l&#45; CreateCameras()\l&#45; CreateMiniMap()\l&#45; detectCollisionHeroWithHostages()\l&#45; writeText()\l}" alt="" coords="5,147,237,621"/>
+</map>

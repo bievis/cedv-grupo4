@@ -1,0 +1,6 @@
+<map id="Character::getNodeShot" name="Character::getNodeShot">
+<area shape="rect" id="node2" href="$classCharacter.html#a8dc9a179dff2c03a9dbd0896cb03ab00" title="method to set visible the dummy entity or not " alt="" coords="217,64,378,91"/>
+<area shape="rect" id="node3" href="$classEnemy.html#abe79bdae3c0db11ac94de105702afbb7" title="method to show dummy or not " alt="" coords="440,5,587,32"/>
+<area shape="rect" id="node4" href="$classMiniMapTextureListener.html#a3c90aaffc8195f8fc3fdfcab1d6503b4" title="this method is executed before the texture is put into the rectangle2D " alt="" coords="430,57,597,98"/>
+<area shape="rect" id="node5" href="$classMiniMapTextureListener.html#a77c99d13825b2e6deb9a29417f2d45ff" title="this method is executed after the texture is put into the rectangle2D " alt="" coords="427,122,600,163"/>
+</map>

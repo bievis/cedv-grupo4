@@ -1,0 +1,51 @@
+<map id="rapidxml::xml_base::name_size" name="rapidxml::xml_base::name_size">
+<area shape="rect" id="node2" href="$classrapidxml_1_1memory__pool.html#a0a10679fc17597d339a0dc107f8a94ac" title="Clones an xml_node and its hierarchy of child nodes and attributes. Nodes and attributes are allocate..." alt="" coords="715,61,872,103"/>
+<area shape="rect" id="node3" href="$classrapidxml_1_1xml__attribute.html#ae3547cc30b201fd6d7b98c04dda26f89" title="Gets previous attribute, optionally matching attribute name. " alt="" coords="195,773,349,815"/>
+<area shape="rect" id="node4" href="$classrapidxml_1_1xml__attribute.html#a56c08d7c96203286c889a43849328a86" title="Gets next attribute, optionally matching attribute name. " alt="" coords="195,839,349,880"/>
+<area shape="rect" id="node5" href="$classrapidxml_1_1xml__node.html#a2dedeb4e04bb35e06a9a7bddf6ba652d" title="Gets first child node, optionally matching node name. " alt="" coords="446,728,581,769"/>
+<area shape="rect" id="node30" href="$classrapidxml_1_1xml__node.html#a2ace550c18cf10da6303773972d7157f" title="Gets last child node, optionally matching node name. Behaviour is undefined if node has no children..." alt="" coords="205,956,339,997"/>
+<area shape="rect" id="node31" href="$classrapidxml_1_1xml__node.html#a001ece4e227eebbd6ad0ec7dacf1c00b" title="Gets previous sibling node, optionally matching node name. Behaviour is undefined if node has no pare..." alt="" coords="205,1021,339,1063"/>
+<area shape="rect" id="node32" href="$classrapidxml_1_1xml__node.html#ac59af4dd5f0ec715753e42467dff6aed" title="Gets next sibling node, optionally matching node name. Behaviour is undefined if node has no parent..." alt="" coords="446,1859,581,1900"/>
+<area shape="rect" id="node33" href="$classrapidxml_1_1xml__node.html#ae426802be58114ffc41bf30ac6b8c37d" title="Gets first attribute of node, optionally matching attribute name. " alt="" coords="205,1256,339,1297"/>
+<area shape="rect" id="node48" href="$classrapidxml_1_1xml__node.html#a50c03f2db3fa51f27a73d86ec29a49d3" title="Gets last attribute of node, optionally matching attribute name. " alt="" coords="205,1321,339,1363"/>
+<area shape="rect" id="node49" href="$classrapidxml_1_1xml__document.html#a09e12a4233a07387d4b5a5ad239388aa" title="rapidxml::xml_document\l::parse_pi" alt="" coords="190,1387,354,1428"/>
+<area shape="rect" id="node50" href="$classrapidxml_1_1xml__document.html#aea385acd096ab200d63a777d53435ada" title="rapidxml::xml_document\l::parse_element" alt="" coords="190,1452,354,1493"/>
+<area shape="rect" id="node9" href="$classrapidxml_1_1xml__document.html#aae0a4c2e1972ab9a9e0ce91cf1166ac9" title="rapidxml::xml_document\l::parse_node_contents" alt="" coords="1002,244,1166,285"/>
+<area shape="rect" id="node36" href="$classrapidxml_1_1xml__document.html#ac0b3cd07b3d5cbaa83762a196c681519" title="rapidxml::xml_document\l::parse_node_attributes" alt="" coords="711,2155,875,2196"/>
+<area shape="rect" id="node6" href="$classrapidxml_1_1xml__node.html#ae86e92908c3eab40bbed8216e4f3f3cb" title="Prepends a new child node. The prepended child becomes the first child, and all existing children are..." alt="" coords="726,361,861,403"/>
+<area shape="rect" id="node8" href="$classrapidxml_1_1xml__node.html#a8696d098ecc9c4d2a646b43e91d58e31" title="Appends a new child node. The appended child becomes the last child. " alt="" coords="726,492,861,533"/>
+<area shape="rect" id="node10" href="$classrapidxml_1_1xml__node.html#a62bf7b276cf7a651a3337f5e0a0ef6ac" title="Removes first child node. If node has no children, behaviour is undefined. Use first_node() to test i..." alt="" coords="726,179,861,220"/>
+<area shape="rect" id="node12" href="$classrapidxml_1_1xml__node.html#a9182512e948ec451a83f116cce7c7674" title="Removes last child of the node. If node has no children, behaviour is undefined. Use first_node() to ..." alt="" coords="726,244,861,285"/>
+<area shape="rect" id="node11" href="$classrapidxml_1_1xml__node.html#a98289923eb9e8889418a9eb0207ea35c" title="Removes specified child from the node. " alt="" coords="1017,179,1151,220"/>
+<area shape="rect" id="node13" href="$classrapidxml_1_1xml__node.html#a95735358b079ae0adcfbbac69aa1fbc3" title="Removes all child nodes (but not attributes). " alt="" coords="726,427,861,468"/>
+<area shape="rect" id="node14" href="$classDotSceneLoader.html#a4e5e51eec0482d7dc91da98f7ec30ea6" title="DotSceneLoader::parseDot\lScene" alt="" coords="1771,1260,1949,1301"/>
+<area shape="rect" id="node15" href="$classDotSceneLoader.html#afe7449004d98aaac7cfba2f085f4d634" title="DotSceneLoader::processScene" alt="" coords="1513,1267,1722,1294"/>
+<area shape="rect" id="node16" href="$classDotSceneLoader.html#aff673cad20a7eae2f743efea687f825e" title="DotSceneLoader::processNodes" alt="" coords="1254,1343,1463,1370"/>
+<area shape="rect" id="node17" href="$classDotSceneLoader.html#ace9911dcb7cee7ccce0612d95d57f9f8" title="DotSceneLoader::processEnvironment" alt="" coords="963,913,1205,939"/>
+<area shape="rect" id="node18" href="$classDotSceneLoader.html#adbcb5d6d248fcfa07f3e38c83e353807" title="DotSceneLoader::processTerrain" alt="" coords="979,1703,1189,1730"/>
+<area shape="rect" id="node19" href="$classDotSceneLoader.html#a4d2ad2e57d5309983d8d136cf6a9c12f" title="DotSceneLoader::processTerrainPage" alt="" coords="673,1703,914,1730"/>
+<area shape="rect" id="node20" href="$classDotSceneLoader.html#a7b189925bc0cb9a991f86148df67bff3" title="DotSceneLoader::processBlendmaps" alt="" coords="675,1754,912,1781"/>
+<area shape="rect" id="node21" href="$classDotSceneLoader.html#ad4aff9c05dd7defd66206debb759592c" title="DotSceneLoader::processLight" alt="" coords="693,1166,893,1193"/>
+<area shape="rect" id="node22" href="$classDotSceneLoader.html#a562a0e63077fd53df85b32ffd0100a7c" title="DotSceneLoader::processCamera" alt="" coords="685,1217,902,1243"/>
+<area shape="rect" id="node23" href="$classDotSceneLoader.html#a92dd78af655eaee1cbcd0ba7885fd1e1" title="DotSceneLoader::processNode" alt="" coords="983,1369,1185,1395"/>
+<area shape="rect" id="node24" href="$classDotSceneLoader.html#a16900594200599d02bb08b5ec0a34266" title="DotSceneLoader::processLook\lTarget" alt="" coords="693,1369,893,1411"/>
+<area shape="rect" id="node25" href="$classDotSceneLoader.html#a45fb0eb38492ea4a46f78ec3f57411ae" title="DotSceneLoader::processTrack\lTarget" alt="" coords="691,1435,895,1476"/>
+<area shape="rect" id="node26" href="$classDotSceneLoader.html#aba6952eeaafa73128497c26e361bc46a" title="DotSceneLoader::processEntity" alt="" coords="690,1115,897,1142"/>
+<area shape="rect" id="node27" href="$classDotSceneLoader.html#ab1806b8712b94711db9d9c1f069bf334" title="DotSceneLoader::processFog" alt="" coords="696,913,891,939"/>
+<area shape="rect" id="node28" href="$classDotSceneLoader.html#a9083c3b65cb7b20a52cf833a06d5cdfb" title="DotSceneLoader::processSkyBox" alt="" coords="684,1065,903,1091"/>
+<area shape="rect" id="node29" href="$classDotSceneLoader.html#ade3619ec3d8b388d479104eaf471c187" title="DotSceneLoader::processSkyDome" alt="" coords="679,862,908,889"/>
+<area shape="rect" id="node7" href="$classrapidxml_1_1xml__node.html#a666880f42a7e486d78cc45ed51c7c46d" title="Inserts a new child node at specified place inside the node. All children after and including the spe..." alt="" coords="1017,427,1151,468"/>
+<area shape="rect" id="node34" href="$classrapidxml_1_1xml__node.html#a8b62ee76489faf8e2d1210869d547684" title="Prepends a new attribute to the node. " alt="" coords="446,1256,581,1297"/>
+<area shape="rect" id="node35" href="$classrapidxml_1_1xml__node.html#a33ce3386f8c42dd4db658b75cbb6e6c4" title="Appends a new attribute to the node. " alt="" coords="446,2125,581,2167"/>
+<area shape="rect" id="node37" href="$classrapidxml_1_1xml__node.html#aa95192d2a165cca16c551ed2a2a06aec" title="Removes first attribute of the node. If node has no attributes, behaviour is undefined. Use first_attribute() to test if node has attributes. " alt="" coords="437,1751,590,1792"/>
+<area shape="rect" id="node39" href="$classrapidxml_1_1xml__node.html#a1781a2cbedc9a51d609ad5b528125635" title="Removes last attribute of the node. If node has no attributes, behaviour is undefined. Use first_attribute() to test if node has attributes. " alt="" coords="437,1428,590,1469"/>
+<area shape="rect" id="node38" href="$classrapidxml_1_1xml__node.html#a6f97b1b4f46a94a4587915df3c0c6b57" title="Removes specified attribute from node. " alt="" coords="726,1805,861,1847"/>
+<area shape="rect" id="node40" href="$classrapidxml_1_1xml__node.html#aa8d5d9484aa1eb5ff1841a073c84c1aa" title="Removes all attributes of node. " alt="" coords="437,1493,589,1535"/>
+<area shape="rect" id="node41" href="$classDotSceneLoader.html#a1a3437b6e166ae938db91ef780671e0d" title="DotSceneLoader::getAttrib" alt="" coords="426,1322,601,1349"/>
+<area shape="rect" id="node42" href="$classDotSceneLoader.html#a52668f1e4c81acd5a4be7805fc16e172" title="DotSceneLoader::getAttribReal" alt="" coords="413,1139,614,1166"/>
+<area shape="rect" id="node43" href="$classDotSceneLoader.html#af74c81daf6a798db68f73481b4d5507a" title="DotSceneLoader::getAttribBool" alt="" coords="413,1089,614,1115"/>
+<area shape="rect" id="node44" href="$classDotSceneLoader.html#a8c5c2effeeca217dc5a36c1756f33f28" title="DotSceneLoader::parseVector3" alt="" coords="412,1377,615,1403"/>
+<area shape="rect" id="node45" href="$classDotSceneLoader.html#aceca9795e6d7181152f04e01f3fc521e" title="DotSceneLoader::parseQuaternion" alt="" coords="403,1026,624,1053"/>
+<area shape="rect" id="node46" href="$classDotSceneLoader.html#a113629751b9dc54f7ea6688f8f4bbd7b" title="DotSceneLoader::parseColour" alt="" coords="416,950,611,977"/>
+<area shape="rect" id="node47" href="$classDotSceneLoader.html#abc32ae7c2cfe25e45c7e2f4e849b0639" title="DotSceneLoader::processUser\lDataReference" alt="" coords="414,1191,613,1232"/>
+</map>

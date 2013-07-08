@@ -1,0 +1,8 @@
+<map id="SoundFXManager::load" name="SoundFXManager::load">
+<area shape="rect" id="node2" href="$classCharacter.html#a6d2e00bf6d024fa646cc80a28717d3e2" title="character constructor parametrized " alt="" coords="211,5,354,32"/>
+<area shape="rect" id="node3" href="$classEnemy.html#a7e43bad5d33ad995b0f1807d83254c29" title="Enemy constructor parametrized. " alt="" coords="227,56,339,83"/>
+<area shape="rect" id="node4" href="$classGameState.html#ad5fb5f0049130bf300410c9f31220f7f" title="GameState::enter" alt="" coords="220,107,345,133"/>
+<area shape="rect" id="node5" href="$classHostage.html#abb56ddf75f62be7415c7ac316df5e9ea" title="Hostage constructor parametrized. " alt="" coords="219,157,346,184"/>
+<area shape="rect" id="node6" href="$classMenuState.html#a699943c1bc8f05c5983a0a898a8fcf30" title="MenuState::enter" alt="" coords="221,208,344,235"/>
+<area shape="rect" id="node7" href="$classPauseState.html#a6848c37b470152c1c019bcde9eef9dd6" title="PauseState::enter" alt="" coords="219,259,346,285"/>
+</map>

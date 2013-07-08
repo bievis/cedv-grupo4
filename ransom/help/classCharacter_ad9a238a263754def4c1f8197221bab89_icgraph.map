@@ -1,0 +1,8 @@
+<map id="Character::changeAnimation" name="Character::changeAnimation">
+<area shape="rect" id="node2" href="$classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ..." alt="" coords="240,26,352,52"/>
+<area shape="rect" id="node6" href="$classCharacter.html#a631e21c8f5d76b2d3dc4a4a94079f177" title="method to stop character movement " alt="" coords="401,76,549,103"/>
+<area shape="rect" id="node7" href="$classEnemy.html#a12b097672cc668d70a3312660152de0b" title="method to watch around the enemy 360º " alt="" coords="598,127,749,154"/>
+<area shape="rect" id="node3" href="$classEnemy.html#aac1e312b06511853261b06b7668c213e" title="method to perform the character walk movement to position This method uses OgreBullet to move the cha..." alt="" coords="417,26,532,52"/>
+<area shape="rect" id="node4" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="798,51,909,78"/>
+<area shape="rect" id="node5" href="$classEnemy.html#a47b237541648073ead026c8592db22b0" title="method to walk using the route built to the enemy " alt="" coords="598,26,749,52"/>
+</map>

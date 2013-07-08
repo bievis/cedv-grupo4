@@ -1,0 +1,10 @@
+<map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
+<area shape="rect" id="node1" href="$classFaderCallback.html" title="FaderCallback" alt="" coords="191,5,297,32"/>
+<area shape="rect" id="node2" href="$classGameState.html" title="GameState" alt="" coords="356,5,444,32"/>
+<area shape="rect" id="node4" href="$classAppState.html" title="AppState" alt="" coords="206,56,282,83"/>
+<area shape="rect" id="node7" href="$classOgreFramework.html" title="OgreFramework" alt="" coords="187,107,301,133"/>
+<area shape="rect" id="node5" href="$classMenuState.html" title="MenuState" alt="" coords="357,107,443,133"/>
+<area shape="rect" id="node6" href="$classPauseState.html" title="PauseState" alt="" coords="355,56,445,83"/>
+<area shape="rect" id="node10" href="$classSoundFXManager.html" title="SoundFXManager" alt="" coords="182,208,306,235"/>
+<area shape="rect" id="node11" href="$classTrackManager.html" title="TrackManager" alt="" coords="192,157,296,184"/>
+</map>

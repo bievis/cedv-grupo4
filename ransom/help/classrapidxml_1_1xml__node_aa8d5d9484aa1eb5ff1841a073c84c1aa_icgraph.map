@@ -1,0 +1,5 @@
+<map id="rapidxml::xml_node::remove_all_attributes" name="rapidxml::xml_node::remove_all_attributes">
+<area shape="rect" id="node2" href="$classrapidxml_1_1xml__document.html#ac6e73ff9ac323bf5a370c38feb03a6b1" title="Parses zero&#45;terminated XML string according to given flags. Passed string will be modified by the par..." alt="" coords="206,5,370,46"/>
+<area shape="rect" id="node4" href="$classrapidxml_1_1xml__document.html#a826929ff54242532198701f19ff5f83f" title="Clears the document by deleting all nodes and clearing the memory pool. All nodes owned by document p..." alt="" coords="206,70,370,111"/>
+<area shape="rect" id="node3" href="$classDotSceneLoader.html#a4e5e51eec0482d7dc91da98f7ec30ea6" title="DotSceneLoader::parseDot\lScene" alt="" coords="419,5,597,46"/>
+</map>

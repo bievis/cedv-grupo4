@@ -1,0 +1,6 @@
+<map id="Representación gráfica de la clase" name="Representación gráfica de la clase">
+<area shape="rect" id="node1" href="$classCharacter.html" title="Class to manage the character. " alt="" coords="6,56,85,83"/>
+<area shape="rect" id="node2" href="$classEnemy.html" title="Enemy" alt="" coords="138,5,201,32"/>
+<area shape="rect" id="node3" href="$classHero.html" title="Hero" alt="" coords="145,56,194,83"/>
+<area shape="rect" id="node4" href="$classHostage.html" title="Hostage" alt="" coords="134,107,205,133"/>
+</map>

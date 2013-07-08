@@ -1,0 +1,9 @@
+<map id="rapidxml::xml_node::remove_node" name="rapidxml::xml_node::remove_node">
+<area shape="rect" id="node2" href="$classrapidxml_1_1xml__base.html#a7f31ae930f93852830234db1ae59c4c4" title="Gets node parent. " alt="" coords="190,5,325,46"/>
+<area shape="rect" id="node3" href="$classrapidxml_1_1xml__node.html#a2dedeb4e04bb35e06a9a7bddf6ba652d" title="Gets first child node, optionally matching node name. " alt="" coords="374,122,509,163"/>
+<area shape="rect" id="node7" href="$classrapidxml_1_1xml__node.html#a62bf7b276cf7a651a3337f5e0a0ef6ac" title="Removes first child node. If node has no children, behaviour is undefined. Use first_node() to test i..." alt="" coords="190,122,325,163"/>
+<area shape="rect" id="node8" href="$classrapidxml_1_1xml__node.html#a9182512e948ec451a83f116cce7c7674" title="Removes last child of the node. If node has no children, behaviour is undefined. Use first_node() to ..." alt="" coords="190,187,325,229"/>
+<area shape="rect" id="node4" href="$classrapidxml_1_1xml__base.html#a9a09739310469995db078ebd0da3ed45" title="Gets name of the node. Interpretation of name depends on type of node. Note that name will not be zer..." alt="" coords="558,89,693,130"/>
+<area shape="rect" id="node6" href="$classrapidxml_1_1xml__base.html#a7e7f98b3d01e1eab8dc1ca69aad9af84" title="Gets size of node name, not including terminator character. This function works correctly irrespectiv..." alt="" coords="558,154,693,195"/>
+<area shape="rect" id="node5" href="$classrapidxml_1_1xml__base.html#ad96ff6b1e41dab3ff60b9bc4df769a75" title="rapidxml::xml_base\l::nullstr" alt="" coords="742,89,877,130"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Enemy::getRenderTexture" name="Enemy::getRenderTexture">
+<area shape="rect" id="node2" href="$classEnemy.html#a1b0dfc354ecf21a0b8b16513d6905624" title="protected method to copy a enemy this method is used in assignment operator and copy constructor ..." alt="" coords="227,31,325,57"/>
+<area shape="rect" id="node3" href="$classEnemy.html#a1a816b20ac6b5da4684fbe9890898365" title="copy constructor " alt="" coords="381,5,493,32"/>
+<area shape="rect" id="node4" href="$classEnemy.html#a543a512b1bc3c9d46ee00f696de31860" title="assignment operator to copy another enemy " alt="" coords="374,56,501,83"/>
+</map>

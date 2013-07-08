@@ -1,0 +1,8 @@
+<map id="Character::Character" name="Character::Character">
+<area shape="rect" id="node2" href="$classUtilities.html#aac351cff9a13eb2d6bd02f38c5b062c0" title="method to get the Utilities object " alt="" coords="227,5,373,32"/>
+<area shape="rect" id="node4" href="$classUtilities.html#ad272a05542524f6480df6411838a968d" title="this method add an element (mesh name) in the scene (Ogre) and in the world (OgreBullet) This method ..." alt="" coords="224,57,376,98"/>
+<area shape="rect" id="node5" href="$classSoundFXManager.html#a389a07b5b177b82dd6d1b20e294acb2f" title="SoundFXManager::getSingleton" alt="" coords="198,123,402,149"/>
+<area shape="rect" id="node6" href="$classSoundFXManager.html#a0c6833e2c3e1643a0539a9855b843d8f" title="SoundFXManager::load" alt="" coords="222,173,378,200"/>
+<area shape="rect" id="node7" href="$classUtilities.html#a3646c62aff5e331550cdf464ad5179bf" title="this method add an shot at character " alt="" coords="239,225,361,266"/>
+<area shape="rect" id="node3" href="$classUtilities.html#ab1676c9ce35cf347a73d16f1094e1271" title="default constructor " alt="" coords="451,5,567,32"/>
+</map>

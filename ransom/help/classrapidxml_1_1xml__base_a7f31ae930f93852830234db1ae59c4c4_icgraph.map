@@ -1,0 +1,17 @@
+<map id="rapidxml::xml_base::parent" name="rapidxml::xml_base::parent">
+<area shape="rect" id="node2" href="$classrapidxml_1_1xml__attribute.html#a8b6d31d899e27f01bde35b53d98496ec" title="Gets document of which attribute is a child. " alt="" coords="189,5,344,46"/>
+<area shape="rect" id="node3" href="$classrapidxml_1_1xml__node.html#adb6ad21a4590cf13d4a6a5036e3cdbbc" title="Gets document of which node is a child. " alt="" coords="199,70,334,111"/>
+<area shape="rect" id="node4" href="$classrapidxml_1_1xml__node.html#ae86e92908c3eab40bbed8216e4f3f3cb" title="Prepends a new child node. The prepended child becomes the first child, and all existing children are..." alt="" coords="199,135,334,177"/>
+<area shape="rect" id="node6" href="$classrapidxml_1_1xml__node.html#a8696d098ecc9c4d2a646b43e91d58e31" title="Appends a new child node. The appended child becomes the last child. " alt="" coords="199,253,334,294"/>
+<area shape="rect" id="node5" href="$classrapidxml_1_1xml__node.html#a666880f42a7e486d78cc45ed51c7c46d" title="Inserts a new child node at specified place inside the node. All children after and including the spe..." alt="" coords="410,157,545,198"/>
+<area shape="rect" id="node11" href="$classrapidxml_1_1xml__node.html#a98289923eb9e8889418a9eb0207ea35c" title="Removes specified child from the node. " alt="" coords="199,318,334,359"/>
+<area shape="rect" id="node12" href="$classrapidxml_1_1xml__node.html#a8b62ee76489faf8e2d1210869d547684" title="Prepends a new attribute to the node. " alt="" coords="199,383,334,425"/>
+<area shape="rect" id="node14" href="$classrapidxml_1_1xml__node.html#a33ce3386f8c42dd4db658b75cbb6e6c4" title="Appends a new attribute to the node. " alt="" coords="199,501,334,542"/>
+<area shape="rect" id="node13" href="$classrapidxml_1_1xml__node.html#a9fe659cdf4a5b3bbf5e8ffc98db5a84f" title="Inserts a new attribute at specified place inside the node. All attributes after and including the sp..." alt="" coords="410,438,545,479"/>
+<area shape="rect" id="node16" href="$classrapidxml_1_1xml__node.html#a6f97b1b4f46a94a4587915df3c0c6b57" title="Removes specified attribute from node. " alt="" coords="199,566,334,607"/>
+<area shape="rect" id="node7" href="$classrapidxml_1_1xml__document.html#ac6e73ff9ac323bf5a370c38feb03a6b1" title="Parses zero&#45;terminated XML string according to given flags. Passed string will be modified by the par..." alt="" coords="395,222,559,263"/>
+<area shape="rect" id="node9" href="$classrapidxml_1_1xml__document.html#aec6cedf45179b6378c670bc3ea509e61" title="rapidxml::xml_document\l::parse_and_append_data" alt="" coords="392,287,563,329"/>
+<area shape="rect" id="node10" href="$classrapidxml_1_1xml__document.html#aae0a4c2e1972ab9a9e0ce91cf1166ac9" title="rapidxml::xml_document\l::parse_node_contents" alt="" coords="395,353,559,394"/>
+<area shape="rect" id="node8" href="$classDotSceneLoader.html#a4e5e51eec0482d7dc91da98f7ec30ea6" title="DotSceneLoader::parseDot\lScene" alt="" coords="611,222,789,263"/>
+<area shape="rect" id="node15" href="$classrapidxml_1_1xml__document.html#ac0b3cd07b3d5cbaa83762a196c681519" title="rapidxml::xml_document\l::parse_node_attributes" alt="" coords="395,503,559,545"/>
+</map>

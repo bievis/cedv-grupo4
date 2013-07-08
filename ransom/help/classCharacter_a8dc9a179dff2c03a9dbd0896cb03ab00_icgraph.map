@@ -1,0 +1,5 @@
+<map id="Character::showDummy" name="Character::showDummy">
+<area shape="rect" id="node2" href="$classEnemy.html#abe79bdae3c0db11ac94de105702afbb7" title="method to show dummy or not " alt="" coords="229,5,376,32"/>
+<area shape="rect" id="node3" href="$classMiniMapTextureListener.html#a3c90aaffc8195f8fc3fdfcab1d6503b4" title="this method is executed before the texture is put into the rectangle2D " alt="" coords="219,57,386,98"/>
+<area shape="rect" id="node4" href="$classMiniMapTextureListener.html#a77c99d13825b2e6deb9a29417f2d45ff" title="this method is executed after the texture is put into the rectangle2D " alt="" coords="216,122,389,163"/>
+</map>

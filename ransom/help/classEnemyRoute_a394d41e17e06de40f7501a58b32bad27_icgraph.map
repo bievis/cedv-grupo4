@@ -1,0 +1,7 @@
+<map id="EnemyRoute::getPoint" name="EnemyRoute::getPoint">
+<area shape="rect" id="node2" href="$classEnemy.html#a7e43bad5d33ad995b0f1807d83254c29" title="Enemy constructor parametrized. " alt="" coords="257,5,369,32"/>
+<area shape="rect" id="node3" href="$classEnemy.html#a47b237541648073ead026c8592db22b0" title="method to walk using the route built to the enemy " alt="" coords="238,56,389,83"/>
+<area shape="rect" id="node5" href="$classGameConfig.html#aad8ca74f826215f243792a9b934e6806" title="method to create Map random " alt="" coords="208,107,419,133"/>
+<area shape="rect" id="node6" href="$classGameState.html#a8b6337e017e4f8989953e214e5a0d0cd" title="GameState::CreateInitial\lWorld" alt="" coords="231,158,395,199"/>
+<area shape="rect" id="node4" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="467,56,578,83"/>
+</map>

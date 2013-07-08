@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.4"/>
+<title>RANSOM: Fichero Fuente src/GameConfig.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">RANSOM
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.4 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="globals.html"><span>Miembros&#160;de&#160;los&#160;ficheros</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('GameConfig_8cpp_source.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>&apos;typedefs&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Valores de enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>&apos;defines&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">GameConfig.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="GameConfig_8cpp.html">Ir a la documentación de este archivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="GameConfig_8h.html">GameConfig.h</a>&gt;</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// ## Class Game Config ##</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
+<div class="line"><a name="l00005"></a><span class="lineno"><a class="code" href="classGameConfig.html#aa6c5ed14b29de260101212fafa6eea2e">    5</a></span>&#160;<a class="code" href="classGameConfig.html#aa6c5ed14b29de260101212fafa6eea2e" title="default constructor ">GameConfig::GameConfig</a>()</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;  {</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;  }</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="code" href="classGameConfig.html#a6e679ea9de32cb431462a47596bb102a">    9</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#a6e679ea9de32cb431462a47596bb102a" title="method to clear the object free the vector and deque, also clear the elements in the object ...">GameConfig::clear</a>()</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;  {</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.size(); i++ )</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;      {</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <span class="keywordflow">if</span> ( <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>[i] )</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;          <span class="keyword">delete</span> <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>[i];</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;      }</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.clear();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>.clear();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>.size(); i++ )</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;      {</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordflow">if</span> ( <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>[i] )</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;          {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;            <span class="keyword">delete</span> <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>[i];</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;          }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;      }</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>.clear();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>.clear();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;  }</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="code" href="classGameConfig.html#a4a816177ab7c271d934c9c57acacb39a">   34</a></span>&#160;<a class="code" href="classGameConfig.html#a4a816177ab7c271d934c9c57acacb39a" title="default destructor ">GameConfig::~GameConfig</a>()</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;  {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <a class="code" href="classGameConfig.html#a6e679ea9de32cb431462a47596bb102a" title="method to clear the object free the vector and deque, also clear the elements in the object ...">clear</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;  }</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="code" href="classGameConfig.html#af52fce4f256602b1de6fb6e353b30b88">   39</a></span>&#160;<a class="code" href="classGameConfig.html#aa6c5ed14b29de260101212fafa6eea2e" title="default constructor ">GameConfig::GameConfig</a> ( <span class="keyword">const</span> <a class="code" href="classGameConfig.html" title="Class to manage the game configuration Hostages, Enemies &amp; Hero config. ">GameConfig</a> &amp;source )</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;  {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="classGameConfig.html#a34a930afe4f272cbc38c39deed01c9ee" title="Method to copy object. ">copy</a> ( source );</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="code" href="classGameConfig.html#a1c6595a6de59ca01443ec09cccf98ef5">   44</a></span>&#160;<a class="code" href="classGameConfig.html" title="Class to manage the game configuration Hostages, Enemies &amp; Hero config. ">GameConfig</a> <a class="code" href="classGameConfig.html#a1c6595a6de59ca01443ec09cccf98ef5" title="assignment operator ">GameConfig::operator= </a>( <span class="keyword">const</span> <a class="code" href="classGameConfig.html" title="Class to manage the game configuration Hostages, Enemies &amp; Hero config. ">GameConfig</a> &amp;source )</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;  {</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordflow">if</span> (<span class="keyword">this</span> == &amp;source) <span class="keywordflow">return</span> *<span class="keyword">this</span>; <span class="comment">// handle self assignment</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classGameConfig.html#a34a930afe4f272cbc38c39deed01c9ee" title="Method to copy object. ">copy</a> ( source );</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;  }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="code" href="classGameConfig.html#a34a930afe4f272cbc38c39deed01c9ee">   53</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#a34a930afe4f272cbc38c39deed01c9ee" title="Method to copy object. ">GameConfig::copy</a> ( <span class="keyword">const</span> <a class="code" href="classGameConfig.html" title="Class to manage the game configuration Hostages, Enemies &amp; Hero config. ">GameConfig</a> &amp;source )</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;  {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classGameConfig.html#a6e679ea9de32cb431462a47596bb102a" title="method to clear the object free the vector and deque, also clear the elements in the object ...">clear</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="classGameConfig.html#a85a450e0953c9119910c712661f5d10d" title="initial position point for the hero ">_initialPos_Hero</a> = source.<a class="code" href="classGameConfig.html#a48d71bb4865a05c32c48a1ee8da9385b" title="method to get initial position of the hero ">getInitialPosHero</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="classGameConfig.html#aee234add981c32e2e7ccaaf1a4d40c7c" title="enemy number to view ">_numEnemies</a> = source.<a class="code" href="classGameConfig.html#afb4036d5657d17b1228f4a8bcdfd293e" title="method to get enemies number ">getNumEnemies</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordflow">for</span> ( i = 0; i &lt; source.<a class="code" href="classGameConfig.html#a2b0e9b1dab915558cff26781c9cd7412" title="method to get routes vector size ">getNumEnemyRoutes</a>(); i++ )</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;      {</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                  <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.push_back(source.<a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>[i]);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;      }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">for</span> ( i = 0; i &lt; source.<a class="code" href="classGameConfig.html#a7f3b616aca13a39ddc7734f28695caa2" title="method to get hostages number ">getNumHostages</a>(); i++ )</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;      {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                  <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>.push_back(source.<a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>[i]);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;      }</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="classGameConfig.html#a1a0f61bc3fca7ffed496884337594c45" title="rows of map ">_rowsMap</a> = source.<a class="code" href="classGameConfig.html#a1a0f61bc3fca7ffed496884337594c45" title="rows of map ">_rowsMap</a>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="classGameConfig.html#a8b48bd2da91e51ca939052620fb33a22" title="cols map ">_colsMap</a> = source.<a class="code" href="classGameConfig.html#a8b48bd2da91e51ca939052620fb33a22" title="cols map ">_colsMap</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a> *ptr = NULL;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordflow">for</span> ( i = 0; i &lt; source.<a class="code" href="classGameConfig.html#a971304d13164d8e5110cbb23c6381697" title="method to get the number of pieces ">getNumPieces</a>(); i++ )</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;      {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keywordflow">if</span> ( ((<a class="code" href="classGameConfig.html" title="Class to manage the game configuration Hostages, Enemies &amp; Hero config. ">GameConfig</a>&amp;)source).getPiece(i) )</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;          {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;            ptr = <span class="keyword">new</span> <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a> ( *(((<a class="code" href="classGameConfig.html" title="Class to manage the game configuration Hostages, Enemies &amp; Hero config. ">GameConfig</a>&amp;)source).<a class="code" href="classGameConfig.html#af20512714199baa74a107e6da06ae7bd" title="method to get piece of config ">getPiece</a>(i)) );</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;            <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>.push_back ( ptr );</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;          }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;      }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <span class="keywordflow">for</span> ( i = 0; i &lt; source.<a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>.size(); i++ )</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;      {</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;                  <a class="code" href="structST__PART__MAP.html">T_PART_MAP</a> part;</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;                  part.<a class="code" href="structST__PART__MAP.html#aef65e18bc24977e8cf55f3b26435cc37">pos</a> = source.<a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>[i].pos;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;                  part.<a class="code" href="structST__PART__MAP.html#a287835f6f7ffc4648501daba9414dfe0">pPiece</a> = source.<a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>[i].pPiece;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;                  <a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>.push_back(part);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;      }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;  }</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="code" href="classGameConfig.html#ae621a1855d0887c77a93609b69663270">   95</a></span>&#160;<span class="keyword">const</span> <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a>&amp; <a class="code" href="classGameConfig.html#ae621a1855d0887c77a93609b69663270" title="method to get the enemy route assigned with identificator (index) ">GameConfig::getEnemyRoute</a> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index )<span class="keyword"> const</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <span class="keywordflow">if</span> ( <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.size() &gt; 0 )</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                <span class="keywordflow">return</span> *(<a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>[index]);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        }</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">char</span> cad[100];</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    sprintf ( cad, <span class="stringliteral">&quot;El ID de la ruta %d no ha sido localizado.&quot;</span>, index );</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classGameConfigException.html" title="Class with the Exception in the GameConfig class. ">GameConfigException</a> ( cad );</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;  }</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno"><a class="code" href="classGameConfig.html#a27b8b59004929cc4142046644c2a68c4">  109</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#a27b8b59004929cc4142046644c2a68c4" title="method to add an enemy route ">GameConfig::addEnemyRoute</a> ( <span class="keyword">const</span> <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a>&amp; newRoute )</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;  {</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a>* ptrNew = <span class="keyword">new</span> <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a> ( newRoute );</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.push_back ( ptrNew );</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;  }</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="code" href="classGameConfig.html#a7ded4ed60d618084f633fce9a5cda62c">  115</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#a7ded4ed60d618084f633fce9a5cda62c" title="method to print info ">GameConfig::print</a>()</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;  {</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">string</span> msg = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;========================&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot; * Game Configuration *&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;========================&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;Num Enemies      : &quot;</span> &lt;&lt; <a class="code" href="classGameConfig.html#aee234add981c32e2e7ccaaf1a4d40c7c" title="enemy number to view ">_numEnemies</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;Initial Pos Hero : &quot;</span> &lt;&lt; <a class="code" href="classGameConfig.html#a85a450e0953c9119910c712661f5d10d" title="initial position point for the hero ">_initialPos_Hero</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;Enemy Routes     : &quot;</span> &lt;&lt; <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.size() &lt;&lt; endl;</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordflow">for</span> ( i = 0; i &lt; <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.size(); i++ )</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;      {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>[i]-&gt;print();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;      }</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">for</span> ( i = 0; i &lt; <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>.size(); i++ )</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;      {</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        msg = <span class="stringliteral">&quot;Pos. Hostage&quot;</span> + Ogre::StringConverter::toString(i);</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        cout &lt;&lt; msg &lt;&lt; <span class="stringliteral">&quot;    : &quot;</span> &lt;&lt; <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>[i] &lt;&lt; endl;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;      }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    <span class="keywordflow">for</span> ( i = 0; i &lt; <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>.size(); i++ )</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;      {</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        msg = <span class="stringliteral">&quot;Piece&quot;</span> + Ogre::StringConverter::toString(i);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        cout &lt;&lt; msg &lt;&lt; <span class="stringliteral">&quot;    : &quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordflow">if</span> ( <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>[i] ) <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>[i]-&gt;print();</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;      }</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    cout &lt;&lt; <span class="stringliteral">&quot;========================&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;  }</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;</div>
+<div class="line"><a name="l00148"></a><span class="lineno"><a class="code" href="classGameConfig.html#aa15820559c761385e501bbb63b0be3aa">  148</a></span>&#160;<span class="keyword">const</span> Ogre::Vector3&amp; <a class="code" href="classGameConfig.html#aa15820559c761385e501bbb63b0be3aa" title="method to get the position of the hostage(index) ">GameConfig::getPositionHostage</a> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index )<span class="keyword"> const</span></div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">  </span>{</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">if</span> ( index &lt; <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>.size() )</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;      <span class="keywordflow">return</span> <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>[index];</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;      <span class="keywordflow">throw</span> <a class="code" href="classGameConfigException.html" title="Class with the Exception in the GameConfig class. ">GameConfigException</a> ( <span class="stringliteral">&quot;Error Position Hostage : Index Out of Bounds&quot;</span> );</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;  }</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;</div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="code" href="classGameConfig.html#a4811760e0bf2e39217b4dbe1164e890f">  156</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#a4811760e0bf2e39217b4dbe1164e890f" title="method to add a hostage position, namely, a hostage ">GameConfig::addHostagePosition</a> ( <span class="keyword">const</span> Ogre::Vector3&amp; p )</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;  {</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>.push_back ( p );</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;  }</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;</div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="code" href="classGameConfig.html#a3f816e251ba1e5b98d802357d02799c0">  161</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#a3f816e251ba1e5b98d802357d02799c0" title="method to add a map piece ">GameConfig::addPiece</a> ( <span class="keyword">const</span> <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a>&amp; newPiece )</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;  {</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;    <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a>* ptrNew = <span class="keyword">new</span> <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a> ( newPiece );</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>.push_back ( ptrNew );</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;  }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno"><a class="code" href="classGameConfig.html#af20512714199baa74a107e6da06ae7bd">  167</a></span>&#160;<a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a>* <a class="code" href="classGameConfig.html#af20512714199baa74a107e6da06ae7bd" title="method to get piece of config ">GameConfig::getPiece</a> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index )</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;  {</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a>* ptr = NULL;</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;    <span class="keywordflow">if</span> ( index &lt; <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>.size() )</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;      ptr = <a class="code" href="classGameConfig.html#af3f65ac7478471aeff7f9aeecd95c3d9" title="the pieces which compounds the map ">_pieces</a>[index];</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;    <span class="keywordflow">return</span> ptr;</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;  }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;</div>
+<div class="line"><a name="l00177"></a><span class="lineno"><a class="code" href="classGameConfig.html#ac51146d3fb4b4c3cf7f1562e0327d2aa">  177</a></span>&#160;<a class="code" href="structST__PART__MAP.html">T_PART_MAP</a> <a class="code" href="classGameConfig.html#ac51146d3fb4b4c3cf7f1562e0327d2aa" title="method to get the number of piece of map ">GameConfig::getPieceMap</a> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> index )</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;  {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;          <span class="keywordflow">return</span> <a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>[index];</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;  }</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;</div>
+<div class="line"><a name="l00182"></a><span class="lineno"><a class="code" href="classGameConfig.html#aad8ca74f826215f243792a9b934e6806">  182</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classGameConfig.html#aad8ca74f826215f243792a9b934e6806" title="method to create Map random ">GameConfig::createMapRandom</a> () {</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        srand(time(NULL));</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="comment">        * Calculamos las posiciones donde podemos poner piezas en el mapa</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;<span class="comment">        */</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordtype">float</span> sizeX = <a class="code" href="classGameConfig.html#a8b48bd2da91e51ca939052620fb33a22" title="cols map ">_colsMap</a>;</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        <span class="keywordtype">float</span> sizeZ = <a class="code" href="classGameConfig.html#a1a0f61bc3fca7ffed496884337594c45" title="rows of map ">_rowsMap</a>;</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;        <span class="comment">// numero de piezas por cuadrante a lo anchho y a lo largo</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;        <span class="keywordtype">float</span> nPartsCX = sizeX / 2.0f; <span class="comment">// Dividir en 2 cuadrantes</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;        <span class="keywordtype">float</span> nPartsCZ = sizeZ / 2.0f; <span class="comment">// Dividir en 2 cuadrantes</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        <span class="comment">// Coordenada de referencia de cada cuadrante</span></div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        Ogre::Vector3 C1(-1,1,-1);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        Ogre::Vector3 C2(1,1,-1);</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;        Ogre::Vector3 C3(-1,1,1);</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;        Ogre::Vector3 C4(1,1,1);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;        std::vector&lt;Ogre::Vector3&gt; pointsParts;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;        <span class="comment">// Posicion de la primera pieza en cada cuadrante</span></div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        <span class="keywordtype">float</span> posX = <a class="code" href="GameConfig_8h.html#a95c2c18c2a5f56f4e02efc3198907351">SIZE_PART</a> / 2.0;</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        <span class="keywordtype">float</span> posZ = <a class="code" href="GameConfig_8h.html#a95c2c18c2a5f56f4e02efc3198907351">SIZE_PART</a> / 2.0;</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;        Ogre::Vector3 p(posX,0,posZ);</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> iz = 0; iz &lt; nPartsCZ; iz++ ) {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                p.x = <a class="code" href="GameConfig_8h.html#a95c2c18c2a5f56f4e02efc3198907351">SIZE_PART</a> / 2.0;</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ix = 0; ix &lt; nPartsCX; ix++ ) {</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;                        pointsParts.push_back(p * C1);</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;                        pointsParts.push_back(p * C2);</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                        pointsParts.push_back(p * C3);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;                        pointsParts.push_back(p * C4);</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;                        p.x = p.x + <a class="code" href="GameConfig_8h.html#a95c2c18c2a5f56f4e02efc3198907351">SIZE_PART</a>;</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;                }</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;                p.z = p.z + <a class="code" href="GameConfig_8h.html#a95c2c18c2a5f56f4e02efc3198907351">SIZE_PART</a>;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;<span class="comment">        * Por cada posicion a�adimos una pieza aleatoriamente</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="comment">        */</span></div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;        <a class="code" href="classPiece.html" title="Class to manage the map pieces. ">Piece</a>* piece;</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;        <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a> *enemyRoute;</div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;        <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a> *newEnemyRoute;</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;        <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> aleatorio;</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;        <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; pointsParts.size(); i++ )</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;        {</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;                aleatorio = rand() % <a class="code" href="classGameConfig.html#a971304d13164d8e5110cbb23c6381697" title="method to get the number of pieces ">getNumPieces</a>();</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;                piece = <a class="code" href="classGameConfig.html#af20512714199baa74a107e6da06ae7bd" title="method to get piece of config ">getPiece</a>(aleatorio);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;                <span class="comment">// Posicion de la pieza en el mapa</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;                <a class="code" href="structST__PART__MAP.html">T_PART_MAP</a> partMap;</div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;                partMap.<a class="code" href="structST__PART__MAP.html#aef65e18bc24977e8cf55f3b26435cc37">pos</a> = pointsParts[i];</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;                partMap.<a class="code" href="structST__PART__MAP.html#a287835f6f7ffc4648501daba9414dfe0">pPiece</a> = piece;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;                <a class="code" href="classGameConfig.html#a517b2008a708e6e335e2cba91a4944dc" title="the pieces which compounds the map ">_piecesMap</a>.push_back(partMap);</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    Ogre::Vector3 p = Ogre::Vector3::ZERO;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;                <span class="comment">// Recalculamos las rutas de los enemigos</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;                <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = 0; j &lt; piece-&gt;<a class="code" href="classPiece.html#a67a724142be5d90c51f1e2b19780648d" title="method to get the number of enemy routes in the queue ">getNumEnemyRoutes</a>(); j++ ) {</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;                        enemyRoute = piece-&gt;<a class="code" href="classPiece.html#ae09e1d40e1d2ad07ec91922d4a0c981b" title="method to get the enemy routes in this piece ">getEnemyRoute</a>(j);</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;                        newEnemyRoute = <span class="keyword">new</span> <a class="code" href="classEnemyRoute.html" title="Class to manage the enemy route. ">EnemyRoute</a>(*enemyRoute);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;                        <span class="keywordflow">for</span> ( <span class="keywordtype">int</span> k = 0; k &lt; newEnemyRoute-&gt;<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>(); k++ ) {</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;                                p = newEnemyRoute-&gt;<a class="code" href="classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. ">getPoint</a>(k) + partMap.<a class="code" href="structST__PART__MAP.html#aef65e18bc24977e8cf55f3b26435cc37">pos</a>;</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                                newEnemyRoute-&gt;<a class="code" href="classEnemyRoute.html#ad3b9ec32dd5f66a09d5d8bbc198f7f28" title="Method to set point in the list. ">setPoint</a>(p, k);</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;                        }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;                        <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.push_back(newEnemyRoute);</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;                }</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;                <span class="comment">// Recalculamos las rutas de los rehenes</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;                <span class="keywordflow">for</span> ( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = 0; j &lt; piece-&gt;<a class="code" href="classPiece.html#a143f456eb134a30becc7d9e97e10f5f8" title="method to get the number of pisitions in the queue ">getNumPosHostages</a>(); j++ ) {</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;                        <a class="code" href="classGameConfig.html#ae63f06423e3e50c650f0f392b8004d95" title="set of hostages positions ">_vPositionHostages</a>.push_back(piece-&gt;<a class="code" href="classPiece.html#a09cb7ba5ef376b51fb43845160f0fbbd" title="method to get the position of hostage in this piece ">getPosHostage</a>(j) + partMap.<a class="code" href="structST__PART__MAP.html#aef65e18bc24977e8cf55f3b26435cc37">pos</a>);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;                }</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;        }</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;        <a class="code" href="classGameConfig.html#aee234add981c32e2e7ccaaf1a4d40c7c" title="enemy number to view ">_numEnemies</a> = <a class="code" href="classGameConfig.html#a4ef1fec8a39004fa97608ea9165a06bc" title="set of enemy routes ">_vEnemyRoutes</a>.size();</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;}</div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="GameConfig_8cpp.html">GameConfig.cpp</a></li>
+    <li class="footer">Generado el Lunes, 8 de Julio de 2013 09:43:16 para RANSOM por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
+</body>
+</html>
