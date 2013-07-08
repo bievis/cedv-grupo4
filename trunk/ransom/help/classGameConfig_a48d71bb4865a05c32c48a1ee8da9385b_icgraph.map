@@ -1,0 +1,5 @@
+<map id="GameConfig::getInitialPosHero" name="GameConfig::getInitialPosHero">
+<area shape="rect" id="node2" href="$classGameConfig.html#a34a930afe4f272cbc38c39deed01c9ee" title="Method to copy object. " alt="" coords="254,31,383,57"/>
+<area shape="rect" id="node3" href="$classGameConfig.html#af52fce4f256602b1de6fb6e353b30b88" title="copy constructor " alt="" coords="433,5,605,32"/>
+<area shape="rect" id="node4" href="$classGameConfig.html#a1c6595a6de59ca01443ec09cccf98ef5" title="assignment operator " alt="" coords="441,56,597,83"/>
+</map>

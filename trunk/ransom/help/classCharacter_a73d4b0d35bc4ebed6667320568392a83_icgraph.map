@@ -1,0 +1,5 @@
+<map id="Character::updateShot" name="Character::updateShot">
+<area shape="rect" id="node2" href="$classCharacter.html#ac7d2e9b4d8d968e0ad55df0446449be3" title="method to update character in frame " alt="" coords="205,31,331,57"/>
+<area shape="rect" id="node3" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="382,5,493,32"/>
+<area shape="rect" id="node4" href="$classHostage.html#a27cc953fa995c6f461b4d85eb2778ec0" title="method to update character in frame " alt="" coords="379,56,496,83"/>
+</map>

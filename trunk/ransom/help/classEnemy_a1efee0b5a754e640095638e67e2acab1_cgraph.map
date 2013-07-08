@@ -1,0 +1,36 @@
+<map id="Enemy::update" name="Enemy::update">
+<area shape="rect" id="node2" href="$classCharacter.html#ac7d2e9b4d8d968e0ad55df0446449be3" title="method to update character in frame " alt="" coords="204,184,329,211"/>
+<area shape="rect" id="node14" href="$classEnemy.html#a0ac3f2c6c63520416bef5fa0f9b611f7" title="method to update lifeBar " alt="" coords="191,287,342,313"/>
+<area shape="rect" id="node16" href="$classEnemy.html#a797adc3690bc7590de773473be4bbde1" title="this method is used to check if anybody is in our camera scope " alt="" coords="166,393,367,420"/>
+<area shape="rect" id="node18" href="$classCharacter.html#a773a0c09ea0b4ae2eb06114ba344e613" title="method to get the position of character " alt="" coords="191,452,342,479"/>
+<area shape="rect" id="node15" href="$classEnemy.html#add38d1482c2caa7477c517f2a058a438" title="method to set the enemy state " alt="" coords="433,284,596,311"/>
+<area shape="rect" id="node19" href="$classEnemy.html#a47b237541648073ead026c8592db22b0" title="method to walk using the route built to the enemy " alt="" coords="191,503,342,529"/>
+<area shape="rect" id="node22" href="$classEnemy.html#aac1e312b06511853261b06b7668c213e" title="method to perform the character walk movement to position This method uses OgreBullet to move the cha..." alt="" coords="457,553,572,580"/>
+<area shape="rect" id="node29" href="$classEnemy.html#a83711b7fe34dc6a79fd2ecc30b7f2fbd" title="method to play the sound associated to the alert of an enemy " alt="" coords="182,837,351,864"/>
+<area shape="rect" id="node30" href="$classCharacter.html#a631e21c8f5d76b2d3dc4a4a94079f177" title="method to stop character movement " alt="" coords="441,756,589,783"/>
+<area shape="rect" id="node31" href="$classEnemy.html#a8d29efecdddd373dfa6f10226edac18d" title="this method reorient the enemy direction to the hero position " alt="" coords="187,605,347,646"/>
+<area shape="rect" id="node33" href="$classEnemy.html#a0d16ad12d29413589d075ea0b86d4e68" title="method to get the distance between the enemy and the hero " alt="" coords="194,670,339,711"/>
+<area shape="rect" id="node34" href="$classCharacter.html#a04fbd93d6103d808f53d1dd9d9ec7c77" title="method shoot &#160;distance with enemy " alt="" coords="455,233,574,260"/>
+<area shape="rect" id="node35" href="$classEnemy.html#a12b097672cc668d70a3312660152de0b" title="method to watch around the enemy 360º " alt="" coords="191,787,342,813"/>
+<area shape="rect" id="node3" href="$classCharacter.html#a73d4b0d35bc4ebed6667320568392a83" title="method to validate the success rate to shoot and hurt our hero or fail This method perform the next: ..." alt="" coords="439,157,591,184"/>
+<area shape="rect" id="node4" href="$classCharacter.html#ab2dbec11456b481b4c2a3803fe6e9e7d" title="Character::detectCollisionShot" alt="" coords="662,56,861,83"/>
+<area shape="rect" id="node6" href="$classCharacter.html#a17c5106e7ab9812e4baa696fee5b31d2" title="method to set health level (0&#45;100) " alt="" coords="691,107,832,133"/>
+<area shape="rect" id="node10" href="$classCharacter.html#ad16b2c4b51e9e7943be2676805406ae2" title="method to get health level (0&#45;100) " alt="" coords="691,157,832,184"/>
+<area shape="rect" id="node11" href="$classCharacter.html#a5dced712b397f76ae254c5bac710295d" title="method to play the sound associated to the character hurt " alt="" coords="671,208,852,235"/>
+<area shape="rect" id="node12" href="$classCharacter.html#ab003d244d08e710c48125c469e2db6e0" title="method to play the sound associated to the missed shot " alt="" coords="668,5,855,32"/>
+<area shape="rect" id="node13" href="$classCharacter.html#ab364d6bbee023d431b37d725074a3254" title="Character::setScaleShot" alt="" coords="679,259,843,285"/>
+<area shape="rect" id="node5" href="$classCharacter.html#aecd625855f699e4557f90aaf69aabb35" title="method to get rigid body reference " alt="" coords="921,56,1084,83"/>
+<area shape="rect" id="node7" href="$classCharacter.html#a127f5ee58b01289418cf080a8328b6c7" title="method to death the caracter " alt="" coords="943,107,1062,133"/>
+<area shape="rect" id="node8" href="$classCharacter.html#aef00837905f9141e7100ccb5d16ed7ce" title="method to set change visibility of character " alt="" coords="1149,77,1291,104"/>
+<area shape="rect" id="node9" href="$classCharacter.html#a64ec7aba00ddafc0d148b6b39dfc6448" title="method to play the sound associated to the death of an character " alt="" coords="1144,129,1296,170"/>
+<area shape="rect" id="node17" href="$classMyTextureListener.html#a2a068d34846b9d32e3c26e49e3fbddcd" title="this method returned if there is any object in the texture " alt="" coords="446,335,583,377"/>
+<area shape="rect" id="node20" href="$classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. " alt="" coords="421,401,608,428"/>
+<area shape="rect" id="node21" href="$classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. " alt="" coords="438,452,591,479"/>
+<area shape="rect" id="node28" href="$classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. " alt="" coords="416,503,613,529"/>
+<area shape="rect" id="node23" href="$classEnemyRoute.html#a9c22fbb5568adcf73efe1df0f98f2349" title="Method to get proximity value. " alt="" coords="672,503,851,529"/>
+<area shape="rect" id="node24" href="$classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left " alt="" coords="695,655,827,681"/>
+<area shape="rect" id="node25" href="$classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right " alt="" coords="691,604,831,631"/>
+<area shape="rect" id="node26" href="$classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ..." alt="" coords="705,553,817,580"/>
+<area shape="rect" id="node27" href="$classCharacter.html#ad9a238a263754def4c1f8197221bab89" title="method to change animation of character " alt="" coords="909,756,1096,783"/>
+<area shape="rect" id="node32" href="$classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference " alt="" coords="429,705,600,732"/>
+</map>

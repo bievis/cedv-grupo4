@@ -1,0 +1,10 @@
+<map id="AppStateManager::init" name="AppStateManager::init">
+<area shape="rect" id="node2" href="$classAppStateManager.html#ad2e841b3e33e67bda0ee535839a83cd1" title="AppStateManager::changeApp\lState" alt="" coords="211,5,410,46"/>
+<area shape="rect" id="node6" href="$classAppStateManager.html#ab9a159d519472de953686ce420a0c850" title="AppStateManager::pushApp\lState" alt="" coords="218,70,403,111"/>
+<area shape="rect" id="node8" href="$classAppStateManager.html#afd49e784cf992dbb9ee1c040d5d046ab" title="AppStateManager::popAppState" alt="" coords="206,136,415,163"/>
+<area shape="rect" id="node9" href="$classAppStateManager.html#a18777e2b2e1acc31bd1fafc49a43a867" title="AppStateManager::pauseApp\lState" alt="" coords="215,187,407,229"/>
+<area shape="rect" id="node3" href="$classAppStateManager.html#a61560524c1ddf50ab1508e3135035919" title="AppStateManager::start" alt="" coords="481,12,641,39"/>
+<area shape="rect" id="node4" href="$classRansomApp.html#a5d7581827b88fe1233f5b5e2fe708de2" title="RansomApp::start" alt="" coords="707,12,834,39"/>
+<area shape="rect" id="node5" href="$main_8cpp.html#a2922bc5d5c2d77a3020cfbf9df12aab0" title="WinMain" alt="" coords="883,12,957,39"/>
+<area shape="rect" id="node7" href="$classAppStateManager.html#acf2ce05522db7748e315933fa543d771" title="AppStateManager::popAllAnd\lPushAppState" alt="" coords="465,70,658,111"/>
+</map>

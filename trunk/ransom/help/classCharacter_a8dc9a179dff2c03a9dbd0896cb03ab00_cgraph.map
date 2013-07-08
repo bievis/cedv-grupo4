@@ -1,0 +1,5 @@
+<map id="Character::showDummy" name="Character::showDummy">
+<area shape="rect" id="node2" href="$classCharacter.html#a322aadab60c8b2785f2c85e08351234e" title="method to get entity reference " alt="" coords="239,5,377,32"/>
+<area shape="rect" id="node3" href="$classCharacter.html#a2c95742be91ff35ce854c45feb902b80" title="method to get entity dummy for camera POV " alt="" coords="217,56,399,83"/>
+<area shape="rect" id="node4" href="$classCharacter.html#aaa4629a4ca1ac126bb3f87046fa1b9e0" title="method to get scene node of shot reference " alt="" coords="227,107,389,133"/>
+</map>

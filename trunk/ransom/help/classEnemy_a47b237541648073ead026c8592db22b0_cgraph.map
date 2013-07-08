@@ -1,0 +1,11 @@
+<map id="Enemy::walk_in_route" name="Enemy::walk_in_route">
+<area shape="rect" id="node2" href="$classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. " alt="" coords="211,5,397,32"/>
+<area shape="rect" id="node3" href="$classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. " alt="" coords="227,56,381,83"/>
+<area shape="rect" id="node4" href="$classEnemy.html#aac1e312b06511853261b06b7668c213e" title="method to perform the character walk movement to position This method uses OgreBullet to move the cha..." alt="" coords="247,107,361,133"/>
+<area shape="rect" id="node10" href="$classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. " alt="" coords="205,157,403,184"/>
+<area shape="rect" id="node5" href="$classEnemyRoute.html#a9c22fbb5568adcf73efe1df0f98f2349" title="Method to get proximity value. " alt="" coords="451,31,629,57"/>
+<area shape="rect" id="node6" href="$classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left " alt="" coords="474,81,606,108"/>
+<area shape="rect" id="node7" href="$classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right " alt="" coords="470,132,610,159"/>
+<area shape="rect" id="node8" href="$classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ..." alt="" coords="484,183,596,209"/>
+<area shape="rect" id="node9" href="$classCharacter.html#ad9a238a263754def4c1f8197221bab89" title="method to change animation of character " alt="" coords="677,183,864,209"/>
+</map>

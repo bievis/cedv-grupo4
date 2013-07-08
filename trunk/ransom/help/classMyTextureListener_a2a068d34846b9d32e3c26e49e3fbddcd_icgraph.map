@@ -1,0 +1,4 @@
+<map id="MyTextureListener::enemyViewed" name="MyTextureListener::enemyViewed">
+<area shape="rect" id="node2" href="$classEnemy.html#a797adc3690bc7590de773473be4bbde1" title="this method is used to check if anybody is in our camera scope " alt="" coords="193,12,394,39"/>
+<area shape="rect" id="node3" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="443,12,554,39"/>
+</map>

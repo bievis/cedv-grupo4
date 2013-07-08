@@ -1,0 +1,8 @@
+<map id="Character::getSceneNode" name="Character::getSceneNode">
+<area shape="rect" id="node2" href="$classCharacter.html#a3987571d84e265d508e990546c7b86f1" title="protected method to copy a character this method is used in assingnment operator and copy constructor..." alt="" coords="247,31,361,57"/>
+<area shape="rect" id="node5" href="$classEnemy.html#a0d16ad12d29413589d075ea0b86d4e68" title="method to get the distance between the enemy and the hero " alt="" coords="231,82,377,123"/>
+<area shape="rect" id="node7" href="$classEnemy.html#a8d29efecdddd373dfa6f10226edac18d" title="this method reorient the enemy direction to the hero position " alt="" coords="224,147,384,189"/>
+<area shape="rect" id="node3" href="$classCharacter.html#a0eac14bff9a793857bb2a86a2c0fcf9c" title="copy constructor " alt="" coords="433,5,575,32"/>
+<area shape="rect" id="node4" href="$classCharacter.html#a020a6412390cc5375455a77cd27320ca" title="assignment operator to copy another character " alt="" coords="433,56,575,83"/>
+<area shape="rect" id="node6" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="449,117,559,144"/>
+</map>

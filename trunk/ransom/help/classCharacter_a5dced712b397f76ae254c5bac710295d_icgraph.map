@@ -1,0 +1,6 @@
+<map id="Character::play_sound_hurt" name="Character::play_sound_hurt">
+<area shape="rect" id="node2" href="$classCharacter.html#a73d4b0d35bc4ebed6667320568392a83" title="method to validate the success rate to shoot and hurt our hero or fail This method perform the next: ..." alt="" coords="235,31,387,57"/>
+<area shape="rect" id="node3" href="$classCharacter.html#ac7d2e9b4d8d968e0ad55df0446449be3" title="method to update character in frame " alt="" coords="435,31,560,57"/>
+<area shape="rect" id="node4" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="611,5,722,32"/>
+<area shape="rect" id="node5" href="$classHostage.html#a27cc953fa995c6f461b4d85eb2778ec0" title="method to update character in frame " alt="" coords="608,56,725,83"/>
+</map>

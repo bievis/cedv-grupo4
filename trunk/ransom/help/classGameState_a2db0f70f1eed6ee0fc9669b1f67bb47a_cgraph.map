@@ -1,0 +1,15 @@
+<map id="GameState::update" name="GameState::update">
+<area shape="rect" id="node2" href="$classRecords.html#a7212cf91df8738dbaf6c44bdb59683aa" title="method to get the Records object " alt="" coords="190,5,341,32"/>
+<area shape="rect" id="node4" href="$classRecords.html#a5db25a2e2b2bb652abf7b308229524d7" title="method to add an element to the records table " alt="" coords="216,56,315,83"/>
+<area shape="rect" id="node7" href="$classRecords.html#a02e25ba5da9e4c21f2ee45e4f9a96833" title="method to fix records number in the file, namely, it set elements number in the records table obviati..." alt="" coords="198,107,333,133"/>
+<area shape="rect" id="node8" href="$classRecords.html#af5cf287ff402973d378e224ffb4c11ef" title="method to write the records table to file The file was named highscores.dat " alt="" coords="213,157,318,184"/>
+<area shape="rect" id="node9" href="$classUtilities.html#aac351cff9a13eb2d6bd02f38c5b062c0" title="method to get the Utilities object " alt="" coords="193,208,338,235"/>
+<area shape="rect" id="node11" href="$classUtilities.html#a153165e07ae59015a8abdecb84b8d521" title="method to put an overlay in the scene This method put an overlay created in ransom.overlay file, also the name should be defined in this file with the set of specifications " alt="" coords="196,259,335,285"/>
+<area shape="rect" id="node12" href="$classHostage.html#abfdf103d8c11e23ef456aa6be1062a02" title="method to change state to liberate " alt="" coords="205,309,325,336"/>
+<area shape="rect" id="node3" href="$classRecords.html#a186b2f18fd2d59930ceb034ea0ec0b07" title="default constructor " alt="" coords="406,5,533,32"/>
+<area shape="rect" id="node5" href="$classRecords.html#a3b35758fbe0a31707415032a0fa296c5" title="method to get system time and it returned with the params values " alt="" coords="390,56,549,83"/>
+<area shape="rect" id="node6" href="$classRecords.html#a25bbc28721e4c965adce61c2e4e6949c" title="method to compare param values with the elements in the records table " alt="" coords="405,107,533,133"/>
+<area shape="rect" id="node10" href="$classUtilities.html#ab1676c9ce35cf347a73d16f1094e1271" title="default constructor " alt="" coords="411,208,527,235"/>
+<area shape="rect" id="node13" href="$classHostage.html#a6aaff34cf2b7e16eb944576897060c99" title="method to set change visibility of hostage " alt="" coords="402,309,537,336"/>
+<area shape="rect" id="node14" href="$classCharacter.html#aef00837905f9141e7100ccb5d16ed7ce" title="method to set change visibility of character " alt="" coords="598,309,741,336"/>
+</map>

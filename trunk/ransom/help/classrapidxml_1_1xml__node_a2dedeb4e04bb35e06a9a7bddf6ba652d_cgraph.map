@@ -1,0 +1,5 @@
+<map id="rapidxml::xml_node::first_node" name="rapidxml::xml_node::first_node">
+<area shape="rect" id="node2" href="$classrapidxml_1_1xml__base.html#a9a09739310469995db078ebd0da3ed45" title="Gets name of the node. Interpretation of name depends on type of node. Note that name will not be zer..." alt="" coords="190,5,325,46"/>
+<area shape="rect" id="node4" href="$classrapidxml_1_1xml__base.html#a7e7f98b3d01e1eab8dc1ca69aad9af84" title="Gets size of node name, not including terminator character. This function works correctly irrespectiv..." alt="" coords="190,70,325,111"/>
+<area shape="rect" id="node3" href="$classrapidxml_1_1xml__base.html#ad96ff6b1e41dab3ff60b9bc4df769a75" title="rapidxml::xml_base\l::nullstr" alt="" coords="374,5,509,46"/>
+</map>

@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.4"/>
+<title>RANSOM: Referencia del Archivo include/GameState.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">RANSOM
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.4 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li><a href="annotated.html"><span>Clases</span></a></li>
+      <li class="current"><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;archivos</span></a></li>
+      <li><a href="globals.html"><span>Miembros&#160;de&#160;los&#160;ficheros</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('GameState_8hpp.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>&apos;typedefs&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Valores de enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>&apos;defines&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(11)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Clases</a> &#124;
+<a href="#define-members">'defines'</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia del Archivo GameState.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="DotSceneLoader_8hpp_source.html">DotSceneLoader.hpp</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="TrackManager_8h_source.html">TrackManager.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="SoundFXManager_8h_source.html">SoundFXManager.h</a>&quot;</code><br/>
+<code>#include &lt;OgreSubEntity.h&gt;</code><br/>
+<code>#include &lt;OgreMaterialManager.h&gt;</code><br/>
+<code>#include &quot;<a class="el" href="Records_8h_source.html">Records.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Utilities_8h_source.html">Utilities.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Enemy_8h_source.html">Enemy.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Hero_8h_source.html">Hero.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Hostage_8h_source.html">Hostage.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="XMLCharger_8h_source.html">XMLCharger.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="GameConfig_8h_source.html">GameConfig.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="MiniMapTextureListener_8h_source.html">MiniMapTextureListener.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="CamerasController_8h_source.html">CamerasController.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Fader_8h_source.html">Fader.h</a>&quot;</code><br/>
+</div><div class="textblock"><div class="dynheader">
+Dependencia gráfica adjunta para GameState.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="GameState_8hpp__incl.png" border="0" usemap="#include_2GameState_8hpp" alt=""/></div>
+<map name="include_2GameState_8hpp" id="include_2GameState_8hpp">
+<area shape="rect" id="node2" href="AppState_8hpp.html" title="AppState.hpp" alt="" coords="440,320,541,347"/><area shape="rect" id="node14" href="DotSceneLoader_8hpp.html" title="DotSceneLoader.hpp" alt="" coords="2818,163,2960,189"/><area shape="rect" id="node5" href="TrackManager_8h.html" title="TrackManager.h" alt="" coords="733,485,848,512"/><area shape="rect" id="node8" href="SoundFXManager_8h.html" title="SoundFXManager.h" alt="" coords="2141,485,2275,512"/><area shape="rect" id="node23" href="Records_8h.html" title="Records.h" alt="" coords="1757,163,1837,189"/><area shape="rect" id="node31" href="Utilities_8h.html" title="Utilities.h" alt="" coords="1271,320,1347,347"/><area shape="rect" id="node37" href="Enemy_8h.html" title="Enemy.h" alt="" coords="2369,80,2444,107"/><area shape="rect" id="node43" href="Hero_8h.html" title="Hero.h" alt="" coords="1914,163,1973,189"/><area shape="rect" id="node44" href="Hostage_8h.html" title="Hostage.h" alt="" coords="2221,80,2301,107"/><area shape="rect" id="node45" href="XMLCharger_8h.html" title="XMLCharger.h" alt="" coords="2957,80,3059,107"/><area shape="rect" id="node42" href="GameConfig_8h.html" title="GameConfig.h" alt="" coords="2495,163,2599,189"/><area shape="rect" id="node48" href="MiniMapTextureListener_8h.html" title="MiniMapTextureListener.h" alt="" coords="2623,163,2793,189"/><area shape="rect" id="node49" href="CamerasController_8h.html" title="CamerasController.h" alt="" coords="1874,80,2013,107"/><area shape="rect" id="node50" href="Fader_8h.html" title="Fader.h" alt="" coords="3408,80,3475,107"/><area shape="rect" id="node3" href="AdvancedOgreFramework_8hpp.html" title="AdvancedOgreFramework.hpp" alt="" coords="488,403,683,429"/><area shape="rect" id="node7" href="Track_8h.html" title="Track.h" alt="" coords="1698,560,1763,587"/><area shape="rect" id="node9" href="SoundFX_8h.html" title="SoundFX.h" alt="" coords="2179,560,2264,587"/><area shape="rect" id="node20" href="rapidxml_8hpp.html" title="This file contains rapidxml parser and DOM implementation. " alt="" coords="3015,245,3111,272"/><area shape="rect" id="node38" href="Character_8h.html" title="Character.h" alt="" coords="2163,245,2252,272"/><area shape="rect" id="node40" href="MyTextureListener_8h.html" title="MyTextureListener.h" alt="" coords="2050,163,2189,189"/><area shape="rect" id="node41" href="EnemyRoute_8h.html" title="EnemyRoute.h" alt="" coords="2309,245,2416,272"/></map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Gráfico de los archivos que directa o indirectamente incluyen a este archivo:</div>
+<div class="dyncontent">
+<div class="center"><img src="GameState_8hpp__dep__incl.png" border="0" usemap="#include_2GameState_8hppdep" alt=""/></div>
+<map name="include_2GameState_8hppdep" id="include_2GameState_8hppdep">
+<area shape="rect" id="node2" href="GameState_8cpp.html" title="src/GameState.cpp" alt="" coords="5,80,139,107"/><area shape="rect" id="node3" href="MiniMapTextureListener_8cpp.html" title="src/MiniMapTextureListener.cpp" alt="" coords="163,80,369,107"/><area shape="rect" id="node4" href="RansomApp_8cpp.html" title="src/RansomApp.cpp" alt="" coords="394,80,533,107"/></map>
+</div>
+</div>
+<p><a href="GameState_8hpp_source.html">Ir al código fuente de este archivo.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Clases</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGameState.html">GameState</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+'defines'</h2></td></tr>
+<tr class="memitem:a500569c38d3b607d167a73aa1bf2b168"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GameState_8hpp.html#a500569c38d3b607d167a73aa1bf2b168">NAME_MAP</a>&#160;&#160;&#160;&quot;Map&quot;</td></tr>
+<tr class="separator:a500569c38d3b607d167a73aa1bf2b168"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246b26afd5b6d06ad9fe626dbb78bad9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GameState_8hpp.html#a246b26afd5b6d06ad9fe626dbb78bad9">FILE_ROUTE_XML</a>&#160;&#160;&#160;&quot;./config/config.xml&quot;</td></tr>
+<tr class="separator:a246b26afd5b6d06ad9fe626dbb78bad9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af328a1fd6d6c4c9bbe7ffb59f3679c15"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GameState_8hpp.html#af328a1fd6d6c4c9bbe7ffb59f3679c15">MAP_ROUTE_XML</a>&#160;&#160;&#160;&quot;./config/Mapa.tmx&quot;</td></tr>
+<tr class="separator:af328a1fd6d6c4c9bbe7ffb59f3679c15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a523b7471b1f9793c3208141cefa02c78"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GameState_8hpp.html#a523b7471b1f9793c3208141cefa02c78">NAME_TEXTUTE_MINIMAP</a>&#160;&#160;&#160;&quot;RttT_Map&quot;</td></tr>
+<tr class="separator:a523b7471b1f9793c3208141cefa02c78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae57cebd1bd814ed81094366fa5fd702b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GameState_8hpp.html#ae57cebd1bd814ed81094366fa5fd702b">NAME_MATERIAL_MINIMAP</a>&#160;&#160;&#160;&quot;RttMat_Map&quot;</td></tr>
+<tr class="separator:ae57cebd1bd814ed81094366fa5fd702b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Documentación de los 'defines'</h2>
+<a class="anchor" id="a246b26afd5b6d06ad9fe626dbb78bad9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FILE_ROUTE_XML&#160;&#160;&#160;&quot;./config/config.xml&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="GameState_8hpp_source.html#l00025">25</a> del archivo <a class="el" href="GameState_8hpp_source.html">GameState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af328a1fd6d6c4c9bbe7ffb59f3679c15"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAP_ROUTE_XML&#160;&#160;&#160;&quot;./config/Mapa.tmx&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="GameState_8hpp_source.html#l00026">26</a> del archivo <a class="el" href="GameState_8hpp_source.html">GameState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a500569c38d3b607d167a73aa1bf2b168"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NAME_MAP&#160;&#160;&#160;&quot;Map&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="GameState_8hpp_source.html#l00024">24</a> del archivo <a class="el" href="GameState_8hpp_source.html">GameState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae57cebd1bd814ed81094366fa5fd702b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NAME_MATERIAL_MINIMAP&#160;&#160;&#160;&quot;RttMat_Map&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="GameState_8hpp_source.html#l00028">28</a> del archivo <a class="el" href="GameState_8hpp_source.html">GameState.hpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a523b7471b1f9793c3208141cefa02c78"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define NAME_TEXTUTE_MINIMAP&#160;&#160;&#160;&quot;RttT_Map&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="GameState_8hpp_source.html#l00027">27</a> del archivo <a class="el" href="GameState_8hpp_source.html">GameState.hpp</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="GameState_8hpp.html">GameState.hpp</a></li>
+    <li class="footer">Generado el Lunes, 8 de Julio de 2013 09:43:17 para RANSOM por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<map id="Hostage::update" name="Hostage::update">
+<area shape="rect" id="node2" href="$classCharacter.html#ac7d2e9b4d8d968e0ad55df0446449be3" title="method to update character in frame " alt="" coords="171,132,296,159"/>
+<area shape="rect" id="node3" href="$classCharacter.html#a73d4b0d35bc4ebed6667320568392a83" title="method to validate the success rate to shoot and hurt our hero or fail This method perform the next: ..." alt="" coords="344,132,496,159"/>
+<area shape="rect" id="node4" href="$classCharacter.html#ab2dbec11456b481b4c2a3803fe6e9e7d" title="Character::detectCollisionShot" alt="" coords="545,5,743,32"/>
+<area shape="rect" id="node6" href="$classCharacter.html#a17c5106e7ab9812e4baa696fee5b31d2" title="method to set health level (0&#45;100) " alt="" coords="573,56,715,83"/>
+<area shape="rect" id="node10" href="$classCharacter.html#ad16b2c4b51e9e7943be2676805406ae2" title="method to get health level (0&#45;100) " alt="" coords="573,107,715,133"/>
+<area shape="rect" id="node11" href="$classCharacter.html#a5dced712b397f76ae254c5bac710295d" title="method to play the sound associated to the character hurt " alt="" coords="553,157,735,184"/>
+<area shape="rect" id="node12" href="$classCharacter.html#ab003d244d08e710c48125c469e2db6e0" title="method to play the sound associated to the missed shot " alt="" coords="551,208,737,235"/>
+<area shape="rect" id="node13" href="$classCharacter.html#ab364d6bbee023d431b37d725074a3254" title="Character::setScaleShot" alt="" coords="562,259,726,285"/>
+<area shape="rect" id="node5" href="$classCharacter.html#aecd625855f699e4557f90aaf69aabb35" title="method to get rigid body reference " alt="" coords="792,5,955,32"/>
+<area shape="rect" id="node7" href="$classCharacter.html#a127f5ee58b01289418cf080a8328b6c7" title="method to death the caracter " alt="" coords="814,56,933,83"/>
+<area shape="rect" id="node8" href="$classCharacter.html#aef00837905f9141e7100ccb5d16ed7ce" title="method to set change visibility of character " alt="" coords="1007,27,1150,53"/>
+<area shape="rect" id="node9" href="$classCharacter.html#a64ec7aba00ddafc0d148b6b39dfc6448" title="method to play the sound associated to the death of an character " alt="" coords="1003,78,1155,119"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Character::copy" name="Character::copy">
+<area shape="rect" id="node2" href="$classCharacter.html#a0eac14bff9a793857bb2a86a2c0fcf9c" title="copy constructor " alt="" coords="169,5,311,32"/>
+<area shape="rect" id="node3" href="$classCharacter.html#a020a6412390cc5375455a77cd27320ca" title="assignment operator to copy another character " alt="" coords="169,56,311,83"/>
+</map>

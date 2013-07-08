@@ -1,0 +1,5 @@
+<map id="Enemy::Enemy" name="Enemy::Enemy">
+<area shape="rect" id="node2" href="$classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. " alt="" coords="191,5,345,32"/>
+<area shape="rect" id="node3" href="$classSoundFXManager.html#a389a07b5b177b82dd6d1b20e294acb2f" title="SoundFXManager::getSingleton" alt="" coords="166,56,370,83"/>
+<area shape="rect" id="node4" href="$classSoundFXManager.html#a0c6833e2c3e1643a0539a9855b843d8f" title="SoundFXManager::load" alt="" coords="190,107,346,133"/>
+</map>

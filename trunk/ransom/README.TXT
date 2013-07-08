@@ -34,7 +34,8 @@ cerrar la ventana y volver al menú tendrá que pulsar la tecla ESC.
 
 Documentación
 =============
-La documentación (diagramas de clases, metodos y atributos de los objetos, etc..) los fuentes de encuentra en la carpeta "doc" abriendo index.html con un navegador web.
+La documentación (diagramas de clases, metodos y atributos de los objetos, etc..) los fuentes de encuentra en la carpeta "help" abriendo index.html con un navegador web.
+La documentacion escrita se encuentra en la carpeta "doc"
 
 Repositorio publico
 ===================

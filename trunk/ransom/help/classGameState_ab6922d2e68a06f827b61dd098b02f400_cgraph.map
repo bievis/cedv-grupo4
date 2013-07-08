@@ -1,0 +1,4 @@
+<map id="GameState::detectCollisionHeroWithHostages" name="GameState::detectCollisionHeroWithHostages">
+<area shape="rect" id="node2" href="$classCharacter.html#aecd625855f699e4557f90aaf69aabb35" title="method to get rigid body reference " alt="" coords="235,5,397,32"/>
+<area shape="rect" id="node3" href="$classHostage.html#a7624d3cacc5c1a80c6847a77339901bf" title="method to get state of hostage " alt="" coords="253,56,379,83"/>
+</map>

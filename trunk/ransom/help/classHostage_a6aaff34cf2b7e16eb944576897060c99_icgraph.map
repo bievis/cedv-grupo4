@@ -1,0 +1,4 @@
+<map id="Hostage::setVisible" name="Hostage::setVisible">
+<area shape="rect" id="node2" href="$classHostage.html#abfdf103d8c11e23ef456aa6be1062a02" title="method to change state to liberate " alt="" coords="189,5,309,32"/>
+<area shape="rect" id="node3" href="$classGameState.html#a2db0f70f1eed6ee0fc9669b1f67bb47a" title="GameState::update" alt="" coords="358,5,493,32"/>
+</map>
