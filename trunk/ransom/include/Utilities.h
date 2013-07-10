@@ -18,8 +18,8 @@ using namespace std;
 
 // Mesh file to load how to a Character
 #define CUBE_MESH_FILE_WITHOUT_EXTENSION "Cube"
-#define HERO_MESH_FILE_WITHOUT_EXTENSION "SWAT"
-#define ENEMY_MESH_FILE_WITHOUT_EXTENSION "SWAT"
+#define HERO_MESH_FILE_WITHOUT_EXTENSION "Hero"
+#define ENEMY_MESH_FILE_WITHOUT_EXTENSION "Enemy"
 #define HOSTAGE_MESH_FILE_WITHOUT_EXTENSION "Boy"
 #define NAME_RIGID_BODY_SHOT "RigidBodyShot"
 
