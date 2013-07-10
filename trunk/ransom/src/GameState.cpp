@@ -78,12 +78,6 @@ void GameState::enter()
 
     CreateCameras();
 
-    // // Creacion del modulo de debug visual de Bullet ------------------
-    _debugDrawer = new OgreBulletCollisions::DebugDrawer();
-    _debugDrawer->setDrawWireframe(true);
-    SceneNode *node = m_pSceneMgr->getRootSceneNode()->createChildSceneNode ( "debugNode", Vector3::ZERO );
-    node->attachObject(static_cast <SimpleRenderable *>(_debugDrawer));
-
     // Creacion del mundo (definicion de los limites y la gravedad) ---
     AxisAlignedBox worldBounds = AxisAlignedBox (
     Vector3 (-10000, -10000, -10000),
@@ -92,7 +86,6 @@ void GameState::enter()
 
     _world = new OgreBulletDynamics::DynamicsWorld ( m_pSceneMgr,
      	   worldBounds, gravity);
-    _world->setDebugDrawer (_debugDrawer);
 
     OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->hideCursor();
 
@@ -126,41 +119,6 @@ void GameState::enter()
 
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
       if (_vFader[i]) _vFader[i]->startFadeOut(4.0);
-
-	// Para insertar el nombre record
-	Ogre::DisplayString title = "Insert name";
-	_recordTextBox = OgreFramework::getSingletonPtr()->getSDKTrayMgrPtr()->createTextBox(OgreBites::TL_RIGHT, "NameBox", title, 200, 150);
-	_recordTextBox->hide();
-
-  }
-
-
-void GameState::writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &keyEventRef)
-{
-   Ogre::String str;
-   str = keyEventRef.text;
-   //Miramos si se ha pulsado el eliminar un caracter
-   if (keyEventRef.text == 8)
-   {
-      Ogre::String strEr = pTextBox->getText();
-      if (strEr.size() > 0)
-      {
-         //das letzte Zeichen loeschen
-         // TODO Falla en Linux: strEr.pop_back();
-         pTextBox->setText(strEr);
-      }
-   }
-   //keyEventRef.text vienen los caracteres ASCII.
-   //Ignoramos las teclas que no sean letras
-   else if ((keyEventRef.text >= 0 && keyEventRef.text < 9) || (keyEventRef.text > 9 && keyEventRef.text <= 32))
-   {
-      return;
-   }
-   else
-   {
-      //insertamos el texto
-       pTextBox->appendText(str);
-   }
 }
 
 void GameState::CreateInitialWorld()
@@ -388,13 +346,6 @@ void GameState::exit()
 		m_pSceneMgr->destroyStaticGeometry(_staticGeometry);
 	}
 
-    if ( _debugDrawer )
-    {
-      cout << "delete debugdrawer" << endl;
-      delete _debugDrawer;
-    }
-
-
     if ( m_pSceneMgr )
     {
       cout << "delete scene manager" << endl;
@@ -411,18 +362,11 @@ bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
 		popAllAndPushAppState(findByName("MenuState"));
 		return true;
 	} else {
-		if (_recordTextBox->isVisible()) {
-			writeText(_recordTextBox, keyEventRef);
-		}
 		if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
 		{
 			pushAppState(findByName("PauseState"));
 		return true;
 		}
-		/*else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_D ) )
-			_world->setShowDebugShapes (true);
-		else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_H ) )
-			_world->setShowDebugShapes (false);*/
 		else if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_SPACE ) )
 		{
 			m_hero->shoot();

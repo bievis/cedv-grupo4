@@ -70,7 +70,6 @@ private:
     TrackPtr                  _gameTrack;
 
     OgreBulletDynamics::DynamicsWorld * _world;
-    OgreBulletCollisions::DebugDrawer * _debugDrawer;
 
     Hero*                     m_hero;
     std::deque<Enemy*>        m_enemies;
@@ -119,11 +118,6 @@ private:
     Hostage* detectCollisionHeroWithHostages(OgreBulletDynamics::DynamicsWorld* world,
 												Hero* hero,
 												std::vector<Hostage*> hostages);
-	// \brief method to insert text in a texbox
-    /// \param pTextBox reference to textBox
-    /// \param keyEventRef event of keyboard
-	void writeText(OgreBites::TextBox *pTextBox, const OIS::KeyEvent &keyEventRef);
-	OgreBites::TextBox* _recordTextBox;
 };
 
 #endif
