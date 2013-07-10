@@ -82,7 +82,7 @@ void Utilities::put_shot_in_scene ( Ogre::SceneManager* sceneMgr,
 												  Ogre::ManualObject** shot)
   {
     *shot =  sceneMgr->createManualObject(name + "LineSHOT");
-	(*shot)->begin("MaterialBlanco", Ogre::RenderOperation::OT_LINE_LIST); 
+	(*shot)->begin("MaterialShot", Ogre::RenderOperation::OT_LINE_LIST); 
 	(*shot)->position(Ogre::Vector3::ZERO);
 	Ogre::Vector3 posFin(nodeShot->getOrientation().zAxis() * 1);
 	(*shot)->position(posFin);
