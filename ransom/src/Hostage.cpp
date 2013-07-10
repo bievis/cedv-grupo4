@@ -12,8 +12,6 @@ Hostage::Hostage( Ogre::SceneManager* sceneMgr,
 	_timerParticleLiberate = 0.0;
 
     //Material del Hostagee
-    _entity->setMaterialName ( "MaterialAmarillo" );
-
     _entityDummy->setMaterialName ( "MaterialAmarillo" );
 
 	_state = CAPTURE;

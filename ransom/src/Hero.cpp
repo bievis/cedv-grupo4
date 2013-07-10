@@ -10,8 +10,6 @@ Hero::Hero( Ogre::SceneManager* sceneMgr,
                                                         HERO, STOP_ANIMATION )
   {
     //Material del Heroe
-    _entity->setMaterialName ( "MaterialAzul" );
-
     _entityDummy->setMaterialName ( "MaterialAzul" );
 
 	_particleDeath->setMaterialName("MaterialAzul");
@@ -37,7 +35,7 @@ Hero& Hero::operator=(const Hero& rhs)
 
 void Hero::copy ( const Hero& source )
   {
-	
+
   }
 
 void Hero::print()

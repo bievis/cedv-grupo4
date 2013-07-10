@@ -34,8 +34,6 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _refHero = ptrHero;
 
     //Material del enemigo
-    _entity->setMaterialName ( "MaterialRojo" );
-
     _entityDummy->setMaterialName ( "MaterialRojo" );
 
 	_particleDeath->setMaterialName("MaterialRojo");
