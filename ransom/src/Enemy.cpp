@@ -271,7 +271,7 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
                   }
                 else
                   {
-                    if ( _timeElapsed_Global - _timeLastSoundAlertPlayed > 5 )
+                    if ( _timeElapsed_Global - _timeLastSoundAlertPlayed > 5 || _timeElapsed_Global < 5 )
                       {
                         play_sound_alert();
                         _timeLastSoundAlertPlayed = _timeElapsed_Global;
@@ -390,8 +390,9 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
           {
             _timeBlocked = _timeElapsed_Global;
 
-            if ( ( _currentPosition == _node->getPosition() ) &&
-                ( _currentState == CHASING ) )
+            if ( _currentPosition == _node->getPosition() )
+//            if ( ( _currentPosition == _node->getPosition() ) &&
+//                ( _currentState == CHASING ) )
                 //( _currentState == CHASING && !_sentinel_dest) )
               {
                 _currentState = WATCHING;
