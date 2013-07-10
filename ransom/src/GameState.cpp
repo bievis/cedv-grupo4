@@ -493,7 +493,7 @@ void GameState::onLeftPressed(const OIS::MouseEvent &evt)
 void GameState::update(double timeSinceLastFrame)
   {
     _tiempo += timeSinceLastFrame;
-	
+
     m_pCamera->setAspectRatio(Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualWidth()) /
                             Ogre::Real(OgreFramework::getSingletonPtr()->getViewportPtr()->getActualHeight()));
 
@@ -559,7 +559,7 @@ void GameState::update(double timeSinceLastFrame)
       }
 
     _world->stepSimulation(timeSinceLastFrame); // Actualizar simulacion Bullet
-	
+
 	// Movemos al heroe
     if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
       {

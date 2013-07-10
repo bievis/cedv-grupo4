@@ -281,50 +281,6 @@ void Character::updateShot ( double timeSinceLastFrame, std::vector<Character*> 
     }
 }
 
-//bool Character::validate_success_rate ( double distance, double* rate )
-//  {
-//    bool res = false;
-//
-//    //Numeros aleatorios entre 1 y 100
-//    *rate = 1 + rand() % ( 100 );
-//
-//    // Si la distancia al heroe está entre 5 y 10
-//    // entonces si el valor está por encima del 50%
-//    // nos habrá dado, sino fallo
-//    if ( ( distance > 5 ) && ( distance < 10 ) )
-//      {
-//        // Del 50% en adelante nos habrá acertado
-//        if ( *rate > 50 )
-//        {
-//          res = true;
-//        }
-//      }
-//    // Si la distancia al heroe está entre 10 y 15
-//    // entonces si el valor está por encima del 65%
-//    // nos habrá dado, sino fallo
-//    if ( ( distance > 10 ) && ( distance < 15 ) )
-//      {
-//        // Del 65% en adelante nos habrá acertado
-//        if ( *rate > 65 )
-//          {
-//            res = true;
-//          }
-//      }
-//    // Si la distancia al heroe está es mayor a 20
-//    // entonces si el valor está por encima del 75%
-//    // nos habrá dado, sino fallo
-//    if ( distance > 20 )
-//      {
-//        // Del 75% en adelante nos habrá acertado
-//        if ( *rate > 75 )
-//          {
-//            res = true;
-//          }
-//      }
-//
-//    return res;
-//  }
-
 void Character::shoot(double distanceWithOtherCaracter) {
 	if (!_isShooting && _stateCaracter == LIVE) {
 		_soundShootFX->play();
@@ -454,27 +410,27 @@ void Character::stop_move()
 
 void Character::turn_left()
   {
-
-    assert ( _node );
-	if (!_isShooting && _stateCaracter == LIVE) {
-		_rigidBody->enableActiveState();
-		_node->yaw ( Ogre::Radian(Ogre::Math::HALF_PI / 32) );
-		btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
-		_rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
-	}
+    turn_angle ( Ogre::Radian ( Ogre::Math::HALF_PI / 32 ) );
   }
 
 void Character::turn_right()
   {
-
-    assert ( _node );
-	if (!_isShooting && _stateCaracter == LIVE) {
-		_rigidBody->enableActiveState();
-		_node->yaw ( Ogre::Radian((-1)* Ogre::Math::HALF_PI / 32) );
-		btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
-		_rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
-	}
+    turn_angle ( Ogre::Radian ( (-1) * Ogre::Math::HALF_PI / 32 ) );
   }
+
+void Character::turn_angle ( const Ogre::Radian& angle )
+  {
+    assert ( _node );
+
+    if ( !_isShooting && _stateCaracter == LIVE )
+      {
+        _rigidBody->enableActiveState();
+		    _node->yaw ( angle );
+		    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to ( _node->getOrientation() );
+		    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation ( quaternion );
+	    }
+  }
+
 
 void Character::play_sound_death()
 {

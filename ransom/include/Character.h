@@ -173,7 +173,7 @@ class Character
     Character ( const Character& other );
     /// \brief assignment operator to copy another character
     /// \param other source character to copy
-    Character& operator=(const Character& other);
+    Character&                    operator= ( const Character& other );
     /// \brief method to perform the character walk movement ( forward or backward )
     /// This method uses OgreBullet to move the character
     /// \param reverse if value is true then wall to backward else will be forward
@@ -183,6 +183,9 @@ class Character
     void                          turn_left();
     /// \brief method to rotate the character to the right
     void                          turn_right();
+    /// \brief method to rotate the character an angle
+    /// \param angle angle to rotate the character
+    void                          turn_angle ( const Ogre::Radian& angle );
     /// \brief method to return if the character is dead
     /// \return true/false according to the character was dead or not
     inline bool                   is_death() const { return ( _health <= 0 ); };

@@ -444,15 +444,19 @@ bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
     if ( distance < _route.getProximity() )
       res = true;
 
-      if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
+    if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
       {
         if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 170 )
           {
             turn_left(); turn_left();
           }
-        if ( angle.valueDegrees() > 10 )
+        else if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 10 )
           {
             turn_left();
+          }
+        else if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0.1 )
+          {
+            turn_angle ( orientacion.getRotationTo(v).getYaw() );
           }
       }
       else
@@ -461,9 +465,13 @@ bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
           {
             turn_right(); turn_right();
           }
-        if ( angle.valueDegrees() > 10 )
+        else if ( orientacion.getRotationTo(v).getYaw().valueDegrees() < -10 )
           {
             turn_right();
+          }
+        else if ( orientacion.getRotationTo(v).getYaw().valueDegrees() < -0.1 )
+          {
+            turn_angle ( orientacion.getRotationTo(v).getYaw() );
           }
       }
 
