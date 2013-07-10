@@ -1,7 +1,7 @@
 #include "MyTextureListener.h"
 
 // si al menos hay 100 pixeles blancos significa que vemos algo
-#define THRESHOLD_VIEW 100
+#define THRESHOLD_VIEW 40
 
 MyTextureListener::MyTextureListener ( Ogre::SceneManager* sceneMgr, const TexturePtr& rtt )
 {

@@ -132,6 +132,8 @@ class Enemy : public Character
     double _timeStartChasing;
     /// \brief time used to know if the enemy is blocked
     double _timeBlocked;
+    /// \brief time used to know the last time when the sound was played
+    double _timeLastSoundAlertPlayed;
     /// \brief current position to use when we check if the enemy is blocked
     Ogre::Vector3 _currentPosition;
     /// \brief sentinel used to validate if the enemy is at the point where he saw the hero the last time

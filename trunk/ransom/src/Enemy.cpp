@@ -16,6 +16,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     _lastHealth = 0;
 
+    _timeLastSoundAlertPlayed = 0;
     _timeElapsed_Global = 0;
     _timeElapsed_Watching = 0;
     _timeFirstVision = 0;
@@ -50,7 +51,7 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _camPOV->setPosition ( Ogre::Vector3 ( 0, 0, 0.2 ) );
     _camPOV->lookAt ( Ogre::Vector3 ( 0, 0, 5 ) );
     _camPOV->setNearClipDistance ( 0.1 );
-    _camPOV->setFOVy ( Ogre::Degree ( 38 ) );
+    _camPOV->setFOVy ( Ogre::Degree ( 90 ) );
     Ogre::SceneNode *nodeCamera = _node->createChildSceneNode ( "nodeCameraPOV_" + name );
 	  nodeCamera->attachObject(_camPOV);
     // Vinculamos la textura con la camara del enemigo
@@ -270,7 +271,11 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
                   }
                 else
                   {
-                    play_sound_alert();
+                    if ( _timeElapsed_Global - _timeLastSoundAlertPlayed > 5 )
+                      {
+                        play_sound_alert();
+                        _timeLastSoundAlertPlayed = _timeElapsed_Global;
+                      }
                     setCurrentState ( SHOOTING );
                     _timeElapsed_Shooting = _timeElapsed_Global;
                   }
