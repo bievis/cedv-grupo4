@@ -562,14 +562,14 @@ void GameState::CreateMap()
 
 	_staticGeometry = m_pSceneMgr->createStaticGeometry("StaticMap");
 
-	// Creamos las paredes
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "MaterialSuelo", heightScene, heightWall,
+	// Creamos las paredes (Ponemos el material Menu/Vacio porque es el que tiene asignado el PNG de total transparencia)
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "leftWall", "Menu/Vacio", heightScene, heightWall,
 													Vector3::UNIT_Y, Vector3(1,0,0), Vector3(widthScene / -2.0f,0,0));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "MaterialSuelo", heightScene, heightWall,
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "rightWall", "Menu/Vacio", heightScene, heightWall,
 													Vector3::UNIT_Y, Vector3(-1,0,0), Vector3(widthScene / 2.0f,0,0));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "upWall", "MaterialSuelo", widthScene, heightWall,
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "upWall", "Menu/Vacio", widthScene, heightWall,
 													Vector3::UNIT_Y, Vector3(0,0,1), Vector3(0,0,heightScene / -2.0f));
-	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "downWall", "MaterialSuelo", widthScene, heightWall,
+	Utilities::getSingleton().put_plane_in_scene(m_pSceneMgr, _world, _staticGeometry, "downWall", "Menu/Vacio", widthScene, heightWall,
 													Vector3::UNIT_Y, Vector3(0,0,-1), Vector3(0,0,heightScene / 2.0f));
 
 	Piece* pieza = NULL;
