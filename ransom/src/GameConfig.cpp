@@ -226,6 +226,7 @@ void GameConfig::createMapRandom () {
 	unsigned int aleatorio;
 	for ( unsigned int i = 0; i < pointsParts.size(); i++ )
 	{
+		// Desde 0 hasta n-1 piezas, porque es un array
 		aleatorio = rand() % getNumPieces();
 
 		piece = getPiece(aleatorio);
@@ -235,7 +236,7 @@ void GameConfig::createMapRandom () {
 		partMap.pos = pointsParts[i];
 		partMap.pPiece = piece;
 		_piecesMap.push_back(partMap);
-    Ogre::Vector3 p = Ogre::Vector3::ZERO;
+		Ogre::Vector3 p = Ogre::Vector3::ZERO;
 
 		// Recalculamos las rutas de los enemigos
 		for ( unsigned int j = 0; j < piece->getNumEnemyRoutes(); j++ ) {
