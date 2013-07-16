@@ -1,5 +1,0 @@
-<map id="PauseState" name="PauseState">
-<area shape="rect" id="node2" href="$classAppState.html" title="{AppState\n|# m_pCamera\l# m_pSceneMgr\l# m_FrameEvent\l|+ destroy()\l+ enter()\l+ exit()\l+ pause()\l+ resume()\l+ update()\l+ create()\l# AppState()\l# findByName()\l# changeAppState()\l# pushAppState()\l# popAppState()\l# shutdown()\l# popAllAndPushAppState()\l}" alt="" coords="311,281,495,578"/>
-<area shape="rect" id="node6" href="$classAppStateListener.html" title="{AppStateListener\n||+ AppStateListener()\l+ ~AppStateListener()\l+ manageAppState()\l+ findByName()\l+ changeAppState()\l+ pushAppState()\l+ popAppState()\l+ pauseAppState()\l+ shutdown()\l+ popAllAndPushAppState()\l}" alt="" coords="518,6,703,215"/>
-<area shape="rect" id="node7" href="$classSoundFXPtr.html" title="{SoundFXPtr\n||+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ operator=()\l}" alt="" coords="643,361,753,497"/>
-</map>

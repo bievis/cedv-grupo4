@@ -1,9 +1,0 @@
-<map id="include/Records.h" name="include/Records.h">
-<area shape="rect" id="node2" href="$GameState_8hpp.html" title="include/GameState.hpp" alt="" coords="207,80,365,107"/>
-<area shape="rect" id="node6" href="$MenuState_8hpp.html" title="include/MenuState.hpp" alt="" coords="481,80,636,107"/>
-<area shape="rect" id="node5" href="$RansomApp_8cpp.html" title="src/RansomApp.cpp" alt="" coords="394,155,533,181"/>
-<area shape="rect" id="node8" href="$Records_8cpp.html" title="src/Records.cpp" alt="" coords="660,80,777,107"/>
-<area shape="rect" id="node3" href="$GameState_8cpp.html" title="src/GameState.cpp" alt="" coords="5,155,139,181"/>
-<area shape="rect" id="node4" href="$MiniMapTextureListener_8cpp.html" title="src/MiniMapTextureListener.cpp" alt="" coords="163,155,369,181"/>
-<area shape="rect" id="node7" href="$MenuState_8cpp.html" title="src/MenuState.cpp" alt="" coords="558,155,689,181"/>
-</map>

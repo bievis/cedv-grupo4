@@ -1,6 +1,0 @@
-<map id="DotSceneLoader::processEntity" name="DotSceneLoader::processEntity">
-<area shape="rect" id="node2" href="$classDotSceneLoader.html#a92dd78af655eaee1cbcd0ba7885fd1e1" title="DotSceneLoader::processNode" alt="" coords="261,12,464,39"/>
-<area shape="rect" id="node3" href="$classDotSceneLoader.html#aff673cad20a7eae2f743efea687f825e" title="DotSceneLoader::processNodes" alt="" coords="513,12,722,39"/>
-<area shape="rect" id="node4" href="$classDotSceneLoader.html#afe7449004d98aaac7cfba2f085f4d634" title="DotSceneLoader::processScene" alt="" coords="771,12,981,39"/>
-<area shape="rect" id="node5" href="$classDotSceneLoader.html#a4e5e51eec0482d7dc91da98f7ec30ea6" title="DotSceneLoader::parseDot\lScene" alt="" coords="1029,5,1208,46"/>
-</map>

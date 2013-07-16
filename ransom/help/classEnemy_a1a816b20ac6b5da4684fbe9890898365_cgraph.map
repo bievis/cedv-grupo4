@@ -1,5 +1,0 @@
-<map id="Enemy::Enemy" name="Enemy::Enemy">
-<area shape="rect" id="node2" href="$classEnemy.html#a1b0dfc354ecf21a0b8b16513d6905624" title="protected method to copy a enemy this method is used in assignment operator and copy constructor ..." alt="" coords="165,31,264,57"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a00417322bb56eebad3306b6efcfa9831" title="method to get render to texture reference " alt="" coords="312,5,485,32"/>
-<area shape="rect" id="node4" href="$classEnemy.html#a3debbce2a802b5df033d9370b7277823" title="method to get the camera POV reference " alt="" coords="317,56,480,83"/>
-</map>

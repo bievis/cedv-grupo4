@@ -1,9 +1,0 @@
-<map id="rapidxml::xml_document::parse_doctype" name="rapidxml::xml_document::parse_doctype">
-<area shape="rect" id="node2" href="$classrapidxml_1_1xml__base.html#adcdaccff61c665f039d9344e447b7445" title="Gets value of node. Interpretation of value depends on type of node. Note that value will not be zero..." alt="" coords="435,5,570,46"/>
-<area shape="rect" id="node4" href="$classrapidxml_1_1memory__pool.html#a4118581c29ee9a2f6b55ebf7dac185f8" title="Allocates a new node from the pool, and optionally assigns name and value to it. If the allocation re..." alt="" coords="219,69,376,110"/>
-<area shape="rect" id="node3" href="$classrapidxml_1_1xml__base.html#ad96ff6b1e41dab3ff60b9bc4df769a75" title="rapidxml::xml_base\l::nullstr" alt="" coords="641,21,775,62"/>
-<area shape="rect" id="node5" href="$classrapidxml_1_1memory__pool.html#a4e9cf53fa5f9da3a8f31b754bd94b4ec" title="rapidxml::memory_pool\l::allocate_aligned" alt="" coords="424,135,581,177"/>
-<area shape="rect" id="node8" href="$classrapidxml_1_1xml__base.html#a9a09739310469995db078ebd0da3ed45" title="Gets name of the node. Interpretation of name depends on type of node. Note that name will not be zer..." alt="" coords="435,70,570,111"/>
-<area shape="rect" id="node6" href="$classrapidxml_1_1memory__pool.html#a317396afc1812f08b64a1dd9cde4039b" title="rapidxml::memory_pool\l::align" alt="" coords="629,102,787,143"/>
-<area shape="rect" id="node7" href="$classrapidxml_1_1memory__pool.html#a1aed504a747303352e05f61c6ccbbebb" title="rapidxml::memory_pool\l::allocate_raw" alt="" coords="629,167,787,209"/>
-</map>

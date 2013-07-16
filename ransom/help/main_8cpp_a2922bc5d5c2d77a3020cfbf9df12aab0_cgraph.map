@@ -1,8 +1,0 @@
-<map id="WinMain" name="WinMain">
-<area shape="rect" id="node2" href="$classRansomApp.html#a5d7581827b88fe1233f5b5e2fe708de2" title="RansomApp::start" alt="" coords="129,56,255,83"/>
-<area shape="rect" id="node3" href="$classAppState.html#a9c18cb8ce2e689305fc417fc59c304dc" title="AppState::create" alt="" coords="347,5,467,32"/>
-<area shape="rect" id="node4" href="$classAppStateManager.html#a61560524c1ddf50ab1508e3135035919" title="AppStateManager::start" alt="" coords="327,56,487,83"/>
-<area shape="rect" id="node7" href="$classAppStateManager.html#a357316ae104ed314a8d51ca122532d32" title="AppStateManager::findByName" alt="" coords="305,107,509,133"/>
-<area shape="rect" id="node5" href="$classAppStateManager.html#ad2e841b3e33e67bda0ee535839a83cd1" title="AppStateManager::changeApp\lState" alt="" coords="558,49,757,90"/>
-<area shape="rect" id="node6" href="$classAppStateManager.html#a7b9c9b1cbcc7c32a7542fd1204bc9592" title="AppStateManager::init" alt="" coords="806,56,957,83"/>
-</map>

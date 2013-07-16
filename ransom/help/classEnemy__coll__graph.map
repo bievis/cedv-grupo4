@@ -1,7 +1,0 @@
-<map id="Enemy" name="Enemy">
-<area shape="rect" id="node2" href="$classCharacter.html" title="Class to manage the character. " alt="" coords="5,435,157,938"/>
-<area shape="rect" id="node6" href="$classHero.html" title="{Hero\n||+ Hero()\l+ ~Hero()\l+ Hero()\l+ operator=()\l+ print()\l# copy()\l}" alt="" coords="71,1111,168,1262"/>
-<area shape="rect" id="node3" href="$classSoundFXPtr.html" title="{SoundFXPtr\n||+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ operator=()\l}" alt="" coords="89,133,199,269"/>
-<area shape="rect" id="node5" href="$classEnemyRoute.html" title="Class to manage the enemy route. " alt="" coords="245,1045,379,1328"/>
-<area shape="rect" id="node7" href="$classMyTextureListener.html" title="class to be used how listener in the texture for the conversion to black &amp; white colours This class p..." alt="" coords="403,1097,588,1277"/>
-</map>

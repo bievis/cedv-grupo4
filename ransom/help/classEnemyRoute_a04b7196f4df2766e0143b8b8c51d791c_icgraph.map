@@ -1,5 +1,0 @@
-<map id="EnemyRoute::getRouteClosed" name="EnemyRoute::getRouteClosed">
-<area shape="rect" id="node2" href="$classEnemy.html#a47b237541648073ead026c8592db22b0" title="method to walk using the route built to the enemy " alt="" coords="251,5,402,32"/>
-<area shape="rect" id="node4" href="$classEnemyRoute.html#a6d9d58cf87d5b111f1e6f9f915d8d4dc" title="Method to copy the route. " alt="" coords="260,56,393,83"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="451,5,562,32"/>
-</map>

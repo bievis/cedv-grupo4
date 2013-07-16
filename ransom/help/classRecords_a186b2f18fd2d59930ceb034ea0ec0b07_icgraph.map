@@ -1,7 +1,0 @@
-<map id="Records::Records" name="Records::Records">
-<area shape="rect" id="node2" href="$classRecords.html#a7212cf91df8738dbaf6c44bdb59683aa" title="method to get the Records object " alt="" coords="190,64,341,91"/>
-<area shape="rect" id="node6" href="$classRecords.html#a5e62c50bd178deba9a8015b572ea9689" title="method to get the Records reference " alt="" coords="182,115,349,141"/>
-<area shape="rect" id="node3" href="$classGameState.html#a2db0f70f1eed6ee0fc9669b1f67bb47a" title="GameState::update" alt="" coords="417,5,551,32"/>
-<area shape="rect" id="node4" href="$classMenuState.html#a847621a6e9959f3a143072f960b078d2" title="MenuState::muestra\l_highscores" alt="" coords="414,57,554,98"/>
-<area shape="rect" id="node5" href="$classRansomApp.html#a604a26302a26a7e1ddba409763f2317f" title="RansomApp::RansomApp" alt="" coords="398,123,570,149"/>
-</map>

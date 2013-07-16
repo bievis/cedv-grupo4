@@ -1,8 +1,0 @@
-<map id="Character::copy" name="Character::copy">
-<area shape="rect" id="node2" href="$classCharacter.html#a0c8ea992733b6fe34d5cd3a9f6c883b8" title="method to get the character name " alt="" coords="184,5,323,32"/>
-<area shape="rect" id="node3" href="$classCharacter.html#a0ca8e63ec7b9aa98bfe3265744026593" title="method to get the character type " alt="" coords="187,56,319,83"/>
-<area shape="rect" id="node4" href="$classCharacter.html#ad16b2c4b51e9e7943be2676805406ae2" title="method to get health level (0&#45;100) " alt="" coords="183,107,324,133"/>
-<area shape="rect" id="node5" href="$classCharacter.html#a6947b2dcb596eadfa5030403c0f1cfa6" title="method to get the coordenates ( X, Y, Z ) for the initial position " alt="" coords="171,157,335,184"/>
-<area shape="rect" id="node6" href="$classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference " alt="" coords="168,208,339,235"/>
-<area shape="rect" id="node7" href="$classCharacter.html#aecd625855f699e4557f90aaf69aabb35" title="method to get rigid body reference " alt="" coords="172,259,335,285"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="Hostage" name="Hostage">
-<area shape="rect" id="node2" href="$classCharacter.html" title="Class to manage the character. " alt="" coords="5,435,157,938"/>
-<area shape="rect" id="node3" href="$classSoundFXPtr.html" title="{SoundFXPtr\n||+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ operator=()\l}" alt="" coords="89,133,199,269"/>
-</map>

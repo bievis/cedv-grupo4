@@ -1,6 +1,0 @@
-<map id="Piece::getNumEnemyRoutes" name="Piece::getNumEnemyRoutes">
-<area shape="rect" id="node2" href="$classGameConfig.html#aad8ca74f826215f243792a9b934e6806" title="method to create Map random " alt="" coords="245,5,456,32"/>
-<area shape="rect" id="node3" href="$classPiece.html#a611369b196a8b31f8c0074b4ec53fe3c" title="Method to copy the piece. " alt="" coords="305,56,396,83"/>
-<area shape="rect" id="node4" href="$classPiece.html#a347594badb9adb8b83d588fe801e5d41" title="Copy constructor. " alt="" coords="516,31,612,57"/>
-<area shape="rect" id="node5" href="$classPiece.html#a8b059420684d0bf0ed7cde80b42a6286" title="Assignment operator. " alt="" coords="505,81,623,108"/>
-</map>

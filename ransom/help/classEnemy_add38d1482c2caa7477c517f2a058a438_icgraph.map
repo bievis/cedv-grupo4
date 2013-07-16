@@ -1,4 +1,0 @@
-<map id="Enemy::setCurrentState" name="Enemy::setCurrentState">
-<area shape="rect" id="node2" href="$classEnemy.html#a0ac3f2c6c63520416bef5fa0f9b611f7" title="method to update lifeBar " alt="" coords="217,5,367,32"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="417,31,527,57"/>
-</map>

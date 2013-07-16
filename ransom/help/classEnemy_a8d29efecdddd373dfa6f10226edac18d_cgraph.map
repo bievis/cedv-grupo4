@@ -1,5 +1,0 @@
-<map id="Enemy::reorient_enemy_to_hero" name="Enemy::reorient_enemy_to_hero">
-<area shape="rect" id="node2" href="$classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference " alt="" coords="213,5,384,32"/>
-<area shape="rect" id="node3" href="$classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left " alt="" coords="233,56,365,83"/>
-<area shape="rect" id="node4" href="$classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right " alt="" coords="229,107,369,133"/>
-</map>

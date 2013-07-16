@@ -1,6 +1,0 @@
-<map id="EnemyRoute::getProximity" name="EnemyRoute::getProximity">
-<area shape="rect" id="node2" href="$classEnemy.html#aac1e312b06511853261b06b7668c213e" title="method to perform the character walk movement to position This method uses OgreBullet to move the cha..." alt="" coords="241,5,356,32"/>
-<area shape="rect" id="node5" href="$classEnemyRoute.html#a6d9d58cf87d5b111f1e6f9f915d8d4dc" title="Method to copy the route. " alt="" coords="232,56,365,83"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="614,5,725,32"/>
-<area shape="rect" id="node4" href="$classEnemy.html#a47b237541648073ead026c8592db22b0" title="method to walk using the route built to the enemy " alt="" coords="414,31,565,57"/>
-</map>
