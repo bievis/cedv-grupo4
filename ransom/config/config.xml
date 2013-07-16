@@ -60,7 +60,8 @@
 
       <hostages>
 
-        <position posX="-0.5" posY="1.0" posZ="-0.5" />
+<!--        <position posX="-0.5" posY="1.0" posZ="-0.5" />-->
+        <position posX="5.5" posY="0.0" posZ="5.5" />
 
       </hostages>
 
