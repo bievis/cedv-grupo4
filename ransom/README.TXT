@@ -1,4 +1,4 @@
-﻿Juego Ransom
+Juego Ransom
 ============   
 El juego consiste en liberar a los rehenes sin ser interceptado por los enemigos.
 El juego está implementado bajo licencia GNU GPL v2.
@@ -34,8 +34,10 @@ cerrar la ventana y volver al menú tendrá que pulsar la tecla ESC.
 
 Documentación
 =============
-La documentación (diagramas de clases, metodos y atributos de los objetos, etc..) los fuentes de encuentra en la carpeta "help" abriendo index.html con un navegador web.
-La documentacion escrita se encuentra en la carpeta "doc"
+La documentación (diagramas de clases, metodos y atributos de los objetos, etc..) 
+los fuentes de encuentra en la carpeta "doc/devel" abriendo index.html con un 
+navegador web.
+La documentacion escrita se encuentra en la carpeta "doc".
 
 Repositorio publico
 ===================
