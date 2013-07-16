@@ -18,9 +18,6 @@
     <ClCompile Include="..\..\src\AdvancedOgreFramework.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\AnimationBlender.cpp">
-      <Filter>Archivos de código fuente</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\AppStateManager.cpp">
       <Filter>Archivos de código fuente</Filter>
     </ClCompile>
@@ -102,9 +99,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\include\AnimationBlender.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\AppState.hpp">

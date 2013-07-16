@@ -18,14 +18,13 @@
 #include "GameConfig.h"
 #include "MiniMapTextureListener.h"
 #include "CamerasController.h"
-
 #include "Fader.h"
 
-#define NAME_MAP "Map"
 #define FILE_ROUTE_XML "./config/config.xml"
-#define MAP_ROUTE_XML "./config/Mapa.tmx"
 #define NAME_TEXTUTE_MINIMAP "RttT_Map"
 #define NAME_MATERIAL_MINIMAP "RttMat_Map"
+// Tiempo que se esta mostrando la pantalla final
+#define TIMER_END_SHOW 10.0f
 
 class GameState : public AppState, FaderCallback
   {
@@ -85,9 +84,9 @@ private:
     GameConfig                _gc;
 
     std::vector<Fader*>       _vFader;
-    Fader*                    _faderGameOver;
     Fader*                    _faderFinish;
     double                    _tiempo;
+	double                    _tiempoMostrarFinal;
     unsigned int              _hostages;
 
 	Ogre::StaticGeometry *_staticGeometry;

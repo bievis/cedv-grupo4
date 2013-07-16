@@ -32,14 +32,13 @@ void GameState::clear() {
 	_cameraMiniMap = NULL;
 	_staticGeometry = NULL;
 	_lastPanelLife = 0;
+	_tiempoMostrarFinal = 0;
+	_faderFinish = NULL;
   }
 
 void GameState::enter()
   {
 	clear();
-
-    _faderGameOver = NULL;
-    _faderFinish = NULL;
 
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Entering GameState...");
 
@@ -223,7 +222,7 @@ void GameState::CreateMiniMap() {
     mPtr->getTechnique(0)->getPass(0)->setDiffuse(0.9,0.9,0.9,1);
     mPtr->getTechnique(0)->getPass(0)->setSelfIllumination(0.4,0.4,0.4);
     // Le asignamos la textura que hemos creado
-    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState("RttT_Map");
+    mPtr->getTechnique(0)->getPass(0)->createTextureUnitState(NAME_TEXTUTE_MINIMAP);
 
 	  // Le vinculamos el listener a la textura
   	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres );
@@ -231,8 +230,9 @@ void GameState::CreateMiniMap() {
 
      Ogre::OverlayElement *elem;
 
+	 // Asignamos el material al Overlay en el que mostramos el mapa
      elem = m_pOverlayMgr->getOverlayElement("Panel_Mini_Map_Game");
-     elem->setMaterialName ( "RttMat_Map" );
+     elem->setMaterialName ( NAME_MATERIAL_MINIMAP);
 
   }
 
@@ -255,7 +255,6 @@ void GameState::resume()
     OgreFramework::getSingletonPtr()->getLogMgrPtr()->logMessage("Resuming GameState...");
 
     OgreFramework::getSingletonPtr()->getViewportPtr()->setCamera(m_pCamera);
-    m_bQuit = false;
 
     Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", true );
 
@@ -279,9 +278,6 @@ void GameState::exit()
       if (_vFader[i]) delete _vFader[i];
 
     _vFader.clear();
-
-    if ( _faderGameOver )
-      delete _faderGameOver;
 
     if ( _faderFinish )
       delete _faderFinish;
@@ -372,7 +368,10 @@ void GameState::exit()
 bool GameState::keyPressed(const OIS::KeyEvent &keyEventRef)
   {
 	if (m_bQuit) {
-		popAllAndPushAppState(findByName("MenuState"));
+		// Mostramos la pantalla final un tiempo determinado
+		if (_tiempoMostrarFinal >= TIMER_END_SHOW) {
+			popAllAndPushAppState(findByName("MenuState"));
+		}
 		return true;
 	} else {
 		if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_ESCAPE ) )
@@ -461,42 +460,12 @@ void GameState::update(double timeSinceLastFrame)
     for ( unsigned int i = 0; i < _vFader.size(); i++ )
       if (_vFader[i]) _vFader[i]->fade ( timeSinceLastFrame );
 
-	// Actualizacion del overlay del tiempo
-    Ogre::OverlayElement *elem = NULL;
-    elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
-    elem->setCaption ( getTime(_tiempo) );
-	// Actualizacion del overlay de la vida
-    elem = m_pOverlayMgr->getOverlayElement("txtHostages");
-    elem->setCaption ( Ogre::StringConverter::toString(_hostages) );
-
-    updatePanelLife();
-
-	// En el caso de que el heroe haya muerto
-    if ( m_hero->getHealth() == 0 )
+	// Finalizamos el juego en los casos:
+	// - En el caso de que se hayan rescatado todos los rehenes
+	// - En el caso de que el heroe haya muerto
+    if ( _hostages == 0 || m_hero->getHealth() == 0)
       {
-        _gameTrack->stop();
-		m_bQuit = true;
-        if ( !_faderGameOver )
-          {
-            if ( ( _gc.getNumHostages() - _hostages ) > 0 )
-              {
-                Records::getSingleton().add ( _gc.getNumHostages() - _hostages, _tiempo );
-                Records::getSingleton().compacta ( 10 );
-                Records::getSingleton().write();
-              }
-
-            Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
-
-            _faderGameOver = new Fader ( "GUI_GameOver", "Game/GameOver", this );
-            _faderGameOver->startFadeOut ( 2.0 );
-          }
-
-        if ( _faderGameOver )
-          _faderGameOver->fade ( timeSinceLastFrame );
-      }
-	// En el caso de que se hayan rescatado todos los rehenes
-    if ( _hostages == 0 )
-      {
+		_tiempoMostrarFinal+=timeSinceLastFrame;
         _gameTrack->stop();
 		m_bQuit = true;
         if ( !_faderFinish )
@@ -507,65 +476,83 @@ void GameState::update(double timeSinceLastFrame)
 
             Utilities::getSingleton().put_overlay ( m_pOverlayMgr, "GUI_Game", false );
 
-            _faderFinish = new Fader ( "GUI_Finish", "Game/Finish", this );
+			// Segun el caso por el que hayamos finalizado mostramos uno u otro
+			if ( m_hero->getHealth() == 0 ) {
+				_faderFinish = new Fader ( "GUI_GameOver", "Game/GameOver", this );
+			} else {
+				_faderFinish = new Fader ( "GUI_Finish", "Game/Finish", this );
+			}
             _faderFinish->startFadeOut ( 2.0 );
           }
 
         if ( _faderFinish )
           _faderFinish->fade ( timeSinceLastFrame );
-      }
+      } else { // Si no hemos finalizado
+		    // Actualizacion del overlay del tiempo
+			Ogre::OverlayElement *elem = NULL;
+			elem = m_pOverlayMgr->getOverlayElement("txtTiempo");
+			elem->setCaption ( getTime(_tiempo) );
+			// Actualizacion del overlay de la vida
+			elem = m_pOverlayMgr->getOverlayElement("txtHostages");
+			elem->setCaption ( Ogre::StringConverter::toString(_hostages) );
+			// Actualizamos la barra de vida
+			updatePanelLife();
 
-    _world->stepSimulation(timeSinceLastFrame); // Actualizar simulacion Bullet
+			// Actualizar simulacion Bullet
+		    _world->stepSimulation(timeSinceLastFrame); 
 
-	// Movemos al heroe
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
-      {
-        m_hero->turn_right();
-      }
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
-      {
-        m_hero->turn_left();
-      }
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
-      {
-        m_hero->walk ( true, 4.0 );
-      }
-    if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
-      {
-        m_hero->walk ( false, 4.0 );
-      }
+			// Movemos al heroe
+			if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
+			  {
+				m_hero->turn_right();
+			  }
+			if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_LEFT ) )
+			  {
+				m_hero->turn_left();
+			  }
+			if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_DOWN ) )
+			  {
+				m_hero->walk ( true, 4.0 );
+			  }
+			if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_UP ) )
+			  {
+				m_hero->walk ( false, 4.0 );
+			  }
 
-    // Actalizamos los personajes
-    m_hero->update(timeSinceLastFrame, _vCharacteres);
-    if ( m_enemies.size() > 0 )
-    {
-        unsigned int i = 1;
-        for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
-        {
-			(*itEnemy)->update(timeSinceLastFrame, _vCharacteres);
-        }
-    }
-	if ( m_hostages.size() > 0 )
-    {
-        unsigned int i = 1;
-        for ( std::vector<Hostage *>::iterator itHostage = m_hostages.begin(); m_hostages.end() != itHostage; itHostage++, i++ )
-        {
-            (*itHostage)->update(timeSinceLastFrame, _vCharacteres);
-        }
-    }
+			// Actalizamos los enemigos
+			m_hero->update(timeSinceLastFrame, _vCharacteres);
+			if ( m_enemies.size() > 0 )
+			{
+				unsigned int i = 1;
+				for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
+				{
+					(*itEnemy)->update(timeSinceLastFrame, _vCharacteres);
+				}
+			}
+			// Actalizamos los rehenes
+			if ( m_hostages.size() > 0 )
+			{
+				unsigned int i = 1;
+				for ( std::vector<Hostage *>::iterator itHostage = m_hostages.begin(); m_hostages.end() != itHostage; itHostage++, i++ )
+				{
+					(*itHostage)->update(timeSinceLastFrame, _vCharacteres);
+				}
+			}
 
-	// Miramos si el heroe a encontrado a algun rehen
-	Hostage* hostageRescue = detectCollisionHeroWithHostages(_world, m_hero, m_hostages);
-	if (hostageRescue != NULL) {
-		hostageRescue->liberate();
-		_hostages--;
-	}
+			// Miramos si el heroe a encontrado a algun rehen
+			Hostage* hostageRescue = detectCollisionHeroWithHostages(_world, m_hero, m_hostages);
+			if (hostageRescue != NULL) {
+				hostageRescue->liberate();
+				_hostages--;
+			}
 
-	// Actualizamos la camara
-	if (_camerasController != NULL)
-		_camerasController->update(timeSinceLastFrame);
+			// Actualizamos la camara
+			if (_camerasController != NULL)
+				_camerasController->update(timeSinceLastFrame);
 
-  }
+	} // End Else de si no hemos finalizado
+
+}
 
 void GameState::CreateMap()
 {
