@@ -83,7 +83,9 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
 
     _route = route;
 
+#ifdef _DEBUG
     cout << " punto de salida = " << _route.getPoint(0) << endl;
+#endif
 
     _currentState = WATCHING;
 
@@ -230,7 +232,9 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
               } else {
                 // Si se ha perdido returna por los puntos de retorno
                 if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1])) {
-                              cout << "QUITANDO PUNTO RETORNO" << endl;
+#ifdef _DEBUG
+                  cout << "QUITANDO PUNTO RETORNO" << endl;
+#endif
                   _vReturnsPoints.pop_back();
                 }
               }
@@ -348,7 +352,9 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
                           {
                             _timeSeach = _timeElapsed_Global;
                             _vReturnsPoints.push_back(_node->getPosition());
+#ifdef _DEBUG
                             cout << "INSERTADO PUNTO RETORNO" << endl;
+#endif
                           }
 
                         _stopAround = true;
@@ -503,7 +509,9 @@ void Enemy::walk_in_route()
   // punto
   if ( walk_to ( v ) )
   {
+#ifdef _DEBUG
     cout << _name << ": punto destino = " << v << " - puntos = " << _route.getNumPoints() << " : current_point = " << _current_point << endl;
+#endif
     if ( _way ) // Sentido hacia adelante
       _current_point++;
     else  // Sentido inverso
@@ -513,7 +521,9 @@ void Enemy::walk_in_route()
   // Si esto es así, significa que hemos pasado del último punto
   if ( _current_point == _route.getNumPoints() )
     {
+#ifdef _DEBUG
       cout << _name << ": _route.getRouteClosed() " << _route.getRouteClosed() << endl;
+#endif
       if ( _route.getRouteClosed() )
         _current_point = 0;
       else
@@ -521,13 +531,17 @@ void Enemy::walk_in_route()
         _way = !_way;
         _current_point-=2;
       }
+#ifdef _DEBUG
       cout << _name << ": _current_point = " << _current_point << endl;
+#endif
     }
   else if ( !_way && _current_point == -1 )
     {
       _way = !_way;
       _current_point = 1;
+#ifdef _DEBUG
       cout << _name << ": _current_point = " << _current_point << endl;
+#endif
     }
 }
 
@@ -553,8 +567,9 @@ void Enemy::setCurrentState( const eSTATES_ENEMY& newValue )
       case CHASING:
         msg = "CHASING"; break;
     }
-
+#ifdef _DEBUG
   cout << "The new state is '" << msg << "'" << endl;
+#endif
 }
 
 void Enemy::reorient_enemy_to_hero()

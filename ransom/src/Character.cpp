@@ -264,13 +264,17 @@ void Character::updateShot ( double timeSinceLastFrame, std::vector<Character*> 
       // Vemos a que le hemos dado otro personaje
       if (shootingCharacter)
         {
+#ifdef _DEBUG
           cout << "TOCADO!!!" << endl;
+#endif
           shootingCharacter->setHealth(shootingCharacter->getHealth() - HEALTH_SHOT);
           play_sound_hurt();
         }
       else
         {
+#ifdef _DEBUG
           cout << "AGUA!!!" << endl;
+#endif
           play_sound_miss();
         }
     }
@@ -357,56 +361,11 @@ void Character::walk ( bool reverse, float velocidad )
 
   }
 
-//bool Character::walk_to ( const Ogre::Vector3& p )
-//  {
-//    bool res = false;
-//    Ogre::Vector3 o = _rigidBody->getSceneNode()->getPosition();
-//
-//    Ogre::Vector3 v = p - o; // 1er vector
-//
-//    Ogre::Vector3 orientacion = _rigidBody->getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; // 2do vector
-//
-//    Ogre::Radian angle = orientacion.angleBetween ( v );
-//
-//    Ogre::Real distance = o.distance ( p );
-//
-////    cout << " prueba = " << orientacion.getRotationTo(v).getYaw().valueDegrees() << endl;
-////    cout << " angle = " << angle.valueAngleUnits() << endl;
-////    cout << " distance = " << distance << endl;
-//
-//    if ( distance < 2.9 )
-//      res = true;
-//
-//    if ( angle.valueDegrees() > 15 )
-//    {
-//      if ( orientacion.getRotationTo(v).getYaw().valueDegrees() > 0 )
-//        turn_left();
-//      else
-//        turn_right();
-//    }
-//
-//    walk();
-//
-//    return res;
-//  }
-
 void Character::stop_move()
   {
     _rigidBody->setLinearVelocity(Ogre::Vector3::ZERO);
     changeAnimation(STOP_ANIMATION);
   }
-
-//void Character::turn ( Ogre::Real angle )
-//  {
-//
-//    assert ( _node );
-//
-//    _rigidBody->enableActiveState();
-//    _node->yaw ( Ogre::Radian(angle) );
-//    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
-//    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
-//
-//  }
 
 void Character::turn_left()
   {

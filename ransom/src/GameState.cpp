@@ -110,7 +110,9 @@ void GameState::enter()
 	// Cargamos el fichero de configuracion
     XMLCharger::getSingleton().LoadGameConfig ( FILE_ROUTE_XML, _gc );
 
+#ifdef _DEBUG
     _gc.print();
+#endif
 
     // Creacion de los elementos iniciales del mundo
     CreateInitialWorld();
@@ -300,7 +302,9 @@ void GameState::exit()
 
  		if ( m_hero )
  		{
+#ifdef _DEBUG
  		  cout << "delete hero" << endl;
+#endif
       delete m_hero;
  		}
 
@@ -318,7 +322,9 @@ void GameState::exit()
 
     if ( m_pCamera )
     {
+#ifdef _DEBUG
       cout << "delete camera" << endl;
+#endif
       m_pSceneMgr->destroyCamera ( m_pCamera );
     }
 
@@ -330,7 +336,9 @@ void GameState::exit()
 
 	  if ( _cameraMiniMap )
     {
+#ifdef _DEBUG
       cout << "delete camera" << endl;
+#endif
       m_pSceneMgr->destroyCamera ( _cameraMiniMap );
     }
 
@@ -339,7 +347,9 @@ void GameState::exit()
 	Ogre::MaterialManager::getSingleton().remove(NAME_MATERIAL_MINIMAP);
     if ( _world )
     {
+#ifdef _DEBUG
       cout << "delete world" << endl;
+#endif
       delete _world;
     }
 
@@ -349,7 +359,9 @@ void GameState::exit()
 
     if ( m_pSceneMgr )
     {
+#ifdef _DEBUG
       cout << "delete scene manager" << endl;
+#endif
       OgreFramework::getSingletonPtr()->getRootPtr()->destroySceneManager ( m_pSceneMgr );
     }
 
