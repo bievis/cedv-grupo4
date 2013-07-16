@@ -11,7 +11,8 @@
 
 using namespace std;
 
-/// \brief This class manages the records in the game
+/// \brief This class manages the records in the game.
+/// This class follow the singleton pattern.
 class Records {
 
 private:

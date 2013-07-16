@@ -23,20 +23,17 @@ Enemy::Enemy( Ogre::SceneManager* sceneMgr,
     _timeStartChasing = 0;
     _timeElapsed_Shooting = 2;
     _timeBlocked = 0;
-	_stopAround = true;
-	_aroundNumber = 0;
-	_timeSeach = 0;
-
+    _stopAround = true;
+    _aroundNumber = 0;
+    _timeSeach = 0;
     _currentPosition = Ogre::Vector3::ZERO;
-
     _sentinel_dest = false;
-
     _refHero = ptrHero;
 
     //Material del enemigo
     _entityDummy->setMaterialName ( "MaterialRojo" );
 
-	_particleDeath->setMaterialName("MaterialRojo");
+    _particleDeath->setMaterialName("MaterialRojo");
 
     // Textura para mostrar la visualizacion de lo que ve el enemigo
     _rtt = Ogre::TextureManager::getSingleton().createManual (
@@ -105,7 +102,8 @@ Enemy::~Enemy()
 
     if ( _camPOV )
       _sceneMgr->destroyCamera ( _camPOV );
-	Ogre::MaterialManager::getSingleton().remove(NAME_TEXTUTE_CAM + _name);
+
+    Ogre::MaterialManager::getSingleton().remove(NAME_TEXTUTE_CAM + _name);
 
     // Destruimos el billboardset
     _lifeNode->detachObject(_bbSetLife);
@@ -113,7 +111,7 @@ Enemy::~Enemy()
     _lifeNode->getParent()->removeChild(_lifeNode);
     _sceneMgr->destroySceneNode(_lifeNode);
 
-	_vReturnsPoints.clear();
+    _vReturnsPoints.clear();
   }
 
 Enemy::Enemy(const Enemy& other) : Character ( other )
@@ -137,64 +135,65 @@ void Enemy::copy ( const Enemy& source )
 		_rtt = ((Enemy&)source).getTexturePtr();
 //	#endif
     _camPOV = source.getCameraPOV();
-	_stopAround = source._stopAround;
-	_aroundNumber = source._aroundNumber;
-	_vReturnsPoints = source._vReturnsPoints;
-	_timeSeach = source._timeSeach;
+    _stopAround = source._stopAround;
+    _aroundNumber = source._aroundNumber;
+    _vReturnsPoints = source._vReturnsPoints;
+    _timeSeach = source._timeSeach;
   }
 
 void Enemy::print()
-{
-  cout << "==============" << endl;
-  cout << "Enemy Info" << endl;
-  cout << "==============" << endl;
+  {
+    cout << "==============" << endl;
+    cout << "Enemy Info" << endl;
+    cout << "==============" << endl;
 
-  Character::print();
+    Character::print();
 
-  printf ( "render tex ref.: %p\n", _rtex );
-  printf ( "texture ref.   : %p\n", _rtt.get() );
-  printf ( "camera ref.    : %p\n", _camPOV );
+    printf ( "render tex ref.: %p\n", _rtex );
+    printf ( "texture ref.   : %p\n", _rtt.get() );
+    printf ( "camera ref.    : %p\n", _camPOV );
 
-  _route.print();
+    _route.print();
 
-  cout << "==============" << endl;
-}
+    cout << "==============" << endl;
+  }
 
 bool Enemy::haveYouSeenAnybody()
-{
-  assert ( _textureListener );
-  return _textureListener->enemyViewed();
-}
+  {
+    assert ( _textureListener );
+    return _textureListener->enemyViewed();
+  }
 
-void Enemy::updateLifeBar() {
-
+void Enemy::updateLifeBar()
+  {
     if ( _health != _lastHealth )
-    {
-      if ( _lastHealth != 0 )
-        {
-          setCurrentState( SHOOTING );
-          forcedIN = true;
-          _timeElapsed_Shooting = _timeElapsed_Global;
-        }
-      _lastHealth = _health;
+      {
+        if ( _lastHealth != 0 )
+          {
+            setCurrentState( SHOOTING );
+            forcedIN = true;
+            _timeElapsed_Shooting = _timeElapsed_Global;
+          }
 
-      Ogre::Real ratio = _health / MAX_HEALTH;
+        _lastHealth = _health;
 
-      if (ratio < 0.0f)
+        Ogre::Real ratio = _health / MAX_HEALTH;
+
+        if (ratio < 0.0f)
           ratio = 0.0f;
 
-      _lifeBar->setTexcoordRect((1.0 - ratio) / SIZE_LIFE_BAR,
-                                0.0f,
-                                0.50f + (1.0 - ratio) / SIZE_LIFE_BAR,
-                                1.0);
-    }
-}
+        _lifeBar->setTexcoordRect((1.0 - ratio) / SIZE_LIFE_BAR,
+                                  0.0f,
+                                  0.50f + (1.0 - ratio) / SIZE_LIFE_BAR,
+                                  1.0);
+      }
+  }
 
 void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres)
   {
 	  Character::update(timeSinceLastFrame, vCharacteres);
 
-    if (_stateCaracter == LIVE)
+    if ( _stateCaracter == LIVE )
       {
         _timeElapsed_Global += timeSinceLastFrame;
 
@@ -207,7 +206,6 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
             // ################## ESTADO WATCHING ##################
             // Si estamos en el estado normal de WATCHING
             case WATCHING:
-
                 // Si avistamos al heroe :
                 // - tomamos su posición actual
                 // - cogemos el tiempo actual
@@ -224,20 +222,24 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
                 // - seguimos caminando por nuestra ruta
                 else
                   {
-              // Si no se ha perdido cuando perseguia al enemigo
-              if (_vReturnsPoints.size() == 0) {
-              _timeElapsed_Watching = 0;
-              _sentinel_dest = false;
-              walk_in_route();
-              } else {
-                // Si se ha perdido returna por los puntos de retorno
-                if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1])) {
+                    // Si no se ha perdido cuando perseguia al enemigo
+                    if (_vReturnsPoints.size() == 0)
+                      {
+                        _timeElapsed_Watching = 0;
+                        _sentinel_dest = false;
+                        walk_in_route();
+                      }
+                    else
+                      {
+                        // Si se ha perdido returna por los puntos de retorno
+                        if (walk_to(_vReturnsPoints[_vReturnsPoints.size() -1]))
+                          {
 #ifdef _DEBUG
-                  cout << "QUITANDO PUNTO RETORNO" << endl;
+                            cout << "QUITANDO PUNTO RETORNO" << endl;
 #endif
-                  _vReturnsPoints.pop_back();
-                }
-              }
+                            _vReturnsPoints.pop_back();
+                          }
+                      }
                   }
 
                 break;
@@ -321,7 +323,6 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
 
             // ################## ESTADO CHASING ##################
             case CHASING:
-
                 // Si entramos en estado CHASING
                 //    - Si no ve al heroe desde el ultimo avistamiento pasaremos al estado WATCHING.
                 //    - Si por el contrario, seguimos viendo al enemigo, pasaremos al
@@ -395,9 +396,6 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
             _timeBlocked = _timeElapsed_Global;
 
             if ( _currentPosition == _node->getPosition() )
-//            if ( ( _currentPosition == _node->getPosition() ) &&
-//                ( _currentState == CHASING ) )
-                //( _currentState == CHASING && !_sentinel_dest) )
               {
                 _currentState = WATCHING;
               }
@@ -420,7 +418,6 @@ void Enemy::play_sound_alert()
       _soundAlert2FX->play();
       _currentSoundAlert = 1;
     }
-
   }
 
 const Ogre::Real& Enemy::get_distance_with_hero()
@@ -489,88 +486,88 @@ bool Enemy::walk_to ( const Ogre::Vector3& p, bool running )
   }
 
 void Enemy::watch_around(double timeSinceLastFrame)
-{
-	changeAnimation(MOVE_ANIMATION);
-    _rigidBody->enableActiveState();
-	_node->yaw ( Ogre::Radian(Ogre::Math::DegreesToRadians(135)) * timeSinceLastFrame);
-    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to(_node->getOrientation());
-    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation(quaternion);
-
-}
-
-void Enemy::walk_in_route()
-{
-  assert ( _route.getNumPoints() );
-
-  Ogre::Vector3 v = _route.getPoint ( _current_point );
-
-  // Si el método walk_to() nos devuelve true, quiere decir que ha llegado al destino
-  // y por lo tanto la variable _current_point de la ruta del enemigo debe de pasar al siguiente
-  // punto
-  if ( walk_to ( v ) )
   {
-#ifdef _DEBUG
-    cout << _name << ": punto destino = " << v << " - puntos = " << _route.getNumPoints() << " : current_point = " << _current_point << endl;
-#endif
-    if ( _way ) // Sentido hacia adelante
-      _current_point++;
-    else  // Sentido inverso
-      _current_point--;
+    changeAnimation ( MOVE_ANIMATION );
+    _rigidBody->enableActiveState();
+    _node->yaw ( Ogre::Radian ( Ogre::Math::DegreesToRadians ( 135 ) ) * timeSinceLastFrame );
+    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to ( _node->getOrientation() );
+    _rigidBody->getBulletRigidBody()->getWorldTransform().setRotation ( quaternion );
   }
 
-  // Si esto es así, significa que hemos pasado del último punto
-  if ( _current_point == _route.getNumPoints() )
-    {
+void Enemy::walk_in_route()
+  {
+    assert ( _route.getNumPoints() );
+
+    Ogre::Vector3 v = _route.getPoint ( _current_point );
+
+    // Si el método walk_to() nos devuelve true, quiere decir que ha llegado al destino
+    // y por lo tanto la variable _current_point de la ruta del enemigo debe de pasar al siguiente
+    // punto
+    if ( walk_to ( v ) )
+      {
 #ifdef _DEBUG
-      cout << _name << ": _route.getRouteClosed() " << _route.getRouteClosed() << endl;
+        cout << _name << ": punto destino = " << v << " - puntos = " << _route.getNumPoints() << " : current_point = " << _current_point << endl;
 #endif
-      if ( _route.getRouteClosed() )
-        _current_point = 0;
-      else
+        if ( _way ) // Sentido hacia adelante
+          _current_point++;
+        else  // Sentido inverso
+          _current_point--;
+      }
+
+    // Si esto es así, significa que hemos pasado del último punto
+    if ( _current_point == _route.getNumPoints() )
+      {
+#ifdef _DEBUG
+        cout << _name << ": _route.getRouteClosed() " << _route.getRouteClosed() << endl;
+#endif
+        if ( _route.getRouteClosed() )
+          _current_point = 0;
+        else
+        {
+          _way = !_way;
+          _current_point-=2;
+        }
+#ifdef _DEBUG
+        cout << _name << ": _current_point = " << _current_point << endl;
+#endif
+      }
+    else if ( !_way && _current_point == -1 )
       {
         _way = !_way;
-        _current_point-=2;
+        _current_point = 1;
+#ifdef _DEBUG
+        cout << _name << ": _current_point = " << _current_point << endl;
+#endif
       }
-#ifdef _DEBUG
-      cout << _name << ": _current_point = " << _current_point << endl;
-#endif
-    }
-  else if ( !_way && _current_point == -1 )
-    {
-      _way = !_way;
-      _current_point = 1;
-#ifdef _DEBUG
-      cout << _name << ": _current_point = " << _current_point << endl;
-#endif
-    }
-}
+  }
 
-void Enemy::showDummy(bool show) {
-	Character::showDummy(show);
-	_lifeNode->setVisible(!show);
-}
+void Enemy::showDummy(bool show)
+  {
+    Character::showDummy(show);
+    _lifeNode->setVisible(!show);
+  }
 
 void Enemy::setCurrentState( const eSTATES_ENEMY& newValue )
-{
-  string msg = "";
+  {
+    string msg = "";
 
-  _currentState = newValue;
+    _currentState = newValue;
 
-  switch ( _currentState )
-    {
-      case WATCHING:
-        msg = "WATCHING"; break;
-      case ALERT:
-        msg = "ALERT"; break;
-      case SHOOTING:
-        msg = "SHOOTING"; break;
-      case CHASING:
-        msg = "CHASING"; break;
-    }
+    switch ( _currentState )
+      {
+        case WATCHING:
+          msg = "WATCHING"; break;
+        case ALERT:
+          msg = "ALERT"; break;
+        case SHOOTING:
+          msg = "SHOOTING"; break;
+        case CHASING:
+          msg = "CHASING"; break;
+      }
 #ifdef _DEBUG
-  cout << "The new state is '" << msg << "'" << endl;
+    cout << "The new state is '" << msg << "'" << endl;
 #endif
-}
+  }
 
 void Enemy::reorient_enemy_to_hero()
   {
@@ -598,4 +595,4 @@ void Enemy::reorient_enemy_to_hero()
             turn_right();
           }
       }
-}
+  }

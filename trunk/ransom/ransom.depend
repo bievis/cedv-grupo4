@@ -1606,23 +1606,24 @@
 	<Terrain/OgreTerrainGroup.h>
 	<Terrain/OgreTerrainMaterialGeneratorA.h>
 
-1371494208 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfig.cpp
+1373756684 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfig.cpp
 	<GameConfig.h>
 
 1363078305 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameConfigException.cpp
 	<GameConfigException.hpp>
 
-1371223056 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MenuState.cpp
+1372832970 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MenuState.cpp
 	"MenuState.hpp"
 
-1370280349 source:/home/diego/CEDV/cedv-grupo4/ransom/src/PauseState.cpp
+1373478453 source:/home/diego/CEDV/cedv-grupo4/ransom/src/PauseState.cpp
 	"PauseState.hpp"
 
-1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/RansomApp.cpp
+1372767548 source:/home/diego/CEDV/cedv-grupo4/ransom/src/RansomApp.cpp
 	"RansomApp.hpp"
 	"MenuState.hpp"
 	"GameState.hpp"
 	"PauseState.hpp"
+	"Records.h"
 
 1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Records.cpp
 	"Records.h"
@@ -1644,44 +1645,35 @@
 1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/TrackManager.cpp
 	<TrackManager.h>
 
-1372370623 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Utilities.cpp
+1373653677 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Utilities.cpp
 	"Utilities.h"
 	<OgreVector3.h>
 
-1371670532 source:/home/diego/CEDV/cedv-grupo4/ransom/src/XMLCharger.cpp
+1372958845 source:/home/diego/CEDV/cedv-grupo4/ransom/src/XMLCharger.cpp
 	<XMLCharger.h>
 
 1370243437 source:/home/diego/CEDV/cedv-grupo4/ransom/src/main.cpp
 	"RansomApp.hpp"
 	"windows.h"
 
-1372433028 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameState.cpp
+1373654677 source:/home/diego/CEDV/cedv-grupo4/ransom/src/GameState.cpp
 	"GameState.hpp"
-	"Shapes/OgreBulletCollisionsBoxShape.h"
-	"Shapes/OgreBulletCollisionsCompoundShape.h"
-	"OgreBulletDynamicsWorld.h"
-	"OgreBulletDynamicsRigidBody.h"
-	"Debug/OgreBulletCollisionsDebugDrawer.h"
-	"Constraints/OgreBulletDynamicsRaycastVehicle.h"
-	"Shapes/OgreBulletCollisionsTrimeshShape.h"
-	"Shapes/OgreBulletCollisionsSphereShape.h"
-	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
 	<cassert>
 
-1372435256 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Character.cpp
+1373475289 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Character.cpp
 	"Character.h"
 	<cassert>
 
-1372431523 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MyTextureListener.cpp
+1373472786 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MyTextureListener.cpp
 	"MyTextureListener.h"
 
-1372435093 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Enemy.cpp
+1373477527 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Enemy.cpp
 	"Enemy.h"
 
-1372431523 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Hero.cpp
+1373477527 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Hero.cpp
 	"Hero.h"
 
-1371489724 source:/home/diego/CEDV/cedv-grupo4/ransom/src/EnemyRoute.cpp
+1372958845 source:/home/diego/CEDV/cedv-grupo4/ransom/src/EnemyRoute.cpp
 	"EnemyRoute.h"
 	<iostream>
 
@@ -1700,14 +1692,14 @@
 1371223424 source:/home/diego/CEDV/cedv-grupo4/ransom/src/StateMachineXMLCharger.cpp
 	<StateMachineXMLCharger.h>
 
-1372431523 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MiniMapTextureListener.cpp
+1372445526 source:/home/diego/CEDV/cedv-grupo4/ransom/src/MiniMapTextureListener.cpp
 	"MiniMapTextureListener.h"
 	"GameState.hpp"
 
-1371591085 source:/home/diego/CEDV/cedv-grupo4/ransom/src/CamerasController.cpp
+1372445526 source:/home/diego/CEDV/cedv-grupo4/ransom/src/CamerasController.cpp
 	"CamerasController.h"
 
-1372431523 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Hostage.cpp
+1373477527 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Hostage.cpp
 	"Hostage.h"
 
 1372355907 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Fader.cpp
@@ -1716,5 +1708,9 @@
 	"OgreOverlayManager.h"
 	"OgreTechnique.h"
 	"OgreBlendMode.h"
+	<iostream>
+
+1372958845 source:/home/diego/CEDV/cedv-grupo4/ransom/src/Piece.cpp
+	"Piece.h"
 	<iostream>
 

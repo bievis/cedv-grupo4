@@ -33,22 +33,22 @@ class Hostage : public Character
      *  \return A reference to this
      */
     Hostage& operator=(const Hostage& other);
-	/// \brief method to get state of hostage
+    /// \brief method to get state of hostage
     /// \return state of hostage
     inline STATE_HOSTAGE  getState() const { return _state; };
     /// \brief method to print hero info
     void          print();
-	/// \brief method to change animation of character
+    /// \brief method to change animation of character
     void          changeAnimation(string nameAnimation);
-	/// \brief method to change state to liberate
+    /// \brief method to change state to liberate
     void liberate();
-	/// \brief method to set change visibility of hostage
+    /// \brief method to set change visibility of hostage
     /// \param visible new visivility
     void   setVisible ( const bool visible );
-	/// \brief method to update character in frame
+    /// \brief method to update character in frame
     void update ( double timeSinceLastFrame, std::vector<Character*>   vCharacteres);
-	/// \brief timer it is showing the particle of liberate
-	double _timerParticleLiberate;
+    /// \brief timer it is showing the particle of liberate
+    double _timerParticleLiberate;
 
   protected:
     /// \brief protected method to copy an hero
@@ -57,10 +57,14 @@ class Hostage : public Character
     void copy ( const Hostage& source );
 
   private:
-	Ogre::ParticleSystem* _particleLiberation;
-	Ogre::SceneNode* _particleLiberationNode;
-	STATE_HOSTAGE _state;
-	SoundFXPtr                _soundFreeFX;
+    /// \brief reference to the particle system used to hostage liberation
+    Ogre::ParticleSystem* _particleLiberation;
+    /// \brief reference to scene node for the particle system
+    Ogre::SceneNode* _particleLiberationNode;
+    /// \brief hostage state
+    STATE_HOSTAGE _state;
+    /// \brief sound used when the hostage was released
+    SoundFXPtr _soundFreeFX;
 };
 
 #endif // HOSTAGE_H

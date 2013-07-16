@@ -86,8 +86,8 @@ class Piece
     double m_height;
     /// \brief deque with the enemy routes in this piece
     std::deque<EnemyRoute*> m_routes;
-	/// \brief deque with the position of hostages in the piece
-	std::deque<Ogre::Vector3> m_posHostages;
+    /// \brief deque with the position of hostages in the piece
+    std::deque<Ogre::Vector3> m_posHostages;
     /// \brief name mesh file to load
     std::string m_name_mesh;
 
