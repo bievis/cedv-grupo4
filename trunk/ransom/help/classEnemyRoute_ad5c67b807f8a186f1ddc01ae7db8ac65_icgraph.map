@@ -1,7 +1,0 @@
-<map id="EnemyRoute::getNumPoints" name="EnemyRoute::getNumPoints">
-<area shape="rect" id="node2" href="$classEnemy.html#a47b237541648073ead026c8592db22b0" title="method to walk using the route built to the enemy " alt="" coords="270,5,421,32"/>
-<area shape="rect" id="node4" href="$classEnemyRoute.html#a6d9d58cf87d5b111f1e6f9f915d8d4dc" title="Method to copy the route. " alt="" coords="279,56,412,83"/>
-<area shape="rect" id="node5" href="$classGameConfig.html#aad8ca74f826215f243792a9b934e6806" title="method to create Map random " alt="" coords="240,107,451,133"/>
-<area shape="rect" id="node6" href="$classGameState.html#a8b6337e017e4f8989953e214e5a0d0cd" title="GameState::CreateInitial\lWorld" alt="" coords="263,158,427,199"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a1efee0b5a754e640095638e67e2acab1" title="method to update enemy in frame " alt="" coords="499,5,610,32"/>
-</map>

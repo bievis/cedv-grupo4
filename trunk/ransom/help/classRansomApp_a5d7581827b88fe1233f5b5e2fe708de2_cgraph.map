@@ -1,7 +1,0 @@
-<map id="RansomApp::start" name="RansomApp::start">
-<area shape="rect" id="node2" href="$classAppState.html#a9c18cb8ce2e689305fc417fc59c304dc" title="AppState::create" alt="" coords="224,5,344,32"/>
-<area shape="rect" id="node3" href="$classAppStateManager.html#a61560524c1ddf50ab1508e3135035919" title="AppStateManager::start" alt="" coords="204,56,364,83"/>
-<area shape="rect" id="node6" href="$classAppStateManager.html#a357316ae104ed314a8d51ca122532d32" title="AppStateManager::findByName" alt="" coords="182,107,386,133"/>
-<area shape="rect" id="node4" href="$classAppStateManager.html#ad2e841b3e33e67bda0ee535839a83cd1" title="AppStateManager::changeApp\lState" alt="" coords="435,49,634,90"/>
-<area shape="rect" id="node5" href="$classAppStateManager.html#a7b9c9b1cbcc7c32a7542fd1204bc9592" title="AppStateManager::init" alt="" coords="683,56,834,83"/>
-</map>

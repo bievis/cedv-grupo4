@@ -1,9 +1,0 @@
-<map id="GameConfig::copy" name="GameConfig::copy">
-<area shape="rect" id="node2" href="$classGameConfig.html#a6e679ea9de32cb431462a47596bb102a" title="method to clear the object free the vector and deque, also clear the elements in the object ..." alt="" coords="234,5,363,32"/>
-<area shape="rect" id="node3" href="$classGameConfig.html#a48d71bb4865a05c32c48a1ee8da9385b" title="method to get initial position of the hero " alt="" coords="199,56,398,83"/>
-<area shape="rect" id="node4" href="$classGameConfig.html#afb4036d5657d17b1228f4a8bcdfd293e" title="method to get enemies number " alt="" coords="200,107,397,133"/>
-<area shape="rect" id="node5" href="$classGameConfig.html#a2b0e9b1dab915558cff26781c9cd7412" title="method to get routes vector size " alt="" coords="185,157,413,184"/>
-<area shape="rect" id="node6" href="$classGameConfig.html#a7f3b616aca13a39ddc7734f28695caa2" title="method to get hostages number " alt="" coords="198,208,399,235"/>
-<area shape="rect" id="node7" href="$classGameConfig.html#a971304d13164d8e5110cbb23c6381697" title="method to get the number of pieces " alt="" coords="205,259,392,285"/>
-<area shape="rect" id="node8" href="$classGameConfig.html#af20512714199baa74a107e6da06ae7bd" title="method to get piece of config " alt="" coords="223,309,375,336"/>
-</map>

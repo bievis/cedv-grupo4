@@ -1,6 +1,0 @@
-<map id="EnemyRoute::copy" name="EnemyRoute::copy">
-<area shape="rect" id="node2" href="$classEnemyRoute.html#a41027429878196c8c56ee66dd50863ec" title="Method to get value identificator for the route. " alt="" coords="218,5,353,32"/>
-<area shape="rect" id="node3" href="$classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. " alt="" coords="187,56,384,83"/>
-<area shape="rect" id="node4" href="$classEnemyRoute.html#a9c22fbb5568adcf73efe1df0f98f2349" title="Method to get proximity value. " alt="" coords="196,107,375,133"/>
-<area shape="rect" id="node5" href="$classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. " alt="" coords="192,157,379,184"/>
-</map>

@@ -1,6 +1,0 @@
-<map id="rapidxml::memory_pool::init" name="rapidxml::memory_pool::init">
-<area shape="rect" id="node2" href="$classrapidxml_1_1memory__pool.html#a0b609da81dff28a19ebd704400788429" title="Constructs empty pool with default allocator functions. " alt="" coords="211,5,368,46"/>
-<area shape="rect" id="node3" href="$classrapidxml_1_1memory__pool.html#aad377c835fdaed1cb2cc9df194cf84e4" title="Clears the pool. This causes memory occupied by nodes allocated by the pool to be freed..." alt="" coords="211,70,368,111"/>
-<area shape="rect" id="node4" href="$classrapidxml_1_1memory__pool.html#a0a3e82126e59e4077f41e933130bb5a0" title="Destroys pool and frees all the memory. This causes memory occupied by nodes allocated by the pool to..." alt="" coords="420,37,577,78"/>
-<area shape="rect" id="node5" href="$classrapidxml_1_1xml__document.html#a826929ff54242532198701f19ff5f83f" title="Clears the document by deleting all nodes and clearing the memory pool. All nodes owned by document p..." alt="" coords="417,102,581,143"/>
-</map>

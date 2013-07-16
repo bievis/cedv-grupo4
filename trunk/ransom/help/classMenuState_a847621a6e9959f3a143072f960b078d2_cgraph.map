@@ -1,6 +1,0 @@
-<map id="MenuState::muestra_highscores" name="MenuState::muestra_highscores">
-<area shape="rect" id="node2" href="$classRecords.html#a7212cf91df8738dbaf6c44bdb59683aa" title="method to get the Records object " alt="" coords="195,5,346,32"/>
-<area shape="rect" id="node4" href="$classRecords.html#aa64c3d7746cbb20d44433e3bb58e7bc8" title="method to read the records table from file The file was named highscores.dat " alt="" coords="219,56,322,83"/>
-<area shape="rect" id="node5" href="$classRecords.html#ac156b05ca35973a056fcb94a2a4a4799" title="method to get size of the records table " alt="" coords="209,107,332,133"/>
-<area shape="rect" id="node3" href="$classRecords.html#a186b2f18fd2d59930ceb034ea0ec0b07" title="default constructor " alt="" coords="395,5,522,32"/>
-</map>

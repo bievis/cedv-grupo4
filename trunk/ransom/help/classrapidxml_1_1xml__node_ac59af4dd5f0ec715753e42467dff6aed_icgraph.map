@@ -1,9 +1,0 @@
-<map id="rapidxml::xml_node::next_sibling" name="rapidxml::xml_node::next_sibling">
-<area shape="rect" id="node2" href="$classDotSceneLoader.html#aff673cad20a7eae2f743efea687f825e" title="DotSceneLoader::processNodes" alt="" coords="481,36,690,62"/>
-<area shape="rect" id="node5" href="$classDotSceneLoader.html#adbcb5d6d248fcfa07f3e38c83e353807" title="DotSceneLoader::processTerrain" alt="" coords="480,112,691,138"/>
-<area shape="rect" id="node6" href="$classDotSceneLoader.html#a4d2ad2e57d5309983d8d136cf6a9c12f" title="DotSceneLoader::processTerrainPage" alt="" coords="190,137,431,164"/>
-<area shape="rect" id="node7" href="$classDotSceneLoader.html#a7b189925bc0cb9a991f86148df67bff3" title="DotSceneLoader::processBlendmaps" alt="" coords="192,188,429,214"/>
-<area shape="rect" id="node8" href="$classDotSceneLoader.html#a92dd78af655eaee1cbcd0ba7885fd1e1" title="DotSceneLoader::processNode" alt="" coords="209,36,412,62"/>
-<area shape="rect" id="node3" href="$classDotSceneLoader.html#afe7449004d98aaac7cfba2f085f4d634" title="DotSceneLoader::processScene" alt="" coords="739,61,949,88"/>
-<area shape="rect" id="node4" href="$classDotSceneLoader.html#a4e5e51eec0482d7dc91da98f7ec30ea6" title="DotSceneLoader::parseDot\lScene" alt="" coords="997,54,1176,95"/>
-</map>

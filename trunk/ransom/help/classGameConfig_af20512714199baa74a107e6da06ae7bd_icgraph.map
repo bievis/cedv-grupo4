@@ -1,6 +1,0 @@
-<map id="GameConfig::getPiece" name="GameConfig::getPiece">
-<area shape="rect" id="node2" href="$classGameConfig.html#a34a930afe4f272cbc38c39deed01c9ee" title="Method to copy object. " alt="" coords="246,31,375,57"/>
-<area shape="rect" id="node5" href="$classGameConfig.html#aad8ca74f826215f243792a9b934e6806" title="method to create Map random " alt="" coords="205,81,416,108"/>
-<area shape="rect" id="node3" href="$classGameConfig.html#af52fce4f256602b1de6fb6e353b30b88" title="copy constructor " alt="" coords="465,5,637,32"/>
-<area shape="rect" id="node4" href="$classGameConfig.html#a1c6595a6de59ca01443ec09cccf98ef5" title="assignment operator " alt="" coords="473,56,629,83"/>
-</map>

@@ -1,4 +1,0 @@
-<map id="GameState::CreateInitialWorld" name="GameState::CreateInitialWorld">
-<area shape="rect" id="node2" href="$classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. " alt="" coords="219,5,405,32"/>
-<area shape="rect" id="node3" href="$classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. " alt="" coords="235,56,389,83"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="rapidxml::xml_node::append_node" name="rapidxml::xml_node::append_node">
-<area shape="rect" id="node2" href="$classrapidxml_1_1xml__node.html#a666880f42a7e486d78cc45ed51c7c46d" title="Inserts a new child node at specified place inside the node. All children after and including the spe..." alt="" coords="207,5,342,46"/>
-<area shape="rect" id="node3" href="$classrapidxml_1_1xml__document.html#ac6e73ff9ac323bf5a370c38feb03a6b1" title="Parses zero&#45;terminated XML string according to given flags. Passed string will be modified by the par..." alt="" coords="193,70,357,111"/>
-<area shape="rect" id="node5" href="$classrapidxml_1_1xml__document.html#aec6cedf45179b6378c670bc3ea509e61" title="rapidxml::xml_document\l::parse_and_append_data" alt="" coords="189,135,360,177"/>
-<area shape="rect" id="node6" href="$classrapidxml_1_1xml__document.html#aae0a4c2e1972ab9a9e0ce91cf1166ac9" title="rapidxml::xml_document\l::parse_node_contents" alt="" coords="193,201,357,242"/>
-<area shape="rect" id="node4" href="$classDotSceneLoader.html#a4e5e51eec0482d7dc91da98f7ec30ea6" title="DotSceneLoader::parseDot\lScene" alt="" coords="408,70,587,111"/>
-</map>

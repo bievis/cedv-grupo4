@@ -1,7 +1,0 @@
-<map id="GameState::CreateMap" name="GameState::CreateMap">
-<area shape="rect" id="node2" href="$classUtilities.html#aac351cff9a13eb2d6bd02f38c5b062c0" title="method to get the Utilities object " alt="" coords="225,5,370,32"/>
-<area shape="rect" id="node4" href="$classUtilities.html#ad9d9b0c6e6793366ea65ad5082b66521" title="this method add an plane in the scene " alt="" coords="233,57,362,98"/>
-<area shape="rect" id="node5" href="$classUtilities.html#aa07a055a9ad92d6d160b70db8051b418" title="this method add an part map in the scene " alt="" coords="237,122,357,163"/>
-<area shape="rect" id="node6" href="$classPiece.html#a031ec9f1b92671ccd516607a9387b42a" title="method to get the mesh file name " alt="" coords="213,188,381,215"/>
-<area shape="rect" id="node3" href="$classUtilities.html#ab1676c9ce35cf347a73d16f1094e1271" title="default constructor " alt="" coords="430,5,546,32"/>
-</map>

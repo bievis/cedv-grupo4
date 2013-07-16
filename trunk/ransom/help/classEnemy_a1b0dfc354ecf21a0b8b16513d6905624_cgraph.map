@@ -1,4 +1,0 @@
-<map id="Enemy::copy" name="Enemy::copy">
-<area shape="rect" id="node2" href="$classEnemy.html#a00417322bb56eebad3306b6efcfa9831" title="method to get render to texture reference " alt="" coords="152,5,325,32"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a3debbce2a802b5df033d9370b7277823" title="method to get the camera POV reference " alt="" coords="157,56,320,83"/>
-</map>

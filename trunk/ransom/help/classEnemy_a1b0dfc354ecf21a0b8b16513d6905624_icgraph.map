@@ -1,4 +1,0 @@
-<map id="Enemy::copy" name="Enemy::copy">
-<area shape="rect" id="node2" href="$classEnemy.html#a1a816b20ac6b5da4684fbe9890898365" title="copy constructor " alt="" coords="160,5,272,32"/>
-<area shape="rect" id="node3" href="$classEnemy.html#a543a512b1bc3c9d46ee00f696de31860" title="assignment operator to copy another enemy " alt="" coords="153,56,279,83"/>
-</map>
