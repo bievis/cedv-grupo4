@@ -132,12 +132,16 @@ void Records::write()
 
     if ( !os.is_open() )
       {
+#ifdef _DEBUG
         cout << "Error opening " << FILENAME << " for write" << endl;
+#endif
         return;
       }
     else
       {
+#ifdef _DEBUG
         cout << "Opened " << FILENAME << " for write" << endl;
+#endif
         /// Write Data
         std::list<string>::iterator it;
 
@@ -160,7 +164,9 @@ void Records::write()
 
     if ( !is.is_open() )
       {
+#ifdef _DEBUG
         cout << "Error opening " << FILENAME << " for read" << endl;
+#endif
         return;
       }
     else
@@ -170,7 +176,9 @@ void Records::write()
             is >> value;
             if (!is.eof())
               {
-                // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
+//#ifdef _DEBUG
+//                cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": value = " << value << endl;
+//#ifdef _DEBUG
                 _records.push_back ( value );
               }
           }

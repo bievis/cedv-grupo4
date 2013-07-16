@@ -82,7 +82,7 @@ void Utilities::put_shot_in_scene ( Ogre::SceneManager* sceneMgr,
 												  Ogre::ManualObject** shot)
   {
     *shot =  sceneMgr->createManualObject(name + "LineSHOT");
-	(*shot)->begin("MaterialShot", Ogre::RenderOperation::OT_LINE_LIST); 
+	(*shot)->begin("MaterialShot", Ogre::RenderOperation::OT_LINE_LIST);
 	(*shot)->position(Ogre::Vector3::ZERO);
 	Ogre::Vector3 posFin(nodeShot->getOrientation().zAxis() * 1);
 	(*shot)->position(posFin);
@@ -100,7 +100,7 @@ void Utilities::put_plane_in_scene ( Ogre::SceneManager* sceneMgr,
 												  float height,
 												  Ogre::Vector3 upVector,
 												  Ogre::Vector3 normal,
-                                                  const Ogre::Vector3& initial_pos ) {
+                          const Ogre::Vector3& initial_pos ) {
 	// Define a floor plane mesh
 	Ogre::Entity *entPlane;
 	Ogre::Plane plane;
