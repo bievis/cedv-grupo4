@@ -67,6 +67,7 @@
 			<Add library="/usr/local/lib/libConvexDecomposition.so" />
 			<Add directory="/usr/local/lib" />
 		</Linker>
+		<Unit filename="Blur_fp.cg" />
 		<Unit filename="config/config.xml" />
 		<Unit filename="include/AdvancedOgreFramework.hpp" />
 		<Unit filename="include/AnimationBlender.h" />
@@ -81,6 +82,7 @@
 		<Unit filename="include/GameConfig.h" />
 		<Unit filename="include/GameConfigException.hpp" />
 		<Unit filename="include/GameState.hpp" />
+		<Unit filename="include/GlowMaterialListener.h" />
 		<Unit filename="include/Hero.h" />
 		<Unit filename="include/Hostage.h" />
 		<Unit filename="include/MenuState.hpp" />
@@ -97,9 +99,13 @@
 		<Unit filename="include/Utilities.h" />
 		<Unit filename="include/XMLCharger.h" />
 		<Unit filename="include/rapidxml.hpp" />
+		<Unit filename="media/materials/scripts/glow.cg" />
+		<Unit filename="media/materials/scripts/glow.compositor" />
+		<Unit filename="media/materials/scripts/glow.program" />
 		<Unit filename="media/materials/scripts/info.overlay" />
 		<Unit filename="media/materials/scripts/panel.material" />
 		<Unit filename="media/materials/scripts/pointer.material" />
+		<Unit filename="media/materials/scripts/prueba.compositor" />
 		<Unit filename="media/materials/scripts/ransom.material" />
 		<Unit filename="media/materials/scripts/ransom.overlay" />
 		<Unit filename="ogre.cfg" />

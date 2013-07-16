@@ -10,11 +10,15 @@
 
 #define SIZE_PART 32.0f
 
+/// \brief structure with the map part
 struct ST_PART_MAP {
+  /// \brief piece reference
 	Piece *pPiece;
+	/// \brief piece position in the scene
 	Ogre::Vector3 pos;
 };
 
+/// \brief type definition for the map part
 typedef struct ST_PART_MAP T_PART_MAP;
 
 using namespace std;

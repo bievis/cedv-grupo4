@@ -21,7 +21,7 @@ void GameState::clear() {
     m_pOverlayMgr       = NULL;
     m_enemies.clear();
     m_hostages.clear();
-	_vCharacteres.clear();
+    _vCharacters.clear();
     _world              = NULL;
     _camerasController  = NULL;
     _vFader.clear();
@@ -141,7 +141,7 @@ void GameState::CreateInitialWorld()
     Ogre::Vector3 v_pos;
     v_pos = _gc.getInitialPosHero();
     m_hero = new Hero ( m_pSceneMgr, _world, "Hero", v_pos );
-    _vCharacteres.push_back(m_hero);
+    _vCharacters.push_back(m_hero);
 
     // Creamos los enemigos
     Enemy *enemy = NULL;
@@ -161,7 +161,7 @@ void GameState::CreateInitialWorld()
 
         enemy = new Enemy ( m_pSceneMgr, _world, name_enemy, v, route, m_hero );
         m_enemies.push_back ( enemy );
-        _vCharacteres.push_back(enemy);
+        _vCharacters.push_back(enemy);
       }
 
     _hostages = _gc.getNumHostages();
@@ -172,7 +172,7 @@ void GameState::CreateInitialWorld()
 
         Hostage* hostage = new Hostage ( m_pSceneMgr, _world, name_hostage, _gc.getPositionHostage(i) );
         m_hostages.push_back ( hostage );
-        _vCharacteres.push_back ( hostage );
+        _vCharacters.push_back ( hostage );
       }
 
 	// Creamos el controlador de las camaras para que sigan al heroe
@@ -225,7 +225,7 @@ void GameState::CreateMiniMap() {
     mPtr->getTechnique(0)->getPass(0)->createTextureUnitState(NAME_TEXTUTE_MINIMAP);
 
 	  // Le vinculamos el listener a la textura
-  	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacteres );
+  	_textureListener = new MiniMapTextureListener (m_pSceneMgr ,_vCharacters );
     _rtex->addListener ( _textureListener );
 
      Ogre::OverlayElement *elem;
@@ -314,7 +314,7 @@ void GameState::exit()
 
  		m_hostages.clear();
 
-	_vCharacteres.clear();
+	_vCharacters.clear();
 
     if ( m_pCamera )
     {
@@ -499,7 +499,7 @@ void GameState::update(double timeSinceLastFrame)
 			updatePanelLife();
 
 			// Actualizar simulacion Bullet
-		    _world->stepSimulation(timeSinceLastFrame); 
+		    _world->stepSimulation(timeSinceLastFrame);
 
 			// Movemos al heroe
 			if ( OgreFramework::getSingletonPtr()->getKeyboardPtr()->isKeyDown ( OIS::KC_RIGHT ) )
@@ -520,13 +520,13 @@ void GameState::update(double timeSinceLastFrame)
 			  }
 
 			// Actalizamos los enemigos
-			m_hero->update(timeSinceLastFrame, _vCharacteres);
+			m_hero->update(timeSinceLastFrame, _vCharacters);
 			if ( m_enemies.size() > 0 )
 			{
 				unsigned int i = 1;
 				for ( std::deque<Enemy *>::iterator itEnemy = m_enemies.begin(); m_enemies.end() != itEnemy; itEnemy++, i++ )
 				{
-					(*itEnemy)->update(timeSinceLastFrame, _vCharacteres);
+					(*itEnemy)->update(timeSinceLastFrame, _vCharacters);
 				}
 			}
 			// Actalizamos los rehenes
@@ -535,7 +535,7 @@ void GameState::update(double timeSinceLastFrame)
 				unsigned int i = 1;
 				for ( std::vector<Hostage *>::iterator itHostage = m_hostages.begin(); m_hostages.end() != itHostage; itHostage++, i++ )
 				{
-					(*itHostage)->update(timeSinceLastFrame, _vCharacteres);
+					(*itHostage)->update(timeSinceLastFrame, _vCharacters);
 				}
 			}
 
@@ -629,14 +629,14 @@ Hostage* GameState::detectCollisionHeroWithHostages(OgreBulletDynamics::Dynamics
 	return hostageCollisition;
 }
 
-string GameState::getTime ( double tiempo )
+string GameState::getTime ( double time )
   {
     unsigned int minutos = 0, segundos = 0;
     char cad[6];
     string ret = "";
 
-    minutos = (int)tiempo / 60;
-    segundos = (int)tiempo % 60;
+    minutos = (int)time / 60;
+    segundos = (int)time % 60;
 
     sprintf ( cad, "%02d:%02d", minutos, segundos );
 

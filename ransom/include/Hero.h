@@ -35,7 +35,6 @@ class Hero : public Character
     /// \param other source hero to copy
     void copy ( const Hero& source );
 
-  private:
 };
 
 #endif // HERO_H

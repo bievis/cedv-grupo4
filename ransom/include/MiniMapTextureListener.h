@@ -13,10 +13,11 @@ using namespace Ogre;
 class MiniMapTextureListener : public RenderTargetListener
 {
   private:
-	/// \brief list of chracteres in the scene
+    /// \brief list of chracteres in the scene
     std::vector<Character*> _vCharacteres;
-	/// \brief reference to scene manager
+    /// \brief reference to scene manager
     Ogre::SceneManager* _sceneMgr;
+
   public:
     /// \brief constructor for the texture listener
     /// \param sceneMgr reference to scene manager
@@ -30,6 +31,7 @@ class MiniMapTextureListener : public RenderTargetListener
     /// \brief this method is executed after the texture is put into the rectangle2D
     /// \param evt event
     virtual void postRenderTargetUpdate ( const RenderTargetEvent& evt );
+
 };
 
 #endif // MINIMAPTEXTURELISTENER_H

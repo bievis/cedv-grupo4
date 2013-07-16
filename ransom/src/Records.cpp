@@ -32,9 +32,6 @@ Records* Records::getSingletonPtr()
 
 void Records::add ( int hostages, int seconds )
   {
-    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << " seconds " << seconds << endl;
-
     char cad[100];
     std::list<string>::iterator it;
     string fecha;
@@ -63,13 +60,10 @@ void Records::add ( int hostages, int seconds )
 
     _records.insert ( it, string(cad) );
 
-    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
   }
 
 int Records::compare ( int hostages, int seconds, string value2 )
   {
-    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":in" << endl;
-    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ": seconds " << seconds << " - value2 " << value2 << endl;
 
     int seconds2 = 0;
     int hostages2 = 0;
@@ -83,8 +77,6 @@ int Records::compare ( int hostages, int seconds, string value2 )
       {
         ret = 1;
       }
-
-    // cout << __FILE__ << ":" << __FUNCTION__ << ":" << __LINE__ << ":out" << endl;
 
     return ret;
   }

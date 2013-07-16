@@ -23,11 +23,11 @@ using namespace std;
 #define HOSTAGE_MESH_FILE_WITHOUT_EXTENSION "Boy"
 #define NAME_RIGID_BODY_SHOT "RigidBodyShot"
 
-/// \brief this class will be a set of utility methods
-/// This class follow the singleton pattern
+/// \brief this class will be a set of utility methods.
+/// This class follow the singleton pattern.
 class Utilities {
 
- public:
+public:
     /// \brief method to put an overlay in the scene
     /// This method put an overlay created in ransom.overlay file, also the name should be defined in this file with the set of specifications
     /// \param overMgr reference to overlay manager (Advanced Ogre Framework)
@@ -114,20 +114,20 @@ class Utilities {
 												  string name,
 												  Ogre::SceneNode* nodeShot,
 												  Ogre::ManualObject** shot);
-    /// \brief method to get the Utilities object
-    /// \return static Utilities object
-    static Utilities& getSingleton();
-    /// \brief method to get the Utilities reference
-    /// \return reference to Utilities object
-    static Utilities* getSingletonPtr();
+  /// \brief method to get the Utilities object
+  /// \return static Utilities object
+  static Utilities& getSingleton();
+  /// \brief method to get the Utilities reference
+  /// \return reference to Utilities object
+  static Utilities* getSingletonPtr();
 
- private:
-    /// \brief reference to Utitlies object
-    static Utilities* msSingleton;
-    /// \brief default constructor
-    Utilities() {};
-    /// \brief virtual destructor
-    virtual ~Utilities() {};
+private:
+  /// \brief reference to Utitlies object
+  static Utilities* msSingleton;
+  /// \brief default constructor
+  Utilities() {};
+  /// \brief virtual destructor
+  virtual ~Utilities() {};
 
 };
 

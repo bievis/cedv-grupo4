@@ -62,7 +62,7 @@ class Enemy : public Character
     void                            print();
     /// \brief method to walk using the route built to the enemy
     void                            walk_in_route();
-        /// \brief method to perform the character walk movement to position
+    /// \brief method to perform the character walk movement to position
     /// This method uses OgreBullet to move the character
     /// \param pos destiny position to walk
     /// \return true/false if the character arrived to destiny point
@@ -154,16 +154,16 @@ class Enemy : public Character
     unsigned int              _currentSoundAlert;
     /// \brief counter to use with the hurt current sound (it can be 1 or 2)
     unsigned int              _currentSoundHurt;
-	/// \brief list of returns points for when the enemy is chasing the hero
-	std::vector<Ogre::Vector3>   _vReturnsPoints;
-	/// \brief indicates that spinning
-	bool _stopAround;
-	/// \brief number of turns
-	unsigned int _aroundNumber;
-	/// \brief timer of seach
-	double _timeSeach;
-	/// \brief last health
-	float _lastHealth;
+    /// \brief list of returns points for when the enemy is chasing the hero
+    std::vector<Ogre::Vector3>   _vReturnsPoints;
+    /// \brief indicates that spinning
+    bool _stopAround;
+    /// \brief number of turns
+    unsigned int _aroundNumber;
+    /// \brief timer of seach
+    double _timeSeach;
+    /// \brief last health
+    float _lastHealth;
 };
 
 #endif // ENEMY_H
