@@ -109,7 +109,6 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\AdvancedOgreFramework.cpp" />
-    <ClCompile Include="..\..\src\AnimationBlender.cpp" />
     <ClCompile Include="..\..\src\AppStateManager.cpp" />
     <ClCompile Include="..\..\src\CamerasController.cpp" />
     <ClCompile Include="..\..\src\Character.cpp" />
@@ -139,7 +138,6 @@ copy "..\..\config" "$(SolutionDir)$(Configuration)\config"</Command>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\AdvancedOgreFramework.hpp" />
-    <ClInclude Include="..\..\include\AnimationBlender.h" />
     <ClInclude Include="..\..\include\AppState.hpp" />
     <ClInclude Include="..\..\include\AppStateManager.hpp" />
     <ClInclude Include="..\..\include\CamerasController.h" />
