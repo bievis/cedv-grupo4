@@ -11,9 +11,8 @@ DIRHEA := include/
 CXX := g++
 
 # Flags de compilación -----------------------------------------------
-CXXFLAGS := -I $(DIRHEA) -Wall -fpermissive `pkg-config --cflags OGRE OIS OgreBullet bullet`	\
-`sdl-config --cflags` \
--g -D_DEBUG
+CXXFLAGS := -I $(DIRHEA) -fpermissive `pkg-config --cflags OGRE OIS OgreBullet bullet`	\
+`sdl-config --cflags`
 
 # Flags del linker ---------------------------------------------------
 LDFLAGS := `pkg-config --libs-only-L OGRE OIS OgreBullet bullet`
@@ -25,7 +24,14 @@ LDLIBS := `pkg-config --libs-only-l OGRE OIS OgreBullet bullet` -lGL -lstdc++ \
 
 # Modo de compilación ------------------------------------------------
 RELEASE = -O2 -D_RELEASE
-DEBUG = -g -D_DEBUG
+DEBUG = -g -D_DEBUG -Wall
+
+ifeq ($(mode),release)
+   CXXFLAGS += -O2 -D_RELEASE
+else
+   mode = debug
+   CXXFLAGS += -ggdb -D_DEBUG
+endif
 
 # Obtención automática de la lista de objetos a compilar -------------
 OBJS := $(subst $(DIRSRC), $(DIROBJ), \
