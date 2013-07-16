@@ -125,8 +125,9 @@ void GameState::CreateInitialWorld()
   {
     // Activamos las sombras
     m_pSceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
+	m_pSceneMgr->setShadowTextureSelfShadow(true);
     m_pSceneMgr->setShadowColour(Ogre::ColourValue(0.5, 0.5, 0.5) );
-
+	m_pSceneMgr->setShadowTexturePixelFormat(Ogre::PF_FLOAT16_RGB);
     m_pSceneMgr->setShadowTextureCount(2);
     m_pSceneMgr->setShadowTextureSize(512);
 

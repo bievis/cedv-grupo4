@@ -15,8 +15,10 @@ MiniMapTextureListener::~MiniMapTextureListener()
 
 void MiniMapTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
   {
+	// Desactivamos las sombras en el Minimapa
 	_sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
 
+	// Recorremos todos los personajes y los mostramos como cubos en el mapa
 	Character *character;
 	for (unsigned int i = 0; i < _vCharacteres.size(); i++) {
 		character = _vCharacteres[i];
@@ -30,8 +32,10 @@ void MiniMapTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& ev
 
 void MiniMapTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
   {
+	// Activamos las sombras
 	_sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
 
+	// Recorremos todos los personajes y los mostramos con su entidad original
     Character *character;
 	for (unsigned int i = 0; i < _vCharacteres.size(); i++) {
 		character = _vCharacteres[i];
