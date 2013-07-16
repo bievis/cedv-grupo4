@@ -27,6 +27,9 @@ void MyTextureListener::preRenderTargetUpdate ( const RenderTargetEvent& evt )
     Ogre::Entity* ptrEntity = NULL;
     unsigned int cont = 0;
 
+	// Desactivamos las sombras
+	_sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+
     // Ocultamos el heroe y mostramos su Dummy
 
     if ( _sceneMgr->hasEntity ( nameEntity ) && _sceneMgr->hasEntity ( nameEntityDummy ) )
@@ -85,4 +88,7 @@ void MyTextureListener::postRenderTargetUpdate ( const RenderTargetEvent& evt )
 			ptrEntity->setVisible ( true );
 		}
       }
+
+	// Activamos als sombras
+	_sceneMgr->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_ADDITIVE);
   }
