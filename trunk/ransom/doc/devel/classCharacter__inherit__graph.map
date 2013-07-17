@@ -1,0 +1,5 @@
+<map id="Character" name="Character">
+<area shape="rect" id="node2" href="$classEnemy.html" title="{Enemy\n|&#45; _rtt\l&#45; _rtex\l&#45; _camPOV\l&#45; _textureListener\l&#45; _route\l&#45; _current_point\l&#45; _way\l&#45; _bbSetLife\l&#45; _lifeBar\l&#45; _lifeNode\land 23 more...\l|+ Enemy()\l+ ~Enemy()\l+ Enemy()\l+ operator=()\l+ getTexturePtr()\l+ getRenderTexture()\l+ getCameraPOV()\l+ haveYouSeenAnybody()\l+ print()\l+ walk_in_route()\land 9 more...\l# copy()\l# play_sound_alert()\l# play_sound_hurt()\l}" alt="" coords="5,558,176,973"/>
+<area shape="rect" id="node3" href="$classHero.html" title="{Hero\n||+ Hero()\l+ ~Hero()\l+ Hero()\l+ operator=()\l+ print()\l# copy()\l}" alt="" coords="201,690,297,841"/>
+<area shape="rect" id="node4" href="$classHostage.html" title="{Hostage\n|+ _timerParticleLiberate\l&#45; _particleLiberation\l&#45; _particleLiberationNode\l&#45; _state\l&#45; _soundFreeFX\l|+ Hostage()\l+ ~Hostage()\l+ Hostage()\l+ operator=()\l+ getState()\l+ print()\l+ changeAnimation()\l+ liberate()\l+ setVisible()\l+ update()\l# copy()\l}" alt="" coords="323,624,488,907"/>
+</map>

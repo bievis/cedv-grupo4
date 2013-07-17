@@ -1,0 +1,23 @@
+<map id="include/GameState.hpp" name="include/GameState.hpp">
+<area shape="rect" id="node2" href="$AppState_8hpp.html" title="AppState.hpp" alt="" coords="440,320,541,347"/>
+<area shape="rect" id="node14" href="$DotSceneLoader_8hpp.html" title="DotSceneLoader.hpp" alt="" coords="2818,163,2960,189"/>
+<area shape="rect" id="node5" href="$TrackManager_8h.html" title="TrackManager.h" alt="" coords="733,485,848,512"/>
+<area shape="rect" id="node8" href="$SoundFXManager_8h.html" title="SoundFXManager.h" alt="" coords="2141,485,2275,512"/>
+<area shape="rect" id="node23" href="$Records_8h.html" title="Records.h" alt="" coords="1757,163,1837,189"/>
+<area shape="rect" id="node31" href="$Utilities_8h.html" title="Utilities.h" alt="" coords="1271,320,1347,347"/>
+<area shape="rect" id="node37" href="$Enemy_8h.html" title="Enemy.h" alt="" coords="2369,80,2444,107"/>
+<area shape="rect" id="node43" href="$Hero_8h.html" title="Hero.h" alt="" coords="1914,163,1973,189"/>
+<area shape="rect" id="node44" href="$Hostage_8h.html" title="Hostage.h" alt="" coords="2221,80,2301,107"/>
+<area shape="rect" id="node45" href="$XMLCharger_8h.html" title="XMLCharger.h" alt="" coords="2957,80,3059,107"/>
+<area shape="rect" id="node42" href="$GameConfig_8h.html" title="GameConfig.h" alt="" coords="2495,163,2599,189"/>
+<area shape="rect" id="node48" href="$MiniMapTextureListener_8h.html" title="MiniMapTextureListener.h" alt="" coords="2623,163,2793,189"/>
+<area shape="rect" id="node49" href="$CamerasController_8h.html" title="CamerasController.h" alt="" coords="1874,80,2013,107"/>
+<area shape="rect" id="node50" href="$Fader_8h.html" title="Fader.h" alt="" coords="3408,80,3475,107"/>
+<area shape="rect" id="node3" href="$AdvancedOgreFramework_8hpp.html" title="AdvancedOgreFramework.hpp" alt="" coords="488,403,683,429"/>
+<area shape="rect" id="node7" href="$Track_8h.html" title="Track.h" alt="" coords="1698,560,1763,587"/>
+<area shape="rect" id="node9" href="$SoundFX_8h.html" title="SoundFX.h" alt="" coords="2179,560,2264,587"/>
+<area shape="rect" id="node20" href="$rapidxml_8hpp.html" title="This file contains rapidxml parser and DOM implementation. " alt="" coords="3015,245,3111,272"/>
+<area shape="rect" id="node38" href="$Character_8h.html" title="Character.h" alt="" coords="2163,245,2252,272"/>
+<area shape="rect" id="node40" href="$MyTextureListener_8h.html" title="MyTextureListener.h" alt="" coords="2050,163,2189,189"/>
+<area shape="rect" id="node41" href="$EnemyRoute_8h.html" title="EnemyRoute.h" alt="" coords="2309,245,2416,272"/>
+</map>
