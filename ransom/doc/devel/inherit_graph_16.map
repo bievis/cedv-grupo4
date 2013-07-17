@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classrapidxml_1_1memory__pool.html" title="This class is used by the parser to create new nodes and attributes, without overheads of dynamic mem..." alt="" coords="189,5,347,46"/>
+<area shape="rect" id="node2" href="$classrapidxml_1_1xml__document.html" title="This class represents root of the DOM hierarchy. It is also an xml_node and a memory_pool through pub..." alt="" coords="395,70,559,111"/>
+<area shape="rect" id="node3" href="$classrapidxml_1_1xml__base.html" title="Base class for xml_node and xml_attribute implementing common functions: name(), name_size(), value(), value_size() and parent(). " alt="" coords="6,103,141,145"/>
+<area shape="rect" id="node4" href="$classrapidxml_1_1xml__attribute.html" title="Class representing attribute node of XML document. Each attribute has name and value strings..." alt="" coords="191,70,345,111"/>
+<area shape="rect" id="node5" href="$classrapidxml_1_1xml__node.html" title="Class representing a node of XML document. Each node may have associated name and value strings..." alt="" coords="201,135,335,177"/>
+</map>

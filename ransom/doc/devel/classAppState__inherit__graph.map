@@ -1,0 +1,5 @@
+<map id="AppState" name="AppState">
+<area shape="rect" id="node5" href="$classGameState.html" title="This class manage the Game State. " alt="" coords="5,491,237,949"/>
+<area shape="rect" id="node6" href="$classMenuState.html" title="This class manage the Menu State. " alt="" coords="262,564,420,876"/>
+<area shape="rect" id="node7" href="$classPauseState.html" title="This class manage the Pause State. " alt="" coords="445,593,600,847"/>
+</map>
