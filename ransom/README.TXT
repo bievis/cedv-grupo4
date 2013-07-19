@@ -12,6 +12,32 @@ binario "ransom".
 - Ejecución en Windows, basta con entrar en la carpeta "bin" y ejecutar el
 binario "Ransom.exe". 
 
+Desglose de Carpetas
+====================
+\
+ \
+  -- blender
+  |
+  -- config
+  |
+  -- doc
+  |
+  -- include
+  |
+  -- media
+  |
+  -- Ransom
+  |
+  -- src
+
+- blender : carpeta con los modelos usados en el juego y realizados usando la herramienta blender.
+- config : carpeta con el fichero de configuración del juego.
+- doc : carpeta con la documentación de anteproyecto, proyecto y desarrollo (doxygen). 
+- include : carpeta con los headers usados en el juego.
+- media : carpeta con la configuracion media del juego, tales como sonidos, overlays, fondos, ...
+- Ransom : carpeta con todo lo necesario para el binario para Windows.
+- src : carpeta con del codigo fuente del juego.
+
 Menú
 ====
 - START GAME: Opción para iniciar el juego. Si se quiere interrumpir el juego pulsar
