@@ -164,6 +164,11 @@ class Enemy : public Character
     double _timeSeach;
     /// \brief last health
     float _lastHealth;
+    /// \brief this method return true whin point1 is equal point2
+    /// \param point1 point one
+    /// \param point2 point two
+    /// \return if point1 is equal to point2
+    bool isEqualPoint (Ogre::Vector3 point1, Ogre::Vector3 point2);
 };
 
 #endif // ENEMY_H
