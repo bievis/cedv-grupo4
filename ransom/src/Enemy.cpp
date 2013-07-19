@@ -352,10 +352,13 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
                         if ( _timeElapsed_Global - _timeSeach > 0.5 )
                           {
                             _timeSeach = _timeElapsed_Global;
-                            _vReturnsPoints.push_back(_node->getPosition());
-#ifdef _DEBUG
-                            cout << "INSERTADO PUNTO RETORNO" << endl;
-#endif
+                            if (_vReturnsPoints.size() == 0 ||
+                                  !isEqualPoint(_vReturnsPoints[_vReturnsPoints.size() - 1], _node->getPosition())) {
+                              _vReturnsPoints.push_back(_node->getPosition());
+                              #ifdef _DEBUG
+                                cout << "INSERTADO PUNTO RETORNO" << endl;
+                              #endif
+                            }
                           }
 
                         _stopAround = true;
@@ -395,7 +398,7 @@ void Enemy::update ( double timeSinceLastFrame, std::vector<Character*>   vChara
           {
             _timeBlocked = _timeElapsed_Global;
 
-            if ( _currentPosition == _node->getPosition() )
+            if ( isEqualPoint(_currentPosition, _node->getPosition()) )
               {
                 _currentState = WATCHING;
               }
@@ -596,3 +599,16 @@ void Enemy::reorient_enemy_to_hero()
           }
       }
   }
+
+bool Enemy::isEqualPoint (Ogre::Vector3 point1, Ogre::Vector3 point2) {
+  bool igual = false;
+  Ogre::Real variacion = 0.1;
+
+  Ogre::Vector3 p = point1 - point2;
+  p.x = Ogre::Math::Abs(p.x);
+  p.y = Ogre::Math::Abs(p.y);
+  p.z = Ogre::Math::Abs(p.z);
+  igual = (p.x < variacion) && (p.y < variacion) && (p.z < variacion);
+
+  return igual;
+}
