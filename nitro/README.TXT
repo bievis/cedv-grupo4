@@ -1,4 +1,4 @@
-Juego starAttack
+Juego Nitro
 ===============   
 El juego consiste en superar nuestro mejor tiempo en dar una vuelta completa al circuito.
 El juego está implementado bajo licencia GNU GPL v2.
