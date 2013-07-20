@@ -29,6 +29,8 @@ Desglose de Carpetas
   -- Ransom
   |
   -- src
+  |
+  -- videos
 
 - blender : carpeta con los modelos usados en el juego y realizados usando la herramienta blender.
 - config : carpeta con el fichero de configuración del juego.
@@ -37,6 +39,7 @@ Desglose de Carpetas
 - media : carpeta con la configuracion media del juego, tales como sonidos, overlays, fondos, ...
 - Ransom : carpeta con todo lo necesario para el binario para Windows.
 - src : carpeta con del codigo fuente del juego.
+- videos : videos extraidos del juego.
 
 Menú
 ====
@@ -68,3 +71,24 @@ La documentacion escrita se encuentra en la carpeta "doc".
 Repositorio publico
 ===================
 https://cedv-grupo4.googlecode.com/svn/trunk/ransom
+
+Enlaces a videos en Youtube
+===========================
+
+Los videos se encuentran subidos en youtube, y sus enlaces son:
+
+1.- Video realizando un rescate:
+
+https://www.youtube.com/watch?v=S8lqoS4JyTs
+
+2.- Video mostrando como los enemigos persiguen al heroe:
+
+https://www.youtube.com/watch?v=ymCPeecnqQs
+
+3.- Video realizando el rescate completo:
+
+https://www.youtube.com/watch?v=-sguJKUVdFY
+
+4.- Video mostrando como el enemigo nos derrota:
+
+https://www.youtube.com/watch?v=47XbcY5GN6Q
