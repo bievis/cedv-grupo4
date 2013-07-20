@@ -1,0 +1,7 @@
+New_Digital 
+{
+	type truetype
+	source New_X_Digital_tfb.ttf
+	size 25
+	resolution 96
+}

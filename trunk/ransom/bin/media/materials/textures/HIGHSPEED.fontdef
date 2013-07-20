@@ -1,0 +1,7 @@
+HighSpeed
+{
+	type truetype
+	source HIGHSPEED.TTF
+	size 25
+	resolution 96
+}
