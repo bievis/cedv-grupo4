@@ -5,9 +5,12 @@ El juego está implementado bajo licencia GNU GPL v2.
 
 Ejecución
 =========
-En la carpeta "bin" se encuentra los ejecutables del juego y la carpeta "media" que 
-contiene los elementos multimedia que se manejan en el Juego.
-- Ejecución en Linux, basta con entrar en la carpeta "bin" y ejecutar el
+En la carpeta "bin" se encuentra los ejecutables del juego, tanto para Windows como
+para Linux, y la carpeta "media" que contiene los elementos multimedia que se manejan
+en el Juego.
+- Ejecución en Windows, basta con entrar en la carpeta "bin/windows" y ejecutar el
+binario "Nitro.exe".
+- Ejecución en Linux, basta con entrar en la carpeta "bin/linux" y ejecutar el
 binario "nitro". 
 
 Menú

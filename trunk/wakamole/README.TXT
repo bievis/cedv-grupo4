@@ -9,9 +9,9 @@ En la carpeta "bin" se encuentra los ejecutables del juego, tanto para Windows c
 para Linux, y la carpeta "media" que contiene los elementos multimedia que se manejan
 en el Juego.
 - Ejecución en Windows, basta con entrar en la carpeta "bin/windows" y ejecutar el
-binario KickRoach.exe.
-- Ejecución en Linux, basta con entrar en la carpeta "bin/windows" y ejecutar el
-binario KickRoach. 
+binario "KickRoach.exe".
+- Ejecución en Linux, basta con entrar en la carpeta "bin/linux" y ejecutar el
+binario "KickRoach". 
 
 Menú
 ====
