@@ -26,6 +26,8 @@ Desglose de Carpetas
   |
   -- media
   |
+  -- others
+  |
   -- Ransom
   |
   -- src
@@ -37,7 +39,8 @@ Desglose de Carpetas
 - doc : carpeta con la documentación de anteproyecto, proyecto y desarrollo (doxygen). 
 - include : carpeta con los headers usados en el juego.
 - media : carpeta con la configuracion media del juego, tales como sonidos, overlays, fondos, ...
-- Ransom : carpeta con todo lo necesario para el binario para Windows.
+- others : carpeta con todos los minijuegos realizados durante el CEDV 2012/2013 por del Grupo 4.
+- Ransom : carpeta con todo lo necesario para el binario para Windows. Proyecto del Visual C++ 2010 Express.
 - src : carpeta con del codigo fuente del juego.
 - videos : videos extraidos del juego.
 
