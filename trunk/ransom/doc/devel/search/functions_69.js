@@ -7,6 +7,7 @@ var searchData=
   ['insert_5fcoded_5fcharacter',['insert_coded_character',['../classrapidxml_1_1xml__document.html#ae33040bcfa8e5a29dc6f6f130984a981',1,'rapidxml::xml_document']]],
   ['insert_5fnode',['insert_node',['../classrapidxml_1_1xml__node.html#a666880f42a7e486d78cc45ed51c7c46d',1,'rapidxml::xml_node']]],
   ['is_5fdeath',['is_death',['../classCharacter.html#ad069f6c85971129a8f16fa9dbf698e09',1,'Character']]],
+  ['isequalpoint',['isEqualPoint',['../classEnemy.html#a34db26786082d7d4cfc49ac10537e3ad',1,'Enemy']]],
   ['isplaying',['isPlaying',['../classTrack.html#aeabeb8de27006da94bae401b13d12d5d',1,'Track']]],
   ['isvisible',['isVisible',['../classCharacter.html#a6d9bd6f7b05776fff0a29db9fe16fbdc',1,'Character']]]
 ];
