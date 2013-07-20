@@ -1,0 +1,238 @@
+template element TextArea(Plantillas/Tiempo)
+{
+    font_name DS_DIGIT
+                metrics_mode pixels
+                char_height 64
+                colour 1.0 1.0 0.0
+}
+
+template element TextArea(Plantillas/HighScores)
+{
+    font_name DS_DIGIT
+                metrics_mode pixels
+                char_height 36
+                colour 1.0 1.0 0.0
+}
+
+Background_Menu
+{
+  zorder 0
+
+  container Panel(Panel_Background_Menu)
+  {
+    metrics_mode pixels
+		top 0
+		left 0
+    width 1024
+    height 768
+    horz_align left
+    vert_align top
+    material Menu/Background
+  }
+}
+
+GUI_Menu
+{
+  container Panel(Panel_Titulo_Menu)
+  {
+    metrics_mode pixels
+    left -175
+    top 15
+    width 350
+    height 113
+    horz_align center
+    vert_align top
+    material Menu/Titulo
+  }
+}
+
+Creditos_Menu
+{
+  container Panel(Panel_Creditos_Menu)
+  {
+    metrics_mode pixels
+    top 0
+    left 0
+    width 1024
+    height 768
+    horz_align left
+    vert_align top
+    material Menu/Creditos
+  }
+}
+
+HighScores_Menu
+{
+  container Panel(Panel_HighScores_Menu)
+  {
+    metrics_mode pixels
+    top 0
+    left 0
+    width 1024
+    height 768
+    horz_align left
+    vert_align top
+    material Menu/HighScores
+
+    element TextArea(highScoresValues) : Plantillas/HighScores
+    {
+      horz_align right
+      top 250
+      left -525
+    }
+  }
+}
+
+Loading_Game
+{
+  container Panel(Panel_Loading_Game)
+  {
+    metrics_mode pixels
+    top 0
+    left 0
+    width 1024
+    height 768
+    horz_align left
+    vert_align top
+    material Game/Loading
+  }
+}
+
+GUI_Game
+{
+  zorder 650
+
+  container Panel(Panel_Hero_Game)
+  {
+    metrics_mode pixels
+    left 10
+    top -110
+    width 250
+    height 100
+    horz_align left
+    vert_align bottom
+    material Game/Recuadro
+
+    container Panel(Panel_Face_Hero_Game)
+    {
+      metrics_mode pixels
+      left 10
+      top 10
+      width 90
+      height 80
+      horz_align left
+      vert_align top
+      material Game/Face
+    }
+
+    container Panel(Panel_Life_Hero_Game)
+    {
+      metrics_mode pixels
+      left 108
+      top 65
+      width 130
+      height 24
+      horz_align left
+      vert_align top
+      material Game/Life4
+    }
+
+  }
+
+  container Panel(Panel_Mini_Map_Border_Game)
+  {
+    metrics_mode pixels
+    left -210
+    top 10
+    width 200
+    height 170
+    horz_align right
+    vert_align top
+    material Game/Recuadro_MiniMapa
+
+    container Panel(Panel_Mini_Map_Game)
+    {
+      metrics_mode pixels
+      left 5
+      top 5
+      width 190
+      height 160
+      horz_align left
+      vert_align top
+    }
+
+  }
+
+  container Panel(Panel_Time_Game)
+  {
+    metrics_mode pixels
+    left 10
+    top 10
+    width 150
+    height 100
+    horz_align left
+    vert_align top
+    material Game/Time
+
+    element TextArea(txtTiempo) : Plantillas/Tiempo
+    {
+      top 35
+      left 10
+    }
+  }
+
+  container Panel(Panel_Hostages_Game)
+  {
+    metrics_mode pixels
+    left 170
+    top 10
+    width 150
+    height 100
+    horz_align left
+    vert_align top
+    material Game/Hostages
+
+    element TextArea(txtHostages) : Plantillas/Tiempo
+    {
+      top 35
+      left -5
+      horz_align center
+    }
+
+  }
+
+}
+
+GUI_GameOver
+{
+  zorder 650
+
+  container Panel(Panel_Game_Over)
+  {
+    metrics_mode pixels
+    left 0
+    top 0
+    width 768
+    height 1024
+    horz_align left
+    vert_align top
+    material Game/GameOver
+  }
+}
+
+GUI_Finish
+{
+  zorder 650
+
+  container Panel(Panel_Finish)
+  {
+    metrics_mode pixels
+    left 0
+    top 0
+    width 768
+    height 1024
+    horz_align left
+    vert_align top
+    material Game/Finish
+  }
+}

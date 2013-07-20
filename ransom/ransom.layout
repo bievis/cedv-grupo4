@@ -10,62 +10,88 @@
 	<File name="include/AppState.hpp" open="0" top="0" tabpos="6">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="include/CamerasController.h" open="0" top="0" tabpos="12">
-		<Cursor position="0" topLine="0" />
+	<File name="src/Records.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="include/Character.h" open="1" top="0" tabpos="3">
 		<Cursor position="7224" topLine="160" />
 	</File>
-	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4">
-		<Cursor position="0" topLine="0" />
+	<File name="media/materials/scripts/ransom.overlay" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="include/Enemy.h" open="0" top="0" tabpos="17">
 		<Cursor position="5724" topLine="113" />
 	</File>
-	<File name="include/EnemyRoute.h" open="0" top="0" tabpos="22">
-		<Cursor position="2259" topLine="27" />
+	<File name="include/CamerasController.h" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="include/Fader.h" open="0" top="0" tabpos="10">
-		<Cursor position="0" topLine="0" />
+	<File name="include/EnemyRoute.h" open="0" top="0" tabpos="22" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="include/GameConfig.h" open="0" top="0" tabpos="4">
 		<Cursor position="962" topLine="0" />
 	</File>
-	<File name="include/GameConfigException.hpp" open="0" top="0" tabpos="14">
-		<Cursor position="0" topLine="0" />
+	<File name="include/RansomApp.hpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="include/GameState.hpp" open="0" top="0" tabpos="2">
 		<Cursor position="2918" topLine="86" />
 	</File>
-	<File name="include/Hero.h" open="0" top="0" tabpos="6">
-		<Cursor position="0" topLine="0" />
+	<File name="include/GameConfigException.hpp" open="0" top="0" tabpos="14" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="include/Hostage.h" open="0" top="0" tabpos="14">
-		<Cursor position="0" topLine="0" />
+	<File name="include/MenuState.hpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="include/MenuState.hpp" open="0" top="0" tabpos="12">
-		<Cursor position="0" topLine="0" />
+	<File name="src/GameConfig.cpp" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="4060" topLine="156" />
+		</Cursor>
 	</File>
-	<File name="include/MiniMapTextureListener.h" open="0" top="0" tabpos="16">
-		<Cursor position="0" topLine="0" />
+	<File name="include/Piece.h" open="1" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="include/MyTextureListener.h" open="0" top="0" tabpos="17">
-		<Cursor position="0" topLine="0" />
+	<File name="src/RansomApp.cpp" open="0" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="include/Piece.h" open="0" top="0" tabpos="10">
 		<Cursor position="644" topLine="0" />
 	</File>
-	<File name="include/RansomApp.hpp" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
+	<File name="src/XMLCharger.cpp" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="30" />
+		</Cursor>
 	</File>
-	<File name="include/Records.h" open="0" top="0" tabpos="18">
-		<Cursor position="0" topLine="0" />
+	<File name="include/Character.h" open="1" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="include/Utilities.h" open="0" top="0" tabpos="9">
 		<Cursor position="5543" topLine="72" />
 	</File>
-	<File name="include/XMLCharger.h" open="0" top="0" tabpos="20">
-		<Cursor position="0" topLine="0" />
+	<File name="src/main.cpp" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="media/materials/scripts/glow.cg" open="0" top="0" tabpos="0">
 		<Cursor position="1919" topLine="15" />
@@ -97,17 +123,23 @@
 	<File name="src/Character.cpp" open="1" top="0" tabpos="2">
 		<Cursor position="12621" topLine="395" />
 	</File>
-	<File name="src/DotSceneLoader.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+	<File name="src/Fader.cpp" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="src/Enemy.cpp" open="1" top="0" tabpos="1">
 		<Cursor position="0" topLine="0" />
 	</File>
-	<File name="src/EnemyRoute.cpp" open="0" top="0" tabpos="23">
-		<Cursor position="940" topLine="24" />
+	<File name="include/Fader.h" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="src/Fader.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
+	<File name="include/GameState.hpp" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="src/GameConfig.cpp" open="1" top="1" tabpos="5">
 		<Cursor position="5353" topLine="213" />
@@ -115,11 +147,15 @@
 	<File name="src/GameState.cpp" open="1" top="0" tabpos="4">
 		<Cursor position="17277" topLine="544" />
 	</File>
-	<File name="src/Hero.cpp" open="0" top="0" tabpos="5">
-		<Cursor position="0" topLine="0" />
+	<File name="include/Enemy.h" open="0" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="src/Hostage.cpp" open="0" top="0" tabpos="13">
-		<Cursor position="0" topLine="0" />
+	<File name="src/AdvancedOgreFramework.cpp" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="src/MenuState.cpp" open="0" top="0" tabpos="1">
 		<Cursor position="991" topLine="0" />
@@ -133,14 +169,20 @@
 	<File name="src/Piece.cpp" open="0" top="0" tabpos="8">
 		<Cursor position="780" topLine="2" />
 	</File>
-	<File name="src/RansomApp.cpp" open="0" top="0" tabpos="8">
-		<Cursor position="0" topLine="0" />
+	<File name="include/AppState.hpp" open="0" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="src/Records.cpp" open="0" top="0" tabpos="10">
-		<Cursor position="0" topLine="0" />
+	<File name="include/DotSceneLoader.hpp" open="0" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
-	<File name="src/TrackManager.cpp" open="0" top="0" tabpos="9">
-		<Cursor position="0" topLine="0" />
+	<File name="include/MyTextureListener.h" open="0" top="0" tabpos="17" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 	<File name="src/Utilities.cpp" open="1" top="0" tabpos="6">
 		<Cursor position="2965" topLine="88" />
@@ -148,7 +190,9 @@
 	<File name="src/XMLCharger.cpp" open="0" top="0" tabpos="5">
 		<Cursor position="3613" topLine="71" />
 	</File>
-	<File name="src/main.cpp" open="0" top="0" tabpos="3">
-		<Cursor position="0" topLine="0" />
+	<File name="media/materials/scripts/ransom.material" open="0" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="0" topLine="0" />
+		</Cursor>
 	</File>
 </CodeBlocks_layout_file>
