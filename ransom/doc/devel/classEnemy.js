@@ -10,6 +10,7 @@ var classEnemy =
     [ "getRenderTexture", "classEnemy.html#a00417322bb56eebad3306b6efcfa9831", null ],
     [ "getTexturePtr", "classEnemy.html#ae5c84e73e7050dc0a7d689ae7a10f58d", null ],
     [ "haveYouSeenAnybody", "classEnemy.html#a797adc3690bc7590de773473be4bbde1", null ],
+    [ "isEqualPoint", "classEnemy.html#a34db26786082d7d4cfc49ac10537e3ad", null ],
     [ "operator=", "classEnemy.html#a543a512b1bc3c9d46ee00f696de31860", null ],
     [ "play_sound_alert", "classEnemy.html#a83711b7fe34dc6a79fd2ecc30b7f2fbd", null ],
     [ "play_sound_hurt", "classEnemy.html#adbc89e594d83f8e590010547ce21f303", null ],

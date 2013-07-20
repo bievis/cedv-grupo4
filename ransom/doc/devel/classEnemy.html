@@ -108,6 +108,7 @@ $(document).ready(function(){initNavTree('classEnemy.html','');});
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classEnemy-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -310,6 +311,12 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:ab003d244d08e710c48125c469e2db6e0 inherit pro_methods_classCharacter"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCharacter.html#ab003d244d08e710c48125c469e2db6e0">play_sound_miss</a> ()</td></tr>
 <tr class="memdesc:ab003d244d08e710c48125c469e2db6e0 inherit pro_methods_classCharacter"><td class="mdescLeft">&#160;</td><td class="mdescRight">method to play the sound associated to the missed shot  <a href="#ab003d244d08e710c48125c469e2db6e0">More...</a><br/></td></tr>
 <tr class="separator:ab003d244d08e710c48125c469e2db6e0 inherit pro_methods_classCharacter"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a34db26786082d7d4cfc49ac10537e3ad"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classEnemy.html#a34db26786082d7d4cfc49ac10537e3ad">isEqualPoint</a> (Ogre::Vector3 point1, Ogre::Vector3 point2)</td></tr>
+<tr class="memdesc:a34db26786082d7d4cfc49ac10537e3ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">this method return true whin point1 is equal point2  <a href="#a34db26786082d7d4cfc49ac10537e3ad">More...</a><br/></td></tr>
+<tr class="separator:a34db26786082d7d4cfc49ac10537e3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -799,15 +806,15 @@ Additional Inherited Members</h2></td></tr>
 <p>method to get the distance between the enemy and the hero </p>
 <dl class="section return"><dt>Returns</dt><dd>a real value with the distance </dd></dl>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00423">423</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  {</div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    Ogre::Vector3 p = <a class="code" href="classEnemy.html#a24755ae8f72d1b6424168358367e9aaa" title="reference to the hero object ">_refHero</a>-&gt;<a class="code" href="classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference ">getSceneNode</a>()-&gt;getPosition();</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;    Ogre::Vector3 o = <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition();</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;</div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    Ogre::Real distance = o.distance ( p );</div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;    <span class="keywordflow">return</span> distance;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00426">426</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;  {</div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    Ogre::Vector3 p = <a class="code" href="classEnemy.html#a24755ae8f72d1b6424168358367e9aaa" title="reference to the hero object ">_refHero</a>-&gt;<a class="code" href="classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference ">getSceneNode</a>()-&gt;getPosition();</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    Ogre::Vector3 o = <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition();</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;</div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;    Ogre::Real distance = o.distance ( p );</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;    <span class="keywordflow">return</span> distance;</div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -951,6 +958,64 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- fragment -->
 </div>
 </div>
+<a class="anchor" id="a34db26786082d7d4cfc49ac10537e3ad"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Enemy::isEqualPoint </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::Vector3&#160;</td>
+          <td class="paramname"><em>point1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Ogre::Vector3&#160;</td>
+          <td class="paramname"><em>point2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>this method return true whin point1 is equal point2 </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">point1</td><td>point one </td></tr>
+    <tr><td class="paramname">point2</td><td>point two </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>if point1 is equal to point2 </dd></dl>
+
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00603">603</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                                                                {</div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;  <span class="keywordtype">bool</span> igual = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;  Ogre::Real variacion = 0.1;</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;</div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;  Ogre::Vector3 p = point1 - point2;</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;  p.x = Ogre::Math::Abs(p.x);</div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;  p.y = Ogre::Math::Abs(p.y);</div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;  p.z = Ogre::Math::Abs(p.z);</div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;  igual = (p.x &lt; variacion) &amp;&amp; (p.y &lt; variacion) &amp;&amp; (p.z &lt; variacion);</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;</div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;  <span class="keywordflow">return</span> igual;</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a class="anchor" id="a543a512b1bc3c9d46ee00f696de31860"></a>
 <div class="memitem">
 <div class="memproto">
@@ -1007,19 +1072,19 @@ Additional Inherited Members</h2></td></tr>
 
 <p>method to play the sound associated to the alert of an enemy </p>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00409">409</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;{</div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;  <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#abe602e60583720cae0f4abd031995461" title="counter to use with the alert current sound (it can be 1 or 2) ">_currentSoundAlert</a> == 1 )</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    {</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;      <a class="code" href="classEnemy.html#a3de16cb16a4442f569e6ff601f775e1c" title="reference to sound alert number 1 ">_soundAlert1FX</a>-&gt;play();</div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;      <a class="code" href="classEnemy.html#abe602e60583720cae0f4abd031995461" title="counter to use with the alert current sound (it can be 1 or 2) ">_currentSoundAlert</a> = 2;</div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    }</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;  <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;    {</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;      <a class="code" href="classEnemy.html#a1c536217e2bad5fdbe29acdd78d0a7cf" title="reference to sound alert number 2 ">_soundAlert2FX</a>-&gt;play();</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;      <a class="code" href="classEnemy.html#abe602e60583720cae0f4abd031995461" title="counter to use with the alert current sound (it can be 1 or 2) ">_currentSoundAlert</a> = 1;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    }</div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00412">412</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;{</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;  <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#abe602e60583720cae0f4abd031995461" title="counter to use with the alert current sound (it can be 1 or 2) ">_currentSoundAlert</a> == 1 )</div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;    {</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;      <a class="code" href="classEnemy.html#a3de16cb16a4442f569e6ff601f775e1c" title="reference to sound alert number 1 ">_soundAlert1FX</a>-&gt;play();</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;      <a class="code" href="classEnemy.html#abe602e60583720cae0f4abd031995461" title="counter to use with the alert current sound (it can be 1 or 2) ">_currentSoundAlert</a> = 2;</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;    }</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;  <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;    {</div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;      <a class="code" href="classEnemy.html#a1c536217e2bad5fdbe29acdd78d0a7cf" title="reference to sound alert number 2 ">_soundAlert2FX</a>-&gt;play();</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;      <a class="code" href="classEnemy.html#abe602e60583720cae0f4abd031995461" title="counter to use with the alert current sound (it can be 1 or 2) ">_currentSoundAlert</a> = 1;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;    }</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1097,33 +1162,33 @@ Additional Inherited Members</h2></td></tr>
 
 <p>this method reorient the enemy direction to the hero position </p>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00572">572</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;  {</div>
-<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;    Ogre::Vector3 p = <a class="code" href="classEnemy.html#a24755ae8f72d1b6424168358367e9aaa" title="reference to the hero object ">_refHero</a>-&gt;<a class="code" href="classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference ">getSceneNode</a>()-&gt;getPosition();</div>
-<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;</div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;    Ogre::Vector3 o = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getSceneNode()-&gt;getPosition();</div>
-<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;</div>
-<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;    Ogre::Vector3 v = p - o; <span class="comment">// 1er vector</span></div>
-<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;</div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;    Ogre::Vector3 orientacion = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; <span class="comment">// 2do vector</span></div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;</div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;    Ogre::Radian angle = orientacion.angleBetween ( v );</div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;</div>
-<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;    <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 0 )</div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;      {</div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;        <span class="keywordflow">if</span> ( angle.valueDegrees() &gt; 5 )</div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;          {</div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;            <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>();</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;          }</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;      }</div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;      {</div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;        <span class="keywordflow">if</span> ( angle.valueDegrees() &gt; 5 )</div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;          {</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;            <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>();</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;          }</div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;      }</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00575">575</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;  {</div>
+<div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;    Ogre::Vector3 p = <a class="code" href="classEnemy.html#a24755ae8f72d1b6424168358367e9aaa" title="reference to the hero object ">_refHero</a>-&gt;<a class="code" href="classCharacter.html#ad1cedc64d8b5ae29704c8f316753434f" title="method to get the scene node reference ">getSceneNode</a>()-&gt;getPosition();</div>
+<div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;</div>
+<div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;    Ogre::Vector3 o = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getSceneNode()-&gt;getPosition();</div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;</div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;    Ogre::Vector3 v = p - o; <span class="comment">// 1er vector</span></div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;</div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;    Ogre::Vector3 orientacion = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; <span class="comment">// 2do vector</span></div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;</div>
+<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;    Ogre::Radian angle = orientacion.angleBetween ( v );</div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;    <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 0 )</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;      {</div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;        <span class="keywordflow">if</span> ( angle.valueDegrees() &gt; 5 )</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;          {</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>();</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;          }</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;      }</div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;      {</div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;        <span class="keywordflow">if</span> ( angle.valueDegrees() &gt; 5 )</div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;          {</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;            <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>();</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;          }</div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;      }</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1149,27 +1214,27 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00550">550</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;  {</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;    <span class="keywordtype">string</span> msg = <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;</div>
-<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    <a class="code" href="classEnemy.html#a42dac7dc0b4d075f3cd74fe0b4b9f7ae" title="current enemy state ">_currentState</a> = newValue;</div>
-<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;</div>
-<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;    <span class="keywordflow">switch</span> ( <a class="code" href="classEnemy.html#a42dac7dc0b4d075f3cd74fe0b4b9f7ae" title="current enemy state ">_currentState</a> )</div>
-<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;      {</div>
-<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a10f097871fcde8b3530d60c0dfcf01e0">WATCHING</a>:</div>
-<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;          msg = <span class="stringliteral">&quot;WATCHING&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a45e0bb0f520fb3851c7d6cc5c5ddd6f9">ALERT</a>:</div>
-<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;          msg = <span class="stringliteral">&quot;ALERT&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a7b771453d1a8c8cc2efab221859139d8">SHOOTING</a>:</div>
-<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;          msg = <span class="stringliteral">&quot;SHOOTING&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30ae392b725090c22cd30720bc7f35c4ff0">CHASING</a>:</div>
-<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;          msg = <span class="stringliteral">&quot;CHASING&quot;</span>; <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;      }</div>
-<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;<span class="preprocessor"></span>    cout &lt;&lt; <span class="stringliteral">&quot;The new state is &#39;&quot;</span> &lt;&lt; msg &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="preprocessor"></span>  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00553">553</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;  {</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    <span class="keywordtype">string</span> msg = <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;</div>
+<div class="line"><a name="l00557"></a><span class="lineno">  557</span>&#160;    <a class="code" href="classEnemy.html#a42dac7dc0b4d075f3cd74fe0b4b9f7ae" title="current enemy state ">_currentState</a> = newValue;</div>
+<div class="line"><a name="l00558"></a><span class="lineno">  558</span>&#160;</div>
+<div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;    <span class="keywordflow">switch</span> ( <a class="code" href="classEnemy.html#a42dac7dc0b4d075f3cd74fe0b4b9f7ae" title="current enemy state ">_currentState</a> )</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;      {</div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a10f097871fcde8b3530d60c0dfcf01e0">WATCHING</a>:</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;          msg = <span class="stringliteral">&quot;WATCHING&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a45e0bb0f520fb3851c7d6cc5c5ddd6f9">ALERT</a>:</div>
+<div class="line"><a name="l00564"></a><span class="lineno">  564</span>&#160;          msg = <span class="stringliteral">&quot;ALERT&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00565"></a><span class="lineno">  565</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a7b771453d1a8c8cc2efab221859139d8">SHOOTING</a>:</div>
+<div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;          msg = <span class="stringliteral">&quot;SHOOTING&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;        <span class="keywordflow">case</span> <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30ae392b725090c22cd30720bc7f35c4ff0">CHASING</a>:</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;          msg = <span class="stringliteral">&quot;CHASING&quot;</span>; <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;      }</div>
+<div class="line"><a name="l00570"></a><span class="lineno">  570</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a name="l00571"></a><span class="lineno">  571</span>&#160;<span class="preprocessor"></span>    cout &lt;&lt; <span class="stringliteral">&quot;The new state is &#39;&quot;</span> &lt;&lt; msg &lt;&lt; <span class="stringliteral">&quot;&#39;&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;<span class="preprocessor"></span>  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1199,11 +1264,11 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="classCharacter.html#a8dc9a179dff2c03a9dbd0896cb03ab00">Character</a>.</p>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00544">544</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;  {</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;    <a class="code" href="classCharacter.html#a8dc9a179dff2c03a9dbd0896cb03ab00" title="method to set visible the dummy entity or not ">Character::showDummy</a>(show);</div>
-<div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;    <a class="code" href="classEnemy.html#aa0aa9b25fc8a3af5ac279e1d4f182e88" title="reference to node of Lifebar ">_lifeNode</a>-&gt;setVisible(!show);</div>
-<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00547">547</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;  {</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    <a class="code" href="classCharacter.html#a8dc9a179dff2c03a9dbd0896cb03ab00" title="method to set visible the dummy entity or not ">Character::showDummy</a>(show);</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;    <a class="code" href="classEnemy.html#aa0aa9b25fc8a3af5ac279e1d4f182e88" title="reference to node of Lifebar ">_lifeNode</a>-&gt;setVisible(!show);</div>
+<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1406,59 +1471,62 @@ Additional Inherited Members</h2></td></tr>
 <div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;                        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a5af1d3e1393d83cf09a15f6d341ffc1f" title="time elapsed in the game ">_timeElapsed_Global</a> - <a class="code" href="classEnemy.html#a31ceda680bd334d4c0509b222681f903" title="timer of seach ">_timeSeach</a> &gt; 0.5 )</div>
 <div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;                          {</div>
 <div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;                            <a class="code" href="classEnemy.html#a31ceda680bd334d4c0509b222681f903" title="timer of seach ">_timeSeach</a> = <a class="code" href="classEnemy.html#a5af1d3e1393d83cf09a15f6d341ffc1f" title="time elapsed in the game ">_timeElapsed_Global</a>;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                            <a class="code" href="classEnemy.html#abb2056780d142ddf432252245f048fe0" title="list of returns points for when the enemy is chasing the hero ">_vReturnsPoints</a>.push_back(<a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition());</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;<span class="preprocessor"></span>                            cout &lt;&lt; <span class="stringliteral">&quot;INSERTADO PUNTO RETORNO&quot;</span> &lt;&lt; endl;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor"></span>                          }</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;                        <a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                      }</div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;                    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                      {</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                        <a class="code" href="classEnemy.html#a4f9335fe1c008672a3b9563072cbff58" title="time elapsed between the enemy watch to the hero and dissapear him ">_timeElapsed_Watching</a> += timeSinceLastFrame;</div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                        <span class="comment">// Hacemos que pare y guiere cada segundo</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a4f9335fe1c008672a3b9563072cbff58" title="time elapsed between the enemy watch to the hero and dissapear him ">_timeElapsed_Watching</a> &gt;= 1.0 )</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;                          {</div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                            <a class="code" href="classEnemy.html#a4f9335fe1c008672a3b9563072cbff58" title="time elapsed between the enemy watch to the hero and dissapear him ">_timeElapsed_Watching</a> = 0;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                            <a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a> = !<a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a>;</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                            <span class="keywordflow">if</span> (!<a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a>) <a class="code" href="classEnemy.html#acd410bedf835ffc3acb6f8bbe43d8323" title="number of turns ">_aroundNumber</a>++;</div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                          }</div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;</div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a>)</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                          {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;                            <a class="code" href="classCharacter.html#a631e21c8f5d76b2d3dc4a4a94079f177" title="method to stop character movement ">stop_move</a>();</div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                          }</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                          {</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                            <a class="code" href="classEnemy.html#a12b097672cc668d70a3312660152de0b" title="method to watch around the enemy 360º ">watch_around</a>(timeSinceLastFrame);</div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                          }</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                      }</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                  }</div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;</div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;          }</div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="comment">// ######################################################</span></div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;                            <span class="keywordflow">if</span> (<a class="code" href="classEnemy.html#abb2056780d142ddf432252245f048fe0" title="list of returns points for when the enemy is chasing the hero ">_vReturnsPoints</a>.size() == 0 ||</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;                                  !<a class="code" href="classEnemy.html#a34db26786082d7d4cfc49ac10537e3ad" title="this method return true whin point1 is equal point2 ">isEqualPoint</a>(<a class="code" href="classEnemy.html#abb2056780d142ddf432252245f048fe0" title="list of returns points for when the enemy is chasing the hero ">_vReturnsPoints</a>[<a class="code" href="classEnemy.html#abb2056780d142ddf432252245f048fe0" title="list of returns points for when the enemy is chasing the hero ">_vReturnsPoints</a>.size() - 1], <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition())) {</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;                              <a class="code" href="classEnemy.html#abb2056780d142ddf432252245f048fe0" title="list of returns points for when the enemy is chasing the hero ">_vReturnsPoints</a>.push_back(<a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition());</div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;<span class="preprocessor">                              #ifdef _DEBUG</span></div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;<span class="preprocessor"></span>                                cout &lt;&lt; <span class="stringliteral">&quot;INSERTADO PUNTO RETORNO&quot;</span> &lt;&lt; endl;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;<span class="preprocessor">                              #endif</span></div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;<span class="preprocessor"></span>                            }</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;                          }</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;</div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;                        <a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;                      }</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;                    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;                      {</div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;                        <a class="code" href="classEnemy.html#a4f9335fe1c008672a3b9563072cbff58" title="time elapsed between the enemy watch to the hero and dissapear him ">_timeElapsed_Watching</a> += timeSinceLastFrame;</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;                        <span class="comment">// Hacemos que pare y guiere cada segundo</span></div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;                        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a4f9335fe1c008672a3b9563072cbff58" title="time elapsed between the enemy watch to the hero and dissapear him ">_timeElapsed_Watching</a> &gt;= 1.0 )</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;                          {</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;                            <a class="code" href="classEnemy.html#a4f9335fe1c008672a3b9563072cbff58" title="time elapsed between the enemy watch to the hero and dissapear him ">_timeElapsed_Watching</a> = 0;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;                            <a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a> = !<a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a>;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;                            <span class="keywordflow">if</span> (!<a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a>) <a class="code" href="classEnemy.html#acd410bedf835ffc3acb6f8bbe43d8323" title="number of turns ">_aroundNumber</a>++;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;                          }</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classEnemy.html#aa1a9047b31ee12038539c2ea857e30c2" title="indicates that spinning ">_stopAround</a>)</div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;                          {</div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;                            <a class="code" href="classCharacter.html#a631e21c8f5d76b2d3dc4a4a94079f177" title="method to stop character movement ">stop_move</a>();</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;                          }</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;                        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;                          {</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;                            <a class="code" href="classEnemy.html#a12b097672cc668d70a3312660152de0b" title="method to watch around the enemy 360º ">watch_around</a>(timeSinceLastFrame);</div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;                          }</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;                      }</div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;                  }</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;                <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;</div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;        <span class="comment">// Cada TIMER_MAX_BLOCKED segundos, comprobaremos si el enemigo</span></div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        <span class="comment">// se ha quedado bloqueado en algun sitio del escenario</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;          }</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;        <span class="comment">// ######################################################</span></div>
 <div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a5af1d3e1393d83cf09a15f6d341ffc1f" title="time elapsed in the game ">_timeElapsed_Global</a> - <a class="code" href="classEnemy.html#a4854175af38a43220881259b69811fa7" title="time used to know if the enemy is blocked ">_timeBlocked</a> &gt; <a class="code" href="Enemy_8h.html#a3b233335e5eb9e4292f62084b4ac5d59">TIMER_MAX_BLOCKED</a> )</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;          {</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            <a class="code" href="classEnemy.html#a4854175af38a43220881259b69811fa7" title="time used to know if the enemy is blocked ">_timeBlocked</a> = <a class="code" href="classEnemy.html#a5af1d3e1393d83cf09a15f6d341ffc1f" title="time elapsed in the game ">_timeElapsed_Global</a>;</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;</div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;            <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#aa57635f8426fa44dd659adebde7352eb" title="current position to use when we check if the enemy is blocked ">_currentPosition</a> == <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition() )</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;              {</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;                <a class="code" href="classEnemy.html#a42dac7dc0b4d075f3cd74fe0b4b9f7ae" title="current enemy state ">_currentState</a> = <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a10f097871fcde8b3530d60c0dfcf01e0">WATCHING</a>;</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;              }</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;</div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <a class="code" href="classEnemy.html#aa57635f8426fa44dd659adebde7352eb" title="current position to use when we check if the enemy is blocked ">_currentPosition</a> = <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition();</div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;          }</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="comment">// Cada TIMER_MAX_BLOCKED segundos, comprobaremos si el enemigo</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="comment">// se ha quedado bloqueado en algun sitio del escenario</span></div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a5af1d3e1393d83cf09a15f6d341ffc1f" title="time elapsed in the game ">_timeElapsed_Global</a> - <a class="code" href="classEnemy.html#a4854175af38a43220881259b69811fa7" title="time used to know if the enemy is blocked ">_timeBlocked</a> &gt; <a class="code" href="Enemy_8h.html#a3b233335e5eb9e4292f62084b4ac5d59">TIMER_MAX_BLOCKED</a> )</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;          {</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;            <a class="code" href="classEnemy.html#a4854175af38a43220881259b69811fa7" title="time used to know if the enemy is blocked ">_timeBlocked</a> = <a class="code" href="classEnemy.html#a5af1d3e1393d83cf09a15f6d341ffc1f" title="time elapsed in the game ">_timeElapsed_Global</a>;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a34db26786082d7d4cfc49ac10537e3ad" title="this method return true whin point1 is equal point2 ">isEqualPoint</a>(<a class="code" href="classEnemy.html#aa57635f8426fa44dd659adebde7352eb" title="current position to use when we check if the enemy is blocked ">_currentPosition</a>, <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition()) )</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;              {</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;                <a class="code" href="classEnemy.html#a42dac7dc0b4d075f3cd74fe0b4b9f7ae" title="current enemy state ">_currentState</a> = <a class="code" href="Enemy_8h.html#a95a8efedd2ca05493adb30a42386ef30a10f097871fcde8b3530d60c0dfcf01e0">WATCHING</a>;</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;              }</div>
 <div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;    }</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;  }</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;            <a class="code" href="classEnemy.html#aa57635f8426fa44dd659adebde7352eb" title="current position to use when we check if the enemy is blocked ">_currentPosition</a> = <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getPosition();</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;          }</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    }</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1519,52 +1587,52 @@ Additional Inherited Members</h2></td></tr>
 
 <p>method to walk using the route built to the enemy </p>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00497">497</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;  {</div>
-<div class="line"><a name="l00499"></a><span class="lineno">  499</span>&#160;    assert ( <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>() );</div>
-<div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    Ogre::Vector3 v = <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. ">getPoint</a> ( <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> );</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;    <span class="comment">// Si el método walk_to() nos devuelve true, quiere decir que ha llegado al destino</span></div>
-<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    <span class="comment">// y por lo tanto la variable _current_point de la ruta del enemigo debe de pasar al siguiente</span></div>
-<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;    <span class="comment">// punto</span></div>
-<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#aac1e312b06511853261b06b7668c213e" title="method to perform the character walk movement to position This method uses OgreBullet to move the cha...">walk_to</a> ( v ) )</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;      {</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: punto destino = &quot;</span> &lt;&lt; v &lt;&lt; <span class="stringliteral">&quot; - puntos = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>() &lt;&lt; <span class="stringliteral">&quot; : current_point = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> &lt;&lt; endl;</div>
-<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> ) <span class="comment">// Sentido hacia adelante</span></div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a>++;</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;        <span class="keywordflow">else</span>  <span class="comment">// Sentido inverso</span></div>
-<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a>--;</div>
-<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;      }</div>
-<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    <span class="comment">// Si esto es así, significa que hemos pasado del último punto</span></div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> == <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>() )</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;      {</div>
-<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: _route.getRouteClosed() &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. ">getRouteClosed</a>() &lt;&lt; endl;</div>
-<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. ">getRouteClosed</a>() )</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> = 0;</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        {</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;          <a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> = !<a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a>;</div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a>-=2;</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        }</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: _current_point = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> &lt;&lt; endl;</div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="preprocessor"></span>      }</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( !<a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> &amp;&amp; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> == -1 )</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;      {</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        <a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> = !<a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a>;</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;        <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> = 1;</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: _current_point = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> &lt;&lt; endl;</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="preprocessor"></span>      }</div>
-<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00500">500</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;  {</div>
+<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    assert ( <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>() );</div>
+<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    Ogre::Vector3 v = <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a394d41e17e06de40f7501a58b32bad27" title="Method to get the point acoording the index value in the points vector. ">getPoint</a> ( <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> );</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;</div>
+<div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;    <span class="comment">// Si el método walk_to() nos devuelve true, quiere decir que ha llegado al destino</span></div>
+<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="comment">// y por lo tanto la variable _current_point de la ruta del enemigo debe de pasar al siguiente</span></div>
+<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;    <span class="comment">// punto</span></div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#aac1e312b06511853261b06b7668c213e" title="method to perform the character walk movement to position This method uses OgreBullet to move the cha...">walk_to</a> ( v ) )</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;      {</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: punto destino = &quot;</span> &lt;&lt; v &lt;&lt; <span class="stringliteral">&quot; - puntos = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>() &lt;&lt; <span class="stringliteral">&quot; : current_point = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> ) <span class="comment">// Sentido hacia adelante</span></div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a>++;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;        <span class="keywordflow">else</span>  <span class="comment">// Sentido inverso</span></div>
+<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a>--;</div>
+<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;      }</div>
+<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    <span class="comment">// Si esto es así, significa que hemos pasado del último punto</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> == <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#ad5c67b807f8a186f1ddc01ae7db8ac65" title="Method to get number of points in the route. ">getNumPoints</a>() )</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;      {</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: _route.getRouteClosed() &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. ">getRouteClosed</a>() &lt;&lt; endl;</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="preprocessor"></span>        <span class="keywordflow">if</span> ( <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a04b7196f4df2766e0143b8b8c51d791c" title="Method to get value of route closed. ">getRouteClosed</a>() )</div>
+<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> = 0;</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;        {</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;          <a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> = !<a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a>;</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;          <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a>-=2;</div>
+<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        }</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: _current_point = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;<span class="preprocessor"></span>      }</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( !<a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> &amp;&amp; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> == -1 )</div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;      {</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;        <a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a> = !<a class="code" href="classEnemy.html#a2a5b8a20ee576f4e867c1962d045de19" title="way in the route ( true = forward / false = backward ) ">_way</a>;</div>
+<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;        <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> = 1;</div>
+<div class="line"><a name="l00541"></a><span class="lineno">  541</span>&#160;<span class="preprocessor">#ifdef _DEBUG</span></div>
+<div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;<span class="preprocessor"></span>        cout &lt;&lt; <a class="code" href="classCharacter.html#a6a477933d5b29f998a15de718793b3a4" title="character name ">_name</a> &lt;&lt; <span class="stringliteral">&quot;: _current_point = &quot;</span> &lt;&lt; <a class="code" href="classEnemy.html#a1713cb752e627e999b00ae2cd4534dbc" title="current index point to walk ">_current_point</a> &lt;&lt; endl;</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;<span class="preprocessor"></span>      }</div>
+<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1601,60 +1669,60 @@ Additional Inherited Members</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true/false if the character arrived to destiny point </dd></dl>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00433">433</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;  {</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;    <span class="keywordtype">bool</span> res = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;    Ogre::Vector3 o = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getSceneNode()-&gt;getPosition();</div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    Ogre::Vector3 v = p - o; <span class="comment">// 1er vector</span></div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;</div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;    Ogre::Vector3 orientacion = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; <span class="comment">// 2do vector</span></div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;    Ogre::Radian angle = orientacion.angleBetween ( v );</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;</div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;    Ogre::Real distance = o.distance ( p );</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    <span class="keywordflow">if</span> ( distance &lt; <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a9c22fbb5568adcf73efe1df0f98f2349" title="Method to get proximity value. ">getProximity</a>() )</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;      res = <span class="keyword">true</span>;</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00436">436</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;  {</div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;    <span class="keywordtype">bool</span> res = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;    Ogre::Vector3 o = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getSceneNode()-&gt;getPosition();</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;</div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;    Ogre::Vector3 v = p - o; <span class="comment">// 1er vector</span></div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;    Ogre::Vector3 orientacion = <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getCenterOfMassOrientation() * Ogre::Vector3::UNIT_Z; <span class="comment">// 2do vector</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;</div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;    Ogre::Radian angle = orientacion.angleBetween ( v );</div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;    Ogre::Real distance = o.distance ( p );</div>
 <div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 0 )</div>
-<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;      {</div>
-<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;        <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 170 )</div>
-<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;          {</div>
-<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>(); <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>();</div>
-<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;          }</div>
-<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 10 )</div>
-<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;          {</div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>();</div>
-<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;          }</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 0.1 )</div>
-<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;          {</div>
-<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            <a class="code" href="classCharacter.html#a1358dcaf15eb7443bdb3be617e665ac2" title="method to rotate the character an angle ">turn_angle</a> ( orientacion.getRotationTo(v).getYaw() );</div>
-<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;          }</div>
-<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;      }</div>
-<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;      <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;      {</div>
-<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;        <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &lt; -170 )</div>
-<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;          {</div>
-<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;            <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>(); <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>();</div>
-<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;          }</div>
-<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &lt; -10 )</div>
-<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;          {</div>
-<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;            <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>();</div>
-<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;          }</div>
-<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &lt; -0.1 )</div>
-<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;          {</div>
-<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;            <a class="code" href="classCharacter.html#a1358dcaf15eb7443bdb3be617e665ac2" title="method to rotate the character an angle ">turn_angle</a> ( orientacion.getRotationTo(v).getYaw() );</div>
-<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;          }</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;      }</div>
-<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;</div>
-<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;    <span class="keywordflow">if</span> ( running )</div>
-<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;      <a class="code" href="classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ...">walk</a> ( <span class="keyword">false</span>, <a class="code" href="Character_8h.html#aff62692d6bb798cda97065a59f03e7c5">VELOCIDAD_RUNNING</a> );</div>
-<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;    <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;      <a class="code" href="classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ...">walk</a> ( <span class="keyword">false</span> );</div>
-<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;</div>
-<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;  }</div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;    <span class="keywordflow">if</span> ( distance &lt; <a class="code" href="classEnemy.html#a8b6716b6ab14c3c947c85d446fd1025b" title="route object with the enemy route ">_route</a>.<a class="code" href="classEnemyRoute.html#a9c22fbb5568adcf73efe1df0f98f2349" title="Method to get proximity value. ">getProximity</a>() )</div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;      res = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160;    <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 0 )</div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;      {</div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;        <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 170 )</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;          {</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;            <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>(); <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>();</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;          }</div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 10 )</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;          {</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;            <a class="code" href="classCharacter.html#a8d3c515209157e77fb06937e5748f436" title="method to rotate the character to the left ">turn_left</a>();</div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;          }</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &gt; 0.1 )</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;          {</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160;            <a class="code" href="classCharacter.html#a1358dcaf15eb7443bdb3be617e665ac2" title="method to rotate the character an angle ">turn_angle</a> ( orientacion.getRotationTo(v).getYaw() );</div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;          }</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;      }</div>
+<div class="line"><a name="l00467"></a><span class="lineno">  467</span>&#160;      <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00468"></a><span class="lineno">  468</span>&#160;      {</div>
+<div class="line"><a name="l00469"></a><span class="lineno">  469</span>&#160;        <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &lt; -170 )</div>
+<div class="line"><a name="l00470"></a><span class="lineno">  470</span>&#160;          {</div>
+<div class="line"><a name="l00471"></a><span class="lineno">  471</span>&#160;            <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>(); <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>();</div>
+<div class="line"><a name="l00472"></a><span class="lineno">  472</span>&#160;          }</div>
+<div class="line"><a name="l00473"></a><span class="lineno">  473</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &lt; -10 )</div>
+<div class="line"><a name="l00474"></a><span class="lineno">  474</span>&#160;          {</div>
+<div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160;            <a class="code" href="classCharacter.html#a491af40715fb53821d8890e5136592c1" title="method to rotate the character to the right ">turn_right</a>();</div>
+<div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;          }</div>
+<div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span> ( orientacion.getRotationTo(v).getYaw().valueDegrees() &lt; -0.1 )</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;          {</div>
+<div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;            <a class="code" href="classCharacter.html#a1358dcaf15eb7443bdb3be617e665ac2" title="method to rotate the character an angle ">turn_angle</a> ( orientacion.getRotationTo(v).getYaw() );</div>
+<div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;          }</div>
+<div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;      }</div>
+<div class="line"><a name="l00482"></a><span class="lineno">  482</span>&#160;</div>
+<div class="line"><a name="l00483"></a><span class="lineno">  483</span>&#160;    <span class="keywordflow">if</span> ( running )</div>
+<div class="line"><a name="l00484"></a><span class="lineno">  484</span>&#160;      <a class="code" href="classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ...">walk</a> ( <span class="keyword">false</span>, <a class="code" href="Character_8h.html#aff62692d6bb798cda97065a59f03e7c5">VELOCIDAD_RUNNING</a> );</div>
+<div class="line"><a name="l00485"></a><span class="lineno">  485</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;      <a class="code" href="classCharacter.html#a6a2bfa0a42af475b787ab3215dae93b8" title="method to perform the character walk movement ( forward or backward ) This method uses OgreBullet to ...">walk</a> ( <span class="keyword">false</span> );</div>
+<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;</div>
+<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -1674,14 +1742,14 @@ Additional Inherited Members</h2></td></tr>
 
 <p>method to watch around the enemy 360º </p>
 
-<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00488">488</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00489"></a><span class="lineno">  489</span>&#160;  {</div>
-<div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;    <a class="code" href="classCharacter.html#ad9a238a263754def4c1f8197221bab89" title="method to change animation of character ">changeAnimation</a> ( <a class="code" href="Character_8h.html#ad97fdbc46e28057e367f85e25897060e">MOVE_ANIMATION</a> );</div>
-<div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;    <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;enableActiveState();</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;yaw ( Ogre::Radian ( Ogre::Math::DegreesToRadians ( 135 ) ) * timeSinceLastFrame );</div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to ( <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getOrientation() );</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getBulletRigidBody()-&gt;getWorldTransform().setRotation ( quaternion );</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;  }</div>
+<p>Definition at line <a class="el" href="Enemy_8cpp_source.html#l00491">491</a> of file <a class="el" href="Enemy_8cpp_source.html">Enemy.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;  {</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    <a class="code" href="classCharacter.html#ad9a238a263754def4c1f8197221bab89" title="method to change animation of character ">changeAnimation</a> ( <a class="code" href="Character_8h.html#ad97fdbc46e28057e367f85e25897060e">MOVE_ANIMATION</a> );</div>
+<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;    <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;enableActiveState();</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;    <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;yaw ( Ogre::Radian ( Ogre::Math::DegreesToRadians ( 135 ) ) * timeSinceLastFrame );</div>
+<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    btQuaternion quaternion = OgreBulletCollisions::OgreBtConverter::to ( <a class="code" href="classCharacter.html#ab0d6e10352f99fa59cbe892cf7b059df" title="reference to scene node ">_node</a>-&gt;getOrientation() );</div>
+<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;    <a class="code" href="classCharacter.html#a898c06c5718eeab20dec83c91eeaca96" title="reference to rigid body ">_rigidBody</a>-&gt;getBulletRigidBody()-&gt;getWorldTransform().setRotation ( quaternion );</div>
+<div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;  }</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -2488,7 +2556,7 @@ Additional Inherited Members</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classEnemy.html">Enemy</a></li>
-    <li class="footer">Generated on Wed Jul 17 2013 23:43:43 for RANSOM by
+    <li class="footer">Generated on Sat Jul 20 2013 19:50:27 for RANSOM by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.4 </li>
   </ul>
