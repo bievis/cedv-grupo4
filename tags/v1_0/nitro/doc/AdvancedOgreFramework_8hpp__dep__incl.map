@@ -1,0 +1,16 @@
+<map id="include/AdvancedOgreFramework.hpp" name="include/AdvancedOgreFramework.hpp">
+<area shape="rect" id="node3" href="$AdvancedOgreFramework_8cpp.html" title="src/AdvancedOgreFramework.cpp" alt="" coords="5,83,224,112"/>
+<area shape="rect" id="node5" href="$AppState_8hpp.html" title="include/AppState.hpp" alt="" coords="624,83,771,112"/>
+<area shape="rect" id="node13" href="$NitroApp_8hpp.html" title="include/NitroApp.hpp" alt="" coords="180,237,321,267"/>
+<area shape="rect" id="node7" href="$AppState_8cpp.html" title="src/AppState.cpp" alt="" coords="1073,160,1196,189"/>
+<area shape="rect" id="node9" href="$AppStateManager_8hpp.html" title="include/AppStateManager.hpp" alt="" coords="311,160,505,189"/>
+<area shape="rect" id="node19" href="$GameState_8hpp.html" title="include/GameState.hpp" alt="" coords="529,160,687,189"/>
+<area shape="rect" id="node24" href="$MenuState_8hpp.html" title="include/MenuState.hpp" alt="" coords="711,160,865,189"/>
+<area shape="rect" id="node29" href="$PauseState_8hpp.html" title="include/PauseState.hpp" alt="" coords="889,160,1049,189"/>
+<area shape="rect" id="node11" href="$AppStateManager_8cpp.html" title="src/AppStateManager.cpp" alt="" coords="345,237,519,267"/>
+<area shape="rect" id="node15" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="203,315,299,344"/>
+<area shape="rect" id="node17" href="$NitroApp_8cpp.html" title="src/NitroApp.cpp" alt="" coords="600,315,720,344"/>
+<area shape="rect" id="node21" href="$GameState_8cpp.html" title="src/GameState.cpp" alt="" coords="593,237,727,267"/>
+<area shape="rect" id="node26" href="$MenuState_8cpp.html" title="src/MenuState.cpp" alt="" coords="801,237,932,267"/>
+<area shape="rect" id="node32" href="$PauseState_8cpp.html" title="src/PauseState.cpp" alt="" coords="1007,237,1143,267"/>
+</map>

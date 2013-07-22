@@ -1,0 +1,35 @@
+// MaterialEspumadera genrated by blender2ogre 0.5.8
+
+material MaterialEspumadera 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass MaterialEspumadera
+        {
+            ambient 0.24748662114143372 0.2420426309108734 0.25293633341789246 1.0
+            diffuse 0.1979892998634174 0.19363410761407174 0.20234906974955003 1.0
+            specular 0.5 0.5 0.5 1.0 12.5
+            emissive 0.0 0.0 0.0 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            lighting on
+            normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            transparent_sorting on
+
+        }
+    }
+}

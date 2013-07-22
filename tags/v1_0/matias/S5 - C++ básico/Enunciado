@@ -1,0 +1,16 @@
+Suba en un archivo <nombre>-<primer_apellido>-s5-cedv2012.tar.gz la solución (código fuente y Makefile) al siguiente ejercicio:
+
+Implemente en C++ estándar un programa que lea el contenido de un archivo de texto, cuyo nombre se pase como parámetro, y genere otro archivo de texto con la siguiente información relativa al primer archivo:
+
+Nombre: <nombre_archivo_entrada>
+Tamanyo: <tamaño_bytes_archivo_entrada>
+Nº líneas: <número_líneas_archivo_entrada>
+Nº palabras palíndromo: <número_palabras_palíndromo>
+
+Recuerde que una palabras es un palíndromo si se lee igual de derecha a izquierda que de izquierda a derecha.
+
+El programa ha de ser robusto frente a errores y ha de estar bien estructurado.
+
+No utilice programación orientada a objetos.
+
+Nota: apóyese en el uso de las bibliotecas iostream y fstream.

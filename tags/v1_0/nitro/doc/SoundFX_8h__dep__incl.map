@@ -1,0 +1,20 @@
+<map id="include/SoundFX.h" name="include/SoundFX.h">
+<area shape="rect" id="node3" href="$SoundFXManager_8h.html" title="include/SoundFXManager.h" alt="" coords="801,83,983,112"/>
+<area shape="rect" id="node44" href="$SoundFX_8cpp.html" title="src/SoundFX.cpp" alt="" coords="1007,83,1129,112"/>
+<area shape="rect" id="node5" href="$AdvancedOgreFramework_8hpp.html" title="include/AdvancedOgreFramework.hpp" alt="" coords="447,160,689,189"/>
+<area shape="rect" id="node23" href="$GameState_8hpp.html" title="include/GameState.hpp" alt="" coords="664,315,821,344"/>
+<area shape="rect" id="node28" href="$MenuState_8hpp.html" title="include/MenuState.hpp" alt="" coords="1029,315,1184,344"/>
+<area shape="rect" id="node33" href="$PauseState_8hpp.html" title="include/PauseState.hpp" alt="" coords="845,315,1005,344"/>
+<area shape="rect" id="node42" href="$SoundFXManager_8cpp.html" title="src/SoundFXManager.cpp" alt="" coords="980,160,1153,189"/>
+<area shape="rect" id="node7" href="$AdvancedOgreFramework_8cpp.html" title="src/AdvancedOgreFramework.cpp" alt="" coords="5,237,224,267"/>
+<area shape="rect" id="node9" href="$AppState_8hpp.html" title="include/AppState.hpp" alt="" coords="519,237,665,267"/>
+<area shape="rect" id="node17" href="$NitroApp_8hpp.html" title="include/NitroApp.hpp" alt="" coords="260,392,401,421"/>
+<area shape="rect" id="node11" href="$AppState_8cpp.html" title="src/AppState.cpp" alt="" coords="299,315,421,344"/>
+<area shape="rect" id="node13" href="$AppStateManager_8hpp.html" title="include/AppStateManager.hpp" alt="" coords="445,315,640,344"/>
+<area shape="rect" id="node15" href="$AppStateManager_8cpp.html" title="src/AppStateManager.cpp" alt="" coords="425,392,599,421"/>
+<area shape="rect" id="node19" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="283,469,379,499"/>
+<area shape="rect" id="node21" href="$NitroApp_8cpp.html" title="src/NitroApp.cpp" alt="" coords="759,469,879,499"/>
+<area shape="rect" id="node25" href="$GameState_8cpp.html" title="src/GameState.cpp" alt="" coords="623,392,756,421"/>
+<area shape="rect" id="node30" href="$MenuState_8cpp.html" title="src/MenuState.cpp" alt="" coords="1041,392,1172,421"/>
+<area shape="rect" id="node36" href="$PauseState_8cpp.html" title="src/PauseState.cpp" alt="" coords="881,392,1017,421"/>
+</map>

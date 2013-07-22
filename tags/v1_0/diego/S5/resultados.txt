@@ -1,0 +1,4 @@
+Nombre: pruebas.txt
+Tamanyo: 104
+Nº líneas: 4
+Nº Palíndromos / Nº Palabras: 3 / 21

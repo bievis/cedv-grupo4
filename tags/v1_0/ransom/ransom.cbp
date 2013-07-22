@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="ransom" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/ransom" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-w" />
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/ransom" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-Wall -g -D_DEBUG" />
+			<Add option="-pthread" />
+			<Add option="-I/usr/local/include/OgreBullet/Collisions" />
+			<Add option="-I/usr/local/include/OgreBullet/Dynamics" />
+			<Add option="-I/usr/local/include/bullet" />
+			<Add option="-I/usr/include/OGRE" />
+			<Add option="-I/usr/include/SDL" />
+			<Add option="-I/usr/include/ois" />
+			<Add option="-I./include" />
+			<Add option="-fpermissive" />
+			<Add directory="/home/diego/CEDV/cedv-grupo4/final/include" />
+			<Add directory="/usr/include/OGRE" />
+			<Add directory="/usr/include/boost" />
+			<Add directory="/usr/local/include" />
+			<Add directory="/usr/local/include/bullet" />
+			<Add directory="/usr/local/include/OgreBullet" />
+		</Compiler>
+		<Linker>
+			<Add library="/usr/lib/x86_64-linux-gnu/libOgreMain.so" />
+			<Add library="/usr/lib/x86_64-linux-gnu/libpthread.so" />
+			<Add library="/usr/lib/x86_64-linux-gnu/libOIS.so" />
+			<Add library="/usr/local/lib/libOgreBulletCol.so" />
+			<Add library="/usr/local/lib/libOgreBulletDyn.so" />
+			<Add library="/usr/local/lib/libBulletCollision.so" />
+			<Add library="/usr/local/lib/libBulletDynamics.so" />
+			<Add library="/usr/local/lib/libBulletSoftBody.so" />
+			<Add library="/usr/local/lib/libLinearMath.so" />
+			<Add library="/usr/lib/x86_64-linux-gnu/libGL.so" />
+			<Add library="/usr/lib/x86_64-linux-gnu/libOgreTerrain.so" />
+			<Add library="/usr/lib/x86_64-linux-gnu/libSDL.so" />
+			<Add library="/usr/lib/x86_64-linux-gnu/libSDL_mixer.so" />
+			<Add library="/usr/lib/gcc/x86_64-linux-gnu/4.7/libstdc++.so" />
+			<Add library="/usr/local/lib/libConvexDecomposition.so" />
+			<Add directory="/usr/local/lib" />
+		</Linker>
+		<Unit filename="Blur_fp.cg" />
+		<Unit filename="config/config.xml" />
+		<Unit filename="include/AdvancedOgreFramework.hpp" />
+		<Unit filename="include/AnimationBlender.h" />
+		<Unit filename="include/AppState.hpp" />
+		<Unit filename="include/AppStateManager.hpp" />
+		<Unit filename="include/CamerasController.h" />
+		<Unit filename="include/Character.h" />
+		<Unit filename="include/DotSceneLoader.hpp" />
+		<Unit filename="include/Enemy.h" />
+		<Unit filename="include/EnemyRoute.h" />
+		<Unit filename="include/Fader.h" />
+		<Unit filename="include/GameConfig.h" />
+		<Unit filename="include/GameConfigException.hpp" />
+		<Unit filename="include/GameState.hpp" />
+		<Unit filename="include/GlowMaterialListener.h" />
+		<Unit filename="include/Hero.h" />
+		<Unit filename="include/Hostage.h" />
+		<Unit filename="include/MenuState.hpp" />
+		<Unit filename="include/MiniMapTextureListener.h" />
+		<Unit filename="include/MyTextureListener.h" />
+		<Unit filename="include/PauseState.hpp" />
+		<Unit filename="include/Piece.h" />
+		<Unit filename="include/RansomApp.hpp" />
+		<Unit filename="include/Records.h" />
+		<Unit filename="include/SoundFX.h" />
+		<Unit filename="include/SoundFXManager.h" />
+		<Unit filename="include/Track.h" />
+		<Unit filename="include/TrackManager.h" />
+		<Unit filename="include/Utilities.h" />
+		<Unit filename="include/XMLCharger.h" />
+		<Unit filename="include/rapidxml.hpp" />
+		<Unit filename="media/materials/scripts/glow.cg" />
+		<Unit filename="media/materials/scripts/glow.compositor" />
+		<Unit filename="media/materials/scripts/glow.program" />
+		<Unit filename="media/materials/scripts/info.overlay" />
+		<Unit filename="media/materials/scripts/panel.material" />
+		<Unit filename="media/materials/scripts/pointer.material" />
+		<Unit filename="media/materials/scripts/prueba.compositor" />
+		<Unit filename="media/materials/scripts/ransom.material" />
+		<Unit filename="media/materials/scripts/ransom.overlay" />
+		<Unit filename="ogre.cfg" />
+		<Unit filename="src/AdvancedOgreFramework.cpp" />
+		<Unit filename="src/AnimationBlender.cpp" />
+		<Unit filename="src/AppStateManager.cpp" />
+		<Unit filename="src/CamerasController.cpp" />
+		<Unit filename="src/Character.cpp" />
+		<Unit filename="src/DotSceneLoader.cpp" />
+		<Unit filename="src/Enemy.cpp" />
+		<Unit filename="src/EnemyRoute.cpp" />
+		<Unit filename="src/Fader.cpp" />
+		<Unit filename="src/GameConfig.cpp" />
+		<Unit filename="src/GameConfigException.cpp" />
+		<Unit filename="src/GameState.cpp" />
+		<Unit filename="src/Hero.cpp" />
+		<Unit filename="src/Hostage.cpp" />
+		<Unit filename="src/MenuState.cpp" />
+		<Unit filename="src/MiniMapTextureListener.cpp" />
+		<Unit filename="src/MyTextureListener.cpp" />
+		<Unit filename="src/PauseState.cpp" />
+		<Unit filename="src/Piece.cpp" />
+		<Unit filename="src/RansomApp.cpp" />
+		<Unit filename="src/Records.cpp" />
+		<Unit filename="src/SoundFX.cpp" />
+		<Unit filename="src/SoundFXManager.cpp" />
+		<Unit filename="src/Track.cpp" />
+		<Unit filename="src/TrackManager.cpp" />
+		<Unit filename="src/Utilities.cpp" />
+		<Unit filename="src/XMLCharger.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

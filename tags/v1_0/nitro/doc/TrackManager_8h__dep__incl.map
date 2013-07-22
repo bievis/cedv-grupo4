@@ -1,0 +1,18 @@
+<map id="include/TrackManager.h" name="include/TrackManager.h">
+<area shape="rect" id="node3" href="$AdvancedOgreFramework_8hpp.html" title="include/AdvancedOgreFramework.hpp" alt="" coords="340,83,583,112"/>
+<area shape="rect" id="node21" href="$GameState_8hpp.html" title="include/GameState.hpp" alt="" coords="1027,237,1184,267"/>
+<area shape="rect" id="node26" href="$MenuState_8hpp.html" title="include/MenuState.hpp" alt="" coords="848,237,1003,267"/>
+<area shape="rect" id="node39" href="$TrackManager_8cpp.html" title="src/TrackManager.cpp" alt="" coords="1013,83,1165,112"/>
+<area shape="rect" id="node5" href="$AdvancedOgreFramework_8cpp.html" title="src/AdvancedOgreFramework.cpp" alt="" coords="5,160,224,189"/>
+<area shape="rect" id="node7" href="$AppState_8hpp.html" title="include/AppState.hpp" alt="" coords="588,160,735,189"/>
+<area shape="rect" id="node15" href="$NitroApp_8hpp.html" title="include/NitroApp.hpp" alt="" coords="213,315,355,344"/>
+<area shape="rect" id="node9" href="$AppState_8cpp.html" title="src/AppState.cpp" alt="" coords="517,237,640,267"/>
+<area shape="rect" id="node11" href="$AppStateManager_8hpp.html" title="include/AppStateManager.hpp" alt="" coords="299,237,493,267"/>
+<area shape="rect" id="node31" href="$PauseState_8hpp.html" title="include/PauseState.hpp" alt="" coords="664,237,824,267"/>
+<area shape="rect" id="node13" href="$AppStateManager_8cpp.html" title="src/AppStateManager.cpp" alt="" coords="379,315,552,344"/>
+<area shape="rect" id="node17" href="$main_8cpp.html" title="src/main.cpp" alt="" coords="236,392,332,421"/>
+<area shape="rect" id="node19" href="$NitroApp_8cpp.html" title="src/NitroApp.cpp" alt="" coords="737,392,857,421"/>
+<area shape="rect" id="node23" href="$GameState_8cpp.html" title="src/GameState.cpp" alt="" coords="1015,315,1148,344"/>
+<area shape="rect" id="node28" href="$MenuState_8cpp.html" title="src/MenuState.cpp" alt="" coords="860,315,991,344"/>
+<area shape="rect" id="node34" href="$PauseState_8cpp.html" title="src/PauseState.cpp" alt="" coords="599,315,735,344"/>
+</map>

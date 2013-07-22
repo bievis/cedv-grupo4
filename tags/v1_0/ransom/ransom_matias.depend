@@ -1,0 +1,2269 @@
+# depslib dependency file v1.0
+1370295499 source:/home/matisnow/cedv-grupo4/ransom/src/AdvancedOgreFramework.cpp
+	"AdvancedOgreFramework.hpp"
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/AnimationBlender.cpp
+	"AnimationBlender.h"
+
+1370470740 source:/home/matisnow/cedv-grupo4/ransom/src/AppStateManager.cpp
+	"AppStateManager.hpp"
+	<OgreWindowEventUtilities.h>
+
+1346563635 /usr/local/include/OGRE/OgreWindowEventUtilities.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	<windows.h>
+	<Carbon/Carbon.h>
+
+1346563635 /usr/local/include/OGRE/OgrePrerequisites.h
+	"OgrePlatform.h"
+	<string>
+	"Threading/OgreThreadDefines.h"
+	"OgreStdHeaders.h"
+	"OgreMemoryAllocatorConfig.h"
+
+1346563635 /usr/local/include/OGRE/OgrePlatform.h
+	"OgreConfig.h"
+	<_mingw.h>
+
+1346563635 /usr/local/include/OGRE/OgreConfig.h
+	"OgreBuildSettings.h"
+
+1367086426 /usr/local/include/OGRE/OgreBuildSettings.h
+
+1346563635 /usr/local/include/OGRE/Threading/OgreThreadDefines.h
+	"OgreThreadDefinesNone.h"
+	"OgreThreadDefinesBoost.h"
+	"OgreThreadDefinesPoco.h"
+	"OgreThreadDefinesTBB.h"
+
+1346563635 /usr/local/include/OGRE/Threading/OgreThreadDefinesBoost.h
+
+1346563635 /usr/local/include/OGRE/OgreStdHeaders.h
+	<cassert>
+	<cstdio>
+	<cstdlib>
+	<ctime>
+	<cstring>
+	<cstdarg>
+	<cmath>
+	<vector>
+	<map>
+	<string>
+	<set>
+	<list>
+	<deque>
+	<queue>
+	<bitset>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<ext/hash_map>
+	<ext/hash_set>
+	<unordered_map>
+	<unordered_set>
+	<tr1/unordered_map>
+	<tr1/unordered_set>
+	<unordered_map>
+	<unordered_set>
+	<hash_set>
+	<hash_map>
+	<algorithm>
+	<functional>
+	<limits>
+	<fstream>
+	<iostream>
+	<iomanip>
+	<sstream>
+	<sys/types.h>
+	<sys/stat.h>
+	<unistd.h>
+	<unistd.h>
+	<dlfcn.h>
+	<unistd.h>
+	<sys/param.h>
+	<CoreFoundation/CoreFoundation.h>
+	"Threading/OgreThreadHeaders.h"
+
+1367001323 /usr/include/boost/algorithm
+
+1367001323 /usr/include/boost/functional
+
+1346563635 /usr/local/include/OGRE/Threading/OgreThreadHeaders.h
+	"OgreThreadHeadersBoost.h"
+	"OgreThreadHeadersPoco.h"
+	"OgreThreadHeadersTBB.h"
+
+1346563635 /usr/local/include/OGRE/Threading/OgreThreadHeadersBoost.h
+	<boost/thread/tss.hpp>
+	<boost/thread/recursive_mutex.hpp>
+	<boost/thread/condition.hpp>
+	<boost/thread/thread.hpp>
+	<boost/thread/shared_mutex.hpp>
+	<boost/thread/locks.hpp>
+
+1346563635 /usr/local/include/OGRE/OgreMemoryAllocatorConfig.h
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemoryAllocatedObject.h"
+	"OgreMemorySTLAllocator.h"
+	"OgreMemoryNedPooling.h"
+	"OgreMemoryNedAlloc.h"
+	"OgreMemoryStdAlloc.h"
+
+1346563635 /usr/local/include/OGRE/OgreMemoryAllocatedObject.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreMemorySTLAllocator.h
+	"OgrePrerequisites.h"
+	"OgreHeaderPrefix.h"
+	"OgreHeaderSuffix.h"
+
+1346563635 /usr/local/include/OGRE/OgreHeaderPrefix.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreHeaderSuffix.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreMemoryNedPooling.h
+
+1346563635 /usr/local/include/OGRE/OgreMemoryNedAlloc.h
+
+1346563635 /usr/local/include/OGRE/OgreMemoryStdAlloc.h
+	<memory>
+	<limits>
+	"OgreAlignedAllocator.h"
+	"OgreMemoryTracker.h"
+
+1346563635 /usr/local/include/OGRE/OgreAlignedAllocator.h
+
+1346563635 /usr/local/include/OGRE/OgreMemoryTracker.h
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/DotSceneLoader.cpp
+	"DotSceneLoader.hpp"
+	<Ogre.h>
+	<Terrain/OgreTerrain.h>
+	<Terrain/OgreTerrainGroup.h>
+	<Terrain/OgreTerrainMaterialGeneratorA.h>
+
+1346563635 /usr/local/include/OGRE/Ogre.h
+	"OgrePrerequisites.h"
+	"OgreAnimation.h"
+	"OgreAnimationState.h"
+	"OgreAnimationTrack.h"
+	"OgreAny.h"
+	"OgreArchive.h"
+	"OgreArchiveManager.h"
+	"OgreAxisAlignedBox.h"
+	"OgreBillboardChain.h"
+	"OgreBillboardSet.h"
+	"OgreBone.h"
+	"OgreCamera.h"
+	"OgreConfigFile.h"
+	"OgreControllerManager.h"
+	"OgreDataStream.h"
+	"OgreEntity.h"
+	"OgreException.h"
+	"OgreFrustum.h"
+	"OgreGpuProgram.h"
+	"OgreGpuProgramManager.h"
+	"OgreHardwareBufferManager.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHardwareOcclusionQuery.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwarePixelBuffer.h"
+	"OgreHighLevelGpuProgram.h"
+	"OgreHighLevelGpuProgramManager.h"
+	"OgreInstanceBatch.h"
+	"OgreInstancedEntity.h"
+	"OgreInstanceManager.h"
+	"OgreKeyFrame.h"
+	"OgreLight.h"
+	"OgreLogManager.h"
+	"OgreManualObject.h"
+	"OgreMaterial.h"
+	"OgreMaterialManager.h"
+	"OgreMaterialSerializer.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreMesh.h"
+	"OgreMeshManager.h"
+	"OgreMeshSerializer.h"
+	"OgreOverlay.h"
+	"OgreOverlayContainer.h"
+	"OgreOverlayElement.h"
+	"OgreOverlayManager.h"
+	"OgreParticleAffector.h"
+	"OgreParticleEmitter.h"
+	"OgreParticleSystemManager.h"
+	"OgrePass.h"
+	"OgrePatchMesh.h"
+	"OgrePatchSurface.h"
+	"OgreProfiler.h"
+	"OgreRadixSort.h"
+	"OgreRenderQueueInvocation.h"
+	"OgreRenderQueueListener.h"
+	"OgreRenderObjectListener.h"
+	"OgreRenderSystem.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderTexture.h"
+	"OgreRenderWindow.h"
+	"OgreResourceBackgroundQueue.h"
+	"OgreResourceGroupManager.h"
+	"OgreRibbonTrail.h"
+	"OgreRoot.h"
+	"OgreSceneManager.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreSceneNode.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreSkeletonManager.h"
+	"OgreSkeletonSerializer.h"
+	"OgreStaticGeometry.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreSubEntity.h"
+	"OgreSubMesh.h"
+	"OgreTechnique.h"
+	"OgreTextureManager.h"
+	"OgreTextureUnitState.h"
+	"OgreVector2.h"
+	"OgreViewport.h"
+	"OgreCompositor.h"
+	"OgreCompositorManager.h"
+	"OgreCompositorChain.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositionTechnique.h"
+	"OgreCompositionPass.h"
+	"OgreCompositionTargetPass.h"
+	"OgreWindowEventUtilities.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowCameraSetupFocused.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+	"OgreShadowCameraSetupPlaneOptimal.h"
+	"OgreShadowCameraSetupPSSM.h"
+
+1346563635 /usr/local/include/OGRE/OgreAnimation.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreIteratorWrappers.h"
+	"OgreAnimable.h"
+	"OgreAnimationTrack.h"
+	"OgreAnimationState.h"
+
+1346563635 /usr/local/include/OGRE/OgreString.h
+	"OgrePrerequisites.h"
+	<tr1/unordered_map>
+	<ext/hash_map>
+
+1346563635 /usr/local/include/OGRE/OgreIteratorWrappers.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrapper.h"
+	"OgreIteratorRange.h"
+
+1346563635 /usr/local/include/OGRE/OgreIteratorWrapper.h
+
+1346563635 /usr/local/include/OGRE/OgreIteratorRange.h
+	<boost/range.hpp>
+
+1346563635 /usr/local/include/OGRE/OgreAnimable.h
+	"OgrePrerequisites.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	"OgreAny.h"
+
+1346563635 /usr/local/include/OGRE/OgreVector2.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1346563635 /usr/local/include/OGRE/OgreMath.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreVector3.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+	"OgreQuaternion.h"
+
+1346563635 /usr/local/include/OGRE/OgreQuaternion.h
+	"OgrePrerequisites.h"
+	"OgreMath.h"
+
+1346563635 /usr/local/include/OGRE/OgreVector4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1346563635 /usr/local/include/OGRE/OgreColourValue.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreSharedPtr.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreStringVector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+
+1346563635 /usr/local/include/OGRE/OgreException.h
+	"OgrePrerequisites.h"
+	"OgreHeaderPrefix.h"
+	"OgreString.h"
+	<exception>
+	"OgreHeaderSuffix.h"
+
+1367001323 /usr/include/boost/exception
+
+1346563635 /usr/local/include/OGRE/OgreAny.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	"OgreString.h"
+	<algorithm>
+	<typeinfo>
+
+1346563635 /usr/local/include/OGRE/OgreAnimationTrack.h
+	"OgrePrerequisites.h"
+	"OgreSimpleSpline.h"
+	"OgreRotationalSpline.h"
+	"OgreKeyFrame.h"
+	"OgreAnimable.h"
+	"OgrePose.h"
+
+1346563635 /usr/local/include/OGRE/OgreSimpleSpline.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1346563635 /usr/local/include/OGRE/OgreMatrix4.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix3.h"
+	"OgreVector4.h"
+	"OgrePlane.h"
+
+1346563635 /usr/local/include/OGRE/OgreMatrix3.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1346563635 /usr/local/include/OGRE/OgrePlane.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1346563635 /usr/local/include/OGRE/OgreRotationalSpline.h
+	"OgrePrerequisites.h"
+	"OgreQuaternion.h"
+
+1346563635 /usr/local/include/OGRE/OgreKeyFrame.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+	"OgreAny.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreHardwareVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgreColourValue.h"
+
+1346563635 /usr/local/include/OGRE/OgreHardwareBuffer.h
+	"OgrePrerequisites.h"
+	"OgreException.h"
+
+1346563635 /usr/local/include/OGRE/OgrePose.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreAnimationState.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreController.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreController.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+
+1346563635 /usr/local/include/OGRE/OgreArchive.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+	"OgreSharedPtr.h"
+	"OgreStringVector.h"
+	"OgreException.h"
+	<ctime>
+
+1346563635 /usr/local/include/OGRE/OgreDataStream.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	<istream>
+
+1346563635 /usr/local/include/OGRE/OgreArchiveManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1346563635 /usr/local/include/OGRE/OgreResourceManager.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreResourceGroupManager.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+	"OgreScriptLoader.h"
+
+1346563635 /usr/local/include/OGRE/OgreResource.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSharedPtr.h"
+	"OgreStringInterface.h"
+	"OgreAtomicWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreStringInterface.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreCommon.h"
+
+1346563635 /usr/local/include/OGRE/OgreCommon.h
+	"OgreString.h"
+	<utility>
+	<sstream>
+
+1367001323 /usr/include/boost/utility
+
+1346563635 /usr/local/include/OGRE/OgreAtomicWrappers.h
+	<signal.h>
+	"OgrePrerequisites.h"
+	"OgreException.h"
+	<windows.h>
+	<intrin.h>
+
+1346563635 /usr/local/include/OGRE/OgreResourceGroupManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreCommon.h"
+	"OgreDataStream.h"
+	"OgreResource.h"
+	"OgreArchive.h"
+	"OgreIteratorWrappers.h"
+	<ctime>
+
+1346563635 /usr/local/include/OGRE/OgreSingleton.h
+	"OgrePrerequisites.h"
+	"OgreHeaderPrefix.h"
+	"OgreHeaderSuffix.h"
+
+1346563635 /usr/local/include/OGRE/OgreScriptLoader.h
+	"OgrePrerequisites.h"
+	"OgreDataStream.h"
+	"OgreStringVector.h"
+
+1346563635 /usr/local/include/OGRE/OgreAxisAlignedBox.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreMatrix4.h"
+
+1346563635 /usr/local/include/OGRE/OgreBillboardChain.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreMovableObject.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreShadowCaster.h"
+	"OgreFactoryObj.h"
+	"OgreAnimable.h"
+	"OgreAny.h"
+	"OgreUserObjectBindings.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderQueue.h
+	"OgreHeaderPrefix.h"
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreHeaderSuffix.h"
+
+1346563635 /usr/local/include/OGRE/OgreSphere.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowCaster.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderable.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreRenderOperation.h"
+	"OgreMatrix4.h"
+	"OgreMaterial.h"
+	"OgrePlane.h"
+	"OgreGpuProgram.h"
+	"OgreVector4.h"
+	"OgreException.h"
+	"OgreUserObjectBindings.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderOperation.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+
+1346563635 /usr/local/include/OGRE/OgreVertexIndexData.h
+	"OgrePrerequisites.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+
+1346563635 /usr/local/include/OGRE/OgreHardwareIndexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+
+1346563635 /usr/local/include/OGRE/OgreMaterial.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreIteratorWrappers.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+
+1346563635 /usr/local/include/OGRE/OgreBlendMode.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+
+1346563635 /usr/local/include/OGRE/OgreGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+	"OgreGpuProgramParams.h"
+
+1346563635 /usr/local/include/OGRE/OgreSerializer.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreDataStream.h"
+
+1346563635 /usr/local/include/OGRE/OgreGpuProgramParams.h
+	"OgrePrerequisites.h"
+	"OgreSharedPtr.h"
+	"OgreIteratorWrappers.h"
+	"OgreSerializer.h"
+	"OgreRenderOperation.h"
+	"OgreAny.h"
+
+1346563635 /usr/local/include/OGRE/OgreUserObjectBindings.h
+	"OgrePrerequisites.h"
+	"OgreAny.h"
+
+1346563635 /usr/local/include/OGRE/OgreFactoryObj.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreBillboardSet.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreRadixSort.h"
+	"OgreCommon.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreRadixSort.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreBone.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+
+1346563635 /usr/local/include/OGRE/OgreNode.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreIteratorWrappers.h"
+	"OgreMesh.h"
+	"OgreUserObjectBindings.h"
+
+1346563635 /usr/local/include/OGRE/OgreMesh.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreVertexIndexData.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreIteratorWrappers.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreSkeleton.h"
+	"OgreAnimation.h"
+	"OgreAnimationTrack.h"
+	"OgrePose.h"
+	"OgreDataStream.h"
+
+1346563635 /usr/local/include/OGRE/OgreVertexBoneAssignment.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreSkeleton.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreIteratorWrappers.h"
+	"OgreStringVector.h"
+	"OgreAnimation.h"
+
+1346563635 /usr/local/include/OGRE/OgreCamera.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreMatrix4.h"
+	"OgreVector3.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreCommon.h"
+	"OgreFrustum.h"
+	"OgreRay.h"
+	"OgrePlaneBoundedVolume.h"
+
+1346563635 /usr/local/include/OGRE/OgreFrustum.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreVertexIndexData.h"
+	"OgreMovablePlane.h"
+
+1346563635 /usr/local/include/OGRE/OgreMovablePlane.h
+	"OgrePrerequisites.h"
+	"OgrePlane.h"
+	"OgreMovableObject.h"
+
+1346563635 /usr/local/include/OGRE/OgreRay.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgrePlaneBoundedVolume.h"
+
+1346563635 /usr/local/include/OGRE/OgrePlaneBoundedVolume.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreMath.h"
+	"OgrePlane.h"
+
+1346563635 /usr/local/include/OGRE/OgreConfigFile.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringVector.h"
+	"OgreIteratorWrappers.h"
+	"OgreDataStream.h"
+
+1346563635 /usr/local/include/OGRE/OgreControllerManager.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreController.h"
+	"OgrePredefinedControllers.h"
+	"OgreTextureUnitState.h"
+	"OgreSharedPtr.h"
+
+1346563635 /usr/local/include/OGRE/OgrePredefinedControllers.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreController.h"
+	"OgreFrameListener.h"
+	"OgreGpuProgram.h"
+
+1346563635 /usr/local/include/OGRE/OgreFrameListener.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreTextureUnitState.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreBlendMode.h"
+	"OgreMatrix4.h"
+	"OgreIteratorWrappers.h"
+	"OgreString.h"
+	"OgreTexture.h"
+
+1346563635 /usr/local/include/OGRE/OgreTexture.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreResource.h"
+	"OgreImage.h"
+
+1346563635 /usr/local/include/OGRE/OgreImage.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgrePixelFormat.h"
+	"OgreDataStream.h"
+
+1346563635 /usr/local/include/OGRE/OgrePixelFormat.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+
+1346563635 /usr/local/include/OGRE/OgreEntity.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgreQuaternion.h"
+	"OgreVector3.h"
+	"OgreHardwareBufferManager.h"
+	"OgreMesh.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreHardwareBufferManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreHardwareIndexBuffer.h"
+	"OgreRenderToVertexBuffer.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderToVertexBuffer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+
+1346563635 /usr/local/include/OGRE/OgreGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreException.h"
+	"OgreGpuProgram.h"
+	"OgreSingleton.h"
+
+1346563635 /usr/local/include/OGRE/OgreHardwarePixelBuffer.h
+	"OgrePrerequisites.h"
+	"OgreHardwareBuffer.h"
+	"OgreSharedPtr.h"
+	"OgrePixelFormat.h"
+	"OgreImage.h"
+
+1346563635 /usr/local/include/OGRE/OgreHardwareOcclusionQuery.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreHighLevelGpuProgram.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+
+1346563635 /usr/local/include/OGRE/OgreHighLevelGpuProgramManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreException.h"
+	"OgreHighLevelGpuProgram.h"
+
+1346563635 /usr/local/include/OGRE/OgreInstanceBatch.h
+	"OgrePrerequisites.h"
+	"OgreRenderOperation.h"
+	"OgreRenderable.h"
+	"OgreMovableObject.h"
+	"OgreMesh.h"
+
+1346563635 /usr/local/include/OGRE/OgreInstancedEntity.h
+	"OgreMovableObject.h"
+	"OgreNode.h"
+
+1346563635 /usr/local/include/OGRE/OgreInstanceManager.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgreRenderOperation.h"
+
+1346563635 /usr/local/include/OGRE/OgreLight.h
+	"OgrePrerequisites.h"
+	"OgreColourValue.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+	"OgreString.h"
+	"OgreMovableObject.h"
+	"OgrePlaneBoundedVolume.h"
+	"OgreShadowCameraSetup.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowCameraSetup.h
+	"OgrePrerequisites.h"
+	"OgreMovablePlane.h"
+	"OgreSharedPtr.h"
+
+1346563635 /usr/local/include/OGRE/OgreLogManager.h
+	"OgrePrerequisites.h"
+	"OgreLog.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+
+1346563635 /usr/local/include/OGRE/OgreLog.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+
+1346563635 /usr/local/include/OGRE/OgreManualObject.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreMaterialManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreMaterial.h"
+	"OgreStringVector.h"
+	"OgreMaterialSerializer.h"
+
+1346563635 /usr/local/include/OGRE/OgreMaterialSerializer.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreBlendMode.h"
+	"OgreTextureUnitState.h"
+	"OgreGpuProgram.h"
+	"OgreStringVector.h"
+
+1346563635 /usr/local/include/OGRE/OgreMeshManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+	"OgreVector3.h"
+	"OgreHardwareBuffer.h"
+	"OgreMesh.h"
+	"OgrePatchMesh.h"
+
+1346563635 /usr/local/include/OGRE/OgrePatchMesh.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgrePatchSurface.h"
+
+1346563635 /usr/local/include/OGRE/OgrePatchSurface.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreRenderOperation.h"
+	"OgreAxisAlignedBox.h"
+
+1346563635 /usr/local/include/OGRE/OgreMeshSerializer.h
+	"OgrePrerequisites.h"
+	"OgreSerializer.h"
+	"OgreMeshSerializerImpl.h"
+
+1346563635 /usr/local/include/OGRE/OgreMeshSerializerImpl.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSerializer.h"
+	"OgreMaterial.h"
+	"OgreMesh.h"
+	"OgreEdgeListBuilder.h"
+
+1346563635 /usr/local/include/OGRE/OgreEdgeListBuilder.h
+	"OgrePrerequisites.h"
+	"OgreVector4.h"
+	"OgreHardwareVertexBuffer.h"
+	"OgreRenderOperation.h"
+
+1346563635 /usr/local/include/OGRE/OgreOverlay.h
+	"OgrePrerequisites.h"
+	"OgreSceneNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreMatrix4.h"
+
+1346563635 /usr/local/include/OGRE/OgreSceneNode.h
+	"OgrePrerequisites.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreAxisAlignedBox.h"
+
+1346563635 /usr/local/include/OGRE/OgreOverlayContainer.h
+	"OgrePrerequisites.h"
+	"OgreOverlayElement.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreOverlayElement.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreUTFString.h"
+	"OgreStringInterface.h"
+	"OgreOverlayElementCommands.h"
+	"OgreColourValue.h"
+	"OgreRectangle.h"
+
+1346563635 /usr/local/include/OGRE/OgreUTFString.h
+	"OgrePrerequisites.h"
+	<iterator>
+	<string>
+	<stdexcept>
+
+1367001323 /usr/include/boost/iterator
+
+1346563635 /usr/local/include/OGRE/OgreOverlayElementCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1346563635 /usr/local/include/OGRE/OgreRectangle.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreOverlayManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreStringVector.h"
+	"OgreOverlay.h"
+	"OgreScriptLoader.h"
+	"OgreFrustum.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticleAffector.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringInterface.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticleEmitter.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreStringInterface.h"
+	"OgreParticleEmitterCommands.h"
+	"OgreParticle.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticleEmitterCommands.h
+	"OgrePrerequisites.h"
+	"OgreStringInterface.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticle.h
+	"OgrePrerequisites.h"
+	"OgreBillboard.h"
+
+1346563635 /usr/local/include/OGRE/OgreBillboard.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticleSystemManager.h
+	"OgrePrerequisites.h"
+	"OgreParticleSystem.h"
+	"OgreFrameListener.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+	"OgreScriptLoader.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticleSystem.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+	"OgreString.h"
+	"OgreParticleIterator.h"
+	"OgreStringInterface.h"
+	"OgreMovableObject.h"
+	"OgreRadixSort.h"
+	"OgreController.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreParticleIterator.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgrePass.h
+	"OgrePrerequisites.h"
+	"OgreGpuProgram.h"
+	"OgreColourValue.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgreLight.h"
+	"OgreTextureUnitState.h"
+	"OgreUserObjectBindings.h"
+
+1346563635 /usr/local/include/OGRE/OgreProfiler.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreOverlay.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderQueueInvocation.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderQueueSortingGrouping.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreMaterial.h"
+	"OgreTechnique.h"
+	"OgrePass.h"
+	"OgreRadixSort.h"
+
+1346563635 /usr/local/include/OGRE/OgreTechnique.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreBlendMode.h"
+	"OgreCommon.h"
+	"OgrePass.h"
+	"OgreIteratorWrappers.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreUserObjectBindings.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderSystemCapabilities.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreStringConverter.h"
+	"OgreStringVector.h"
+	"OgreResource.h"
+	"OgreLogManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreStringConverter.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreColourValue.h"
+	"OgreMath.h"
+	"OgreMatrix3.h"
+	"OgreMatrix4.h"
+	"OgreQuaternion.h"
+	"OgreVector2.h"
+	"OgreVector3.h"
+	"OgreVector4.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderQueueListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderQueue.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderObjectListener.h
+	"OgrePrerequisites.h"
+	"OgreRenderable.h"
+	"OgrePass.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderSystem.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureUnitState.h"
+	"OgreCommon.h"
+	"OgreMaterialManager.h"
+	"OgreRenderOperation.h"
+	"OgreRenderSystemCapabilities.h"
+	"OgreRenderTarget.h"
+	"OgreRenderTexture.h"
+	"OgreFrameListener.h"
+	"OgreConfigOptionMap.h"
+	"OgreGpuProgram.h"
+	"OgrePlane.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderTarget.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreTextureManager.h"
+	"OgreViewport.h"
+	"OgreTimer.h"
+
+1346563635 /usr/local/include/OGRE/OgreTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreTexture.h"
+	"OgreSingleton.h"
+
+1346563635 /usr/local/include/OGRE/OgreViewport.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreColourValue.h"
+	"OgreFrustum.h"
+
+1346563635 /usr/local/include/OGRE/OgreTimer.h
+	"OgrePrerequisites.h"
+	"OgrePlatform.h"
+	"WIN32/OgreTimerImp.h"
+	"GLX/OgreTimerImp.h"
+	"NaCl/OgreTimerImp.h"
+	"OSX/OgreTimerImp.h"
+	"iOS/OgreTimerImp.h"
+	"Android/OgreTimerImp.h"
+
+1346563635 /usr/local/include/OGRE/GLX/OgreTimerImp.h
+	"../OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderTexture.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1346563635 /usr/local/include/OGRE/OgreConfigOptionMap.h
+	"OgrePrerequisites.h"
+	"OgreStringVector.h"
+	"OgreString.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderTargetListener.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreRenderWindow.h
+	"OgrePrerequisites.h"
+	"OgreRenderTarget.h"
+
+1346563635 /usr/local/include/OGRE/OgreResourceBackgroundQueue.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreSingleton.h"
+	"OgreResource.h"
+	"OgreWorkQueue.h"
+
+1346563635 /usr/local/include/OGRE/OgreWorkQueue.h
+	"OgrePrerequisites.h"
+	"OgreAtomicWrappers.h"
+	"OgreAny.h"
+	"OgreSharedPtr.h"
+
+1346563635 /usr/local/include/OGRE/OgreRibbonTrail.h
+	"OgrePrerequisites.h"
+	"OgreBillboardChain.h"
+	"OgreNode.h"
+	"OgreIteratorWrappers.h"
+	"OgreFrameListener.h"
+	"OgreControllerManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreRoot.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreString.h"
+	"OgreSceneManagerEnumerator.h"
+	"OgreResourceGroupManager.h"
+	"OgreLodStrategyManager.h"
+	"OgreWorkQueue.h"
+	<exception>
+
+1346563635 /usr/local/include/OGRE/OgreSceneManagerEnumerator.h
+	"OgrePrerequisites.h"
+	"OgreSceneManager.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreSceneManager.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreSceneNode.h"
+	"OgrePlane.h"
+	"OgreQuaternion.h"
+	"OgreColourValue.h"
+	"OgreCommon.h"
+	"OgreSceneQuery.h"
+	"OgreAutoParamDataSource.h"
+	"OgreAnimationState.h"
+	"OgreRenderQueue.h"
+	"OgreRenderQueueSortingGrouping.h"
+	"OgreRectangle2D.h"
+	"OgrePixelFormat.h"
+	"OgreResourceGroupManager.h"
+	"OgreTexture.h"
+	"OgreShadowCameraSetup.h"
+	"OgreShadowTextureManager.h"
+	"OgreCamera.h"
+	"OgreInstancedGeometry.h"
+	"OgreLodListener.h"
+	"OgreInstanceManager.h"
+	"OgreRenderSystem.h"
+
+1346563635 /usr/local/include/OGRE/OgreSceneQuery.h
+	"OgrePrerequisites.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSphere.h"
+	"OgreRay.h"
+	"OgreRenderOperation.h"
+	"OgrePlaneBoundedVolume.h"
+
+1346563635 /usr/local/include/OGRE/OgreAutoParamDataSource.h
+	"OgrePrerequisites.h"
+	"OgreCommon.h"
+	"OgreMatrix4.h"
+	"OgreVector4.h"
+	"OgreLight.h"
+	"OgreColourValue.h"
+
+1346563635 /usr/local/include/OGRE/OgreRectangle2D.h
+	"OgrePrerequisites.h"
+	"OgreSimpleRenderable.h"
+
+1346563635 /usr/local/include/OGRE/OgreSimpleRenderable.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreAxisAlignedBox.h"
+	"OgreMaterial.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowTextureManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgrePixelFormat.h"
+	"OgreTexture.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreInstancedGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreSimpleRenderable.h"
+	"OgreSkeleton.h"
+	"OgreSkeletonInstance.h"
+	"OgreAnimationTrack.h"
+	"OgreBone.h"
+	"OgreIteratorWrappers.h"
+	"OgreMesh.h"
+
+1346563635 /usr/local/include/OGRE/OgreSkeletonInstance.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+
+1346563635 /usr/local/include/OGRE/OgreLodListener.h
+	"OgrePrerequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreLodStrategyManager.h
+	"OgrePrerequisites.h"
+	"OgreLodStrategy.h"
+	"OgreSingleton.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreLodStrategy.h
+	"OgrePrerequisites.h"
+	"OgreMesh.h"
+	"OgreMovableObject.h"
+	"OgreCamera.h"
+
+1346563635 /usr/local/include/OGRE/OgreSkeletonManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreSingleton.h"
+
+1346563635 /usr/local/include/OGRE/OgreSkeletonSerializer.h
+	"OgrePrerequisites.h"
+	"OgreSkeleton.h"
+	"OgreSerializer.h"
+
+1346563635 /usr/local/include/OGRE/OgreStaticGeometry.h
+	"OgrePrerequisites.h"
+	"OgreMovableObject.h"
+	"OgreRenderable.h"
+	"OgreMesh.h"
+	"OgreLodStrategy.h"
+
+1346563635 /usr/local/include/OGRE/OgreSubEntity.h
+	"OgrePrerequisites.h"
+	"OgreString.h"
+	"OgreRenderable.h"
+	"OgreHardwareBufferManager.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreSubMesh.h
+	"OgrePrerequisites.h"
+	"OgreVertexIndexData.h"
+	"OgreMaterial.h"
+	"OgreRenderOperation.h"
+	"OgreVertexBoneAssignment.h"
+	"OgreAnimationTrack.h"
+	"OgreResourceGroupManager.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositor.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+	"OgreResource.h"
+	"OgreTexture.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositorManager.h
+	"OgrePrerequisites.h"
+	"OgreResourceManager.h"
+	"OgreCompositor.h"
+	"OgreRectangle2D.h"
+	"OgreRenderSystem.h"
+	"OgreCompositionTechnique.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositionTechnique.h
+	"OgrePrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositorChain.h
+	"OgrePrerequisites.h"
+	"OgreRenderTargetListener.h"
+	"OgreRenderQueueListener.h"
+	"OgreCompositorInstance.h"
+	"OgreCompositor.h"
+	"OgreViewport.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositorInstance.h
+	"OgrePrerequisites.h"
+	"OgreMaterialManager.h"
+	"OgreTexture.h"
+	"OgreRenderQueue.h"
+	"OgreCompositionTechnique.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositionPass.h
+	"OgrePrerequisites.h"
+	"OgreMaterial.h"
+	"OgreRenderSystem.h"
+	"OgreRenderQueue.h"
+
+1346563635 /usr/local/include/OGRE/OgreCompositionTargetPass.h
+	"OgrePrerequisites.h"
+	"OgreIteratorWrappers.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowCameraSetupFocused.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+	"OgrePolygon.h"
+	"OgreConvexBody.h"
+
+1346563635 /usr/local/include/OGRE/OgrePolygon.h
+	"OgrePrerequisites.h"
+	"OgreVector3.h"
+
+1346563635 /usr/local/include/OGRE/OgreConvexBody.h
+	"OgrePrerequisites.h"
+	"OgrePolygon.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowCameraSetupLiSPSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupFocused.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowCameraSetupPlaneOptimal.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetup.h"
+
+1346563635 /usr/local/include/OGRE/OgreShadowCameraSetupPSSM.h
+	"OgrePrerequisites.h"
+	"OgreShadowCameraSetupLiSPSM.h"
+
+1346563634 /usr/local/include/OGRE/Terrain/OgreTerrain.h
+	"OgreTerrainPrerequisites.h"
+	"OgreCommon.h"
+	"OgreVector3.h"
+	"OgreAxisAlignedBox.h"
+	"OgreSceneManager.h"
+	"OgreTerrainMaterialGenerator.h"
+	"OgreTerrainLayerBlendMap.h"
+	"OgreWorkQueue.h"
+
+1346563634 /usr/local/include/OGRE/Terrain/OgreTerrainPrerequisites.h
+	"OgrePrerequisites.h"
+
+1346563634 /usr/local/include/OGRE/Terrain/OgreTerrainMaterialGenerator.h
+	"OgreTerrainPrerequisites.h"
+	"OgrePixelFormat.h"
+	"OgreMaterial.h"
+	"OgreTexture.h"
+
+1346563634 /usr/local/include/OGRE/Terrain/OgreTerrainLayerBlendMap.h
+	"OgreTerrainPrerequisites.h"
+	"OgreCommon.h"
+	"OgreVector3.h"
+	"OgreDataStream.h"
+
+1346563634 /usr/local/include/OGRE/Terrain/OgreTerrainGroup.h
+	"OgreTerrainPrerequisites.h"
+	"OgreTerrain.h"
+	"OgreWorkQueue.h"
+	"OgreIteratorWrappers.h"
+
+1346563634 /usr/local/include/OGRE/Terrain/OgreTerrainMaterialGeneratorA.h
+	"OgreTerrainPrerequisites.h"
+	"OgreTerrainMaterialGenerator.h"
+	"OgreGpuProgramParams.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfig.cpp
+	<GameConfig.h>
+
+1370901903 source:/home/matisnow/cedv-grupo4/ransom/src/GameConfigException.cpp
+	<GameConfigException.hpp>
+
+1371073494 source:/home/matisnow/cedv-grupo4/ransom/src/GameState.cpp
+	"GameState.hpp"
+	"Shapes/OgreBulletCollisionsBoxShape.h"
+	"Shapes/OgreBulletCollisionsCompoundShape.h"
+	"OgreBulletDynamicsWorld.h"
+	"OgreBulletDynamicsRigidBody.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+	"Constraints/OgreBulletDynamicsRaycastVehicle.h"
+	"Shapes/OgreBulletCollisionsTrimeshShape.h"
+	"Shapes/OgreBulletCollisionsSphereShape.h"
+	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+	<cassert>
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/main.cpp
+	"RansomApp.hpp"
+	"windows.h"
+
+1370539825 source:/home/matisnow/cedv-grupo4/ransom/src/MenuState.cpp
+	"MenuState.hpp"
+
+1370295289 source:/home/matisnow/cedv-grupo4/ransom/src/PauseState.cpp
+	"PauseState.hpp"
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/RansomApp.cpp
+	"RansomApp.hpp"
+	"MenuState.hpp"
+	"GameState.hpp"
+	"PauseState.hpp"
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/Records.cpp
+	"Records.h"
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/SoundFX.cpp
+	<fstream>
+	"SoundFX.h"
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/SoundFXManager.cpp
+	<SDL_mixer.h>
+	"SoundFXManager.h"
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/Track.cpp
+	<OgreArchive.h>
+	<OgreResourceGroupManager.h>
+	<OgreLogManager.h>
+	<Track.h>
+
+1370109818 source:/home/matisnow/cedv-grupo4/ransom/src/TrackManager.cpp
+	<TrackManager.h>
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Utilities.cpp
+	"Utilities.h"
+	<OgreVector3.h>
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/XMLCharger.cpp
+	<XMLCharger.h>
+	<StateMachine.h>
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Character.cpp
+	"Character.h"
+	<cassert>
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/MyTextureListener.cpp
+	"MyTextureListener.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsBoxShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsPreRequisites.h
+	"btBulletCollisionCommon.h"
+	"BulletCollision/Gimpact/btGImpactShape.h"
+	"BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+	"Ogre.h"
+
+1343755071 /usr/local/include/bullet/btBulletCollisionCommon.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+	"BulletCollision/CollisionShapes/btBoxShape.h"
+	"BulletCollision/CollisionShapes/btSphereShape.h"
+	"BulletCollision/CollisionShapes/btCapsuleShape.h"
+	"BulletCollision/CollisionShapes/btCylinderShape.h"
+	"BulletCollision/CollisionShapes/btConeShape.h"
+	"BulletCollision/CollisionShapes/btStaticPlaneShape.h"
+	"BulletCollision/CollisionShapes/btConvexHullShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMesh.h"
+	"BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleMeshShape.h"
+	"BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h"
+	"BulletCollision/CollisionShapes/btCompoundShape.h"
+	"BulletCollision/CollisionShapes/btTetrahedronShape.h"
+	"BulletCollision/CollisionShapes/btEmptyShape.h"
+	"BulletCollision/CollisionShapes/btMultiSphereShape.h"
+	"BulletCollision/CollisionShapes/btUniformScalingShape.h"
+	"BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h"
+	"BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btSimpleBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btAxisSweep3.h"
+	"BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h"
+	"BulletCollision/BroadphaseCollision/btDbvtBroadphase.h"
+	"LinearMath/btQuaternion.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btDefaultMotionState.h"
+	"LinearMath/btQuickprof.h"
+	"LinearMath/btIDebugDraw.h"
+	"LinearMath/btSerializer.h"
+
+1347491945 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionWorld.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btCollisionObject.h"
+	"btCollisionDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1347897827 /usr/local/include/bullet/LinearMath/btVector3.h
+	"btScalar.h"
+	"btMinMax.h"
+	"btAlignedAllocator.h"
+
+1347335390 /usr/local/include/bullet/LinearMath/btScalar.h
+	<math.h>
+	<stdlib.h>
+	<float.h>
+	<ppcintrinsics.h>
+	<emmintrin.h>
+	<stdio.h>
+	<assert.h>
+	<assert.h>
+	<spu_printf.h>
+	<assert.h>
+	<smmintrin.h>
+	<tmmintrin.h>
+	<pmmintrin.h>
+	<emmintrin.h>
+	<arm_neon.h>
+	<assert.h>
+	<stdio.h>
+	<assert.h>
+	<arm_neon.h>
+
+1323708999 /usr/local/include/bullet/LinearMath/btMinMax.h
+	"btScalar.h"
+
+1234997523 /usr/local/include/bullet/LinearMath/btAlignedAllocator.h
+	"btScalar.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btTransform.h
+	"btMatrix3x3.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btMatrix3x3.h
+	"btVector3.h"
+	"btQuaternion.h"
+	<stdio.h>
+
+1346608470 /usr/local/include/bullet/LinearMath/btQuaternion.h
+	"btVector3.h"
+	"btQuadWord.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btQuadWord.h
+	"btScalar.h"
+	"btMinMax.h"
+	<altivec.h>
+
+1348270644 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionObject.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btMotionState.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1234997523 /usr/local/include/bullet/LinearMath/btMotionState.h
+	"btTransform.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btAlignedObjectArray.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<memory.h>
+	<string.h>
+	<new>
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionDispatcher.h
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/CollisionDispatch/btManifoldResult.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btCollisionCreateFunc.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btDispatcher.h
+	"LinearMath/btScalar.h"
+
+1347324971 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btPersistentManifold.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"btManifoldPoint.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1347691937 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btManifoldPoint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransformUtil.h"
+	"physics_effects/base_level/solver/pfx_constraint_row.h"
+
+1301678092 /usr/local/include/bullet/LinearMath/btTransformUtil.h
+	"btTransform.h"
+
+1349471711 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btManifoldResult.h
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btDiscreteCollisionDetectorInterface.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h
+	"LinearMath/btScalar.h"
+
+1327354784 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btBroadphaseProxy.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionCreateFunc.h
+	"LinearMath/btAlignedObjectArray.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCache.h
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btBroadphaseInterface.h
+	"btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1219803851 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btOverlappingPairCallback.h
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btBoxShape.h
+	"btPolyhedralConvexShape.h"
+	"btCollisionMargin.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMinMax.h"
+
+1348816488 /usr/local/include/bullet/BulletCollision/CollisionShapes/btPolyhedralConvexShape.h
+	"LinearMath/btMatrix3x3.h"
+	"btConvexInternalShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexInternalShape.h
+	"btConvexShape.h"
+	"LinearMath/btAabbUtil2.h"
+
+1330487453 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexShape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedAllocator.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCollisionShape.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1316110640 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCollisionMargin.h
+
+1339030590 /usr/local/include/bullet/LinearMath/btAabbUtil2.h
+	"btTransform.h"
+	"btVector3.h"
+	"btMinMax.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btSphereShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCapsuleShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCylinderShape.h
+	"btBoxShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btVector3.h"
+
+1347814885 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConeShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btStaticPlaneShape.h
+	"btConcaveShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConcaveShape.h
+	"btCollisionShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"btTriangleCallback.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleCallback.h
+	"LinearMath/btVector3.h"
+
+1348816488 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexHullShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1347213542 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleMesh.h
+	"btTriangleIndexVertexArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1330494055 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleIndexVertexArray.h
+	"btStridingMeshInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btScalar.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btStridingMeshInterface.h
+	"LinearMath/btVector3.h"
+	"btTriangleCallback.h"
+	"btConcaveShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btConvexTriangleMeshShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h
+	"btTriangleMeshShape.h"
+	"btOptimizedBvh.h"
+	"LinearMath/btAlignedAllocator.h"
+	"btTriangleInfoMap.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleMeshShape.h
+	"btConcaveShape.h"
+	"btStridingMeshInterface.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btOptimizedBvh.h
+	"BulletCollision/BroadphaseCollision/btQuantizedBvh.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btQuantizedBvh.h
+	<stdio.h>
+	<stdlib.h>
+	"LinearMath/btVector3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1347338217 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleInfoMap.h
+	"LinearMath/btHashMap.h"
+	"LinearMath/btSerializer.h"
+
+1301678092 /usr/local/include/bullet/LinearMath/btHashMap.h
+	"btAlignedObjectArray.h"
+
+1348279569 /usr/local/include/bullet/LinearMath/btSerializer.h
+	"btScalar.h"
+	"btStackAlloc.h"
+	"btHashMap.h"
+	<memory.h>
+	<string.h>
+
+1234997523 /usr/local/include/bullet/LinearMath/btStackAlloc.h
+	"btScalar.h"
+	"btAlignedAllocator.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h
+	"BulletCollision/CollisionShapes/btBvhTriangleMeshShape.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionShapes/btCompoundShape.h
+	"btCollisionShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTetrahedronShape.h
+	"btPolyhedralConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btEmptyShape.h
+	"btConcaveShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"btCollisionMargin.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btMultiSphereShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btAabbUtil2.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btUniformScalingShape.h
+	"btConvexShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btSphereSphereCollisionAlgorithm.h
+	"btActivatingCollisionAlgorithm.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
+	"btCollisionDispatcher.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h
+	"BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btCollisionAlgorithm.h
+	"LinearMath/btScalar.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1343755071 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btDefaultCollisionConfiguration.h
+	"btCollisionConfiguration.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btCollisionConfiguration.h
+
+1301678092 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btSimpleBroadphase.h
+	"btOverlappingPairCache.h"
+
+1349382724 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btAxisSweep3.h
+	"LinearMath/btVector3.h"
+	"btOverlappingPairCache.h"
+	"btBroadphaseInterface.h"
+	"btBroadphaseProxy.h"
+	"btOverlappingPairCallback.h"
+	"btDbvtBroadphase.h"
+	<stdio.h>
+
+1265912750 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btDbvtBroadphase.h
+	"BulletCollision/BroadphaseCollision/btDbvt.h"
+	"BulletCollision/BroadphaseCollision/btOverlappingPairCache.h"
+	"LinearMath/btQuickprof.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btDbvt.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btAabbUtil2.h"
+	<emmintrin.h>
+	<memory.h>
+	<string.h>
+
+1314674912 /usr/local/include/bullet/LinearMath/btQuickprof.h
+	<stdio.h>
+	"btScalar.h"
+	"btAlignedAllocator.h"
+	<new>
+
+1243044954 /usr/local/include/bullet/BulletCollision/BroadphaseCollision/btMultiSapBroadphase.h
+	"btBroadphaseInterface.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btOverlappingPairCache.h"
+
+1339030590 /usr/local/include/bullet/LinearMath/btDefaultMotionState.h
+	"btMotionState.h"
+
+1347211350 /usr/local/include/bullet/LinearMath/btIDebugDraw.h
+	"btVector3.h"
+	"btTransform.h"
+
+1347211350 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactShape.h
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"BulletCollision/CollisionShapes/btTriangleShape.h"
+	"BulletCollision/CollisionShapes/btStridingMeshInterface.h"
+	"BulletCollision/CollisionShapes/btCollisionMargin.h"
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletCollision/CollisionShapes/btConcaveShape.h"
+	"BulletCollision/CollisionShapes/btTetrahedronShape.h"
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btGImpactQuantizedBvh.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btTriangleShape.h
+	"btConvexShape.h"
+	"btBoxShape.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactQuantizedBvh.h
+	"btGImpactBvh.h"
+	"btQuantization.h"
+
+1286326782 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactBvh.h
+	"LinearMath/btAlignedObjectArray.h"
+	"btBoxCollision.h"
+	"btTriangleShapeEx.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/Gimpact/btBoxCollision.h
+	"LinearMath/btTransform.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/Gimpact/btTriangleShapeEx.h
+	"BulletCollision/CollisionShapes/btCollisionShape.h"
+	"BulletCollision/CollisionShapes/btTriangleShape.h"
+	"btBoxCollision.h"
+	"btClipPolygon.h"
+	"btGeometryOperations.h"
+
+1281467892 /usr/local/include/bullet/BulletCollision/Gimpact/btClipPolygon.h
+	"LinearMath/btTransform.h"
+	"LinearMath/btGeometryUtil.h"
+
+1234997523 /usr/local/include/bullet/LinearMath/btGeometryUtil.h
+	"btVector3.h"
+	"btAlignedObjectArray.h"
+
+1281467892 /usr/local/include/bullet/BulletCollision/Gimpact/btGeometryOperations.h
+	"btBoxCollision.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/Gimpact/btQuantization.h
+	"LinearMath/btTransform.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h
+	"BulletCollision/CollisionDispatch/btActivatingCollisionAlgorithm.h"
+	"BulletCollision/BroadphaseCollision/btDispatcher.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseInterface.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionCreateFunc.h"
+	"BulletCollision/CollisionDispatch/btCollisionDispatcher.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btGImpactShape.h"
+	"BulletCollision/CollisionShapes/btStaticPlaneShape.h"
+	"BulletCollision/CollisionShapes/btCompoundShape.h"
+	"BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.h"
+	"LinearMath/btIDebugDraw.h"
+	"BulletCollision/CollisionDispatch/btCollisionObjectWrapper.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionDispatch/btConvexConvexAlgorithm.h
+	"btActivatingCollisionAlgorithm.h"
+	"BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h"
+	"BulletCollision/NarrowPhaseCollision/btPersistentManifold.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.h"
+	"btCollisionCreateFunc.h"
+	"btCollisionDispatcher.h"
+	"LinearMath/btTransformUtil.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btGjkPairDetector.h
+	"btDiscreteCollisionDetectorInterface.h"
+	"BulletCollision/CollisionShapes/btCollisionMargin.h"
+	"btSimplexSolverInterface.h"
+
+1301678092 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btSimplexSolverInterface.h
+	"LinearMath/btVector3.h"
+	"btVoronoiSimplexSolver.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/NarrowPhaseCollision/btVoronoiSimplexSolver.h
+	"btSimplexSolverInterface.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsCompoundShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsWorld.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletCollisionsWorld.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsPreRequisites.h
+	"btBulletCollisionCommon.h"
+	"btBulletDynamicsCommon.h"
+	"Ogre.h"
+	"OgreBulletCollisions.h"
+
+1347576039 /usr/local/include/bullet/btBulletDynamicsCommon.h
+	"btBulletCollisionCommon.h"
+	"BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btSimpleDynamicsWorld.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHingeConstraint.h"
+	"BulletDynamics/ConstraintSolver/btConeTwistConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h"
+	"BulletDynamics/ConstraintSolver/btSliderConstraint.h"
+	"BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h"
+	"BulletDynamics/ConstraintSolver/btUniversalConstraint.h"
+	"BulletDynamics/ConstraintSolver/btHinge2Constraint.h"
+	"BulletDynamics/ConstraintSolver/btGearConstraint.h"
+	"BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h"
+	"BulletDynamics/Vehicle/btRaycastVehicle.h"
+
+1349471711 /usr/local/include/bullet/BulletDynamics/Dynamics/btDiscreteDynamicsWorld.h
+	"btDynamicsWorld.h"
+	"LinearMath/btAlignedObjectArray.h"
+
+1348270644 /usr/local/include/bullet/BulletDynamics/Dynamics/btDynamicsWorld.h
+	"BulletCollision/CollisionDispatch/btCollisionWorld.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+
+1348279569 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btContactSolverInfo.h
+	"LinearMath/btScalar.h"
+
+1316112433 /usr/local/include/bullet/BulletDynamics/Dynamics/btSimpleDynamicsWorld.h
+	"btDynamicsWorld.h"
+
+1348111972 /usr/local/include/bullet/BulletDynamics/Dynamics/btRigidBody.h
+	"LinearMath/btAlignedObjectArray.h"
+	"LinearMath/btTransform.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+	"BulletCollision/CollisionDispatch/btCollisionObject.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btPoint2PointConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1346442384 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btJacobianEntry.h
+	"LinearMath/btMatrix3x3.h"
+
+1349415432 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btTypedConstraint.h
+	"LinearMath/btScalar.h"
+	"btSolverConstraint.h"
+	"BulletDynamics/Dynamics/btRigidBody.h"
+
+1347132074 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSolverConstraint.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"btJacobianEntry.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btSolverBody.h"
+
+1347132074 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSolverBody.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btMatrix3x3.h"
+	"LinearMath/btAlignedAllocator.h"
+	"LinearMath/btTransformUtil.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btHingeConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1347132074 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btConeTwistConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSliderConstraint.h
+	"LinearMath/btVector3.h"
+	"btJacobianEntry.h"
+	"btTypedConstraint.h"
+
+1347338217 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btGeneric6DofSpringConstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btUniversalConstraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofConstraint.h"
+
+1339030590 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btHinge2Constraint.h
+	"LinearMath/btVector3.h"
+	"btTypedConstraint.h"
+	"btGeneric6DofSpringConstraint.h"
+
+1347576039 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btGearConstraint.h
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+
+1347691937 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btSequentialImpulseConstraintSolver.h
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"BulletDynamics/ConstraintSolver/btContactSolverInfo.h"
+	"BulletDynamics/ConstraintSolver/btSolverBody.h"
+	"BulletDynamics/ConstraintSolver/btSolverConstraint.h"
+	"BulletCollision/NarrowPhaseCollision/btManifoldPoint.h"
+	"BulletDynamics/ConstraintSolver/btConstraintSolver.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/ConstraintSolver/btConstraintSolver.h
+	"LinearMath/btScalar.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/Vehicle/btRaycastVehicle.h
+	"BulletDynamics/Dynamics/btRigidBody.h"
+	"BulletDynamics/ConstraintSolver/btTypedConstraint.h"
+	"btVehicleRaycaster.h"
+	"LinearMath/btAlignedObjectArray.h"
+	"btWheelInfo.h"
+	"BulletDynamics/Dynamics/btActionInterface.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/Vehicle/btVehicleRaycaster.h
+	"LinearMath/btVector3.h"
+
+1301678092 /usr/local/include/bullet/BulletDynamics/Vehicle/btWheelInfo.h
+	"LinearMath/btVector3.h"
+	"LinearMath/btTransform.h"
+
+1283906295 /usr/local/include/bullet/BulletDynamics/Dynamics/btActionInterface.h
+	"LinearMath/btScalar.h"
+	"btRigidBody.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisions.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Utils/OgreBulletConverter.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+	"Debug/OgreBulletCollisionsDebugShape.h"
+	"Debug/OgreBulletCollisionsDebugDrawer.h"
+	"Debug/OgreBulletCollisionsDebugContact.h"
+	"OgreBulletCollisionsShape.h"
+	"Shapes/OgreBulletCollisionsBoxShape.h"
+	"Shapes/OgreBulletCollisionsConeShape.h"
+	"Shapes/OgreBulletCollisionsSphereShape.h"
+	"Shapes/OgreBulletCollisionsCylinderShape.h"
+	"Shapes/OgreBulletCollisionsTriangleShape.h"
+	"Shapes/OgreBulletCollisionsTerrainShape.h"
+	"Shapes/OgreBulletCollisionsCylinderShape.h"
+	"Shapes/OgreBulletCollisionsCapsuleShape.h"
+	"Shapes/OgreBulletCollisionsStaticPlaneShape.h"
+	"Shapes/OgreBulletCollisionsCompoundShape.h"
+	"Shapes/OgreBulletCollisionsMultiSphereShape.h"
+	"Shapes/OgreBulletCollisionsConvexHullShape.h"
+	"Shapes/OgreBulletCollisionsMinkowskiSumShape.h"
+	"Shapes/OgreBulletCollisionsTrimeshShape.h"
+	"Shapes/OgreBulletCollisionsGImpactShape.h"
+	"Utils/OgreBulletCollisionsMeshToShapeConverter.h"
+	"OgreBulletCollisionsObject.h"
+	"OgreBulletCollisionsObjectState.h"
+	"OgreBulletCollisionsWorld.h"
+	"OgreBulletCollisionsRay.h"
+	"OgreString.h"
+	"OgreFontManager.h"
+	"BulletCollision/CollisionShapes/btMinkowskiSumShape.h"
+	"BulletCollision/CollisionShapes/btTriangleShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Utils/OgreBulletConverter.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreVector3.h"
+	"OgreQuaternion.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugLines.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugDrawer.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Debug/OgreBulletCollisionsDebugContact.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsConeShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsSphereShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsCylinderShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsTriangleShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsTerrainShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+	"Debug/OgreBulletCollisionsDebugLines.h"
+	"BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h"
+	"BulletCollision/CollisionShapes/btTriangleCallback.h"
+
+1347230900 /usr/local/include/bullet/BulletCollision/CollisionShapes/btHeightfieldTerrainShape.h
+	"btConcaveShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsCapsuleShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsStaticPlaneShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsMultiSphereShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsConvexHullShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsMinkowskiSumShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsTrimeshShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Shapes/OgreBulletCollisionsGImpactShape.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"BulletCollision/Gimpact/btGImpactShape.h"
+	"BulletCollision/Gimpact/btGImpactCollisionAlgorithm.h"
+	"OgreBulletCollisionsShape.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/Utils/OgreBulletCollisionsMeshToShapeConverter.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsObject.h
+	"OgreBulletCollisionsPreRequisites.h"
+	"OgreBulletCollisionsWorld.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsWorld.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsObjectState.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1367090666 /usr/local/include/OgreBullet/Collisions/OgreBulletCollisionsRay.h
+	"OgreBulletCollisionsPreRequisites.h"
+
+1346563635 /usr/local/include/OGRE/OgreFontManager.h
+	"OgrePrerequisites.h"
+	"OgreSingleton.h"
+	"OgreResourceManager.h"
+	"OgreFont.h"
+
+1346563635 /usr/local/include/OGRE/OgreFont.h
+	"OgrePrerequisites.h"
+	"OgreResource.h"
+	"OgreTexture.h"
+	"OgreMaterial.h"
+	"OgreCommon.h"
+
+1339030590 /usr/local/include/bullet/BulletCollision/CollisionShapes/btMinkowskiSumShape.h
+	"btConvexInternalShape.h"
+	"BulletCollision/BroadphaseCollision/btBroadphaseProxy.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsRigidBody.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletCollisionsObject.h"
+	"OgreBulletCollisionsWorld.h"
+	"Utils/OgreBulletConverter.h"
+	"OgreBulletDynamicsWorld.h"
+	"Constraints/OgreBulletDynamicsRaycastVehicle.h"
+	"BulletCollision/CollisionShapes/btScaledBvhTriangleMeshShape.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/Constraints/OgreBulletDynamicsRaycastVehicle.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletDynamicsConstraint.h"
+
+1367090668 /usr/local/include/OgreBullet/Dynamics/OgreBulletDynamicsConstraint.h
+	"OgreBulletDynamicsPreRequisites.h"
+	"OgreBulletCollisionsObject.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Enemy.cpp
+	"Enemy.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Hero.cpp
+	"Hero.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/EnemyRoute.cpp
+	"EnemyRoute.h"
+	<iostream>
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Action.cpp
+	"Action.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/CamerasController.cpp
+	"CamerasController.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/Hostage.cpp
+	"Hostage.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/MiniMapTextureListener.cpp
+	"MiniMapTextureListener.h"
+	"GameState.hpp"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/State.cpp
+	"State.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/StateMachine.cpp
+	"StateMachine.h"
+
+1371662103 source:/home/matisnow/cedv-grupo4/ransom/src/StateMachineException.cpp
+	"StateMachineException.h"
+

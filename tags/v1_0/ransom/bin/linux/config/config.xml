@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<config>
+
+  <hero posX="-7.5" posY="1.0" posZ="7.5" />
+
+  <map rows="2" cols="2">
+
+    <piece mesh_file="Pieza1" posX="-16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
+
+      <hostages>
+
+        <position posX="-3.5" posY="1.0" posZ="-1.5" />
+
+      </hostages>
+
+      <routes>
+
+        <!-- ATENCION!! : Posiciones relativas a la pieza en BLENDER ( La Y y la Z se intercambian, además la Z (que era Y) se multiplica por -1) -->
+
+        <route id="1" closed="true" proximity="1.5">
+          <points>
+            <point id="1" posX="-7.5" posY="1" posZ="-6.5" />
+            <point id="2" posX="3.5" posY="1" posZ="-6.5" />
+            <point id="3" posX="3.5" posY="1" posZ="3.5" />
+            <point id="4" posX="-7.5" posY="1" posZ="3.5" />
+          </points>
+        </route>
+
+      </routes>
+
+    </piece>
+
+    <piece mesh_file="Pieza2" posX="16.0" posY="0.0" posZ="-16.0" width="32.0" height="32.0">
+
+      <hostages>
+
+        <position posX="-1.5" posY="1.0" posZ="3.5" />
+
+      </hostages>
+
+      <routes>
+
+        <route id="2" closed="false" proximity="1.5">
+          <points>
+            <point id="1" posX="8.5" posY="1" posZ="5.5" />
+            <point id="2" posX="11.5" posY="1" posZ="-1.5" />
+            <point id="3" posX="11.5" posY="1" posZ="-13.5" />
+            <point id="4" posX="0.5" posY="1" posZ="-13.5" />
+            <point id="5" posX="0.5" posY="1" posZ="-1.5" />
+            <point id="6" posX="-5.5" posY="1" posZ="-0.5" />
+            <point id="7" posX="-5.5" posY="1" posZ="7.5" />
+          </points>
+        </route>
+
+      </routes>
+
+    </piece>
+
+    <piece mesh_file="Pieza3" posX="-16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
+
+      <hostages>
+
+<!--        <position posX="-0.5" posY="1.0" posZ="-0.5" />-->
+        <position posX="5.5" posY="0.0" posZ="5.5" />
+
+      </hostages>
+
+      <routes>
+
+        <route id="3" closed="false" proximity="1.5">
+          <points>
+            <point id="1" posX="-9.5" posY="1" posZ="-0.5" />
+            <point id="2" posX="9.5" posY="1" posZ="-0.5" />
+          </points>
+        </route>
+
+        <route id="4" closed="true" proximity="1.5">
+          <points>
+            <point id="1" posX="-11.5" posY="1" posZ="-10.5" />
+            <point id="2" posX="-11.5" posY="1" posZ="10.5" />
+            <point id="3" posX="10.5" posY="1" posZ="10.5" />
+            <point id="4" posX="10.5" posY="1" posZ="-10.5" />
+          </points>
+        </route>
+
+      </routes>
+
+    </piece>
+
+    <piece mesh_file="Pieza4" posX="16.0" posY="0.0" posZ="16.0" width="32.0" height="32.0">
+
+      <hostages>
+
+        <position posX="-9.5" posY="1.0" posZ="6.5" />
+
+      </hostages>
+
+      <routes>
+
+        <route id="5" closed="false" proximity="1.5">
+          <points>
+            <point id="1" posX="10.5" posY="1" posZ="-0.5" />
+            <point id="2" posX="6.5" posY="1" posZ="13.5" />
+            <point id="3" posX="-0.5" posY="1" posZ="13.5" />
+            <point id="4" posX="-0.5" posY="1" posZ="1.5" />
+            <point id="5" posX="-7.5" posY="1" posZ="-6.5" />
+            <point id="6" posX="12.5" posY="1" posZ="-6.5" />
+          </points>
+        </route>
+
+      </routes>
+
+    </piece>
+
+  </map>
+
+</config>
+

@@ -1,0 +1,5 @@
+<map id="CamerasController" name="CamerasController">
+<area shape="rect" id="node2" href="$classHero.html" title="{Hero\n||+ Hero()\l+ ~Hero()\l+ Hero()\l+ operator=()\l+ print()\l# copy()\l}" alt="" coords="53,990,149,1141"/>
+<area shape="rect" id="node3" href="$classCharacter.html" title="Class to manage the character. " alt="" coords="25,435,177,938"/>
+<area shape="rect" id="node4" href="$classSoundFXPtr.html" title="{SoundFXPtr\n||+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ SoundFXPtr()\l+ operator=()\l}" alt="" coords="46,133,156,269"/>
+</map>

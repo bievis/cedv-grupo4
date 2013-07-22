@@ -1,0 +1,442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.3.1"/>
+<title>Nitro: Referencia de la Clase AppStateListener</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+  $(window).load(resizeHeight);
+</script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Nitro
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generado por Doxygen 1.8.3.1 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Buscar');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;principal</span></a></li>
+      <li><a href="pages.html"><span>Páginas&#160;relacionadas</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Clases</span></a></li>
+      <li><a href="files.html"><span>Archivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Buscar" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Lista&#160;de&#160;clases</span></a></li>
+      <li><a href="classes.html"><span>Índice&#160;de&#160;clases</span></a></li>
+      <li><a href="inherits.html"><span>Jerarquía&#160;de&#160;la&#160;clase</span></a></li>
+      <li><a href="functions.html"><span>Miembros&#160;de&#160;las&#160;clases</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('classAppStateListener.html','');});
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todo</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Clases</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Archivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Funciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Valores de enumeraciones</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Amigas</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>&apos;defines&apos;</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(10)"><span class="SelectionMark">&#160;</span>Páginas</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Métodos públicos</a> &#124;
+<a href="classAppStateListener-members.html">Lista de todos los miembros</a>  </div>
+  <div class="headertitle">
+<div class="title">Referencia de la Clase AppStateListener<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>&gt;</code></p>
+<div class="dynheader">
+Diagrama de herencias de AppStateListener</div>
+<div class="dyncontent">
+<div class="center"><img src="classAppStateListener__inherit__graph.png" border="0" usemap="#AppStateListener_inherit__map" alt="Inheritance graph"/></div>
+<map name="AppStateListener_inherit__map" id="AppStateListener_inherit__map">
+<area shape="rect" id="node3" href="classAppStateManager.html" title="{AppStateManager\n|# m_ActiveStateStack\l# m_States\l# m_bShutdown\l|+ AppStateManager()\l+ ~AppStateManager()\l+ manageAppState()\l+ findByName()\l+ start()\l+ changeAppState()\l+ pushAppState()\l+ popAppState()\l+ pauseAppState()\l+ shutdown()\l+ popAllAndPushAppState()\l# init()\l}" alt="" coords="5,297,189,607"/></map>
+</div>
+<div class="dynheader">
+Diagrama de colaboración para AppStateListener:</div>
+<div class="dyncontent">
+<div class="center"><img src="classAppStateListener__coll__graph.png" border="0" usemap="#AppStateListener_coll__map" alt="Collaboration graph"/></div>
+<map name="AppStateListener_coll__map" id="AppStateListener_coll__map">
+</map>
+</div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Métodos públicos</h2></td></tr>
+<tr class="memitem:aa06a82cb16e5e2b33be68daf49252fab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#aa06a82cb16e5e2b33be68daf49252fab">AppStateListener</a> ()</td></tr>
+<tr class="separator:aa06a82cb16e5e2b33be68daf49252fab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59cf6a9181ce7426734c9b8987625da5"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a59cf6a9181ce7426734c9b8987625da5">~AppStateListener</a> ()</td></tr>
+<tr class="separator:a59cf6a9181ce7426734c9b8987625da5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c19034d2160cb5bbde158ab09f2b886"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a0c19034d2160cb5bbde158ab09f2b886">manageAppState</a> (Ogre::String stateName, <a class="el" href="classAppState.html">AppState</a> *state)=0</td></tr>
+<tr class="separator:a0c19034d2160cb5bbde158ab09f2b886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a075d1e533a4ee7bf968e26e4f160320d"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="classAppState.html">AppState</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a075d1e533a4ee7bf968e26e4f160320d">findByName</a> (Ogre::String stateName)=0</td></tr>
+<tr class="separator:a075d1e533a4ee7bf968e26e4f160320d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ed142ed319852b5c8d7a4a5d313ed2b"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a3ed142ed319852b5c8d7a4a5d313ed2b">changeAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)=0</td></tr>
+<tr class="separator:a3ed142ed319852b5c8d7a4a5d313ed2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b7dfc314ae63f343b2b67d41df3847d"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a9b7dfc314ae63f343b2b67d41df3847d">pushAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)=0</td></tr>
+<tr class="separator:a9b7dfc314ae63f343b2b67d41df3847d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51f14aa792445b842f1785f3ccf442b4"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a51f14aa792445b842f1785f3ccf442b4">popAppState</a> ()=0</td></tr>
+<tr class="separator:a51f14aa792445b842f1785f3ccf442b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc35ebe7a4a22f931586887d362b030"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a6dc35ebe7a4a22f931586887d362b030">pauseAppState</a> ()=0</td></tr>
+<tr class="separator:a6dc35ebe7a4a22f931586887d362b030"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83346e360b154835ddbe5ba592a8e714"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a83346e360b154835ddbe5ba592a8e714">shutdown</a> ()=0</td></tr>
+<tr class="separator:a83346e360b154835ddbe5ba592a8e714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18a62475ed37d8dc01d6e74308c955fd"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAppStateListener.html#a18a62475ed37d8dc01d6e74308c955fd">popAllAndPushAppState</a> (<a class="el" href="classAppState.html">AppState</a> *state)=0</td></tr>
+<tr class="separator:a18a62475ed37d8dc01d6e74308c955fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Descripción detallada</h2>
+<div class="textblock">
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00012">12</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+</div><h2 class="groupheader">Documentación del constructor y destructor</h2>
+<a class="anchor" id="aa06a82cb16e5e2b33be68daf49252fab"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AppStateListener::AppStateListener </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00016">16</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a class="anchor" id="a59cf6a9181ce7426734c9b8987625da5"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual AppStateListener::~AppStateListener </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definición en la línea <a class="el" href="AppState_8hpp_source.html#l00017">17</a> del archivo <a class="el" href="AppState_8hpp_source.html">AppState.hpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;{};</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Documentación de las funciones miembro</h2>
+<a class="anchor" id="a3ed142ed319852b5c8d7a4a5d313ed2b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppStateListener::changeAppState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#ad2e841b3e33e67bda0ee535839a83cd1">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a075d1e533a4ee7bf968e26e4f160320d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="classAppState.html">AppState</a>* AppStateListener::findByName </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::String&#160;</td>
+          <td class="paramname"><em>stateName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#a357316ae104ed314a8d51ca122532d32">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0c19034d2160cb5bbde158ab09f2b886"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppStateListener::manageAppState </td>
+          <td>(</td>
+          <td class="paramtype">Ogre::String&#160;</td>
+          <td class="paramname"><em>stateName</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#a4a8520577bc2136851fcdf247a624a6a">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6dc35ebe7a4a22f931586887d362b030"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppStateListener::pauseAppState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#a18777e2b2e1acc31bd1fafc49a43a867">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a18a62475ed37d8dc01d6e74308c955fd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppStateListener::popAllAndPushAppState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#acf2ce05522db7748e315933fa543d771">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a51f14aa792445b842f1785f3ccf442b4"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppStateListener::popAppState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#afd49e784cf992dbb9ee1c040d5d046ab">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a9b7dfc314ae63f343b2b67d41df3847d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual bool AppStateListener::pushAppState </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classAppState.html">AppState</a> *&#160;</td>
+          <td class="paramname"><em>state</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#ab9a159d519472de953686ce420a0c850">AppStateManager</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a83346e360b154835ddbe5ba592a8e714"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void AppStateListener::shutdown </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implementado en <a class="el" href="classAppStateManager.html#a92442d28265517f45fa4c521908747a4">AppStateManager</a>.</p>
+
+</div>
+</div>
+<hr/>La documentación para esta clase fue generada a partir del siguiente fichero:<ul>
+<li>include/<a class="el" href="AppState_8hpp_source.html">AppState.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="classAppStateListener.html">AppStateListener</a></li>
+    <li class="footer">Generado el Viernes, 10 de Mayo de 2013 00:15:58 para Nitro por
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.3.1 </li>
+  </ul>
+</div>
+</body>
+</html>
