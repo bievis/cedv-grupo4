@@ -72,7 +72,6 @@
 			<Add directory="/usr/local/lib" />
 		</Linker>
 		<Unit filename="include/AdvancedOgreFramework.hpp" />
-		<Unit filename="include/AnimationBlender.h" />
 		<Unit filename="include/AppState.hpp" />
 		<Unit filename="include/AppStateManager.hpp" />
 		<Unit filename="include/CamerasController.h" />
@@ -107,7 +106,6 @@
 		<Unit filename="media/materials/scripts/ransom.overlay" />
 		<Unit filename="ogre.cfg" />
 		<Unit filename="src/AdvancedOgreFramework.cpp" />
-		<Unit filename="src/AnimationBlender.cpp" />
 		<Unit filename="src/AppStateManager.cpp" />
 		<Unit filename="src/CamerasController.cpp" />
 		<Unit filename="src/Character.cpp" />
